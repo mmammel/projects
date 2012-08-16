@@ -1,0 +1,8 @@
+<test>
+  <name>${MAX}</name>
+  <name>${JEVNE}</name>
+  <date>${DATE}</date>
+  <misc>${hellomy$(MAX${nameismaxma}mmel}</misc>
+  ${replaceWithFile}
+</test>
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <style type="text/css">
+#selectable .ui-selecting {
+	background: silver;
+}
+#selectable .ui-selected {
+	background: gray;
+}
+</style>
+
+  <script>
+  $(document).ready(function() {
+    $("#selectable").selectable();
+  });
+  </script>
+</head>
+<body style="font-size:62.5%;">
+
+<ul id="selectable">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>
+  <ul>
+    <li>Item A</li>
+    <li>Item B</li>
+    <li>Item C</li>
+  </ul>
+</li>
+<li>Item 4</li>
+<li>Item 5</li>
+</ul>
+
+</body>
+</html>

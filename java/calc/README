@@ -1,0 +1,6 @@
+javac -classpath "velocity-tools-generic-2.0.jar;velocity-1.7-dep.jar" Example2.java
+java -classpath ".;velocity-1.7-dep.jar;velocity-tools-generic-2.0.jar;commons-beanutils-1.7.0.jar" Example2
+javac -classpath "velocity-tools-generic-2.0.jar;velocity-1.7-dep.jar" VelociCalc.java
+java -classpath ".;velocity-1.7-dep.jar;velocity-tools-generic-2.0.jar;commons-beanutils-1.7.0.jar" VelociCalc
+javac -classpath "velocity-tools-generic-2.0.jar;velocity-1.7-dep.jar;bsh-core-2.0b4.jar" BeanShellCalc.java
+java -classpath ".;velocity-tools-generic-2.0.jar;velocity-1.7-dep.jar;bsh-core-2.0b4.jar" BeanShellCalc

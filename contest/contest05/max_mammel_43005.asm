@@ -1,0 +1,201 @@
+info: MJMBot, Max Mammel, 630 706-4742, Chicago, IL
+
+buffer:
+        data { 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 0x0000 }
+
+main:
+        mov r8, vmove
+        mov [717], 0xff10 
+        rand r11, 100
+        rand r3, 2
+        add r3, 2
+        mov [hdir], r3
+        rand r3, 3
+        cmp r3, 0
+        je eater
+        jmp infector
+infector:
+        cmp [infection_count], 5
+        jge eater
+        rand r13, 4
+        travel r13
+        jmp collision_inf
+infector_eat:
+        eat
+        jns inf_checkcollect
+        jmp infector
+inf_checkcollect:
+        sense   r5
+        cmp     r5, 0xFFFF      // are we on a colleciton point?
+        jne     infector
+        energy r6
+        div r6, 2
+        release r6
+        jmp infector
+eater:
+        call vmove
+        jmp eater
+eatfood:
+        eat
+        jns checkcollect
+        ret
+checkcollect:
+        sense   r5
+        cmp     r5, 0xFFFF      // are we on a colleciton point?
+        jne     return
+        energy r6
+        div r6, 2
+        release r6
+return:
+        ret
+
+collision:
+        mov r1, r13
+        peek r1, 717
+        cmp r1, 0xff10
+        je charge_buddy
+        mov r0, 6
+        poke r13, r11
+        mov r0, r11
+        add r11, 1
+        poke r13, r11
+        jmp eater
+charge_buddy:
+        charge r13, 10000
+        jmp eater
+
+collision_inf:
+        mov r1, r13
+        peek r1, 717
+        cmp r1, 0xff10
+        je northinf
+        mov r0, 6
+        poke r13, r11
+        mov r0, r11
+        mov r10, r11
+        add r10, 1
+        poke r13, r10
+        jns northinf
+        add [infection_count], 1
+        //again
+northinf:
+        mov r1, 0
+        peek r1, 717
+        cmp r1, 0xff10
+        je southinf
+        mov r0, 6
+        poke 0, r11
+        mov r0, r11
+        mov r10, r11
+        add r10, 1
+        poke 0, r10
+        jns southinf
+        add [infection_count], 1
+        //again
+southinf:
+        mov r1, 1
+        peek r1, 717
+        cmp r1, 0xff10
+        je eastinf
+        mov r0, 6
+        poke 1, r11
+        mov r0, r11
+        mov r10, r11
+        add r10, 1
+        poke 1, r10
+        jns eastinf
+        add [infection_count], 1
+        //again
+eastinf:
+        mov r1, 2
+        peek r1, 717
+        cmp r1, 0xff10
+        je westinf
+        mov r0, 6
+        poke 2, r11
+        mov r0, r11
+        mov r10, r11
+        add r10, 1
+        poke 2, r10
+        jns westinf
+        add [infection_count], 1
+        //again
+westinf:
+        mov r1, 3
+        peek r1, 717
+        cmp r1, 0xff10
+        je infector
+        mov r0, 6
+        poke 3, r11
+        mov r0, r11
+        mov r10, r11
+        add r10, 1
+        poke 3, r10
+        jns infector_eat
+        add [infection_count], 1
+        jmp infector_eat
+
+size:
+
+vmove:
+        getxy [xc], [yc]
+        cmp [yc], 0
+        jne vmove2
+        mov [vdir], 1
+        call hmove
+        jmp dovtravel
+vmove2:
+        getxy [xc], [yc]
+        cmp [yc], 39
+        jne dovtravel
+        mov [vdir], 0
+        call hmove
+dovtravel:
+        travel [vdir]
+        jns vcontingent
+        call eatfood
+        ret
+vcontingent:
+        call hmove
+        ret
+hmove:
+        cmp [xc], 0
+        jne hmove2
+        mov [hdir], 2
+        jmp dohtravel
+hmove2:
+        cmp [xc], 69
+        jne dohtravel
+        mov [hdir], 3
+        jmp dohtravel
+dohtravel:
+        rand r9, 3
+        mov r7, 0
+        travel [hdir]
+        jns hcontingent
+        travel [vdir]
+        jns hcontingent
+        call eatfood
+        ret
+hcontingent:
+        rand r4, 3
+        travel r4
+        call eatfood
+        travel r4
+        call eatfood
+        travel r4
+        call eatfood
+        ret
+        
+        
+xc:
+        data{ 1 }
+yc:
+        data{ 1 }
+vdir:
+        data{ 0 }
+hdir:
+        data{ 2 }
+        
+infection_count:
+        data{ 0 }

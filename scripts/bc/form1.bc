@@ -1,0 +1,64 @@
+
+/*
+a(x) is the argument of the sqrt in the quadratic
+formula for b in terms of a, derived from Ramanujan's
+parametric equation:
+
+a^2 + a*b + b^2 = 3*x*y^2
+
+with x = 12, and a*x+y = 1
+
+*/
+
+define a(x){
+return( 20733*x^2 + 3456*x + 144 )
+}
+
+/*
+b(x) is an integer for the arguments we expect
+*/
+
+define b(x){
+return( sqrt(a(x)) )
+}
+
+/* 
+n(z) returns the next integer value of a which yields an
+integer value of b in R.'s formula cited above. It also
+derives the values i,j,k,l for which i=1, and i^3+j^3=k^3+l^3
+and prints them along with the two equal sums.
+*/
+
+define n(z){
+auto a,b,x,y,i,j,k,l;
+
+x=12
+
+
+a = 13823*z+96*b(z)+1152
+a;b(a);
+return(v(a));
+}
+define v(z){
+auto a,b,x,y,i,j,k,l;
+a = z
+b = ( a + b(a) )/2
+
+a = -a
+x=12
+
+y = 1-a*x
+
+i=a*x+y
+j=b+x^2*y
+k=b*x+y
+l=a+x^2*y
+-a; b; i;j;k;l;
+
+i^3+j^3
+k^3+l^3
+
+return ( -a )
+}
+
+v(2304)

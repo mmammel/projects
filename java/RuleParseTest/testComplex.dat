@@ -1,0 +1,1 @@
+MAP $FOO + ( $JOMAMA & (S857 * ( $AMNT/100 )) + $BAR )- $JOMAMA TO D371

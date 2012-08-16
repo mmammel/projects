@@ -1,0 +1,2134 @@
+12:      <Description>Blah, blah blah blah - and blah</Description>
+63:        <Description/>
+73:          <Description>CONTROL_RECORD</Description>
+96:              <Description>TABNAM - Name of table structure - (EDI_DC40)</Description>
+128:              <Description>MANDT - Client</Description>
+160:              <Description>DOCNUM - IDoc number</Description>
+192:              <Description>DOCREL - SAP Release for IDoc</Description>
+224:              <Description>STATUS - Status of IDoc</Description>
+256:              <Description>DIRECT - Direction</Description>
+288:              <Description>OUTMOD - Output mode</Description>
+320:              <Description>EXPRSS - Overriding in inbound processing</Description>
+352:              <Description>TEST - Test flag</Description>
+384:              <Description>IDOCTYP - Name of basic type</Description>
+416:              <Description>CIMTYP - Extension (defined by customer)</Description>
+448:              <Description>MESTYP - Message type</Description>
+480:              <Description>MESCOD - Message code</Description>
+512:              <Description>MESFCT - Message function</Description>
+544:              <Description>STD - EDI standard, flag</Description>
+576:              <Description>STDVRS - EDI standard, version and release</Description>
+608:              <Description>STDMES - EDI message type</Description>
+640:              <Description>SNDPOR - Sender port (SAP System, external subsystem)</Description>
+672:              <Description>SNDPRT - Partner type of sender</Description>
+704:              <Description>SNDPFC - Partner Function of Sender</Description>
+736:              <Description>SNDPRN - Partner number of sender</Description>
+768:              <Description>SNDSAD - Sender address (SADR)</Description>
+800:              <Description>SNDLAD - Logical address of sender</Description>
+832:              <Description>RCVPOR - Receiver port</Description>
+864:              <Description>RCVPRT - Partner type of recipient</Description>
+896:              <Description>RCVPFC - Partner function of recipient</Description>
+928:              <Description>RCVPRN - Partner number of recipient</Description>
+960:              <Description>RCVSAD - Recipient address (SADR)</Description>
+992:              <Description>RCVLAD - Logical address of recipient</Description>
+1024:              <Description>CREDAT - Created on</Description>
+1056:              <Description>CRETIM - Time created</Description>
+1088:              <Description>REFINT - Transmission file (EDI Interchange)</Description>
+1120:              <Description>REFGRP - Message group (EDI Message Group)</Description>
+1152:              <Description>REFMES - Message (EDI Message)</Description>
+1184:              <Description>ARCKEY - Key for external message archive</Description>
+1216:              <Description>SERIAL - Serialization</Description>
+1248:              <Description>TPCODE</Description>
+1281:          <Description>SEGMENT</Description>
+1304:              <Description>SEGNAM - Segment (external name) - (E2EDT20)</Description>
+1336:              <Description>MANDT - Client</Description>
+1368:              <Description>DOCNUM - IDoc number</Description>
+1400:              <Description>SEGNUM - Segment number</Description>
+1432:              <Description>PSGNUM - Number of superior parent segment</Description>
+1464:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+1496:              <Description>TKNUM - Shipment number</Description>
+1528:              <Description>SHTYP - Shipment type</Description>
+1560:              <Description>ABFER - Shipment completion type</Description>
+1592:              <Description>ABWST - Processing control</Description>
+1624:              <Description>BFART - Service level</Description>
+1656:              <Description>VSART - Shipping type</Description>
+1688:              <Description>LAUFK - Leg Indicator</Description>
+1720:              <Description>VSBED - Shipping conditions</Description>
+1752:              <Description>ROUTE - Shipment route</Description>
+1784:              <Description>SIGNI - Container ID</Description>
+1816:              <Description>EXTI1 - External identification 1</Description>
+1848:              <Description>EXTI2 - External identification 2</Description>
+1880:              <Description>TPBEZ - Description of transport</Description>
+1912:              <Description>STTRG - Overall transportation status</Description>
+1944:              <Description>PKSTK - Shipment Contains Handling Units</Description>
+1976:              <Description>DTMEG - Unit of Weight for Transportation Planning</Description>
+2008:              <Description>DTMEV - Volume Unit for Transportation Planning</Description>
+2040:              <Description>DISTZ - Distance</Description>
+2072:              <Description>MEDST - Unit of measure for distance</Description>
+2104:              <Description>FAHZT - Travelling time only between two locations</Description>
+2136:              <Description>GESZT - Total travelling time between two locations incl. breaks</Description>
+2168:              <Description>MEIZT - Unit of measure for travelling times</Description>
+2200:              <Description>FBSTA - Status of shipment costs calculation</Description>
+2232:              <Description>FBGST - Overall status of calculation of shipment costs for shipment</Description>
+2264:              <Description>ARSTA - Status of shipment costs settlement</Description>
+2296:              <Description>ARGST - Total status of shipment costs settlement for shipment</Description>
+2328:              <Description>STERM_DONE - Leg determination complete</Description>
+2360:              <Description>VSE_FRK - Handling Unit Data are Referred in Shipment Cost Document</Description>
+2392:              <Description>KKALSM - Pricing procedure in shipment header</Description>
+2424:              <Description>SDABW - Special processing indicator</Description>
+2456:              <Description>FRKRL - Shipment costs relevance</Description>
+2488:              <Description>GESZTD - Planned total time of transportation (in days)</Description>
+2520:              <Description>FAHZTD - Planned duration of transportation (in hours:minutes)</Description>
+2552:              <Description>GESZTDA - Actual total time of shipment (in days)</Description>
+2584:              <Description>FAHZTDA - Actual time needed for transporation (in hours:minutes)</Description>
+2616:              <Description>WARZTD - Planned waiting time of shipment (in hours:minutes)</Description>
+2648:              <Description>WARZTDA - Current waiting time of shipment (in hours:minutes)</Description>
+2681:          <Description>SEGMENT</Description>
+2704:              <Description>SEGNAM - Segment (external name) - (E2EDT18)</Description>
+2736:              <Description>MANDT - Client</Description>
+2768:              <Description>DOCNUM - IDoc number</Description>
+2800:              <Description>SEGNUM - Segment number</Description>
+2832:              <Description>PSGNUM - Number of superior parent segment</Description>
+2864:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+2896:              <Description>SUMID - Qualifier</Description>
+2928:              <Description>SUMME - Shpment Totals</Description>
+2960:              <Description>SUNIT - Unit of Measure</Description>
+2992:              <Description>NUM_DELV - Number of Deliveries</Description>
+3025:          <Description>SEGMENT</Description>
+3048:              <Description>SEGNAM - Segment (external name) - (E2EDT22)</Description>
+3080:              <Description>MANDT - Client</Description>
+3112:              <Description>DOCNUM - IDoc number</Description>
+3144:              <Description>SEGNUM - Segment number</Description>
+3176:              <Description>PSGNUM - Number of superior parent segment</Description>
+3208:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+3240:              <Description>SHTYP_BEZ - Description</Description>
+3272:              <Description>BFART_BEZ - Description</Description>
+3304:              <Description>VSART_BEZ - Description of the shipping type</Description>
+3336:              <Description>LAUFK_BEZ - Description</Description>
+3368:              <Description>VSBED_BEZ - Description of the shipping conditions</Description>
+3400:              <Description>ROUTE_BEZ - Description</Description>
+3432:              <Description>STTRG_BEZ - Description</Description>
+3464:              <Description>FBSTA_BEZ - Description of status for calculation of shipment costs</Description>
+3496:              <Description>FBGST_BEZ - Overall status of calculation of shipment costs for shipment</Description>
+3528:              <Description>ARSTA_BEZ - Description for status of shipment costs settlement</Description>
+3560:              <Description>ARGST_BEZ - Descr.for overall status of settlm. of shipping costs</Description>
+3593:          <Description>SEGMENT</Description>
+3616:              <Description>SEGNAM - Segment (external name) - (E2EDT18)</Description>
+3648:              <Description>MANDT - Client</Description>
+3680:              <Description>DOCNUM - IDoc number</Description>
+3712:              <Description>SEGNUM - Segment number</Description>
+3744:              <Description>PSGNUM - Number of superior parent segment</Description>
+3776:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+3808:              <Description>QUALF - IDOC Qualifier: Control (Shipment)</Description>
+3840:              <Description>PARAM - IDOC: Control Parameters</Description>
+3873:          <Description>SEGMENT</Description>
+3896:              <Description>SEGNAM - Segment (external name) - (E2ADRM4)</Description>
+3928:              <Description>MANDT - Client</Description>
+3960:              <Description>DOCNUM - IDoc number</Description>
+3992:              <Description>SEGNUM - Segment number</Description>
+4024:              <Description>PSGNUM - Number of superior parent segment</Description>
+4056:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+4088:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+4120:              <Description>ADDRESS_T - Addr. type</Description>
+4152:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+4184:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+4216:              <Description>LANGUAGE - Language key</Description>
+4248:              <Description>FORMOFADDR - Form of address</Description>
+4280:              <Description>NAME1 - Name or address line</Description>
+4312:              <Description>NAME2 - Name or address line</Description>
+4344:              <Description>NAME3 - Name or address line</Description>
+4376:              <Description>NAME4 - Name or address line</Description>
+4408:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+4440:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+4472:              <Description>LOCATION - Location description of location</Description>
+4504:              <Description>BUILDING - Location description: Building</Description>
+4536:              <Description>FLOOR - Location description: Floor</Description>
+4568:              <Description>ROOM - Location description: Room</Description>
+4600:              <Description>STREET1 - House number and street</Description>
+4632:              <Description>STREET2 - House number and street</Description>
+4664:              <Description>STREET3 - House number and street</Description>
+4696:              <Description>HOUSE_SUPL - House number</Description>
+4728:              <Description>HOUSE_RANG - House no. (interval)</Description>
+4760:              <Description>POSTL_COD1 - Postal code</Description>
+4792:              <Description>POSTL_COD3 - Postal code</Description>
+4824:              <Description>POSTL_AREA - Post delivery district</Description>
+4856:              <Description>CITY1 - Town or city</Description>
+4888:              <Description>CITY2 - Town or city</Description>
+4920:              <Description>POSTL_PBOX - P.O. Box</Description>
+4952:              <Description>POSTL_COD2 - Postal code</Description>
+4984:              <Description>POSTL_CITY - Town or city</Description>
+5016:              <Description>TELEPHONE1 - Telephone number</Description>
+5048:              <Description>TELEPHONE2 - Telephone number</Description>
+5080:              <Description>TELEFAX - Fax number</Description>
+5112:              <Description>TELEX - Telex number</Description>
+5144:              <Description>E_MAIL - E-mail address</Description>
+5176:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+5208:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+5240:              <Description>REGION - Region, state</Description>
+5272:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+5304:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+5336:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+5368:              <Description>TZDESC - Location for time zone (external code)</Description>
+5401:          <Description>SEGMENT</Description>
+5424:              <Description>SEGNAM - Segment (external name) - (E2ADRE4)</Description>
+5456:              <Description>MANDT - Client</Description>
+5488:              <Description>DOCNUM - IDoc number</Description>
+5520:              <Description>SEGNUM - Segment number</Description>
+5552:              <Description>PSGNUM - Number of superior parent segment</Description>
+5584:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+5616:              <Description>EXTEND_Q - Qualifier for additional data, e.g. ILN or D&amp;B number</Description>
+5648:              <Description>EXTEND_D - Additional data, e.g. ILN or D&amp;B no.</Description>
+5681:        <Description/>
+5691:          <Description>SEGMENT</Description>
+5714:              <Description>SEGNAM - Segment (external name) - (E2EDT10)</Description>
+5746:              <Description>MANDT - Client</Description>
+5778:              <Description>DOCNUM - IDoc number</Description>
+5810:              <Description>SEGNUM - Segment number</Description>
+5842:              <Description>PSGNUM - Number of superior parent segment</Description>
+5874:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+5906:              <Description>QUALF - IDOC Qualifier: Date (Shipment)</Description>
+5938:              <Description>VSTZW - Deadline function</Description>
+5970:              <Description>VSTZW_BEZ - Description</Description>
+6002:              <Description>NTANF - IDOC: Date</Description>
+6034:              <Description>NTANZ - IDOC: Time</Description>
+6066:              <Description>NTEND - IDOC: Date</Description>
+6098:              <Description>NTENZ - IDOC: Time</Description>
+6130:              <Description>TZONE_BEG - Time zone</Description>
+6162:              <Description>ISDD - IDOC: Date</Description>
+6194:              <Description>ISDZ - IDOC: Time</Description>
+6226:              <Description>IEDD - IDOC: Date</Description>
+6258:              <Description>IEDZ - IDOC: Time</Description>
+6290:              <Description>TZONE_END - Time zone</Description>
+6322:              <Description>VORNR - Operation Number</Description>
+6354:              <Description>VSTGA - Deadline deviation reason</Description>
+6386:              <Description>VSTGA_BEZ - Description</Description>
+6418:              <Description>EVENT - Event type</Description>
+6450:              <Description>EVENT_ALI - Alias for the transaction (language-independent)</Description>
+6483:        <Description/>
+6493:          <Description>SEGMENT</Description>
+6516:              <Description>SEGNAM - Segment (external name) - (E2EDT32)</Description>
+6548:              <Description>MANDT - Client</Description>
+6580:              <Description>DOCNUM - IDoc number</Description>
+6612:              <Description>SEGNUM - Segment number</Description>
+6644:              <Description>PSGNUM - Number of superior parent segment</Description>
+6676:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+6708:              <Description>KNOTE - Transportation Connection Points</Description>
+6740:              <Description>KNOTE_BEZ - Node name</Description>
+6773:          <Description>SEGMENT</Description>
+6796:              <Description>SEGNAM - Segment (external name) - (E2ADRM5)</Description>
+6828:              <Description>MANDT - Client</Description>
+6860:              <Description>DOCNUM - IDoc number</Description>
+6892:              <Description>SEGNUM - Segment number</Description>
+6924:              <Description>PSGNUM - Number of superior parent segment</Description>
+6956:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+6988:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+7020:              <Description>ADDRESS_T - Addr. type</Description>
+7052:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+7084:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+7116:              <Description>LANGUAGE - Language key</Description>
+7148:              <Description>FORMOFADDR - Form of address</Description>
+7180:              <Description>NAME1 - Name or address line</Description>
+7212:              <Description>NAME2 - Name or address line</Description>
+7244:              <Description>NAME3 - Name or address line</Description>
+7276:              <Description>NAME4 - Name or address line</Description>
+7308:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+7340:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+7372:              <Description>LOCATION - Location description of location</Description>
+7404:              <Description>BUILDING - Location description: Building</Description>
+7436:              <Description>FLOOR - Location description: Floor</Description>
+7468:              <Description>ROOM - Location description: Room</Description>
+7500:              <Description>STREET1 - House number and street</Description>
+7532:              <Description>STREET2 - House number and street</Description>
+7564:              <Description>STREET3 - House number and street</Description>
+7596:              <Description>HOUSE_SUPL - House number</Description>
+7628:              <Description>HOUSE_RANG - House no. (interval)</Description>
+7660:              <Description>POSTL_COD1 - Postal code</Description>
+7692:              <Description>POSTL_COD3 - Postal code</Description>
+7724:              <Description>POST_AREA - Post delivery district</Description>
+7756:              <Description>CITY1 - Town or city</Description>
+7788:              <Description>CITY2 - Town or city</Description>
+7820:              <Description>POSTL_PBOX - P.O. Box</Description>
+7852:              <Description>POSTL_COD2 - Postal code</Description>
+7884:              <Description>POSTL_CITY - Town or city</Description>
+7916:              <Description>TELEPHONE1 - Telephone number</Description>
+7948:              <Description>TELEPHONE2 - Telephone number</Description>
+7980:              <Description>TELEFAX - Fax number</Description>
+8012:              <Description>TELEX - Telex number</Description>
+8044:              <Description>E_MAIL - E-mail address</Description>
+8076:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+8108:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+8140:              <Description>REGION - Region, state</Description>
+8172:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+8204:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+8236:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+8268:              <Description>TZDESC - Location for time zone (external code)</Description>
+8302:        <Description/>
+8312:          <Description>SEGMENT</Description>
+8335:              <Description>SEGNAM - Segment (external name) - (E2TXTH7)</Description>
+8367:              <Description>MANDT - Client</Description>
+8399:              <Description>DOCNUM - IDoc number</Description>
+8431:              <Description>SEGNUM - Segment number</Description>
+8463:              <Description>PSGNUM - Number of superior parent segment</Description>
+8495:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+8527:              <Description>FUNCTION - Function (for transferred text)</Description>
+8559:              <Description>TDOBJECT - Texts: application object</Description>
+8591:              <Description>TDOBNAME - Name</Description>
+8623:              <Description>TDID - Text ID</Description>
+8655:              <Description>TDSPRAS - Language</Description>
+8687:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+8719:              <Description>LANGUA_ISO - Language key</Description>
+8752:          <Description>SEGMENT</Description>
+8775:              <Description>SEGNAM - Segment (external name) - (E2TXTP7)</Description>
+8807:              <Description>MANDT - Client</Description>
+8839:              <Description>DOCNUM - IDoc number</Description>
+8871:              <Description>SEGNUM - Segment number</Description>
+8903:              <Description>PSGNUM - Number of superior parent segment</Description>
+8935:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+8967:              <Description>TDFORMAT - Tag column</Description>
+8999:              <Description>TDLINE - Text line</Description>
+9034:        <Description/>
+9044:          <Description>SEGMENT</Description>
+9067:              <Description>SEGNAM - Segment (external name) - (E2TXTH6)</Description>
+9099:              <Description>MANDT - Client</Description>
+9131:              <Description>DOCNUM - IDoc number</Description>
+9163:              <Description>SEGNUM - Segment number</Description>
+9195:              <Description>PSGNUM - Number of superior parent segment</Description>
+9227:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+9259:              <Description>FUNCTION - Function (for transferred text)</Description>
+9291:              <Description>TDOBJECT - Texts: application object</Description>
+9323:              <Description>TDOBNAME - Name</Description>
+9355:              <Description>TDID - Text ID</Description>
+9387:              <Description>TDSPRAS - Language</Description>
+9419:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+9451:              <Description>LANGUA_ISO - Language key</Description>
+9484:          <Description>SEGMENT</Description>
+9507:              <Description>SEGNAM - Segment (external name) - (E2TXTP6)</Description>
+9539:              <Description>MANDT - Client</Description>
+9571:              <Description>DOCNUM - IDoc number</Description>
+9603:              <Description>SEGNUM - Segment number</Description>
+9635:              <Description>PSGNUM - Number of superior parent segment</Description>
+9667:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+9699:              <Description>TDFORMAT - Tag column</Description>
+9731:              <Description>TDLINE - Text line</Description>
+9765:        <Description/>
+9775:          <Description>SEGMENT</Description>
+9798:              <Description>SEGNAM - Segment (external name) - (E2EDT37)</Description>
+9830:              <Description>MANDT - Client</Description>
+9862:              <Description>DOCNUM - IDoc number</Description>
+9894:              <Description>SEGNUM - Segment number</Description>
+9926:              <Description>PSGNUM - Number of superior parent segment</Description>
+9958:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+9990:              <Description>EXIDV - External Handling Unit Identification</Description>
+10022:              <Description>TARAG - Tare weight of handling unit</Description>
+10054:              <Description>GWEIT - Weight Unit Tare</Description>
+10086:              <Description>BRGEW - Total Weight of Handling Unit</Description>
+10118:              <Description>NTGEW - Loading Weight of Handling Unit</Description>
+10150:              <Description>MAGEW - Allowed Loading Weight of a Handling Unit</Description>
+10182:              <Description>GWEIM - Weight Unit</Description>
+10214:              <Description>BTVOL - Total volume of handling unit</Description>
+10246:              <Description>NTVOL - Loading Volume of Handling Unit</Description>
+10278:              <Description>MAVOL - Allowed Loading Volume for Handling Unit</Description>
+10310:              <Description>VOLEM - Volume unit</Description>
+10342:              <Description>TAVOL - Tare volume of handling unit</Description>
+10374:              <Description>VOLET - Volume Unit Tare</Description>
+10406:              <Description>VEGR2 - Handling Unit Group 2                     (Freely Definable)</Description>
+10438:              <Description>VEGR1 - Handling Unit Group 1                     (Freely Definable)</Description>
+10470:              <Description>VEGR3 - Handling Unit Group 3                     (Freely Definable)</Description>
+10502:              <Description>VHILM - Packaging Materials</Description>
+10534:              <Description>VEGR4 - Handling Unit Group 4                     (Freely Definable)</Description>
+10566:              <Description>LAENG - Length</Description>
+10598:              <Description>VEGR5 - Handling Unit Group 5                     (Freely Definable)</Description>
+10630:              <Description>BREIT - Width</Description>
+10662:              <Description>HOEHE - Height</Description>
+10694:              <Description>MEABM - Unit of dimension for length/width/height</Description>
+10726:              <Description>INHALT - Description of Handling Unit Content</Description>
+10758:              <Description>VHART - Packaging Material Type</Description>
+10790:              <Description>MAGRV - Material Group: Packaging Materials</Description>
+10822:              <Description>LADLG - Lgth of loading platform in lgth of LdPlat measurement units</Description>
+10854:              <Description>LADEH - Unit of measure to measure the length of loading platform</Description>
+10886:              <Description>FARZT - Travel Time</Description>
+10918:              <Description>FAREH - Unit of travel time</Description>
+10950:              <Description>ENTFE - Distance Travelled</Description>
+10982:              <Description>EHENT - Unit of distance</Description>
+11014:              <Description>VELTP - Packaging Material Category</Description>
+11046:              <Description>EXIDV2 - Handling Unit&apos;s 2nd External Identification</Description>
+11078:              <Description>LANDT - Country providing means of transport</Description>
+11110:              <Description>LANDF - Driver&apos;s Nationality</Description>
+11142:              <Description>NAMEF - Driver name</Description>
+11174:              <Description>NAMBE - Alternate driver&apos;s name</Description>
+11206:              <Description>VHILM_KU - Material belonging to the customer</Description>
+11238:              <Description>VEBEZ - Description of Packaging Material</Description>
+11270:              <Description>KDMAT35 - Partner&apos;s (Customer&apos;s or Vendor&apos;s) Packaging Material</Description>
+11302:              <Description>SMGKN - SMG identification for material tag</Description>
+11334:              <Description>SORTL - Sort field</Description>
+11366:              <Description>ERNAM - Name of Person who Created the Object</Description>
+11398:              <Description>GEWFX - Weight and Volume Fixed</Description>
+11430:              <Description>ERLKZ - Status (at this time without functionality)</Description>
+11462:              <Description>EXIDA - Type of external handling unit identifier</Description>
+11494:              <Description>MOVE_STATUS - Handling unit status</Description>
+11526:              <Description>PACKVORSCHR - Text string 22 characters</Description>
+11558:              <Description>PACKVORSCHR_ST - Single-character flag</Description>
+11590:              <Description>LABELTYP - Indicator: do not print external shipping label</Description>
+11622:              <Description>ZUL_AUFL - Field length 17</Description>
+11654:              <Description>VHILM_EXTERNAL - Long material number (future development) for field VHILM</Description>
+11686:              <Description>VHILM_VERSION - Version number (future development) for field VHILM</Description>
+11718:              <Description>VHILM_GUID - External GUID (future development) for field VHILM</Description>
+11751:          <Description>SEGMENT</Description>
+11774:              <Description>SEGNAM - Segment (external name) - (E2EDT39)</Description>
+11806:              <Description>MANDT - Client</Description>
+11838:              <Description>DOCNUM - IDoc number</Description>
+11870:              <Description>SEGNUM - Segment number</Description>
+11902:              <Description>PSGNUM - Number of superior parent segment</Description>
+11934:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+11966:              <Description>QUALF - Control for Handling Unit</Description>
+11998:              <Description>PARAM - IDOC: Control Parameters</Description>
+12031:          <Description>SEGMENT</Description>
+12054:              <Description>SEGNAM - Segment (external name) - (E2EDT38)</Description>
+12086:              <Description>MANDT - Client</Description>
+12118:              <Description>DOCNUM - IDoc number</Description>
+12150:              <Description>SEGNUM - Segment number</Description>
+12182:              <Description>PSGNUM - Number of superior parent segment</Description>
+12214:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+12246:              <Description>VEGR1_BEZ - Description of shipping unit 1</Description>
+12278:              <Description>VEGR2_BEZ - Description of shipping unit 2</Description>
+12310:              <Description>VEGR3_BEZ - Description of shipping unit 3</Description>
+12342:              <Description>VEGR4_BEZ - Description of shipping unit 4</Description>
+12374:              <Description>VEGR5_BEZ - Description of shipping unit 5</Description>
+12406:              <Description>VHART_BEZ - Description of shipping material type</Description>
+12438:              <Description>MAGRV_BEZ - Description of material grouping shipping material</Description>
+12470:              <Description>VEBEZ - Description of Packaging Material</Description>
+12503:          <Description>SEGMENT</Description>
+12526:              <Description>SEGNAM - Segment (external name) - (E2EDT43)</Description>
+12558:              <Description>MANDT - Client</Description>
+12590:              <Description>DOCNUM - IDoc number</Description>
+12622:              <Description>SEGNUM - Segment number</Description>
+12654:              <Description>PSGNUM - Number of superior parent segment</Description>
+12686:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+12718:              <Description>VELIN - Type of Handling-unit Item Content</Description>
+12750:              <Description>VBELN - Sales and distribution document number</Description>
+12782:              <Description>POSNR - Item number of the SD document</Description>
+12814:              <Description>EXIDV - External Handling Unit Identification</Description>
+12846:              <Description>VEMNG - Base Quantity Packed in the Handling Unit Item</Description>
+12878:              <Description>VEMEH - Base Unit of Measure of the Quantity to be Packed (VEMNG)</Description>
+12910:              <Description>MATNR - Material number</Description>
+12942:              <Description>KDMAT - Material belonging to the customer</Description>
+12974:              <Description>CHARG - Batch number</Description>
+13006:              <Description>WERKS - Plant</Description>
+13038:              <Description>LGORT - Storage location</Description>
+13070:              <Description>CUOBJ - Configuration (internal object number)</Description>
+13102:              <Description>BESTQ - Stock category in the Warehouse Management system</Description>
+13134:              <Description>SOBKZ - Special stock indicator</Description>
+13166:              <Description>SONUM - Special stock number</Description>
+13198:              <Description>ANZSN - Number of serial numbers</Description>
+13230:              <Description>WDATU - Date of goods receipt</Description>
+13262:              <Description>PARID - External partner number</Description>
+13294:              <Description>MATNR_EXTERNAL - Long material number (future development) for MATNR field</Description>
+13326:              <Description>MATNR_VERSION - Version number (future development) for MATNR field</Description>
+13358:              <Description>MATNR_GUID - External GUID (future development) for MATNR field</Description>
+13392:        <Description/>
+13402:          <Description>SEGMENT</Description>
+13425:              <Description>SEGNAM - Segment (external name) - (E2EDK33)</Description>
+13457:              <Description>MANDT - Client</Description>
+13489:              <Description>DOCNUM - IDoc number</Description>
+13521:              <Description>SEGNUM - Segment number</Description>
+13553:              <Description>PSGNUM - Number of superior parent segment</Description>
+13585:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+13617:              <Description>TSNUM - Stage of transport number</Description>
+13649:              <Description>TSRFO - Stage of transport sequence</Description>
+13681:              <Description>TSTYP - Stage category</Description>
+13713:              <Description>VSART - Shipping type for shipment stage</Description>
+13745:              <Description>INCO1 - Incoterms for printout</Description>
+13777:              <Description>LAUFK - Leg indicator for shipment stage</Description>
+13809:              <Description>DISTZ - Distance</Description>
+13841:              <Description>MEDST - Unit of measure for distance</Description>
+13873:              <Description>FAHZT - Travelling time only between two locations</Description>
+13905:              <Description>GESZT - Total travelling time between two locations incl. breaks</Description>
+13937:              <Description>MEIZT - Unit of measure for travelling times</Description>
+13969:              <Description>GESZTD - Planned total time at stage level (in days)</Description>
+14001:              <Description>FAHZTD - Plan: Actual duration at stage level (in hours:minutes)</Description>
+14033:              <Description>GESZTDA - Actual total time at stage of shipment (in days)</Description>
+14065:              <Description>FAHZTDA - Actual duration of shipment stage (in hours:minutes)</Description>
+14097:              <Description>SDABW - Special processing indicator</Description>
+14129:              <Description>FRKRL - Shipment costs relevance</Description>
+14161:              <Description>SKALSM - Pricing procedure in stage of shipment</Description>
+14193:              <Description>FBSTA - Status of shipment costs calculation</Description>
+14225:              <Description>ARSTA - Status of shipment costs settlement</Description>
+14257:              <Description>WARZTD - Planned waiting time in shipment stage (in hrs:min)</Description>
+14289:              <Description>WARZTDA - Current waiting time in shipment stage (in hrs:min)</Description>
+14321:              <Description>CONT_DG - Indicator: Section contains dangerous goods</Description>
+14354:          <Description>SEGMENT</Description>
+14377:              <Description>SEGNAM - Segment (external name) - (E2EDT50)</Description>
+14409:              <Description>MANDT - Client</Description>
+14441:              <Description>DOCNUM - IDoc number</Description>
+14473:              <Description>SEGNUM - Segment number</Description>
+14505:              <Description>PSGNUM - Number of superior parent segment</Description>
+14537:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+14569:              <Description>TSTYP_BEZ - Description</Description>
+14601:              <Description>VSART_BEZ - Description of the shipping type</Description>
+14633:              <Description>INCO1_BEZ - Description</Description>
+14665:              <Description>LAUFK_BEZ - Description</Description>
+14697:              <Description>FBSTA_BEZ - Description of status for calculation of shipment costs</Description>
+14729:              <Description>ARSTA_BEZ - Description for status of shipment costs settlement</Description>
+14762:        <Description/>
+14772:          <Description>SEGMENT</Description>
+14795:              <Description>SEGNAM - Segment (external name) - (E2EDT44)</Description>
+14827:              <Description>MANDT - Client</Description>
+14859:              <Description>DOCNUM - IDoc number</Description>
+14891:              <Description>SEGNUM - Segment number</Description>
+14923:              <Description>PSGNUM - Number of superior parent segment</Description>
+14955:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+14987:              <Description>QUALI - Qualifier for stage point</Description>
+15019:              <Description>KNOTE - Transportation Connection Points</Description>
+15051:              <Description>ADRNR - Address</Description>
+15083:              <Description>VSTEL - Shipping point/receiving point</Description>
+15115:              <Description>LSTEL - Loading point</Description>
+15147:              <Description>WERKS - EDI plant number for shipping unit</Description>
+15179:              <Description>LGORT - Storage location</Description>
+15211:              <Description>KUNNR - Customer number</Description>
+15243:              <Description>LIFNR - Vendor number of destination point</Description>
+15275:              <Description>ABLAD - Unloading point</Description>
+15307:              <Description>LGNUM - Warehouse Number / Warehouse Complex</Description>
+15339:              <Description>LGTOR - Door for warehouse number</Description>
+15371:              <Description>BAHNRA - TrainStnNumber</Description>
+15404:          <Description>SEGMENT</Description>
+15427:              <Description>SEGNAM - Segment (external name) - (E2EDT49)</Description>
+15459:              <Description>MANDT - Client</Description>
+15491:              <Description>DOCNUM - IDoc number</Description>
+15523:              <Description>SEGNUM - Segment number</Description>
+15555:              <Description>PSGNUM - Number of superior parent segment</Description>
+15587:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+15619:              <Description>KNOTE_BEZ - Node name</Description>
+15651:              <Description>VSTEL_BEZ - Description of shipping point</Description>
+15683:              <Description>LSTEL_BEZ - Loading point description</Description>
+15715:              <Description>WERKS_BEZ - Plant Descript.</Description>
+15747:              <Description>LGORT_BEZ - Description of storage location</Description>
+15779:              <Description>LGNUM_BEZ - Warehouse number description</Description>
+15811:              <Description>LGTOR_BEZ - Door description</Description>
+15844:          <Description>SEGMENT</Description>
+15867:              <Description>SEGNAM - Segment (external name) - (E2ADRM6)</Description>
+15899:              <Description>MANDT - Client</Description>
+15931:              <Description>DOCNUM - IDoc number</Description>
+15963:              <Description>SEGNUM - Segment number</Description>
+15995:              <Description>PSGNUM - Number of superior parent segment</Description>
+16027:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+16059:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+16091:              <Description>ADDRESS_T - Addr. type</Description>
+16123:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+16155:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+16187:              <Description>LANGUAGE - Language key</Description>
+16219:              <Description>FORMOFADDR - Form of address</Description>
+16251:              <Description>NAME1 - Name or address line</Description>
+16283:              <Description>NAME2 - Name or address line</Description>
+16315:              <Description>NAME3 - Name or address line</Description>
+16347:              <Description>NAME4 - Name or address line</Description>
+16379:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+16411:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+16443:              <Description>LOCATION - Location description of location</Description>
+16475:              <Description>BUILDING - Location description: Building</Description>
+16507:              <Description>FLOOR - Location description: Floor</Description>
+16539:              <Description>ROOM - Location description: Room</Description>
+16571:              <Description>STREET1 - House number and street</Description>
+16603:              <Description>STREET2 - House number and street</Description>
+16635:              <Description>STREET3 - House number and street</Description>
+16667:              <Description>HOUSE_SUPL - House number</Description>
+16699:              <Description>HOUSE_RANG - House no. (interval)</Description>
+16731:              <Description>POSTL_COD1 - Postal code</Description>
+16763:              <Description>POSTL_COD3 - Postal code</Description>
+16795:              <Description>POSTL_AREA - Post delivery district</Description>
+16827:              <Description>CITY1 - Town or city</Description>
+16859:              <Description>CITY2 - Town or city</Description>
+16891:              <Description>POSTL_PBOX - P.O. Box</Description>
+16923:              <Description>POSTL_COD2 - Postal code</Description>
+16955:              <Description>POSTL_CITY - Town or city</Description>
+16987:              <Description>TELEPHONE1 - Telephone number</Description>
+17019:              <Description>TELEPHONE2 - Telephone number</Description>
+17051:              <Description>TELEFAX - Fax number</Description>
+17083:              <Description>TELEX - Telex number</Description>
+17115:              <Description>E_MAIL - E-mail address</Description>
+17147:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+17179:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+17211:              <Description>REGION - Region, state</Description>
+17243:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+17275:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+17307:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+17339:              <Description>TZDESC - Location for time zone (external code)</Description>
+17373:        <Description/>
+17383:          <Description>SEGMENT</Description>
+17406:              <Description>SEGNAM - Segment (external name) - (E2ADRM7)</Description>
+17438:              <Description>MANDT - Client</Description>
+17470:              <Description>DOCNUM - IDoc number</Description>
+17502:              <Description>SEGNUM - Segment number</Description>
+17534:              <Description>PSGNUM - Number of superior parent segment</Description>
+17566:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+17598:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+17630:              <Description>ADDRESS_T - Addr. type</Description>
+17662:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+17694:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+17726:              <Description>LANGUAGE - Language key</Description>
+17758:              <Description>FORMOFADDR - Form of address</Description>
+17790:              <Description>NAME1 - Name or address line</Description>
+17822:              <Description>NAME2 - Name or address line</Description>
+17854:              <Description>NAME3 - Name or address line</Description>
+17886:              <Description>NAME4 - Name or address line</Description>
+17918:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+17950:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+17982:              <Description>LOCATION - Location description of location</Description>
+18014:              <Description>BUILDING - Location description: Building</Description>
+18046:              <Description>FLOOR - Location description: Floor</Description>
+18078:              <Description>ROOM - Location description: Room</Description>
+18110:              <Description>STREET1 - House number and street</Description>
+18142:              <Description>STREET2 - House number and street</Description>
+18174:              <Description>STREET3 - House number and street</Description>
+18206:              <Description>HOUSE_SUPL - House number</Description>
+18238:              <Description>HOUSE_RANG - House no. (interval)</Description>
+18270:              <Description>POSTL_COD1 - Postal code</Description>
+18302:              <Description>POSTL_COD3 - Postal code</Description>
+18334:              <Description>POSTL_AREA - Post delivery district</Description>
+18366:              <Description>CITY1 - Town or city</Description>
+18398:              <Description>CITY2 - Town or city</Description>
+18430:              <Description>POSTL_PBOX - P.O. Box</Description>
+18462:              <Description>POSTL_COD2 - Postal code</Description>
+18494:              <Description>POSTL_CITY - Town or city</Description>
+18526:              <Description>TELEPHONE1 - Telephone number</Description>
+18558:              <Description>TELEPHONE2 - Telephone number</Description>
+18590:              <Description>TELEFAX - Fax number</Description>
+18622:              <Description>TELEX - Telex number</Description>
+18654:              <Description>E_MAIL - E-mail address</Description>
+18686:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+18718:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+18750:              <Description>REGION - Region, state</Description>
+18782:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+18814:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+18846:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+18878:              <Description>TZDESC - Location for time zone (external code)</Description>
+18911:          <Description>SEGMENT</Description>
+18934:              <Description>SEGNAM - Segment (external name) - (E2ADRE7)</Description>
+18966:              <Description>MANDT - Client</Description>
+18998:              <Description>DOCNUM - IDoc number</Description>
+19030:              <Description>SEGNUM - Segment number</Description>
+19062:              <Description>PSGNUM - Number of superior parent segment</Description>
+19094:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+19126:              <Description>EXTEND_Q - Qualifier for additional data, e.g. ILN or D&amp;B number</Description>
+19158:              <Description>EXTEND_D - Additional data, e.g. ILN or D&amp;B no.</Description>
+19192:        <Description/>
+19202:          <Description>SEGMENT</Description>
+19225:              <Description>SEGNAM - Segment (external name) - (E2EDT45)</Description>
+19257:              <Description>MANDT - Client</Description>
+19289:              <Description>DOCNUM - IDoc number</Description>
+19321:              <Description>SEGNUM - Segment number</Description>
+19353:              <Description>PSGNUM - Number of superior parent segment</Description>
+19385:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+19417:              <Description>QUALF - IDOC Qualifier: Date (Shipment Stage)</Description>
+19449:              <Description>NTANF - Constraint for activity start (Basic)</Description>
+19481:              <Description>NTANZ - Constraint for activity start time (Basic)</Description>
+19513:              <Description>NTEND - Constraint for finish of activity (Basic)</Description>
+19545:              <Description>NTENZ - Basic finish time of the activity</Description>
+19577:              <Description>ISDD - Actual start: Execution (date)</Description>
+19609:              <Description>ISDZ - Actual start: Execution/setup (time)</Description>
+19641:              <Description>IEDD - Actual finish: Execution (date)</Description>
+19673:              <Description>IEDZ - Actual finish: Execution (time)</Description>
+19705:              <Description>VORNR - Operation Number</Description>
+19737:              <Description>VSTGA - Deadline deviation reason</Description>
+19770:          <Description>SEGMENT</Description>
+19793:              <Description>SEGNAM - Segment (external name) - (E2EDT51)</Description>
+19825:              <Description>MANDT - Client</Description>
+19857:              <Description>DOCNUM - IDoc number</Description>
+19889:              <Description>SEGNUM - Segment number</Description>
+19921:              <Description>PSGNUM - Number of superior parent segment</Description>
+19953:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+19985:              <Description>TZONE_BEG - Time zone</Description>
+20017:              <Description>TZONE_END - Time zone</Description>
+20049:              <Description>VSTGA_BEZ - Description</Description>
+20083:          <Description>SEGMENT</Description>
+20106:              <Description>SEGNAM - Segment (external name) - (E2EDT01)</Description>
+20138:              <Description>MANDT - Client</Description>
+20170:              <Description>DOCNUM - IDoc number</Description>
+20202:              <Description>SEGNUM - Segment number</Description>
+20234:              <Description>PSGNUM - Number of superior parent segment</Description>
+20266:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+20298:              <Description>VBELN - Delivery</Description>
+20330:              <Description>PARID - External partner number</Description>
+20363:        <Description/>
+20373:          <Description>SEGMENT</Description>
+20396:              <Description>SEGNAM - Segment (external name) - (E2EDT46)</Description>
+20428:              <Description>MANDT - Client</Description>
+20460:              <Description>DOCNUM - IDoc number</Description>
+20492:              <Description>SEGNUM - Segment number</Description>
+20524:              <Description>PSGNUM - Number of superior parent segment</Description>
+20556:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+20588:              <Description>LANDA - Country key (country of departure)</Description>
+20620:              <Description>VSART - Shipping type</Description>
+20652:              <Description>SFRGR - Forwarding agent freight group</Description>
+20684:              <Description>GARVZ - Freight code set</Description>
+20717:          <Description>SEGMENT</Description>
+20740:              <Description>SEGNAM - Segment (external name) - (E2EDT52)</Description>
+20772:              <Description>MANDT - Client</Description>
+20804:              <Description>DOCNUM - IDoc number</Description>
+20836:              <Description>SEGNUM - Segment number</Description>
+20868:              <Description>PSGNUM - Number of superior parent segment</Description>
+20900:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+20932:              <Description>SFRGR_BEZ - Description</Description>
+20964:              <Description>GARVZ_BEZ - Description</Description>
+20997:        <Description/>
+21007:          <Description>SEGMENT</Description>
+21030:              <Description>SEGNAM - Segment (external name) - (E2EDT48)</Description>
+21062:              <Description>MANDT - Client</Description>
+21094:              <Description>DOCNUM - IDoc number</Description>
+21126:              <Description>SEGNUM - Segment number</Description>
+21158:              <Description>PSGNUM - Number of superior parent segment</Description>
+21190:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+21222:              <Description>MFRGR - Material freight group</Description>
+21254:              <Description>GTART - Freight code</Description>
+21286:              <Description>GTKLS - Freight class</Description>
+21319:          <Description>SEGMENT</Description>
+21342:              <Description>SEGNAM - Segment (external name) - (E2EDT53)</Description>
+21374:              <Description>MANDT - Client</Description>
+21406:              <Description>DOCNUM - IDoc number</Description>
+21438:              <Description>SEGNUM - Segment number</Description>
+21470:              <Description>PSGNUM - Number of superior parent segment</Description>
+21502:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+21534:              <Description>MFRGR_BEZ - Description</Description>
+21566:              <Description>GTART_BEZ - Description</Description>
+21602:        <Description/>
+21612:          <Description>SEGMENT</Description>
+21635:              <Description>SEGNAM - Segment (external name) - (E2EDT47)</Description>
+21667:              <Description>MANDT - Client</Description>
+21699:              <Description>DOCNUM - IDoc number</Description>
+21731:              <Description>SEGNUM - Segment number</Description>
+21763:              <Description>PSGNUM - Number of superior parent segment</Description>
+21795:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+21827:              <Description>ADD01 - Suppl. 1</Description>
+21859:              <Description>ADD02 - Suppl. 2</Description>
+21891:              <Description>ADD03 - Suppl. 3</Description>
+21923:              <Description>ADD04 - Suppl. 4</Description>
+21955:              <Description>TEXT1 - Addit.text 1</Description>
+21987:              <Description>TEXT2 - Addit.text 2</Description>
+22019:              <Description>TEXT3 - Addit.text 3</Description>
+22051:              <Description>TEXT4 - Addit.text 4</Description>
+22084:          <Description>SEGMENT</Description>
+22107:              <Description>SEGNAM - Segment (external name) - (E2EDT56)</Description>
+22139:              <Description>MANDT - Client</Description>
+22171:              <Description>DOCNUM - IDoc number</Description>
+22203:              <Description>SEGNUM - Segment number</Description>
+22235:              <Description>PSGNUM - Number of superior parent segment</Description>
+22267:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+22299:              <Description>ADD01_BEZEI - Description for supplement 1</Description>
+22331:              <Description>ADD02_BEZEI - Description of supplement 2</Description>
+22363:              <Description>ADD03_BEZEI - Description of supplement 3</Description>
+22395:              <Description>ADD04_BEZEI - Description of supplement 4</Description>
+22429:          <Description>SEGMENT</Description>
+22452:              <Description>SEGNAM - Segment (external name) - (E2ETD01)</Description>
+22484:              <Description>MANDT - Client</Description>
+22516:              <Description>DOCNUM - IDoc number</Description>
+22548:              <Description>SEGNUM - Segment number</Description>
+22580:              <Description>PSGNUM - Number of superior parent segment</Description>
+22612:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+22644:              <Description>DGMDDAT - Selection date dangerous goods master data</Description>
+22676:              <Description>CONT_DG - Indicator: Document contains dangerous goods</Description>
+22708:              <Description>IRN1 - Indicator: Marginal 10011</Description>
+22741:        <Description/>
+22751:          <Description>SEGMENT</Description>
+22774:              <Description>SEGNAM - Segment (external name) - (E2EDT57)</Description>
+22806:              <Description>MANDT - Client</Description>
+22838:              <Description>DOCNUM - IDoc number</Description>
+22870:              <Description>SEGNUM - Segment number</Description>
+22902:              <Description>PSGNUM - Number of superior parent segment</Description>
+22934:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+22966:              <Description>TNDRST - Tender Status</Description>
+22998:              <Description>TNDRRC - Acceptance Condition/Rejection Reason</Description>
+23030:              <Description>TNDR_TEXT - Tendering Text</Description>
+23062:              <Description>TNDRDAT - Date of tender status</Description>
+23094:              <Description>TNDRZET - Time of tender status</Description>
+23126:              <Description>TNDR_MAXP - Maximum Price for Shipment</Description>
+23158:              <Description>TNDR_MAXC - Currency of Maximum Price</Description>
+23190:              <Description>TNDR_ACTP - Actual Shipment Costs for Shipment</Description>
+23222:              <Description>TNDR_ACTC - Currency of Actual Shipment Costs</Description>
+23254:              <Description>TNDR_CARR - Forwarding Agent Who Accepted the Shipment</Description>
+23286:              <Description>TNDR_CRNM - Name of Carrier Who Accepted the Shipment</Description>
+23318:              <Description>TNDR_TRKID - Forwarding Agent Tracking ID</Description>
+23350:              <Description>TNDR_EXPD - Date on Which Offer Expires</Description>
+23382:              <Description>TNDR_EXPT - Time at Which Quotation Expires</Description>
+23414:              <Description>TNDR_ERPD - Earliest Pickup Date</Description>
+23446:              <Description>TNDR_ERPT - Earliest Pickup Time</Description>
+23478:              <Description>TNDR_LTPD - Latest Pickup Date</Description>
+23510:              <Description>TNDR_LTPT - Latest Pickup Time</Description>
+23542:              <Description>TNDR_ERDD - Earliest Delivery Date</Description>
+23574:              <Description>TNDR_ERDT - Earliest Delivery Time</Description>
+23606:              <Description>TNDR_LTDD - Latest Delivery Date</Description>
+23638:              <Description>TNDR_LTDT - Latest Delivery Time</Description>
+23670:              <Description>TNDR_LDLG - Length of Loading Platform</Description>
+23702:              <Description>TNDR_LDLU - Unit of Measure for Load Length</Description>
+23735:          <Description>SEGMENT</Description>
+23758:              <Description>SEGNAM - Segment (external name) - (E2EDT58)</Description>
+23790:              <Description>MANDT - Client</Description>
+23822:              <Description>DOCNUM - IDoc number</Description>
+23854:              <Description>SEGNUM - Segment number</Description>
+23886:              <Description>PSGNUM - Number of superior parent segment</Description>
+23918:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+23950:              <Description>TNDRST_BEZ - Description of Tender Status</Description>
+23982:              <Description>TNDRRC_BEZ - Description of Acceptance Condition / Rejection Reason</Description>
+24016:        <Description/>
+24026:          <Description>SEGMENT</Description>
+24049:              <Description>SEGNAM - Segment (external name) - (E2EDL20)</Description>
+24081:              <Description>MANDT - Client</Description>
+24113:              <Description>DOCNUM - IDoc number</Description>
+24145:              <Description>SEGNUM - Segment number</Description>
+24177:              <Description>PSGNUM - Number of superior parent segment</Description>
+24209:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+24241:              <Description>VBELN - Sales and distribution document number</Description>
+24273:              <Description>VSTEL - Shipping point/receiving point</Description>
+24305:              <Description>VKORG - Sales organization</Description>
+24337:              <Description>LSTEL - Loading point</Description>
+24369:              <Description>VKBUR - Sales office</Description>
+24401:              <Description>LGNUM - Warehouse Number / Warehouse Complex</Description>
+24433:              <Description>ABLAD - Unloading point</Description>
+24465:              <Description>INCO1 - Incoterms (part 1)</Description>
+24497:              <Description>INCO2 - Incoterms (part 2)</Description>
+24529:              <Description>ROUTE - Route</Description>
+24561:              <Description>VSBED - Shipping conditions</Description>
+24593:              <Description>BTGEW - Total weight</Description>
+24625:              <Description>NTGEW - Net weight</Description>
+24657:              <Description>GEWEI - Weight Unit</Description>
+24689:              <Description>VOLUM - Volume</Description>
+24721:              <Description>VOLEH - Volume unit</Description>
+24753:              <Description>ANZPK - Total number of packages in delivery</Description>
+24785:              <Description>BOLNR - Bill of lading</Description>
+24817:              <Description>TRATY - Means of Transport Type</Description>
+24849:              <Description>TRAID - Means-of-transport ID</Description>
+24881:              <Description>XABLN - Goods receipt/issue slip number</Description>
+24913:              <Description>LIFEX - External identification of delivery note</Description>
+24945:              <Description>PARID - External partner number</Description>
+24977:              <Description>PODAT - Date (proof of delivery)</Description>
+25009:              <Description>POTIM - Confirmation time</Description>
+25042:          <Description>SEGMENT</Description>
+25065:              <Description>SEGNAM - Segment (external name) - (E2EDT18)</Description>
+25097:              <Description>MANDT - Client</Description>
+25129:              <Description>DOCNUM - IDoc number</Description>
+25161:              <Description>SEGNUM - Segment number</Description>
+25193:              <Description>PSGNUM - Number of superior parent segment</Description>
+25225:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+25257:              <Description>SUMID - Qualifier</Description>
+25289:              <Description>SUMME - Shpment Totals</Description>
+25321:              <Description>SUNIT - Unit of Measure</Description>
+25354:          <Description>SEGMENT</Description>
+25377:              <Description>SEGNAM - Segment (external name) - (E2EDL22)</Description>
+25409:              <Description>MANDT - Client</Description>
+25441:              <Description>DOCNUM - IDoc number</Description>
+25473:              <Description>SEGNUM - Segment number</Description>
+25505:              <Description>PSGNUM - Number of superior parent segment</Description>
+25537:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+25569:              <Description>VSTEL_BEZ - Description of shipping point</Description>
+25601:              <Description>VKORG_BEZ - Description of sales organization</Description>
+25633:              <Description>LSTEL_BEZ - Loading point description</Description>
+25665:              <Description>VKBUR_BEZ - Description of sales office</Description>
+25697:              <Description>LGNUM_BEZ - Warehouse number description</Description>
+25729:              <Description>INCO1_BEZ - Incoterm description</Description>
+25761:              <Description>ROUTE_BEZ - Route description</Description>
+25793:              <Description>VSBED_BEZ - Description of the shipping conditions</Description>
+25825:              <Description>TRATY_BEZ - Description of shipping material type</Description>
+25858:        <Description/>
+25868:          <Description>SEGMENT</Description>
+25891:              <Description>SEGNAM - Segment (external name) - (E2EDL21)</Description>
+25923:              <Description>MANDT - Client</Description>
+25955:              <Description>DOCNUM - IDoc number</Description>
+25987:              <Description>SEGNUM - Segment number</Description>
+26019:              <Description>PSGNUM - Number of superior parent segment</Description>
+26051:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+26083:              <Description>LFART - Delivery type</Description>
+26115:              <Description>BZIRK - Sales district</Description>
+26147:              <Description>AUTLF - Complete delivery defined for each sales order?</Description>
+26179:              <Description>EXPKZ - Export indicator</Description>
+26211:              <Description>LIFSK - Delivery block (document header)</Description>
+26243:              <Description>LPRIO - Delivery priority</Description>
+26275:              <Description>KDGRP - Customer group</Description>
+26307:              <Description>BEROT - Picked items location</Description>
+26339:              <Description>TRAGR - Transportation group</Description>
+26371:              <Description>TRSPG - Shipment Blocking Reason</Description>
+26403:              <Description>AULWE - Route schedule</Description>
+26436:          <Description>SEGMENT</Description>
+26459:              <Description>SEGNAM - Segment (external name) - (E2EDL23)</Description>
+26491:              <Description>MANDT - Client</Description>
+26523:              <Description>DOCNUM - IDoc number</Description>
+26555:              <Description>SEGNUM - Segment number</Description>
+26587:              <Description>PSGNUM - Number of superior parent segment</Description>
+26619:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+26651:              <Description>LFART_BEZ - Delivery type description</Description>
+26683:              <Description>LPRIO_BEZ - Description of delivery priorities</Description>
+26715:              <Description>BZIRK_BEZ - Name of the district</Description>
+26747:              <Description>LIFSK_BEZ - Description of reason for delivery block</Description>
+26779:              <Description>KDGRP_BEZ - Description of customer group</Description>
+26811:              <Description>TRAGR_BEZ - Description of transportation group</Description>
+26843:              <Description>TRSPG_BEZ - Description of reason for shipment block</Description>
+26875:              <Description>AULWE_BEZ - Description of route schedule</Description>
+26909:          <Description>SEGMENT</Description>
+26932:              <Description>SEGNAM - Segment (external name) - (E2EDL51)</Description>
+26964:              <Description>MANDT - Client</Description>
+26996:              <Description>DOCNUM - IDoc number</Description>
+27028:              <Description>SEGNUM - Segment number</Description>
+27060:              <Description>PSGNUM - Number of superior parent segment</Description>
+27092:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+27124:              <Description>QUALF - Qualifier for external release number</Description>
+27156:              <Description>PRODN - External release number</Description>
+27189:          <Description>SEGMENT</Description>
+27212:              <Description>SEGNAM - Segment (external name) - (E2EDD01)</Description>
+27244:              <Description>MANDT - Client</Description>
+27276:              <Description>DOCNUM - IDoc number</Description>
+27308:              <Description>SEGNUM - Segment number</Description>
+27340:              <Description>PSGNUM - Number of superior parent segment</Description>
+27372:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+27404:              <Description>NCDG - Indicator: Document contains dangerous goods</Description>
+27436:              <Description>INR1 - Indicator: Marginal 10011</Description>
+27469:          <Description>SEGMENT</Description>
+27492:              <Description>SEGNAM - Segment (external name) - (E2EDL18)</Description>
+27524:              <Description>MANDT - Client</Description>
+27556:              <Description>DOCNUM - IDoc number</Description>
+27588:              <Description>SEGNUM - Segment number</Description>
+27620:              <Description>PSGNUM - Number of superior parent segment</Description>
+27652:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+27684:              <Description>QUALF - IDOC Qualifier: Control (Delivery)</Description>
+27716:              <Description>PARAM - IDOC: Control Parameters</Description>
+27749:          <Description>SEGMENT</Description>
+27772:              <Description>SEGNAM - Segment (external name) - (E2EDL55)</Description>
+27804:              <Description>MANDT - Client</Description>
+27836:              <Description>DOCNUM - IDoc number</Description>
+27868:              <Description>SEGNUM - Segment number</Description>
+27900:              <Description>PSGNUM - Number of superior parent segment</Description>
+27932:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+27964:              <Description>QUALF - IDOC Qualifier Reference Number</Description>
+27996:              <Description>REFNR - 35-Character IDOC Reference Number</Description>
+28029:        <Description/>
+28039:          <Description>SEGMENT</Description>
+28062:              <Description>SEGNAM - Segment (external name) - (E2ADRM1)</Description>
+28094:              <Description>MANDT - Client</Description>
+28126:              <Description>DOCNUM - IDoc number</Description>
+28158:              <Description>SEGNUM - Segment number</Description>
+28190:              <Description>PSGNUM - Number of superior parent segment</Description>
+28222:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+28254:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+28286:              <Description>ADDRESS_T - Addr. type</Description>
+28318:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+28350:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+28382:              <Description>LANGUAGE - Language key</Description>
+28414:              <Description>FORMOFADDR - Form of address</Description>
+28446:              <Description>NAME1 - Name or address line</Description>
+28478:              <Description>NAME2 - Name or address line</Description>
+28510:              <Description>NAME3 - Name or address line</Description>
+28542:              <Description>NAME4 - Name or address line</Description>
+28574:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+28606:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+28638:              <Description>LOCATION - Location description of location</Description>
+28670:              <Description>BUILDING - Location description: Building</Description>
+28702:              <Description>FLOOR - Location description: Floor</Description>
+28734:              <Description>ROOM - Location description: Room</Description>
+28766:              <Description>STREET1 - House number and street</Description>
+28798:              <Description>STREET2 - House number and street</Description>
+28830:              <Description>STREET3 - House number and street</Description>
+28862:              <Description>HOUSE_SUPL - House number</Description>
+28894:              <Description>HOUSE_RANG - House no. (interval)</Description>
+28926:              <Description>POSTL_COD1 - Postal code</Description>
+28958:              <Description>POSTL_COD3 - Postal code</Description>
+28990:              <Description>POSTL_AREA - Post delivery district</Description>
+29022:              <Description>CITY1 - Town or city</Description>
+29054:              <Description>CITY2 - Town or city</Description>
+29086:              <Description>POSTL_PBOX - P.O. Box</Description>
+29118:              <Description>POSTL_COD2 - Postal code</Description>
+29150:              <Description>POSTL_CITY - Town or city</Description>
+29182:              <Description>TELEPHONE1 - Telephone number</Description>
+29214:              <Description>TELEPHONE2 - Telephone number</Description>
+29246:              <Description>TELEFAX - Fax number</Description>
+29278:              <Description>TELEX - Telex number</Description>
+29310:              <Description>E_MAIL - E-mail address</Description>
+29342:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+29374:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+29406:              <Description>REGION - Region, state</Description>
+29438:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+29470:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+29502:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+29534:              <Description>TZDESC - Location for time zone (external code)</Description>
+29567:          <Description>SEGMENT</Description>
+29590:              <Description>SEGNAM - Segment (external name) - (E2ADRE1)</Description>
+29622:              <Description>MANDT - Client</Description>
+29654:              <Description>DOCNUM - IDoc number</Description>
+29686:              <Description>SEGNUM - Segment number</Description>
+29718:              <Description>PSGNUM - Number of superior parent segment</Description>
+29750:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+29782:              <Description>EXTEND_Q - Qualifier for additional data, e.g. ILN or D&amp;B number</Description>
+29814:              <Description>EXTEND_D - Additional data, e.g. ILN or D&amp;B no.</Description>
+29848:        <Description/>
+29858:          <Description>SEGMENT</Description>
+29881:              <Description>SEGNAM - Segment (external name) - (E2EDT13)</Description>
+29913:              <Description>MANDT - Client</Description>
+29945:              <Description>DOCNUM - IDoc number</Description>
+29977:              <Description>SEGNUM - Segment number</Description>
+30009:              <Description>PSGNUM - Number of superior parent segment</Description>
+30041:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+30073:              <Description>QUALF - IDOC Qualifier: Date (Delivery)</Description>
+30105:              <Description>VSTZW - Deadline function</Description>
+30137:              <Description>VSTZW_BEZ - Description</Description>
+30169:              <Description>NTANF - IDOC: Date</Description>
+30201:              <Description>NTANZ - IDOC: Time</Description>
+30233:              <Description>NTEND - IDOC: Date</Description>
+30265:              <Description>NTENZ - IDOC: Time</Description>
+30297:              <Description>TZONE_BEG - Time zone</Description>
+30329:              <Description>ISDD - IDOC: Date</Description>
+30361:              <Description>ISDZ - IDOC: Time</Description>
+30393:              <Description>IEDD - IDOC: Date</Description>
+30425:              <Description>IEDZ - IDOC: Time</Description>
+30457:              <Description>TZONE_END - Time zone</Description>
+30489:              <Description>VORNR - Operation Number</Description>
+30521:              <Description>VSTGA - Deadline deviation reason</Description>
+30553:              <Description>VSTGA_BEZ - Description</Description>
+30585:              <Description>EVENT - Event type</Description>
+30617:              <Description>EVENT_ALI - Alias for the transaction (language-independent)</Description>
+30650:        <Description/>
+30660:          <Description>SEGMENT</Description>
+30683:              <Description>SEGNAM - Segment (external name) - (E2EDL40)</Description>
+30715:              <Description>MANDT - Client</Description>
+30747:              <Description>DOCNUM - IDoc number</Description>
+30779:              <Description>SEGNUM - Segment number</Description>
+30811:              <Description>PSGNUM - Number of superior parent segment</Description>
+30843:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+30875:              <Description>KNOTE - Transportation Connection Points</Description>
+30907:              <Description>KNOTE_BEZ - Node name</Description>
+30940:          <Description>SEGMENT</Description>
+30963:              <Description>SEGNAM - Segment (external name) - (E2ADRM2)</Description>
+30995:              <Description>MANDT - Client</Description>
+31027:              <Description>DOCNUM - IDoc number</Description>
+31059:              <Description>SEGNUM - Segment number</Description>
+31091:              <Description>PSGNUM - Number of superior parent segment</Description>
+31123:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+31155:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+31187:              <Description>ADDRESS_T - Addr. type</Description>
+31219:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+31251:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+31283:              <Description>LANGUAGE - Language key</Description>
+31315:              <Description>FORMOFADDR - Form of address</Description>
+31347:              <Description>NAME1 - Name or address line</Description>
+31379:              <Description>NAME2 - Name or address line</Description>
+31411:              <Description>NAME3 - Name or address line</Description>
+31443:              <Description>NAME4 - Name or address line</Description>
+31475:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+31507:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+31539:              <Description>LOCATION - Location description of location</Description>
+31571:              <Description>BUILDING - Location description: Building</Description>
+31603:              <Description>FLOOR - Location description: Floor</Description>
+31635:              <Description>ROOM - Location description: Room</Description>
+31667:              <Description>STREET1 - House number and street</Description>
+31699:              <Description>STREET2 - House number and street</Description>
+31731:              <Description>STREET3 - House number and street</Description>
+31763:              <Description>HOUSE_SUPL - House number</Description>
+31795:              <Description>HOUSE_RANG - House no. (interval)</Description>
+31827:              <Description>POSTL_COD1 - Postal code</Description>
+31859:              <Description>POSTL_COD3 - Postal code</Description>
+31891:              <Description>POSTL_AREA - Post delivery district</Description>
+31923:              <Description>CITY1 - Town or city</Description>
+31955:              <Description>CITY2 - Town or city</Description>
+31987:              <Description>POSTL_PBOX - P.O. Box</Description>
+32019:              <Description>POSTL_COD2 - Postal code</Description>
+32051:              <Description>POSTL_CITY - Town or city</Description>
+32083:              <Description>TELEPHONE1 - Telephone number</Description>
+32115:              <Description>TELEPHONE2 - Telephone number</Description>
+32147:              <Description>TELFAX - Fax number</Description>
+32179:              <Description>TELEX - Telex number</Description>
+32211:              <Description>E_MAIL - E-mail address</Description>
+32243:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+32275:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+32307:              <Description>REGION - Region, state</Description>
+32339:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+32371:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+32403:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+32435:              <Description>TZDESC - Location for time zone (external code)</Description>
+32469:        <Description/>
+32479:          <Description>SEGMENT</Description>
+32502:              <Description>SEGNAM - Segment (external name) - (E2TXTH0)</Description>
+32534:              <Description>MANDT - Client</Description>
+32566:              <Description>DOCNUM - IDoc number</Description>
+32598:              <Description>SEGNUM - Segment number</Description>
+32630:              <Description>PSGNUM - Number of superior parent segment</Description>
+32662:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+32694:              <Description>FUNCTION - Function (for transferred text)</Description>
+32726:              <Description>TDOBJECT - Texts: application object</Description>
+32758:              <Description>TDOBNAME - Name</Description>
+32790:              <Description>TDID - Text ID</Description>
+32822:              <Description>TDSPRAS - Language</Description>
+32854:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+32886:              <Description>LANGUA_ISO - Language key</Description>
+32919:          <Description>SEGMENT</Description>
+32942:              <Description>SEGNAM - Segment (external name) - (E2TXTP0)</Description>
+32974:              <Description>MANDT - Client</Description>
+33006:              <Description>DOCNUM - IDoc number</Description>
+33038:              <Description>SEGNUM - Segment number</Description>
+33070:              <Description>PSGNUM - Number of superior parent segment</Description>
+33102:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+33134:              <Description>TDFORMAT - Tag column</Description>
+33166:              <Description>TDLINE - Text line</Description>
+33201:        <Description/>
+33211:          <Description>SEGMENT</Description>
+33234:              <Description>SEGNAM - Segment (external name) - (E2TXTH8)</Description>
+33266:              <Description>MANDT - Client</Description>
+33298:              <Description>DOCNUM - IDoc number</Description>
+33330:              <Description>SEGNUM - Segment number</Description>
+33362:              <Description>PSGNUM - Number of superior parent segment</Description>
+33394:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+33426:              <Description>FUNCTION - Function (for transferred text)</Description>
+33458:              <Description>TDOBJECT - Texts: application object</Description>
+33490:              <Description>TDOBNAME - Name</Description>
+33522:              <Description>TDID - Text ID</Description>
+33554:              <Description>TDSPRAS - Language</Description>
+33586:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+33618:              <Description>LANGUA_ISO - Language key</Description>
+33651:          <Description>SEGMENT</Description>
+33674:              <Description>SEGNAM - Segment (external name) - (E2TXTP8)</Description>
+33706:              <Description>MANDT - Client</Description>
+33738:              <Description>DOCNUM - IDoc number</Description>
+33770:              <Description>SEGNUM - Segment number</Description>
+33802:              <Description>PSGNUM - Number of superior parent segment</Description>
+33834:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+33866:              <Description>TDFORMAT - Tag column</Description>
+33898:              <Description>TDLINE - Text line</Description>
+33932:        <Description/>
+33942:          <Description>SEGMENT</Description>
+33965:              <Description>SEGNAM - Segment (external name) - (E2EDDH2)</Description>
+33997:              <Description>MANDT - Client</Description>
+34029:              <Description>DOCNUM - IDoc number</Description>
+34061:              <Description>SEGNUM - Segment number</Description>
+34093:              <Description>PSGNUM - Number of superior parent segment</Description>
+34125:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+34157:              <Description>FUNCTION - Function (for transferred text)</Description>
+34189:              <Description>TDOBJECT - Texts: application object</Description>
+34221:              <Description>TDOBNAME - Name</Description>
+34253:              <Description>TDID - Text ID</Description>
+34285:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+34317:              <Description>LANGUA_ISO - Language key</Description>
+34349:              <Description>PHRSEL - Phrase set</Description>
+34381:              <Description>IDENTIFIER - Identification (DGTM2 field name)</Description>
+34413:              <Description>LANGUA_PHR - Phrase language</Description>
+34446:          <Description>SEGMENT</Description>
+34469:              <Description>SEGNAM - Segment (external name) - (E2EDDP2)</Description>
+34501:              <Description>MANDT - Client</Description>
+34533:              <Description>DOCNUM - IDoc number</Description>
+34565:              <Description>SEGNUM - Segment number</Description>
+34597:              <Description>PSGNUM - Number of superior parent segment</Description>
+34629:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+34661:              <Description>TDFORMAT - Tag column</Description>
+34693:              <Description>TDLINE - Text line</Description>
+34727:        <Description/>
+34737:          <Description>SEGMENT</Description>
+34760:              <Description>SEGNAM - Segment (external name) - (E2EDL33)</Description>
+34792:              <Description>MANDT - Client</Description>
+34824:              <Description>DOCNUM - IDoc number</Description>
+34856:              <Description>SEGNUM - Segment number</Description>
+34888:              <Description>PSGNUM - Number of superior parent segment</Description>
+34920:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+34952:              <Description>ALAND - Destination country</Description>
+34984:              <Description>EXPVZ - Mode of Transport for Foreign Trade</Description>
+35016:              <Description>ZOLLA - Customs office: Office of exit for foreign trade</Description>
+35048:              <Description>ZOLLB - Customs office: Office of destination for foreign trade</Description>
+35080:              <Description>ZOLL1 - Customs office: Customs office 1 for foreign trade</Description>
+35112:              <Description>ZOLL2 - Customs office: Customs office 2 for foreign trade</Description>
+35144:              <Description>ZOLL3 - Customs office: Customs office 3 for foreign trade</Description>
+35176:              <Description>ZOLL4 - Customs office: Customs office 4 for foreign trade</Description>
+35208:              <Description>ZOLL5 - Customs office: Customs office 5 for foreign trade</Description>
+35240:              <Description>ZOLL6 - Customs office: Customs office 6 for foreign trade</Description>
+35272:              <Description>KZGBE - Indicator for means of transport crossing the border</Description>
+35304:              <Description>KZABE - Indicator for the means of transport at departure</Description>
+35336:              <Description>STGBE - Origin of Means of Transport when Crossing the Border</Description>
+35368:              <Description>STABE - Country of Origin of the Means of Transport at Departure</Description>
+35400:              <Description>CONTA - ID: Goods cross border in a container</Description>
+35432:              <Description>GRWCU - Currency of statistical values for foreign trade</Description>
+35464:              <Description>IEVER - Domestic Mode of Transport for Foreign Trade</Description>
+35497:          <Description>SEGMENT</Description>
+35520:              <Description>SEGNAM - Segment (external name) - (E2EDL34)</Description>
+35552:              <Description>MANDT - Client</Description>
+35584:              <Description>DOCNUM - IDoc number</Description>
+35616:              <Description>SEGNUM - Segment number</Description>
+35648:              <Description>PSGNUM - Number of superior parent segment</Description>
+35680:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+35712:              <Description>EXPVZ_BEZ - Description of mode of transport</Description>
+35744:              <Description>ZOLLA_BEZ - Customs office description</Description>
+35776:              <Description>ZOLLB_BEZ - Description of office of destination</Description>
+35808:              <Description>ZOLL1_BEZ - Customs office 1 description</Description>
+35840:              <Description>ZOLL2_BEZ - Customs office 2 description</Description>
+35872:              <Description>ZOLL3_BEZ - Customs office 3 description</Description>
+35904:              <Description>ZOLL4_BEZ - Customs office 4 description</Description>
+35936:              <Description>ZOLL5_BEZ - Customs office 5 description</Description>
+35968:              <Description>ZOLL6_BEZ - Customs office 6 description</Description>
+36000:              <Description>IEVER_BEZ - Description of inland mode of transport</Description>
+36032:              <Description>STGBE_BEZ - Description of country of affiliation of means of transport</Description>
+36064:              <Description>STABE_BEZ - Cntry of affil. of means of transport at departure of goods</Description>
+36098:        <Description/>
+36108:          <Description>SEGMENT</Description>
+36131:              <Description>SEGNAM - Segment (external name) - (E2EDL28)</Description>
+36163:              <Description>MANDT - Client</Description>
+36195:              <Description>DOCNUM - IDoc number</Description>
+36227:              <Description>SEGNUM - Segment number</Description>
+36259:              <Description>PSGNUM - Number of superior parent segment</Description>
+36291:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+36323:              <Description>ROUTE - Route</Description>
+36355:              <Description>VSART - Shipping type</Description>
+36387:              <Description>VSAVL - Shipping type of preliminary leg</Description>
+36419:              <Description>VSANL - Shipping type of subsequent leg</Description>
+36451:              <Description>ROUID - Route identification</Description>
+36483:              <Description>DISTZ - Distance</Description>
+36515:              <Description>MEDST - Unit of measure for distance</Description>
+36548:          <Description>SEGMENT</Description>
+36571:              <Description>SEGNAM - Segment (external name) - (E2EDL29)</Description>
+36603:              <Description>MANDT - Client</Description>
+36635:              <Description>DOCNUM - IDoc number</Description>
+36667:              <Description>SEGNUM - Segment number</Description>
+36699:              <Description>PSGNUM - Number of superior parent segment</Description>
+36731:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+36763:              <Description>ROUTE_BEZ - Route description</Description>
+36795:              <Description>VSART_BEZ - Description of the shipping type</Description>
+36827:              <Description>VSAVL_BEZ - Description of shipping type of preliminary leg</Description>
+36859:              <Description>VSANL_BEZ - Description of shipping type of subsequent leg</Description>
+36892:        <Description/>
+36902:          <Description>SEGMENT</Description>
+36925:              <Description>SEGNAM - Segment (external name) - (E2EDL30)</Description>
+36957:              <Description>MANDT - Client</Description>
+36989:              <Description>DOCNUM - IDoc number</Description>
+37021:              <Description>SEGNUM - Segment number</Description>
+37053:              <Description>PSGNUM - Number of superior parent segment</Description>
+37085:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+37117:              <Description>ABNUM - Stage Number</Description>
+37149:              <Description>ANFRF - Itinerary for regular route</Description>
+37181:              <Description>VSART - Shipping type</Description>
+37213:              <Description>DISTZ - Distance</Description>
+37245:              <Description>MEDST - Unit of measure for distance</Description>
+37277:              <Description>TSTYP - Stage category</Description>
+37310:          <Description>SEGMENT</Description>
+37333:              <Description>SEGNAM - Segment (external name) - (E2EDL31)</Description>
+37365:              <Description>MANDT - Client</Description>
+37397:              <Description>DOCNUM - IDoc number</Description>
+37429:              <Description>SEGNUM - Segment number</Description>
+37461:              <Description>PSGNUM - Number of superior parent segment</Description>
+37493:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+37525:              <Description>VSART_BEZ - Description of the shipping type</Description>
+37558:        <Description/>
+37568:          <Description>SEGMENT</Description>
+37591:              <Description>SEGNAM - Segment (external name) - (E2EDL32)</Description>
+37623:              <Description>MANDT - Client</Description>
+37655:              <Description>DOCNUM - IDoc number</Description>
+37687:              <Description>SEGNUM - Segment number</Description>
+37719:              <Description>PSGNUM - Number of superior parent segment</Description>
+37751:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+37783:              <Description>QUALI - Qualifier for stage point</Description>
+37815:              <Description>KNOTE - Transportation Connection Points</Description>
+37847:              <Description>ADRNR - Address</Description>
+37879:              <Description>VSTEL - Shipping point/receiving point</Description>
+37911:              <Description>LSTEL - Loading point</Description>
+37943:              <Description>WERKS - EDI plant number for shipping unit</Description>
+37975:              <Description>LGORT - Storage location</Description>
+38007:              <Description>KUNNR - Customer number</Description>
+38039:              <Description>LIFNR - Vendor number of destination point</Description>
+38071:              <Description>ABLAD - Unloading point</Description>
+38103:              <Description>LGNUM - Warehouse Number / Warehouse Complex</Description>
+38135:              <Description>LGTOR - Door for warehouse number</Description>
+38168:          <Description>SEGMENT</Description>
+38191:              <Description>SEGNAM - Segment (external name) - (E2EDL45)</Description>
+38223:              <Description>MANDT - Client</Description>
+38255:              <Description>DOCNUM - IDoc number</Description>
+38287:              <Description>SEGNUM - Segment number</Description>
+38319:              <Description>PSGNUM - Number of superior parent segment</Description>
+38351:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+38383:              <Description>KNOTE_BEZ - Node name</Description>
+38415:              <Description>VSTEL_BEZ - Description of shipping point</Description>
+38447:              <Description>LSTEL_BEZ - Loading point description</Description>
+38479:              <Description>WERKS_BEZ - Plant Descript.</Description>
+38511:              <Description>LGORT_BEZ - Description of storage location</Description>
+38543:              <Description>LGNUM_BEZ - Warehouse number description</Description>
+38575:              <Description>LGTOR_BEZ - Door description</Description>
+38608:          <Description>SEGMENT</Description>
+38631:              <Description>SEGNAM - Segment (external name) - (E2ADRM3)</Description>
+38663:              <Description>MANDT - Client</Description>
+38695:              <Description>DOCNUM - IDoc number</Description>
+38727:              <Description>SEGNUM - Segment number</Description>
+38759:              <Description>PSGNUM - Number of superior parent segment</Description>
+38791:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+38823:              <Description>PARTNER_Q - Qualifier for partner function</Description>
+38855:              <Description>ADDRES_T - Addr. type</Description>
+38887:              <Description>PARTNER_ID - Partner no. (SAP)</Description>
+38919:              <Description>JURISDIC - Location for tax calculation - Tax Jurisdiction Code</Description>
+38951:              <Description>LANGUAGE - Language key</Description>
+38983:              <Description>FORMOFADDR - Form of address</Description>
+39015:              <Description>NAME1 - Name or address line</Description>
+39047:              <Description>NAME2 - Name or address line</Description>
+39079:              <Description>NAME3 - Name or address line</Description>
+39111:              <Description>NAME4 - Name or address line</Description>
+39143:              <Description>NAME_TEXT - Name or address line (formatted)</Description>
+39175:              <Description>NAME_CO - Subsequent line for name or address (c/o)</Description>
+39207:              <Description>LOCATION - Location description of location</Description>
+39239:              <Description>BUILDING - Location description: Building</Description>
+39271:              <Description>FLOOR - Location description: Floor</Description>
+39303:              <Description>ROOM - Location description: Room</Description>
+39335:              <Description>STREET1 - House number and street</Description>
+39367:              <Description>STREET2 - House number and street</Description>
+39399:              <Description>STREET3 - House number and street</Description>
+39431:              <Description>HOUSE_SUPL - House number</Description>
+39463:              <Description>HOUSE_RANG - House no. (interval)</Description>
+39495:              <Description>POSTL_COD1 - Postal code</Description>
+39527:              <Description>POSTL_COD3 - Postal code</Description>
+39559:              <Description>POSTL_AREA - Post delivery district</Description>
+39591:              <Description>CITY1 - Town or city</Description>
+39623:              <Description>CITY2 - Town or city</Description>
+39655:              <Description>POSTL_PBOX - P.O. Box</Description>
+39687:              <Description>POSTL_COD2 - Postal code</Description>
+39719:              <Description>POSTL_CITY - Town or city</Description>
+39751:              <Description>TELEPHONE1 - Telephone number</Description>
+39783:              <Description>TELEPHONE2 - Telephone number</Description>
+39815:              <Description>TELEFAX - Fax number</Description>
+39847:              <Description>TELEX - Telex number</Description>
+39879:              <Description>E_MAIL - E-mail address</Description>
+39911:              <Description>COUNTRY1 - Country indicator (ISO alphanumeric)</Description>
+39943:              <Description>COUNTRY2 - Country indicator (ISO numeric)</Description>
+39975:              <Description>REGION - Region, state</Description>
+40007:              <Description>COUNTY_COD - County Code (e.g. in USA)</Description>
+40039:              <Description>COUNTY_TXT - County name (e.g. in USA)</Description>
+40071:              <Description>TZCODE - Location for time zone (SAP code)</Description>
+40103:              <Description>TZDESC - Location for time zone (external code)</Description>
+40139:        <Description/>
+40149:          <Description>SEGMENT</Description>
+40172:              <Description>SEGNAM - Segment (external name) - (E2EDL47)</Description>
+40204:              <Description>MANDT - Client</Description>
+40236:              <Description>DOCNUM - IDoc number</Description>
+40268:              <Description>SEGNUM - Segment number</Description>
+40300:              <Description>PSGNUM - Number of superior parent segment</Description>
+40332:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+40364:              <Description>XSITD - Express Delivery Company</Description>
+40396:              <Description>SHIPACCT - Sender&apos;s Account Number with Express Delivery Company</Description>
+40428:              <Description>TRACKN - Tracking number</Description>
+40460:              <Description>ROUTECODE - Routing information for XSI carrier</Description>
+40492:              <Description>XSISRVC - Express Delivery Company&apos;s Service Code</Description>
+40524:              <Description>PRDCD - Express Delivery Company Product Code</Description>
+40556:              <Description>XSIURL_MULTI_TRACK - URL for Carrier</Description>
+40589:          <Description>SEGMENT</Description>
+40612:              <Description>SEGNAM - Segment (external name) - (E2EDL48)</Description>
+40644:              <Description>MANDT - Client</Description>
+40676:              <Description>DOCNUM - IDoc number</Description>
+40708:              <Description>SEGNUM - Segment number</Description>
+40740:              <Description>PSGNUM - Number of superior parent segment</Description>
+40772:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+40804:              <Description>XSIQUALF - Express Delivery Company&apos;s Qualifier for Communication</Description>
+40836:              <Description>XSITD - Express Delivery Company</Description>
+40868:              <Description>VLABDATA - Express Delivery Company&apos;s Data Field</Description>
+40902:        <Description/>
+40912:          <Description>SEGMENT</Description>
+40935:              <Description>SEGNAM - Segment (external name) - (E2EDL24)</Description>
+40967:              <Description>MANDT - Client</Description>
+40999:              <Description>DOCNUM - IDoc number</Description>
+41031:              <Description>SEGNUM - Segment number</Description>
+41063:              <Description>PSGNUM - Number of superior parent segment</Description>
+41095:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+41127:              <Description>POSNR - Item number of the SD document</Description>
+41159:              <Description>MATNR - Material number</Description>
+41191:              <Description>MATWA - Material entered</Description>
+41223:              <Description>ARKTX - Short text for sales order item</Description>
+41255:              <Description>ORKTX - Description of material entered</Description>
+41287:              <Description>SUGRD - Reason for material substitution</Description>
+41319:              <Description>SUDRU - Original entry will be printed</Description>
+41351:              <Description>MATKL - Material group</Description>
+41383:              <Description>WERKS - Plant</Description>
+41415:              <Description>LGORT - Storage location</Description>
+41447:              <Description>CHARG - Batch number</Description>
+41479:              <Description>KDMAT - Material belonging to the customer</Description>
+41511:              <Description>LFIMG - Actual quantity delivered (in sales units)</Description>
+41543:              <Description>VRKME - Sales unit</Description>
+41575:              <Description>LGMNG - Actual quantity delivered in stockkeeping units</Description>
+41607:              <Description>MEINS - Base unit of measure</Description>
+41639:              <Description>NTGEW - Net weight</Description>
+41671:              <Description>BRGEW - Gross weight</Description>
+41703:              <Description>GEWEI - Weight Unit</Description>
+41735:              <Description>VOLUM - Volume</Description>
+41767:              <Description>VOLEH - Volume unit</Description>
+41799:              <Description>LGPBE - Storage bin</Description>
+41831:              <Description>HIPOS - Superior item in an item hierarchy</Description>
+41863:              <Description>HIEVW - Use of Hierarchy Item</Description>
+41895:              <Description>LADGR - Loading group</Description>
+41927:              <Description>TRAGR - Transportation group</Description>
+41959:              <Description>VKBUR - Sales office</Description>
+41991:              <Description>VKGRP - Sales group</Description>
+42023:              <Description>VTWEG - Distribution channel</Description>
+42055:              <Description>SPART - Division</Description>
+42087:              <Description>GRKOR - Delivery group (items are delivered together)</Description>
+42119:              <Description>EAN11 - International Article Number (EAN/UPC)</Description>
+42151:              <Description>SERNR - BOM explosion number</Description>
+42183:              <Description>AESKD - Customer Engineering Change Status</Description>
+42215:              <Description>EMPST - Receiving point</Description>
+42247:              <Description>MFRGR - Material freight group</Description>
+42279:              <Description>VBRST - Customer point of consumption</Description>
+42311:              <Description>LABNK - Customer number for forecast / JIT dlv. sched.</Description>
+42343:              <Description>ABRDT - Delivery Schedule Date</Description>
+42375:              <Description>MFRPN - Manufacturer part number</Description>
+42407:              <Description>MFRNR - Manufacturer number</Description>
+42439:              <Description>ABRVW - Usage indicator</Description>
+42471:              <Description>KDMAT35 - Material belonging to the customer</Description>
+42503:              <Description>KANNR - KANBAN/sequence number</Description>
+42535:              <Description>POSEX - External item number</Description>
+42567:              <Description>LIEFFZ - Cumulative qty for delivery/MAIS in base unit of measure</Description>
+42599:              <Description>USR01 - Additional data field 1 for delivery schedules</Description>
+42631:              <Description>USR02 - Additional data field 2 for delivery schedules</Description>
+42663:              <Description>USR03 - Additional data field 3 for delivery schedules</Description>
+42695:              <Description>USR04 - Additional data field 4 for delivery schedules</Description>
+42727:              <Description>USR05 - Additional data field 5 for delivery schedules</Description>
+42759:              <Description>MATNR_EXTERNAL - Long material number (future development) for MATNR field</Description>
+42791:              <Description>MATNR_VERSION - Version number (future development) for MATNR field</Description>
+42823:              <Description>MATNR_GUID - External GUID (future development) for MATNR field</Description>
+42855:              <Description>MATWA_EXTERNAL - Long material number (future development) for field MATWA</Description>
+42887:              <Description>MATWA_VERSION - Version number (future development) for field MATWA</Description>
+42919:              <Description>MATWA_GUID - External GUID (future development) for field MATWA</Description>
+42951:              <Description>ZUDAT - Additional Data</Description>
+42984:          <Description>SEGMENT</Description>
+43007:              <Description>SEGNAM - Segment (external name) - (E2EDL25)</Description>
+43039:              <Description>MANDT - Client</Description>
+43071:              <Description>DOCNUM - IDoc number</Description>
+43103:              <Description>SEGNUM - Segment number</Description>
+43135:              <Description>PSGNUM - Number of superior parent segment</Description>
+43167:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+43199:              <Description>LGORT_BEZ - Description of storage location</Description>
+43231:              <Description>LADGR_BEZ - Loading group description</Description>
+43263:              <Description>TRAGR_BEZ - Description of transportation group</Description>
+43295:              <Description>VKBUR_BEZ - Description of sales office</Description>
+43327:              <Description>VKGRP_BEZ - Description of sales group</Description>
+43359:              <Description>VTWEG_BEZ - Description of distribution channel</Description>
+43391:              <Description>SPART_BEZ - Description of division</Description>
+43423:              <Description>MFRGR_BEZ - Description of material freight group</Description>
+43456:        <Description/>
+43466:          <Description>SEGMENT</Description>
+43489:              <Description>SEGNAM - Segment (external name) - (E2EDL26)</Description>
+43521:              <Description>MANDT - Client</Description>
+43553:              <Description>DOCNUM - IDoc number</Description>
+43585:              <Description>SEGNUM - Segment number</Description>
+43617:              <Description>PSGNUM - Number of superior parent segment</Description>
+43649:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+43681:              <Description>PSTYV - Sales document item category</Description>
+43713:              <Description>MATKL - Material group</Description>
+43745:              <Description>PRODH - Product hierarchy</Description>
+43777:              <Description>UMVKZ - Numerator (factor) for conversion of sales quantity into SKU</Description>
+43809:              <Description>UMVKN - Denominator (divisor) for conversion of sales qty. into SKU</Description>
+43841:              <Description>KZTLF - Partial delivery at item level</Description>
+43873:              <Description>UEBTK - Indicator: Unlimited overdelivery allowed</Description>
+43905:              <Description>UEBTO - Overdelivery tolerance limit</Description>
+43937:              <Description>UNTTO - Underdelivery tolerance limit</Description>
+43969:              <Description>CHSPL - Batch split allowed</Description>
+44001:              <Description>XCHBW - Indicator for Batches / Evaluation Types</Description>
+44033:              <Description>POSAR - Item type</Description>
+44065:              <Description>SOBKZ - Special stock indicator</Description>
+44097:              <Description>PCKPF - Packing control</Description>
+44129:              <Description>MAGRV - Material Group: Packaging Materials</Description>
+44161:              <Description>SHKZG - Debit/credit indicator</Description>
+44193:              <Description>KOQUI - Picking is subject to confirmation</Description>
+44225:              <Description>AKTNR - Promotion</Description>
+44257:              <Description>KZUMW - Indicator: Environmentally relevant</Description>
+44289:              <Description>KVGR1 - Customer group 1</Description>
+44321:              <Description>KVGR2 - Customer group 2</Description>
+44353:              <Description>KVGR3 - Customer group 3</Description>
+44385:              <Description>KVGR4 - Customer group 4</Description>
+44417:              <Description>KVGR5 - Customer group 5</Description>
+44449:              <Description>MVGR1 - Material group 1</Description>
+44481:              <Description>MVGR2 - Material group 2</Description>
+44513:              <Description>MVGR3 - Material group 3</Description>
+44545:              <Description>MVGR4 - Material group 4</Description>
+44577:              <Description>MVGR5 - Material group 5</Description>
+44610:          <Description>SEGMENT</Description>
+44633:              <Description>SEGNAM - Segment (external name) - (E2EDL27)</Description>
+44665:              <Description>MANDT - Client</Description>
+44697:              <Description>DOCNUM - IDoc number</Description>
+44729:              <Description>SEGNUM - Segment number</Description>
+44761:              <Description>PSGNUM - Number of superior parent segment</Description>
+44793:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+44825:              <Description>PSTYV_BEZ - Description of item category</Description>
+44857:              <Description>MATKL_BEZ - Description of material group</Description>
+44889:              <Description>PRODH_BEZ - Description of product hierarchy</Description>
+44921:              <Description>WERKS_BEZ - Plant Descript.</Description>
+44953:              <Description>KVGR1_BEZ - Description cust. group 1</Description>
+44985:              <Description>KVGR2_BEZ - Description cust. group 2</Description>
+45017:              <Description>KVGR3_BEZ - Description cust. group 3</Description>
+45049:              <Description>KVGR4_BEZ - Description cust. group 4</Description>
+45081:              <Description>KVGR5_BEZ - Description cust. group 5</Description>
+45113:              <Description>MVGR1_BEZ - Description material group 1</Description>
+45145:              <Description>MVGR2_BEZ - Description material group 2</Description>
+45177:              <Description>MVGR3_BEZ - Description material group 3</Description>
+45209:              <Description>MVGR4_BEZ - Description material group 4</Description>
+45241:              <Description>MVGR5_BEZ - Description material group 5</Description>
+45275:          <Description>SEGMENT</Description>
+45298:              <Description>SEGNAM - Segment (external name) - (E2EDL52)</Description>
+45330:              <Description>MANDT - Client</Description>
+45362:              <Description>DOCNUM - IDoc number</Description>
+45394:              <Description>SEGNUM - Segment number</Description>
+45426:              <Description>PSGNUM - Number of superior parent segment</Description>
+45458:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+45490:              <Description>QUALF - Qualifier for external release number</Description>
+45522:              <Description>PRODN - External release number</Description>
+45554:              <Description>ITMNR - External Item Number</Description>
+45586:              <Description>SQUNT - Single Quantity of Material in External Document</Description>
+45619:          <Description>SEGMENT</Description>
+45642:              <Description>SEGNAM - Segment (external name) - (E2EDL53)</Description>
+45674:              <Description>MANDT - Client</Description>
+45706:              <Description>DOCNUM - IDoc number</Description>
+45738:              <Description>SEGNUM - Segment number</Description>
+45770:              <Description>PSGNUM - Number of superior parent segment</Description>
+45802:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+45834:              <Description>GRUND - Reason for variance in POD</Description>
+45866:              <Description>PODMG - Actual quantity accepted in sales unit per delivery item</Description>
+45898:              <Description>LFIMG_DIFF - Deviation in quantity actually delivered in sales unit</Description>
+45930:              <Description>VRKME - Sales unit</Description>
+45962:              <Description>LGMNG_DIFF - Difference in actual delivery quantity in stockkeeping unit</Description>
+45994:              <Description>MEINS - Base unit of measure</Description>
+46027:        <Description/>
+46037:          <Description>SEGMENT</Description>
+46060:              <Description>SEGNAM - Segment (external name) - (E2EDD10)</Description>
+46092:              <Description>MANDT - Client</Description>
+46124:              <Description>DOCNUM - IDoc number</Description>
+46156:              <Description>SEGNUM - Segment number</Description>
+46188:              <Description>PSGNUM - Number of superior parent segment</Description>
+46220:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+46252:              <Description>MOT - Dangerous goods - mode of transport category</Description>
+46284:              <Description>VALDAT - Selection date dangerous goods master data</Description>
+46316:              <Description>DGCAO - Indicator: Only cargo air transport permitted</Description>
+46348:              <Description>DGNHM - Indicator: Not a dangerous good</Description>
+46380:              <Description>TKUI - UN number category</Description>
+46412:              <Description>DGNU - Identification number</Description>
+46444:              <Description>COLNO - Indicator UN collective number</Description>
+46476:              <Description>DGRES1 - Primary hazard-inducing substance</Description>
+46508:              <Description>DGRES2 - Secondary hazard-inducing substance</Description>
+46540:              <Description>DGRES3 - Tertiary hazard-inducing substance</Description>
+46572:              <Description>DGREMP - Hazard-inducing substance (marine pollutant)</Description>
+46604:              <Description>DGRERQ - Hazard-inducing substance (reportable quantity)</Description>
+46636:              <Description>DGCL - Dangerous goods class</Description>
+46668:              <Description>DGSC - Dangerous goods subclass</Description>
+46700:              <Description>SDBC - Hazard item number</Description>
+46732:              <Description>SLBE - Hazard item number (empty transport)</Description>
+46764:              <Description>LDBC - Dangerous goods letter</Description>
+46796:              <Description>LWDG - Dangerous goods regulation</Description>
+46828:              <Description>EINU - TREMcard number 1</Description>
+46860:              <Description>EICN - TREMcard number 2</Description>
+46892:              <Description>EMSN1 - EmS number 1</Description>
+46924:              <Description>EMSN2 - EmS number 2</Description>
+46956:              <Description>MFAG1 - MFAG number 1</Description>
+46988:              <Description>MFAG2 - MFAG number 2</Description>
+47020:              <Description>HQTU - Maximum quantity per transport unit</Description>
+47052:              <Description>HQTUN - Maximum quantity unit</Description>
+47084:              <Description>PIN - Packing instruction number</Description>
+47116:              <Description>PINLQ - Packing instruction number for limited quantities</Description>
+47148:              <Description>PGRO - Packing group</Description>
+47180:              <Description>HNU - Hazard identification number</Description>
+47212:              <Description>HPN1 - Danger label number 1</Description>
+47244:              <Description>HPN2 - Danger label number 2</Description>
+47276:              <Description>HPN3 - Danger label number 3</Description>
+47308:              <Description>HPN4 - Danger label number 4</Description>
+47340:              <Description>HPN5 - Danger label number 5</Description>
+47372:              <Description>HPN6 - Danger label number 6</Description>
+47404:              <Description>HPN7 - Danger label number 7</Description>
+47436:              <Description>LAB1 - Label number 1</Description>
+47468:              <Description>LAB2 - Label number 2</Description>
+47500:              <Description>LAB3 - Label number 3</Description>
+47532:              <Description>LAB4 - Label number 4</Description>
+47564:              <Description>LAB5 - Label number 5</Description>
+47596:              <Description>LAB6 - Label number 6</Description>
+47628:              <Description>LAB7 - Label number 7</Description>
+47660:              <Description>LAB8 - Label number 8</Description>
+47692:              <Description>LAB9 - Label number 9</Description>
+47724:              <Description>LAB10 - Label number 10</Description>
+47756:              <Description>PBI - Poisonous by inhalation</Description>
+47788:              <Description>DGPTA - Shipping by mail permitted</Description>
+47820:              <Description>NHME - Indicator: Not a dangerous good - empty transport</Description>
+47852:              <Description>DGSHE - Schedule of class 7</Description>
+47884:              <Description>PIMDG - IMDG code page</Description>
+47916:              <Description>SPPRO - Special provision</Description>
+47948:              <Description>MAPOL - Marine pollutant</Description>
+47980:              <Description>EXCEP - Exception number</Description>
+48012:              <Description>AGRNO - Agreement number</Description>
+48044:              <Description>REGNO - Approval no.</Description>
+48076:              <Description>SDGCL - Dangerous goods class</Description>
+48108:              <Description>TDGCL - Dangerous goods class</Description>
+48140:              <Description>LWDGN - Name of dangerous goods regulation</Description>
+48172:              <Description>RVLID - Validity area</Description>
+48204:              <Description>MOS1 - Dangerous goods transport category</Description>
+48236:              <Description>MOS2 - Dangerous goods transport category</Description>
+48268:              <Description>MOS3 - Dangerous goods transport category</Description>
+48300:              <Description>MOS4 - Dangerous goods transport category</Description>
+48332:              <Description>MOS5 - Dangerous goods transport category</Description>
+48364:              <Description>MOS6 - Dangerous goods transport category</Description>
+48396:              <Description>MOS7 - Dangerous goods transport category</Description>
+48428:              <Description>MOS8 - Dangerous goods transport category</Description>
+48460:              <Description>MOS9 - Dangerous goods transport category</Description>
+48492:              <Description>MOSA - Dangerous goods transport category</Description>
+48524:              <Description>DGTNA - Transport not permitted</Description>
+48556:              <Description>DGWOS - Processing status for dangerous goods</Description>
+48588:              <Description>SCASE - Special case (packing check)</Description>
+48620:              <Description>EIMDG - Amendment IMDG code</Description>
+48653:          <Description>SEGMENT</Description>
+48676:              <Description>SEGNAM - Segment (external name) - (E2EDD11)</Description>
+48708:              <Description>MANDT - Client</Description>
+48740:              <Description>DOCNUM - IDoc number</Description>
+48772:              <Description>SEGNUM - Segment number</Description>
+48804:              <Description>PSGNUM - Number of superior parent segment</Description>
+48836:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+48868:              <Description>VKTRT - Short description of mode of transport category</Description>
+48900:              <Description>DGNA - Proper shipping name</Description>
+48932:              <Description>DGRESD2 - Description for hazard-inducing substance</Description>
+48964:              <Description>DGRESD - Description for hazard-inducing substance</Description>
+48996:              <Description>DGRESD3 - Description for hazard-inducing substance</Description>
+49028:              <Description>DGREDMP - Description for hazard-inducing substance</Description>
+49060:              <Description>DGREDRQ - Description for hazard-inducing substance</Description>
+49093:          <Description>SEGMENT</Description>
+49116:              <Description>SEGNAM - Segment (external name) - (E2EDD15)</Description>
+49148:              <Description>MANDT - Client</Description>
+49180:              <Description>DOCNUM - IDoc number</Description>
+49212:              <Description>SEGNUM - Segment number</Description>
+49244:              <Description>PSGNUM - Number of superior parent segment</Description>
+49276:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+49308:              <Description>HPN1D - Description for danger label</Description>
+49340:              <Description>HPN2D - Description for danger label</Description>
+49372:              <Description>HPN3D - Description for danger label</Description>
+49404:              <Description>HPN4D - Description for danger label</Description>
+49436:              <Description>HPN5D - Description for danger label</Description>
+49468:              <Description>HPN6D - Description for danger label</Description>
+49500:              <Description>HPN7D - Description for danger label</Description>
+49533:        <Description/>
+49543:          <Description>SEGMENT</Description>
+49566:              <Description>SEGNAM - Segment (external name) - (E2EDD12)</Description>
+49598:              <Description>MANDT - Client</Description>
+49630:              <Description>DOCNUM - IDoc number</Description>
+49662:              <Description>SEGNUM - Segment number</Description>
+49694:              <Description>PSGNUM - Number of superior parent segment</Description>
+49726:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+49758:              <Description>STOSU - Aggregate state for transport</Description>
+49790:              <Description>COTMP - Control temperature</Description>
+49822:              <Description>TPCUN - Temperature unit (control)</Description>
+49854:              <Description>EMTMP - Emergency temperature</Description>
+49886:              <Description>TPEUN - Temperature unit (emergency)</Description>
+49918:              <Description>FLTMP - Flash point</Description>
+49950:              <Description>TPFUN - Temperature unit (flame)</Description>
+49982:              <Description>TPSNL - Temperature sensitivity (lower limit)</Description>
+50014:              <Description>TPSLU - Unit for temperature sensitivity (lower limit)</Description>
+50046:              <Description>TPSNH - Temperature sensitivity (upper limit)</Description>
+50078:              <Description>TPSHU - Temperature unit (sensitivity - upper limit)</Description>
+50110:              <Description>COWE - Water pollution class</Description>
+50142:              <Description>VBFC - VbF class</Description>
+50174:              <Description>SDCL - Storage hazard class</Description>
+50206:              <Description>SOOWA - Solubility of water</Description>
+50238:              <Description>USOOW - Unit for solubility of water</Description>
+50270:              <Description>DENFEE - Density I</Description>
+50302:              <Description>UDENFE - Unit for density I</Description>
+50334:              <Description>DENTWE - Density II</Description>
+50366:              <Description>UDENTWE - Unit for density II</Description>
+50398:              <Description>DENFIF - Density III</Description>
+50430:              <Description>UDENFI - Unit for density III</Description>
+50462:              <Description>BUDEN - Bulk density</Description>
+50494:              <Description>UBUDE - Unit for bulk density</Description>
+50526:              <Description>BOPOI - Boiling point</Description>
+50558:              <Description>UBOPO - Unit for boiling point</Description>
+50590:              <Description>VISCO - Viscosity</Description>
+50622:              <Description>UVISC - Unit for viscosity</Description>
+50654:              <Description>STPRES - Vapor pressure</Description>
+50686:              <Description>USTPRE - Unit for vapor pressure</Description>
+50718:              <Description>HYGRO - Hygroscopicity</Description>
+50750:              <Description>MEPOI - Melting point</Description>
+50782:              <Description>UMEPO - Unit for melting point</Description>
+50814:              <Description>COOEX - Coefficient of expansion</Description>
+50846:              <Description>UCOOE - Unit for coefficient of expansion</Description>
+50878:              <Description>MTMPF - Medium temperature of liquid during filling</Description>
+50910:              <Description>UMTMP - Unit for medium filling temperature</Description>
+50942:              <Description>PAI - Quantity a-marginals inner packaging</Description>
+50974:              <Description>PAIU - Unit of measurement (a-marginal)</Description>
+51006:              <Description>PAO - Quantity a-marginal outer package</Description>
+51038:              <Description>PAOU - Unit of measurement (a-marginal)</Description>
+51070:              <Description>RQA - Reportable quantity</Description>
+51102:              <Description>RQU - Unit of measure for reportable quantities</Description>
+51134:              <Description>MINQ - Minimum quantity (\§7 regulation)</Description>
+51166:              <Description>MINU - Unit of measure for minimum quantity (§7 regulation)</Description>
+51198:              <Description>MAXQ - Maximum quantity (§7 (§7regul(§§77a(§7tion)</Description>
+51230:              <Description>MAXU - Unit of measure for maximum quantity (§7 regulation)</Description>
+51262:              <Description>RELQ - Excepted quantity (marginal 10011)</Description>
+51294:              <Description>RELU - Unit of measure for excepted quantity (ma. 10011)</Description>
+51326:              <Description>MULRQ - Multiplication factor quantity limit (marginal 10011)</Description>
+51358:              <Description>RCHEM - Notification status (law on control of toxic substances)</Description>
+51390:              <Description>STOPA - Packaging mark</Description>
+51422:              <Description>PASI - A-ma. single packaging (quantity/volume)</Description>
+51454:              <Description>UPASI - Unit of measurement (a-marginal)</Description>
+51486:              <Description>PAGW - A-ma. gross weight (quantity)</Description>
+51518:              <Description>UPAGW - Unit of measurement (a-marginal)</Description>
+51551:          <Description>SEGMENT</Description>
+51574:              <Description>SEGNAM - Segment (external name) - (E2EDD16)</Description>
+51606:              <Description>MANDT - Client</Description>
+51638:              <Description>DOCNUM - IDoc number</Description>
+51670:              <Description>SEGNUM - Segment number</Description>
+51702:              <Description>PSGNUM - Number of superior parent segment</Description>
+51734:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+51766:              <Description>AGGRT - Name for state of aggregation</Description>
+51798:              <Description>COWED - Short description of water pollution class</Description>
+51832:          <Description>SEGMENT</Description>
+51855:              <Description>SEGNAM - Segment (external name) - (E2EDD13)</Description>
+51887:              <Description>MANDT - Client</Description>
+51919:              <Description>DOCNUM - IDoc number</Description>
+51951:              <Description>SEGNUM - Segment number</Description>
+51983:              <Description>PSGNUM - Number of superior parent segment</Description>
+52015:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+52047:              <Description>EDIQ - EDI: Qualifier for selecting hazard notes</Description>
+52079:              <Description>DAIN - Hazard note</Description>
+52111:              <Description>DAID - Hazard note text</Description>
+52144:          <Description>SEGMENT</Description>
+52167:              <Description>SEGNAM - Segment (external name) - (E2EDDH3)</Description>
+52199:              <Description>MANDT - Client</Description>
+52231:              <Description>DOCNUM - IDoc number</Description>
+52263:              <Description>SEGNUM - Segment number</Description>
+52295:              <Description>PSGNUM - Number of superior parent segment</Description>
+52327:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+52359:              <Description>FUNCTION - Function (for transferred text)</Description>
+52391:              <Description>TDOBJECT - Texts: application object</Description>
+52423:              <Description>TDOBNAME - Name</Description>
+52455:              <Description>TDID - Text ID</Description>
+52487:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+52519:              <Description>LANGUA_ISO - Language key</Description>
+52551:              <Description>PHRSEL - Phrase set</Description>
+52583:              <Description>IDENTIFIER - Identification (DGTM2 field name)</Description>
+52615:              <Description>LANGUA_PHR - Phrase language</Description>
+52648:          <Description>SEGMENT</Description>
+52671:              <Description>SEGNAM - Segment (external name) - (E2EDDP3)</Description>
+52703:              <Description>MANDT - Client</Description>
+52735:              <Description>DOCNUM - IDoc number</Description>
+52767:              <Description>SEGNUM - Segment number</Description>
+52799:              <Description>PSGNUM - Number of superior parent segment</Description>
+52831:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+52863:              <Description>TDFORMAT - Tag column</Description>
+52895:              <Description>TDLINE - Text line</Description>
+52929:          <Description>SEGMENT</Description>
+52952:              <Description>SEGNAM - Segment (external name) - (E2EDD14)</Description>
+52984:              <Description>MANDT - Client</Description>
+53016:              <Description>DOCNUM - IDoc number</Description>
+53048:              <Description>SEGNUM - Segment number</Description>
+53080:              <Description>PSGNUM - Number of superior parent segment</Description>
+53112:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+53144:              <Description>DGARAND - Indicator: a-marginal</Description>
+53176:              <Description>DGPULIM - Indicator: Packed under 450 l</Description>
+53208:              <Description>DGPAS - Indicator § 7</Description>
+53240:              <Description>DGREPQU - Indicator: Reportable quantity</Description>
+53273:          <Description>SEGMENT</Description>
+53296:              <Description>SEGNAM - Segment (external name) - (E2EDL19)</Description>
+53328:              <Description>MANDT - Client</Description>
+53360:              <Description>DOCNUM - IDoc number</Description>
+53392:              <Description>SEGNUM - Segment number</Description>
+53424:              <Description>PSGNUM - Number of superior parent segment</Description>
+53456:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+53488:              <Description>QUALF - IDOC Qualifier: Control (Delivery Item)</Description>
+53520:              <Description>PARAM - IDOC: Control Parameters</Description>
+53553:          <Description>SEGMENT</Description>
+53576:              <Description>SEGNAM - Segment (external name) - (E2EDL11)</Description>
+53608:              <Description>MANDT - Client</Description>
+53640:              <Description>DOCNUM - IDoc number</Description>
+53672:              <Description>SEGNUM - Segment number</Description>
+53704:              <Description>PSGNUM - Number of superior parent segment</Description>
+53736:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+53768:              <Description>SERNR - Serial number</Description>
+53801:          <Description>SEGMENT</Description>
+53824:              <Description>SEGNAM - Segment (external name) - (E2EDL15)</Description>
+53856:              <Description>MANDT - Client</Description>
+53888:              <Description>DOCNUM - IDoc number</Description>
+53920:              <Description>SEGNUM - Segment number</Description>
+53952:              <Description>PSGNUM - Number of superior parent segment</Description>
+53984:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+54016:              <Description>ATINN - Internal characteristic</Description>
+54048:              <Description>ATNAM - Characteristic name</Description>
+54080:              <Description>ATBEZ - Characteristic description</Description>
+54112:              <Description>ATWRT - Characteristic value</Description>
+54144:              <Description>ATWTB - Characteristic value description</Description>
+54176:              <Description>EWAHR - Tolerance from</Description>
+54209:        <Description/>
+54219:          <Description>SEGMENT</Description>
+54242:              <Description>SEGNAM - Segment (external name) - (E2EDL35)</Description>
+54274:              <Description>MANDT - Client</Description>
+54306:              <Description>DOCNUM - IDoc number</Description>
+54338:              <Description>SEGNUM - Segment number</Description>
+54370:              <Description>PSGNUM - Number of superior parent segment</Description>
+54402:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+54434:              <Description>STAWN - Commodity code / Import code number for foreign trade</Description>
+54466:              <Description>EXPRF - Export/Import procedure for foreign trade (5 digits)</Description>
+54498:              <Description>EXART - Business Transaction Type for Foreign Trade</Description>
+54530:              <Description>HERKL - Country of origin of the material</Description>
+54562:              <Description>HERKR - Region of origin of material (non-preferential origin)</Description>
+54594:              <Description>GRWRT - Statistical value</Description>
+54626:              <Description>PREFE - Preference indicator in export/import</Description>
+54659:          <Description>SEGMENT</Description>
+54682:              <Description>SEGNAM - Segment (external name) - (E2EDL36)</Description>
+54714:              <Description>MANDT - Client</Description>
+54746:              <Description>DOCNUM - IDoc number</Description>
+54778:              <Description>SEGNUM - Segment number</Description>
+54810:              <Description>PSGNUM - Number of superior parent segment</Description>
+54842:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+54874:              <Description>STXT1 - Description of commodity code - First line</Description>
+54906:              <Description>STXT2 - Description of commodity code - Second line</Description>
+54938:              <Description>STXT3 - Description of commodity code - Third line</Description>
+54970:              <Description>STXT4 - Description of commodity code - Fourth line</Description>
+55002:              <Description>STXT5 - Description of commodity code - Fifth line</Description>
+55034:              <Description>STXT6 - Description of commodity code - Sixth line</Description>
+55066:              <Description>STXT7 - Description of commodity code - Seventh line</Description>
+55098:              <Description>EXPRF_BEZ - Export/import procedure description</Description>
+55130:              <Description>EXART_BEZ - Description of business transaction type</Description>
+55162:              <Description>HERKL_BEZ - Description of country of origin</Description>
+55194:              <Description>HERKR_BEZ - Description of region of origin</Description>
+55228:          <Description>SEGMENT</Description>
+55251:              <Description>SEGNAM - Segment (external name) - (E2EDL43)</Description>
+55283:              <Description>MANDT - Client</Description>
+55315:              <Description>DOCNUM - IDoc number</Description>
+55347:              <Description>SEGNUM - Segment number</Description>
+55379:              <Description>PSGNUM - Number of superior parent segment</Description>
+55411:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+55443:              <Description>QUALF - SD document category</Description>
+55475:              <Description>BELNR - IDOC document number</Description>
+55507:              <Description>POSNR - Item number</Description>
+55539:              <Description>DATUM - IDOC: Date</Description>
+55572:        <Description/>
+55582:          <Description>SEGMENT</Description>
+55605:              <Description>SEGNAM - Segment (external name) - (E2EDL41)</Description>
+55637:              <Description>MANDT - Client</Description>
+55669:              <Description>DOCNUM - IDoc number</Description>
+55701:              <Description>SEGNUM - Segment number</Description>
+55733:              <Description>PSGNUM - Number of superior parent segment</Description>
+55765:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+55797:              <Description>QUALI - Qualifier for Reference Data of Ordering Party</Description>
+55829:              <Description>BSTNR - Customer purchase order number</Description>
+55861:              <Description>BSTDT - Customer purchase order date</Description>
+55893:              <Description>BSARK - Customer purchase order type</Description>
+55925:              <Description>IHREZ - Customer&apos;s or vendor&apos;s internal reference</Description>
+55957:              <Description>POSEX - Item number of the underlying customer purchase order</Description>
+55990:          <Description>SEGMENT</Description>
+56013:              <Description>SEGNAM - Segment (external name) - (E2EDL42)</Description>
+56045:              <Description>MANDT - Client</Description>
+56077:              <Description>DOCNUM - IDoc number</Description>
+56109:              <Description>SEGNUM - Segment number</Description>
+56141:              <Description>PSGNUM - Number of superior parent segment</Description>
+56173:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+56205:              <Description>BSARK_BEZ - Description of purchase order type</Description>
+56239:        <Description/>
+56249:          <Description>SEGMENT</Description>
+56272:              <Description>SEGNAM - Segment (external name) - (E2TXTH9)</Description>
+56304:              <Description>MANDT - Client</Description>
+56336:              <Description>DOCNUM - IDoc number</Description>
+56368:              <Description>SEGNUM - Segment number</Description>
+56400:              <Description>PSGNUM - Number of superior parent segment</Description>
+56432:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+56464:              <Description>FUNCTION - Function (for transferred text)</Description>
+56496:              <Description>TDOBJECT - Texts: application object</Description>
+56528:              <Description>TDOBNAME - Name</Description>
+56560:              <Description>TDID - Text ID</Description>
+56592:              <Description>TDSPRAS - Language</Description>
+56624:              <Description>TDTEXTTYPE - SAPscript: Format of a text</Description>
+56656:              <Description>LANGUA_ISO - Language key</Description>
+56689:          <Description>SEGMENT</Description>
+56712:              <Description>SEGNAM - Segment (external name) - (E2TXTP9)</Description>
+56744:              <Description>MANDT - Client</Description>
+56776:              <Description>DOCNUM - IDoc number</Description>
+56808:              <Description>SEGNUM - Segment number</Description>
+56840:              <Description>PSGNUM - Number of superior parent segment</Description>
+56872:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+56904:              <Description>TDFORMAT - Tag column</Description>
+56936:              <Description>TDLINE - Text line</Description>
+56970:          <Description>SEGMENT</Description>
+56993:              <Description>SEGNAM - Segment (external name) - (E2EDL12)</Description>
+57025:              <Description>MANDT - Client</Description>
+57057:              <Description>DOCNUM - IDoc number</Description>
+57089:              <Description>SEGNUM - Segment number</Description>
+57121:              <Description>PSGNUM - Number of superior parent segment</Description>
+57153:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+57185:              <Description>ATINN - Internal characteristic</Description>
+57217:              <Description>ATNAM - Characteristic name</Description>
+57249:              <Description>ATBEZ - Characteristic description</Description>
+57281:              <Description>ATWRT - Characteristic value</Description>
+57313:              <Description>ATWTB - Characteristic value description</Description>
+57345:              <Description>EWAHR - Tolerance from</Description>
+57379:        <Description/>
+57389:          <Description>SEGMENT</Description>
+57412:              <Description>SEGNAM - Segment (external name) - (E2EDL37)</Description>
+57444:              <Description>MANDT - Client</Description>
+57476:              <Description>DOCNUM - IDoc number</Description>
+57508:              <Description>SEGNUM - Segment number</Description>
+57540:              <Description>PSGNUM - Number of superior parent segment</Description>
+57572:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+57604:              <Description>EXIDV - External Handling Unit Identification</Description>
+57636:              <Description>TARAG - Tare weight of handling unit</Description>
+57668:              <Description>GWEIT - Weight Unit Tare</Description>
+57700:              <Description>BRGEW - Total Weight of Handling Unit</Description>
+57732:              <Description>NTGEW - Loading Weight of Handling Unit</Description>
+57764:              <Description>MAGEW - Allowed Loading Weight of a Handling Unit</Description>
+57796:              <Description>GWEIM - Weight Unit</Description>
+57828:              <Description>BTVOL - Total volume of handling unit</Description>
+57860:              <Description>NTVOL - Loading Volume of Handling Unit</Description>
+57892:              <Description>MAVOL - Allowed Loading Volume for Handling Unit</Description>
+57924:              <Description>VOLEM - Volume unit</Description>
+57956:              <Description>TAVOL - Tare volume of handling unit</Description>
+57988:              <Description>VOLET - Volume Unit Tare</Description>
+58020:              <Description>VEGR2 - Handling Unit Group 2                     (Freely Definable)</Description>
+58052:              <Description>VEGR1 - Handling Unit Group 1                     (Freely Definable)</Description>
+58084:              <Description>VEGR3 - Handling Unit Group 3                     (Freely Definable)</Description>
+58116:              <Description>VHILM - Packaging Materials</Description>
+58148:              <Description>VEGR4 - Handling Unit Group 4                     (Freely Definable)</Description>
+58180:              <Description>LAENG - Length</Description>
+58212:              <Description>VEGR5 - Handling Unit Group 5                     (Freely Definable)</Description>
+58244:              <Description>BREIT - Width</Description>
+58276:              <Description>HOEHE - Height</Description>
+58308:              <Description>MEABM - Unit of dimension for length/width/height</Description>
+58340:              <Description>INHALT - Description of Handling Unit Content</Description>
+58372:              <Description>VHART - Packaging Material Type</Description>
+58404:              <Description>MAGRV - Material Group: Packaging Materials</Description>
+58436:              <Description>LADLG - Lgth of loading platform in lgth of LdPlat measurement units</Description>
+58468:              <Description>LADEH - Unit of measure to measure the length of loading platform</Description>
+58500:              <Description>FARZT - Travel Time</Description>
+58532:              <Description>FAREH - Unit of travel time</Description>
+58564:              <Description>ENTFE - Distance Travelled</Description>
+58596:              <Description>EHENT - Unit of distance</Description>
+58628:              <Description>VELTP - Packaging Material Category</Description>
+58660:              <Description>EXIDV2 - Handling Unit&apos;s 2nd External Identification</Description>
+58692:              <Description>LANDT - Country providing means of transport</Description>
+58724:              <Description>LANDF - Driver&apos;s Nationality</Description>
+58756:              <Description>NAMEF - Driver name</Description>
+58788:              <Description>NAMBE - Alternate driver&apos;s name</Description>
+58820:              <Description>VHILM_KU - Material belonging to the customer</Description>
+58852:              <Description>VEBEZ - Description of Packaging Material</Description>
+58884:              <Description>SMGKN - SMG identification for material tag</Description>
+58916:              <Description>KDMAT35 - Partner&apos;s (Customer&apos;s or Vendor&apos;s) Packaging Material</Description>
+58948:              <Description>SORTL - Sort field</Description>
+58980:              <Description>ERNAM - Name of Person who Created the Object</Description>
+59012:              <Description>GEWFX - Weight and Volume Fixed</Description>
+59044:              <Description>ERLKZ - Status (at this time without functionality)</Description>
+59076:              <Description>EXIDA - Type of external handling unit identifier</Description>
+59108:              <Description>MOVE_STATUS - Handling unit status</Description>
+59140:              <Description>PACKVORSCHR - Text string 22 characters</Description>
+59172:              <Description>PACKVORSCHR_ST - Single-character flag</Description>
+59204:              <Description>LABELTYP - Indicator: do not print external shipping label</Description>
+59236:              <Description>ZUL_AUFL - Field length 17</Description>
+59268:              <Description>VHILM_EXTERNAL - Long material number (future development) for field VHILM</Description>
+59300:              <Description>VHILM_VERSION - Version number (future development) for field VHILM</Description>
+59332:              <Description>VHILM_GUID - External GUID (future development) for field VHILM</Description>
+59365:          <Description>SEGMENT</Description>
+59388:              <Description>SEGNAM - Segment (external name) - (E2EDL39)</Description>
+59420:              <Description>MANDT - Client</Description>
+59452:              <Description>DOCNUM - IDoc number</Description>
+59484:              <Description>SEGNUM - Segment number</Description>
+59516:              <Description>PSGNUM - Number of superior parent segment</Description>
+59548:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+59580:              <Description>QUALF - Control for Handling Unit</Description>
+59612:              <Description>PARAM - IDOC: Control Parameters</Description>
+59645:          <Description>SEGMENT</Description>
+59668:              <Description>SEGNAM - Segment (external name) - (E2EDL38)</Description>
+59700:              <Description>MANDT - Client</Description>
+59732:              <Description>DOCNUM - IDoc number</Description>
+59764:              <Description>SEGNUM - Segment number</Description>
+59796:              <Description>PSGNUM - Number of superior parent segment</Description>
+59828:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+59860:              <Description>VEGR1_BEZ - Description of shipping unit 1</Description>
+59892:              <Description>VEGR2_BEZ - Description of shipping unit 2</Description>
+59924:              <Description>VEGR3_BEZ - Description of shipping unit 3</Description>
+59956:              <Description>VEGR4_BEZ - Description of shipping unit 4</Description>
+59988:              <Description>VEGR5_BEZ - Description of shipping unit 5</Description>
+60020:              <Description>VHART_BEZ - Description of shipping material type</Description>
+60052:              <Description>MAGRV_BEZ - Description of material grouping shipping material</Description>
+60084:              <Description>VEBEZ - Description of Packaging Material</Description>
+60117:        <Description/>
+60127:          <Description>SEGMENT</Description>
+60150:              <Description>SEGNAM - Segment (external name) - (E2EDL49)</Description>
+60182:              <Description>MANDT - Client</Description>
+60214:              <Description>DOCNUM - IDoc number</Description>
+60246:              <Description>SEGNUM - Segment number</Description>
+60278:              <Description>PSGNUM - Number of superior parent segment</Description>
+60310:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+60342:              <Description>XSITD - Express Delivery Company</Description>
+60374:              <Description>SHIPACCT - Sender&apos;s Account Number with Express Delivery Company</Description>
+60406:              <Description>TRACKN - Tracking number</Description>
+60438:              <Description>XSIURL_SINGLE_TRACK - URL for Carrier</Description>
+60471:          <Description>SEGMENT</Description>
+60494:              <Description>SEGNAM - Segment (external name) - (E2EDL50)</Description>
+60526:              <Description>MANDT - Client</Description>
+60558:              <Description>DOCNUM - IDoc number</Description>
+60590:              <Description>SEGNUM - Segment number</Description>
+60622:              <Description>PSGNUM - Number of superior parent segment</Description>
+60654:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+60686:              <Description>XSIQUALF - Express Delivery Company&apos;s Qualifier for Communication</Description>
+60718:              <Description>XSITD - Express Delivery Company</Description>
+60750:              <Description>VLABDATA - Express Delivery Company&apos;s Data Field</Description>
+60784:        <Description/>
+60794:          <Description>SEGMENT</Description>
+60817:              <Description>SEGNAM - Segment (external name) - (E2EDL44)</Description>
+60849:              <Description>MANDT - Client</Description>
+60881:              <Description>DOCNUM - IDoc number</Description>
+60913:              <Description>SEGNUM - Segment number</Description>
+60945:              <Description>PSGNUM - Number of superior parent segment</Description>
+60977:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+61009:              <Description>VELIN - Type of Handling-unit Item Content</Description>
+61041:              <Description>VBELN - Sales and distribution document number</Description>
+61073:              <Description>POSNR - Item number of the SD document</Description>
+61105:              <Description>EXIDV - External Handling Unit Identification</Description>
+61137:              <Description>VEMNG - Base Quantity Packed in the Handling Unit Item</Description>
+61169:              <Description>VEMEH - Base Unit of Measure of the Quantity to be Packed (VEMNG)</Description>
+61201:              <Description>MATNR - Material number</Description>
+61233:              <Description>KDMAT - Material belonging to the customer</Description>
+61265:              <Description>CHARG - Batch number</Description>
+61297:              <Description>WERKS - Plant</Description>
+61329:              <Description>LGORT - Storage location</Description>
+61361:              <Description>CUOBJ - Configuration (internal object number)</Description>
+61393:              <Description>BESTQ - Stock category in the Warehouse Management system</Description>
+61425:              <Description>SOBKZ - Special stock indicator</Description>
+61457:              <Description>SONUM - Special stock number</Description>
+61489:              <Description>ANZSN - Number of serial numbers</Description>
+61521:              <Description>WDATU - Date of goods receipt</Description>
+61553:              <Description>PARID - External partner number</Description>
+61585:              <Description>MATNR_EXTERNAL - Long material number (future development) for MATNR field</Description>
+61617:              <Description>MATNR_VERSION - Version number (future development) for MATNR field</Description>
+61649:              <Description>MATNR_GUID - External GUID (future development) for MATNR field</Description>
+61682:          <Description>SEGMENT</Description>
+61705:              <Description>SEGNAM - Segment (external name) - (E2EDL46)</Description>
+61737:              <Description>MANDT - Client</Description>
+61769:              <Description>DOCNUM - IDoc number</Description>
+61801:              <Description>SEGNUM - Segment number</Description>
+61833:              <Description>PSGNUM - Number of superior parent segment</Description>
+61865:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+61897:              <Description>SERNR - Serial number</Description>
+61932:          <Description>SEGMENT</Description>
+61955:              <Description>SEGNAM - Segment (external name) - (E2EDL54)</Description>
+61987:              <Description>MANDT - Client</Description>
+62019:              <Description>DOCNUM - IDoc number</Description>
+62051:              <Description>SEGNUM - Segment number</Description>
+62083:              <Description>PSGNUM - Number of superior parent segment</Description>
+62115:              <Description>HLEVEL - Hierarchy level of SAP segment</Description>
+62147:              <Description>SOURCEHU - External Handling Unit Identification</Description>
+62179:              <Description>DESTHU - External Handling Unit Identification</Description>
+62211:              <Description>PACKHU - Pack handling unit</Description>
+62243:              <Description>PACK_QTY - Base Quantity Packed in the Handling Unit Item</Description>
+62275:              <Description>BASE_UOM - Base unit of measure</Description>
+62307:              <Description>MATERIAL - Material number</Description>
+62339:              <Description>BATCH - Batch number</Description>
+62371:              <Description>PLANT - Plant</Description>
+62403:              <Description>STGE_LOC - Storage location</Description>
+62435:              <Description>STOCK_CAT - Stock category in the Warehouse Management system</Description>
+62467:              <Description>SPEC_STOCK - Special stock indicator</Description>
+62499:              <Description>SP_STCK_NO - Special stock number</Description>
+62531:              <Description>DELIV_NUMB - Delivery</Description>
+62563:              <Description>DELIV_ITEM - Delivery item</Description>
+62595:              <Description>MATERIAL_EXTERNAL - Long material number (future development) for MATERIAL field</Description>
+62627:              <Description>MATERIAL_VERSION - Version number (future development) for MATERIAL field</Description>
+62659:              <Description>MATERIAL_GUID - External GUID (future development) for MATERIAL field</Description>
+62708:        <Description/>
+62718:          <Description>Page numbers</Description>
+62741:              <Description>Filler</Description>
+62773:              <Description>Page</Description>
+62805:              <Description>Page Number</Description>
+62837:              <Description>FIller</Description>
+62869:              <Description>Page of</Description>
+62902:          <Description>Header1 Record</Description>
+62925:              <Description>Filler</Description>
+62957:              <Description>Header1</Description>
+62990:          <Description>Header 1.5</Description>
+63013:              <Description>Filler</Description>
+63045:              <Description>Underline</Description>
+63078:          <Description>Header2 Record</Description>
+63101:              <Description>Filler</Description>
+63133:              <Description>Hdr2</Description>
+63166:          <Description>Header3 Record</Description>
+63189:              <Description>Filler</Description>
+63221:              <Description>Route</Description>
+63253:              <Description>Filler</Description>
+63286:          <Description>Header4 Record</Description>
+63309:              <Description>Filler</Description>
+63341:              <Description>Carrier</Description>
+63373:              <Description>Filler</Description>
+63406:          <Description>Header5 Record</Description>
+63429:              <Description>Filler</Description>
+63461:              <Description>ADDRESS</Description>
+63494:          <Description>Header6  Record</Description>
+63517:              <Description>Filler</Description>
+63549:              <Description>CITY</Description>
+63582:          <Description>Header7  Record</Description>
+63605:              <Description>Filler</Description>
+63637:              <Description>COUNTRY</Description>
+63670:          <Description>Header8 Record</Description>
+63693:              <Description>Filler</Description>
+63725:              <Description>Notes</Description>
+63758:          <Description>Header9 Record</Description>
+63781:              <Description>Filler</Description>
+63813:              <Description>Delivery number</Description>
+63845:              <Description>Filler</Description>
+63877:              <Description>Delivery weight</Description>
+63909:              <Description>Filler</Description>
+63941:              <Description>Delivery cube</Description>
+63973:              <Description>Filler</Description>
+64005:              <Description>Ship to</Description>
+64038:          <Description>Detail Record</Description>
+64061:              <Description>Filler</Description>
+64093:              <Description>Delivery number</Description>
+64125:              <Description>Filler</Description>
+64157:              <Description>Delivery weight</Description>
+64189:              <Description>Filler</Description>
+64221:              <Description>Delivery cube</Description>
+64253:              <Description>Filler</Description>
+64285:              <Description>Ship to</Description>
+64318:          <Description>Summary1Record</Description>
+64341:              <Description>Filler</Description>
+64373:              <Description>Summary1</Description>
+64406:          <Description>Summary2 Record</Description>
+64429:              <Description>Filler</Description>
+64461:              <Description>Summary2</Description>
+64494:        <Description/>
+64504:          <Description>Packed Page numbers</Description>
+64527:              <Description>Filler</Description>
+64559:              <Description>Page</Description>
+64591:              <Description>Page Number</Description>
+64623:              <Description>FIller</Description>
+64655:              <Description>Page of</Description>
+64688:          <Description>Packed Header 1</Description>
+64711:              <Description>Filler</Description>
+64743:              <Description>Header1</Description>
+64776:          <Description>Packed Header 1.5</Description>
+64799:              <Description>Filler</Description>
+64831:              <Description>Underline</Description>
+64864:          <Description>Packed Header2</Description>
+64887:              <Description>Filler</Description>
+64919:              <Description>Hdr2</Description>
+64952:          <Description>Packed Header 3</Description>
+64975:              <Description>Filler</Description>
+65007:              <Description>Route</Description>
+65039:              <Description>Filler</Description>
+65072:          <Description>Packed Header 4</Description>
+65095:              <Description>Filler</Description>
+65127:              <Description>Carrier</Description>
+65159:              <Description>Filler</Description>
+65192:          <Description>Packed Header 5</Description>
+65215:              <Description>Filler</Description>
+65247:              <Description>ADDRESS</Description>
+65280:          <Description>Packed Header 6</Description>
+65303:              <Description>Filler</Description>
+65335:              <Description>CITY</Description>
+65368:          <Description>Packed Header 7</Description>
+65391:              <Description>Filler</Description>
+65423:              <Description>COUNTRY</Description>
+65456:          <Description>Packed Header 8</Description>
+65479:              <Description>Filler</Description>
+65511:              <Description>Notes</Description>
+65544:          <Description>Packed Header 9</Description>
+65567:              <Description>Filler</Description>
+65599:              <Description>Delivery number</Description>
+65631:              <Description>Filler</Description>
+65663:              <Description>Delivery weight</Description>
+65695:              <Description>Filler</Description>
+65727:              <Description>Delivery cube</Description>
+65759:              <Description>Filler</Description>
+65791:              <Description>Ship to</Description>
+65824:          <Description>Packed Detail 1</Description>
+65847:              <Description>Filler</Description>
+65879:              <Description>Delivery number</Description>
+65911:              <Description>Filler</Description>
+65943:              <Description>Delivery weight</Description>
+65975:              <Description>Filler</Description>
+66007:              <Description>Delivery cube</Description>
+66039:              <Description>Filler</Description>
+66071:              <Description>Ship to</Description>
+66104:          <Description>Packed Summary 1</Description>
+66127:              <Description>Filler</Description>
+66159:              <Description>Summary1</Description>
+66192:          <Description>Packed Summary 2</Description>
+66215:              <Description>Filler</Description>
+66247:              <Description>Summary2</Description>
+66281:          <Description>Grand Total 1</Description>
+66304:              <Description>Filler</Description>
+66336:              <Description>Grand Total 1</Description>
+66369:          <Description>Grand Total 2</Description>
+66392:              <Description>Filler</Description>
+66424:              <Description>Grand Total 2</Description>

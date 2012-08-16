@@ -1,0 +1,70 @@
+<html>
+<body>
+
+<h3>Table 1:</h3>
+<table fadv="loop:score.topic[*] as topic">
+<tr id="topic${i}" fadv="prototype">
+  <td>${topic}</td>
+  <td>${score.score[${i}]}</td>
+</tr>
+<tr id="topic1">
+  <td>Foo</td>
+  <td>34</td>
+</tr>
+<tr id="topic2">
+  <td>Bar</td>
+  <td>55</td>
+</tr>
+<tr id="topic3">
+  <td>Max</td>
+  <td>33</td>
+</tr>
+<tr id="topic4">
+  <td>Mammel</td>
+  <td>88</td>
+</tr>
+</table>
+
+<h3>Table 2:</h3>
+<table fadv="loop:score.topic[2-5] as topic">
+<tr id="topic${i}" fadv="prototype">
+  <td>${topic}</td>
+  <td>${score.score[${i}]}</td>
+</tr>
+<tr id="topic1">
+  <td>Foo</td>
+  <td>34</td>
+</tr>
+<tr id="topic2">
+  <td>Bar</td>
+  <td>55</td>
+</tr>
+<tr id="topic3">
+  <td>Max</td>
+  <td>33</td>
+</tr>
+<tr id="topic4">
+  <td>Mammel</td>
+  <td>88</td>
+</tr>
+</table>
+
+<h3>Table 3:</h3>
+
+<table fadv="loop:score.topic[^C.*$] as topic">
+<tr id="topic${i}">
+  <td>${topic}</td>
+  <td>${score.score[${i}]}</td>
+</tr>
+</table>
+
+<h3>Table 4:</h3>
+<table fadv="loop:score.topic[Service Orientation] as topic">
+<tr id="topic${i}">
+  <td>${topic}</td>
+  <td>${score.score[${i}]}</td>
+</tr>
+</table>
+
+</body>
+</html>

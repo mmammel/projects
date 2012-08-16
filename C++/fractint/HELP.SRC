@@ -1,0 +1,2192 @@
+;
+; HELP.SRC
+;
+;
+~HdrFile=HELPDEFS.H
+~HlpFile=FRACTINT.HLP
+~Version=100
+~FormatExclude=8
+;
+;
+;
+~Topic=Main Help Index, Label=HELPMENU
+~Label=HELP_INDEX
+
+~Format-
+   { Using Help }                           { Fractals and the PC }
+   { Introduction }                         { Distribution of Fractint }
+   { Conditions on Use }                    { Contacting the Authors }
+   { Getting Started }                      { The Stone Soup Story }
+   { New Features in 19.6 }                 { A Word About the Authors }
+                                          { Other Fractal Products }
+   { Display Mode Commands }
+   { Color Cycling Commands }               { Fractint on Unix }
+   { Palette Editing Commands }             { Using Fractint With a Mouse }
+                                          { Video Adapter Notes }
+   { Summary of Fractal Types }             { GIF Save File Format }
+
+   { Doodads\, Bells\, and Whistles }         { Common Problems }
+   { "3D" Images }
+   { Palette Maps }                         { Bibliography }
+                                          { Other Programs }
+   { Startup Parameters\, Parameter Files }  { Revision History }
+   { Batch Mode }                           { Version13 to 14 Conversion }
+   { "Disk-Video" Modes }                   { Printing Fractint Documentation }
+
+~Format+
+;
+;
+;
+~DocContents
+{     , 0, "New Features in 19.6", FF}
+{     , 0, "Introduction", "Conditions on Use", FF}
+
+{1.   , 0, Fractint Commands, FF}
+{1.1  , 1, "Getting Started"}
+{1.2  , 1, "Plotting Commands"}
+{1.3  , 1, "Zoom box Commands"}
+{1.4  , 1, "Color Cycling Commands"}
+{1.5  , 1, "Palette Editing Commands"}
+{1.6  , 1, "Image Save/Restore Commands"}
+{1.7  , 1, "Print Command"}
+{1.8  , 1, "Parameter Save/Restore Commands"}
+{1.9  , 1, "\"3D\" Commands"}
+{1.10 , 1, "Interrupting and Resuming"}
+{1.11 , 1, "Orbits Window"}
+{1.12 , 1, "View Window"}
+{1.13 , 1, "Video Mode Function Keys"}
+{1.14 , 1, "Browse Commands"}
+{1.15 , 1, "RDS Commands"}
+{1.16 , 1, "Hints"}
+{1.17 , 1, "Fractint on Unix"}
+
+{2.   , 0, "Fractal Types", FF}
+{2.1  , 1, "The Mandelbrot Set"}
+{2.2  , 1, "Julia Sets"}
+{2.3  , 1, "Julia Toggle Spacebar Commands"}
+{2.4  , 1, "Inverse Julias"}
+{2.5  , 1, "Newton domains of attraction"}
+{2.6  , 1, "Newton"}
+{2.7  , 1, "Complex Newton"}
+{2.8  , 1, "Lambda Sets"}
+{2.9  , 1, "Mandellambda Sets"}
+{2.10 , 1, "Circle"}
+{2.11 , 1, "Plasma Clouds"}
+{2.12 , 1, "Lambdafn"}
+{2.13 , 1, "Mandelfn"}
+{2.14 , 1, "Barnsley Mandelbrot/Julia Sets"}
+{2.15 , 1, "Barnsley IFS Fractals"}
+{2.16 , 1, "Sierpinski Gasket"}
+{2.17 , 1, "Quartic Mandelbrot/Julia"}
+{2.18 , 1, "Distance Estimator"}
+{2.19 , 1, "Pickover Mandelbrot/Julia Types"}
+{2.20 , 1, "Pickover Popcorn"}
+{2.21 , 1, "Peterson Variations"}
+{2.22 , 1, "Unity"}
+{2.23 , 1, "Scott Taylor / Lee Skinner Variations"}
+{2.24 , 1, "Kam Torus"}
+{2.25 , 1, "Bifurcation"}
+{2.26 , 1, "Orbit Fractals"}
+{2.27 , 1, "Lorenz Attractors"}
+{2.28 , 1, "Rossler Attractors"}
+{2.29 , 1, "Henon Attractors"}
+{2.30 , 1, "Pickover Attractors"}
+{2.31 , 1, "Gingerbreadman"}
+{2.32 , 1, "Martin Attractors"}
+{2.33 , 1, "Icon"}
+{2.34 , 1, "Test"}
+{2.35 , 1, "Formula"}
+{2.36 , 1, "Julibrots"}
+{2.37 , 1, "Diffusion Limited Aggregation"}
+{2.38 , 1, "Magnetic Fractals"}
+{2.39 , 1, "L-Systems"}
+{2.40 , 1, "Lyapunov Fractals"}
+{2.41 , 1, "fn||fn Fractals"}
+{2.42 , 1, "Halley"}
+{2.43 , 1, "Dynamic System"}
+{2.44 , 1, "Mandelcloud"}
+{2.45 , 1, "Quaternion"}
+{2.46 , 1, "HyperComplex"}
+{2.47 , 1, "Cellular Automata"}
+{2.48 , 1, "Ant Automaton"}
+{2.49 , 1, "Phoenix"}
+{2.50 , 1, "Frothy Basins"}
+{2.51 , 1, "Volterra-Lotka Fractals"}
+{2.52 , 1, "Escher-Like Julia Sets"}
+
+{3.   , 0, Doodads\, Bells\, and Whistles, FF}
+{3.1  , 1, "Drawing Method"}
+{3.2  , 1, "Palette Maps"}
+{3.3  , 1, "Autokey Mode"}
+{3.4  , 1, "Distance Estimator Method"}
+{3.5  , 1, "Inversion"}
+{3.6  , 1, "Decomposition"}
+{3.7  , 1, "Logarithmic Palettes and Color Ranges"}
+{3.8  , 1, "Biomorphs"}
+{3.9  , 1, "Continuous Potential"}
+{3.10 , 1, "Starfields"}
+{3.11 , 1, "Bailout Test"}
+{3.12 , 1, "Random Dot Stereograms (RDS)"}
+{3.13 , 1, "Freestyle mode tutorial"}
+
+{4.   , 0, "\"3D\" Images", "3D Overview", FF}
+{4.1  , 1, "3D Mode Selection"}
+{4.2  , 1, "Select Fill Type Screen"}
+{4.3  , 1, "Stereo 3D Viewing"}
+{4.4  , 1, "Rectangular Coordinate Transformation"}
+{4.5  , 1, "3D Color Parameters"}
+{4.6  , 1, "Light Source Parameters"}
+{4.7  , 1, "Spherical Projection"}
+{4.8  , 1, "3D Overlay Mode"}
+{4.9  , 1, "Special Note for CGA or Hercules Users"}
+{4.10 , 1, "Making Terrains"}
+{4.11 , 1, "Making 3D Slides"}
+{4.12 , 1, "Interfacing with Ray Tracing Programs"}
+
+{5.   , 0, Command Line Parameters\, Parameter Files\, Batch Mode, "Introduction to Parameters", FF}
+{5.1  , 1, "Using the DOS Command Line"}
+{5.2  , 1, "Setting Defaults (SSTOOLS.INI File)"}
+{5.3  , 1, "Parameter Files and the <@> Command"}
+{5.4  , 1, "General Parameter Syntax"}
+{5.5  , 1, "Startup Parameters"}
+{5.6  , 1, "Calculation Mode Parameters"}
+{5.7  , 1, "Fractal Type Parameters"}
+{5.8  , 1, "Image Calculation Parameters"}
+{5.9  , 1, "Color Parameters"}
+{5.10 , 1, "Doodad Parameters"}
+{5.11 , 1, "File Parameters"}
+{5.12 , 1, "Video Parameters"}
+{5.13 , 1, "Sound Parameters"}
+{5.14 , 1, "Printer Parameters"}
+{5.15 , 1, "PostScript Parameters"}
+{5.16 , 1, "PaintJet Parameters"}
+{5.17 , 1, "Plotter Parameters"}
+{5.18 , 1, "3D Parameters"}
+{5.19 , 1, "Batch Mode"}
+{5.20 , 1, "Browser Parameters"}
+
+{6.   , 0, Hardware Support, FF}
+{6.1  , 1, Notes on Video Modes\, \"Standard\" and Otherwise,
+                    "Video Adapter Notes", "EGA", "Tweaked VGA", "Super-VGA",
+                    "8514/A", "XGA", "Targa", "Targa+"}
+{6.2  , 1, "\"Disk-Video\" Modes"}
+{6.3  , 1, "Customized Video Modes\, FRACTINT.CFG"}
+
+{7.   , 0, "Common Problems", FF}
+
+{8.   , 0, "Fractals and the PC", FF}
+{8.1  , 1, A Little History}
+{8.1.1, 2, "Before Mandelbrot"}
+{8.1.2, 2, "Who Is This Guy\, Anyway?"}
+{8.2  , 1, A Little Code}
+{8.2.1, 2, "Periodicity Logic"}
+{8.2.2, 2, "Limitations of Integer Math (And How We Cope)"}
+{8.2.3, 2, "Arbitrary Precision and Deep Zooming"}
+{8.2.4, 2, "The Fractint \"Fractal Engine\" Architecture"}
+
+{Appendix A, 0, Mathematics of the Fractal Types,
+                   "Summary of Fractal Types",
+                   "Inside=bof60|bof61|zmag|period",
+                   "Inside=epscross|startrail",
+                   "Finite Attractors",
+                   "Trig Identities",
+                   "Quaternion and Hypercomplex Algebra",FF}
+
+{Appendix B, 0, Stone Soup With Pixels: The Authors,
+                   "The Stone Soup Story",
+                   "A Word About the Authors",
+                   "Distribution of Fractint",
+                   "Contacting the Authors", FF}
+
+{Appendix C, 0, "GIF Save File Format", FF}
+
+{Appendix D, 0, "Other Fractal Products", FF}
+
+{Appendix E, 0, "Bibliography", FF}
+
+{Appendix F, 0, "Other Programs", FF}
+
+{Appendix G, 0, "Revision History",
+                   "Version 19",
+                   "Version 18",
+                   "Version 17",
+                   "Version 16",
+                   "Version 15",
+                   "Versions 12 through 14",
+                   "Versions  1 through 11",
+                   FF}
+
+{Appendix H, 0, Version13 to Version 14 Type Mapping, "Version13 to 14 Conversion", FF}
+;
+; End of DoContents
+;
+;
+;
+~Topic=Using Help
+; This topic is online only.
+Use the following keys in help mode:
+
+   F1              Go to the main help index.
+
+   PgDn/PgUp       Go to the next/previous page.
+
+   Backspace       Go to the previous topic.
+
+   Escape          Exit help mode.
+
+   Enter           Select (go to) highlighted hot-link.
+
+   Tab/Shift-Tab   Move to the next/previous hot-link.
+
+   \24 \25 \27 \26         Move to a hot-link.
+
+   Home/End        Move to the first/last hot-link.
+;
+;
+;
+~Topic=Printing Fractint Documentation
+You can generate a text file containing full Fractint documentation by
+selecting the "Generate FRACTINT.DOC now" hot-link below and pressing
+Enter, or by using the DOS command "fractint makedoc=filename" ("filename"
+is the name of the file to be written; it defaults to FRACTINT.DOC.)
+
+All information in the documentation file is also available in the online
+help, so extracting it is a matter of preference - you can print the
+file (e.g.  DOS command "print fractint.doc" or "copy fractint.doc prn")
+or read it with a text editor.  It contains over 200 pages of information,
+has a table of contents, and is cross-referenced by page number.
+
+  {=-101 Exit without generating FRACTINT.DOC}
+
+  {=-100 Generate FRACTINT.DOC now}
+
+Fractint's great (and pioneering but no longer unique) online help and
+integrated documentation file software was written by Ethan Nagel.
+;
+;
+;
+~Topic=New Features in 19.6
+Version 19.6 is an update of Fractint based on the developer's
+  version 19.50 patch 50. New features include:
+
+Added new fractal types {=HT_ESCHER escher_julia} and {=HT_VL volterra-lotka}
+  courtesy Michael Sargent.
+
+Expanded formula parser capability to recognize "if..else" flow control
+  instructions. The format of an "if block" of instructions is:
+         IF(boolean)
+            statements
+         ELSEIF(boolean) [any number of these are permitted in a block]
+            statements
+         ELSE            [if used, only one is permitted in a block]
+            statements
+         ENDIF
+  Note that ELSEIF() does not require a separate ENDIF. Each branching
+  instruction must be a separate formula statement, separated from other
+  statements by a comma or an end of line. There is a limit of 200 branching
+  instructions per formula (ELSEIF counts as two branching instructions).
+  Unlimited nesting is permitted; each ELSEIF, ELSE, and ENDIF relates to
+  the immediately preceding "non endif'ed" IF. An IF() and its ENDIF cannot
+  traverse the end of the initialization section of the formula.
+
+Added tutorials to the distribution package: Bradley
+  Beacham's basic formula tutorial, Sylvie Gallet's PHC and PTC formula
+  tutorial, and George Martin's tutorial on the new if..else feature
+  of the formula parser. Required reading for formula writers.
+
+Added text scrolling capability in <z> and F2 screens. Scroll keys for
+  the <z> screen:
+         CTRL+DOWN_ARROW    Move screen down one line
+         CTRL+UP_ARROW      Move screen up one line
+         CTRL+RIGHT_ARROW   Move screen right one column
+         CTRL+LEFT_ARROW    Move screen left one column
+         CTRL+PAGE_DOWN     Move screen down one view screen
+         CTRL+PAGE_UP       Move screen up one view screen
+         CTRL+HOME          Go to beginning of entry
+         CTRL+END           Go to end of entry
+
+  Direction keys without the CONTROL key depressed maintain their current
+  roles in moving the cursor in the entry prompt boxes.
+
+  In the F2 screen, the same scrolling is available; the CONTROL key
+  does not need to be depressed.
+
+Added capability to place ifs, formula, and lsys entries in PAR files.
+  If not found in the file named in the parameter entry, formulas, ifs, and
+  lsystem entries called for in entries are looked for in the .par file
+  itself. The referenced entry must have the appropriate prefix in the
+  PAR file as follows:\
+
+       formulas  frm:\
+       lsystem   lsys:\
+       ifs       ifs:\
+
+  for example:\
+
+  frm:mandel \{\
+    z=c=pixel:\
+    z = z*z + c\
+    |z| < 4\
+  \}\
+
+  The prefix is an identifier, not part of the name itself. Thus, the
+  parameter in the image entry would read "formulaname=mandel". The
+  formulafile= parameter need not, and probably should not, name the
+  PAR file itself - the search of the PAR file is automatic.
+
+  Formulas, ifs, and lsys entries in a PAR file will not be shown on the
+  menu screen for the PAR file, and are accessible only in connection with
+  running the parameter entry which calls for the formula. Also, PAR
+  files are not searched when looking for a formula, ifs, or lsystem entry in
+  connection with restoring a .gif file. You will need to copy these entries
+  from the PAR file into .frm, .ifs, and .l files as applicable (taking
+  care, of course, to delete the identifier prefixes) in order to make
+  general use of them.
+
+Added command line option fastrestore=yes|no. Default is NO. When YES,
+  causes viewwindows to be set to NO before each restore, so that otherwise
+  normal gifs will not be drawn at the reduced aspect when viewwindows was
+  previously set to YES; and bypasses the warning which is displayed when a
+  restore is to be viewed in a video mode other than the one at which the gif
+  was saved. Combined with askvideo=no, all restores will automatically be
+  made at the user's default video mode. This feature will be helpful when
+  cycling through a group of gifs in autokey mode.
+
+Ctrl-Right used in file selection screens now skips over directory listings,
+  and if the cursor is on the last file, moves the cursor to the first file.
+  This makes possible uninterrupted cycling in autokey mode. The keyword for
+  this keystroke in a .key file is CTRL_RIGHT.\
+~OnlineFF
+  The following additional keystrokes were also implemented:\
+
+       Ctrl-Left (autokey symbol "CTRL_LEFT")\
+       Ctrl-Down ("CTRL_DOWN")\
+       Ctrl-Up   ("CTRL_UP")\
+       Ctrl-Home ("CTRL_HOME")\
+       Ctrl-End  ("CTRL_END")\
+
+   Run the following .key file with command line parameters fastrestore=yes
+   and askvideo=no (and, if you don't set your video mode in sstools.ini,
+   video=[your standard video mode]) and your coworkers will get a continuous
+   display of the .gif files in your default .gif directory when you go to
+   lunch (come on, we know you have Fractint on your hard drive at work):
+
+         "r"
+          MORE:
+          ENTER
+          CALCWAIT
+          WAIT 30
+          "R"
+          CTRL_RIGHT
+          GOTO MORE
+
+Added four new lsystem types to fractint.l.
+
+When palette editing mode is entered, the original palette is now stored
+  in the area associated with F2.
+
+Reduced the fractint.cfg resolution limit to 2x2 pixels.
+
+Fixed bug which caused a lockup when ranges= was used with maxit >= 32767.
+
+Fixed arbitrary precision and decoder crashes.
+
+Fixed an entry display scrolling bug.
+
+Fixed the integer mode frothy basin "censored" bug.
+
+Added backwards compatibility for inside=startrails.
+
+Fixed the 16-color color cycling inside the palette editor.  Fixed color
+  cycling when used with a maxit > 32767.  Pixels with iterations > 32767
+  now cycle in the same direction as those with iterations <= 32767.
+
+Fixed bug which caused an apparent lockup when find finite attractor was
+  used with maxit > 32767.
+
+Fixed viewwindows bug that caused extra points to be written when ydots
+  was not divisible by 4.
+
+Fixed Ant type so that it works with 16 digits.  Old pars will need to be
+  re-entered or have a decimal point added to the first two parameters.
+
+Changed MAXSTRING in the decoder from 64000 to 60000. This change eliminates
+  all the encoder bug examples we have, but we don't understand why it
+  works and we may not have fixed the problem.
+
+Fixed the logmap routine when used with a par/gif release <= 1920 and memory
+  for the LogTable is insufficient.
+
+Fixed the complexnewton type when used with a par/gif release <= 1920.
+
+Changed the keystroke behavior of the passes= field on the <x> screen.
+
+New logic autocenters all input screen menu titles.
+
+Changed the automatic resolution switching logic between float and arbitrary
+  precision.
+
+If user aborts before selecting a file in a file menu screen, the program
+  now remembers the last file name selected even if the directory has been
+  changed.
+
+Fixed writing 3d smooth factor to PAR.
+
+Fixed writing potential to PAR in makepar mode.
+
+Fixed redundant "Regenerate before <b> to get correct symmetry" messages
+  in divide and conquer mode.
+
+Fixed hi rez type 2 diffusion bug and parser error bug.
+
+Fixed crashing in disk video with too long a savename path.
+
+Added Adrian Mariano's diffusion fixes - a new color option, several bug
+  fixes, and improved documentation. Removed integer support which wasn't
+  being used anyway.
+
+Finally, we've added two undocumented commands to give expert users
+   workarounds for math type precision and GIF encoder problems.
+
+Added the mathtolerance=.05/.05 command. The first number controls the
+  integer/float transition, and the second number controls the float/arbitrary
+  precision transition. The default value of .05 means that the ratio between
+  the exact and calculated width and height is between .95 and 1.05. A larger
+  value than .05 (say .10) makes the test looser so that the lower precision
+  math is used longer. A value <= 0 means the test is always failed and the
+  higher precision math type is used. A value >= 1 means that the test is
+  always passed and the lower precision math type is used.
+
+  The automatic precision toggle is resolution dependent. The same image may
+  use float at 320x200 and arbitrary precision at 640x480. This is not a bug;
+  it has to work this way. At a given magnification more pixels require more
+  precision. There are other tests so even with mathtolerance=1/.05,
+  eventually Fractint will have to use float. The same is not true for
+  mathtolerance=.05/1. If you keep zooming Fractint will not rescue you;
+  eventually you'll get a nasty error message and the corners will be lost.
+
+Added the tweaklzw=nnn/nnn command. Fractint's GIF encoder occasionally
+  fails and produces bad GIF files. Tweaking encoder parameters might
+  allow saving in such a situation. The parameters reduce the
+  maximum size of the current string and maximum total length of the string
+  table, respectively. The default values are 0, which gives the old
+  encoder performance.
+
+For information on previous versions, see { Revision History }.
+;
+;
+;
+~Topic=Introduction
+FRACTINT plots and manipulates images of "objects" -- actually, sets of
+mathematical points -- that have fractal dimension.
+See {"Fractals and the PC"} for some
+historical and mathematical background on fractal geometry, a discipline
+named and popularized by mathematician Benoit Mandelbrot. For now, these
+sets of points have three important properties:
+
+1) They are generated by relatively simple calculations repeated over and
+over, feeding the results of each step back into the next -- something
+computers can do very rapidly.
+
+2) They are, quite literally, infinitely complex: they reveal more and
+more detail without limit as you plot smaller and smaller areas. Fractint
+lets you "zoom in" by positioning a small box and hitting <Enter> to
+redraw the boxed area at full-screen size; its maximum linear
+"magnification" is over a trillionfold.
+
+3) They can be astonishingly beautiful, especially using PC color
+displays' ability to assign colors to selected points, and (with VGA
+displays or EGA in 640x350x16 mode) to "animate" the images by quickly
+shifting those color assignments.
+~OnlineFF
+
+For a demonstration of some of Fractint's features, run the demonstration
+file included with this release (DEMO.BAT) by typing "demo" at the DOS
+prompt. You can stop the demonstration at any time by pressing <Esc>.
+
+The name FRACTINT was chosen because the program generates many of its
+images using INTeger math, rather than the floating point calculations
+used by most such programs. That means that you don't need a math co-
+processor chip (aka floating point unit or FPU), although for a few
+fractal types where floating point math is faster, the program recognizes
+and automatically uses an 80x87 chip if it's present. It's even faster on
+systems using Intel's 80386 and 80486 microprocessors, where the integer
+math can be executed in their native 32-bit mode.
+
+Fractint works with many adapters and graphics modes from CGA to the
+1024x768, 256-color XGA mode. Even "larger" images, up to 2048x2048x256,
+can be plotted to expanded memory, extended memory, or disk: this bypasses
+the screen and allows you to create images with higher resolution than
+your current display can handle, and to run in "background" under multi-
+tasking control programs such as DESQview and Windows 3.
+~OnlineFF
+
+Fractint is an experiment in collaboration. Many volunteers have joined
+Bert Tyler, the program's first author, in improving successive versions.
+Through electronic mail messages, CompuServe's GO GRAPHICS forums,
+new versions are hacked out and debugged a little at a time.
+Fractint was born fast, and none of us has seen any other fractal plotter
+close to the present version for speed, versatility, and all-around
+wonderfulness. (If you have, tell us so we can steal somebody else's ideas
+instead of each other's.)
+See {The Stone Soup Story} and {A Word About the Authors} for information
+about the authors, and see {Contacting the Authors} for how to contribute
+your own ideas and code.
+;
+;
+;
+~Topic=Conditions on Use
+
+Fractint is freeware. The copyright is retained by the Stone Soup Group.
+
+Fractint may be freely copied and distributed in unmodified form but may
+not be sold. (A nominal distribution fee may be charged for media and
+handling by freeware and shareware distributors.) Fractint may be used
+personally or in a business - if you can do your job better by using
+Fractint, or using images from it, that's great! It may not be given away
+with commercial products without explicit permission from the Stone Soup
+Group.
+
+There is no warranty of Fractint's suitability for any purpose, nor any
+acceptance of liability, express or implied.
+
+ **********************************************************************\
+ * Contribution policy: Don't want money. Got money. Want admiration. *\
+ **********************************************************************
+~OnlineFF
+
+Source code for Fractint is also freely available - see
+{Distribution of Fractint}.
+See the FRACTSRC.DOC file included with the source for conditions on use.
+(In most cases we just want credit.)
+;
+;
+;
+~Topic=Getting Started
+
+To start the program, enter FRACTINT at the DOS prompt. The program
+displays an initial "credits" screen. If Fractint doesn't start properly,
+please see {Common Problems}.
+
+Hitting <Enter> gets you from the initial screen to the main menu. You can
+select options from the menu by moving the highlight with the cursor arrow
+keys
+~Doc-
+(\24 \25 \27 \26)
+~Doc+
+and pressing <Enter>, or you can enter commands directly.
+
+As soon as you select a video mode, Fractint begins drawing an image - the
+"full" Mandelbrot set if you haven't selected another fractal type.
+
+For a quick start, after starting Fractint try one of the following:\
+  If you have MCGA, VGA, or better:  <F3>\
+  If you have EGA:                   <F9>\
+  If you have CGA:                   <F5>\
+  Otherwise, monochrome:             <F6>
+
+After the initial Mandelbrot image has been displayed, try zooming
+into it (see {Zoom Box Commands}) and color cycling (see
+{Color Cycling Commands}).
+Once you're comfortable with these basics, start exploring other
+functions from the main menu.
+
+Help is available from the menu and at most other points in Fractint by
+pressing the <F1> key.
+
+AT ANY TIME, you can hit
+~Doc-
+one of the keys described in {Display Mode Commands}
+~Doc+,Online-
+a command key
+~Online+
+to select a function. You do not need to wait for a calculation
+to finish, nor do you have to return to the main menu.
+
+When entering commands, note that for the "typewriter" keys, upper and
+lower case are equivalent, e.g. <B> and <b> have the same result.
+
+Many commands and parameters can be passed to FRACTINT as command-line
+arguments or read from a configuration file;
+~Doc-
+see {Startup Parameters\, Parameter Files} for details.
+~Doc+,Online-
+see "Command Line Parameters, Parameter Files, Batch Mode" for details.
+~Online+
+;
+;
+;
+~Topic=Display Mode Commands
+;
+; This topic is online only
+
+~Format-
+   { Summary of Commands }
+   { Plotting Commands}
+   { Zoom Box Commands }
+   { Image Save/Restore Commands }
+   { Print Command }
+   { Parameter Save/Restore Commands }
+   { Interrupting and Resuming }
+   { Orbits Window }
+   { View Window }
+   { \"3D\" Commands }
+   { Video Mode Function Keys }
+   { Browse Commands }
+   { RDS Commands }
+   { Hints }
+;
+;
+;
+~Topic=Summary of Commands, Label=HELPMAIN
+; This topic is online only
+~Doc-
+
+Hit any of these keys at the menu or while drawing or viewing a fractal.
+Commands marked with an '*' are also available at the credits screen.
+
+~Format-
+{Plotting Commands}
+ * Delete,F2,F3,.. Select a Video Mode and draw (or redraw) current fractal
+ * F1              HELP! (Enter help mode)
+   Esc or m        Go to main menu
+   h               Redraw previous screen (you can 'back out' recursively)
+   Ctrl-H          Redraw next screen in history circular buffer
+   Tab             Display information about the current fractal image
+ * t               Select a new fractal type and parameters
+ * x               Set a number of options and doodads
+ * y               Set extended options and doodads
+ * z               Set fractal type-specific parameters
+   c or + or -     Enter Color-Cycling Mode (see {=HELPCYCLING Color Cycling Commands})
+   e               Enter Palette-Editing Mode (see {=HELPXHAIR Palette Editing Commands})
+   Spacebar        Mandelbrot/Julia Set toggle.
+   Enter           Continue an interrupted calculation (e.g. after a save)
+ * f               toggle the floating-point algorithm option ON or OFF
+ * i               Set parameters for 3D fractal types
+ * Insert          Restart the program (at the credits screen)
+   a               Convert the current image into a fractal 'starfield'
+   Ctrl-A          Turn on screen-eating ant automaton
+   Ctrl-S          Convert current image to a Random Dot Stereogram (RDS)
+   o               toggles 'orbits' option on and off during image generation
+ * d               Shell to DOS (type 'exit' at the DOS prompt to return)
+   Ctrl-X          Flip the current image along the screen's X-axis
+   Ctrl-Y          Flip the current image along the screen's Y-axis
+   Ctrl-Z          Flip the current image along the screen's Origin
+
+{Image Save/Restore Commands}
+   s               Save the current screen image to disk
+ * r               Restore a saved (or .GIF) image ('3' or 'o' for 3-D)
+
+{Orbits Window}
+   o               Turns on Orbits Window mode after image generation
+   ctrl-o          Turns on Orbits Window mode
+
+{View Window}
+ * v               Set view window parameters (reduction, aspect ratio)
+
+{Print Command}
+   p               Print the screen (command-line options set printer type)
+~OnlineFF
+{Parameter Save/Restore Commands}
+   b               Save commands describing the current image in a file
+                   (writes an entry to be used with @ command)
+ * @ or 2          Run a set of commands (in command line format) from a file
+   g               Give a startup parameter: {Summary of all Parameters}
+
+{\"3D\" Commands}
+ * 3               3D transform a saved (or .GIF) image
+   # (shift-3)     same as 3, but overlay the current image
+
+{Zoom Box Commands}
+   PageUp          When no Zoom Box is active, bring one up
+                   When active already, shrink it
+   PageDown        Expand the Zoom Box
+                   Expanding past the screen size cancels the Zoom Box
+   \24 \25 \27 \26         Pan (Move) the Zoom Box
+   Ctrl- \24 \25 \27 \26   Fast-Pan the Zoom Box (may require an enhanced keyboard)
+   Enter           Redraw the Screen or area inside the Zoom Box
+   Ctrl-Enter      'Zoom-out' - expands the image so that your current
+                   image is positioned inside the current zoom-box location.
+   Ctrl-Pad+/Pad-  Rotate the Zoom Box
+   Ctrl-PgUp/PgDn  Change Zoom Box vertical size (change its aspect ratio)
+   Ctrl-Home/End   Change Zoom Box shape
+   Ctrl-Ins/Del    Change Zoom Box color
+
+{Interrupting and Resuming}
+
+{Video Mode Function Keys}
+
+{Browse Commands}
+  L(ook)                   Enter Browsing Mode
+{RDS Commands}
+  Ctrl-S                   Access RDS parameter screen
+~Doc+
+;
+;
+;
+~Topic=Plotting Commands
+Function keys & various combinations are used to select a video mode and
+redraw the screen.  For a quick start try one of the following:\
+  If you have MCGA, VGA, or better:  <F3>\
+  If you have EGA:                   <F9>\
+  If you have CGA:                   <F5>\
+  Otherwise, monochrome:             <F6>\
+
+<F1>\
+Display a help screen. The function keys available in help mode are
+displayed at the bottom of the help screen.
+
+<M> or <Esc>\
+Return from a displayed image to the main menu.
+
+<Esc>\
+From the main menu, <Esc> is used to exit from Fractint.
+
+<Delete>\
+Same as choosing "select video mode" from the main menu.
+Goes to the "select video mode" screen.  See {Video Mode Function Keys}.
+
+<h>\
+Redraw the previous image in the circular history buffer, revisiting fractals
+you previously generated this session in reverse order. Fractint saves
+the last ten images worth of information including fractal type, coordinates,
+colors, and all options. Image information is saved only when some item
+changes. After ten images the circular buffer wraps around and earlier
+information is overwritten. You can set image capacity of the history feature
+using the maxhistory=<nnn> command. About 1200 bytes of memory is required
+for each image slot.
+
+<Ctrl-h>\
+Redraw the next image in the circular history buffer. Use this to return to
+images you passed by when using <h>.
+
+<Tab>\
+Display the current fractal type, parameters, video mode, screen or (if
+displayed) zoom-box coordinates, maximum iteration count, and other
+information useful in keeping track of where you are.  The Tab function is
+non-destructive - if you press it while in the midst of generating an
+image, you will continue generating it when you return.  The Tab function
+tells you if your image is still being generated or has finished - a handy
+feature for those overnight, 1024x768 resolution fractal images.  If the
+image is incomplete, it also tells you whether it can be interrupted and
+resumed.  (Any function other than <Tab> and <F1> counts as an
+"interrupt".)
+
+The Tab screen also includes a pixel-counting function, which will count
+the number of pixels colored in the inside color.  This gives an estimate
+of the area of the fractal.  Note that the inside color must be different
+from the outside color(s) for this to work; inside=0 is a good choice.
+
+<T>\
+Select a fractal type. Move the cursor to your choice (or type the first
+few letters of its name) and hit <Enter>. Next you will be prompted for
+any parameters used by the selected type - hit <Enter> for the defaults.
+See {Fractal Types} for a list of supported types.
+
+<F>\
+Toggles the use of floating-point algorithms
+(see {"Limitations of Integer Math (And How We Cope)"}).
+Whether floating point is in
+use is shown on the <Tab> status screen.  The floating point option can
+also be turned on and off using the "X" options screen.
+If you have a non-Intel floating point chip which supports the full 387
+instruction set, see the "FPU=" command in {Startup Parameters}
+to get the most out of your chip.
+
+<X>\
+Select a number of eXtended options. Brings up a full-screen menu of
+options, any of which you can change at will.  These options are:\
+  "passes=" - see {Drawing Method}\
+  Floating point toggle - see <F> key description below\
+  "maxiter=" - see {Image Calculation Parameters}\
+  "inside=" and "outside=" - see {Color Parameters}\
+  "savename=" filename - see {File Parameters}\
+  "overwrite=" option - see {File Parameters}\
+  "sound=" option - see {Sound Parameters}\
+  "logmap=" - see {Logarithmic Palettes and Color Ranges}\
+  "biomorph=" - see {Biomorphs}\
+  "decomp=" - see {Decomposition}\
+  "fillcolor=" - see {Drawing Method}\
+
+<Y>\
+More options which we couldn't fit under the <X> command:\
+  "finattract=" - see {Finite Attractors}\
+  "potential=" parameters - see {Continuous Potential}\
+  "invert=" parameters - see {Inversion}\
+  "distest=" parameters - see {Distance Estimator Method}\
+  "cyclerange=" - see {Color Cycling Commands}\
+
+<Z>\
+Modify the parameters specific to the currently selected fractal type.
+This command lets you modify the parameters which are requested when you
+select a new fractal type with the <T> command, without having to repeat
+that selection. You can enter "e" or "p" in column one of the input fields
+to get the numbers e and pi (2.71828... and 3.14159...).\
+From the fractal parameters screen, you can press <F6> to bring up a
+sub parameter screen for the coordinates of the image's corners.
+With selected fractal types, <Z> allows you to change the {Bailout Test}.
+; With the IFS fractal type, <Z> brings up the IFS editor (see
+; {=HT_IFS Barnsley IFS Fractals}).
+
+<+> or <->\
+Switch to color-cycling mode and begin cycling the palette
+by shifting each color to the next "contour."  See {Color Cycling Commands}.\
+
+<C>\
+Switch to color-cycling mode but do not start cycling.
+The normally black "overscan" border of the screen changes to white.
+See {Color Cycling Commands}.
+
+<E>\
+Enter Palette-Editing Mode.  See {Palette Editing Commands}.
+
+<Spacebar>\
+Toggle between Mandelbrot set images and their corresponding Julia-set
+images. Read the notes in {=HT_JULIA Fractal Types, Julia Sets}
+before trying this option if you want to see anything interesting.
+
+<J>\
+Toggle between Julia escape time fractal and the Inverse Julia orbit
+fractal. See {=HT_INVERSE Inverse Julias}
+
+<Enter>\
+Enter is used to resume calculation after a pause. It is only
+necessary to do this when there is a message on the screen waiting to be
+acknowledged, such as the message shown after you save an image to disk.
+
+<I>\
+Modify 3D transformation parameters used with 3D fractal types such as
+"Lorenz3D" and 3D "IFS" definitions, including the selection of
+{=HELP3DGLASSES "funny glasses"} red/blue 3D.
+
+<A>\
+Convert the current image into a fractal 'starfield'.  See {Starfields}.
+
+<Ctrl-A>\
+Unleash an image-eating ant automaton on current image. See {Ant Automaton}.
+
+<Ctrl-S> (or <k>)\
+Convert the current image into a Random Dot Stereogram (RDS).
+See {Random Dot Stereograms (RDS)}.
+
+<O> (the letter, not the number)\
+If pressed while an image is being generated, toggles the display of
+intermediate results -- the "orbits" Fractint uses as it calculates values
+for each point. Slows the display a bit, but shows you how clever the
+program is behind the scenes. (See "A Little Code" in
+{"Fractals and the PC"}.)
+
+<D>\
+Shell to DOS. Return to Fractint by entering "exit" at a DOS prompt.
+
+<Insert>\
+Restart at the "credits" screen and reset most variables to their initial
+state.  Variables which are not reset are: savename, lightname, video,
+startup filename.
+
+<L>\
+Enter Browsing Mode.  See {Browse Commands}.
+;
+;
+;
+~Topic=Zoom Box Commands, Label=HELPZOOM
+
+Zoom Box functions can be invoked while an image is being generated or when
+it has been completely drawn.  Zooming is supported for most fractal types,
+but not all.
+
+The general approach to using the zoom box is:  Frame an area using
+the keys described below,
+then <Enter> to expand what's in the frame to fill the
+whole screen (zoom in); or <Ctrl><Enter> to shrink the current image into
+the framed area (zoom out). With a mouse, double-click the left button to
+zoom in, double click the right button to zoom out.
+
+<Page Up>, <Page Down>\
+Use <Page Up> to initially bring up the zoom box. It starts at full screen
+size. Subsequent use of these keys makes the zoom box smaller or larger.
+Using <Page Down> to enlarge the zoom box when it is already at maximum
+size removes the zoom box from the display. Moving the mouse away from you
+or toward you while holding the left button down performs the same
+functions as these keys.
+
+Using the cursor "arrow" keys
+~Doc-
+(\24 \25 \27 \26)
+~Doc+
+or moving
+the mouse without holding any buttons down, moves the zoom box.
+
+Holding <Ctrl> while pressing cursor "arrow" keys moves the box 5 times
+faster.  (This only works with enhanced keyboards.)
+
+Panning: If you move a fullsize zoombox and don't change anything else
+before performing the zoom, Fractint just moves what's already on the
+screen and then fills in the new edges, to reduce drawing time. This
+feature applies to most fractal types but not all.  A side effect is that
+while an image is incomplete, a full size zoom box moves in steps larger
+than one pixel.  Fractint keeps the box on multiple pixel boundaries, to
+make panning possible.  As a multi-pass (e.g. solid guessing) image
+approaches completion, the zoom box can move in smaller increments.
+
+In addition to resizing the zoom box and moving it around, you can do some
+rather warped things with it.  If you're a new Fractint user, we recommend
+skipping the rest of the zoom box functions for now and coming back to
+them when you're comfortable with the basic zoom box functions.
+
+<Ctrl><Keypad->, <Ctrl><Keypad+>\
+Holding <Ctrl> and pressing the numeric keypad's + or - keys rotates the
+zoom box. Moving the mouse left or right while holding the right button
+down performs the same function.
+
+<Ctrl><Page Up>, <Ctrl><Page Down>\
+These commands change the zoom box's "aspect ratio", stretching or
+shrinking it vertically. Moving the mouse away from you or toward you
+while holding both buttons (or the middle button on a 3-button mouse) down
+performs the same function. There are no commands to directly stretch or
+shrink the zoom box horizontally - the same effect can be achieved by
+combining vertical stretching and resizing.
+
+<Ctrl><Home>, <Ctrl><End>\
+These commands "skew" the zoom box, moving the top and bottom edges in
+opposite directions. Moving the mouse left or right while holding both
+buttons (or the middle button on a 3-button mouse) down performs the same
+function. There are no commands to directly skew the left and right edges
+- the same effect can be achieved by using these functions combined with
+rotation.
+
+<Ctrl><Insert>, <Ctrl><Delete>\
+These commands change the zoom box color. This is useful when you're
+having trouble seeing the zoom box against the colors around it. Moving
+the mouse away from you or toward you while holding the right button down
+performs the same function.
+
+You may find it difficult to figure out what combination of size, position
+rotation, stretch, and skew to use to get a particular result.  (We do.)\
+A good way to get a feel for all these functions is to play with the
+Gingerbreadman fractal type. Gingerbreadman's shape makes it easy to
+see what you're doing to him. A warning though: Gingerbreadman will run
+forever, he's never quite done! So, pre-empt with your next zoom when he's
+baked enough.
+
+If you accidentally change your zoom box shape or rotate and
+forget which way is up, just use <PageDown> to make it bigger until it
+disappears, then <PageUp> to get a fresh one.  With a
+mouse, after removing the old zoom box from the display release and
+re-press the left button for a fresh one.
+
+If your screen does not have a 4:3 "aspect ratio" (i.e. if the visible
+display area on it is not 1.333 times as wide as it is high), rotating and
+zooming will have some odd effects - angles will change, including the
+zoom box's shape itself, circles (if you are so lucky as to see any with a
+non-standard aspect ratio) become non-circular, and so on. The vast
+majority of PC screens *do* have a 4:3 aspect ratio.
+
+Zooming is not implemented for the plasma and diffusion fractal types, nor
+for overlayed and 3D images. A few fractal types support zooming but
+do not support rotation and skewing - nothing happens when you try it.
+;
+;
+;
+~Topic=Image Save/Restore Commands, Label=HELPSAVEREST
+
+<S> saves the current image to disk. All parameters required to recreate
+the image are saved with it. Progress is marked by colored lines moving
+down the screen's edges.
+
+The default filename for the first image saved after starting Fractint is
+FRACT001.GIF;  subsequent saves in the same session are automatically
+incremented 002, 003... Use the "savename=" parameter or <X> options
+screen to change the name. By default, files left over from previous
+sessions are not overwritten - the first unused FRACTnnn name is used.
+Use the "overwrite=yes" parameter or <X> options screen) to overwrite
+existing files.
+
+A save operation can be interrupted by pressing any key. If you interrupt,
+you'll be asked whether to keep or discard the partial file.
+
+<R> restores an image previously saved with <S>, or an ordinary GIF file.
+After pressing <R> you are shown the file names in the current directory
+which match the current file mask. To select a file to restore, move the
+cursor to it (or type the first few letters of its name) and press
+<Enter>.
+
+Directories are shown in the file list with a \"\\\" at the end of the name.
+When you select a directory, the contents of that directory are shown. Or,
+you can type the name of a different directory (and optionally a different
+drive) and press <Enter> for a new display. You can also type a mask such
+as "*.XYZ" and press <Enter> to display files whose name ends with the
+matching suffix (XYZ).
+
+You can use <F6> to switch directories to the default fractint directory
+or to your own directory which is specified through the DOS environment
+variable "FRACTDIR".
+
+Once you have selected a file to restore, a summary description of the
+file is shown, with a video mode selection list. Usually you can just
+press <Enter> to go past this screen and load the image. Other choices
+available at this point are:\
+  Cursor keys: select a different video mode\
+  <Tab>: display more information about the fractal\
+  <F1>: for help about the "err" column in displayed video modes\
+If you restore a file into a video mode which does not have the same pixel
+dimensions as the file, Fractint will make some adjustments:  The view
+window parameters (see <V> command) will automatically be set to an
+appropriate size, and if the image is larger than the screen dimensions,
+it will be reduced by using only every Nth pixel during the restore.
+;
+;
+;
+~Topic=Print Command
+
+<P>\
+
+Print the current fractal image on your (Laserjet, Paintjet, Epson-
+compatible, PostScript, or HP-GL) printer.
+
+See {"Setting Defaults (SSTOOLS.INI File)"} and {"Printer Parameters"}
+for how to let Fractint know about your printer setup.
+
+{"Disk-Video" Modes} can be used to
+generate images for printing at higher resolutions than your screen
+supports.
+;
+;
+;
+~Topic=Parameter Save/Restore Commands, Label=HELPPARMFILE
+
+Parameter files can be used to save/restore all options and settings
+required to recreate particular images.  The parameters required to
+describe an image require very little disk space, especially compared with
+saving the image itself.
+
+<@> or <2>
+
+The <@> or <2> command loads a set of parameters describing an image.
+(Actually, it can also be used to set non-image parameters such as SOUND,
+but at this point we're interested in images. Other uses of parameter
+files are discussed in {"Parameter Files and the <@> Command"}.)
+
+When you hit <@> or <2>, Fractint displays the names of the entries in the
+currently selected parameter file.  The default parameter file,
+FRACTINT.PAR, is included with the Fractint release and contains
+parameters for some sample images.
+
+After pressing <@> or <2>, highlight an entry and press <Enter> to load it,
+or press <F6> to change to another parameter file.
+
+Note that parameter file entries specify all calculation related
+parameters, but do not specify things like the video mode - the image will
+be plotted in your currently selected mode.
+
+<B>
+
+The <B> command saves the parameters required to describe the currently
+displayed image, which can subsequently be used with the <@> or <2> command
+to recreate it.
+
+After you press <B>, Fractint prompts for:
+
+  Parameter file:  The name of the file to store the parameters in.  You
+  should use some name like "myimages" instead of fractint.par, so that
+  your images are kept separate from the ones released with new versions
+  of Fractint. You can use the PARMFILE= command in SSTOOLS.INI
+  to set the default parameter file name to "myimages" or whatever.
+  (See {"Setting Defaults (SSTOOLS.INI File)"} and "parmfile=" in
+  {"File Parameters"}.)
+
+  Name:  The name you want to assign to the entry, to be displayed when
+  the <@> or <2> command is used.
+
+  Main comment:  A comment to be shown beside the entry in the <@> command
+  display.
+
+  Second, Third, and Fourth comment:  Additional comments to store in the
+  file with the entry. These comments go in the file only, and are not
+  displayed by the <@> command. You can set these commenst from the
+  command line - see {=@COMMENTS Comment= Command}.
+
+  Record colors?:  Whether color information should be included in the
+  entry. Usually the default value displayed by Fractint is what you want.
+  Allowed values are:\
+  "no" - Don't record colors.
+  "@mapfilename" - When these parameters are used, load colors from the
+     named color map file. This is the default if you are currently using
+     colors from a color map file.
+  "yes" - Record the colors in detail. This is the default when you've
+     changed the display colors by using the palette editor or by color
+     cycling. The only reason that this isn't what Fractint always does
+     for the <B> command is that color information can be bulky - up to
+     nearly 1K of disk space. That may not
+     sound like much, but can add up when you consider the thousands of
+     wonderful images you may find you just *have* to record...
+     Smooth-shaded ranges of colors are compressed, so if that's used a
+     lot in an image the color information won't be as bulky.
+
+  # of colors:  This only matters if "Record colors?" is set to "yes".  It
+  specifies the number of colors to record. Recording less colors will
+  take less space. Usually the default value displayed by Fractint is what
+  you want. You might want to increase it in some cases, e.g. if you are
+  using a 256 color mode with maxiter 150, and have used the palette
+  editor to set all 256 possible colors for use with color cycling, then
+  you'll want to set the "# of colors" to 256.
+
+  See the {=@RECORDCOLORS Recordcolors} command, which controls when mapfiles
+  are used and when compressed colors are written to PAR files.
+
+  At the bottom of the input screen are inputs for Fractint's "pieces"
+  divide-and-conquer feature. You can create multiple PAR entries that
+  break an image up into pieces so that you can generate the image pieces
+  one by one. There are two reasons for doing this. The first is in case the
+  fractal is very slow, and you want to generate parts of the image at the
+  same time on several computers. The second is that you might want to make
+  an image greater than 2048 x 2048. The parameters for this feature are:
+     X Multiples - How many divisions of final image in the x direction\
+     Y Multiples - How many divisions of final image in the y direction\
+     Video mode  - Fractint video mode for each piece (e.g. "F3")\
+
+  The last item defaults to the current video mode. If either X Multiples or
+  Y Multiples are greater than 1, then multiple numbered PAR entries for the
+  pieces are added to the PAR file, and a MAKEMIG.BAT file is created that
+  builds all of the component pieces and then stitches them together into
+  a "multi-image" GIF.  The current limitations of the "divide and conquer"
+  algorithm are 36 or fewer X and Y multiples (so you are limited to "only"
+  36x36=1296 component images), and a final resolution limit in both the
+  X and Y directions of 65,535 (a limitation of "only" four billion pixels
+  or so).
+
+  The final image generated by MAKEMIG is a "multi-image" GIF file called
+  FRACTMIG.GIF.  In case you have other software that can't handle
+  multi-image GIF files, MAKEMIG includes a final (but commented out) call
+  to SIMPLGIF, a companion program that reads a GIF file that may contain
+  little tricks like multiple images and creates a simple GIF from it.
+  Fair warning: SIMPLGIF needs room to build a composite image while it
+  works, and it does that using a temporary disk file equal to the size
+  of the final image - and a 64Kx64K GIF image requires a 4GB temporary
+  disk file!
+
+<G>
+
+The <G> command lets you give a startup parameter interactively.
+;
+;
+;
+~Topic=<X> Options Screen, Label=HELPXOPTS
+; This topic is online context-sensitive only.
+
+   Passes - see {Drawing Method}\
+   Fillcolor - see {Drawing Method}\
+   Floating Point Algorithm - see notes below\
+   Maximum Iterations - see {Image Calculation Parameters}\
+   Inside and Outside colors - see {Color Parameters}\
+   Savename and File Overwrite - see {File Parameters}\
+   Sound option - see {Sound Parameters}\
+   Log Palette - see {Logarithmic Palettes and Color Ranges}\
+   Biomorph Color - see {Biomorphs}\
+   Decomp Option - see {Decomposition}\
+
+You can toggle the use of floating-point algorithms on this screen (see
+{"Limitations of Integer Math (And How We Cope)"}).  Whether floating
+point is in use is shown on the <Tab> status screen.  If you have a
+non-Intel floating point chip which supports the full 387 instruction set,
+see the "FPU=" command in {Startup Parameters} to get the most out of your
+chip.
+;
+;
+~Topic=<Y> Options Screen, Label=HELPYOPTS
+; This topic is online context-sensitive only.
+
+   Finite attractor - see{ Finite Attractors }\
+
+   Potential parameters - see{ Continuous Potential }\
+
+   Distance Estimator parameters - see{ Distance Estimator Method }\
+
+   Inversion parameters - see{ Inversion }\
+
+   Color cycling range - see{ Color Cycling Commands }\
+;
+;
+~Topic=Image Coordinates Screen, Label=HELPCOORDS
+; This topic is online context-sensitive only.
+
+You can directly enter corner coordinates on this screen instead of
+using the zoom box to move around.  You can also use <F4> to reset
+the coordinates to the defaults for the current fractal type.
+
+There are two formats for the display: corners or center-mag.  You can
+toggle between the two by using <F7>.
+
+In corners mode, corner coordinate values are entered directly.  Usually
+only the top-left and bottom-right corners need be specified - the
+bottom left corner can be entered as zeros to default to an ordinary
+unrotated rectangular area.  For rotated or skewed images, the bottom
+left corner must also be specified.
+
+In center-mag mode the image area is described by entering the coordinates
+for the center of the rectangle, and its magnification factor.  Usually
+only these three values are needed, but the user can also specify the amount
+that the image is stretched, rotated and skewed.
+;
+;
+;
+~Topic=Interrupting and Resuming
+
+Fractint command keys can be loosely grouped as:
+
+ o Keys which suspend calculation of the current image (if one is being
+   calculated) and automatically resume after the function.  <Tab>
+   (display status information) and <F1> (display help), are the only
+   keys in this group.
+
+ o Keys which automatically trigger calculation of a new image.
+   Examples:  selecting a video mode (e.g. <F3>);  selecting a fractal
+   type using <T>;  using the <X> screen to change an option such as
+   maximum iterations.
+
+ o Keys which do something, then wait for you to indicate what to do
+   next.  Examples:  <M> to go to main menu;  <C> to enter color cycling
+   mode;  <PageUp> to bring up a zoom box.  After using a command in this
+   group, calculation automatically resumes when you return from the
+   function (e.g. <Esc> from color cycling, <PageDn> to clear zoom box).
+   There are a few fractal types which cannot resume calculation, they
+   are noted below.  Note that after saving an image with <S>, you must
+   press <Enter> to clear the "saved" message from the screen and resume.
+
+An image which is <S>aved before it completes can later be <R>estored and
+continued. The calculation is automatically resumed when you restore such
+an image.
+
+When a slow fractal type resumes after an interruption in the third
+category above, there may be a lag while nothing visible happens.  This is
+because most cases of resume restart at the beginning of a screen line.
+If unsure, you can check whether calculation has resumed with the <Tab>
+key.
+
+The following fractal types cannot (currently) be resumed: plasma, 3d
+transformations, julibrot, and 3d orbital types like lorenz3d.  To check
+whether resuming an image is possible, use the <Tab> key while it is
+calculating.  It is resumable unless there is a note under the fractal
+type saying it is not.
+
+The {Batch Mode} section discusses how to resume in batch mode.
+
+To <R>estore and resume a "formula", "lsystem", or "ifs" type fractal your
+"formulafile", "lfile", or "ifsfile" must contain the required name.
+;
+;
+;
+~Topic=Orbits Window, Label=HELP_ORBITS
+The <O> key turns on the Orbit mode.  In this mode a cursor appears
+over the fractal. A window appears showing the orbit used in the
+calculation of the color at the point where the cursor is. Move the
+cursor around the fractal using the arrow keys or the mouse and watch
+the orbits change. Try entering the Orbits mode with View Windows (<V>)
+turned on. The following keys take effect in Orbits mode.\
+<c>         Circle toggle - makes little circles with radii inversely\
+            proportional to the iteration. Press <c> again to toggle\
+            back to point-by-point display of orbits.\
+<l>         Line toggle - connects orbits with lines (can use with <c>)\
+<n>         Numbers toggle - shows complex coordinates & color number of\
+            the cursor on the screen. Press <n> again to turn off numbers.\
+<p>         Enter pixel coordinates directly\
+<h>         Hide fractal toggle. Works only if View Windows is turned on\
+            and set for a small window (such as the default size.) Hides the\
+            fractal, allowing the orbit to take up the whole screen. Press\
+            <h> again to uncover the fractal.\
+<s>         Saves the fractal, cursor, orbits, and numbers as they\
+            appear on the screen.\
+<<> or <,>  Zoom orbits image smaller\
+<>> or <.>  Zoom orbits image larger\
+<z>         Restore default zoom.\
+;
+;
+;
+~Topic=View Window, Label=HELPVIEW
+
+The <V> command is used to set the view window parameters described below.
+These parameters can be used to:\
+ o Define a small window on the screen which is to contain the generated
+   images. Using a small window speeds up calculation time (there are
+   fewer pixels to generate). You can use a small window to explore
+   quickly, then turn the view window off to recalculate the image at
+   full screen size.
+ o Generate an image with a different "aspect ratio"; e.g. in a square
+   window or in a tall skinny rectangle.
+ o View saved GIF images which have pixel dimensions different from any
+   mode supported by your hardware. This use of view windows occurs
+   automatically when you restore such an image.
+
+"Preview display"\
+Set this to "yes" to turn on view window, "no" for full screen display.
+While this is "no", the only view parameter which has any affect is "final
+media aspect ratio". When a view window is being used, all other Fractint
+functions continue to operate normally - you can zoom, color-cycle, and
+all the rest.
+
+"Reduction factor"\
+When an explicit size is not given, this determines the view window size,
+as a factor of the screen size.  E.g. a reduction factor of 2 makes the
+window 1/2 as big as the screen in both dimensions.
+
+"Final media aspect ratio"\
+This is the height of the final image you want, divided by the width. The
+default is 0.75 because standard PC monitors have a height:width ratio of
+3:4. E.g. set this to 2.0 for an image twice as high as it is wide. The
+effect of this parameter is visible only when "preview display" is
+enabled.
+
+"Crop starting coordinates"\
+This parameter affects what happens when you change the aspect ratio. If
+set to "no", then when you change aspect ratio, the prior image will be
+squeezed or stretched to fit into the new shape. If set to "yes", the
+prior image is "cropped" to avoid squeezing or stretching.
+
+"Explicit size"\
+Setting these to non-zero values over-rides the "reduction factor" with
+explicit sizes in pixels. If only the "x pixels" size is specified, the "y
+pixels" size is calculated automatically based on x and the aspect ratio.
+
+More about final aspect ratio:  If you want to produce a high quality
+hard-copy image which is say 8" high by 5" down, based on a vertical
+"slice" of an existing image, you could use a procedure like the
+following. You'll need some method of converting a GIF image to your final
+media (slide or whatever) - Fractint can only do the whole job with a
+PostScript printer, it does not preserve aspect ratio with other printers.
+ o restore the existing image\
+ o set view parameters: preview to yes, reduction to anything (say 2),
+   aspect ratio to 1.6, and crop to yes
+ o zoom, rotate, whatever, till you get the desired final image\
+ o set preview display back to no\
+ o trigger final calculation in some high res disk video mode, using the
+   appropriate video mode function key
+ o print directly to a PostScript printer, or save the result as a GIF
+   file and use external utilities to convert to hard copy.
+;
+;
+;
+~Topic=\"3D\" Commands
+
+See {\"3D\" Images} for details of these commands.
+
+<3>\
+Restore a saved image as a 3D "landscape", translating its color
+information into "height". You will be prompted for all KINDS of options.
+
+<#>\
+Restore in 3D and overlay the result on the current screen.
+;
+;
+;
+~Topic=Video Mode Function Keys, Label=HELPVIDSEL
+
+Fractint supports *so* many video modes that we've given up trying to
+reserve a keyboard combination for each of them.
+
+Any supported video mode can be selected by going to the "Select Video Mode"
+screen (from main menu or by using <Delete>), then using the cursor up and down
+arrow keys and/or <PageUp> and <PageDown> keys to highlight the desired mode,
+then pressing <Enter>.
+
+Up to 39 modes can be assigned to the keys F2-F10, SF1-SF10 <Shift>+<Fn>),
+CF1-CF10 (<Ctrl>+<Fn>), and AF1-AF10 (<Alt>+<Fn>).  The modes assigned to
+function keys can be invoked directly by pressing the assigned key, without
+going to the video mode selection screen.
+
+30 key combinations can be reassigned:  <F1> to <F10> combined with any of
+<Shift>, <Ctrl>, or <Alt>.
+The video modes assigned to <F2> through <F10> can not be
+changed - these are assigned to the most common video modes, which might
+be used in demonstration files or batches.
+
+To reassign a function key to a mode you often use, go to the "select
+video mode" screen, highlight the video
+mode, press the keypad (gray) <+> key, then press the desired
+function key or key combination.  The new key assignment will be remembered
+for future runs.
+
+To unassign a key (so that it doesn't invoke any video
+mode), highlight the mode currently selected by the key and press the
+keypad (gray) <-> key.
+
+A note about the "select video modes" screen:
+the video modes which are displayed with a 'B' suffix in the number
+of colors are modes which have no custom programming - they use the BIOS
+and are S-L-O-W ones.
+
+See {"Video Adapter Notes"} for comments about particular adapters.
+
+See {"Disk-Video" Modes} for a description of these non-display modes.
+
+See {"Customized Video Modes\, FRACTINT.CFG"} for information about
+adding your own video modes.
+;
+;
+;
+~Topic=Browse Commands, Label=HELPBROWSE
+
+The following keystrokes function while browsing an image:\
+
+<ARROW KEYS>     Step through the outlines on the screen.\
+<ENTER>          Selects the image to display.\
+<\\>,<h>          Recalls the last image selected.\
+<D>              Deletes the selected file.\
+<R>              Renames the selected file.\
+<s>              Saves the current image with the browser boxes\
+                 displayed.\
+<ESC>,<l>        Toggles the browse mode off.\
+<Ctrl-b>         Brings up the {Browser Parameters} screen.\
+<Ctrl-Ins/Del>   Change the browser boxes color.\
+
+This is a "visual directory", here is how it works...\
+When 'L' or 'l' is pressed from a fractal display the current directory is
+searched for any saved files that are deeper zooms of the current image and
+their position shown on screen by a box (or crosshairs if the box would be
+too small). See also {Browser Parameters} for more on how this is done.
+
+One outline flashes, the selected outline can be changed by using the
+cursor keys.  At the moment the outlines are selected in the order that
+they appear in your directory, so don't worry if the flashing window jumps
+all over the place!
+
+When enter is pressed, the selected image is loaded. In this mode a stack
+of the last sixteen selected filenames is maintained and the '\\' or 'h' key
+pops and loads the last image you were looking at.  Using this it is
+possible to set up sequences of images that allow easy exploration of your
+favorite fractal without having to wait for recalc once the level of zoom
+gets too high, great for demos! (also useful for keeping track of just
+exactly where fract532.gif came from :-) )
+
+You can also use this facility to tidy up your disk: by typing UPPER CASE 'D'
+when a file is selected the browser will delete the file for you, after
+making sure that you really mean it, you must reply to the "are you sure"
+prompts with an UPPER CASE 'Y' and nothing else, otherwise the command is
+ignored. Just to make absolutely sure you don't accidentally wipe out the
+fruits of many hours of cpu time the default setting is to have the browser
+prompt you twice, you can disable the second prompt within the parameters
+screen, however, if you're feeling overconfident :-).
+
+To complement the Delete function there is a rename function, use the UPPER
+CASE 'R' key for this. You need to enter the FULL new file name, no .GIF is
+implied.
+
+It is possible to save the current image along with all of the displayed
+boxes indicating subimages by pressing the 's' key.  This exits the browse
+mode to save the image and the boxes become a permanent part of the image.
+Currently, the screen image ends up with stray dots colored after it is
+saved.
+
+Esc backs out of image selecting mode.\
+
+The browser can now use expanded memory or extended memory.  If you have
+more than 4 MB of expanded/extended memory available, you can use either.
+If you don't have 4 MB of expanded/extended memory available, use expanded
+memory as it will allocate as much as possible.  The extended memory support
+will silently fail and default to the use of far memory if 4 MB of extended
+memory is not available.
+
+Here's a tip on how to zoom out beyond your starting point when browsing:
+Suppose you restore a fractal deeply-zoomed down in a directory of
+related zoomed images, and then bring up the browser.  How do you zoom
+out? You can't use "\\" because you started with the zoomed image, and
+there is no browser command to detect the next outer image. What you
+can do is exit the browser, press PgUp until the zoom box won't get any
+smaller, zoom out with Ctrl-Enter, and before any image starts to
+develop, call up the browser again, locate your zoomed image that you
+started with, and see if there is another image that contains it - if
+so, restore it with the browser.  You can also use a view window <v> to load
+the first image, and then use the browser.
+
+POSSIBLE ERRORS:
+
+"Sorry..I can't find anything"\
+The browser can't locate any files which match the file name mask.
+See {Browser Parameters}  This is also displayed if you have less than
+10K of far memory free when you run Fractint.
+
+"Sorry....  no more space"\
+At the moment the browser can only cope with 450 sub images at one time.
+Any subsequent images are ignored.  Make sure that the minimum image size
+isn't set too small on the parameters screen.
+
+~OnlineFF
+"Sorry .... out of memory"\
+The browser has run out of far, expanded, or extended memory in which to
+store the pixels covered by the sub image boxes.  Try again with the main
+image at lower resolution, and/or reduce the number of TSRs resident in
+memory when you start Fractint.  Make sure you have expanded or extended
+memory available.
+
+"Sorry...it's a read only file, can't del <filename>"\
+"Sorry....can't rename"\
+The file which you were trying to delete or rename has the read only
+attribute set, you'll need to reset this with your operating system before
+you can get rid of it.
+;
+;
+;
+~Topic=Browser Parameters, Label=HELPBRWSPARMS
+
+This Screen enables you to control Fractint's built in file browsing utility.
+If you don't know what that is see {Browse Commands}.  This screen is
+selected with <Ctrl-B> from just about anywhere.
+
+"Autobrowsing"\
+Select yes if you want the loaded image to be scanned for sub images
+immediately without pressing 'L' every time.
+
+"Ask about GIF video mode"\
+Allows turning on and off the display of the video mode table when loading
+GIFs.  This has the same effect as the askvideo= command.
+
+"Type/Parm check"\
+Select whether the browser tests for fractal type or parms when deciding
+whether a file is a sub image of the current screen or not. DISABLE WITH
+CAUTION! or things could get confusing. These tests can be switched off
+to allow such situations as wishing to display old images that were
+generated using a formula type which is now implemented as a built in
+fractal type.
+~OnlineFF
+"Confirm deletes"\
+Set this to No if you get fed up with the double prompting that the browser
+gives when deleting a file.  It won't get rid of the first prompt however.
+
+"Smallest window"\
+This parameter determines how small the image would have to be onscreen
+before it decides not to include it in the selection of files.  The size
+is entered in decimal pixels so, for instance, this could be set to 0.2 to
+allow images that are up to around three maximum zooms away (depending on
+the current video resolution) to be loaded instantly.  Set this to 0 to
+enable all sub images to be detected.  This can lead to a very cluttered
+screen!  The primary use is in conjunction with the search file mask (see
+below) to allow location of high magnification images within an overall
+view (like the whole Mset).
+
+"Smallest box"\
+This determines when the image location is shown as crosshairs rather than
+a rather small box.  Set this according to how good your eyesight is
+(probably worse than before you started staring at fractals all the time :-))
+or the resolution of your screen.  WARNING the crosshairs routine centers
+the cursor on one corner of the image box at the moment so this looks
+misleading if set too large.
+~OnlineFF
+"Search Mask"\
+Sets the file name pattern which the browser searches, this can be used
+to search out the location of a file by setting this to the filename and
+setting smallest image to 0 (see above).
+;
+;
+;
+~Topic=RDS Commands, Label=RDSKEYS
+The following keystrokes function while viewing an RDS image:\
+
+<Enter> or <Space>   -- Toggle calibration bars on and off.\
+<Ctrl-s> or <k>      -- Return to RDS Parameters Screen.\
+<s>                  -- Save RDS image, then restore original.\
+<c>, <+>, <->        -- Color cycle RDS image.\
+Other keys           -- Exit RDS mode, restore original image, and pass\
+                        keystroke on to main menu.\
+
+For more about RDS, see {Random Dot Stereograms (RDS)}
+;
+;
+;
+
+~Topic=Hints
+
+Remember, you do NOT have to wait for the program to finish a full screen
+display before entering a command. If you see an interesting spot you want
+to zoom in on while the screen is half-done, don't wait -- do it! If you
+think after seeing the first few lines that another video mode would look
+better, go ahead -- Fractint will shift modes and start the redraw at
+once. When it finishes a display, it beeps and waits for your next
+command.
+
+In general, the most interesting areas are the "border" areas where the
+colors are changing rapidly. Zoom in on them for the best results. The
+first Mandelbrot-set (default) fractal image has a large, solid-colored
+interior that is the slowest to display; there's nothing to be seen by
+zooming there.
+
+Plotting time is directly proportional to the number of pixels in a
+screen, and hence increases with the resolution of the video mode.
+You may want to start in a low-resolution mode for quick progress while
+zooming in, and switch to a higher-resolution mode when things get
+interesting. Or use the solid guessing mode and pre-empt with
+a zoom before it finishes. Plotting time also varies with the maximum
+iteration setting, the fractal type, and your choice of drawing mode.
+Solid-guessing (the default) is fastest, but it can be wrong:
+perfectionists will want to use dual-pass mode (its first-pass preview is
+handy if you might zoom pre-emptively) or single-pass mode.
+
+When you start systematically exploring, you can save time (and hey, every
+little bit helps -- these "objects" are INFINITE, remember!) by <S>aving
+your last screen in a session to a file, and then going straight to it the
+next time by using the command FRACTINT FRACTxxx (the .GIF extension is
+assumed), or by starting Fractint normally and then using the <R> command
+to reload the saved file. Or you could hit <B> to create a parameter file
+entry with the "recipe" for a given image, and next time use the <@>
+command to re-plot it.
+;
+;
+;
+~Topic=Fractint on Unix
+
+Fractint has been ported to Unix to run under X Windows.  This version is
+called "Xfractint".  Xfractint may be obtained by anonymous ftp,
+see {Distribution of Fractint}.
+
+Xfractint is still under development and is not as reliable as the IBM PC
+version.
+
+Contact Ken Shirriff (shirriff@eng.sun.com) or Tim Wegner (twegner@phoenix,net)
+for more information on Xfractint.
+~FF
+Xfractint is a straight port of the IBM PC version.  Thus, it uses the
+IBM user interface.  If you do not have function keys, or Xfractint does
+not accept them from your keyboard, use the following key mappings:
+
+     IBM             Unix\
+     F1 to F10       Shift-1 to Shift-0\
+     INSERT          I\
+     DELETE          D\
+     PAGE_UP         U\
+     PAGE_DOWN       N\
+     LEFT_ARROW      H\
+     RIGHT_ARROW     L\
+     UP_ARROW        K\
+     DOWN_ARROW      J\
+     HOME            O\
+     END             E\
+     CTL_PLUS        \}\
+     CTL_MINUS       \{
+
+Xfractint takes the following options:
+
+-onroot\
+Puts the image on the root window.
+
+-fast\
+Uses a faster drawing technique.
+
+-disk\
+Uses disk video.
+
+-geometry WxH[\{+-X}\{+-Y}]\
+Changes the geometry of the image window.
+
+-display displayname\
+Specifies the X11 display to use.
+
+-private\
+Allocates the entire colormap (i.e. more colors).
+
+-share\
+Shares the current colormap.
+
+-fixcolors n\
+Uses only n colors.
+
+-slowdisplay\
+Prevents Xfractint from hanging on the title page with slow displays.
+
+-simple\
+Uses simpler keyboard handling, which makes debugging easier.
+
+Common problems:
+
+If you get the message "Couldn't find fractint.hlp", you can\
+a) Do "setenv FRACTDIR /foo", replacing /foo with the directory containing
+fractint.hlp.\
+b) Run Xfractint from the directory containing fractint.hlp, or\
+c) Copy fractint.hlp to /usr/local/bin/X11/fractint
+
+If you get the message "Invalid help signature", the problem is due to
+byteorder.  You are probably using a Sun help file on a Dec machine or
+vice versa.
+
+If Xfractint doesn't accept input, try typing into both the graphics window
+and the text window.  On some systems, only one of these works.
+
+If you are using Openwindows and can't get Xfractint to accept input, add
+to your .Xdefaults file:\
+OpenWindows.FocusLenience:      True
+
+If you cannot view the GIFs that Xfractint creates, the problem is that
+Xfractint creates GIF89a format and your viewer probably only handles
+GIF87a format.  Run "xfractint gif87a=y" to produce GIF87a format.
+
+Because many shifted characters are used to simulate IBM keys, you can't
+enter capitalized filenames.
+;
+;
+;
+~Topic=Color Cycling Commands, Label=@ColorCycling
+
+~Doc-
+See {=HELPCYCLING Color Cycling Command Summary} for a summary of commands.
+
+~Doc+
+Color-cycling mode is entered with the 'c', '+', or '-' keys from an image,
+or with the 'c' key from Palette-Editing mode.
+
+The color-cycling commands are available ONLY for VGA adapters and EGA
+adapters in 640x350x16 mode.  You can also enter color-cycling while
+using a disk-video mode, to load or save a palette - other functions are
+not supported in disk-video.
+
+Note that the colors available on an EGA adapter (16 colors at a
+time out of a palette of 64) are limited compared to those of VGA, super-
+VGA, and MCGA (16 or 256 colors at a time out of a palette of 262,144). So
+color-cycling in general looks a LOT better in the latter modes. Also,
+because of the EGA palette restrictions, some commands are not available
+with EGA adapters.
+
+Color cycling applies to the color numbers selected by the "cyclerange="
+command line parameter (also changeable via the <Y> options screen and via
+the palette editor).  By default, color numbers 1 to 255 inclusive are
+cycled.  On some images you might want to set "inside=0" (<X> options or
+command line parameter) to exclude the "lake" from color cycling.
+
+When you are in color-cycling mode, you will either see the screen colors
+cycling, or will see a white "overscan" border when paused, as a reminder
+that you are still in this mode.  The keyboard commands available once
+you've entered color-cycling. are described below.
+
+<F1>\
+Bring up a HELP screen with commands specific to color cycling mode.
+
+<Esc>\
+Leave color-cycling mode.
+
+<Home>\
+Restore original palette.
+
+<+> or <->\
+Begin cycling the palette by shifting each color to the next "contour."
+<+> cycles the colors in one direction, <-> in the other.
+
+'<' or '>'\
+Force a color-cycling pause, disable random colorizing, and single-step
+through a one color-cycle.  For "fine-tuning" your image colors.
+
+Cursor up/down\
+Increase/decrease the cycling speed. High speeds may cause a harmless
+flicker at the top of the screen.
+
+<F2> through <F10>\
+Switches from simple rotation to color selection using randomly generated
+color bands of short (F2) to long (F10) duration.
+
+<1> through <9>\
+Causes the screen to be updated every 'n' color cycles (the default is 1).
+Handy for slower computers.
+
+<Enter>\
+Randomly selects a function key (F2 through F10) and then updates ALL the
+screen colors prior to displaying them for instant, random colors.  Hit
+this over and over again (we do).
+
+<Spacebar>\
+Pause cycling with white overscan area. Cycling restarts with any command
+key (including another spacebar).
+
+<Shift><F1>-<F10>\
+Pause cycling and reset the palette to a preset two color "straight"
+assignment, such as a spread from black to white. (Not for EGA)
+
+<Ctrl><F1>-<F10>\
+Pause & set a 2-color cyclical assignment, e.g. red->yellow->red (not EGA).
+
+<Alt><F1>-<F10>\
+Pause & set a 3-color cyclical assignment, e.g. green->white->blue (not EGA).
+
+<R>, <G>, <B>\
+Pause and increase the red, green, or blue component of all colors by a
+small amount (not for EGA). Note the case distinction of this vs:
+
+<r>, <g>, <b>\
+Pause and decrease the red, green, or blue component of all colors by a
+small amount (not for EGA).
+
+<D> or <A>\
+Pause and load an external color map from the files DEFAULT.MAP or
+ALTERN.MAP, supplied with the program.
+
+<L>\
+Pause and load an external color map (.MAP file).  Several .MAP files are
+supplied with Fractint.  See {Palette Maps}.
+
+<S>\
+Pause, prompt for a filename, and save the current palette to the named
+file (.MAP assumed).  See {Palette Maps}.
+;
+;
+;
+~Topic=Color Cycling Command Summary, Label=HELPCYCLING
+; This topic is online only
+
+~Format-
+  See {Color Cycling Commands} for full documentation.
+
+  F1               HELP! (Enter help mode and display this screen)
+  Esc              Exit from color-cycling mode
+  + or -           (re)-set the direction of the color-cycling
+  Home             Restore original palette
+~Doc-
+  \27 \26              (re)-set the direction of the color-cycling (just like +/-)
+  \24 \25              SpeedUp/SlowDown the color cycling process
+~Doc+,Online-
+  Right/Left Arrow (re)-set the direction of the color-cycling (just like +/-)
+  Up/Down Arrow    SpeedUp/SlowDown the color cycling process
+~Online+
+  F2 thru F10      Select Short--Medium--Long (randomly-generated) color bands
+  1  thru 9        Cycle through 'nn' colors between screen updates (default=1)
+  Enter            Randomly (re)-select all new colors  [TRY THIS ONE!]
+  Spacebar         Pause until another key is hit
+  < or >           Pause and single-step through one color-cycle
+* SF1 thru AF10    Pause and reset the Palette to one of 30 fixed sequences
+  d or a           pause and load the palette from DEFAULT.MAP or ALTERN.MAP
+  l                load palette from a map file
+  s                save palette to a map file
+* r or g or b or   force a pause and Lower (lower case) or Raise (upper case)
+* R or G or B      the Red, Green, or Blue component of the fractal image
+;
+;
+;
+~Topic=Palette Editing Commands
+
+~Doc-
+See {=HELPXHAIR Palette Editing Command Summary} for a summary of commands.
+
+~Doc+
+Palette-editing mode provides a number of tools for modifying the colors
+in an image.  It can be used only with MCGA or higher adapters, and only
+with 16 or 256 color video modes.
+Many thanks to Ethan Nagel for creating the palette editor.
+
+Use the <E> key to enter palette-editing mode from a displayed image or
+from the main menu.
+
+When this mode is entered, an empty palette frame is displayed. You can
+use the cursor keys to position the frame outline, and <Pageup> and
+<Pagedn> to change its size.  (The upper and lower limits on the size
+depend on the current video mode.)  When the frame is positioned where you
+want it, hit Enter to display the current palette in the frame.
+
+Note that the palette frame shows R(ed) G(reen) and B(lue) values for two
+color registers at the top.  The active color register has a solid frame,
+the inactive register's frame is dotted.  Within the active register, the
+active color component is framed.
+
+With a video mode of 640x400 or higher, a status area appears between the
+two color registers.  This status area shows:
+
+  nnn  = color number at the cursor location\
+  A    = Auto mode\
+  X, Y = exclusion modes\
+  F    = freesyle mode\
+  T    = stripe mode is waiting for #\
+
+Using the commands described below, you can assign particular colors to
+the registers and manipulate them.  Note that at any given time there are
+two colors "X"d - these are pre-empted by the editor to display the
+palette frame. They can be edited but the results won't be visible. You
+can change which two colors are borrowed ("X"d out) by using the <v>
+command.
+
+Once the palette frame is displayed and filled in, the following commands
+are available:
+
+<F1>\
+Bring up a HELP screen with commands specific to palette-editing mode.
+
+<Esc>\
+Leave palette-editing mode
+
+<H>\
+Hide the palette frame to see full image; the cross-hair remains visible
+and all functions remain enabled; hit <H> again to restore the palette
+display.
+
+Cursor keys\
+Move the cross-hair cursor around. In 'auto' mode (the default) the color
+under the center of the cross-hair is automatically assigned to the active
+color register. Control-Cursor keys move the cross-hair faster. A mouse
+can also be used to move around.
+
+<R> <G> <B>\
+Select the Red, Green, or Blue component of the active color register for
+subsequent commands
+
+<Insert> <Delete>\
+Select previous or next color component in active register
+
+~onlineFF
+<+> <->\
+Increase or decrease the active color component value by 1  Numeric keypad
+(gray) + and - keys do the same.
+
+<Pageup> <Pagedn>\
+Increase or decrease the active color component value by 5; Moving the
+mouse up/down with left button held is the same
+
+<0> <1> <2> <3> <4> <5> <6>\
+Set the active color component's value to 0 10 20 ... 60
+
+<Space>\
+Select the other color register as the active one.  In the default 'auto'
+mode this results in the now-inactive register being set to remember the
+color under the cursor, and the now-active register changing from whatever
+it had previously remembered to now follow the color.
+
+<,> <.>\
+Rotate the palette one step.  By default colors 1 through 255 inclusive
+are rotated.  This range can be over-ridden with the "cyclerange"
+parameter, the <Y> options screen, or the <O> command described below.
+
+"<" ">"\
+Rotate the palette continuously (until next keystroke)
+
+<O>\
+Set the color cycling range to the range of colors currently defined by
+the color registers.
+
+<C>\
+Enter Color-Cycling Mode.  When you invoke color-cycling from here, it
+will subsequently return to palette-editing when you <Esc> from it.
+See {Color Cycling Commands}.
+
+<=>\
+Create a smoothly shaded range of colors between the colors selected by
+the two color registers.
+
+<M>\
+Specify a gamma value for the shading created by <=>.
+
+<D>\
+Duplicate the inactive color register's values to the active color
+register.
+
+<T>\
+Stripe-shade - create a smoothly shaded range of colors between the two
+color registers, setting only every Nth register.  After hitting <T>, hit
+a numeric key from 2 to 9 to specify N.  For example, if you press <T>
+<3>, smooth shading is done between the two color registers, affecting
+only every 3rd color between them.  The other colors between them remain
+unchanged.
+
+<W>\
+Convert current palette to gray-scale.  (If the <X> or <Y> exclude ranges
+described later are in force, only the active range of colors is converted
+to gray-scale.)
+
+<Shift-F2> ... <Shift-F9>\
+Store the current palette in a temporary save area associated with the
+function key.  The temporary save palettes are useful for quickly
+comparing different palettes or the effect of some changes - see next
+command.  The temporary palettes are only remembered until you exit from
+palette-editing mode.\
+Starting with version 19.6, when palette editing mode is entered, the
+original palette is stored in the area associated with F2.
+
+<F2> ... <F9>\
+Restore the palette from a temporary save area.  If you haven't previously
+saved a palette for the function key, you'll get a simple grey scale.
+
+<L>\
+Pause and load an external color map (.MAP file).  See {Palette Maps}.
+
+<S>\
+Pause, prompt for a filename, and save the current palette to the named
+file (.MAP assumed).  See {Palette Maps}.
+
+<I>\
+Invert frame colors.  With some colors the palette is easier to see when
+the frame colors are interchanged.
+
+<\\>\
+Move or resize the palette frame.  The frame outline is drawn - it can
+then be repositioned and sized with the cursor keys, <Pageup> and
+<Pagedn>, just as was done when first entering palette-editing mode.  Hit
+Enter when done moving/sizing.
+
+<V>\
+Use the colors currently selected by the two color registers for the
+palette editor's frame.  When palette editing mode is entered, the last
+two colors are "X"d out for use by the palette editor; this command can be
+used to replace the default with two other color numbers.
+
+<A>\
+Toggle 'auto' mode on or off.  When on (the default), the active color
+register follows the cursor; when off, <Enter> must be pressed to set the
+active register to the color under the cursor.
+
+<Enter>\
+Only useful when 'auto' is off, as described above; double clicking the
+left mouse button is the same as Enter.
+
+<X>\
+Toggle 'exclude' mode on or off - when toggled on, only those image pixels
+which match the active color are displayed.
+
+<Y>\
+Toggle 'exclude' range on or off - similar to <X>, but all pixels matching
+colors in the range of the two color registers are displayed.
+
+<N>\
+Make a negative color palette - will convert only current color if in 'x'
+mode or range between editors in 'y' mode or entire palette if in "normal"
+mode.
+
+<!>\
+<@>     <\">       (English keyboard)  <u-grave> (French keyboard)\
+<#>  <pound sign> (English keyboard)     <$>    (French keyboard)\
+Swap R<->G, G<->B, and R<->B columns. <!>, <@>, and <#> are shifted 1, 2,
+and 3, which you may find easier to remember.
+
+<U>\
+Undoes the last palette editor command.  Will undo all the way to the
+beginning of the current session.
+
+<E>\
+Redoes the undone palette editor commands.
+
+<F>\
+Toggles "Freestyle mode" on and off (Freestyle mode changes a range of
+palette values smoothly from a center value outward).
+With your cursor inside the palette box, press the <F> key to enter
+Freestyle mode.  A default range of colors will be selected for you
+centered at the cursor (the ends of the color range are noted by putting
+dashed lines around the corresponding palette values). While in Freestyle
+mode:
+
+ Moving the mouse changes the location of the range of colors that are
+ affected.
+
+ Control-Insert/Delete or the shifted-right-mouse-button changes the
+ size of the affected palette range.
+
+ The normal color editing keys (R,G,B,1-6, etc) set the central color
+ of the affected palette range.
+
+ Pressing ENTER or double-clicking the left mouse button makes the
+ palette changes permanent (if you don't perform this step, any
+ palette changes disappear when you press the <F> key again to exit
+ freestyle mode).
+
+ For more details see {Freestyle mode tutorial}
+;
+;
+~Topic=Freestyle mode tutorial
+It can be confusing working out what's going on in freestyle mode
+so here's a quick walk through...\
+
+Freestyle palette editing is intended to be a way of colouring an image in
+an intuitive fashion with the minimum of keyboard usage. In fact everything is
+controllable with the mouse, as the following shows:
+
+To start with, generate a plasma type fractal as it has all 256 colours on
+screen at once. Now bring up the palette editor and press 'w' to set up
+a greyscale palette as a blank canvas on which to splash some colour.
+Pressing 'f' puts us in freestyle mode... crosshairs appear on the screen and
+a colour band is applied, centred on the cursor. Although, at the moment,
+the colour of this band is grey and you won't see much!
+
+In order to change the colour of the band, hold down the left mouse button and
+drag up and down.  This changes the amount of red in the band. You'll see the
+values change in the status box above the palette grid. Double clicking the
+right mouse button changes the colour component that's varied in an r-g-b-r-
+cycle.... try it out and conjure up any shade you like!
+
+To vary the width of the band, drag up and down with the right button held down.
+Slower machines may show some 'lag' during this operation, especially if they
+have no math co-processor, so watch out as the mouse movements get buffered.
+
+Once you've got the band in a satisfactory position then double click the left
+button to fix it in place.
+Continue like this for a while, adding different colours to the grey palette.6
+You'll notice how the band relates to the existing colour, the RGB values give
+the middle colour which are then smoothly shaded out to the colours at the ends
+of the band. Tthis can lead to some sudden jumps in the shading as the band is
+moved about the screen and the edges come to overlap different areas of colour.
+
+For really violent jumps in shading try starting with an image that has areas
+that change chaotically, such as a Mandlbrot set. You'll see what I mean when
+you move the cross hairs into an area close to the 'lake' where the change in
+value from one pixel to the next is sudden, chaotic and large. Watch out! the
+strobing effect can be somewhat disturbing. This is nothing to worry about but
+just a consequence of the manipulation of the palette and the way in which
+the colour bands are calculated.
+
+I hope that you'll find this a useful tool in colouring an image. Remember that
+the 'h' key can be used to hide the palette box and expose the whole image.
+;
+~Topic=Palette Editing Command Summary, Label=HELPXHAIR
+; This topic is online only.
+
+~Format-
+  See {Palette Editing Commands} for full documentation.
+
+  F1               HELP! (Enter help mode and display this screen)
+  Esc              Exit from palette editing mode
+  h                Hide/unhide the palette frame
+  \24 \25 \27 \26          Move the cross-hair cursor around. Control-Cursor keys
+                   move faster. A mouse can also be used to move around.
+  r or g or b      Select the the Red, Green, or Blue component of the
+                   active color register for subsequent commands
+  Insert or Delete Select previous or next color component in active register
+  + or -           Increase or decrease the active color component by 1
+  Pageup or Pagedn Increase or decrease the active color component by 5;
+                   Moving the mouse up/down with left button held is the same
+  0 1 2 3 4 5 6    Set active color component to 0 10 20 ... 60
+  Space            Select the other color register as the active one
+  , or .           Rotate the palette one step
+  < or >           Rotate the palette continuously (until next keystroke)
+  c                Enter Color-Cycling Mode (see {=HELPCYCLING Color Cycling Commands})
+  =                Create a smoothly shaded range of colors
+  m                Set the gamma value for '='.
+~FF
+  d                Duplicate the inactive color register in active color
+  t                Stripe-shade; after hitting 't', hit a number from 2 to 9
+                   which is used as stripe width
+  Shift-F2,F3,..F9 Store the current palette in a temporary save area
+                   associated with the function key
+  F2,F3,...,F9     Restore the palette from a temporary save area
+  w                Convert palette (or current exclude range) to gray-scale
+  \\                Move or resize the palette frame
+  i                Invert frame colors, useful with dark colors
+  a                Toggle 'auto' mode on or off - when on, the active color
+                   register follows the cursor; when off, Enter must be hit
+                   to set the register to the color under the cursor
+  Enter            Only useful when 'auto' is off, as described above; double
+                   clicking the left mouse button is the same as Enter
+  x                Toggle 'exclude' mode on or off
+  y                Toggle 'exclude' range on or off
+  o                Set the 'cyclerange' (range affected by color cycling
+                   commands) to the range of the two registers
+  n                Make a negative color palette
+  u                Undoes the last command
+  e                Redoes the last undone command
+~FF
+  !                Swap red and green columns
+  @ \" or u-grave   Swap green and blue columns
+  # pound or $     Swap red and blue columns
+  f                Toggle Freestyle Palette-Editing Mode.  See
+                   {Palette Editing Commands} for details.
+
+;
+;
+; Fractal Types:
+~Include help2.src
+;
+; Doodads, 3D:
+~Include help3.src
+;
+; Parameters, Video Adapters & Modes:
+~Include help4.src
+;
+; The rest:
+~Include help5.src
+;
+;

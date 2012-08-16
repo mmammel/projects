@@ -1,0 +1,4 @@
+UseIntern.java:1: class UserIntern is public, should be declared in a file named UserIntern.java
+public class UserIntern
+       ^
+1 error

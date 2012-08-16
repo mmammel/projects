@@ -1,0 +1,107 @@
+<Score>
+    <UserInfo>
+        <IPAddress>10.254.77.205</IPAddress>
+        <DesktopScoreID>1</DesktopScoreID>
+        <FirstName>Q</FirstName>
+        <LastName>Q</LastName>
+        <ID>Q</ID>
+    </UserInfo>
+    <TestInfo>
+        <Datfile>en_inl.dbf</Datfile>
+        <Stsfile>EN_INLrm.dbf</Stsfile>
+        <Test>LIGHT INDUSTRIAL - RULER - METRIC UNITS</Test>
+        <Type>1</Type>
+        <Date>20080722</Date>
+        <DateString>07/22/08</DateString>
+        <TimeStart>10:56</TimeStart>
+        <TimeElapsed>1</TimeElapsed>
+    </TestInfo>
+    <SummaryInfo>
+        <ScoreTotal>0</ScoreTotal>
+        <ScoreBeg>0</ScoreBeg>
+        <ScoreInt>999</ScoreInt>
+        <ScoreAdv>999</ScoreAdv>
+        <NumTopics>1</NumTopics>
+    </SummaryInfo>
+    <Topics>
+        <Topic>
+            <Name>IDENTIFY MEASUREMENT</Name>
+            <Score>0</Score>
+        </Topic>
+    </Topics>
+    <OtherMetrics>
+        <Gross>0.0</Gross>
+        <Errors>0.0</Errors>
+        <AdjErrors>0.0</AdjErrors>
+        <Net>0.0</Net>
+        <Grade>
+        </Grade>
+        <Age>0</Age>
+    </OtherMetrics>
+    <Details>
+        <Question>
+            <Qnum>1</Qnum>
+            <TimeTaken>7</TimeTaken>
+            <Qnid>Q096</Qnid>
+            <Question>Metric Ruler - Identify Measurement</Question>
+            <Final>Incorrect</Final>
+            <Wrong>User selected answer A.</Wrong>
+            <Level>BEG</Level>
+            <Topic>IDENTIFY MEASUREMENT</Topic>
+            <Comments>
+            </Comments>
+        </Question>
+        <Question>
+            <Qnum>2</Qnum>
+            <TimeTaken>1</TimeTaken>
+            <Qnid>Q097</Qnid>
+            <Question>Metric Ruler - Identify Measurement</Question>
+            <Final>Incomplete</Final>
+            <Wrong>
+            </Wrong>
+            <Level>BEG</Level>
+            <Topic>IDENTIFY MEASUREMENT</Topic>
+            <Comments>
+            </Comments>
+        </Question>
+        <Question>
+            <Qnum>3</Qnum>
+            <TimeTaken>0</TimeTaken>
+            <Qnid>Q098</Qnid>
+            <Question>Metric Ruler - Identify Measurement</Question>
+            <Final>Incomplete</Final>
+            <Wrong>
+            </Wrong>
+            <Level>BEG</Level>
+            <Topic>IDENTIFY MEASUREMENT</Topic>
+            <Comments>
+            </Comments>
+        </Question>
+        <Question>
+            <Qnum>4</Qnum>
+            <TimeTaken>1</TimeTaken>
+            <Qnid>Q099</Qnid>
+            <Question>Metric Ruler - Identify Measurement</Question>
+            <Final>Incomplete</Final>
+            <Wrong>
+            </Wrong>
+            <Level>BEG</Level>
+            <Topic>IDENTIFY MEASUREMENT</Topic>
+            <Comments>
+            </Comments>
+        </Question>
+        <Question>
+            <Qnum>5</Qnum>
+            <TimeTaken>0</TimeTaken>
+            <Qnid>Q100</Qnid>
+            <Question>Metric Ruler - Identify Measurement</Question>
+            <Final>Incomplete</Final>
+            <Wrong>
+            </Wrong>
+            <Level>BEG</Level>
+            <Topic>IDENTIFY MEASUREMENT</Topic>
+            <Comments>
+            </Comments>
+        </Question>
+    </Details>
+</Score>

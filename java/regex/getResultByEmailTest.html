@@ -1,0 +1,30 @@
+<html>
+<body>
+<form name="GetReport" action="https://gamma.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ReportRetrieval" method="post">
+<table>
+<tr><td>Account:</td>
+<td><input name="ID" value="[acctID]"></td>
+</tr>
+<tr><td>Username:</td>
+<td><input name="username" value="[username]"></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td>
+<input type="password" name="password" value=""></td></tr>
+<tr><td>Tracking ID (email):</td><td>
+<input name="trackingid" value="[trackingid]"></td></tr><tr>
+<td>Format:</td><td>
+<select name="format">
+  <option value="html">HTML</option>
+<option value="pdf">PDF</option>
+<option value="xml">XML</option>
+<option value="hr-xml">HR-XML</option>
+<option value="csv">CSV</option>
+</select>
+</td></tr>
+</table>
+<input type="submit" name="submit_login" value="Get the Report">
+</form>
+</body>
+</html>

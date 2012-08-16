@@ -1,0 +1,1645 @@
+--------
+| RULE |
+--------
+[ MAP S51 TO $D73 ]
+assignSrc: MAP S51
+target: TO $D73
+Processing token: "MAP"
+Processing token: "S51"
+
+
+#S51
+--------
+| RULE |
+--------
+[ MAP S562 TO $D176 ]
+assignSrc: MAP S562
+target: TO $D176
+Processing token: "MAP"
+Processing token: "S562"
+
+
+#S562
+--------
+| RULE |
+--------
+[ MAP S564 TO D176 ]
+assignSrc: MAP S564
+target: TO D176
+Processing token: "MAP"
+Processing token: "S564"
+
+
+#S564
+--------
+| RULE |
+--------
+[ MAP S566 TO D176 ]
+assignSrc: MAP S566
+target: TO D176
+Processing token: "MAP"
+Processing token: "S566"
+
+
+#S566
+--------
+| RULE |
+--------
+[ MAP S537 TO $D164 ]
+assignSrc: MAP S537
+target: TO $D164
+Processing token: "MAP"
+Processing token: "S537"
+
+
+#S537
+--------
+| RULE |
+--------
+[ MAP S1277 TO D188 ]
+assignSrc: MAP S1277
+target: TO D188
+Processing token: "MAP"
+Processing token: "S1277"
+
+
+#S1277
+--------
+| RULE |
+--------
+[ MAP 'Y' TO $ZFLAG ]
+assignSrc: MAP 'Y'
+target: TO $ZFLAG
+Found a single quote in rule: MAP 'Y'
+Appending: "Y"
+Processing token: "MAP"
+Processing token: "'Y'"
+
+
+"Y"
+--------
+| RULE |
+--------
+[ MAP S562 TO $D171 ]
+assignSrc: MAP S562
+target: TO $D171
+Processing token: "MAP"
+Processing token: "S562"
+
+
+#S562
+--------
+| RULE |
+--------
+[ MAP S564 TO D171 ]
+assignSrc: MAP S564
+target: TO D171
+Processing token: "MAP"
+Processing token: "S564"
+
+
+#S564
+--------
+| RULE |
+--------
+[ MAP S566 TO D171 ]
+assignSrc: MAP S566
+target: TO D171
+Processing token: "MAP"
+Processing token: "S566"
+
+
+#S566
+--------
+| RULE |
+--------
+[ MAP S562 TO $D175 ]
+assignSrc: MAP S562
+target: TO $D175
+Processing token: "MAP"
+Processing token: "S562"
+
+
+#S562
+--------
+| RULE |
+--------
+[ MAP S564 TO D175 ]
+assignSrc: MAP S564
+target: TO D175
+Processing token: "MAP"
+Processing token: "S564"
+
+
+#S564
+--------
+| RULE |
+--------
+[ MAP S566 TO D175 ]
+assignSrc: MAP S566
+target: TO D175
+Processing token: "MAP"
+Processing token: "S566"
+
+
+#S566
+--------
+| RULE |
+--------
+[ MAP S38 TO $S38 ]
+assignSrc: MAP S38
+target: TO $S38
+Processing token: "MAP"
+Processing token: "S38"
+
+
+#S38
+--------
+| RULE |
+--------
+[ MAP 'ED' TO D95 ]
+assignSrc: MAP 'ED'
+target: TO D95
+Found a single quote in rule: MAP 'ED'
+Appending: "E"
+Appending: "D"
+Processing token: "MAP"
+Processing token: "'ED'"
+
+
+"ED"
+--------
+| RULE |
+--------
+[ MAP '019' TO D105 ]
+assignSrc: MAP '019'
+target: TO D105
+Found a single quote in rule: MAP '019'
+Appending: "0"
+Appending: "1"
+Appending: "9"
+Processing token: "MAP"
+Processing token: "'019'"
+
+
+"019"
+--------
+| RULE |
+--------
+[ MAP 'EDI' TO D106 ]
+assignSrc: MAP 'EDI'
+target: TO D106
+Found a single quote in rule: MAP 'EDI'
+Appending: "E"
+Appending: "D"
+Appending: "I"
+Processing token: "MAP"
+Processing token: "'EDI'"
+
+
+"EDI"
+--------
+| RULE |
+--------
+[ MAP S40 TO $S40 ]
+assignSrc: MAP S40
+target: TO $S40
+Processing token: "MAP"
+Processing token: "S40"
+
+
+#S40
+--------
+| RULE |
+--------
+[ MAP '001' TO D213 ]
+assignSrc: MAP '001'
+target: TO D213
+Found a single quote in rule: MAP '001'
+Appending: "0"
+Appending: "0"
+Appending: "1"
+Processing token: "MAP"
+Processing token: "'001'"
+
+
+"001"
+--------
+| RULE |
+--------
+[ MAP S38 TO D214 ]
+assignSrc: MAP S38
+target: TO D214
+Processing token: "MAP"
+Processing token: "S38"
+
+
+#S38
+--------
+| RULE |
+--------
+[ MAP S40 TO D216 ]
+assignSrc: MAP S40
+target: TO D216
+Processing token: "MAP"
+Processing token: "S40"
+
+
+#S40
+--------
+| RULE |
+--------
+[ MAP trading partner & ':' TO D78 ]
+assignSrc: MAP trading partner & ':'
+target: TO D78
+Found a single quote in rule: MAP trading partner & ':'
+Appending: ":"
+Processing token: "MAP"
+Processing token: "trading"
+Found an unexpected token: "trading"
+Processing token: "partner"
+Found an unexpected token: "partner"
+Processing token: "&"
+Processing token: "':'"
+
+
+trading partner + ":"
+--------
+| RULE |
+--------
+[ MAP S532 TO $D159 ]
+assignSrc: MAP S532
+target: TO $D159
+Processing token: "MAP"
+Processing token: "S532"
+
+
+#S532
+--------
+| RULE |
+--------
+[ MAP S531 TO $D160 ]
+assignSrc: MAP S531
+target: TO $D160
+Processing token: "MAP"
+Processing token: "S531"
+
+
+#S531
+--------
+| RULE |
+--------
+[ MAP $LINECOUNT + 1 TO $LINECOUNT ]
+assignSrc: MAP $LINECOUNT + 1
+target: TO $LINECOUNT
+Processing token: "MAP"
+Processing token: "$LINECOUNT"
+Processing token: "+"
+Processing token: "1"
+Found an unexpected token: "1"
+
+
+LINECOUNT + 1
+--------
+| RULE |
+--------
+[ MAP S788 TO $S788 ]
+assignSrc: MAP S788
+target: TO $S788
+Processing token: "MAP"
+Processing token: "S788"
+
+
+#S788
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S789 using the list named 'CA_UOM_IN' ; TO $S789 ]
+assignSrc: MAP generic synonym of source S789 using the list named 'CA_UOM_IN' ;
+target: TO $S789
+Found a single quote in rule: MAP generic synonym of source S789 using the list named 'CA_UOM_IN' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "U"
+Appending: "O"
+Appending: "M"
+Appending: "_"
+Appending: "I"
+Appending: "N"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S789_Syn;
+
+select TEXT1 into S789_Syn from CODELIST where NAME = &quot;CA_UOM_IN&quot; and SENDERCODE = #S789;
+
+S789_Syn
+--------
+| RULE |
+--------
+[ MAP 'X' TO $PRICEFLAG $AMNTFLAG $VNFLAG $INFLAG $UNFLAG ]
+assignSrc: MAP 'X'
+target: TO $PRICEFLAG $AMNTFLAG $VNFLAG $INFLAG $UNFLAG
+Found a single quote in rule: MAP 'X'
+Appending: "X"
+Processing token: "MAP"
+Processing token: "'X'"
+
+
+"X"
+--------
+| RULE |
+--------
+[ MAP S790 * S788 TO $S790 ]
+assignSrc: MAP S790 * S788
+target: TO $S790
+Processing token: "MAP"
+Processing token: "S790"
+Processing token: "*"
+Processing token: "S788"
+
+
+#S790 * #S788
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S792 using the list named 'CA_P19QUAL' ; TO D457 $S792 ]
+assignSrc: MAP generic synonym of source S792 using the list named 'CA_P19QUAL' ;
+target: TO D457 $S792
+Found a single quote in rule: MAP generic synonym of source S792 using the list named 'CA_P19QUAL' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "P"
+Appending: "1"
+Appending: "9"
+Appending: "Q"
+Appending: "U"
+Appending: "A"
+Appending: "L"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S792_Syn;
+
+select TEXT1 into S792_Syn from CODELIST where NAME = &quot;CA_P19QUAL&quot; and SENDERCODE = #S792;
+
+S792_Syn
+--------
+| RULE |
+--------
+[ MAP S793 TO D458 ]
+assignSrc: MAP S793
+target: TO D458
+Processing token: "MAP"
+Processing token: "S793"
+
+
+#S793
+--------
+| RULE |
+--------
+[ MAP S795 TO D458 $S795 ]
+assignSrc: MAP S795
+target: TO D458 $S795
+Processing token: "MAP"
+Processing token: "S795"
+
+
+#S795
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S794 using the list named 'CA_P19QUAL' ; TO D457 $S794 ]
+assignSrc: MAP generic synonym of source S794 using the list named 'CA_P19QUAL' ;
+target: TO D457 $S794
+Found a single quote in rule: MAP generic synonym of source S794 using the list named 'CA_P19QUAL' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "P"
+Appending: "1"
+Appending: "9"
+Appending: "Q"
+Appending: "U"
+Appending: "A"
+Appending: "L"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S794_Syn;
+
+select TEXT1 into S794_Syn from CODELIST where NAME = &quot;CA_P19QUAL&quot; and SENDERCODE = #S794;
+
+S794_Syn
+--------
+| RULE |
+--------
+[ MAP S797 TO D458 ]
+assignSrc: MAP S797
+target: TO D458
+Processing token: "MAP"
+Processing token: "S797"
+
+
+#S797
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S796 using the list named 'CA_P19QUAL' ; TO D457 $S796 ]
+assignSrc: MAP generic synonym of source S796 using the list named 'CA_P19QUAL' ;
+target: TO D457 $S796
+Found a single quote in rule: MAP generic synonym of source S796 using the list named 'CA_P19QUAL' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "P"
+Appending: "1"
+Appending: "9"
+Appending: "Q"
+Appending: "U"
+Appending: "A"
+Appending: "L"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S796_Syn;
+
+select TEXT1 into S796_Syn from CODELIST where NAME = &quot;CA_P19QUAL&quot; and SENDERCODE = #S796;
+
+S796_Syn
+--------
+| RULE |
+--------
+[ MAP S907 * S788 TO $S907 ]
+assignSrc: MAP S907 * S788
+target: TO $S907
+Processing token: "MAP"
+Processing token: "S907"
+Processing token: "*"
+Processing token: "S788"
+
+
+#S907 * #S788
+--------
+| RULE |
+--------
+[ MAP $LINECOUNT TO D265 ]
+assignSrc: MAP $LINECOUNT
+target: TO D265
+Processing token: "MAP"
+Processing token: "$LINECOUNT"
+
+
+LINECOUNT
+--------
+| RULE |
+--------
+[ MAP $S788 TO D269 ]
+assignSrc: MAP $S788
+target: TO D269
+Processing token: "MAP"
+Processing token: "$S788"
+
+
+S788
+--------
+| RULE |
+--------
+[ MAP $S789 TO D270 ]
+assignSrc: MAP $S789
+target: TO D270
+Processing token: "MAP"
+Processing token: "$S789"
+
+
+S789
+--------
+| RULE |
+--------
+[ MAP S790 TO D274 ]
+assignSrc: MAP S790
+target: TO D274
+Processing token: "MAP"
+Processing token: "S790"
+
+
+#S790
+--------
+| RULE |
+--------
+[ MAP $S790 TO D276 ]
+assignSrc: MAP $S790
+target: TO D276
+Processing token: "MAP"
+Processing token: "$S790"
+
+
+S790
+--------
+| RULE |
+--------
+[ MAP 'Y' TO $PRICEFLAG ]
+assignSrc: MAP 'Y'
+target: TO $PRICEFLAG
+Found a single quote in rule: MAP 'Y'
+Appending: "Y"
+Processing token: "MAP"
+Processing token: "'Y'"
+
+
+"Y"
+--------
+| RULE |
+--------
+[ MAP S907 TO D274 ]
+assignSrc: MAP S907
+target: TO D274
+Processing token: "MAP"
+Processing token: "S907"
+
+
+#S907
+--------
+| RULE |
+--------
+[ MAP $S907 TO D276 ]
+assignSrc: MAP $S907
+target: TO D276
+Processing token: "MAP"
+Processing token: "$S907"
+
+
+S907
+--------
+| RULE |
+--------
+[ MAP 'Y' TO $PRICEFLAG ]
+assignSrc: MAP 'Y'
+target: TO $PRICEFLAG
+Found a single quote in rule: MAP 'Y'
+Appending: "Y"
+Processing token: "MAP"
+Processing token: "'Y'"
+
+
+"Y"
+--------
+| RULE |
+--------
+[ MAP 'Z030' TO D490 ]
+assignSrc: MAP 'Z030'
+target: TO D490
+Found a single quote in rule: MAP 'Z030'
+Appending: "Z"
+Appending: "0"
+Appending: "3"
+Appending: "0"
+Processing token: "MAP"
+Processing token: "'Z030'"
+
+
+"Z030"
+--------
+| RULE |
+--------
+[ MAP 'EN' TO D491 ]
+assignSrc: MAP 'EN'
+target: TO D491
+Found a single quote in rule: MAP 'EN'
+Appending: "E"
+Appending: "N"
+Processing token: "MAP"
+Processing token: "'EN'"
+
+
+"EN"
+--------
+| RULE |
+--------
+[ MAP S1015 TO D500 ]
+assignSrc: MAP S1015
+target: TO D500
+Processing token: "MAP"
+Processing token: "S1015"
+
+
+#S1015
+--------
+| RULE |
+--------
+[ MAP '/' TO D501 ]
+assignSrc: MAP '/'
+target: TO D501
+Found a single quote in rule: MAP '/'
+Appending: "/"
+Processing token: "MAP"
+Processing token: "'/'"
+
+
+"/"
+--------
+| RULE |
+--------
+[ MAP 'Z030' TO D490 ]
+assignSrc: MAP 'Z030'
+target: TO D490
+Found a single quote in rule: MAP 'Z030'
+Appending: "Z"
+Appending: "0"
+Appending: "3"
+Appending: "0"
+Processing token: "MAP"
+Processing token: "'Z030'"
+
+
+"Z030"
+--------
+| RULE |
+--------
+[ MAP 'EN' TO D491 ]
+assignSrc: MAP 'EN'
+target: TO D491
+Found a single quote in rule: MAP 'EN'
+Appending: "E"
+Appending: "N"
+Processing token: "MAP"
+Processing token: "'EN'"
+
+
+"EN"
+--------
+| RULE |
+--------
+[ MAP 'ITEM RATE/ALLOWANCE AMNT: ' & S790 & '/' & S1106 TO D500 ]
+assignSrc: MAP 'ITEM RATE/ALLOWANCE AMNT: ' & S790 & '/' & S1106
+target: TO D500
+Found a single quote in rule: MAP 'ITEM RATE/ALLOWANCE AMNT: ' & S790 & '/' & S1106
+Appending: "I"
+Appending: "T"
+Appending: "E"
+Appending: "M"
+Appending: " "
+Appending: "R"
+Appending: "A"
+Appending: "T"
+Appending: "E"
+Appending: "/"
+Appending: "A"
+Appending: "L"
+Appending: "L"
+Appending: "O"
+Appending: "W"
+Appending: "A"
+Appending: "N"
+Appending: "C"
+Appending: "E"
+Appending: " "
+Appending: "A"
+Appending: "M"
+Appending: "N"
+Appending: "T"
+Appending: ":"
+Appending: " "
+Found a single quote in rule: MAP 'ITEM RATE/ALLOWANCE AMNT: ' & S790 & '/' & S1106
+Appending: "/"
+Processing token: "MAP"
+Processing token: "'ITEM RATE/ALLOWANCE AMNT: '"
+Processing token: "&"
+Processing token: "S790"
+Processing token: "&"
+Processing token: "'/'"
+Processing token: "&"
+Processing token: "S1106"
+
+
+"ITEM RATE/ALLOWANCE AMNT: " + #S790 + "/" + #S1106
+--------
+| RULE |
+--------
+[ MAP '/' TO D501 ]
+assignSrc: MAP '/'
+target: TO D501
+Found a single quote in rule: MAP '/'
+Appending: "/"
+Processing token: "MAP"
+Processing token: "'/'"
+
+
+"/"
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S798 using the list named 'CA_P19QUAL' ; TO D457 $S798 ]
+assignSrc: MAP generic synonym of source S798 using the list named 'CA_P19QUAL' ;
+target: TO D457 $S798
+Found a single quote in rule: MAP generic synonym of source S798 using the list named 'CA_P19QUAL' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "P"
+Appending: "1"
+Appending: "9"
+Appending: "Q"
+Appending: "U"
+Appending: "A"
+Appending: "L"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S798_Syn;
+
+select TEXT1 into S798_Syn from CODELIST where NAME = &quot;CA_P19QUAL&quot; and SENDERCODE = #S798;
+
+S798_Syn
+--------
+| RULE |
+--------
+[ MAP S799 TO D458 ]
+assignSrc: MAP S799
+target: TO D458
+Processing token: "MAP"
+Processing token: "S799"
+
+
+#S799
+--------
+| RULE |
+--------
+[ MAP '-' TO D363 ]
+assignSrc: MAP '-'
+target: TO D363
+Found a single quote in rule: MAP '-'
+Appending: "-"
+Processing token: "MAP"
+Processing token: "'-'"
+
+
+"-"
+--------
+| RULE |
+--------
+[ MAP 'ZSAC' TO D364 ]
+assignSrc: MAP 'ZSAC'
+target: TO D364
+Found a single quote in rule: MAP 'ZSAC'
+Appending: "Z"
+Appending: "S"
+Appending: "A"
+Appending: "C"
+Processing token: "MAP"
+Processing token: "'ZSAC'"
+
+
+"ZSAC"
+--------
+| RULE |
+--------
+[ MAP ( $AMNT/100 ) TO D371 ]
+assignSrc: MAP ( $AMNT/100 )
+target: TO D371
+Processing token: "MAP"
+Processing token: "("
+Processing token: "$AMNT"
+Processing token: "/"
+Processing token: "100"
+Found an unexpected token: "100"
+Processing token: ")"
+
+
+( AMNT / 100 )
+--------
+| RULE |
+--------
+[ MAP S1108 TO D367 ]
+assignSrc: MAP S1108
+target: TO D367
+Processing token: "MAP"
+Processing token: "S1108"
+
+
+#S1108
+--------
+| RULE |
+--------
+[ MAP 'X' TO $AMNTFLAG ]
+assignSrc: MAP 'X'
+target: TO $AMNTFLAG
+Found a single quote in rule: MAP 'X'
+Appending: "X"
+Processing token: "MAP"
+Processing token: "'X'"
+
+
+"X"
+--------
+| RULE |
+--------
+[ MAP S1106 TO $AMNT ]
+assignSrc: MAP S1106
+target: TO $AMNT
+Processing token: "MAP"
+Processing token: "S1106"
+
+
+#S1106
+--------
+| RULE |
+--------
+[ MAP 'Y' TO $AMNTFLAG ]
+assignSrc: MAP 'Y'
+target: TO $AMNTFLAG
+Found a single quote in rule: MAP 'Y'
+Appending: "Y"
+Processing token: "MAP"
+Processing token: "'Y'"
+
+
+"Y"
+--------
+| RULE |
+--------
+[ MAP S1109 * $S788 TO $AMNT ]
+assignSrc: MAP S1109 * $S788
+target: TO $AMNT
+Processing token: "MAP"
+Processing token: "S1109"
+Processing token: "*"
+Processing token: "$S788"
+
+
+#S1109 * S788
+--------
+| RULE |
+--------
+[ MAP 'Y' TO $AMNTFLAG ]
+assignSrc: MAP 'Y'
+target: TO $AMNTFLAG
+Found a single quote in rule: MAP 'Y'
+Appending: "Y"
+Processing token: "MAP"
+Processing token: "'Y'"
+
+
+"Y"
+--------
+| RULE |
+--------
+[ MAP S535 TO $D162 ]
+assignSrc: MAP S535
+target: TO $D162
+Processing token: "MAP"
+Processing token: "S535"
+
+
+#S535
+--------
+| RULE |
+--------
+[ MAP S539 TO $D166 ]
+assignSrc: MAP S539
+target: TO $D166
+Processing token: "MAP"
+Processing token: "S539"
+
+
+#S539
+--------
+| RULE |
+--------
+[ MAP S562 TO $D170 ]
+assignSrc: MAP S562
+target: TO $D170
+Processing token: "MAP"
+Processing token: "S562"
+
+
+#S562
+--------
+| RULE |
+--------
+[ MAP S564 TO D170 ]
+assignSrc: MAP S564
+target: TO D170
+Processing token: "MAP"
+Processing token: "S564"
+
+
+#S564
+--------
+| RULE |
+--------
+[ MAP S566 TO D170 ]
+assignSrc: MAP S566
+target: TO D170
+Processing token: "MAP"
+Processing token: "S566"
+
+
+#S566
+--------
+| RULE |
+--------
+[ MAP 'AG' TO D154 ]
+assignSrc: MAP 'AG'
+target: TO D154
+Found a single quote in rule: MAP 'AG'
+Appending: "A"
+Appending: "G"
+Processing token: "MAP"
+Processing token: "'AG'"
+
+
+"AG"
+--------
+| RULE |
+--------
+[ MAP S527 TO D156 ]
+assignSrc: MAP S527
+target: TO D156
+Processing token: "MAP"
+Processing token: "S527"
+
+
+#S527
+--------
+| RULE |
+--------
+[ MAP 'WE' TO D154 ]
+assignSrc: MAP 'WE'
+target: TO D154
+Found a single quote in rule: MAP 'WE'
+Appending: "W"
+Appending: "E"
+Processing token: "MAP"
+Processing token: "'WE'"
+
+
+"WE"
+--------
+| RULE |
+--------
+[ MAP S525 TO $D157 ]
+assignSrc: MAP S525
+target: TO $D157
+Processing token: "MAP"
+Processing token: "S525"
+
+
+#S525
+--------
+| RULE |
+--------
+[ MAP S527 TO D156 ]
+assignSrc: MAP S527
+target: TO D156
+Processing token: "MAP"
+Processing token: "S527"
+
+
+#S527
+--------
+| RULE |
+--------
+[ MAP S540 TO $D185 ]
+assignSrc: MAP S540
+target: TO $D185
+Processing token: "MAP"
+Processing token: "S540"
+
+
+#S540
+--------
+| RULE |
+--------
+[ MAP S531 TO $D158 ]
+assignSrc: MAP S531
+target: TO $D158
+Processing token: "MAP"
+Processing token: "S531"
+
+
+#S531
+--------
+| RULE |
+--------
+[ MAP S72 TO D76 D75 ]
+assignSrc: MAP S72
+target: TO D76 D75
+Processing token: "MAP"
+Processing token: "S72"
+
+
+#S72
+--------
+| RULE |
+--------
+[ MAP S538 TO $D165 ]
+assignSrc: MAP S538
+target: TO $D165
+Processing token: "MAP"
+Processing token: "S538"
+
+
+#S538
+--------
+| RULE |
+--------
+[ MAP S534 TO $D161 ]
+assignSrc: MAP S534
+target: TO $D161
+Processing token: "MAP"
+Processing token: "S534"
+
+
+#S534
+--------
+| RULE |
+--------
+[ MAP '066' TO D828 ]
+assignSrc: MAP '066'
+target: TO D828
+Found a single quote in rule: MAP '066'
+Appending: "0"
+Appending: "6"
+Appending: "6"
+Processing token: "MAP"
+Processing token: "'066'"
+
+
+"066"
+--------
+| RULE |
+--------
+[ MAP $Idoc_num TO D829 ]
+assignSrc: MAP $Idoc_num
+target: TO D829
+Processing token: "MAP"
+Processing token: "$Idoc_num"
+
+
+Idoc_num
+--------
+| RULE |
+--------
+[ MAP '001' TO D833 ]
+assignSrc: MAP '001'
+target: TO D833
+Found a single quote in rule: MAP '001'
+Appending: "0"
+Appending: "0"
+Appending: "1"
+Processing token: "MAP"
+Processing token: "'001'"
+
+
+"001"
+--------
+| RULE |
+--------
+[ MAP S2288 TO D834 ]
+assignSrc: MAP S2288
+target: TO D834
+Processing token: "MAP"
+Processing token: "S2288"
+
+
+#S2288
+--------
+| RULE |
+--------
+[ MAP 'ZEDI' TO D246 ]
+assignSrc: MAP 'ZEDI'
+target: TO D246
+Found a single quote in rule: MAP 'ZEDI'
+Appending: "Z"
+Appending: "E"
+Appending: "D"
+Appending: "I"
+Processing token: "MAP"
+Processing token: "'ZEDI'"
+
+
+"ZEDI"
+--------
+| RULE |
+--------
+[ MAP 'EN' TO D247 ]
+assignSrc: MAP 'EN'
+target: TO D247
+Found a single quote in rule: MAP 'EN'
+Appending: "E"
+Appending: "N"
+Processing token: "MAP"
+Processing token: "'EN'"
+
+
+"EN"
+--------
+| RULE |
+--------
+[ MAP $D157 & ',' & $D161 & ',' & $D162 & ',' & $D164 & ',' & $D165 & $D166 TO D256 ]
+assignSrc: MAP $D157 & ',' & $D161 & ',' & $D162 & ',' & $D164 & ',' & $D165 & $D166
+target: TO D256
+Found a single quote in rule: MAP $D157 & ',' & $D161 & ',' & $D162 & ',' & $D164 & ',' & $D165 & $D166
+Appending: ","
+Found a single quote in rule: MAP $D157 & ',' & $D161 & ',' & $D162 & ',' & $D164 & ',' & $D165 & $D166
+Appending: ","
+Found a single quote in rule: MAP $D157 & ',' & $D161 & ',' & $D162 & ',' & $D164 & ',' & $D165 & $D166
+Appending: ","
+Found a single quote in rule: MAP $D157 & ',' & $D161 & ',' & $D162 & ',' & $D164 & ',' & $D165 & $D166
+Appending: ","
+Processing token: "MAP"
+Processing token: "$D157"
+Processing token: "&"
+Processing token: "','"
+Processing token: "&"
+Processing token: "$D161"
+Processing token: "&"
+Processing token: "','"
+Processing token: "&"
+Processing token: "$D162"
+Processing token: "&"
+Processing token: "','"
+Processing token: "&"
+Processing token: "$D164"
+Processing token: "&"
+Processing token: "','"
+Processing token: "&"
+Processing token: "$D165"
+Processing token: "&"
+Processing token: "$D166"
+
+
+D157 + "," + D161 + "," + D162 + "," + D164 + "," + D165 + D166
+--------
+| RULE |
+--------
+[ MAP '/' TO D257 ]
+assignSrc: MAP '/'
+target: TO D257
+Found a single quote in rule: MAP '/'
+Appending: "/"
+Processing token: "MAP"
+Processing token: "'/'"
+
+
+"/"
+--------
+| RULE |
+--------
+[ MAP S534 TO $D169 ]
+assignSrc: MAP S534
+target: TO $D169
+Processing token: "MAP"
+Processing token: "S534"
+
+
+#S534
+--------
+| RULE |
+--------
+[ MAP '000' TO D69 ]
+assignSrc: MAP '000'
+target: TO D69
+Found a single quote in rule: MAP '000'
+Appending: "0"
+Appending: "0"
+Appending: "0"
+Processing token: "MAP"
+Processing token: "'000'"
+
+
+"000"
+--------
+| RULE |
+--------
+[ MAP '001' TO D69 ]
+assignSrc: MAP '001'
+target: TO D69
+Found a single quote in rule: MAP '001'
+Appending: "0"
+Appending: "0"
+Appending: "1"
+Processing token: "MAP"
+Processing token: "'001'"
+
+
+"001"
+--------
+| RULE |
+--------
+[ MAP '004' TO D69 ]
+assignSrc: MAP '004'
+target: TO D69
+Found a single quote in rule: MAP '004'
+Appending: "0"
+Appending: "0"
+Appending: "4"
+Processing token: "MAP"
+Processing token: "'004'"
+
+
+"004"
+--------
+| RULE |
+--------
+[ MAP '002' TO D114 ]
+assignSrc: MAP '002'
+target: TO D114
+Found a single quote in rule: MAP '002'
+Appending: "0"
+Appending: "0"
+Appending: "2"
+Processing token: "MAP"
+Processing token: "'002'"
+
+
+"002"
+--------
+| RULE |
+--------
+[ MAP S272 TO D115 ]
+assignSrc: MAP S272
+target: TO D115
+Processing token: "MAP"
+Processing token: "S272"
+
+
+#S272
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S6 using the list named 'CA_SOLDTO' ; TO $SOLDTO ]
+assignSrc: MAP generic synonym of source S6 using the list named 'CA_SOLDTO' ;
+target: TO $SOLDTO
+Found a single quote in rule: MAP generic synonym of source S6 using the list named 'CA_SOLDTO' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "S"
+Appending: "O"
+Appending: "L"
+Appending: "D"
+Appending: "T"
+Appending: "O"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S6_Syn;
+
+select TEXT1 into S6_Syn from CODELIST where NAME = &quot;CA_SOLDTO&quot; and SENDERCODE = #S6;
+
+S6_Syn
+--------
+| RULE |
+--------
+[ MAP generic synonym of source S25 using the list named 'CA_SOLDTO' ; TO $SOLDTO ]
+assignSrc: MAP generic synonym of source S25 using the list named 'CA_SOLDTO' ;
+target: TO $SOLDTO
+Found a single quote in rule: MAP generic synonym of source S25 using the list named 'CA_SOLDTO' ;
+Appending: "C"
+Appending: "A"
+Appending: "_"
+Appending: "S"
+Appending: "O"
+Appending: "L"
+Appending: "D"
+Appending: "T"
+Appending: "O"
+Processing token: "MAP"
+Processing token: "generic"
+Processing token: ";"
+string [32] S25_Syn;
+
+select TEXT1 into S25_Syn from CODELIST where NAME = &quot;CA_SOLDTO&quot; and SENDERCODE = #S25;
+
+S25_Syn
+--------
+| RULE |
+--------
+[ MAP '100' TO D2 ]
+assignSrc: MAP '100'
+target: TO D2
+Found a single quote in rule: MAP '100'
+Appending: "1"
+Appending: "0"
+Appending: "0"
+Processing token: "MAP"
+Processing token: "'100'"
+
+
+"100"
+--------
+| RULE |
+--------
+[ MAP '46C' TO D4 ]
+assignSrc: MAP '46C'
+target: TO D4
+Found a single quote in rule: MAP '46C'
+Appending: "4"
+Appending: "6"
+Appending: "C"
+Processing token: "MAP"
+Processing token: "'46C'"
+
+
+"46C"
+--------
+| RULE |
+--------
+[ MAP '2' TO D6 ]
+assignSrc: MAP '2'
+target: TO D6
+Found a single quote in rule: MAP '2'
+Appending: "2"
+Processing token: "MAP"
+Processing token: "'2'"
+
+
+"2"
+--------
+| RULE |
+--------
+[ MAP 'ORDERS05' TO D10 ]
+assignSrc: MAP 'ORDERS05'
+target: TO D10
+Found a single quote in rule: MAP 'ORDERS05'
+Appending: "O"
+Appending: "R"
+Appending: "D"
+Appending: "E"
+Appending: "R"
+Appending: "S"
+Appending: "0"
+Appending: "5"
+Processing token: "MAP"
+Processing token: "'ORDERS05'"
+
+
+"ORDERS05"
+--------
+| RULE |
+--------
+[ MAP 'ORDERS' TO D12 ]
+assignSrc: MAP 'ORDERS'
+target: TO D12
+Found a single quote in rule: MAP 'ORDERS'
+Appending: "O"
+Appending: "R"
+Appending: "D"
+Appending: "E"
+Appending: "R"
+Appending: "S"
+Processing token: "MAP"
+Processing token: "'ORDERS'"
+
+
+"ORDERS"
+--------
+| RULE |
+--------
+[ MAP 'QB' TO D14 ]
+assignSrc: MAP 'QB'
+target: TO D14
+Found a single quote in rule: MAP 'QB'
+Appending: "Q"
+Appending: "B"
+Processing token: "MAP"
+Processing token: "'QB'"
+
+
+"QB"
+--------
+| RULE |
+--------
+[ MAP S30 TO D15 ]
+assignSrc: MAP S30
+target: TO D15
+Processing token: "MAP"
+Processing token: "S30"
+
+
+#S30
+--------
+| RULE |
+--------
+[ MAP S31 TO D16 ]
+assignSrc: MAP S31
+target: TO D16
+Processing token: "MAP"
+Processing token: "S31"
+
+
+#S31
+--------
+| RULE |
+--------
+[ MAP S33 TO D17 ]
+assignSrc: MAP S33
+target: TO D17
+Processing token: "MAP"
+Processing token: "S33"
+
+
+#S33
+--------
+| RULE |
+--------
+[ MAP 'EDI_D12' TO D18 ]
+assignSrc: MAP 'EDI_D12'
+target: TO D18
+Found a single quote in rule: MAP 'EDI_D12'
+Appending: "E"
+Appending: "D"
+Appending: "I"
+Appending: "_"
+Appending: "D"
+Appending: "1"
+Appending: "2"
+Processing token: "MAP"
+Processing token: "'EDI_D12'"
+
+
+"EDI_D12"
+--------
+| RULE |
+--------
+[ MAP 'KU' TO D19 ]
+assignSrc: MAP 'KU'
+target: TO D19
+Found a single quote in rule: MAP 'KU'
+Appending: "K"
+Appending: "U"
+Processing token: "MAP"
+Processing token: "'KU'"
+
+
+"KU"
+--------
+| RULE |
+--------
+[ MAP $SOLDTO TO D21 ]
+assignSrc: MAP $SOLDTO
+target: TO D21
+Processing token: "MAP"
+Processing token: "$SOLDTO"
+
+
+SOLDTO
+--------
+| RULE |
+--------
+[ MAP 'WRIGLEY-US' TO D27 ]
+assignSrc: MAP 'WRIGLEY-US'
+target: TO D27
+Found a single quote in rule: MAP 'WRIGLEY-US'
+Appending: "W"
+Appending: "R"
+Appending: "I"
+Appending: "G"
+Appending: "L"
+Appending: "E"
+Appending: "Y"
+Appending: "-"
+Appending: "U"
+Appending: "S"
+Processing token: "MAP"
+Processing token: "'WRIGLEY-US'"
+
+
+"WRIGLEY-US"
+--------
+| RULE |
+--------
+[ MAP 'KU' TO D25 ]
+assignSrc: MAP 'KU'
+target: TO D25
+Found a single quote in rule: MAP 'KU'
+Appending: "K"
+Appending: "U"
+Processing token: "MAP"
+Processing token: "'KU'"
+
+
+"KU"
+--------
+| RULE |
+--------
+[ MAP system date_time TO D30 ]
+assignSrc: MAP system date_time
+target: TO D30
+Processing token: "MAP"
+Processing token: "system"
+Found an unexpected token: "system"
+Processing token: "date_time"
+Found an unexpected token: "date_time"
+
+
+system date_time
+--------
+| RULE |
+--------
+[ MAP system date_time TO D31 ]
+assignSrc: MAP system date_time
+target: TO D31
+Processing token: "MAP"
+Processing token: "system"
+Found an unexpected token: "system"
+Processing token: "date_time"
+Found an unexpected token: "date_time"
+
+
+system date_time
+--------
+| RULE |
+--------
+[ MAP S13 TO D32 ]
+assignSrc: MAP S13
+target: TO D32
+Processing token: "MAP"
+Processing token: "S13"
+
+
+#S13
+--------
+| RULE |
+--------
+[ MAP S29 TO D33 ]
+assignSrc: MAP S29
+target: TO D33
+Processing token: "MAP"
+Processing token: "S29"
+
+
+#S29
+--------
+| RULE |
+--------
+[ MAP S38 & S34 TO D34 ]
+assignSrc: MAP S38 & S34
+target: TO D34
+Processing token: "MAP"
+Processing token: "S38"
+Processing token: "&"
+Processing token: "S34"
+
+
+#S38 + #S34
+--------
+| RULE |
+--------
+[ MAP 'X' TO $ZFLAG ]
+assignSrc: MAP 'X'
+target: TO $ZFLAG
+Found a single quote in rule: MAP 'X'
+Appending: "X"
+Processing token: "MAP"
+Processing token: "'X'"
+
+
+"X"
+--------
+| RULE |
+--------
+[ MAP 'X' TO $ZFLAG ]
+assignSrc: MAP 'X'
+target: TO $ZFLAG
+Found a single quote in rule: MAP 'X'
+Appending: "X"
+Processing token: "MAP"
+Processing token: "'X'"
+
+
+"X"
+--------
+| RULE |
+--------
+[ MAP $FOO + ( $JOMAMA & (S857 * ( $AMNT/100 )) + $BAR )- $JOMAMA TO D371 ]
+assignSrc: MAP $FOO + ( $JOMAMA & (S857 * ( $AMNT/100 )) + $BAR )- $JOMAMA
+target: TO D371
+Processing token: "MAP"
+Processing token: "$FOO"
+Processing token: "+"
+Processing token: "("
+Processing token: "$JOMAMA"
+Processing token: "&"
+Processing token: "("
+Processing token: "S857"
+Processing token: "*"
+Processing token: "("
+Processing token: "$AMNT"
+Processing token: "/"
+Processing token: "100"
+Found an unexpected token: "100"
+Processing token: ")"
+Processing token: ")"
+Processing token: "+"
+Processing token: "$BAR"
+Processing token: ")"
+Processing token: "-"
+Processing token: "$JOMAMA"
+
+
+FOO + ( JOMAMA + ( #S857 * ( AMNT / 100 ) ) + BAR ) - JOMAMA

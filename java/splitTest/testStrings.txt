@@ -1,0 +1,6 @@
+max\\,mammel,jevne,jomama
+max,mammel,jomama
+max\,mammel\.jevne
+max,a,b,c,d,
+max,,
+max,\\,

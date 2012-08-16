@@ -1,0 +1,11 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=004014FD
+eax=26A30BBA ebx=30983948 ecx=00527F90 edx=30983948 esi=3045B9B8 edi=3045B9B8
+ebp=0022CC88 esp=0022CC2C program=e:\mjm\projects\C++\dad_taxiMetric\cost.exe, pid 3584, thread main
+cs=001B ds=0023 es=0023 fs=003B gs=0000 ss=0023
+Stack trace:
+Frame     Function  Args
+0022CC88  004014FD  (00527F90, 3045B9B9, 00000008, 004014F0)
+0022CCE8  00401110  (00000001, 6116B870, 00840090, 0022CC70)
+0022CD98  61006198  (00000000, 0022CDD0, 61005510, 0022CDD0)
+61005510  61004416  (0000009C, A02404C7, E8611021, FFFFFF48)
+      8 [main] cost 3584 _cygtls::handle_exceptions: Error while dumping state (probably corrupted stack)

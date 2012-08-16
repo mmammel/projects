@@ -1,0 +1,18 @@
+Bot Log
+-------
+
+current best: ditkabot3
+
+ditkabot3:
+ diagonal bouncing for ditkabots
+ random movement for drones
+ good/bad food check/memory
+ active release
+ 
+bouncerbot:
+ up and down bouncing
+ basic eating
+ 
+ditkabot4:
+ ditkabot3 with bouncerbot movement for ditkabots
+ 

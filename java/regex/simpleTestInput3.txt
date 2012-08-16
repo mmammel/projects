@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtm
+l1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Social Sourcing</title>
+    <meta name="author" content="First Advantage Recruiting Solutions. Developed by Evan Meagher" />
+    <meta name="copyright" content="2009, First Advantage, All Rights Reserved" />
+        <meta name="description" content="Log In Page for Social Sourcing Program 2.0" />
+        <meta name="keywords" content="Social Sourcing Program, Employee Referrals, EMP, Employee Ma
+rketing Program" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/login.css"/>
+</head>
+<body>
+        <div class="container">
+        <div class="login-main">
+        <div id="fadv-invalid-login" class="invalid_login"></div>
+        <form id="fadv-main-form" method="post" name="pageForm" action="">
+            <span id="fadv-add-client-button"></span>
+            <input class="login-username" value="USERNAME" name="userName"/>
+            <input class="login-password" type="password" value="PASSWORD" name="password"/>
+            <input type="submit" class="login-register" name="REGISTER" value="REGISTER">
+            <input type="submit" class="login-submit" name="LOGIN" value="LOGIN">
+        </form>
+        </div>
+        <span id="fadv-logged-in"><a href="${optout_url}"></a></span>
+        <div class="push"></div>
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+                <div class="footer-item">&copy;2009 First Advantage</div>
+                <div class="footer-item"><a href="">FAQ</a></div>
+            <div class="footer-item"><a href="">Login Help</a></div>
+            <div class="footer-item"><a href="">About EMPowered</a></div>
+            <div class="footer-item"><a href="">Terms of Service</a></div>
+            <div class="footer-item"><a href="">Privacy Policy</a></div>
+            <div class="footer-item"><a href="">This is a test</a></div>
+        </div>
+    </div>
+</body>
+</html>

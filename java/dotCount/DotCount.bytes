@@ -1,0 +1,341 @@
+Compiled from "DotCount.java"
+public class DotCount extends java.lang.Object
+  SourceFile: "DotCount.java"
+  minor version: 0
+  major version: 49
+  Constant pool:
+const #1 = Method	#36.#48;	//  java/lang/Object."<init>":()V
+const #2 = Field	#49.#50;	//  java/lang/System.out:Ljava/io/PrintStream;
+const #3 = String	#51;	//  Usage: DotCount [old|new*] <string>
+const #4 = Method	#52.#53;	//  java/io/PrintStream.println:(Ljava/lang/String;)V
+const #5 = Method	#54.#55;	//  java/lang/String.toLowerCase:()Ljava/lang/String;
+const #6 = String	#56;	//  old
+const #7 = Method	#54.#57;	//  java/lang/String.equals:(Ljava/lang/Object;)Z
+const #8 = class	#58;	//  java/io/BufferedReader
+const #9 = class	#59;	//  java/io/FileReader
+const #10 = Method	#9.#60;	//  java/io/FileReader."<init>":(Ljava/lang/String;)V
+const #11 = Method	#8.#61;	//  java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+const #12 = Method	#8.#62;	//  java/io/BufferedReader.readLine:()Ljava/lang/String;
+const #13 = class	#63;	//  java/io/IOException
+const #14 = class	#64;	//  java/lang/StringBuilder
+const #15 = Method	#14.#48;	//  java/lang/StringBuilder."<init>":()V
+const #16 = String	#65;	//  Caught and Exception: 
+const #17 = Method	#14.#66;	//  java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+const #18 = Method	#13.#67;	//  java/io/IOException.toString:()Ljava/lang/String;
+const #19 = Method	#14.#67;	//  java/lang/StringBuilder.toString:()Ljava/lang/String;
+const #20 = class	#68;	//  java/util/Date
+const #21 = Method	#20.#48;	//  java/util/Date."<init>":()V
+const #22 = Method	#20.#69;	//  java/util/Date.getTime:()J
+const #23 = Method	#35.#70;	//  DotCount.countDots:(Ljava/lang/String;)I
+const #24 = Method	#14.#71;	//  java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+const #25 = String	#72;	//   dots.
+const #26 = Method	#35.#73;	//  DotCount.oldCountDots:(Ljava/lang/String;)I
+const #27 = String	#74;	//  Took 
+const #28 = Method	#14.#75;	//  java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+const #29 = String	#76;	//  ms
+const #30 = String	#77;	//  Running new count
+const #31 = Method	#54.#78;	//  java/lang/String.indexOf:(II)I
+const #32 = String	#79;	//  Running old count
+const #33 = Method	#54.#80;	//  java/lang/String.length:()I
+const #34 = Method	#54.#81;	//  java/lang/String.charAt:(I)C
+const #35 = class	#82;	//  DotCount
+const #36 = class	#83;	//  java/lang/Object
+const #37 = Asciz	<init>;
+const #38 = Asciz	()V;
+const #39 = Asciz	Code;
+const #40 = Asciz	LineNumberTable;
+const #41 = Asciz	main;
+const #42 = Asciz	([Ljava/lang/String;)V;
+const #43 = Asciz	countDots;
+const #44 = Asciz	(Ljava/lang/String;)I;
+const #45 = Asciz	oldCountDots;
+const #46 = Asciz	SourceFile;
+const #47 = Asciz	DotCount.java;
+const #48 = NameAndType	#37:#38;//  "<init>":()V
+const #49 = class	#84;	//  java/lang/System
+const #50 = NameAndType	#85:#86;//  out:Ljava/io/PrintStream;
+const #51 = Asciz	Usage: DotCount [old|new*] <string>;
+const #52 = class	#87;	//  java/io/PrintStream
+const #53 = NameAndType	#88:#89;//  println:(Ljava/lang/String;)V
+const #54 = class	#90;	//  java/lang/String
+const #55 = NameAndType	#91:#92;//  toLowerCase:()Ljava/lang/String;
+const #56 = Asciz	old;
+const #57 = NameAndType	#93:#94;//  equals:(Ljava/lang/Object;)Z
+const #58 = Asciz	java/io/BufferedReader;
+const #59 = Asciz	java/io/FileReader;
+const #60 = NameAndType	#37:#89;//  "<init>":(Ljava/lang/String;)V
+const #61 = NameAndType	#37:#95;//  "<init>":(Ljava/io/Reader;)V
+const #62 = NameAndType	#96:#92;//  readLine:()Ljava/lang/String;
+const #63 = Asciz	java/io/IOException;
+const #64 = Asciz	java/lang/StringBuilder;
+const #65 = Asciz	Caught and Exception: ;
+const #66 = NameAndType	#97:#98;//  append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+const #67 = NameAndType	#99:#92;//  toString:()Ljava/lang/String;
+const #68 = Asciz	java/util/Date;
+const #69 = NameAndType	#100:#101;//  getTime:()J
+const #70 = NameAndType	#43:#44;//  countDots:(Ljava/lang/String;)I
+const #71 = NameAndType	#97:#102;//  append:(I)Ljava/lang/StringBuilder;
+const #72 = Asciz	 dots.;
+const #73 = NameAndType	#45:#44;//  oldCountDots:(Ljava/lang/String;)I
+const #74 = Asciz	Took ;
+const #75 = NameAndType	#97:#103;//  append:(J)Ljava/lang/StringBuilder;
+const #76 = Asciz	ms;
+const #77 = Asciz	Running new count;
+const #78 = NameAndType	#104:#105;//  indexOf:(II)I
+const #79 = Asciz	Running old count;
+const #80 = NameAndType	#106:#107;//  length:()I
+const #81 = NameAndType	#108:#109;//  charAt:(I)C
+const #82 = Asciz	DotCount;
+const #83 = Asciz	java/lang/Object;
+const #84 = Asciz	java/lang/System;
+const #85 = Asciz	out;
+const #86 = Asciz	Ljava/io/PrintStream;;
+const #87 = Asciz	java/io/PrintStream;
+const #88 = Asciz	println;
+const #89 = Asciz	(Ljava/lang/String;)V;
+const #90 = Asciz	java/lang/String;
+const #91 = Asciz	toLowerCase;
+const #92 = Asciz	()Ljava/lang/String;;
+const #93 = Asciz	equals;
+const #94 = Asciz	(Ljava/lang/Object;)Z;
+const #95 = Asciz	(Ljava/io/Reader;)V;
+const #96 = Asciz	readLine;
+const #97 = Asciz	append;
+const #98 = Asciz	(Ljava/lang/String;)Ljava/lang/StringBuilder;;
+const #99 = Asciz	toString;
+const #100 = Asciz	getTime;
+const #101 = Asciz	()J;
+const #102 = Asciz	(I)Ljava/lang/StringBuilder;;
+const #103 = Asciz	(J)Ljava/lang/StringBuilder;;
+const #104 = Asciz	indexOf;
+const #105 = Asciz	(II)I;
+const #106 = Asciz	length;
+const #107 = Asciz	()I;
+const #108 = Asciz	charAt;
+const #109 = Asciz	(I)C;
+
+{
+public DotCount();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	invokespecial	#1; //Method java/lang/Object."<init>":()V
+   4:	return
+  LineNumberTable: 
+   line 6: 0
+
+public static void main(java.lang.String[]);
+  Code:
+   Stack=6, Locals=9, Args_size=1
+   0:	iconst_1
+   1:	istore_1
+   2:	aconst_null
+   3:	astore_2
+   4:	aconst_null
+   5:	astore_3
+   6:	lconst_0
+   7:	lstore	4
+   9:	lconst_0
+   10:	lstore	6
+   12:	aload_0
+   13:	arraylength
+   14:	iconst_2
+   15:	if_icmpgt	23
+   18:	aload_0
+   19:	arraylength
+   20:	ifne	34
+   23:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   26:	ldc	#3; //String Usage: DotCount [old|new*] <string>
+   28:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   31:	goto	71
+   34:	aload_0
+   35:	arraylength
+   36:	iconst_2
+   37:	if_icmpne	67
+   40:	aload_0
+   41:	iconst_0
+   42:	aaload
+   43:	invokevirtual	#5; //Method java/lang/String.toLowerCase:()Ljava/lang/String;
+   46:	ldc	#6; //String old
+   48:	invokevirtual	#7; //Method java/lang/String.equals:(Ljava/lang/Object;)Z
+   51:	ifne	58
+   54:	iconst_1
+   55:	goto	59
+   58:	iconst_0
+   59:	istore_1
+   60:	aload_0
+   61:	iconst_1
+   62:	aaload
+   63:	astore_2
+   64:	goto	71
+   67:	aload_0
+   68:	iconst_0
+   69:	aaload
+   70:	astore_2
+   71:	new	#8; //class java/io/BufferedReader
+   74:	dup
+   75:	new	#9; //class java/io/FileReader
+   78:	dup
+   79:	aload_2
+   80:	invokespecial	#10; //Method java/io/FileReader."<init>":(Ljava/lang/String;)V
+   83:	invokespecial	#11; //Method java/io/BufferedReader."<init>":(Ljava/io/Reader;)V
+   86:	invokevirtual	#12; //Method java/io/BufferedReader.readLine:()Ljava/lang/String;
+   89:	astore_3
+   90:	goto	124
+   93:	astore	8
+   95:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   98:	new	#14; //class java/lang/StringBuilder
+   101:	dup
+   102:	invokespecial	#15; //Method java/lang/StringBuilder."<init>":()V
+   105:	ldc	#16; //String Caught and Exception: 
+   107:	invokevirtual	#17; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   110:	aload	8
+   112:	invokevirtual	#18; //Method java/io/IOException.toString:()Ljava/lang/String;
+   115:	invokevirtual	#17; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   118:	invokevirtual	#19; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   121:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   124:	new	#20; //class java/util/Date
+   127:	dup
+   128:	invokespecial	#21; //Method java/util/Date."<init>":()V
+   131:	invokevirtual	#22; //Method java/util/Date.getTime:()J
+   134:	lstore	4
+   136:	iload_1
+   137:	ifeq	171
+   140:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   143:	new	#14; //class java/lang/StringBuilder
+   146:	dup
+   147:	invokespecial	#15; //Method java/lang/StringBuilder."<init>":()V
+   150:	aload_3
+   151:	invokestatic	#23; //Method countDots:(Ljava/lang/String;)I
+   154:	invokevirtual	#24; //Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   157:	ldc	#25; //String  dots.
+   159:	invokevirtual	#17; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   162:	invokevirtual	#19; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   165:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   168:	goto	199
+   171:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   174:	new	#14; //class java/lang/StringBuilder
+   177:	dup
+   178:	invokespecial	#15; //Method java/lang/StringBuilder."<init>":()V
+   181:	aload_3
+   182:	invokestatic	#26; //Method oldCountDots:(Ljava/lang/String;)I
+   185:	invokevirtual	#24; //Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+   188:	ldc	#25; //String  dots.
+   190:	invokevirtual	#17; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   193:	invokevirtual	#19; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   196:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   199:	new	#20; //class java/util/Date
+   202:	dup
+   203:	invokespecial	#21; //Method java/util/Date."<init>":()V
+   206:	invokevirtual	#22; //Method java/util/Date.getTime:()J
+   209:	lstore	6
+   211:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   214:	new	#14; //class java/lang/StringBuilder
+   217:	dup
+   218:	invokespecial	#15; //Method java/lang/StringBuilder."<init>":()V
+   221:	ldc	#27; //String Took 
+   223:	invokevirtual	#17; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   226:	lload	6
+   228:	lload	4
+   230:	lsub
+   231:	invokevirtual	#28; //Method java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+   234:	ldc	#29; //String ms
+   236:	invokevirtual	#17; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   239:	invokevirtual	#19; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   242:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   245:	return
+  Exception table:
+   from   to  target type
+    71    90    93   Class java/io/IOException
+
+  LineNumberTable: 
+   line 10: 0
+   line 11: 2
+   line 12: 4
+   line 13: 6
+   line 14: 9
+   line 16: 12
+   line 18: 23
+   line 20: 34
+   line 22: 40
+   line 23: 60
+   line 27: 67
+   line 32: 71
+   line 37: 90
+   line 34: 93
+   line 36: 95
+   line 39: 124
+   line 40: 136
+   line 41: 140
+   line 43: 171
+   line 44: 199
+   line 46: 211
+   line 47: 245
+
+public static int countDots(java.lang.String);
+  Code:
+   Stack=3, Locals=3, Args_size=1
+   0:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#30; //String Running new count
+   5:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   8:	iconst_0
+   9:	istore_1
+   10:	iconst_0
+   11:	istore_2
+   12:	aload_0
+   13:	bipush	46
+   15:	iload_1
+   16:	invokevirtual	#31; //Method java/lang/String.indexOf:(II)I
+   19:	dup
+   20:	istore_1
+   21:	iconst_m1
+   22:	if_icmpeq	34
+   25:	iinc	2, 1
+   28:	iinc	1, 1
+   31:	goto	12
+   34:	iload_2
+   35:	ireturn
+  LineNumberTable: 
+   line 51: 0
+   line 52: 8
+   line 53: 10
+   line 56: 12
+   line 58: 25
+   line 59: 28
+   line 64: 34
+
+public static int oldCountDots(java.lang.String);
+  Code:
+   Stack=2, Locals=3, Args_size=1
+   0:	getstatic	#2; //Field java/lang/System.out:Ljava/io/PrintStream;
+   3:	ldc	#32; //String Running old count
+   5:	invokevirtual	#4; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   8:	iconst_0
+   9:	istore_1
+   10:	iconst_0
+   11:	istore_2
+   12:	iload_2
+   13:	aload_0
+   14:	invokevirtual	#33; //Method java/lang/String.length:()I
+   17:	if_icmpge	39
+   20:	aload_0
+   21:	iload_2
+   22:	invokevirtual	#34; //Method java/lang/String.charAt:(I)C
+   25:	bipush	46
+   27:	if_icmpne	33
+   30:	iinc	1, 1
+   33:	iinc	2, 1
+   36:	goto	12
+   39:	iload_1
+   40:	ireturn
+  LineNumberTable: 
+   line 69: 0
+   line 70: 8
+   line 72: 10
+   line 73: 20
+   line 74: 30
+   line 72: 33
+   line 77: 39
+
+}
+

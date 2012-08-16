@@ -1,0 +1,58 @@
+OPTIMAL_PARTY(E,caninclude)
+  s = si = se = temp = 0
+  
+  if( caninclude )
+    si = E.conviviality
+    if( E.leftChild )
+      si += OPTIMAL_PARTY( E.leftChild, false )
+      se += OPTIMAL_PARTY( E.leftChild, true )
+    if( E.rightSibling )
+      temp = OPTIMAL_PARTY( E.rightSibling, true )
+      si += temp
+      se += temp
+
+    s = max(si,se)
+  else
+    if( E.leftChild )
+      s += OPTIMAL_PARTY( E.leftChild, true )
+    if( E.rightSibling )
+      s += OPTIMAL_PARTY( E.rightSibling, false )
+
+  return s
+
+MEMOIZED_OPTIMAL_PARTY( E )
+  let HTI be a new hashtable
+  let HTE be a new hashtable
+  return MEMOIZED_OPTIMAL_PARTY_AUX(E,true,HTI,HTE)
+
+MEMOIZED_OPTIMAL_PARTY_AUX(E,caninclude,HTI,HTE)
+  s = si = se = temp = 0
+  
+  if( caninclude )
+    if( HTI.contains( E.name ) )
+      return HTI.get( E.name )
+    si = E.conviviality
+    if( E.leftChild )
+      si += MEMOIZED_OPTIMAL_PARTY_AUX( E.leftChild, false, HTI, HTE )
+      se += MEMOIZED_OPTIMAL_PARTY_AUX( E.leftChild, true, HTI, HTE )
+    if( E.rightSibling )
+      temp = MEMOIZED_OPTIMAL_PARTY_AUX( E.rightSibling, true, HTI, HTE )
+      si += temp
+      se += temp
+
+    s = max(si,se)
+    HTI.put( E.name, s )
+  else
+    if( HTE.contains( E.name ) )
+      return HTE.get( E.name )
+    if( E.leftChild )
+      s += MEMOIZED_OPTIMAL_PARTY_AUX( E.leftChild, true, HTI, HTE )
+    if( E.rightSibling )
+      s += MEMOIZED_OPTIMAL_PARTY_AUX( E.rightSibling, false, HTI, HTE )
+    HTE.put( E.name, s )
+  return s
+
+//////
+  Every node in the tree must go through 2 cache miss calls to the method, for a running time of O(2n) = O(n)
+  To store the actual guest list, use a small struct that keeps a list of employee names as well as the running total conviviality.
+   wherever the conviviality is added to the result of a recursive call the list of employee names would be appended as well.

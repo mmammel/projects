@@ -1,0 +1,40 @@
+<project name="talonLoadTest" default="build">
+
+  <condition property="baseURL" value="${baseURL}" else="http://localhost:8080/CRMUI">
+    <isset property="baseURL"/>
+  </condition>
+
+  <condition property="threads" value="${threads}" else="2">
+    <isset property="threads"/>
+  </condition>
+  
+  <condition property="script" value="${script}" else="default.tst">
+      <isset property="script"/>
+  </condition>
+
+  <path id="project.class.path">
+    <fileset dir=".">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement path="."/>
+    <pathelement path="./scripts" />
+  </path>
+
+  <target name="build">
+    <javac srcdir="."
+           destdir="."
+           debug="true">
+      <classpath refid="project.class.path"/>
+    </javac>
+  </target>
+  
+  <target name="run">
+    <java classname="Talon2LoadTest"
+          dir="."
+          classpathref="project.class.path">
+      <arg value="${baseURL}" />
+      <arg value="${threads}" />
+      <arg value="${script}" />
+    </java>
+  </target>
+</project>

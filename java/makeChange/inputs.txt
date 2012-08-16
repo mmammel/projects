@@ -1,0 +1,7 @@
+java MakeChange 40 25 10 1
+java MakeChange 14 10 7 1
+java MakeChange 14 10 7 1
+java MakeChange 14 10 7 1
+java MakeChange 14 10 7 1
+java MakeChange 40 25 10 1
+

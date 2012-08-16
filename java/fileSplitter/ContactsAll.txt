@@ -1,0 +1,28 @@
+Name: Max Mammel
+Address: 11383 spyglass ridge drive
+         Fishers, IN 46037
+Phone: (317)123-4567
+Name: Jevne Mammel
+Address: 11383 spyglass ridge drive
+         Fishers, IN 46037
+Phone: (317)123-4567
+
+Name: Joe Smith
+
+Address: 8334 some St.
+
+
+         Anywhere, OK 46037
+Phone: (314)123-4567
+
+
+
+
+Name: Walter Payton
+Address: 123 Greatest Ever Rd.
+         Canton, OH 46037
+Phone: (265)333-4337
+some
+junk
+at the 
+    end

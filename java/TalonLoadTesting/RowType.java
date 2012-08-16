@@ -1,0 +1,6 @@
+public enum RowType
+{
+  JAVASCRIPT_METHOD,
+  HTTP_RELATIVE,
+  HTTP_ABSOLUTE
+}

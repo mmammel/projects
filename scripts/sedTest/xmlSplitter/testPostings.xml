@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BatchFeed xmlns:xi='http://www.w3.org/2001/XInclude' batchId='402881be1898a0570118991bda3401d6'>
+    <MappingData target='pharmiweb' xml:base='http://xml.postmasterlx.com/boards/pharmiweb/Standard/mapping/pharmiweb.xml'>
+        <Mapping name='Region' locale='en_US' xml:base='http://xml.postmasterlx.com/common/mapping/stateNameToAbvMapping.xml'>
+            <Field value='Alabama'>AL</Field>
+            <Field value='Alaska'>AK</Field>
+            <Field value='Arizona'>AZ</Field>
+            <Field value='Arkansas'>AR</Field>
+            <Field value='California'>CA</Field>
+            <Field value='Colorado'>CO</Field>
+            <Field value='Connecticut'>CT</Field>
+            <Field value='Delaware'>DE</Field>
+            <Field value='District of Columbia'>DC</Field>
+            <Field value='Florida'>FL</Field>
+            <Field value='Georgia'>GA</Field>
+            <Field value='Hawaii'>HI</Field>
+            <Field value='Idaho'>ID</Field>
+            <Field value='Illinois'>IL</Field>
+            <Field value='Indiana'>IN</Field>
+            <Field value='Iowa'>IA</Field>
+            <Field value='Kansas'>KS</Field>
+            <Field value='Kentucky'>KY</Field>
+            <Field value='Louisiana'>LA</Field>
+            <Field value='Maine'>ME</Field>
+            <Field value='Maryland'>MD</Field>
+            <Field value='Massachusetts'>MA</Field>
+            <Field value='Michigan'>MI</Field>
+            <Field value='Minnesota'>MN</Field>
+            <Field value='Mississippi'>MS</Field>
+            <Field value='Missouri'>MO</Field>
+            <Field value='Montana'>MT</Field>
+            <Field value='Nebraska'>NE</Field>
+            <Field value='Nevada'>NV</Field>
+            <Field value='New Hampshire'>NH</Field>
+            <Field value='New Jersey'>NJ</Field>
+            <Field value='New Mexico'>NM</Field>
+            <Field value='New York'>NY</Field>
+            <Field value='North Carolina'>NC</Field>
+            <Field value='North Dakota'>ND</Field>
+            <Field value='Ohio'>OH</Field>
+            <Field value='Oklahoma'>OK</Field>
+            <Field value='Oregon'>OR</Field>
+            <Field value='Pennsylvania'>PA</Field>
+            <Field value='Puerto Rico'>PR</Field>
+            <Field value='Rhode Island'>RI</Field>
+            <Field value='South Carolina'>SC</Field>
+            <Field value='South Dakota'>SD</Field>
+            <Field value='Tennessee'>TN</Field>
+            <Field value='Texas'>TX</Field>
+            <Field value='Utah'>UT</Field>
+            <Field value='Vermont'>VT</Field>
+            <Field value='Virgin Islands'>VI</Field>
+            <Field value='Virginia'>VA</Field>
+            <Field value='Washington'>WA</Field>
+            <Field value='West Virginia'>WV</Field>
+            <Field value='Wisconsin'>WI</Field>
+            <Field value='Wyoming'>WY</Field>
+            <Field value='ALABAMA'>AL</Field>
+            <Field value='ALASKA'>AK</Field>
+            <Field value='ARIZONA'>AZ</Field>
+            <Field value='ARKANSAS'>AR</Field>
+            <Field value='CALIFORNIA'>CA</Field>
+            <Field value='COLORADO'>CO</Field>
+            <Field value='CONNECTICUT'>CT</Field>
+            <Field value='DELAWARE'>DE</Field>
+            <Field value='DISTRICT OF COLUMBIA'>DC</Field>
+            <Field value='FLORIDA'>FL</Field>
+            <Field value='GEORGIA'>GA</Field>
+            <Field value='HAWAII'>HI</Field>
+            <Field value='IDAHO'>ID</Field>
+            <Field value='ILLINOIS'>IL</Field>
+            <Field value='INDIANA'>IN</Field>
+            <Field value='IOWA'>IA</Field>
+            <Field value='KANSAS'>KS</Field>
+            <Field value='KENTUCKY'>KY</Field>
+            <Field value='LOUISIANA'>LA</Field>
+            <Field value='MAINE'>ME</Field>
+            <Field value='MARYLAND'>MD</Field>
+            <Field value='MASSACHUSETTS'>MA</Field>
+            <Field value='MICHIGAN'>MI</Field>
+            <Field value='MINNESOTA'>MN</Field>
+            <Field value='MISSISSIPPI'>MS</Field>
+            <Field value='MISSOURI'>MO</Field>
+            <Field value='MONTANA'>MT</Field>
+            <Field value='NEBRASKA'>NE</Field>
+            <Field value='NEVADA'>NV</Field>
+            <Field value='NEW HAMPSHIRE'>NH</Field>
+            <Field value='NEW JERSEY'>NJ</Field>
+            <Field value='NEW MEXICO'>NM</Field>
+            <Field value='NEW YORK'>NY</Field>
+            <Field value='NORTH CAROLINA'>NC</Field>
+            <Field value='NORTH DAKOTA'>ND</Field>
+            <Field value='OHIO'>OH</Field>
+            <Field value='OKLAHOMA'>OK</Field>
+            <Field value='OREGON'>OR</Field>
+            <Field value='PENNSYLVANIA'>PA</Field>
+            <Field value='PUERTO RICO'>PR</Field>
+            <Field value='RHODE ISLAND'>RI</Field>
+            <Field value='SOUTH CAROLINA'>SC</Field>
+            <Field value='SOUTH DAKOTA'>SD</Field>
+            <Field value='TENNESSEE'>TN</Field>
+            <Field value='TEXAS'>TX</Field>
+            <Field value='UTAH'>UT</Field>
+            <Field value='VERMONT'>VT</Field>
+            <Field value='VIRGIN ISLANDS'>VI</Field>
+            <Field value='VIRGINIA'>VA</Field>
+            <Field value='WASHINGTON'>WA</Field>
+            <Field value='WEST VIRGINIA'>WV</Field>
+            <Field value='WISCONSIN'>WI</Field>
+            <Field value='WYOMING'>WY</Field>
+            <Field value='Alberta'>AB</Field>
+            <Field value='British Columbia'>BC</Field>
+            <Field value='British Columbia (Colombie-Britannique)'>BC</Field>
+            <Field value='Manitoba'>MB</Field>
+            <Field value='New Brunswick'>NB</Field>
+            <Field value='Newfoundland'>NF</Field>
+            <Field value='Northwest Territories'>NT</Field>
+            <Field value='Nova Scotia'>NS</Field>
+            <Field value='Nunavut'>NU</Field>
+            <Field value='Ontario'>ON</Field>
+            <Field value='Prince Edward Island'>PE</Field>
+            <Field value='Quebec'>QC</Field>
+            <Field value='Saskatchewan'>SK</Field>
+            <Field value='Yukon Territory'>YT</Field>
+        </Mapping>
+        <Mapping name='SalaryFrequency' locale='us_EN'>
+            <Field value='YEARLY'>a</Field>
+            <Field value='HOURLY'>h</Field>
+        </Mapping>
+        <Mapping name='Type' locale='us_EN'>
+        <Field value='FULL_TIME'>1</Field>
+        <Field value='PART_TIME'>2</Field>
+        <Field value='PIER_DIEM'>3</Field>
+        &gt;</Mapping>
+        <Mapping name='Code' locale='us_EN'>
+        <Field value='01'>1</Field>
+        <Field value='02'>2</Field>
+        <Field value='03'>3</Field>
+        &gt; 
+        <Field value='04'>4</Field>
+        <Field value='05'>5</Field>
+        <Field value='06'>6</Field>
+        &gt; 
+        <Field value='07'>7</Field>
+        <Field value='08'>8</Field>
+        <Field value='09'>9</Field>
+        &gt;</Mapping>
+        <Mapping name='MinSalary' locale='en_US'>
+            <Field value='-1'>6</Field>
+            <Field value='0'>6</Field>
+            <Field value='10'>6</Field>
+            <Field value='20'>6</Field>
+            <Field value='30'>6</Field>
+            <Field value='40'>6</Field>
+            <Field value='50'>6</Field>
+            <Field value='60'>6</Field>
+            <Field value='70'>6</Field>
+            <Field value='80'>6</Field>
+            <Field value='90'>6</Field>
+            <Field value='100'>6</Field>
+            <Field value='110'>6</Field>
+            <Field value='120'>6</Field>
+            <Field value='130'>6</Field>
+            <Field value='140'>6</Field>
+            <Field value='150'>6</Field>
+            <Field value='160'>6</Field>
+            <Field value='10000'>1</Field>
+            <Field value='20000'>1</Field>
+            <Field value='30000'>2</Field>
+            <Field value='40000'>3</Field>
+            <Field value='50000'>4</Field>
+            <Field value='60000'>4</Field>
+            <Field value='70000'>4</Field>
+            <Field value='80000'>4</Field>
+            <Field value='90000'>4</Field>
+            <Field value='100000'>5</Field>
+            <Field value='110000'>5</Field>
+            <Field value='120000'>5</Field>
+            <Field value='130000'>5</Field>
+            <Field value='140000'>5</Field>
+            <Field value='150000'>5</Field>
+            <Field value='160000'>5</Field>
+        </Mapping>
+    </MappingData>
+    <MetaInformation>
+        <TargetBoard id='402881be05552e8a010555354e7d1946'>Pharmiweb - UK site</TargetBoard>
+        <Timestamp>Tue Mar 11 10:23:09 EST 2008</Timestamp>
+    </MetaInformation>
+    <Postings>
+        <Posting id='402881bd18074d530118991e9bd74c0a' locale='en_US' action='ADD'>
+            <PublicId base='2251BR'>2251BR</PublicId>
+            <Title>Consultant, Commercial Ops</Title>
+            <Description>This is a test Job Only to see the real job please visit www.novartis.com&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Job Purpose (Statethe overall objective of thejob) The Vice President, Commercial Operations will direct all commercial activities for Americas. Identify business opportunities and emerging trends and respond to them by developing and executing profitable, differentiated business strategies. Major Activities (Describe the main duties of the job to be achieved) Responsibilities includes but not limited to: # The establishmentofbusiness operations ineach country within the Territory including sales channels, marketing, logistics management, technical service, field service and contract negotiations. # Influence public health policy to drive NAT adoption to improve safety of blood products within the country. # Actively participate in the development of the molecular diagnostics business strategy including implementation, commercialactivities and MDx adoption inthe Americas. # Provide leadership control and accountability for Profit &amp; Loss within the Territory. # Bring new ideas, solutions and value-added services to these markets, and develop comprehensive andinnovative plans. # Manage the regional Headquarters as well as the regional employees in the Americas. # Analyze markets and industries to improve processes, operations or practices that enhance business performance. # Be a key member of the Diagnostics management team to drive global strategy and business success. Key Performance Indicators (Indicate how performance for this job will be measured) # Achievement of financial results # Market share versus competition # New market adoption # Talent base within the organization # Fit with Novartis values and behaviors # Strength and capabilities of the key functions # logistics, service, sales, regulatory, scientific affairs # Compliance to the Novartis quality system</Description>
+            <Qualifications>This is a test Job Only to see the real job please visit www.novartis.com&lt;br/&gt;</Qualifications>
+            <Benefits>This is a test Job Only to see the real job please visit www.novartis.com&lt;br/&gt;</Benefits>
+            <SkillsRequired>
+            </SkillsRequired>
+            <SalaryCurrency>USD</SalaryCurrency>
+            <SalaryFrequency>YEARLY</SalaryFrequency>
+            <MinSalary>-1</MinSalary>
+            <MaxSalary>-1</MaxSalary>
+            <MinEducation>FOUR_YEAR_DEGREE</MinEducation>
+            <MinExperience>OVER_TEN_YEARS</MinExperience>
+            <Type>FULL_TIME</Type>
+            <Duration>PERMANENT</Duration>
+            <TravelAmount>FIFTY_PERCENT</TravelAmount>
+            <StartDate>10/03/2008</StartDate>
+            <ExpireDate>09/04/2008</ExpireDate>
+            <Category>Accounting &amp; Finance</Category>
+            <Industry>Accounting</Industry>
+            <LastActionTimestamp>2008-03-11 09:32:58.0</LastActionTimestamp>
+            <Locations>
+                <Location position='1'>
+                    <Country>RUS</Country>
+                    <Region>Adygeya (Maykop)</Region>
+                    <City>Moscow</City>
+                    <PostalCode>1234123</PostalCode>
+                </Location>
+            </Locations>
+            <ContactProfile>
+                <FirstName>
+                </FirstName>
+                <LastName>
+                </LastName>
+                <Title>Recruiter</Title>
+                <Address>
+                    <AddressLine1>
+                    </AddressLine1>
+                    <AddressLine2>
+                    </AddressLine2>
+                    <Country>
+                    </Country>
+                    <Region>
+                    </Region>
+                    <City>
+                    </City>
+                    <PostalCode>
+                    </PostalCode>
+                </Address>
+            </ContactProfile>
+            <BoardFields>
+                <Location>
+                    <Value>01~01~12</Value>
+                </Location>
+                <Jobfunction>
+                    <Value>10~14</Value>
+                </Jobfunction>
+            </BoardFields>
+            <Client>
+                <Name>Testing Client</Name>
+            </Client>
+            <Unit>
+                <Name>Testing Client</Name>
+                <Header>
+                </Header>
+                <Footer>
+                </Footer>
+                <UnitFields>
+                </UnitFields>
+            </Unit>
+            <ApplicationInformation>
+                <URL>http://google.com/jobID=123</URL>
+                <Email>
+                </Email>
+            </ApplicationInformation>
+        </Posting>
+        <Posting id='402881bd18074d530118991f4ac74c1a' locale='en_US' action='ADD'>
+            <PublicId base='22512BR'>22512BR</PublicId>
+            <Title>VP, Commercial Ops</Title>
+            <Description>This is a test Job Only to see the real job please visit www.novartis.com&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Job Purpose (Statethe overall objective of thejob) The Vice President, Commercial Operations will direct all commercial activities for Americas. Identify business opportunities and emerging trends and respond to them by developing and executing profitable, differentiated business strategies. Major Activities (Describe the main duties of the job to be achieved) Responsibilities includes but not limited to: # The establishmentofbusiness operations ineach country within the Territory including sales channels, marketing, logistics management, technical service, field service and contract negotiations. # Influence public health policy to drive NAT adoption to improve safety of blood products within the country. # Actively participate in the development of the molecular diagnostics business strategy including implementation, commercialactivities and MDx adoption inthe Americas. # Provide leadership control and accountability for Profit &amp; Loss within the Territory. # Bring new ideas, solutions and value-added services to these markets, and develop comprehensive andinnovative plans. # Manage the regional Headquarters as well as the regional employees in the Americas. # Analyze markets and industries to improve processes, operations or practices that enhance business performance. # Be a key member of the Diagnostics management team to drive global strategy and business success. Key Performance Indicators (Indicate how performance for this job will be measured) # Achievement of financial results # Market share versus competition # New market adoption # Talent base within the organization # Fit with Novartis values and behaviors # Strength and capabilities of the key functions # logistics, service, sales, regulatory, scientific affairs # Compliance to the Novartis quality system</Description>
+            <Qualifications>This is a test Job Only to see the real job please visit www.novartis.com&lt;br/&gt;</Qualifications>
+            <Benefits>This is a test Job Only to see the real job please visit www.novartis.com&lt;br/&gt;</Benefits>
+            <SkillsRequired>
+            </SkillsRequired>
+            <SalaryCurrency>USD</SalaryCurrency>
+            <SalaryFrequency>YEARLY</SalaryFrequency>
+            <MinSalary>-1</MinSalary>
+            <MaxSalary>-1</MaxSalary>
+            <MinEducation>FOUR_YEAR_DEGREE</MinEducation>
+            <MinExperience>OVER_TEN_YEARS</MinExperience>
+            <Type>FULL_TIME</Type>
+            <Duration>PERMANENT</Duration>
+            <TravelAmount>FIFTY_PERCENT</TravelAmount>
+            <StartDate>10/03/2008</StartDate>
+            <ExpireDate>09/04/2008</ExpireDate>
+            <Category>Accounting &amp; Finance</Category>
+            <Industry>Accounting</Industry>
+            <LastActionTimestamp>2008-03-11 09:39:46.0</LastActionTimestamp>
+            <Locations>
+                <Location position='1'>
+                    <Country>RUS</Country>
+                    <Region>Adygeya (Maykop)</Region>
+                    <City>Moscow</City>
+                    <PostalCode>1234123</PostalCode>
+                </Location>
+            </Locations>
+            <ContactProfile>
+                <FirstName>
+                </FirstName>
+                <LastName>
+                </LastName>
+                <Title>Recruiter</Title>
+                <Address>
+                    <AddressLine1>
+                    </AddressLine1>
+                    <AddressLine2>
+                    </AddressLine2>
+                    <Country>
+                    </Country>
+                    <Region>
+                    </Region>
+                    <City>
+                    </City>
+                    <PostalCode>
+                    </PostalCode>
+                </Address>
+            </ContactProfile>
+            <BoardFields>
+                <Location>
+                    <Value>12~08~85</Value>
+                </Location>
+                <Jobfunction>
+                    <Value>02~09</Value>
+                </Jobfunction>
+            </BoardFields>
+            <Client>
+                <Name>Testing Client</Name>
+            </Client>
+            <Unit>
+                <Name>Testing Client</Name>
+                <Header>
+                </Header>
+                <Footer>
+                </Footer>
+                <UnitFields>
+                </UnitFields>
+            </Unit>
+            <ApplicationInformation>
+                <URL>http://google.com/jobID=123</URL>
+                <Email>
+                </Email>
+            </ApplicationInformation>
+        </Posting>
+    </Postings>
+</BatchFeed>

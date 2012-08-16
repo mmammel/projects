@@ -1,0 +1,72 @@
+WHEN data found in S51 
+WHEN S561 = 'TX'
+WHEN S563 = 'TX'
+WHEN S565 = 'TX'
+WHEN data found in S537 
+WHEN data found in S1277 
+WHEN $ZFLAG = 'X' 
+WHEN S561 = 'AP'
+WHEN S563 = 'AP'
+WHEN S565 = 'AP'
+WHEN S561 = 'FX'
+WHEN S563 = 'FX'
+WHEN S565 = 'FX'
+WHEN data found in S38 
+WHEN data found in S532 
+WHEN data found in S531 
+WHEN data found in S788 
+WHEN data found in S790 
+WHEN data found in S792 
+WHEN data found in S793 
+WHEN data found in S794 
+WHEN data found in S795 
+WHEN data found in S796 
+WHEN data found in S797 
+WHEN data found in S907 
+WHEN data found in S788 
+WHEN data found in S790 
+WHEN $PRICEFLAG = 'X' 
+WHEN data found in S907 
+WHEN $PRICEFLAG = 'X' 
+WHEN data found in S1015 
+WHEN data found in S1102 
+WHEN data found in S798 
+WHEN data found in S799 
+WHEN S1102 = 'A' 
+WHEN S1113 = '02' 
+WHEN S1102 = 'A' 
+WHEN data found in S1106 
+WHEN $AMNTFLAG = 'X' 
+WHEN S1113 = '02' 
+WHEN S1102 = 'A' 
+WHEN data found in S1109 
+WHEN $AMNTFLAG = 'X' 
+WHEN S1113 = '02' 
+WHEN data found in S535 
+WHEN data found in S539 
+WHEN S561 = 'TE'
+WHEN S563 = 'TE'
+WHEN S565 = 'TE'
+WHEN S524 = 'ST' 
+WHEN S524 = 'BS' 
+WHEN data found in S540 
+WHEN data found in S531 
+WHEN S71 = 'VX'
+WHEN data found in S538 
+WHEN data found in S534 
+WHEN data found in S2288
+WHEN S524 = 'ST' or S524 = 'BS' 
+WHEN data found in S534 
+WHEN S36 equals '00'
+WHEN S36 equals '01'
+WHEN S36 equals '04'
+WHEN S271 = '002' 
+WHEN S271 = '067' 
+WHEN S271 = '017' 
+WHEN S271 = '064' 
+WHEN S271 = '074' 
+WHEN S271 = '118' 
+WHEN data found in S6 
+WHEN data found in S25 
+WHEN $SOLDTO = 'NOT_FOUND' 
+WHEN data found in S38 

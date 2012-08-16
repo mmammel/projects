@@ -1,0 +1,15 @@
+<project name="Validator" default="jar" basedir=".">
+  <target name="compile" description="compile the source" >
+    <javac srcdir="." destdir=".">
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile" description="generate the jar" >
+    <jar jarfile="./Validator.jar" basedir="." includes="*.class">
+      <manifest>
+        <attribute name="Main-Class" value="Driver" />
+      </manifest>
+    </jar>
+  </target>
+  
+</project>

@@ -1,0 +1,7 @@
+<project name="replaceInImportFiles" default="doReplace">
+  <target name="doReplace">
+    <replace dir="c:/Workspace/SupportSystems/PMLX-Core/src/etc/import/" token="http://www.hireengine.net/" value="http://wraps.harvest.net/" >
+      <include name="**/*chain-config.xml"/>
+    </replace>
+  </target>
+</project>

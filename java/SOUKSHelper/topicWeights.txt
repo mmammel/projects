@@ -1,0 +1,155 @@
+1|Q212 - Assertive Disposition - Being Reserved
+2|Q225 - Adaptability - More Flexible Than Most
+3|Q223 - Adaptability - Adapting to Situations
+4|Q401 - Trust - Successful
+5|Q403 - Trust - Telling the Truth
+6|Q391 - Trust - Economic Times
+7|Q188 - Stress Tolerance - Problems
+8|Q139 - Cooperation - Sacrifice
+9|Q217 - Assertive Disposition - My Co-workers
+10|Q405 - Trust - Trust
+11|Q238 - Candidness - Lie
+12|Q335 - Dependability - Responsibility
+13|Q396 - Trust - Job Application
+14|Q239 - Candidness - Motivation
+15|Q177 - Stress Tolerance - Work Pressures (1)
+16|Q209 - Assertive Disposition - What&#39;s On My Mind
+17|Q190 - Stress Tolerance  - Difficult Situations
+18|Q123 - Service Orientation - Understanding
+19|Q144 - Cooperation - Speaking Negatively
+20|Q205 - Leadership - Following Plans
+21|Q200 - Leadership - Working Alone
+22|Q186 - Stress Tolerance - Work Pressures (3)
+23|Q130 - Service Orientation - Hostile Customers
+24|Q339 - Dependability - Success
+25|Q184 - Stress Tolerance - Changes
+26|Q118 - Service Orientation - Letting People Down
+27|Q338 - Dependability - Spontaneous
+28|Q138 - Cooperation - Reward
+29|Q191 - Leadership - Work Situations
+30|Q220 - Assertive Disposition - Assertive vs. Easygoing
+31|Q176 - Stress Tolerance - Demands
+32|Q394 - Trust - Getting Away With It
+33|Q119 - Service Orientation - Being Giving
+34|Q237 - Candidness - Hurting Someone
+35|Q393 - Trust - Executives
+36|Q203 - Leadership - Leadership Role
+37|Q151 - Competitive Drive - Serious About Winning
+38|Q116 - Service Orientation - Generous
+39|Q207 - Assertive Disposition - Difficulty in Being Assertive
+40|Q131 - Cooperation - Worrying
+41|Q399 - Trust - Stealing Once 2
+42|Q121 - Service Orientation - Being Assertive
+43|Q143 - Cooperation - Getting Along (2)
+44|Q140 - Cooperation - Performance
+45|Q182 - Stress Tolerance - Work Pressures (2)
+46|Q240 - Candidness - Resentful
+47|Q128 - Service Orientation - Interacting
+48|Q198 - Leadership - Taking the Lead
+49|Q166 - Confidence - Criticism
+50|Q392 - Trust - Employees
+51|Q179 - Stress Tolerance - Tense
+52|Q216 - Assertive Disposition - Describe Myself
+53|Q173 - Confidence - Winning
+54|Q124 - Service Orientation - Courteous
+55|Q206 - Assertive Disposition - Remaining Quiet
+56|Q328 - Dependability - Deadlines
+57|Q202 - Leadership - Responsibilities
+58|Q127 - Service Orientation - Sociable
+59|Q152 - Competitive Drive - Overboard
+60|Q327 - Dependability - Completing Projects
+61|Q233 - Adaptability - Steady Environment
+62|Q229 - Adaptability - Strongest Characteristics
+63|Q180 - Stress Tolerance - Adapting
+64|Q141 - Cooperation - Difficult Aspect
+65|Q178 - Stress Tolerance - Taking Things Personally
+66|Q211 - Assertive Disposition - More Assertive Than Most
+67|Q404 - Trust - Today&#39;s Environment
+68|Q330 - Dependability - Expectations
+69|Q165 - Confidence - Confident Attitude
+70|Q197 - Leadership - Managing Others
+71|Q196 - Leadership - Taking Responsibility
+72|Q175 - Confidence - Setting Goals
+73|Q336 - Dependability - Satisfaction
+74|Q183 - Stress Tolerance - Relaxed
+75|Q213 - Assertive Disposition - Conversation
+76|Q235 - Adaptability - Being Flexible
+77|Q226 - Adaptability - Affected by Change
+78|Q230 - Adaptability - Point of View 2
+79|Q154 - Competitive Drive - Only a Game
+80|Q337 - Dependability - Showing Up Late
+81|Q157 - Competitive Drive - Internal Drive
+82|Q137 - Cooperation - Personal Relationships (1)
+83|Q136 - Cooperation - Creating Conflict
+84|Q208 - Assertive Disposition - Influencing Tactics
+85|Q129 - Service Orientation - Offering Too Much
+86|Q161 - Confidence - Potential
+87|Q224 - Adaptability - Adapting to Change
+88|Q147 - Competitive Drive - Striving
+89|Q192 - Leadership - Communicating
+90|Q187 - Stress Tolerance - Angry Customer
+91|Q163 - Confidence - Reduced Confidence
+92|Q210 - Assertive Disposition - Disagreeing With Manager
+93|Q397 - Trust - People
+94|Q231 - Adaptability - Stubborn
+95|Q133 - Cooperation - Getting Along (1)
+96|Q219 - Assertive Disposition - Regret
+97|Q170 - Confidence - Successful
+98|Q146 - Competitive Drive - Objectives
+99|Q232 - Adaptability - Organizational Change
+100|Q195 - Leadership Coordinating Work
+101|Q168 - Confidence - Right Decision
+102|Q167 - Confidence - Rise and Fall
+103|Q134 - Cooperation - Chemistry
+104|Q329 - Dependability - Co-Workers
+105|Q181 - Stress Tolerance - Multiple Tasks
+106|Q228 - Adaptability - Easier Said
+107|Q156 - Competitive Drive - Always Winning
+108|Q185 - Stress Tolerance - Work Environments
+109|Q193 - Leadership - Stress
+110|Q204 - Leadership - Managing Responsibilities
+111|Q122 - Service Orientation - Complaining
+112|Q214 - Assertive Disposition - Comfort in Being Assertive
+113|Q132 - Cooperation - Penalizing
+114|Q326 - Dependability - Accomplishing Goals
+115|Q169 - Confidence - False Sense
+116|Q333 - Dependability - Planning
+117|Q162 - Confidence - Who I Am
+118|Q402 - Trust - Telling a Lie
+119|Q194 - Leadership - Example
+120|Q221 - Adaptability - Point Of View 1
+121|Q234 - Adaptability - Do Not Accept Change
+122|Q149 - Competitive Drive - Competitive
+123|Q125 - Service Orientation - Friendly Relations
+124|Q160 - Competitive Drive - The Best
+125|Q218 - Assertive Disposition - Work Meetings
+126|Q171 - Confidence - Taking It Personally
+127|Q222 - Adaptability - Opposing Change
+128|Q201 - Leadership - Managing Work Groups
+129|Q150 - Competitive Drive - Limits
+130|Q340 - Dependability - Valued Characteristic
+131|Q145 - Cooperation - Frustration
+132|Q117 - Service Orientation - Saying No
+133|Q398 - Trust - Stealing Once
+134|Q236 - Candidness - Disagree
+135|Q155 - Competitive Drive - Overly Competitive
+136|Q148 - Competitive Drive - Satisfaction
+137|Q215 - Assertive Disposition - Overly Controlling
+138|Q135 - Cooperation - Trust
+139|Q164 - Confidence - Failing
+140|Q332 - Dependability - Organization
+141|Q189 - Stress Tolerance  - Cool,Calm,Collected
+142|Q199 - Leadership - Feeling Pressure
+143|Q126 - Service Orientation - Getting Along
+144|Q153 - Competitive Drive - Risking It All
+145|Q395 - Trust - Honesty
+146|Q334 - Dependability - Reliability
+147|Q331 - Dependability - Future
+148|Q159 - Competitive Drive - Tough Opponent
+149|Q158 - Competitive Drive - Taking the Fun Out
+150|Q174 - Confidence - Risks
+151|Q400 - Trust - Stolen Property
+152|Q227 - Adaptability - Hard Headed
+153|Q120 - Service Orientation - Empl. and Cust.
+154|Q142 - Cooperation - Personal Relationships (2)
+155|Q172 - Confidence - Pressure Situations

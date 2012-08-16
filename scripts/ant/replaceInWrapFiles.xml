@@ -1,0 +1,7 @@
+<project name="replaceInImportFiles" default="doReplace">
+  <target name="doReplace">
+    <replace dir="c:/Workspace/Harvest/etc/wraps" token="/home/wrap/html" value="/var/www/html/root/wrap" >
+      <include name="**/*.xml"/>
+    </replace>
+  </target>
+</project>

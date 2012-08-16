@@ -1,0 +1,24 @@
+<project name="myproject" default="build">
+
+  <path id="project.class.path">
+    <fileset dir=".">
+      <include name="**/*.jar"/>
+    </fileset>
+    <pathelement path="."/>
+  </path>
+
+  <target name="build">
+    <javac srcdir="."
+           destdir=".">
+      <classpath refid="project.class.path"/>
+    </javac>
+  </target>
+  
+  <target name="run">
+    <java classname="${classname}"
+          dir="."
+          classpathref="project.class.path">
+      <arg value="${filename}" />
+    </java>
+  </target>
+</project>

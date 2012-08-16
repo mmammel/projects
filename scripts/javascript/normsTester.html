@@ -1,0 +1,47 @@
+<html>
+<head>
+  <script type="text/javascript" src="jquery-1.7.1.js"></script>
+  <script type="text/javascript">
+    function loadNorms() {
+      var normdata = $("#normdata").val();
+      var rowArray;
+      var norms = new Array();
+      var linearray = normdata.split("\n");
+      for( var i = 0; i < linearray.length; i++ )
+      {
+        rowArray = linearray[i].split("\t");
+        if( rowArray.length > 5 )
+        {
+          norms.push( { "scale":rowArray[1], "cutoffs":rowArray[4].split("~"), "percentiles":rowArray[5].split("~") } );
+        }
+      }
+
+      for( var j = 0; j < norms.length; j++ )
+      {
+        $("#normcalc").append( '<div><span>'+ norms[j].scale + ':</span><input id="scale' + j + '" name="scale' + j + '"></input><span id="result'+j+'"></span></div>');
+      }
+
+      $("#normcalc").append( '<input type="submit" onclick="javascript:calculateScores(); return false;"></input>' );
+
+    }
+
+    function calculateScores()
+    {
+      alert('foobar');
+    }
+  </script>
+</head>
+<body>
+  <div id="norminput">
+  <form>
+    <h3>Paste in the norms from the DB here:</h3>
+    <textarea rows="20" cols="300" name="normdata" id="normdata"></textarea>
+    <input type="submit" onclick="javascript:loadNorms(); return false;"></input>
+  </form>
+  </div>
+  <div id="normcalcdiv">
+    <form id="normcalc">
+    </form>
+  </div>
+</body
+</html>
