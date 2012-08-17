@@ -1,0 +1,4 @@
+member(Element, [Element| _] ).
+member(Element, [List|_] ) :- member( Element, List).
+member(Element, [ _|List]  ) :- member( Element,  List ).
+

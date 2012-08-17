@@ -1,0 +1,14 @@
+/* Sorting Program from our book. */
+naiveSort(L1,L2) :- permutation(L1,L2), inOrder(L2).
+
+append([],[],[]).
+append([],[H|T], [H|T]).
+append([X|L1],L2,[X|L3]) :- append(L1,L2,L3).
+
+permutation([],[]).
+permutation(L,[H|T]) :- append(V,[H|U],L), append(V,U,W), permutation(W,T).
+
+inOrder([]).
+inOrder([_]).
+inOrder([A,B|T]) :- A =< B, inOrder([B|T]).
+

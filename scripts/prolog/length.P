@@ -1,0 +1,9 @@
+length([],0).
+length([_|T],L) :- length(T,L1),L is 1 + L1.
+
+islength(List,Len) :- length(List,L),L==Len.
+
+merge([],R,R).
+merge([LH|LT],R,A) :- length(LT,L1),length(R,R1),L2 is L1+1,L2>=R1,merge(LT,R,A).
+merge(L,[RH|RT],A) :- length(L,L1),length(RT,R1),R2 is R1+1,L1<R2,merge(L,RT,A).
+

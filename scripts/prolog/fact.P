@@ -1,0 +1,4 @@
+/* A Factorial Program. */
+
+fact(A, B) :- (A = 1), B is 1.
+fact(A, B) :- (A > 1), C is A-1, fact(C, D), B is A * D.

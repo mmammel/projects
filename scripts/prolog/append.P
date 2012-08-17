@@ -1,0 +1,19 @@
+/* A program to append to the end of the list. */
+
+append([], List, List).
+append([Head|List_1], List_2, [Head|List_3]) :- append(List_1, List_2, List_3).
+
+delete(X,[X|Z],Y) :- delete(X,Z,Y).
+delete(X,[V|Z],[V|Y]) :- V \== X,delete(X,Z,Y).
+delete(X,[],[]).
+
+delete_one(X,[X|Y],Y).
+delete_one(X,[A|Y],[A|Z]) :- A \== X,delete_one(X,Y,Z).
+
+rotate([X|Y],L) :- append(Y,[X],L).
+
+permute(X,[Z|V]) :-
+  delete_one(Z,X,Y),
+  permute(Y,V).
+permute([],[]).
+

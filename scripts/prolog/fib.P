@@ -1,0 +1,3 @@
+fib(1,1).
+fib(0,0).
+fib(N,A) :- N > 1,B is N - 1, C is N - 2,fib(B,D), fib(C,E), A is D + E.

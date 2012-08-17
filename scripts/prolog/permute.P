@@ -1,0 +1,8 @@
+/* Sorting Program from our book. */
+append([],[],[]).
+append([],[H|T], [H|T]).
+append([X|L1],L2,[X|L3]) :- append(L1,L2,L3).
+
+permutation([],[]).
+permutation(L,[H|T]) :- append(V,[H|U],L), append(V,U,W), permutation(W,T).
+

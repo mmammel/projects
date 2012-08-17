@@ -1,0 +1,6 @@
+/* All about foods! */
+
+likes(jake, chocolates).
+likes(jake, peaches).
+likes(mary, pears).
+likes(mary, peaches).
