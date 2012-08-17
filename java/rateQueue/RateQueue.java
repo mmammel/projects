@@ -1,11 +1,5 @@
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * User: mammelma
@@ -13,11 +7,11 @@ import java.util.TimerTask;
  * Time: 4:09:00 PM
  *
  * This class can be used as a governor for processes that perform a lot of
- * operation yet cannot exceed some specified threshold of the form executions/time.
+ * operations yet cannot exceed some specified threshold of the form executions/time.
  */
 public class RateQueue
 {
-  private long bucketSize = 10000L;  // In milliseconds
+  private long bucketSize;  // In milliseconds
   private long buckets = -1L;
   private long limit = -1L;
   private Queue<Long> mQueue = new LinkedList<Long>();
@@ -25,9 +19,17 @@ public class RateQueue
   private AtomicLong currentTotal = new AtomicLong(0L);
   private long previousTotal = 0L;
   private List<Long> history = new ArrayList<Long>();
+  private boolean historyEnabled = false;
 
-  public RateQueue( long events, long minutes )
+  public RateQueue( long events, long minutes, long bucketSize )
   {
+    this.bucketSize = bucketSize;
+
+    if( (minutes * 60000L) < this.bucketSize )
+    {
+        throw new IllegalArgumentException("Bucket size of " + this.bucketSize + " is too large for the given rate of " + (events / minutes) + "e/m");
+    }
+
     this.buckets = ((minutes * 60000L) / this.bucketSize) - 1;
     if( this.buckets < 0 ) this.buckets = 0;
 
@@ -44,7 +46,6 @@ public class RateQueue
 
   public boolean test()
   {
-
     for(;;)
     {
       long curr = this.currentTotal.get();
@@ -66,11 +67,9 @@ public class RateQueue
 
   private void advance()
   {
-    System.out.println( "Advancing..." );
-    System.out.println( this );
     Long last = this.mQueue.poll();
 
-    long curr = 0L;
+    long curr;
     long temp = this.previousTotal;
 
     for(;;)
@@ -79,15 +78,12 @@ public class RateQueue
       if( this.currentTotal.compareAndSet( curr, last == null ? 0L : curr - last ) )
       {
         this.previousTotal = last == null ? 0L : curr - last;
-        this.history.add( last == null ? curr : last );
+        if( historyEnabled ) this.history.add( last == null ? curr : last );
         break;
       }
     }
 
     if( last != null ) this.mQueue.offer( curr - temp );
-    System.out.println( "...done." );
-    System.out.println( this );
-    this.dumpHistory();
   }
 
   private class RateQueueTask extends TimerTask
@@ -111,9 +107,16 @@ public class RateQueue
     sb.append( "[Total:").append(this.currentTotal.get()).append("]\n");
     sb.append( "[Previous:").append(this.previousTotal).append("]\n");
 
-    for( Long val : this.mQueue )
+    if( this.mQueue.size() > 0 )
     {
-      sb.append("[").append(val).append("]");
+      for( Long val : this.mQueue )
+      {
+        sb.append("[").append(val).append("]");
+      }
+    }
+    else
+    {
+        sb.append("[*]");
     }
 
     sb.append("+[").append(this.currentTotal.get() - this.previousTotal).append("]");
@@ -121,19 +124,47 @@ public class RateQueue
     return sb.toString();
   }
 
-  public void setBucketSize( long size )
+  public void setHistoryEnabled( boolean historyEnabled )
   {
-      this.bucketSize = size;
+      this.historyEnabled = historyEnabled;
   }
 
-  public void dumpHistory()
+  public String getHistoryString()
   {
-    StringBuilder sb = new StringBuilder();
-    for( Long l : this.history )
+    String retVal = "History not enabled for this rate queue.";
+    if( historyEnabled )
     {
-      sb.append("[").append(l).append("]");
+      StringBuilder sb = new StringBuilder();
+      for( Long l : this.history )
+      {
+        sb.append("[").append(l).append("]");
+      }
+
+      retVal = sb.toString();
     }
 
-    System.out.println( sb.toString() );
+      return retVal;
+  }
+
+  public List<Long> getHistory()
+  {
+      return this.historyEnabled ? this.history : null;
+  }
+
+    public long getBuckets() {
+        return buckets;
+    }
+
+    public long getBucketSize() {
+        return bucketSize;
+    }
+
+    public long getLimit() {
+        return limit;
+    }
+
+    public void clearHistory()
+  {
+      this.history.clear();
   }
 }
