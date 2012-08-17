@@ -1,0 +1,84 @@
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="pageTableIII.js"></script>
+    <script type="text/javascript">
+        var theTable = null;
+       $(function() {
+         //theTable = new PageTable( "foobar","6:5;71:45:63:53:53:;0:0:1:5;0:2:1:2;1:4:1:2;3:1:1:2;3:2:1:2;3:3:1:2;" );
+         theTable = new PageTable( "foobar");
+         theTable.render();
+       });
+
+       function doMerge() {
+         var selectedCells = theTable.getSelectedCells();
+         theTable.mergeCells( selectedCells );
+       }
+
+      function doDeleteColumn() {
+        var selectedCells = theTable.getSelectedCells();
+        if( selectedCells.length > 0 )
+        {
+          theTable.deleteColumn( selectedCells[0] );
+        }
+        else
+        {
+          alert( "No cells selected" );
+        }
+      }
+
+      function doDeleteRow() {
+        var selectedCells = theTable.getSelectedCells();
+        if( selectedCells.length > 0 )
+        {
+          theTable.deleteRow( selectedCells[0] );
+        }
+        else
+        {
+          alert( "No cells selected" );
+        }
+      }
+
+      function doAddRow() {
+        theTable.addRow();
+      }
+
+      function doAddColumn() {
+        theTable.addColumn();
+      }
+
+	  function doSplit() {
+		  theTable.splitCells( theTable.getSelectedCells() );
+       }
+
+       function updateColSizes() {
+         theTable.updateSizes();
+       }
+    </script>
+    <style>
+            td.slctd { background-color: #F39814; color: white; }
+			td {border: 1px solid black; margin:0px; padding:0px }
+    </style>
+  </head>
+  <body>
+
+<table id="foobar" style="border: 1px solid black; border-collapse:collapse"></table>
+<p>
+        <form>
+       <input type="button" value="Merge Cells" onclick="javascript:doMerge()" />
+       <input type="button" value="Split Cells" onclick="javascript:doSplit()" />
+       <input type="button" value="Add Row" onclick="javascript:doAddRow()" />
+       <input type="button" value="Add Column" onclick="javascript:doAddColumn()" />
+       <input type="button" value="Delete Column" onclick="javascript:doDeleteColumn()" />
+       <input type="button" value="Delete Row" onclick="javascript:doDeleteRow()" />
+       </form>
+       <p>
+       Column Sizes:
+       <table id="foobar_colsizes"></table>
+       <input type="button" value="Change Sizes" onclick="javascript:updateColSizes()"/>
+       <p>
+       Descriptor: <span id="foobar_descriptor"></span>
+  </body>
+</html>
+
