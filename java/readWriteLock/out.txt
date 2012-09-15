@@ -1,0 +1,1801 @@
+[T:9] Read lock held for: key_0
+cache.get(key_0) = null
+[T:10] Read lock held for: key_0
+cache.get(key_0) = null
+[T:13] Read lock held for: key_0
+cache.get(key_0) = null
+[T:14] Read lock held for: key_0
+cache.get(key_0) = null
+[T:9] Read lock held for: key_0
+cache.get(key_0) = null
+[T:10] Read lock held for: key_0
+cache.get(key_0) = null
+[T:13] Read lock held for: key_0
+cache.get(key_0) = null
+[T:14] Read lock held for: key_0
+cache.get(key_0) = null
+[T:9] Read lock held for: key_0
+cache.get(key_0) = null
+[T:10] Read lock held for: key_0
+cache.get(key_0) = null
+[T:13] Read lock held for: key_0
+cache.get(key_0) = null
+[T:14] Read lock held for: key_1
+cache.get(key_1) = null
+[T:9] Read lock held for: key_1
+cache.get(key_1) = null
+[T:10] Read lock held for: key_0
+cache.get(key_0) = null
+[T:13] Read lock held for: key_1
+cache.get(key_1) = null
+[T:10] Read lock held for: key_3
+cache.get(key_3) = null
+[T:11] Read lock held for: key_0
+cache.get(key_0) = null
+[T:11] Read lock held for: key_0
+cache.get(key_0) = null
+[T:11] Read lock held for: key_0
+cache.get(key_0) = null
+[T:11] Read lock held for: key_0
+cache.get(key_0) = null
+[T:11] Read lock held for: key_3
+cache.get(key_3) = null
+[T:12] Read lock held for: key_0
+cache.get(key_0) = null
+[T:12] Read lock held for: key_0
+cache.get(key_0) = null
+[T:12] Read lock held for: key_1
+cache.get(key_1) = null
+[T:15] Read lock held for: key_0
+[T:16] Read lock held for: key_0
+cache.get(key_0) = null
+cache.get(key_0) = null
+[T:15] Read lock held for: key_0
+[T:16] Read lock held for: key_0
+cache.get(key_0) = null
+cache.get(key_0) = null
+[T:15] Read lock held for: key_0
+[T:16] Read lock held for: key_0
+cache.get(key_0) = null
+cache.get(key_0) = null
+[T:15] Read lock held for: key_2
+[T:16] Read lock held for: key_0
+cache.get(key_2) = null
+cache.get(key_0) = null
+[T:16] Read lock held for: key_2
+cache.get(key_2) = null
+[T:7] Write lock held for: [ key_0,value_1347637521746 ]
+[T:8] Write lock held for: [ key_0,value_1347637521746 ]
+[T:7] Write lock held for: [ key_0,value_1347637521747 ]
+[T:8] Write lock held for: [ key_0,value_1347637521747 ]
+[T:7] Write lock held for: [ key_0,value_1347637521747 ]
+[T:8] Write lock held for: [ key_0,value_1347637521747 ]
+[T:7] Write lock held for: [ key_2,value_1347637521747 ]
+[T:8] Write lock held for: [ key_2,value_1347637521747 ]
+[T:14] Read lock held for: key_0
+[T:9] Read lock held for: key_3
+cache.get(key_0) = value_1347637521747
+cache.get(key_3) = null
+[T:14] Read lock held for: key_1
+cache.get(key_1) = null
+[T:13] Read lock held for: key_3
+cache.get(key_3) = null
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637521747
+[T:12] Read lock held for: key_3
+cache.get(key_3) = null
+[T:14] Read lock held for: key_1
+cache.get(key_1) = null
+[T:15] Read lock held for: key_1
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637521747
+cache.get(key_1) = null
+[T:8] Write lock held for: [ key_0,value_1347637522547 ]
+[T:7] Write lock held for: [ key_3,value_1347637522547 ]
+[T:8] Write lock held for: [ key_2,value_1347637522547 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637522547
+[T:14] Read lock held for: key_1
+cache.get(key_1) = null
+[T:10] Read lock held for: key_1
+[T:11] Read lock held for: key_3
+cache.get(key_1) = null
+cache.get(key_3) = value_1347637522547
+[T:15] Read lock held for: key_1
+cache.get(key_1) = null
+[T:14] Read lock held for: key_2
+[T:9] Read lock held for: key_3
+cache.get(key_2) = value_1347637522547
+cache.get(key_3) = value_1347637522547
+[T:10] Read lock held for: key_4
+[T:13] Read lock held for: key_4
+cache.get(key_4) = null
+cache.get(key_4) = null
+[T:12] Read lock held for: key_1
+cache.get(key_1) = null
+[T:16] Read lock held for: key_0
+[T:15] Read lock held for: key_4
+cache.get(key_0) = value_1347637522547
+cache.get(key_4) = null
+[T:16] Read lock held for: key_1
+cache.get(key_1) = null
+[T:8] Write lock held for: [ key_0,value_1347637523347 ]
+[T:8] Write lock held for: [ key_2,value_1347637523347 ]
+[T:12] Read lock held for: key_4
+cache.get(key_4) = null
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637523347
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637523347
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:7] Write lock held for: [ key_3,value_1347637523747 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637523747
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637523347
+[T:11] Read lock held for: key_1
+cache.get(key_1) = null
+[T:8] Write lock held for: [ key_1,value_1347637524147 ]
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637523347
+[T:9] Read lock held for: key_4
+cache.get(key_4) = null
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637524147
+[T:8] Write lock held for: [ key_1,value_1347637524547 ]
+[T:10] Read lock held for: key_1
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637524547
+cache.get(key_1) = value_1347637524547
+[T:16] Read lock held for: key_1
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637524547
+cache.get(key_1) = value_1347637524547
+[T:7] Write lock held for: [ key_0,value_1347637524947 ]
+[T:8] Write lock held for: [ key_1,value_1347637524947 ]
+[T:7] Write lock held for: [ key_0,value_1347637524947 ]
+[T:7] Write lock held for: [ key_1,value_1347637524947 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637523747
+[T:13] Read lock held for: key_0
+[T:10] Read lock held for: key_3
+[T:11] Read lock held for: key_2
+cache.get(key_0) = value_1347637524947
+cache.get(key_3) = value_1347637523747
+cache.get(key_2) = value_1347637523347
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637524947
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:16] Read lock held for: key_4
+[T:15] Read lock held for: key_2
+cache.get(key_4) = null
+cache.get(key_2) = value_1347637523347
+[T:8] Write lock held for: [ key_3,value_1347637525347 ]
+[T:7] Write lock held for: [ key_0,value_1347637525347 ]
+[T:7] Write lock held for: [ key_3,value_1347637525347 ]
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637525347
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637525347
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637525347
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637525347
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637525347
+[T:9] Read lock held for: key_4
+[T:14] Read lock held for: key_3
+cache.get(key_4) = null
+cache.get(key_3) = value_1347637525347
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:8] Write lock held for: [ key_0,value_1347637526547 ]
+[T:7] Write lock held for: [ key_4,value_1347637526547 ]
+[T:8] Write lock held for: [ key_4,value_1347637526547 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:10] Read lock held for: key_1
+[T:13] Read lock held for: key_3
+[T:11] Read lock held for: key_0
+cache.get(key_1) = value_1347637524947
+cache.get(key_3) = value_1347637525347
+cache.get(key_0) = value_1347637526547
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:14] Read lock held for: key_2
+[T:9] Read lock held for: key_0
+cache.get(key_2) = value_1347637523347
+cache.get(key_0) = value_1347637526547
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:7] Write lock held for: [ key_3,value_1347637528147 ]
+[T:8] Write lock held for: [ key_3,value_1347637528147 ]
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:14] Read lock held for: key_2
+[T:9] Read lock held for: key_1
+cache.get(key_2) = value_1347637523347
+cache.get(key_1) = value_1347637524947
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637526547
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637523347
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637524947
+[T:7] Write lock held for: [ key_2,value_1347637529347 ]
+[T:8] Write lock held for: [ key_1,value_1347637529347 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637529347
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637526547
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637529347
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637529347
+[T:8] Write lock held for: [ key_0,value_1347637529747 ]
+[T:8] Write lock held for: [ key_4,value_1347637529747 ]
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637529747
+[T:7] Write lock held for: [ key_1,value_1347637530147 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637528147
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637530147
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637530147
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637529747
+[T:7] Write lock held for: [ key_2,value_1347637530547 ]
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637529747
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637530147
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637530547
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637530147
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637530147
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637530147
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637528147
+[T:8] Write lock held for: [ key_2,value_1347637531347 ]
+[T:7] Write lock held for: [ key_1,value_1347637531347 ]
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637529747
+[T:13] Read lock held for: key_0
+[T:10] Read lock held for: key_1
+cache.get(key_0) = value_1347637529747
+cache.get(key_1) = value_1347637531347
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637528147
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:7] Write lock held for: [ key_1,value_1347637531747 ]
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637531747
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:8] Write lock held for: [ key_4,value_1347637532147 ]
+[T:7] Write lock held for: [ key_3,value_1347637532147 ]
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637531747
+[T:10] Read lock held for: key_2
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+cache.get(key_2) = value_1347637531347
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637532147
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637532147
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637531747
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637532147
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:10] Read lock held for: key_2
+[T:13] Read lock held for: key_1
+cache.get(key_2) = value_1347637531347
+cache.get(key_1) = value_1347637531747
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:7] Write lock held for: [ key_3,value_1347637533347 ]
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637531747
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637532147
+[T:8] Write lock held for: [ key_3,value_1347637533747 ]
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637532147
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637532147
+[T:13] Read lock held for: key_0
+[T:11] Read lock held for: key_2
+cache.get(key_0) = value_1347637529747
+cache.get(key_2) = value_1347637531347
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637533747
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637533747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637533747
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637531747
+[T:7] Write lock held for: [ key_1,value_1347637534547 ]
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637534547
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637534547
+[T:8] Write lock held for: [ key_3,value_1347637534947 ]
+[T:7] Write lock held for: [ key_4,value_1347637534947 ]
+[T:13] Read lock held for: key_2
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+cache.get(key_2) = value_1347637531347
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:15] Read lock held for: key_0
+[T:16] Read lock held for: key_1
+cache.get(key_0) = value_1347637529747
+cache.get(key_1) = value_1347637534547
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637531347
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637534547
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637534547
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637534947
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:13] Read lock held for: key_3
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+cache.get(key_3) = value_1347637534947
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637534947
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637534547
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:8] Write lock held for: [ key_1,value_1347637536147 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637536147
+[T:7] Write lock held for: [ key_1,value_1347637536547 ]
+[T:8] Write lock held for: [ key_2,value_1347637536547 ]
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:7] Write lock held for: [ key_2,value_1347637536947 ]
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:13] Read lock held for: key_4
+[T:11] Read lock held for: key_1
+cache.get(key_4) = value_1347637534947
+cache.get(key_1) = value_1347637536547
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637536547
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637534947
+[T:8] Write lock held for: [ key_1,value_1347637537347 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637529747
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637536947
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637534947
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:7] Write lock held for: [ key_2,value_1347637537747 ]
+[T:8] Write lock held for: [ key_2,value_1347637537747 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637537747
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637534947
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637534947
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:8] Write lock held for: [ key_3,value_1347637538547 ]
+[T:7] Write lock held for: [ key_0,value_1347637538547 ]
+[T:7] Write lock held for: [ key_0,value_1347637538547 ]
+[T:7] Write lock held for: [ key_0,value_1347637538547 ]
+[T:7] Write lock held for: [ key_4,value_1347637538547 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637538547
+[T:13] Read lock held for: key_4
+[T:11] Read lock held for: key_0
+cache.get(key_4) = value_1347637538547
+cache.get(key_0) = value_1347637538547
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637538547
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637538547
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:8] Write lock held for: [ key_3,value_1347637539747 ]
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637538547
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637538547
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637537747
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:7] Write lock held for: [ key_2,value_1347637540147 ]
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637538547
+[T:8] Write lock held for: [ key_4,value_1347637540947 ]
+[T:7] Write lock held for: [ key_4,value_1347637540947 ]
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637540947
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637540947
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637540147
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:7] Write lock held for: [ key_2,value_1347637542547 ]
+[T:8] Write lock held for: [ key_4,value_1347637542547 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637542547
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637542547
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637542547
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637542547
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637542547
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:7] Write lock held for: [ key_4,value_1347637543347 ]
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637542547
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637543347
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637543347
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637543347
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637543347
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:8] Write lock held for: [ key_4,value_1347637544147 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637544147
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637542547
+[T:7] Write lock held for: [ key_2,value_1347637544947 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637544147
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637538547
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637544147
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637544947
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637539747
+[T:8] Write lock held for: [ key_0,value_1347637545747 ]
+[T:8] Write lock held for: [ key_0,value_1347637545747 ]
+[T:8] Write lock held for: [ key_4,value_1347637545747 ]
+[T:7] Write lock held for: [ key_3,value_1347637545747 ]
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637544947
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637544947
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637544947
+[T:7] Write lock held for: [ key_2,value_1347637546947 ]
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:8] Write lock held for: [ key_3,value_1347637547347 ]
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:7] Write lock held for: [ key_2,value_1347637547747 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637545747
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637545747
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637537347
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:8] Write lock held for: [ key_1,value_1347637548547 ]
+[T:7] Write lock held for: [ key_0,value_1347637548547 ]
+[T:7] Write lock held for: [ key_4,value_1347637548547 ]
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637548547
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637548547
+[T:8] Write lock held for: [ key_1,value_1347637548947 ]
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:8] Write lock held for: [ key_4,value_1347637549347 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637549347
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637549347
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637549347
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:7] Write lock held for: [ key_4,value_1347637550147 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637550147
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637548547
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:8] Write lock held for: [ key_0,value_1347637550947 ]
+[T:8] Write lock held for: [ key_4,value_1347637550947 ]
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637550947
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637547347
+[T:7] Write lock held for: [ key_0,value_1347637551756 ]
+[T:7] Write lock held for: [ key_3,value_1347637551756 ]
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:8] Write lock held for: [ key_3,value_1347637552547 ]
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:7] Write lock held for: [ key_3,value_1347637552956 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637552956
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637550947
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637548947
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637552956
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:8] Write lock held for: [ key_1,value_1347637553747 ]
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637553747
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637547747
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637550947
+[T:8] Write lock held for: [ key_3,value_1347637554147 ]
+[T:7] Write lock held for: [ key_2,value_1347637554157 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637553747
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637554147
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637554157
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637550947
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637554157
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637553747
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637550947
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637554157
+[T:7] Write lock held for: [ key_3,value_1347637554957 ]
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637554957
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637550947
+[T:8] Write lock held for: [ key_4,value_1347637555347 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637554157
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637553747
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637551756
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:7] Write lock held for: [ key_0,value_1347637556157 ]
+[T:7] Write lock held for: [ key_2,value_1347637556157 ]
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637553747
+[T:8] Write lock held for: [ key_3,value_1347637556947 ]
+[T:7] Write lock held for: [ key_0,value_1347637556957 ]
+[T:7] Write lock held for: [ key_1,value_1347637556957 ]
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637556957
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:7] Write lock held for: [ key_1,value_1347637557357 ]
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637557357
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:7] Write lock held for: [ key_1,value_1347637557757 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637555347
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637557757
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637557757
+[T:8] Write lock held for: [ key_4,value_1347637558147 ]
+[T:7] Write lock held for: [ key_1,value_1347637558157 ]
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637558147
+[T:7] Write lock held for: [ key_1,value_1347637558557 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637558147
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:7] Write lock held for: [ key_4,value_1347637558957 ]
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637558557
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637556947
+[T:8] Write lock held for: [ key_3,value_1347637559747 ]
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637558557
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637558957
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637558957
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637558557
+[T:7] Write lock held for: [ key_1,value_1347637560557 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637558957
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637560557
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637560557
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637556157
+[T:8] Write lock held for: [ key_2,value_1347637560947 ]
+[T:7] Write lock held for: [ key_4,value_1347637560957 ]
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637560957
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637560947
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637560557
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637560557
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637556957
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:8] Write lock held for: [ key_1,value_1347637561747 ]
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637560957
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637560957
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637561747
+[T:8] Write lock held for: [ key_0,value_1347637562147 ]
+[T:8] Write lock held for: [ key_0,value_1347637562147 ]
+[T:8] Write lock held for: [ key_2,value_1347637562147 ]
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637560957
+[T:7] Write lock held for: [ key_0,value_1347637562557 ]
+[T:7] Write lock held for: [ key_1,value_1347637562557 ]
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637559747
+[T:8] Write lock held for: [ key_3,value_1347637562947 ]
+[T:7] Write lock held for: [ key_4,value_1347637562957 ]
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637562557
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637562557
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637562947
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637562947
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637562947
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637562557
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637562947
+[T:8] Write lock held for: [ key_1,value_1347637564147 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637564147
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637562947
+[T:8] Write lock held for: [ key_3,value_1347637564547 ]
+[T:7] Write lock held for: [ key_3,value_1347637564557 ]
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637564147
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637562557
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637564557
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637564147
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637564557
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637562147
+[T:8] Write lock held for: [ key_2,value_1347637565747 ]
+[T:7] Write lock held for: [ key_0,value_1347637565757 ]
+[T:7] Write lock held for: [ key_1,value_1347637565757 ]
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:7] Write lock held for: [ key_3,value_1347637566157 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637565757
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637566157
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637565757
+[T:8] Write lock held for: [ key_3,value_1347637566547 ]
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637565757
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637566547
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637566547
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637565757
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637566547
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637566547
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637566547
+[T:7] Write lock held for: [ key_3,value_1347637567357 ]
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:8] Write lock held for: [ key_1,value_1347637567747 ]
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637567357
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637567357
+[T:8] Write lock held for: [ key_3,value_1347637568147 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637562957
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637567747
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637568147
+[T:7] Write lock held for: [ key_1,value_1347637568557 ]
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637568557
+[T:7] Write lock held for: [ key_4,value_1347637568957 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637568957
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637568557
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637568147
+[T:8] Write lock held for: [ key_1,value_1347637569347 ]
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637568957
+[T:8] Write lock held for: [ key_4,value_1347637569747 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637568147
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637568147
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637568147
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637569747
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637565757
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637569747
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637565747
+[T:7] Write lock held for: [ key_0,value_1347637570557 ]
+[T:7] Write lock held for: [ key_2,value_1347637570557 ]
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637568147
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637569747
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637570557
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637569347
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637569747
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637569747
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637570557
+[T:8] Write lock held for: [ key_4,value_1347637571347 ]
+[T:7] Write lock held for: [ key_0,value_1347637571357 ]
+[T:7] Write lock held for: [ key_3,value_1347637571357 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637570557
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637569347
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637570557
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637571357
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637569347
+[T:7] Write lock held for: [ key_1,value_1347637572557 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637571357
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637570557
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:8] Write lock held for: [ key_0,value_1347637572947 ]
+[T:8] Write lock held for: [ key_3,value_1347637572947 ]
+[T:7] Write lock held for: [ key_1,value_1347637572957 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637572947
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637572957
+[T:7] Write lock held for: [ key_0,value_1347637573357 ]
+[T:7] Write lock held for: [ key_2,value_1347637573357 ]
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637572947
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:8] Write lock held for: [ key_3,value_1347637574148 ]
+[T:7] Write lock held for: [ key_0,value_1347637574157 ]
+[T:7] Write lock held for: [ key_0,value_1347637574157 ]
+[T:7] Write lock held for: [ key_1,value_1347637574157 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637574148
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637574148
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:7] Write lock held for: [ key_3,value_1347637574557 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637574557
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:8] Write lock held for: [ key_3,value_1347637575348 ]
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:7] Write lock held for: [ key_3,value_1347637575757 ]
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637575757
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637571347
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:8] Write lock held for: [ key_3,value_1347637576548 ]
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:7] Write lock held for: [ key_4,value_1347637576957 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637576548
+[T:9] Read lock held for: key_2
+[T:11] Read lock held for: key_1
+cache.get(key_2) = value_1347637573357
+cache.get(key_1) = value_1347637574157
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637576548
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637576548
+[T:8] Write lock held for: [ key_3,value_1347637577748 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637576957
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637576957
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:13] Read lock held for: key_3
+cache.get(key_3) = value_1347637577748
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637577748
+[T:7] Write lock held for: [ key_3,value_1347637578557 ]
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:8] Write lock held for: [ key_4,value_1347637578948 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637578948
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637578948
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637578948
+[T:7] Write lock held for: [ key_4,value_1347637579757 ]
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637574157
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637579757
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637574157
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:8] Write lock held for: [ key_0,value_1347637580548 ]
+[T:8] Write lock held for: [ key_1,value_1347637580548 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637580548
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637573357
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637579757
+[T:8] Write lock held for: [ key_2,value_1347637580948 ]
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637580948
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637580548
+[T:7] Write lock held for: [ key_4,value_1347637581357 ]
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637580548
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637580548
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637580548
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:8] Write lock held for: [ key_0,value_1347637581748 ]
+[T:8] Write lock held for: [ key_2,value_1347637581748 ]
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637580548
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637581748
+[T:12] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637581748
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:8] Write lock held for: [ key_1,value_1347637582548 ]
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637582548
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637581748
+[T:8] Write lock held for: [ key_2,value_1347637582948 ]
+[T:7] Write lock held for: [ key_1,value_1347637582957 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637582957
+[T:7] Write lock held for: [ key_1,value_1347637583357 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:11] Read lock held for: key_0
+[T:9] Read lock held for: key_2
+cache.get(key_0) = value_1347637581748
+cache.get(key_2) = value_1347637582948
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637582948
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637578557
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637582948
+[T:8] Write lock held for: [ key_3,value_1347637583748 ]
+[T:7] Write lock held for: [ key_2,value_1347637583757 ]
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:9] Read lock held for: key_4
+[T:11] Read lock held for: key_2
+cache.get(key_4) = value_1347637581357
+cache.get(key_2) = value_1347637583757
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637583357
+[T:7] Write lock held for: [ key_2,value_1347637584557 ]
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637584557
+[T:8] Write lock held for: [ key_1,value_1347637584948 ]
+[T:10] Read lock held for: key_1
+cache.get(key_1) = value_1347637584948
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637584948
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637584557
+[T:8] Write lock held for: [ key_2,value_1347637585348 ]
+[T:7] Write lock held for: [ key_1,value_1347637585357 ]
+[T:14] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637585348
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637581357
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637585357
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637585357
+[T:7] Write lock held for: [ key_4,value_1347637585757 ]
+[T:11] Read lock held for: key_3
+[T:9] Read lock held for: key_1
+cache.get(key_3) = value_1347637583748
+cache.get(key_1) = value_1347637585357
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637585757
+[T:8] Write lock held for: [ key_1,value_1347637586148 ]
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637586148
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637581748
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637585348
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637585348
+[T:8] Write lock held for: [ key_0,value_1347637586548 ]
+[T:8] Write lock held for: [ key_0,value_1347637586548 ]
+[T:8] Write lock held for: [ key_1,value_1347637586548 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:8] Write lock held for: [ key_0,value_1347637586948 ]
+[T:8] Write lock held for: [ key_4,value_1347637586948 ]
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637585348
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637586948
+[T:9] Read lock held for: key_1
+[T:11] Read lock held for: key_2
+cache.get(key_1) = value_1347637586548
+cache.get(key_2) = value_1347637585348
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:7] Write lock held for: [ key_2,value_1347637587357 ]
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:11] Read lock held for: key_4
+cache.get(key_4) = value_1347637586948
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:7] Write lock held for: [ key_4,value_1347637588157 ]
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:8] Write lock held for: [ key_4,value_1347637588548 ]
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:14] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:11] Read lock held for: key_3
+cache.get(key_3) = value_1347637583748
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637587357
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637586548
+[T:7] Write lock held for: [ key_1,value_1347637589757 ]
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637589757
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:8] Write lock held for: [ key_3,value_1347637590148 ]
+[T:7] Write lock held for: [ key_2,value_1347637590157 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637590148
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637589757
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637590148
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637590148
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:14] Read lock held for: key_1
+cache.get(key_1) = value_1347637589757
+[T:13] Read lock held for: key_2
+cache.get(key_2) = value_1347637590157
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637589757
+[T:7] Write lock held for: [ key_2,value_1347637590957 ]
+[T:14] Read lock held for: key_2
+cache.get(key_2) = value_1347637590957
+[T:11] Read lock held for: key_0
+cache.get(key_0) = value_1347637586948
+[T:11] Read lock held for: key_2
+cache.get(key_2) = value_1347637590957
+[T:8] Write lock held for: [ key_0,value_1347637591348 ]
+[T:8] Write lock held for: [ key_1,value_1347637591348 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637591348
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637590957
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637591348
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637590148
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637591348
+[T:12] Read lock held for: key_0
+cache.get(key_0) = value_1347637591348
+[T:12] Read lock held for: key_3
+cache.get(key_3) = value_1347637590148
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637590957
+[T:8] Write lock held for: [ key_0,value_1347637591748 ]
+[T:8] Write lock held for: [ key_3,value_1347637591748 ]
+[T:7] Write lock held for: [ key_1,value_1347637591757 ]
+[T:14] Read lock held for: key_3
+cache.get(key_3) = value_1347637591748
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637591757
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:7] Write lock held for: [ key_2,value_1347637592157 ]
+[T:10] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:11] Read lock held for: key_1
+cache.get(key_1) = value_1347637591757
+[T:15] Read lock held for: key_2
+cache.get(key_2) = value_1347637592157
+[T:9] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637591757
+[T:8] Write lock held for: [ key_1,value_1347637592948 ]
+[T:7] Write lock held for: [ key_2,value_1347637592957 ]
+[T:13] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637592948
+[T:15] Read lock held for: key_3
+cache.get(key_3) = value_1347637591748
+[T:8] Write lock held for: [ key_3,value_1347637593348 ]
+[T:12] Read lock held for: key_2
+cache.get(key_2) = value_1347637592957
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637588548
+[T:7] Write lock held for: [ key_4,value_1347637593757 ]
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637592957
+[T:9] Read lock held for: key_3
+cache.get(key_3) = value_1347637593348
+[T:12] Read lock held for: key_1
+cache.get(key_1) = value_1347637592948
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637592948
+[T:8] Write lock held for: [ key_3,value_1347637594548 ]
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637594548
+[T:13] Read lock held for: key_1
+cache.get(key_1) = value_1347637592948
+[T:15] Read lock held for: key_4
+cache.get(key_4) = value_1347637593757
+[T:13] Read lock held for: key_0
+cache.get(key_0) = value_1347637591748
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637593757
+[T:7] Write lock held for: [ key_3,value_1347637595357 ]
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637592957
+[T:8] Write lock held for: [ key_3,value_1347637595748 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637591748
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637595748
+[T:9] Read lock held for: key_0
+cache.get(key_0) = value_1347637591748
+[T:9] Read lock held for: key_1
+cache.get(key_1) = value_1347637592948
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637592948
+[T:7] Write lock held for: [ key_1,value_1347637596557 ]
+[T:9] Read lock held for: key_2
+cache.get(key_2) = value_1347637592957
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637596557
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637595748
+[T:8] Write lock held for: [ key_0,value_1347637596948 ]
+[T:8] Write lock held for: [ key_1,value_1347637596948 ]
+[T:10] Read lock held for: key_3
+cache.get(key_3) = value_1347637595748
+[T:15] Read lock held for: key_1
+cache.get(key_1) = value_1347637596948
+[T:8] Write lock held for: [ key_3,value_1347637597348 ]
+[T:15] Read lock held for: key_0
+cache.get(key_0) = value_1347637596948
+[T:16] Read lock held for: key_4
+cache.get(key_4) = value_1347637593757
+[T:10] Read lock held for: key_2
+cache.get(key_2) = value_1347637592957
+[T:8] Write lock held for: [ key_1,value_1347637598548 ]
+[T:8] Write lock held for: [ key_2,value_1347637598948 ]
+[T:10] Read lock held for: key_0
+cache.get(key_0) = value_1347637596948
+[T:16] Read lock held for: key_0
+cache.get(key_0) = value_1347637596948
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637598548
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637598548
+[T:16] Read lock held for: key_2
+cache.get(key_2) = value_1347637598948
+[T:16] Read lock held for: key_3
+cache.get(key_3) = value_1347637597348
+[T:16] Read lock held for: key_1
+cache.get(key_1) = value_1347637598548
+Done running threads.

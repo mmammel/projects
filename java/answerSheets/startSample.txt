@@ -1,0 +1,22 @@
+M	STEP 1	STEP 2	STEP 3
+1.		"Font Color" arrow  	pfontcol	
+2.		CONTROL-D	FontDB	
+3.		SHIFT-CONTROL-F	FontDB	
+4.		SHIFT-CONTROL-P	FontDB	
+5.		"Font" icon   in Font area	FontDB	
+6.		SHIFT-F10	pText (See note A)	
+7.		Right-Click selected text	pText (See note A)	
+pText
+8.		"Font Color" arrow  in MiniToolbar	Dark Blue, Text 2	FINAL
+pfontcol
+9.		Dark Blue, Text 2	FINAL	
+10.		Font…	FontDB	
+FontDB
+11.		Select Dark Blue, Text 2 in Font color: cbox	Click OK	FINAL
+12.		Select Dark Blue, Text 2 in Font color: cbox	with focus on tboxes, lboxes , and checkboxes RETURN	FINAL
+13.		Select Dark Blue, Text 2 in Font color: cbox	Double-Click selected item in Font: lbox	FINAL
+14.		Select Dark Blue, Text 2 in Font color: cbox	Double-Click selected item in Font style: lbox	FINAL
+15.		Select Dark Blue, Text 2 in Font color: cbox	Double-Click selected item in Size: lbox	FINAL
+Additional Notes
+A.		ITRA right-clicking brings up a popup menu with a mini toolbar; SHIFT-F10 doesn't have the toolbar.  ITT only one popup is supported with the mini toolbar and in the fixed position.
+	Begin – Guide to MFCL open, text "Environmentally Conscious" on Page 3 selected.
