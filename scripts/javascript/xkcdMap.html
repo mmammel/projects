@@ -1,0 +1,50 @@
+<html>
+<head>
+  <script type="text/javascript" src="jquery-1.7.1.js"></script>
+  <script type="text/javascript">
+    function loadmap() {
+      var row = "";
+      var hdir = "w";
+      var vdir = "n";
+      var hscl = 0;
+      var vscl = 0;
+
+      for( var c = -50; c < 50; c++ )
+      {
+        row += "<tr>";
+        for( var r = -50; r < 50; r++ )
+        {
+          if( r < 0 ) {
+             hdir = "w";
+             hscl = -1*r;
+          }
+          else {
+	         hdir = "e";
+	         hscl = r+1;
+          }
+
+          if( c < 0 ) {
+	        vdir = "n";
+	        vscl = -1*c;
+          }
+          else {
+	        vdir = "s";
+	        vscl = c+1;
+          }
+
+          row += "<td><img src=\"http://imgs.xkcd.com/clickdrag/" + vscl + vdir + hscl + hdir + ".png\"/></td>"
+        }
+        row += "</tr>";
+        $("#picmap").append(row);
+        row = "";
+      }
+    }
+
+  </script>
+</head>
+<body onload="javascript:loadmap();">
+  <table id="picmap">
+ 
+  </table>
+</body>	
+</html>
