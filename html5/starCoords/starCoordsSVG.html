@@ -1,0 +1,116 @@
+<html>  
+ <head>  
+  <script type="application/javascript">  
+
+/*
+5 53 15 30 23 48 15
+5 53 19 15 23 55 35
+7 53 26 30 23 33 5
+
+*/
+
+var svgHeader = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640" height="640" viewBox="0 0 640 640">';
+var svgFooter = '</svg>';
+var svgContent = "";
+var vbx0 = 0;
+var vby0 = 0;
+var vbx1 = 640;
+var vby1 = 640;
+var width = 640;
+var height = 640;
+
+function draw() {  
+ var area = document.getElementById("coords");
+ var strs = new Array();
+ strs = area.value.split("\n");
+ var coordinates = buildCoords(strs);
+ var svg = document.getElementById("svg");  
+
+ /* scale to width of 600 pixels, height unbounded. */
+ var scaleFactor = 600/(coordinates.maxXcoord - coordinates.minXcoord);  //pixels per degree
+ var canvasHeight = scaleFactor*(coordinates.maxYcoord - coordinates.minYcoord) + 40;  // 20 pixel border
+ var xoffset = Math.abs(coordinates.minXcoord);
+ var yoffset = Math.abs(coordinates.minYcoord); 
+ height = Math.round(canvasHeight);
+ vby1 = height;
+ svgContent = writeSVGHeader();
+ for( var i = 0; i < coordinates.coords.length; i++ )
+ {
+	var coord = coordinates.coords[i];
+   	svgContent += getStar(svgContent, (600 - Math.round((coord.x - xoffset)*scaleFactor))+20, (canvasHeight - Math.round((coord.y - yoffset)*scaleFactor))+20, coord.mag);
+ }
+ svg.innerHTML = svgContent + svgFooter;
+}  
+
+  function zoomIn()
+  {
+    vbx0 = vbx0 + 20;
+    vby0 = vby0 + 20;
+    vbx1 = vbx1 - 30;
+    vby1 = vby1 - 30;
+    svg.innerHTML = writeSVGHeader() + svgContent + svgFooter;
+  }
+
+  function zoomOut()
+  {
+    vbx0 = vbx0 - 20;
+    vby0 = vby0 - 20;
+    vbx1 = vbx1 + 30;
+    vby1 = vby1 + 30;
+    svg.innerHTML = writeSVGHeader() + svgContent + svgFooter;
+  }
+
+  function writeSVGHeader() {
+	return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="' + width + '" height="'+ height + '" viewBox="' + vbx0 + ' ' + vby0 + ' ' + vbx1 + ' ' + vby1 + '">';
+  }
+
+  function buildCoords( inputArray )
+  {
+	var retVal = { minXcoord:Number.MAX_VALUE,minYcoord:Number.MAX_VALUE,maxXcoord:-1*Number.MAX_VALUE,maxYcoord:-1*Number.MAX_VALUE};
+	var tempInput = null;
+	var coords = new Array();
+	var tempCoord = null;
+	var tempArray = new Array();
+	for( var i = 0; i < inputArray.length; i++ )
+	{
+		tempInput = inputArray[i];
+		tempArray = tempInput.split(" ");
+		tempCoord = new Object();
+		tempCoord.mag = parseFloat(tempArray[0]);
+		tempCoord.x = (parseFloat(tempArray[1]) + (parseFloat(tempArray[2])/60) + (parseFloat(tempArray[3])/3600) );
+		tempCoord.y = (parseFloat(tempArray[4]) + (parseFloat(tempArray[5])/60) + (parseFloat(tempArray[6])/3600) );
+		if( tempCoord.x <= retVal.minXcoord ) retVal.minXcoord = tempCoord.x;
+		if( tempCoord.x >= retVal.maxXcoord ) retVal.maxXcoord = tempCoord.x;
+		if( tempCoord.y <= retVal.minYcoord ) retVal.minYcoord = tempCoord.y;
+		if( tempCoord.y >= retVal.maxYcoord ) retVal.maxYcoord = tempCoord.y;
+		coords.push( tempCoord );
+	}
+	
+	retVal.coords = coords;
+	
+	return retVal;
+  }
+
+  function getStar( svg, x, y, mag ) {
+	return "<circle cx=\""+x+"\" cy=\"" + y + "\" r=\"" + (10 - mag) + "\" fill=\"black\"/>\n";
+  }
+
+  </script>  
+ </head>  
+ <body>
+   <table>
+	<tr>
+	  <td>
+	    <textarea id="coords" rows="10" cols="50"></textarea>
+	  </td>
+    </tr>
+	<tr>
+	  <td><input type="submit" onclick="draw();"/></td>
+	  <td><input type="button" value="+" onclick="zoomIn();"/></td>
+	  <td><input type="button" value="-" onclick="zoomOut();"/></td>
+    </tr>
+   </table>
+   <div id="svg"></div>
+  </body>  
+</html>  
+
