@@ -1,0 +1,15 @@
+<html>
+<head>
+  <script type="text/javascript">
+    document.onkeydown = function (e) {
+      var out = document.getElementById( "output" );
+      out.innerHTML = e.keyCode + " Alt: " + (e.altKey ? "true" : "false") + " Ctrl: " + (e.ctrlKey ? "true" : "false") + " Shift: " + (e.shiftKey ? "true" : "false");
+      return false; 
+    }
+  </script>
+</head>
+<body>
+  Hit some Keys.
+  <h3 id="output"></h3>
+</body>
+</html>
