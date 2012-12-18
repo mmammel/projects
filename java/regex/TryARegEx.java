@@ -14,14 +14,14 @@ class TryARegEx
 
     if( args.length != 1 )
     {
-      System.out.println( "Usage: java TryARegEx <pattern>" );
-      System.exit(1);
+      pattern = "^([^\\.]+?)\\.(?:(Q[0-9][0-9][0-9])|(Q[0-9][0-9][0-9])-(Q[0-9][0-9][0-9]))$";
     }
     else
     {
       pattern = args[0];
-      thePattern = Pattern.compile( pattern );
     }
+    
+    thePattern = Pattern.compile( pattern );
 
     try
     {
