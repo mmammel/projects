@@ -8,7 +8,7 @@
 	if(window.event||e){
 		
 		if(!e) e = window.event; // !e means we're using IE, otherwise Netscape
-				//alert(e.keyCode);
+				alert(e.keyCode);
 				
 		var componentFocused = document.getElementById("customRightClick").getFlashBoolean("componentFocused");
 		

@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $(document).bind('keydown',function(e){
+                if( e.keyCode == 17 ) controlPressed = true;
+                   });
+         $(document).bind('keyup',function(e){
+                if( e.keyCode == 17) controlPressed = false;
+         });
+           $(document).bind('keydown',function(e){
+                   if( e.keyCode == 16 ) shiftPressed = true;
+                      });
+            $(document).bind('keyup',function(e){
+                   if( e.keyCode == 16) shiftPressed = false;
+         });
+      });
+    </script>
+  </head>
+
+</html>
