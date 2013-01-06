@@ -22,6 +22,48 @@ third card: p1third p2third p3third p4third
 fourth card: p1fourth p2fourth p3fourth p4fourth
 fifth card: p1fifth p2fifth p3fifth p4fifth
 
+CardVal enum:
+Ace
+King
+Queen
+Jack
+Ten
+Nine
+
+CardSuit enum:
+
+Diamond
+Heart
+Spade
+Club
+
+Card enum:
+
+AceOfDiamonds
+KingOfDiamonds
+QueenOfDiamonds
+JackOfDiamonds
+TenOfDiamonds
+NineOfDiamonds
+AceOfHearts
+KingOfHearts
+QueenOfHearts
+JackOfHearts
+TenOfHearts
+NineOfHearts
+AceOfSpades
+KingOfSpades
+QueenOfSpades
+JackOfSpades
+TenOfSpades
+NineOfSpades
+AceOfClubs
+KingOfClubs
+QueenOfClubs
+JackOfClubs
+TenOfClubs
+NineOfClubs
+
 Build giant enum set of all possible events.  This is the "flat table" of a complete game.
  - reference cards by card1,card2, ... , card5 (i.e. p1playscard2, p3playscard4, etc.)
  - build a hand index to look up card values
