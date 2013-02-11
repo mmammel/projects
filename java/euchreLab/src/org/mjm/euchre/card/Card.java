@@ -1,3 +1,5 @@
+package org.mjm.euchre.card;
+
 import java.util.Map;
 import java.util.HashMap;
 

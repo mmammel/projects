@@ -7,6 +7,20 @@
 7. fourth card
 8. fifth card
 
+Game play is represented as a stack of "Plays".
+
+When a play is pushed, the game knows what the next play that has to be pushed is.
+
+Plays can be played, and unplayed.
+
+When a play is played it applies changes to the state of the player that made the play.
+
+When a play is played it provides events to be applied to the game result table.
+
+When a play is unplayed it rolls back the changes to the player state.
+
+When a play is unplayed the game unsets any events that were applied during the play.
+
 p4 is dealer
 teams: t1:p4/p2 vs. t2:p1/p3
 

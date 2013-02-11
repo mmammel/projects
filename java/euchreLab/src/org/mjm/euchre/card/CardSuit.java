@@ -1,3 +1,5 @@
+package org.mjm.euchre.card;
+
 public enum CardSuit
 {
   Diamonds(CardColor.Red),

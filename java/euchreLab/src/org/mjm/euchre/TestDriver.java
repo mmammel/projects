@@ -1,3 +1,8 @@
+package org.mjm.euchre;
+
+import org.mjm.euchre.game.*;
+import org.mjm.euchre.card.*;
+
 public class TestDriver
 {
   public int determineWinner( Card c1, Card c2, Card c3, Card c4, CardSuit trump, CardSuit led )
