@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function setFocus( eleId ) {
+        document.getElementById( eleId ).focus();
+        document.getElementById( "output" ).innerHTML = "Focus set to: " + document.activeElement.tagName + '#' + document.activeElement.id;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="foo">Foo</foo>
+    <div id="bar" tabIndex=1234>Bar</div>
+    <input id="inp"></input><br>
+    <input type=button value="Focus Foo" onclick="setFocus('foo');"/>
+    <input type=button value="Focus Bar" onclick="setFocus('bar');"/>
+    <input type=button value="Focus Input" onclick="setFocus('inp');"/>
+    <div id="output">--</div>
+  </body>
+</html>

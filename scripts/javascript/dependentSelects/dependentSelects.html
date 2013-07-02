@@ -1,0 +1,514 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    $(function() {
+       countryOnChange();
+      });
+
+  var provinces = [
+    ["AB","Alberta"],
+    ["BC","British Columbia"],
+    ["MB","Manitoba"],
+    ["NB","New Burnswick"],
+    ["NL","Newfoundland and Labrador"],
+    ["NS","Nova Scotia"],
+    ["NT","Northwest Territories"],
+    ["NU","Nunavut"],
+    ["ON","Ontario"],
+    ["PE","Prince Edward Island"],
+    ["QC","Quebec"],
+    ["SK","Saskatchewan"],
+    ["YT","Yukon"]
+  ];
+  
+  var states = [
+	["AL","Alabama"],
+	["AK","Alaska"],
+	["AZ","Arizona"],
+	["AR","Arkansas"],
+	["CA","California"],
+	["CO","Colorado"],
+	["CT","Connecticut"],
+	["DE","Delaware"],
+	["DC","District of Columbia"],
+	["FL","Florida"],
+	["GA","Georgia"],
+	["HI","Hawaii"],
+	["ID","Idaho"],
+	["IL","Illinois"],
+	["IN","Indiana"],
+	["IA","Iowa"],
+	["KS","Kansas"],
+	["KY","Kentucky"],
+	["LA","Louisiana"],
+	["ME","Maine"],
+	["MD","Maryland"],
+	["MA","Massachusetts"],
+	["MI","Michigan"], 
+	["MN","Minnesota"],
+	["MS","Mississippi"],
+	["MO","Missouri"],
+	["MT","Montana"],
+	["NE","Nebraska"],
+	["NV","Nevada"],
+	["NH","New Hampshire"],
+	["NJ","New Jersey"],
+	["NM","New Mexico"],
+	["NY","New York"],
+	["NC","North Carolina"],
+	["ND","North Dakota"],
+	["OH","Ohio"],
+	["OK","Oklahoma"],
+	["OR","Oregon"],
+	["PA","Pennsylvania"],
+	["RI","Rhode Island"],
+	["SC","South Carolina"],
+	["SD","South Dakota"],
+	["TN","Tennessee"],
+	["TX","Texas"],
+	["UT","Utah"],
+	["VT","Vermont"],
+	["VA","Virginia"],
+	["WA","Washington"],
+	["WV","West Virginia"],
+	["WI","Wisconsin"],
+	["WY","Wyoming"]
+  ];
+      var countryOnChange = function(e) {
+        var selectedCountry = $("#country").find(":selected").attr("value"); 
+        var optionsToUse = [];
+      
+        if( selectedCountry == "US" ) {
+          optionsToUse = states;
+        } else if( selectedCountry == "CA" ) {
+          optionsToUse = provinces;
+        }
+        
+        $("#states").empty();   
+        var tempOption = "";
+        for( var i = 0; i < optionsToUse.length; i++ )
+        {
+          tempOption = $("<option value=\"" + optionsToUse[i][0] + "\">" + optionsToUse[i][1] + "</option>");
+          $("#states").append( tempOption );
+        } 
+        
+      }
+
+    </script>
+  </head>
+  <body>
+<table width="520" border="0" align="center">
+<tbody><tr valign="top"> 
+<td> 
+<p>
+<font face="Arial, Verdana, sans-serif">
+</font></p><table width="520" border="0" align="center">
+<tbody><tr valign="top">
+<td>
+<p><font face="Arial, Verdana, sans-serif">
+</font></p><h3 align="center"><font face="Arial, Verdana, sans-serif">Step 4: Register and Submit Credit Card Information</font></h3><font face="Arial, Verdana, sans-serif">
+<br><br>
+Please enter your credit card information and reconfirm your acceptance of the terms and conditions via the form below. Upon clicking submit your credit card will be authorized, but not charged,for the amount shown. The credit card will be charged when a test has been completed, and a receipt will be sent to the email address entered in the form. 
+</font><p></p>
+<hr size="1" noshade="" align="center" width="380">
+<br>
+<form action="com.skillcheck.session_management.SK_Servlet?1372438591818&amp;EnterRegInfoForm" method="post">
+<table width="520" border="0" align="center">
+<tbody>
+<tr>
+	<td width="156">
+<font face="Arial" size="2">
+<b>
+Selected Tests: &nbsp;</b>
+</font>
+	</td>
+	<td width="350">
+<font face="Arial" size="2">
+Access 2002 - Advanced Skills<br>
+	</font>
+</td>
+</tr>
+<tr>
+<td width="156">
+<font face="Arial" size="2">
+<b>
+Price: &nbsp;</b>
+</font>
+</td>
+<td width="350">
+<font face="Arial" size="2">
+$1.00	</font>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<table width="520" border="0" align="center">
+<tbody>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial">
+Name</font>
+	</td>
+	<td width="350">
+<font face="Arial">
+		<input type="text" name="cardholderName" size="25" maxlength="50" value="" tabindex="1">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial">
+Company Name</font>
+	</td>
+	<td width="350">
+<font face="Arial">
+		<input type="text" name="cardholderCompany" size="25" maxlength="50" value="" tabindex="2">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial">
+Email Address</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+		<input type="text" name="cardholderEmail" size="25" maxlength="50" value="" tabindex="3">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial">
+Retype Email Address</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+		<input type="text" name="cardholderEmailRetype" size="25" maxlength="50" value="" tabindex="4">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial">
+Address</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+		<input type="text" name="cardholderAddress" size="25" maxlength="50" value="" tabindex="5">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+City</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+		<input type="text" name="cardholderCity" size="25" maxlength="50" value="" tabindex="6">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+Country</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+	<select id="country" name="country" size="1" tabindex="9" onchange="javascript:countryOnChange();">
+	<option value="US" selected="">
+US</option>
+	<option value="CA">
+Canada</option>
+	</select>
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#CC0033" face="Arial, Helvetica, sans-serif">
+<b>
+<font color="#FF0000">
+*</font>
+</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+State/Province</font>
+	</td>
+	<td width="300">
+<font face="Arial, Helvetica, sans-serif">
+	<select id="states" name="states" size="1" tabindex="9">
+<option value="AB">
+Alberta</option>
+<option value="BC">
+British Columbia</option>
+<option value="MB">
+Manitoba</option>
+<option value="NB">
+New Burnswick</option>
+<option value="NL">
+Newfoundland</option>
+<option value="NS">
+Nova Scotia</option>
+<option value="NT">
+Northwest Territories</option>
+<option value="NU">
+Nunavut</option>
+<option value="ON">
+Ontario</option>
+<option value="PE">
+Prince Edward Island</option>
+<option value="QC">
+Quebec</option>
+<option value="SK">
+Saskatchewan</option>
+<option value="YT">
+Yukon</option>
+</select>
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#CC0033" face="Arial, Helvetica, sans-serif">
+<b>
+<font color="#FF0000">
+*</font>
+</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+Zip</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+		<input type="text" name="cardholderZip" size="10" maxlength="15" value="" tabindex="8">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+Card Type</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+	<input type="radio" name="cardholderCardtype" value="visa" checked="" tabindex="10">
+Visa&nbsp;&nbsp;&nbsp; 	<input type="radio" name="cardholderCardtype" value="mcard" tabindex="11">
+MasterCard&nbsp;&nbsp;&nbsp;	<input type="radio" name="cardholderCardtype" value="amex" tabindex="12">
+AMEX	</font>
+</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial, Helvetica, sans-serif">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+Card Number</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+		<input type="text" name="cardholderCardnumber" size="25" maxlength="25" value="" tabindex="13">
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+Expiration Month</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+	<select name="cardholderExpmonth" size="1" tabindex="14">
+	<option value="99" selected="">
+Month</option>
+	<option value="01">
+January</option>
+	<option value="02">
+February</option>
+	<option value="03">
+March</option>
+	<option value="04">
+April</option>
+	<option value="05">
+May</option>
+	<option value="06">
+June</option>
+	<option value="07">
+July</option>
+	<option value="08">
+August</option>
+	<option value="09">
+September</option>
+	<option value="10">
+October</option>
+	<option value="11">
+November</option>
+	<option value="12">
+December</option>
+	</select>
+</font>
+	</td>
+</tr>
+<tr>
+	<td width="8">
+<font color="#FF0000" face="Arial, Helvetica, sans-serif">
+<b>
+*</b>
+</font>
+	</td>
+	<td width="156">
+<font face="Arial, Helvetica, sans-serif">
+Expiration Year</font>
+	</td>
+	<td width="350">
+<font face="Arial, Helvetica, sans-serif">
+	<select name="cardholderExpyear" size="1" tabindex="15">
+	<option value="0" selected="">
+Year</option>
+<option value="2013">
+2013</option>
+<option value="2014">
+2014</option>
+<option value="2015">
+2015</option>
+<option value="2016">
+2016</option>
+<option value="2017">
+2017</option>
+<option value="2018">
+2018</option>
+<option value="2019">
+2019</option>
+<option value="2020">
+2020</option>
+<option value="2021">
+2021</option>
+<option value="2022">
+2022</option>
+<option value="2023">
+2023</option>
+	</select>
+</font>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+<font color="#FF0000" face="Arial">
+<b>
+*</b>
+</font>
+</td>
+<td colspan="6">
+<font face="Arial, Helvetica, sans-serif">
+Input your initials to reconfirm your acceptance of the terms and conditions accepted on the previous screen:		<input type="text" name="cardholderInitials" size="5" maxlength="10" value="" tabindex="16">
+</font>
+	</td>
+</tr>
+		<tr>
+<td colspan="7">
+&nbsp;</td>
+</tr>
+		<tr>
+			<td colspan="7" align="center" valign="middle">
+<font face="Arial">
+			<input type="Submit" name="search" value="Submit" tabindex="17">
+			<input type="Submit" name="search_cancel" value="Cancel" tabindex="18">
+</font>
+			</td>
+				</tr>
+		<tr>
+<td colspan="7">
+&nbsp;</td>
+</tr>
+		</tbody>
+</table>
+		</form>
+
+</td>
+</tr>
+</tbody>
+</table>
+<font face="Arial, Verdana, sans-serif">
+		
+<!-- END INCLUDE SCREEN TEMPLATE -->
+
+	
+						</font>
+</td>
+
+					</tr>
+
+				</tbody>
+</table>
+
+  </body>
+
+</html>

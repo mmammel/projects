@@ -1,0 +1,11 @@
+For testing the pd4ml library, specifically while building the CCSim report.
+
+Build:
+
+javac -cp .:./pd4ml.jar PD4MLTest.java
+
+Run:
+
+java -cp .:./pd4ml.jar:./ss_css2.jar PD4MLTest input.html
+
+it produces a file called "result.pdf".
