@@ -56,7 +56,7 @@ public class PD4MLTest {
 
 public static ByteArrayOutputStream createPdf(String pReportString)  {
 		String testingURL = "http://" + "beta2.skillcheck.com" + "/onlinetesting/images/";
-		//pReportString = pReportString.replaceAll("/images/", testingURL);
+		pReportString = pReportString.replaceAll("/images/", testingURL);
 		
 		StringReader stringReader = new StringReader(pReportString);
 		
