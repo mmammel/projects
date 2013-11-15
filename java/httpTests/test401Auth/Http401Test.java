@@ -18,6 +18,7 @@ public class Http401Test {
     }
   }
   public String makeRequest( String url, String content, String method ) {
+    ByteArrayInputStream byteStream = null;
     HttpURLConnection connection = null;
     String response = null;
     String encoding = "UTF-8";
@@ -28,8 +29,9 @@ public class Http401Test {
     int c = 0;
     int rc = 0;
     String rm = null;
-    BufferedWriter writer = null;
+    OutputStreamWriter writer = null;
     OutputStream os = null;
+    InputStreamReader reader = null;
     InputStreamReader responseReader = null;
 
     try {
@@ -40,20 +42,24 @@ public class Http401Test {
       // Can we already see a response code?
       //rc = connection.getResponseCode();
       //System.out.println( "Response code after open: " + rc );
-      //if( rc == 401 ) { 
+      //if( rc == 401 ) {
       // connection = (HttpURLConnection)endpoint.openConnection();
       //}
-       
+
       connection.setRequestMethod( method );
       connection.setRequestProperty("Authorization","Basic RkFEVkFTU0VTU01FTlQ6UHYhM3VfNDc0eg==");
       connection.setRequestProperty("Content-Type","text/xml; charset=utf-8" );
       connection.setRequestProperty("Content-Length",""+content.length());
       connection.setDoInput(true);
       connection.setDoOutput(true);
-      
+
       os = connection.getOutputStream();
-      writer = new BufferedWriter(new OutputStreamWriter(os));
-      writer.write(content);
+      byteStream = new ByteArrayInputStream(content.getBytes(encoding));
+      writer = new OutputStreamWriter(os, encoding);
+      reader = new InputStreamReader(byteStream, encoding);
+      while ((readSize = reader.read(buffer, 0, BUFFER_SIZE)) != -1) {
+        writer.write(buffer, 0, readSize);
+      }
 
       writer.flush();
       writer.close();

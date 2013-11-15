@@ -1,0 +1,42 @@
+<html>
+<head>
+<script type="text/javascript">
+alert( navigator.platform );
+var commandKeyPressed = false;
+
+function isControlPressed( e ) {
+  return (e.ctrlKey || commandKeyPressed );
+}
+// kill keyboard events so that they don't make it to the browser (IE), perform browser functions
+document.onkeyup = function(e){
+  if( e.keyCode == 91 || e.keyCode == 93 ) commandKeyPressed = false;
+  return false;
+}
+
+window.onpopstate = function(evt) { document.write("location: " + document.location + ", state: " + JSON.stringify(evt.state)); };
+
+
+document.onkeydown = function (e) {
+
+  if( e.keyCode == 91 || e.keyCode == 93 ) {
+    commandKeyPressed = true;
+    return false;
+  }
+
+  var out = document.getElementById( "output" );
+  if( (e.keyCode == 79 || e.keyCode == 80) && isControlPressed(e) )
+  {
+    //alert( "Don't to it!" );
+    e.shiftKey = true;
+  }
+  out.innerHTML = e.keyCode + " Alt: " + (e.altKey ? "true" : "false") + " Ctrl: " + (isControlPressed(e) ? "true" : "false") + " Shift: " + (e.shiftKey ? "true" : "false");
+  return false;
+}
+
+</script>
+</head>
+<body>
+Hit some Keys.
+<h3 id="output"></h3>
+</body>
+</html>
