@@ -60,7 +60,7 @@ public class Excluder
     {
       try
       {
-        fis.close();
+        if( fis != null ) fis.close();
       }
       catch( IOException ioe2 )
       {
