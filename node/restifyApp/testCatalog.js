@@ -12,6 +12,7 @@ var searchClient = new ElasticSearchClient( esServerConfig );
 
 var server = restify.createServer();
 server.use(restify.queryParser());
+server.use(restify.bodyParser());
 
 server.listen(3000);
 
@@ -32,14 +33,22 @@ var getTestProto = function( req, res, next ) {
 var getTest = function( req, res, next ) {
   searchClient.get( 'assessments','test', req.params.testKey )
   .on( 'data', function(data) {
-    res.json(data);
+    res.json(JSON.parse(data));
    }).exec();
 };
 
 var getHeaders = function( req, res, next ) {
   searchClient.search( 'assessments','catalogheader', { query: { match_all: {} }, size: 100 } )
   .on( 'data', function(data) {
-    res.json(data);
+    res.json(JSON.parse(data));
+   }).exec();
+};
+
+var getMenu = function( req, res, next ) {
+  searchClient.search( 'assessments','catalogheader', { query: { match_all: {} }, size: 100 } )
+  .on( 'data', function(data) {
+//console.log(data);
+    res.json(JSON.parse(data));
    }).exec();
 };
 
@@ -47,7 +56,7 @@ var getSubMenu = function(req, res, next ) {
   var headerId = req.params.headerId;
   searchClient.search( 'assessments', headerId, { query: { match_all: {} }, size: 100 } )
   .on( 'data', function(data) {
-    res.json(data);
+    res.json(JSON.parse(data));
   }).exec();
 };
 
@@ -57,20 +66,35 @@ var doSearch = function(req, res, next ) {
   var count = req.params.c ? req.params.c : 9999;
   searchClient.search( 'assessments', 'test', { from: offset, size: count, query: { query_string: { query: queryStr } } } )
   .on( 'data', function(data) {
-console.log( data );
+//console.log( data );
     res.json(JSON.parse(data));
   }).exec();
 };
 
 var doOrFilter = function( req, res, next ) {
-  var fld = req.params.f;
-  var terms = req.params.v.toLowerCase().split(",");
-  var searchJSON = '{ "query" : { "constant_score" : { "filter" : { "or" : ' + esFilterFromArray( fld, terms ) + '} } } }';
+console.log( req );
+  var searchJSON = '{ "query" : { "constant_score" : { "filter" : { "or" : ' + buildFilter( req.params.data ) + '} } } }';
   searchClient.search( 'assessments', 'test', JSON.parse( searchJSON ) )
    .on( 'data', function(data) {
       res.json(data);
    }).exec();
 };
+
+function buildFilter( selectedOptions ) {
+  var retVal = '[ ';
+  var currField = '';
+  for( var i = 0; i < selectedOptions.length; i++ ) {
+    currField = selectedOptions[i].topic;
+    for( var j = 0; j < selectedOptions[i].checkedvalues.length; j++ ) {
+      if( i > 0 || j > 0 ) retVal += ',';
+      retVal = retVal + '{ "term" : { "' + currField + '" : "' + selectedOptions[i].checkedvalues[j].toLowerCase() + '" } }';
+    }
+  }
+  retVal += ' ]';
+console.log( retVal );
+
+  return retVal;
+}
 
 function esFilterFromArray( fieldname, valArray ) {
   var retVal = '[ ';
@@ -83,9 +107,10 @@ function esFilterFromArray( fieldname, valArray ) {
   return retVal;
 }
 
+server.get('/api/menu', getMenu );
 server.get('/api/headers', getHeaders );
 server.get('/api/subMenu/:headerId', getSubMenu );
 server.get('/api/test/:testKey', getTest );
 server.get('/api/search', doSearch );
-server.get('/api/orfilter', doOrFilter );
+server.post('/api/orfilter', doOrFilter );
 

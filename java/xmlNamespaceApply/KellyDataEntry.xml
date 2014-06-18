@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scores xmlns="http://www.findly.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.findly.com Kelly.xsd">
+  <NumScores>1</NumScores>
+  <Score>
+    <UserInfo>
+      <eTicketID>4133575171848687528</eTicketID>
+      <ScoreID>15532957</ScoreID>
+      <ExternalID>0</ExternalID>
+      <FirstName>Megan</FirstName>
+      <LastName>Smith</LastName>
+      <ID>2137</ID>
+      <AdditionalData>
+        <UserData />
+      </AdditionalData>
+    </UserInfo>
+    <TestInfo>
+      <TestID>EN_DATY4</TestID>
+      <TestName>Data Entry Test - Alphanumeric (F)(KS)</TestName>
+      <Date>7/5/2012</Date>
+      <DateAsNumber>20120705</DateAsNumber>
+      <TimeStart>19:02:41</TimeStart>
+      <TimeElapsed>300</TimeElapsed>
+    </TestInfo>
+    <ScoreInfo>
+      <ScoreType>STANDARD</ScoreType>
+      <ReportURL>https://webtest.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ID=KSUS-1234&amp;MODE=REPORTRETRIEVAL,scoreKey.15532957,html</ReportURL>
+      <NumMetrics>6</NumMetrics>
+      <Metric>
+        <MetricName>Rating</MetricName>
+        <MetricDesc>Rating</MetricDesc>
+        <MetricValue>
+          <Rating>Intermediate</Rating>
+        </MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>GrossKPH</MetricName>
+        <MetricDesc>Gross speed (keystrokes per hour)</MetricDesc>
+        <MetricValue>7572</MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>Errors</MetricName>
+        <MetricDesc>Total number of errors</MetricDesc>
+        <MetricValue>15</MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>AdjErrors</MetricName>
+        <MetricDesc>Errors adjusted for time</MetricDesc>
+        <MetricValue>540</MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>NetKPH</MetricName>
+        <MetricDesc>Net speed (keystrokes per hour)</MetricDesc>
+        <MetricValue>7032</MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>AccuracyRate</MetricName>
+        <MetricDesc>Accuracy percentage rate over time</MetricDesc>
+        <MetricValue>88</MetricValue>
+      </Metric>
+    </ScoreInfo>
+  </Score>
+</Scores>
+
+

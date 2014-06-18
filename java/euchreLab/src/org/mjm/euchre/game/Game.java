@@ -65,9 +65,11 @@ public class Game {
     for( int i = 1; i < 5; i++ )
     {
       System.out.println( "Player " + i + ":" + G.getPlayerHand(i) );
+      System.out.println( "Hand score on turn card: " + G.getPlayerHand(i).getTrumpScore( G.getKitty().getTurnCard().suit() ) );
     }
 
     System.out.println( "Kitty: " + G.getKitty() );
+    System.out.println( "Turn card: " + G.getKitty().getTurnCard() );
     
   }
 }

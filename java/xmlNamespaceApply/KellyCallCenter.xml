@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scores xmlns="http://www.findly.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.findly.com Kelly.xsd">
+  <NumScores>1</NumScores>
+  <Score>
+    <UserInfo>
+      <eTicketID>420674316650216617</eTicketID>
+      <ScoreID>15948666</ScoreID>
+      <ExternalID>0</ExternalID>
+      <FirstName>Davis</FirstName>
+      <LastName>Nez</LastName>
+      <ID>10535078</ID>
+      <AdditionalData>
+        <UserData />
+      </AdditionalData>
+    </UserInfo>
+    <TestInfo>
+      <TestID>EN_FLCK2</TestID>
+      <TestName>Call Center Sales Scenarios (F) (KS)</TestName>
+      <Date>9/13/2012</Date>
+      <DateAsNumber>20120913</DateAsNumber>
+      <TimeStart>18:34:33</TimeStart>
+      <TimeElapsed>933</TimeElapsed>
+    </TestInfo>
+    <ScoreInfo>
+      <ScoreType>CALLCENTER</ScoreType>
+<ReportURL>https://webtest.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ID=KSUS-1234&amp;MODE=REPORTRETRIEVAL,scoreKey.15948666,html</ReportURL>
+      <NumMetrics>2</NumMetrics>
+      <Metric>
+        <MetricName>OverallScore</MetricName>
+        <MetricDesc>Overall score (not a percentage)</MetricDesc>
+        <MetricValue>2.5</MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>ScaleScores</MetricName>
+        <MetricDesc>Scale names and scores</MetricDesc>
+        <MetricValue>
+          <NumScales>4</NumScales>
+          <Scale>
+            <Name>PROSPECTING</Name>
+            <Score>3.0</Score>
+          </Scale>
+          <Scale>
+            <Name>INFORMATION GATHERING/CONTROLLING THE SALE</Name>
+            <Score>3.0</Score>
+          </Scale>
+          <Scale>
+            <Name>OBJECTIONS</Name>
+            <Score>2.5</Score>
+          </Scale>
+          <Scale>
+            <Name>CLOSING</Name>
+            <Score>2.0</Score>
+          </Scale>
+        </MetricValue>
+      </Metric>
+    </ScoreInfo>
+  </Score>
+</Scores>
+
+
