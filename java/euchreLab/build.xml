@@ -31,7 +31,7 @@
       <manifest>
         <!--<attribute name="Main-Class" value="org.mjm.tools.keyword.KeywordReplacer" />-->
         <!--<attribute name="Main-Class" value="org.mjm.tools.wordpattern.WordPatternTree" />-->
-        <attribute name="Main-Class" value="org.mjm.euchre.game.Game" />
+        <attribute name="Main-Class" value="org.mjm.euchre.Driver" />
       </manifest>
     </jar>
   </target>

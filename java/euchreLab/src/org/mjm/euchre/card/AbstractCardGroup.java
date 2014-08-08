@@ -1,5 +1,8 @@
 package org.mjm.euchre.card;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class AbstractCardGroup {
   protected Card [] cards = null;
 
@@ -22,6 +25,19 @@ public abstract class AbstractCardGroup {
     }
   }
 
+  public Set<CardSuit> getSuiteSet() {
+    Set<CardSuit> retVal = new HashSet<CardSuit>();
+    for( Card c : this.cards ) {
+      retVal.add(c.suit());
+    }
+    
+    return retVal;
+  }
+  
+  public Card [] getCards() {
+    return this.cards;
+  }
+  
   public String toString()
   {
     StringBuilder sb = new StringBuilder();
