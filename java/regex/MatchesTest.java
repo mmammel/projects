@@ -12,5 +12,6 @@ public class MatchesTest
     System.out.println( "Match Pattern: " + matchStr );
 
     System.out.println( args[0].matches(matchStr) ? "Match!" : "No Match!" );
+    System.out.println( args[0].matches("^(?:[-0-9A-z_() ]+,[0-9A-z ]*,?)+$") ? "Match!" : "No Match!" );
   }
 }

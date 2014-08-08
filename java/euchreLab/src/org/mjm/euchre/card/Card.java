@@ -35,6 +35,7 @@ public enum Card {
   public CardSuit suit() { return this.suit; }
   public CardSuit suit( CardSuit trump ) { return this.isTrump(trump) ? trump : this.suit; }
   public CardVal  value() { return this.value; }
+  public CardColor color() { return this.suit.color(); }
 
   private static final Card [] DIAMONDS_TRUMP_RANK = {
     JackOfDiamonds,
@@ -145,6 +146,23 @@ public enum Card {
     this.suit = suit;
     this.value = value;
   }
+
+  public int getCardScore( CardSuit trump, CardSuit led ) {
+    int retVal = 0;
+    if( this.isTrump(trump) || this.suit() == led ) {
+      Card [] rankArray = getRankArray( trump, led );
+      for( int i = 0; i < rankArray.length; i++ ) {
+        if( this == rankArray[i] ) {
+          retVal = rankArray.length - i;
+          break;
+        }
+      }
+    }
+
+    return retVal;
+  }
+
+  public String toString() { return this.value.toString() + this.suit.toString(); }
 
   public boolean isTrump( CardSuit trump )
   {

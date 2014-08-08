@@ -33,6 +33,18 @@ public class Game {
     kitty = new Kitty(cardList.subList(20,24).toArray(new Card[0]));
   } 
 
+  public void setTrump( CardSuit suit ) {
+    this.trump = suit;
+  }
+  
+  public void setTrump( Card card ) {
+    this.trump = card.suit();
+  }
+  
+  public CardSuit getTrump() {
+    return this.trump;
+  }
+  
   public Hand getPlayerHand( int i )
   {
     Hand retVal = null;
@@ -58,16 +70,35 @@ public class Game {
   }
 
   public Kitty getKitty() { return this.kitty; }
-
+  
   public static void main( String [] args )
   {
     Game G = new Game();
-    for( int i = 1; i < 5; i++ )
+    /*for( int i = 1; i < 5; i++ )
     {
       System.out.println( "Player " + i + ":" + G.getPlayerHand(i) );
+      System.out.println( "Hand score on turn card: " + G.getPlayerHand(i).getTrumpScore( G.getKitty().getTurnCard().suit() ) );
     }
 
     System.out.println( "Kitty: " + G.getKitty() );
+    System.out.println( "Turn card: " + G.getKitty().getTurnCard() );
+    */
+    // Ask if each player wants to pick it up. Dealer is player 4.
+    // If they do, prompt dealer (player 4) for discard, set final deck status.
+    for( int i = 1; i < 5; i++ ) { 
+      System.out.println( "Turn Card: " + G.getKitty().getTurnCard() );
+      System.out.println( "Player " + i + ", order it up?");
+    }
+  }
+  
+  public void printHands() {
+    StringBuilder retVal = new StringBuilder();
+    retVal.append("Player 1: " ).append( this.getPlayerHand(1) ).append("\n");
+    retVal.append("Player 2: " ).append( this.getPlayerHand(2) ).append("\n");
+    retVal.append("Player 3: " ).append( this.getPlayerHand(3) ).append("\n");
+    retVal.append("Player 4: " ).append( this.getPlayerHand(4) ).append("\n");
+    retVal.append("Kitty: " ).append( this.getKitty() );
     
+    System.out.println( retVal.toString());
   }
 }
