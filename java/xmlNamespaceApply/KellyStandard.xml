@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <Scores xmlns="http://www.findly.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.findly.com Kelly.xsd">
+  <NumScores>1</NumScores>
+  <Score>
+    <UserInfo>
+      <eTicketID>7258223610811459118</eTicketID>
+      <ScoreID>15527368</ScoreID>
+      <ExternalID>0</ExternalID>
+      <FirstName>Genevieve</FirstName>
+      <LastName>Medas</LastName>
+      <ID>7258223610811459118</ID>
+      <AdditionalData>
+        <UserData />
+      </AdditionalData>
+    </UserInfo>
+    <TestInfo>
+      <TestID>EN_A12KB</TestID>
+      <TestName>ACCESS 2007 - BASIC SKILLS (KS)</TestName>
+      <Date>7/4/2012</Date>
+      <DateAsNumber>20120704</DateAsNumber>
+      <TimeStart>23:45</TimeStart>
+      <TimeElapsed>1980</TimeElapsed>
+    </TestInfo>
+    <ScoreInfo>
+      <ScoreType>STANDARD</ScoreType>
+      <ReportURL>https://webtest.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ID=KSUS-1234&amp;MODE=REPORTRETRIEVAL,scoreKey.15527368,html</ReportURL>
+      <NumMetrics>2</NumMetrics>
+      <Metric>
+        <MetricName>Rating</MetricName>
+        <MetricDesc>Rating</MetricDesc>
+        <MetricValue>
+          <Rating>Needs Training</Rating>
+        </MetricValue>
+      </Metric>
+      <Metric>
+        <MetricName>Details</MetricName>
+        <MetricDesc>Detailed item information</MetricDesc>
+        <MetricValue>
+          <NumItems>34</NumItems>
+          <Item>
+            <Qnum>1</Qnum>
+            <Qtime>56</Qtime>
+            <Qnid>Q035</Qnid>
+            <Name>Print Report</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>REPORTS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>2</Qnum>
+            <Qtime>50</Qtime>
+            <Qnid>Q034</Qnid>
+            <Name>Exit Access</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>3</Qnum>
+            <Qtime>97</Qtime>
+            <Qnid>Q027</Qnid>
+            <Name>View Report</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>REPORTS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>4</Qnum>
+            <Qtime>32</Qtime>
+            <Qnid>Q059</Qnid>
+            <Name>Clear Data</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item selected on screen</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>5</Qnum>
+            <Qtime>67</Qtime>
+            <Qnid>Q073</Qnid>
+            <Name>Open Form</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item selected on screen</Wrong>
+            <Level>BEG</Level>
+            <Topic>FORMS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>6</Qnum>
+            <Qtime>107</Qtime>
+            <Qnid>Q098</Qnid>
+            <Name>Save Report</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item chosen in dialog box</Wrong>
+            <Level>BEG</Level>
+            <Topic>REPORTS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>7</Qnum>
+            <Qtime>73</Qtime>
+            <Qnid>Q138</Qnid>
+            <Name>Table - Data Entry</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>8</Qnum>
+            <Qtime>64</Qtime>
+            <Qnid>Q057</Qnid>
+            <Name>Select All</Name>
+            <Final>Incorrect</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>9</Qnum>
+            <Qtime>123</Qtime>
+            <Qnid>Q031</Qnid>
+            <Name>Start Access</Name>
+            <Final>Incorrect</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>10</Qnum>
+            <Qtime>27</Qtime>
+            <Qnid>Q036</Qnid>
+            <Name>Rename Database Object</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item selected on screen</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>11</Qnum>
+            <Qtime>22</Qtime>
+            <Qnid>Q058</Qnid>
+            <Name>Cut Data</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item selected on screen</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>12</Qnum>
+            <Qtime>21</Qtime>
+            <Qnid>Q002</Qnid>
+            <Name>Table Datasheet View</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>13</Qnum>
+            <Qtime>63</Qtime>
+            <Qnid>Q037</Qnid>
+            <Name>Delete Database Object</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>14</Qnum>
+            <Qtime>96</Qtime>
+            <Qnid>Q063</Qnid>
+            <Name>Edit Data</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>15</Qnum>
+            <Qtime>18</Qtime>
+            <Qnid>Q010</Qnid>
+            <Name>Copy Data</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>16</Qnum>
+            <Qtime>123</Qtime>
+            <Qnid>Q038</Qnid>
+            <Name>Copy Database Object</Name>
+            <Final>Incorrect</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>17</Qnum>
+            <Qtime>95</Qtime>
+            <Qnid>Q045</Qnid>
+            <Name>Table Design View</Name>
+            <Final>Incorrect</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>18</Qnum>
+            <Qtime>22</Qtime>
+            <Qnid>Q033</Qnid>
+            <Name>Close Database</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>19</Qnum>
+            <Qtime>118</Qtime>
+            <Qnid>Q100</Qnid>
+            <Name>Ribbons</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TOOLS AND AUTOMATION</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>20</Qnum>
+            <Qtime>41</Qtime>
+            <Qnid>Q008</Qnid>
+            <Name>Select Record</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>21</Qnum>
+            <Qtime>43</Qtime>
+            <Qnid>Q060</Qnid>
+            <Name>Paste Data</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item selected on screen</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>22</Qnum>
+            <Qtime>33</Qtime>
+            <Qnid>Q017</Qnid>
+            <Name>Print Data Table</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>23</Qnum>
+            <Qtime>129</Qtime>
+            <Qnid>Q042</Qnid>
+            <Name>Importing Data</Name>
+            <Final>Incorrect</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>24</Qnum>
+            <Qtime>39</Qtime>
+            <Qnid>Q001</Qnid>
+            <Name>Open Database</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>25</Qnum>
+            <Qtime>66</Qtime>
+            <Qnid>Q032</Qnid>
+            <Name>Create New Database</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>26</Qnum>
+            <Qtime>11</Qtime>
+            <Qnid>Q136</Qnid>
+            <Name>Create Database with Template</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FILE MANAGEMENT</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>27</Qnum>
+            <Qtime>55</Qtime>
+            <Qnid>Q122</Qnid>
+            <Name>Save Form</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item chosen in dialog box</Wrong>
+            <Level>BEG</Level>
+            <Topic>FORMS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>28</Qnum>
+            <Qtime>33</Qtime>
+            <Qnid>Q131</Qnid>
+            <Name>Move Control in a Form</Name>
+            <Final>Incorrect</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>FORMS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>29</Qnum>
+            <Qtime>42</Qtime>
+            <Qnid>Q064</Qnid>
+            <Name>Undo Current Changes</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>30</Qnum>
+            <Qtime>37</Qtime>
+            <Qnid>Q003</Qnid>
+            <Name>Create New Table</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>31</Qnum>
+            <Qtime>28</Qtime>
+            <Qnid>Q007</Qnid>
+            <Name>Delete Field</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>32</Qnum>
+            <Qtime>33</Qtime>
+            <Qnid>Q012</Qnid>
+            <Name>Undo Cell Edit</Name>
+            <Final>Incorrect</Final>
+            <Wrong>Incorrect item selected on screen</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>33</Qnum>
+            <Qtime>23</Qtime>
+            <Qnid>Q094</Qnid>
+            <Name>Create Report Manually</Name>
+            <Final>Incomplete</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>REPORTS</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+          <Item>
+            <Qnum>34</Qnum>
+            <Qtime>27</Qtime>
+            <Qnid>Q011</Qnid>
+            <Name>Delete Record</Name>
+            <Final>Correct</Final>
+            <Wrong>NULL</Wrong>
+            <Level>BEG</Level>
+            <Topic>TABLES</Topic>
+            <Comments>NULL</Comments>
+          </Item>
+        </MetricValue>
+      </Metric>
+    </ScoreInfo>
+  </Score>
+</Scores>
+
+

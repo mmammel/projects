@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:selection="http://www.findly.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.findly.com" elementFormDefault="qualified">  
+  <xs:complexType name="AdditionalDataType">
+    <xs:sequence>
+      <xs:element name="UserData" type="selection:UserDataType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+	
+  <xs:complexType name="UserDataType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="Name" type="xs:string" minOccurs="0"/>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UserInfoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="eTicketID"/>
+      <xs:element type="xs:string" name="ScoreID"/>
+      <xs:element type="xs:string" name="ExternalID"/>
+      <xs:element type="xs:string" name="FirstName"/>
+      <xs:element type="xs:string" name="LastName"/>
+      <xs:element type="xs:string" name="ID"/>
+      <xs:element type="selection:AdditionalDataType" name="AdditionalData" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ScaleType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Name"/>
+      <xs:element type="xs:string" name="Score"/>
+    </xs:sequence>
+  </xs:complexType> 
+
+  <xs:complexType name="ItemType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Qnum"/>
+      <xs:element type="xs:string" name="Qtime"/>
+      <xs:element type="xs:string" name="Qnid"/>
+      <xs:element type="xs:string" name="Name"/>
+      <xs:element name="Final" type="xs:string"/>
+      <xs:element name="Wrong"  type="xs:string"/>
+      <xs:element name="Level"  type="xs:string"/>
+      <xs:element name="Topic"  type="xs:string"/>
+      <xs:element type="xs:string" name="Comments"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ScoreInfoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="ScoreType"/>
+      <xs:element type="xs:string" name="ReportURL"/>
+      <xs:element type="xs:string" name="NumMetrics"/>
+      <xs:element type="selection:MetricType" name="Metric" maxOccurs="unbounded" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TestInfoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="TestID"/>
+      <xs:element type="xs:string" name="TestName"/>
+      <xs:element type="xs:string" name="Date"/>
+      <xs:element type="xs:string" name="DateAsNumber"/>
+      <xs:element type="xs:string" name="TimeStart"/>
+      <xs:element type="xs:string" name="TimeElapsed"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MetricValueType" mixed="true">
+    <xs:choice>
+      <xs:sequence>
+        <xs:element type="xs:string" name="NumItems" minOccurs="0"/>
+        <xs:element type="selection:ItemType" name="Item" maxOccurs="unbounded" minOccurs="0" />
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element type="xs:string" name="NumScales" minOccurs="0"/>
+        <xs:element type="selection:ScaleType" name="Scale" maxOccurs="unbounded" minOccurs="0" />
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element type="xs:string" name="ScoreBeg" minOccurs="0"/>
+        <xs:element type="xs:string" name="ScoreInt" minOccurs="0"/>
+        <xs:element type="xs:string" name="ScoreAdv" minOccurs="0"/>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element type="xs:string" name="Rating" minOccurs="0"/>
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="MetricType">
+    <xs:sequence>
+      <xs:element name="MetricName" type="xs:string"/>
+      <xs:element name="MetricDesc"  type="xs:string"/>
+      <xs:element name="MetricValue" type="selection:MetricValueType" maxOccurs="unbounded" /> 
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ScoreType">
+    <xs:sequence>
+      <xs:element type="selection:UserInfoType" name="UserInfo" />
+      <xs:element type="selection:TestInfoType" name="TestInfo" />
+      <xs:element type="selection:ScoreInfoType" name="ScoreInfo" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ScoresType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="NumScores"/>
+      <xs:element type="selection:ScoreType" name="Score" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Scores" type="selection:ScoresType"/>
+  
+</xs:schema>

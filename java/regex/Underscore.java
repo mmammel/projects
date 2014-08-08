@@ -1,6 +1,6 @@
 public class Underscore {
   static String KEY_PATTERN = "^.*?_(.*?)_[^_]+$";
-  static String REALKEY_PATTERN = "^(\\D+?)\\d+$";
+  static String REALKEY_PATTERN = "^(\\D+?)\\d+.*$";
   public static void main( String [] args )
   {
     String key = args[0].replaceAll( KEY_PATTERN, "$1");
