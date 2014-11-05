@@ -15,7 +15,8 @@ class TryARegEx
     if( args.length != 1 )
     {
       //pattern = "^([^\\.]+?)\\.(?:(Q[0-9][0-9][0-9])|(Q[0-9][0-9][0-9])-(Q[0-9][0-9][0-9]))$";
-      pattern = "^(.*?):(.*?):(.*)$";
+      //pattern = "^(.*?):(.*?):(.*)$";
+      pattern = "(?i)^.*?<img.*?src=\\s*['\"](.*?)['\"].*$";
     }
     else
     {
@@ -41,6 +42,7 @@ class TryARegEx
         }
         else
         {
+          System.out.println( "Testing: " + input_str + " ..." );
           tempMatcher = thePattern.matcher( input_str );
 
           if( tempMatcher.matches() )

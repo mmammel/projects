@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Draggable - Snap to element or grid</title>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <style>
+    .matchOption {
+      width: 50%;
+    }
+    .matchAnswer {
+    }
+    .matchAnswerHover {
+      background-color:aqua;
+    }
+  </style>
+  <script>
+  $(function() {
+    $(".matchOption").draggable({
+      helper:"clone"
+    });
+    $(".matchAnswer").droppable({
+      hoverClass: "matchAnswerHover",
+      drop: function(event, ui ) {
+        var inputID = $(this).attr("id") + "_input";
+        $("#"+inputID).val( ui.draggable.find("label").html() );
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+<table>
+  <tbody>
+    <tr>
+      <td class="matchOption">
+          <label>A</label>: Volleyball
+      </td>
+      <td id="answer1" class="matchAnswer">
+         <input disabled id="answer1_input" size=1 value="">Offsides
+      </td>
+    </tr>
+    <tr>
+      <td class="matchOption">
+          <label>B</label>: Soccer
+      </td>
+      <td id="answer2" class="matchAnswer">
+        <input disabled id="answer2_input" size=1 value="">RBI
+      </td>
+    </tr>
+    <tr>
+      <td class="matchOption">
+          <label>C</label>: Baseball
+      </td>
+      <td id="answer3" class="matchAnswer">
+        <input disabled id="answer3_input" size=1 value="">Sideout
+      </td>
+    </tr>
+  </tbody>
+</table> 
+ 
+</body>
+</html>
+

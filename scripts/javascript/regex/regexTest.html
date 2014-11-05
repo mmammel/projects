@@ -1,0 +1,84 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://webtest.skillcheck.com/onlinetesting/jquery/js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript">
+      function tryRegEx(){
+        var expression = $("#exp").val();
+        if( $("#tildafilter:checked").length > 0 ) {
+          expression = expression.replace(/~/g,"");
+        }
+
+        var mods = "";
+        if( $("#caseinsensitive:checked").length > 0 ) {
+          mods += "i";
+        }
+
+        if( $("#global:checked").length > 0 ) {
+          mods += "g";
+        }
+
+        var textToMatch = $("#str").val();
+        var pattern = new RegExp( expression, mods );
+
+        if( pattern.test(textToMatch) )
+        {
+          pattern = new RegExp( expression, mods );
+          var results = [];
+          $("#results").text("Match");
+          var result;
+          while( result = pattern.exec(textToMatch)) {
+            results.push( result );
+          }
+          $("#match").text(""+JSON.stringify(results));
+        }
+        else
+        {
+          $("#results").text("No Match");
+          $("#match").text("N/A");
+        }
+
+      }
+  </script>
+</head>
+<body>
+
+  <h3>Regular Expression Tester</h3>
+
+ <table>
+   <tr>
+     <td><b>Filter out "~" characters to mimic the Cengage engine?</b></td><td><input type="checkbox" checked id="tildafilter"/></td>
+   </tr>
+    <tr>
+        <td><b>Always case-insensitive?</b></td><td><input type="checkbox" checked id="caseinsensitive"/></td>
+   </tr>
+    <tr>
+        <td><b>Global?</b></td><td><input type="checkbox" checked id="global"/></td>
+   </tr>
+    <tr>
+      <td><b>Enter your regular expression:</b></td><td><input size="120" id="exp"/></td>
+    </tr>
+    <tr>
+      <td><b>Enter a string to match:</b></td><td><input size="120" id="str"/></td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Try it" id="submit" onclick="javascript:tryRegEx(); return false;"/></td>
+    </tr>
+    <tr>
+      <td>Result:</td><td id="results"></td>
+    </tr>
+    <tr>
+      <td>Matched string:</td><td id="match"></td>
+    </tr>
+  </table>
+  <p>
+  <h3>Some Regular Expression Resources:</h3>
+  <ul>
+  <li>Decent high-level intro <a href="http://www.regular-expressions.info/reference.html/">here</a></li>
+  <li>The <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">javadoc</a> for the Pattern object, explains all of the quantifiers</li>
+  <li>A nice <a href="http://docs.oracle.com/javase/tutorial/essential/regex/index.html">java tutorial</a> on regex, ignore the parts with java code - it has nice non-code examples as well</li>
+  <li>A shameless plug :) An <a href="http://solidlystated.com/scripting/proper-email-address-validation/">article</a> I wrote for a co-worker's blog about email address validation using regular expressions</li>
+  <li>Countless more: <a href="https://www.google.com/search?aq=f&sugexp=chrome,mod=18&sourceid=chrome&ie=UTF-8&q=regular+expressions">LMGTFY</a>
+  </ul>
+</body>
+</html>
+
