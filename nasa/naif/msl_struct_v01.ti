@@ -1,0 +1,202 @@
+KPL/IK
+
+MSL Structures Instrument Kernel
+===============================================================================
+
+   This Instrument Kernel (IK) file contains Field-Of-View (FOV)
+   definitions for MSL antennas (HGA, MGA, LGAs, UHFs).
+
+
+Version and Date
+-------------------------------------------------------------------------------
+
+   Version 0.1 -- July 27, 2012 -- Boris Semenov, NAIF
+
+      Changed IDs to match the latest name/ID mapping.
+
+   Version 0.0 -- May 3, 2011 -- Boris Semenov, NAIF
+
+      Initial Release.
+
+
+References
+-------------------------------------------------------------------------------
+
+   1. Kernel Pool Required Reading
+
+   2. GETFOV, getfoc_c, cspice_getfov headers
+
+   3. MSL FK file, latest version
+
+
+Contact Information
+-------------------------------------------------------------------------------
+
+   Boris V. Semenov, NAIF/JPL, (818)-354-8136, Boris.Semenov@jpl.nasa.gov
+
+
+Implementation Notes
+-------------------------------------------------------------------------------
+
+   This file is used by the SPICE system as follows: programs that make
+   use of this kernel must ``load'' the kernel, normally during
+   program initialization. The SPICE routine FURNSH loads a kernel file
+   into the pool as shown below.
+
+      CALL FURNSH ( 'frame_kernel_name; )    -- FORTRAN
+      furnsh_c ( "frame_kernel_name" );      -- C
+      cspice_furnsh, frame_kernel_name       -- IDL
+      cspice_furnsh( 'frame_kernel_name' )   -- MATLAB
+
+   Once the file has been loaded, the SPICE routine GETFOV (getfov_c in
+   C, cspice_getfov in IDL and MATLAB) can be used to retrieve FOV
+   parameters for a given instrument or structure.
+
+   This file was created and may be updated with a text editor or word
+   processor.
+
+
+Naming Conventions
+----------------------------------------------------------
+
+   All names referencing values in this IK file start with the
+   characters `INS' followed by the NAIF MSL ID number
+   (-76) followed by a NAIF three digit ID code for one of the
+   structures. This is the full list of names and IDs for the
+   structures described by this IK file:
+
+      MSL_PLGA                 -76060
+      MSL_TLGA                 -76061
+      MSL_PUHF                 -76062
+      MSL_MGA                  -76063
+
+      MSL_DLGA                 -76064
+      MSL_DUHF                 -76065
+
+      MSL_RLGA                 -76110
+      MSL_RUHF                 -76111
+
+      MSL_HGA                  -76125
+      MSL_HGA_EB               -76126
+
+   The remainder of the keyword name is an underscore character
+   followed by the unique name of the data item. For example, the HGA
+   boresight direction in the HGA frame is specified by:
+
+      INS-76125_BORESIGHT
+
+   The upper bound on the length of the name of any data item is 32
+   characters.
+
+   If the same item is included in more than one file, or if the same
+   item appears more than once within a single file, the latest value
+   supersedes any earlier values.
+
+
+Structure Descriptions
+---------------------------------------------------------
+
+   TBD
+
+
+Mounting Alignment
+--------------------------------------------------------
+
+   Refer to the latest version of the MSL Frames Definition Kernel
+   (FK) [3] for the MSL structures reference frame definitions and
+   mounting alignment information.
+
+
+Antenna FOVs
+----------------------------------------------------------
+
+   All antenna FOVs are defined as cones centered on the +Z axis 
+   of the corresponding antenna frames. The cone angular sizes are 
+   arbitrarily set to 10 degrees for HGA, 30 degrees for MGA, 
+   90 degrees for LGAs, and 150 degrees for UHFs.
+
+      \begindata
+
+         INS-76060_FOV_FRAME                 = 'MSL_PLGA'
+         INS-76060_FOV_SHAPE                 = 'CIRCLE'
+         INS-76060_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76060_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76060_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76060_FOV_REF_ANGLE             = ( 45.0 )
+         INS-76060_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76061_FOV_FRAME                 = 'MSL_TLGA'
+         INS-76061_FOV_SHAPE                 = 'CIRCLE'
+         INS-76061_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76061_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76061_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76061_FOV_REF_ANGLE             = ( 45.0 )
+         INS-76061_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76062_FOV_FRAME                 = 'MSL_PUHF'
+         INS-76062_FOV_SHAPE                 = 'CIRCLE'
+         INS-76062_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76062_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76062_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76062_FOV_REF_ANGLE             = ( 75.0 )
+         INS-76062_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76063_FOV_FRAME                 = 'MSL_MGA'
+         INS-76063_FOV_SHAPE                 = 'CIRCLE'
+         INS-76063_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76063_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76063_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76063_FOV_REF_ANGLE             = ( 15.0 )
+         INS-76063_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76064_FOV_FRAME                 = 'MSL_DLGA'
+         INS-76064_FOV_SHAPE                 = 'CIRCLE'
+         INS-76064_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76064_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76064_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76064_FOV_REF_ANGLE             = ( 45.0 )
+         INS-76064_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76065_FOV_FRAME                 = 'MSL_DUHF'
+         INS-76065_FOV_SHAPE                 = 'CIRCLE'
+         INS-76065_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76065_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76065_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76065_FOV_REF_ANGLE             = ( 75.0 )
+         INS-76065_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76110_FOV_FRAME                 = 'MSL_RLGA'
+         INS-76110_FOV_SHAPE                 = 'CIRCLE'
+         INS-76110_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76110_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76110_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76110_FOV_REF_ANGLE             = ( 45.0 )
+         INS-76110_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76111_FOV_FRAME                 = 'MSL_RUHF'
+         INS-76111_FOV_SHAPE                 = 'CIRCLE'
+         INS-76111_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76111_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76111_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76111_FOV_REF_ANGLE             = ( 75.0 )
+         INS-76111_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76125_FOV_FRAME                 = 'MSL_HGA'
+         INS-76125_FOV_SHAPE                 = 'CIRCLE'
+         INS-76125_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76125_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76125_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76125_FOV_REF_ANGLE             = ( 5.0 )
+         INS-76125_FOV_ANGLE_UNITS           = 'DEGREES'
+
+         INS-76126_FOV_FRAME                 = 'MSL_HGA_EB'
+         INS-76126_FOV_SHAPE                 = 'CIRCLE'
+         INS-76126_BORESIGHT                 = ( 0.0, 0.0, 1.0 )
+         INS-76126_FOV_CLASS_SPEC            = 'ANGLES'
+         INS-76126_FOV_REF_VECTOR            = ( 0.0, 1.0, 0.0 )
+         INS-76126_FOV_REF_ANGLE             = ( 5.0 )
+         INS-76126_FOV_ANGLE_UNITS           = 'DEGREES'
+
+      \begintext
+
+End of the IK file.

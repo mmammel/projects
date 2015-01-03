@@ -27,24 +27,30 @@ public class FreeFlow {
   {
     BufferedReader reader = null;
     String readStr = null;
-    int row = 0;
-    int readVal = 0;
-    char readChar = 0;
     List<String> rows = new ArrayList<String>();
+    char [][] inputArray = null;
 
-    reader = new BufferedReader( new FileReader( filename ) );
+    try {
+      reader = new BufferedReader( new FileReader( filename ) );
 
-    while( (readStr = reader.readLine()) != null && readStr.length() > 0 )
-    {
-      rows.add( readStr );
-    }
+      while( (readStr = reader.readLine()) != null && readStr.length() > 0 )
+      {
+        rows.add( readStr );
+      }
 
-    char [][] inputArray = new char [ rows.size() ][ rows.size() ];
-    String tempStr = null;
-    for( int i = 0; i < rows.size(); i++ ) {
-      tempStr = rows.get(i);
-      for( int j = 0; j < tempStr.length(); j++ ) {
-        inputArray[i][j] = tempStr.charAt( j );
+      inputArray = new char [ rows.size() ][ rows.size() ];
+      String tempStr = null;
+      for( int i = 0; i < rows.size(); i++ ) {
+        tempStr = rows.get(i);
+        for( int j = 0; j < tempStr.length(); j++ ) {
+          inputArray[i][j] = tempStr.charAt( j );
+        }
+      }
+    } catch( Exception e ) {
+      System.out.println( "Exception loading puzzle: " + e.toString());
+    } finally {
+      if( reader != null ) {
+        reader.close();
       }
     }
 
@@ -160,16 +166,23 @@ public class FreeFlow {
       return;
     }
 
-    for( int i = 0; i < this.moves.length; i++ ) {
+    for( int j = 0; j < this.moves.length; j++ ) {
       // try UP, RIGHT, DOWN, LEFT
-      nextPos = this.getNextPosition( position, this.moves[i] );
+      nextPos = this.getNextPosition( position, this.moves[j] );
       if( this.isTerminal( anchorIdx, nextPos ) ) {
         // reached the endpoint!
         this.setBoardValue( nextPos, Character.toUpperCase(this.getBoardValue( nextPos )) );
-//if( ++this.completedPaths % 10000L == 0 ) this.printBoard();
+//if( ++this.completedPaths % 100L == 0 ) this.printBoard();
         this.solve( anchorIdx + 1 );
         this.setBoardValue( nextPos, Character.toLowerCase(this.getBoardValue( nextPos )) );
-      } else if( this.isValid( anchorIdx, nextPos, path ) ) {
+        return;
+      }
+    }
+    
+    for( int i = 0; i < this.moves.length; i++ ) {
+      // try UP, RIGHT, DOWN, LEFT
+      nextPos = this.getNextPosition( position, this.moves[i] );
+      if( this.isValid( anchorIdx, nextPos, path ) ) {
         // we can move there, but it's not terminal.
         this.board[ nextPos[0] ][ nextPos[1] ] = this.anchors[ anchorIdx ];
         this.numBlanks--;
@@ -190,22 +203,76 @@ public class FreeFlow {
    */
   private boolean isValid( int anchorIdx, int [] position, List<int []> path ) {
     boolean retVal = false;
-    int [] pastMove = null;
-    int [] tempLocation = null;
+    int [] pastMove = new int [2], intermediateMove = new int [2];
+    int [] tempLocation = new int [2], tempLocation2 = new int [2], tempLocation3 = new int [2];
     char anchorName = this.anchors[ anchorIdx ];
     if( this.isInBounds( position ) ) {
       // we're in bounds
       if( this.board[ position[0] ][ position[1] ] == BLANK ) {
         retVal = true;
 
-        //so far so good.  Make sure it's not a double-back.
-        if( path.size() >= 3 ) {
-          pastMove = path.get( path.size() - 3 );
-          if( Math.abs( pastMove[0] - position[0] ) + Math.abs( pastMove[1] - position[1] ) == 1 ) {
+        // Make sure we are not adjacent to our own path, except for the previous move.
+        pastMove = path.get(path.size() - 1);
+        for( int i = 0; i < this.moves.length; i++ ) {
+          tempLocation = this.getNextPosition(position, this.moves[i] );
+          if( this.isInBounds(tempLocation) &&
+              !( tempLocation[0] == pastMove[0] && tempLocation[1] == pastMove[1]) && 
+              this.getBoardValue(tempLocation) == anchorName) {
             retVal = false;
           }
         }
+        //so far so good.  Make sure it's not a double-back.
+        //if( path.size() >= 3 ) {
+        //  pastMove = path.get( path.size() - 3 );
+        //  if( (Math.abs( pastMove[0] - position[0] ) + Math.abs( pastMove[1] - position[1] )) == 1 ) {
+        //    retVal = false;
+        //  }
+        //}
 
+        // If we're still ok check for a 2 move "compount dead ender"
+        if( retVal && path.size() >= 2) {
+          pastMove = path.get(path.size() - 2);
+          intermediateMove = path.get(path.size() - 1); // the "corner"
+          if(Math.abs(pastMove[0] - position[0]) == 1 && Math.abs(pastMove[1] - position[1]) == 1) {
+            /*
+             * We have the potential for a compound dead end:
+             *   A A
+             * B X A
+             *   C 
+             * Where "B" and "C" could be another path or the edge of the board.
+             * Note that if B is a valid endpoint/anchor, it's ok.
+             * Get the position of X and do some checks.
+             */
+            tempLocation[0] = intermediateMove[0] == position[0] ? pastMove[0] : position[0];
+            tempLocation[1] = intermediateMove[1] == position[1] ? pastMove[1] : position[1];
+            // We have the X, now see if X can escape to either side opposite of the move
+            tempLocation2[0] = tempLocation[0] + (tempLocation[0] - position[0]);
+            tempLocation2[1] = tempLocation[1] + (tempLocation[1] - position[1]);
+            tempLocation3[0] = tempLocation[0] + (tempLocation[0] - pastMove[0]);
+            tempLocation3[1] = tempLocation[1] + (tempLocation[1] - pastMove[1]);
+            // tempLocation2 is the position opposite the move
+            // tempLocation3 is the position opposite the past move
+            if( this.getBoardValue(tempLocation) == BLANK) {
+              // it is blank, see if it has an escape
+              if( (!this.isInBounds(tempLocation2) || Character.isUpperCase(this.getBoardValue(tempLocation2)))
+                  ||
+                  (!this.isInBounds(tempLocation3) || Character.isUpperCase(this.getBoardValue(tempLocation3))) ) {
+                retVal = false;
+                //this.setBoardValue(position, 'X');
+                //System.out.println( "Path: " + this.anchors[anchorIdx] + " corner = " + tempLocation[0] + "," + tempLocation[1] );
+                //System.out.println("intermediate = " + intermediateMove[0] + "," + intermediateMove[1]);
+                //System.out.println("past = " + pastMove[0] + "," + pastMove[1]);
+                //System.out.println("postion = " + position[0] + "," + position[1]);
+                //System.out.println("opposite move = " + tempLocation2[0] + "," + tempLocation2[1]);
+                //System.out.println("opposite past = " + tempLocation3[0] + "," + tempLocation3[1]);
+                //this.printBoard();
+                //this.setBoardValue(position, BLANK);
+              }
+            }
+          }
+            
+        }
+        
         // If we're still ok check for a 4 move "dead ender"
         if( retVal && path.size() >= 4 ) {
           pastMove = path.get( path.size() - 4 );
@@ -219,10 +286,32 @@ public class FreeFlow {
              * Find coordinates for "*" and see if it is blank, if it is, don't allow this move.
              * if it is blank, this space can never be filled to make a solution.
              */
-            tempLocation = new int [2];
             tempLocation[0] = pastMove[0] - ( (pastMove[0] - position[0]) / 2 );
             tempLocation[1] = pastMove[1] - ( (pastMove[1] - position[1]) / 2 );
             if( this.board[ tempLocation[0] ][ tempLocation[1] ] == BLANK ) {
+              retVal = false;
+            }
+          }
+        }
+        
+        // If we're still ok check for a 5 move dead ender
+        if( retVal && path.size() >= 5 ) {
+          pastMove = path.get( path.size() - 5 );
+          if( ( Math.abs( pastMove[0] - position[0] ) == 3 && pastMove[1] == position[1] ) ||
+              ( Math.abs( pastMove[1] - position[1] ) == 3 && pastMove[0] == position[0] ) ) {
+            /*
+             *  We're in a "dead end" 5 move scenario, e.g.:
+             *    A A A A
+             *    A * * A
+             *
+             * Find coordinates for "*" and see if it is blank, if it is, don't allow this move.
+             * if it is blank, this space can never be filled to make a solution.
+             */
+            tempLocation[0] = pastMove[0] - ( (pastMove[0] - position[0]) / 3 );
+            tempLocation[1] = pastMove[1] - ( (pastMove[1] - position[1]) / 3 );
+            tempLocation2[0] = pastMove[0] - 2*( (pastMove[0] - position[0]) / 3 );
+            tempLocation2[1] = pastMove[1] - 2*( (pastMove[1] - position[1]) / 3 );
+            if( this.getBoardValue(tempLocation) == BLANK && this.getBoardValue(tempLocation2) == BLANK) {
               retVal = false;
             }
           }
@@ -308,8 +397,9 @@ public class FreeFlow {
     while( (nextBlank = this.getBlank()) != null ) {
       anchorCounter.put( COLORS[regionNameIdx], new int [ this.anchors.length ] );
       anchorCount = this.colorRegion( nextBlank, regionNameIdx, anchorCounter, new HashSet<String>() );
+//this.printBoard();
       if( anchorCount == 0 ) {
-        // we found a region with no anchors in it, inst-fail.
+        // we found a region with no anchors in it, insta-fail.
         retVal = false;
         break;
       }

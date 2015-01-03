@@ -1,0 +1,238 @@
+KPL/IK
+
+MSL Auxiliary Instrument Kernel
+===============================================================================
+
+   This Instrument Kernel (IK) file contains Field-Of-View (FOV)
+   definitions for a few MSL instruments and structures that don't yet
+   of will never have their onw IKs.
+
+
+Version and Date
+-------------------------------------------------------------------------------
+
+   Version 0.0 -- August 1, 2012 -- Boris Semenov, NAIF
+
+      Initial Release.
+
+
+References
+-------------------------------------------------------------------------------
+
+   1. Kernel Pool Required Reading
+
+   2. GETFOV, getfoc_c, cspice_getfov headers
+
+   3. MSL FK file, latest version
+
+
+Contact Information
+-------------------------------------------------------------------------------
+
+   Boris V. Semenov, NAIF/JPL, (818)-354-8136, Boris.Semenov@jpl.nasa.gov
+
+
+Implementation Notes
+-------------------------------------------------------------------------------
+
+   This file is used by the SPICE system as follows: programs that make
+   use of this kernel must ``load'' the kernel, normally during
+   program initialization. The SPICE routine FURNSH loads a kernel file
+   into the pool as shown below.
+
+      CALL FURNSH ( 'frame_kernel_name; )    -- FORTRAN
+      furnsh_c ( "frame_kernel_name" );      -- C
+      cspice_furnsh, frame_kernel_name       -- IDL
+      cspice_furnsh( 'frame_kernel_name' )   -- MATLAB
+
+   Once the file has been loaded, the SPICE routine GETFOV (getfov_c in
+   C, cspice_getfov in IDL and MATLAB) can be used to retrieve FOV
+   parameters for a given instrument or structure.
+
+   This file was created and may be updated with a text editor or word
+   processor.
+
+
+Naming Conventions
+----------------------------------------------------------
+
+   All names referencing values in this IK file start with the
+   characters `INS' followed by the NAIF MSL ID number
+   (-76) followed by a NAIF three digit ID code for one of the
+   structures. This is the full list of names and IDs for the
+   structures described by this IK file:
+
+      MSL_CHEMCAM_LIBS_LASER   -76241
+      MSL_CHEMCAM_LIBS_CAM     -76242
+
+      MSL_RAD                  -76150
+
+      MSL_REMS_UVS             -76170
+      MSL_REMS_BOOM1           -76250
+      MSL_REMS_BOOM2           -76260
+
+      MSL_DAN                  -76180
+
+      MSL_APXS                 -76321
+      MSL_PADS                 -76331
+      MSL_DRT                  -76341
+      MSL_CHIMRA               -76351
+
+   The remainder of the keyword name is an underscore character
+   followed by the unique name of the data item. For example, the HGA
+   boresight direction in the HGA frame is specified by:
+
+      INS-76125_BORESIGHT
+
+   The upper bound on the length of the name of any data item is 32
+   characters.
+
+   If the same item is included in more than one file, or if the same
+   item appears more than once within a single file, the latest value
+   supersedes any earlier values.
+
+
+Structure Descriptions
+---------------------------------------------------------
+
+   N/A
+
+
+Mounting Alignment
+--------------------------------------------------------
+
+   Refer to the latest version of the MSL Frames Definition Kernel
+   (FK) [3] for the MSL structures reference frame definitions and
+   mounting alignment information.
+
+
+Antenna FOVs
+----------------------------------------------------------
+
+   This section defines FOVs for the following instruments or structures:
+
+          NAME                   ID     SIZE     SHAPE   BSIGHT
+      -----------------------  ------  -------  -------  ------
+      MSL_CHEMCAM_LIBS_LASER   -76241   1 mrad  cone       Z
+      MSL_CHEMCAM_LIBS_CAM     -76242  20 mrad  cone       Z
+
+      MSL_RAD                  -76150  65 deg   cone       Z
+
+      MSL_REMS_UVS             -76170  60 deg   cone       Z
+
+      MSL_REMS_BOOM1           -76250   1 deg   square     X    (*)
+      MSL_REMS_BOOM2           -76260   1 deg   square     X    (*)
+
+      MSL_DAN                  -76180   1 deg   square     Z    (*)
+
+      MSL_APXS                 -76321   1 deg   square     Z    (*)
+      MSL_PADS                 -76331   1 deg   square     Z    (*)
+      MSL_DRT                  -76341   1 deg   square     Z    (*)
+      MSL_CHIMRA               -76351   1 deg   square     Z    (*)
+
+      (*) None of these instruments or structures in reality has a FOV.
+          Still a square 1 degree FOV was defined for each of them to
+          facilitate frame alignment verification.
+
+   The FOVs are defined in this data block.
+
+      \begindata
+
+      INS-76241_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76241_FOV_SHAPE            = 'CIRCLE'
+      INS-76241_FOV_FRAME            = 'MSL_CHEMCAM_LIBS_LASER'
+      INS-76241_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76241_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76241_FOV_REF_ANGLE        = ( 0.0005 )
+      INS-76241_FOV_ANGLE_UNITS      = ( 'RADIANS' )
+
+      INS-76242_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76242_FOV_SHAPE            = 'CIRCLE'
+      INS-76242_FOV_FRAME            = 'MSL_CHEMCAM_LIBS_CAM'
+      INS-76242_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76242_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76242_FOV_REF_ANGLE        = ( 0.010)
+      INS-76242_FOV_ANGLE_UNITS      = ( 'RADIANS' )
+
+      INS-76150_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76150_FOV_SHAPE            = 'CIRCLE'
+      INS-76150_FOV_FRAME            = 'MSL_RAD'
+      INS-76150_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76150_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76150_FOV_REF_ANGLE        = ( 32.5 )
+      INS-76150_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76170_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76170_FOV_SHAPE            = 'CIRCLE'
+      INS-76170_FOV_FRAME            = 'MSL_REMS_UVS'
+      INS-76170_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76170_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76170_FOV_REF_ANGLE        = ( 30.0 )
+      INS-76170_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76250_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76250_FOV_SHAPE            = 'RECTANGLE'
+      INS-76250_FOV_FRAME            = 'MSL_REMS_BOOM1'
+      INS-76250_BORESIGHT            = ( 1.0, 0.0, 0.0 )
+      INS-76250_FOV_REF_VECTOR       = ( 0.0, 0.0, 1.0 )
+      INS-76250_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76250_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76250_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76260_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76260_FOV_SHAPE            = 'RECTANGLE'
+      INS-76260_FOV_FRAME            = 'MSL_REMS_BOOM2'
+      INS-76260_BORESIGHT            = ( 1.0, 0.0, 0.0 )
+      INS-76260_FOV_REF_VECTOR       = ( 0.0, 0.0, 1.0 )
+      INS-76260_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76260_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76260_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76180_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76180_FOV_SHAPE            = 'RECTANGLE'
+      INS-76180_FOV_FRAME            = 'MSL_DAN'
+      INS-76180_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76180_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76180_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76180_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76180_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76321_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76321_FOV_SHAPE            = 'RECTANGLE'
+      INS-76321_FOV_FRAME            = 'MSL_APXS'
+      INS-76321_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76321_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76321_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76321_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76321_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76331_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76331_FOV_SHAPE            = 'RECTANGLE'
+      INS-76331_FOV_FRAME            = 'MSL_PADS'
+      INS-76331_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76331_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76331_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76331_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76331_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76341_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76341_FOV_SHAPE            = 'RECTANGLE'
+      INS-76341_FOV_FRAME            = 'MSL_DRT'
+      INS-76341_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76341_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76341_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76341_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76341_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      INS-76351_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-76351_FOV_SHAPE            = 'RECTANGLE'
+      INS-76351_FOV_FRAME            = 'MSL_CHIMRA'
+      INS-76351_BORESIGHT            = ( 0.0, 0.0, 1.0 )
+      INS-76351_FOV_REF_VECTOR       = ( 1.0, 0.0, 0.0 )
+      INS-76351_FOV_REF_ANGLE        = ( 0.5 )
+      INS-76351_FOV_CROSS_ANGLE      = ( 0.5 )
+      INS-76351_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      \begintext
+
+End of the IK file.

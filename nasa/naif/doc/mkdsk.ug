@@ -1,0 +1,915 @@
+ 
+MKDSK User's Guide
+===========================================================================
+ 
+   Last revised on 2010 JUN 29 by N. J. Bachman.
+ 
+ 
+Abstract
+--------------------------------------------------------
+ 
+   MKDSK is a prototype utility program that creates a SPICE DSK (digital
+   shape kernel) file from a text file containing surface shape and size
+   data.
+ 
+ 
+Summary
+--------------------------------------------------------
+ 
+   MKDSK converts a text file containing surface shape and size data to a
+   binary digital shape kernel (DSK). The format of the input data file is
+   discussed in detail below.
+ 
+   Currently the only supported type of shape model represents the surface
+   of a specified body as a collection of triangular plates. Support for
+   DTM (Digital Terrain Model) inputs will be added in a future version of
+   this utility.
+ 
+   The MKDSK program accepts one ASCII text file containing descriptions of
+   input parameters (setup file) and a second ASCII text file (input file)
+   containing the surface data to be processed.
+ 
+   The program allows the user to optionally specify some descriptive text
+   in a separate file (comment file) to be placed into the ``comment area''
+   of the DSK file. (Doing this is highly recommended.)
+ 
+   For archival documentation purposes the content of the MKDSK setup file
+   is automatically placed at the end of the ``comment area'' of the DSK
+   file.
+ 
+ 
+Usage
+--------------------------------------------------------
+ 
+      Program usage:
+ 
+               > mkdsk   [-setup <setup file name>]
+                         [-input <input shape data file name>]
+                         [-output <output DSK file name>]
+                         [-h|-help]
+                         [-t|-template]
+                         [-u|-usage]
+                         [-v|-version]
+ 
+   If a setup file name isn't provided on the command line, the program
+   will prompt for it. It will not prompt for the input or output file
+   names; these file names must be provided on the command line or in the
+   setup file. If input and output file names are provided on the command
+   line, any file names assigned using setup keywords are ignored. The
+   input file must already exist and the output file must be a new file.
+ 
+ 
+Running MKDSK
+--------------------------------------------------------
+ 
+   You will need a setup file to execute the MKDSK utility program. The
+   format for the setup file is described below.
+ 
+   As the program runs, it will print out messages describing its progress.
+   If an error is encountered, the program normally will display a
+   diagnostic message.
+ 
+   Only one DSK file containing one segment may be generated during a
+   single MKDSK session.
+ 
+ 
+MKDSK Setup File
+===========================================================================
+ 
+ 
+Setup File Format
+--------------------------------------------------------
+ 
+   Other than the input and output file names, which may be provided on the
+   command line, the program requires all inputs such as surface and
+   central body name or ID, frame name or ID, types of input and output
+   data, spatial coverage bounds, etc. to be provided in a setup file. The
+   format of this file must conform to the SPICE text kernel specification.
+   This means that input values must be assigned to keyword variables using
+   the format
+ 
+      KEYWORD = VALUE
+ 
+   Each assignment is restricted to a single line. Sets of these
+   assignments must be enclosed between
+ 
+      \begindata
+      \begintext
+ 
+   tokens, each of which must also be placed on a line by itself. Free-form
+   descriptive/explanatory text may occur after the
+ 
+      \begintext
+ 
+   token. Still more assignments could follow another
+ 
+      \begindata
+ 
+   token.
+ 
+   The names of the setup file keywords must be strictly uppercase while
+   parameterized keyword values (for example 'DEGREES'), reference frame
+   names, and body names may be upper, lower or mixed case. File names
+   should be assumed to be case sensitive to maximize portability. Any
+   white space preceding or following keyword names, values and the equal
+   sign is ignored.
+ 
+   All character string values and time strings must be enclosed in single
+   quotes, provided on a single line and be no longer than 80 characters.
+   When multiple values are allowed and used, enclose the complete set in
+   the "()" characters: KEYWORD = ( 'value1' 'value2' 'value3' ... )
+ 
+   The Kernel Required Reading document, which is included in the SPICE
+   Toolkit, provides details of this format specification. The ``Intro to
+   Kernels'' tutorial, which is available on the NAIF web site
+ 
+      http://naif.jpl.nasa.gov/naif/tutorials.html
+ 
+   may also be helpful.
+ 
+ 
+Setup File Assignments
+--------------------------------------------------------
+ 
+   All assignments are either required, conditional or optional as
+   described below.
+ 
+   A setup file may contain blank lines. Non-printing characters including
+   TAB should not be used in setup file lines containing keyword
+   assignments or in blank lines separating assignment lines within the
+   data sections of a setup file. The program may not be able to parse
+   correctly any of the setup file lines that contain non-printing
+   characters and will signal a setup file parsing error on some computer
+   platforms.
+ 
+ 
+Required Assignments
+ 
+   The following assignments must be present in a setup file:
+ 
+      LEAPSECONDS_FILE    = 'Name of leapseconds file'
+      SURFACE_NAME        = 'Surface name' {typically name of
+                            associated central body, e.g. 'MARS'}
+      CENTER_NAME         = 'Central body name'
+      REF_FRAME_NAME      = 'Reference frame name'
+      START_TIME          = 'Start time'
+      STOP_TIME           = 'Stop time'
+      DATA_CLASS          = 1 for spherically parameterized topography
+                              (for which each ray emanating from the
+                              reference frame's origin intersects the
+                              surface once) or
+                            2 for arbitrary topography (e.g. that of a
+                              dumbbell-shaped asteroid)
+                            3 for an obscuration model (e.g. a horizon
+                              mask)
+ 
+      INPUT_DATA_UNITS    = ( 'ANGLES    = angular unit'
+                              'DISTANCES = distance unit' )
+ 
+      COORDINATE_SYSTEM   = 'LATITUDINAL' or
+                            'RECTANGULAR' or
+                            'CYLINDRICAL'
+ 
+                            Currently only LATITUDINAL coordinates
+                            are supported.
+ 
+      DATA_TYPE           = 1 (16-bit integer offsets from spheroid)
+                               or
+                            2 (triangular plates) or
+                            3 (double precision radii)
+ 
+                            Currently only type 2 is supported.
+ 
+   The following assignments are required in the setup file if their values
+   are not provided on the command line:
+ 
+      INPUT_SHAPE_FILE    = 'Name of input shape data file'
+      OUTPUT_DSK_FILE     = 'Name of output DSK file '
+ 
+   Since the coordinate system is currently restricted to LATITUDINAL, the
+   conditional assignments described below for latitudinal coordinates are
+   effectively ``required.''
+ 
+ 
+Conditional Assignments
+ 
+   One or more of the following assignments may be needed depending on the
+   kind of input data being used and other conditions. See the definitions
+   that follow for details.
+ 
+      For latitudinal coordinates:
+ 
+         MINIMUM_LATITUDE    = lower latitude bound in selected
+                               angular units
+         MAXIMUM_LATITUDE    = upper latitude bound in selected
+                               angular units
+         MINIMUM_LONGITUDE   = lower longitude bound in selected
+                               angular units
+         MAXIMUM_LONGITUDE   = upper longitude bound in selected
+                               angular units
+ 
+      For data type 2:
+ 
+         PLATE_TYPE          = 1 or 2 or 3
+         FINE_VOXEL_SCALE    = Double precision value > 0.0
+         COARSE_VOXEL_SCALE  = Integer >= 1
+ 
+      {Parameters specific to types 1 and 3 are TBD.}
+ 
+ 
+      For DSK inputs requiring additional kernels (for example,
+      frame kernels to provide body-fixed frame specifications):
+ 
+         KERNELS_TO_LOAD     = ( 'kernel_1' 'kernel_2' ... )
+ 
+ 
+ 
+Optional Assignments
+ 
+      COMMENT_FILE           = 'Name of optional comment file'
+ 
+ 
+Detailed Description of Setup File Keywords
+--------------------------------------------------------
+ 
+         INPUT_SHAPE_FILE     Name of input shape data file. This keyword
+                              must be used if the input data file name is
+                              not provided on the command line; if the
+                              input data file name is supplied on the
+                              command line, this assignment is ignored.
+                              Include full or relative path specification.
+                              The file must exist.
+ 
+         OUTPUT_DSK_FILE      Name of output DSK file. This keyword must be
+                              used if the output data file name is not
+                              provided on the command line; if the output
+                              data file name is supplied on the command
+                              line, this assignment is ignored. Include
+                              full or relative path specification. The file
+                              must not exist when MKDSK is run.
+ 
+         COMMENT_FILE         Comment file name. This keyword is used if
+                              you want to include comments provided in this
+                              file in the comment area of the DSK file.
+                              Include full or relative path specification.
+ 
+         LEAPSECONDS_FILE     leapseconds file name. This is the SPICE LSK
+                              file name, including full or relative path
+                              specification. This assignment is required.
+ 
+         SURFACE_NAME         Name of the surface represented by the DSK.
+                              This is typically the name of associated
+                              central body, e.g. 'MARS', but this is not
+                              required. Multiple surfaces can be associated
+                              with a given central body and used together
+                              during a single application program run. For
+                              example, versions of surfaces having
+                              different resolutions could be associated
+                              with a given central body. An integer ID code
+                              enclosed in single quotes may be provided
+                              instead of a name, e. g. '499' instead of
+                              'MARS'. This assignment is required.
+ 
+         CENTER_NAME          Name of central body with which the surface
+                              is associated. The location of this body is
+                              the origin of the coordinate system in which
+                              the shape data are expressed. For example,
+                              the plate vertices of a type 2 DSK segment
+                              are assumed to emanate from the specified
+                              center. An integer ID code enclosed in single
+                              quotes may be provided instead of a name, e.
+                              g. '499' instead of 'MARS'. This assignment
+                              is required.
+ 
+         REF_FRAME_NAME       Name of the body-fixed reference frame
+                              relative to which the surface data are
+                              expressed. This frame must be centered on the
+                              body specified by the keyword CENTER. This
+                              assignment is required.
+ 
+         START_TIME           Start time of coverage interval during which
+                              this surface representation is applicable.
+                              The value is a quoted string; any string
+                              acceptable to the SPICE routine STR2ET is
+                              allowed. This assignment is required.
+ 
+         STOP_TIME            Stop time of coverage interval during which
+                              this surface representation is applicable.
+                              The value is a quoted string; any string
+                              acceptable to the SPICE routine STR2ET is
+                              allowed. This assignment is required.
+ 
+         DATA_CLASS           Code identifying the category of topography
+                              represented by the surface. This
+                              specification is used by the DSK subsystem at
+                              run time to decide which operations are
+                              applicable to the surface. Supported codes
+                              are: 1 for spherically parameterized
+                              topography (for which each ray emanating from
+                              the reference frame's origin intersects the
+                              surface once); 2 for arbitrary topography
+                              (e.g. that of a dumbbell-shaped asteroid); 3
+                              for an obscuration model (e.g. a horizon
+                              mask). This assignment is required.
+ 
+         INPUT_DATA_UNITS     Array of two strings specifying the length
+                              and angular units of the input data. The
+                              right hand side of the assignment has the
+                              format ( 'ANGLES = angular unit' 'DISTANCES=
+                              distance unit' ). This assignment is
+                              required.
+ 
+         COORDINATE_SYSTEM    Name of the coordinate system used to
+                              represent the spatial coverage of the data
+                              set. Currently the only supported value is
+                              'LATITUDINAL'. The values 'RECTANGULAR' and
+                              'CYLINDRICAL' will be supported by a future
+                              version of this utility.
+ 
+         MINIMUM_LATITUDE     Lower latitude bound of spatial coverage in
+                              selected angular units. Data set coverage is
+                              guaranteed to extend at least this far for
+                              all longitude values in the covered region.
+                              Units are those specified by the
+                              INPUT_DATA_UNITS assignment. This assignment
+                              is required when the coordinate system is
+                              LATITUDINAL.
+ 
+         MAXIMUM_LATITUDE     Upper latitude bound of spatial coverage in
+                              selected angular units. Data set coverage is
+                              guaranteed to extend at least this far for
+                              all longitude values in the covered region.
+                              Units are those specified by the
+                              INPUT_DATA_UNITS assignment. This assignment
+                              is required when the coordinate system is
+                              LATITUDINAL.
+ 
+         MINIMUM_LONGITUDE    Lower longitude bound of spatial coverage in
+                              selected angular units. Data set coverage is
+                              guaranteed to extend at least this far for
+                              all latitude values in the covered region.
+                              Units are those specified by the
+                              INPUT_DATA_UNITS assignment. When the
+                              MIMIMUM_LONGITUDE bound is set equal to the
+                              MAXIMUM_LONGITUDE bound, the longitude range
+                              is considered to cover the unit circle (i.e.,
+                              the range is 360 degrees). This assignment is
+                              required when the coordinate system is
+                              LATITUDINAL.
+ 
+         MAXIMUM_LONGITUDE    Upper longitude bound of spatial coverage in
+                              selected angular units. Data set coverage is
+                              guaranteed to extend at least this far for
+                              all latitude values in the covered region.
+                              Units are those specified by the
+                              INPUT_DATA_UNITS assignment. When the
+                              MIMIMUM_LONGITUDE bound is set equal to the
+                              MAXIMUM_LONGITUDE bound, the longitude range
+                              is considered to cover the unit circle (i.e.,
+                              the range is 360 degrees). This assignment is
+                              required when the coordinate system is
+                              LATITUDINAL.
+ 
+         DATA_TYPE            Code indicating the DSK data type of the DSK
+                              segment to be created. Currently the only
+                              supported code is 2 (triangular plates). This
+                              assignment is required.
+ 
+         PLATE_TYPE           Code indicating the format of the input data
+                              file. This code is applicable only when the
+                              data type is 2; in this case, this assignment
+                              is required. Supported values are: 1 for
+                              plate-vertex table; 2 for Gaskell shape
+                              model; 3 for vertex-facet table; 4 for
+                              Rosetta/OSIRIS ``ver'' table. See the chapter
+                              below titled ``Input Data File'' for details.
+ 
+         FINE_VOXEL_SCALE     Applicable only to type 2 segments. See the
+                              section ``Use of a Spatial Index and Voxels''
+                              below for a more detailed discussion.
+                              Normally the fine voxel scale should be set
+                              to at least 1.0. The scale must be large
+                              enough so that the total number of fine
+                              voxels in the spatial index is no more than
+                              the parameter MAXVOX, which is currently set
+                              to 1E7. A rule of thumb is to choose the
+                              smallest scale greater than 1 that yields an
+                              acceptable fine voxel count.
+ 
+         COARSE_VOXEL_SCALE   Applicable only to type 2 segments. An
+                              integer representing the ratio of the edge
+                              length of coarse voxels to fine voxels. This
+                              number must be greater than or equal to 1.
+                              The number must be large enough so that the
+                              total number of coarse voxels is less than
+                              the value of the parameter MAXCGR, which is
+                              currently set to 1E5. A rule of thumb is to
+                              select the smallest coarse voxel scale that
+                              yields an acceptable coarse voxel count.
+ 
+ 
+Setup File Example
+--------------------------------------------------------
+ 
+   An example command file for a Phobos DSK:
+ 
+      \begindata
+ 
+      INPUT_SHAPE_FILE    = 'phobos_q512.txt'
+      OUTPUT_DSK_FILE     = 'phobos512.bds'
+      COMMENT_FILE        = ' '
+      LEAPSECONDS_FILE    = 'naif0009.tls'
+      SURFACE_NAME        = 'phobos'
+      CENTER_NAME         = 'phobos'
+      REF_FRAME_NAME      = 'IAU_PHOBOS'
+      START_TIME          = '1950-JAN-1/00:00:00'
+      STOP_TIME           = '2050-JAN-1/00:00:00'
+      DATA_CLASS          = 1
+      INPUT_DATA_UNITS    = ( 'ANGLES    = DEGREES'
+                              'DISTANCES = KILOMETERS' )
+      COORDINATE_SYSTEM   = 'LATITUDINAL'
+      MINIMUM_LATITUDE    = -90
+      MAXIMUM_LATITUDE    =  90
+      MINIMUM_LONGITUDE   = -180
+      MAXIMUM_LONGITUDE   =  180
+      DATA_TYPE           = 2
+      PLATE_TYPE          = 2
+      FINE_VOXEL_SCALE    = 4.0
+      COARSE_VOXEL_SCALE  = 5
+ 
+      \begintext
+ 
+ 
+Input Data File
+===========================================================================
+ 
+   All of the input files discussed below are particular to type 2
+   (triangular plate model) DSK segments.
+ 
+   The type 2 segment design has no restrictions on sizes or configuration
+   of the triangular plates defined by the vertices, even within a single
+   plate model file. Indeed it is quite normal that the plate sizes and
+   local plate density vary across the model in order to achieve desired
+   shape fidelity without using an excessive number of plates.
+ 
+   MKDSK reads a text file containing a description of the body shape. This
+   text file must conform to one of the following formats:
+ 
+         Plate-vertex table             Contains the body-fixed coordinates
+                                        of each vertex in a plate model
+                                        followed by a list that associates
+                                        particular vertices with each
+                                        plate. This file explicitly assigns
+                                        integer IDs to the plates and
+                                        vertices.
+ 
+         Gaskell shape model            Contains the body-fixed coordinates
+                                        of each vertex in a plate model.
+                                        The order of the vertex data
+                                        implicitly defines the plate-vertex
+                                        mapping.
+ 
+         Vertex-facet table             Is similar to the plate-vertex
+                                        table, but without the plate and
+                                        vertex ID assignment. A data line
+                                        has the prefix 'v' for vertex data
+                                        and 'f' for the plate-vertex
+                                        mapping (the facet map).
+ 
+         Rosetta/OSIRIS ``ver'' table   (The format of M. Kasalaainen.)
+                                        Contains the body-fixed coordinates
+                                        of each vertex in a plate model
+                                        followed by a list that associates
+                                        particular vertices with each
+                                        plate. Each line of plate vertex
+                                        indices is preceded by a line
+                                        containing a vertex count. Only
+                                        triangular plates are supported by
+                                        this program.
+ 
+ 
+Units
+--------------------------------------------------------
+ 
+   The length units of plate model vertex data may be any supported by the
+   SPICE unit conversion routine CONVRT. Length units must be specified in
+   the MKDSK setup file.
+ 
+ 
+Reference Frame
+--------------------------------------------------------
+ 
+   The reference frame of all plate model vertex data must be specified in
+   the MKDSK setup file. The frame must be body-fixed and centered on the
+   body identified in the setup file as the ``center'' associated with the
+   surface.
+ 
+ 
+Vertex order
+--------------------------------------------------------
+ 
+   The ordering of the plate vertices is expected to follow a
+   "right-handed" convention where the order of vertices implicitly defines
+   the orientation of the normal, i.e. given the assignment
+ 
+         plate =  vertex_1, vertex_2, vertex_3
+ 
+   derive the normal as:
+ 
+         -      --------   --------     --------   --------
+         n  = ( vertex_2 - vertex_1) X (vertex_3 - vertex_2)
+ 
+ 
+Plate Data File Type 1 (Plate-Vertex Table)
+--------------------------------------------------------
+ 
+   The data input file consists of two sections, the first for vertex data,
+   the second describing the plate-vertex mapping.
+ 
+ 
+      N
+      1 X(1) Y(1) Z(1)
+      2 X(2) Y(2) Z(2)
+ 
+            ...
+ 
+      N X(N) Y(N) Z(N)
+      M
+      1 V1(1) V2(1) V3(1)
+      2 V1(2) V2(2) V3(2)
+ 
+            ...
+ 
+      M V1(M) V2(M) V3(M)
+ 
+   where
+ 
+         N                              is the number of vertices listed in
+                                        the file.
+ 
+         1 through N                    are the indices of the plate model
+                                        vertices, provided as the first
+                                        space-separated item on the file
+                                        lines 2 through (N+1).
+ 
+         X(i) Y(i) Z(i)                 are the body-fixed Cartesian
+                                        coordinates of the plate model
+                                        vertices, provided for each vertex
+                                        as the 2nd, 3rd, and 4th
+                                        space-separated items on lines 2
+                                        through (N+1).
+ 
+         M                              is the number of plate-vertex
+                                        mappings in the file.
+ 
+         1 through M                    are the indices of the plate model
+                                        plates, provided as the first
+                                        space-separated item on the file
+                                        lines (N+3) through (N+M+2).
+ 
+         V1(i) V2(i) V3(i)              are the indices of the plate model
+                                        vertices for the corners of a given
+                                        plate, provided for each plate as
+                                        the 2nd, 3rd, and 4th
+                                        space-separated items on lines
+                                        (N+3) through (N+M+2).
+ 
+ 
+Sample Plate-Vertex Table Input File
+ 
+ 
+         12
+         1 0. 0. 1.17557
+         2 0.32492 1. 0.525731
+         3 1.05146 0. 0.525731
+         4 -0.850651 0.618034 0.525731
+         5 -0.850651 -0.618034 0.525731
+         6 0.32492 -1. 0.525731
+         7 0.850651 0.618034 -0.525731
+         8 -0.32492 1. -0.525731
+         9 -1.05146 0. -0.525731
+         10 -0.32492 -1. -0.525731
+         11 0.850651 -0.618034 -0.525731
+         12 0. 0. -1.17557
+         20
+         1 1 3 2
+         2 1 2 4
+         3 1 4 5
+         4 1 5 6
+         5 1 6 3
+         6 3 7 2
+         7 2 8 4
+         8 4 9 5
+         9 5 10 6
+         10 6 11 3
+         11 7 8 2
+         12 8 9 4
+         13 9 10 5
+         14 10 11 6
+         15 11 7 3
+         16 7 12 8
+         17 8 12 9
+         18 9 12 10
+         19 10 12 11
+         20 11 12 7
+ 
+ 
+Plate Data File Type 2 (Gaskell Shape Model)
+--------------------------------------------------------
+ 
+   A Gaskell shape model data file has no explicit plate-vertex mapping
+   data as that information is implicit in the ordering of the vertex data.
+ 
+   The data file has the form:
+ 
+ 
+         Q
+         X(1)          Y(1)          Z(1)
+         X(2)          Y(2)          Z(2)
+ 
+          ...          ...           ...
+         X(6*(Q+1)^2)  Y(6*(Q+1)^2)  Z(6*(Q+1)^2)
+ 
+   where
+ 
+         Q                              is the number of divisions per side
+                                        on a cube face. Derive the number
+                                        of vertices in the file by the
+                                        relation Nvert = 6*(Q+1)\^2.
+ 
+         X(i) Y(i) Z(i)                 are the body-fixed Cartesian
+                                        coordinates of the plate model
+                                        vertices, provided for each vertex
+                                        as the 1st, 2nd, and 3rd
+                                        space-separated items on lines 2
+                                        through Nvert+1.
+ 
+ 
+Sample Gaskell Shape Model Input File
+ 
+ 
+          64
+          -9.36329     3.76796     3.80970
+          -9.12138     3.82357     3.86143
+          -8.87987     3.88047     3.91416
+          -8.63347     3.92422     3.95698
+          -8.39016     3.97415     4.00291
+          -8.14081     4.03950     4.05743
+          -7.88861     4.08816     4.09352
+          -7.63058     4.07331     4.08113
+          -7.37114     4.03909     4.05807
+          -7.11810     4.05018     4.08515
+          -6.89451     4.12730     4.15128
+          -6.69135     4.24326     4.25130
+          -6.46167     4.30681     4.31349
+ 
+            ...         ...         ...
+ 
+ 
+Plate Data File Type 3 (Vertex-Facet Table)
+--------------------------------------------------------
+ 
+   The data input file consists of two sections, the first for vertex data,
+   the second describing the plate-vertex mapping.
+ 
+ 
+      v X(1)  Y(1)  Z(1)
+      v X(2)  Y(2)  Z(2)
+ 
+             ...
+ 
+      v X(N)  Y(N)  Z(N)
+      f V1(1) V2(1) V3(1)
+      f V1(2) V2(2) V3(2)
+ 
+             ...
+ 
+      f V1(M) V2(M) V3(M)
+ 
+   where
+ 
+         X(i) Y(i) Z(i)                 are the body-fixed Cartesian
+                                        coordinates of the plate model
+                                        vertices, provided for each vertex
+                                        as the 2nd, 3rd, and 4th
+                                        space-separated items on the data
+                                        lines. Each vertex line has the
+                                        prefix character 'v'.
+ 
+         V1(i) V2(i) V3(i)              are the indices of the plate model
+                                        vertices for the corners of a given
+                                        plate, provided for each plate as
+                                        the 2nd, 3rd, and 4th
+                                        space-separated items on the data
+                                        lines. Each vertex line has the
+                                        prefix character 'f'.
+ 
+ 
+Sample Vertex-Facet Input File
+ 
+ 
+      v 0. 0. 1.17557
+      v 0.32492 1. 0.525731
+      v 1.05146 0. 0.525731
+      v -0.850651 0.618034 0.525731
+      v -0.850651 -0.618034 0.525731
+      v 0.32492 -1. 0.525731
+      v 0.850651 0.618034 -0.525731
+      v -0.32492 1. -0.525731
+      v -1.05146 0. -0.525731
+      v -0.32492 -1. -0.525731
+      v 0.850651 -0.618034 -0.525731
+      v 0. 0. -1.17557
+      f 1 3 2
+      f 1 2 4
+      f 1 4 5
+      f 1 5 6
+      f 1 6 3
+      f 3 7 2
+      f 2 8 4
+      f 4 9 5
+      f 5 10 6
+      f 6 11 3
+      f 7 8 2
+      f 8 9 4
+      f 9 10 5
+      f 10 11 6
+      f 11 7 3
+      f 7 12 8
+      f 8 12 9
+      f 9 12 10
+      f 10 12 11
+      f 11 12 7
+ 
+ 
+Sample Rosetta/OSIRIS ``ver'' File
+ 
+   The file starts with a line vertex and plate counts. Vertex data follow;
+   the coordinates of each vertex are placed on a line. The vertex indices
+   are implied by the order of the vertex data lines. A section of plate
+   data follows the section of vertex data. Each line of plate data is
+   preceded by a line containing that plate's vertex count. Each plate must
+   be triangular in order to be processed by this program.
+ 
+   Example:
+ 
+      12  20
+       0. 0. 1.17557
+       0.32492 1. 0.525731
+       1.05146 0. 0.525731
+       -0.850651 0.618034 0.525731
+       -0.850651 -0.618034 0.525731
+       0.32492 -1. 0.525731
+       0.850651 0.618034 -0.525731
+       -0.32492 1. -0.525731
+       -1.05146 0. -0.525731
+       -0.32492 -1. -0.525731
+       0.850651 -0.618034 -0.525731
+       0. 0. -1.17557
+      3
+        1 3 2
+      3
+        1 2 4
+      3
+        1 4 5
+      3
+        1 5 6
+      3
+        1 6 3
+      3
+        3 7 2
+      3
+        2 8 4
+      3
+        4 9 5
+      3
+        5 10 6
+      3
+       6 11 3
+      3
+       7 8 2
+      3
+       8 9 4
+      3
+       9 10 5
+      3
+       10 11 6
+      3
+       11 7 3
+      3
+       7 12 8
+      3
+       8 12 9
+      3
+       9 12 10
+      3
+       10 12 11
+      3
+       11 12 7
+ 
+ 
+Output DSK File
+===========================================================================
+ 
+   The output DSK file is based on the SPICE DAS architecture. The file is
+   not human-readable; it is designed to support rapid read access by SPICE
+   software and SPICE-based applications. Data may be extracted from the
+   file using the interface software provided in the DSKLIB library.
+ 
+   Details of the DAS architecture are provided by the DAS Required Reading
+   document, which is included in the SPICE Toolkit. This information is
+   not essential for running MKDSK but may be of interest to DSK users.
+ 
+   The utility DSKBRIEF provides a brief summary of the contents of a DSK
+   file. To run DSKBRIEF, simply type the name of the program followed by
+   the name of the DSK file to summarize.
+ 
+   SPICE contains several utilities which are helpful for working with DSK
+   files:
+ 
+       --   The utility COMMNT allows users to view, extract, append to, or
+            delete comment text from the comment area of any binary SPICE
+            kernel.
+ 
+       --   The utility BINGO, which is available from the NAIF web site,
+            converts a binary SPICE kernel from IEEE big-endian format
+            (used on certain Sun Microsystems platforms) to the IEEE
+            little-endian format (used on PCs) and vice versa.
+ 
+       --   The SPICE Toolkit utilities TOXFR and TOBIN respectively
+            convert a DSK file to an ASCII-based ``transfer'' format and
+            convert the transfer format back to binary format. The transfer
+            format file can be moved between any systems on which the SPICE
+            Toolkit is supported. This technique is more flexible than
+            using BINGO, but it is less convenient. Note that the transfer
+            file should be moved in ASCII ftp mode; if this mode is not
+            available, then conversion tools such as DOS2UNIX or UNIX2DOS
+            must be used to convert line terminators to those used on the
+            target system.
+ 
+ 
+Spatial Index and Voxels
+--------------------------------------------------------
+ 
+   This discussion applies to type 2 segments.
+ 
+   In order to efficiently perform plate based geometric calculations it is
+   useful to pre-calculate and store quantities related to the
+   time-independent location and orientation of individual plates in
+   relation to the other plates.
+ 
+   MKDSK creates in the output DSK file a data structure called the ``fine
+   voxel grid'' that associates each plate with one or more cubical volume
+   elements known as "voxels". A "voxel grid" is a collection of voxels
+   that completely encompasses the plate model. The shape of the voxel grid
+   assumed by MKDSK is that of a rectangular solid. The size of a voxel
+   depends in part on the average individual extent of each plate; the user
+   may select a value that will scale the voxel size by a constant factor
+   (See the sections ``The fine voxel scale'' below and "The MKDSK Setup
+   File", above).
+ 
+   Indexing plates by the voxel(s) they occupy can significantly speed up
+   the task of determining which plates are intersected by a ray. Voxels
+   penetrated by a ray can be found directly, and a table lookup for each
+   voxel results in a relatively short list of plates potentially
+   intersected by the ray. Without this "spatial index", all plates in the
+   model would have to be tested for ray-plate intersection.
+ 
+   MKDSK also creates a secondary voxel grid called the ``coarse voxel
+   grid.'' This grid further improves DSK-based intersection calculations,
+   primarily by enabling applications to avoid examining empty voxels.
+   Coarse voxels have edge length larger by an integer scale factor than
+   that of fine voxels.
+ 
+ 
+Fine Voxel Scale
+ 
+   The fine voxel scale is a double precision number representing the ratio
+   of the spatial index's fine voxel edge length to the average plate
+   extent. (The ``extent'' of a plate in a given coordinate direction is
+   the difference between the maximum and minimum values of that coordinate
+   attained on the plate. The average extent used in this computation is
+   taken over all three coordinates and all plates.)
+ 
+   The fine voxel scale has a significant effect on DSK ray-surface
+   intercept efficiency; normally the optimal scale must be determined by
+   trial and error. A rule of thumb is to choose the smallest scale that
+   yields an acceptable voxel count.
+ 
+   Note that a large fine voxel scale value creates a large ratio of fine
+   voxel size to average plate size, which leads to consideration of a
+   large number of plates during the intercept computation. An excessively
+   small scale leads to having a large fraction of the plates spanning
+   multiple voxels, which causes a subset of those plates to be considered
+   multiple times during the ray intercept computation.
+ 
+ 
+Coarse Voxel Scale
+ 
+   The coarse voxel scale must be large enough so that the total number of
+   coarse voxels is less than the value of the parameter MAXCGR, which is
+   currently set to 1E5. A rule of thumb is to select the smallest coarse
+   voxel scale that yields an acceptable coarse voxel count. It will likely
+   take some experimentation to determine the best coarse voxel scale for a
+   given data set.
+ 

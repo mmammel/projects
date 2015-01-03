@@ -1,0 +1,11 @@
+;--INTEL MAC --- CC/64BIT
+;--Inspekt --- Version 7.23
+;--SPICE Toolkit N0065
+;--2014-DEC-28 21:06:56
+help;
+;
+;
+quit;
+;-Oops!- INSPKN: Sorry but I didn't recognize the word QUIT as the
+;--      beginning of any valid statement.
+EXIT;

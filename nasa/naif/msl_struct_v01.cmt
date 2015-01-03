@@ -1,0 +1,1549 @@
+ 
+MSL Structures SPK File
+===============================================================================
+ 
+   This SPK file contains locations of various MSL structures and
+   science and engineering instruments.
+ 
+ 
+Version and Date
+--------------------------------------------------------
+ 
+   Version 0.1 -- Mon Aug  6 10:37:30 PDT 2012 -- Boris Semenov/NAIF
+ 
+      Initial Release.
+ 
+ 
+Contact Information
+----------------------------------------------------------------------
+ 
+   Boris Semenov, NAIF/JPL, Boris.Semenov@jpl.nasa.gov
+ 
+ 
+Related SPICE Kernels
+----------------------------------------------------------------------
+ 
+   Descriptions/definitions from the MSL Frames Kernel (FK) file are
+   required in order to understand objects and frames with respect to
+   which the locations are defined in this SPK file.
+ 
+ 
+References
+----------------------------------------------------------------------
+ 
+   1. ``Frames Required Reading''
+ 
+   2. ``SP-Kernel Required Reading''
+ 
+   3. ``C-Kernel Required Reading''
+ 
+   4. MSL Frame Kernel, Latest Version
+ 
+   Additional references are provided at the beginning of each section.
+ 
+ 
+List of Structures
+----------------------------------------------------------------------
+ 
+   This table lists names, ID codes, center ID codes, and reference frame
+   names for MSL structures, the locations of which are provided in
+   this SPK file. Additional information including diagrams and
+   PINPOINT inputs is provided in the sections below the table.
+ 
+                 NAME                 ID     CENTER             FRAME
+         -------------------------  -------  -------  ----------------------
+         MSL_ROVER                 -76000   -76      MSL_ROVER
+ 
+         MSL_HAZCAM_BACK_LEFT_A    -76141   -76      MSL_ROVER
+         MSL_HAZCAM_BACK_LEFT_B    -76143   -76      MSL_ROVER
+         MSL_HAZCAM_BACK_RIGHT_A   -76142   -76      MSL_ROVER
+         MSL_HAZCAM_BACK_RIGHT_B   -76144   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_LEFT_A   -76131   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_LEFT_B   -76133   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_RIGHT_A  -76132   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_RIGHT_B  -76134   -76      MSL_ROVER
+         MSL_MARDI                 -76160   -76      MSL_ROVER
+ 
+         MSL_RSM_HEAD              -76205   -76      MSL_ROVER
+         MSL_MASTCAM_LEFT          -76210   -76205   MSL_RSM_HEAD
+         MSL_MASTCAM_RIGHT         -76220   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_LEFT_A         -76231   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_LEFT_B         -76233   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_RIGHT_A        -76232   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_RIGHT_B        -76234   -76205   MSL_RSM_HEAD
+         MSL_CHEMCAM_RMI           -76243   -76205   MSL_RSM_HEAD
+         MSL_CHEMCAM_LIBS_LASER    -76241   -76243   MSL_CHEMCAM_RMI
+         MSL_CHEMCAM_LIBS_CAM      -76242   -76243   MSL_CHEMCAM_RMI
+ 
+         MSL_RA_BASE               -76300   -76000   MSL_ROVER
+         MSL_RA_SHOULDER_AZ        -76301   -76300   MSL_RA_BASE
+         MSL_RA_SHOULDER_EL        -76302   -76301   MSL_RA_SHOULDER_AZ
+         MSL_RA_ELBOW              -76303   -76302   MSL_RA_SHOULDER_EL
+         MSL_RA_WRIST              -76304   -76303   MSL_RA_ELBOW
+         MSL_RA_TURRET             -76305   -76304   MSL_RA_WRIST
+         MSL_RA_TURRET_HEAD        -76306   -76305   MSL_RA_TURRET
+         MSL_MAHLI_REF             -76310   -76306   MSL_MAHLI_REF
+         MSL_APXS_REF              -76320   -76306   MSL_APXS_REF
+         MSL_PADS_REF              -76330   -76306   MSL_PADS_REF
+         MSL_DRT_REF               -76340   -76306   MSL_DRT_REF
+         MSL_CHIMRA_REF            -76350   -76306   MSL_CHIMRA_REF
+         MSL_MAHLI                 -76311   -76310   MSL_MAHLI_REF
+         MSL_APXS                  -76321   -76320   MSL_APXS_REF
+         MSL_PADS                  -76331   -76330   MSL_PADS_REF
+         MSL_DRT                   -76341   -76340   MSL_DRT_REF
+         MSL_CHIMRA                -76351   -76350   MSL_CHIMRA_REF
+ 
+         MSL_HGA_AZ                -76122   -76000   MSL_ROVER
+         MSL_HGA_EL                -76124   -76122   MSL_HGA_AZ
+         MSL_HGA                   -76125   -76124   MSL_HGA_EL
+ 
+         MSL_RAD                   -76150   -76000   MSL_ROVER
+         MSL_REMS_UVS              -76170   -76000   MSL_ROVER
+         MSL_REMS_BOOM1_TIP        -76256   -76000   MSL_ROVER
+         MSL_REMS_BOOM2_TIP        -76266   -76000   MSL_ROVER
+         MSL_SAM_1_INLET           -76184   -76000   MSL_ROVER
+         MSL_SAM_2_INLET           -76185   -76000   MSL_ROVER
+         MSL_CHEMIN_INLET          -76186   -76000   MSL_ROVER
+         MSL_FD_RESTRAINT_PORT     -76401   -76000   MSL_ROVER
+         MSL_FD_RESTRAINT_SBRD     -76402   -76000   MSL_ROVER
+         MSL_FD_DECK_SIDE_PORT     -76403   -76000   MSL_ROVER
+         MSL_FD_DECK_FRONT_PORT    -76404   -76000   MSL_ROVER
+         MSL_FD_DECK_CENTER_PORT   -76405   -76000   MSL_ROVER
+         MSL_FD_DECK_CENTER_SBRD   -76406   -76000   MSL_ROVER
+         MSL_FD_DECK_FRONT_SBRD    -76407   -76000   MSL_ROVER
+         MSL_FD_OCM_PORT           -76408   -76000   MSL_ROVER
+         MSL_FD_OCM_CENTER         -76409   -76000   MSL_ROVER
+         MSL_FD_OCM_STARBOARD      -76410   -76000   MSL_ROVER
+         MSL_SCI_OBS_TRAY          -76411   -76000   MSL_ROVER
+         MSL_ENG_OBS_TRAY          -76412   -76000   MSL_ROVER
+         MSL_BIT_BOX_1_TARGET      -76413   -76000   MSL_ROVER
+         MSL_BIT_BOX_2_TARGET      -76414   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_1        -76415   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_2        -76416   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_3        -76417   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_4        -76418   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_5        -76419   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_6        -76420   -76000   MSL_ROVER
+         MSL_APXS_CALTARGET        -76421   -76000   MSL_ROVER
+         MSL_MAHLI_CALTARGET       -76422   -76000   MSL_ROVER
+         MSL_CCAM_CAL1             -76423   -76000   MSL_ROVER
+         MSL_CCAM_CAL2             -76424   -76000   MSL_ROVER
+         MSL_CCAM_CAL3             -76425   -76000   MSL_ROVER
+         MSL_CCAM_CAL4             -76426   -76000   MSL_ROVER
+         MSL_CCAM_CAL5             -76427   -76000   MSL_ROVER
+         MSL_CCAM_CAL6             -76428   -76000   MSL_ROVER
+         MSL_CCAM_CAL7             -76429   -76000   MSL_ROVER
+         MSL_CCAM_CAL8             -76430   -76000   MSL_ROVER
+         MSL_CCAM_CAL9             -76431   -76000   MSL_ROVER
+         MSL_CCAM_CAL10            -76432   -76000   MSL_ROVER
+         MSL_MCAM_CAL              -76433   -76000   MSL_ROVER
+ 
+ 
+Rover Mechanical Origin Location
+===========================================================================
+ 
+   References
+   ----------
+ 
+      1. D-34642_3PCS_v1-sfp-05.pdf
+ 
+ 
+   Rover Mechanical Origin Location Diagram
+   ----------------------------------------
+ 
+      Rover -Y side view:
+      -------------------
+                               _
+                              | | RSM
+                              `-'
+                               |              HGA
+                               |          .```.         .
+                               |         |  o  ---   .-' \ RTG
+          RA                   |     RM   `._.' | .-'     \
+      -|-                  |-.--------(*)--------'       .-   ---
+       o---------o--------o| |                   |    .-'      ^
+                             |.-------o----.     |-.-'         |
+                           .-`--------------`-.--'             | 1120.5 mm
+                           |             .-----`o------.       |
+                         .-|-.         .-|-.         .-|-.     |
+                        |  o  |       |  o  |       |  o  |    v
+                         `._.'   <-------x.'         `._.'    ---
+                                Xr       |
+                                         |
+                                         |
+                                      Zr v     Yr is into the page.
+ 
+      Rover -Z side ("top") view:
+      ---------------------------
+ 
+                        .-----.       .-----.       .-----.
+                        |     |       |     |       |     |
+                        |     |       |             |     |
+                        `--|--'       `-- Yr        `--|--'
+                           `----------o- ^ -----o------'
+                             ..-.------- | ------.     RTG
+                         RSM || |        |       |--------.
+                             || |        |       |-------.|
+          RA                 |`- <----(*)x       |       ||
+       |                     |  Xr   RM      HGA |-------'|
+      -o---------|--------|o-|            =====-o---------'
+       |                     `-------------------'
+                           .----------o---------o------.
+                        .--|--.       .--|--.       .--|--.
+                        |     |       |     |       |     |
+                        |     |       |     |       |     |
+                        `-----'       `-----'       `-----'
+ 
+                                            90.02 mm
+                                    -->|-|<------
+ 
+                                               Zr is into the page.
+ 
+   Rover Mechanical Origin Location
+   --------------------------------
+ 
+         ----------------------------------------------------------------------
+         STRUCTURE       X         Y        Z       CENTER/REF_FRAME
+         ---------- --------- --------- --------- -----------------------------
+         MSL_ROVER   0.090020  0.000000 -1.120500 MSL/MSL_ROVER
+         ----------------------------------------------------------------------
+ 
+ 
+   PINPOINT Inputs for Rover Mechanical Origin Location
+   ----------------------------------------------------
+ 
+      This table lists ID codes, centers ID codes, and reference frame names
+      for MSL structures,  the locations of which are provided in the
+      PINPOINT input block below:
+ 
+                 STRUCTURE            ID     CENTER             FRAME
+         -------------------------  -------  -------  -----------------------
+         MSL_ROVER                  -76000   -76      MSL_ROVER
+ 
+      PINPOINT requires coordinates provided in _XYZ keyword be in km.
+ 
+   \begindata
+ 
+      SITES                           += ( 'MSL_ROVER' )
+      MSL_ROVER_IDCODE                 = -76000
+      MSL_ROVER_CENTER                 = -76
+      MSL_ROVER_FRAME                  = 'MSL_ROVER'
+      MSL_ROVER_XYZ                    = (  0.0000900  0.0000000 -0.0011205 )
+      MSL_ROVER_BOUNDS                 = ( @2011-01-01, @2030-01-01 )
+ 
+   \begintext
+ 
+ 
+HAZCAM and MARDI Locations
+===========================================================================
+ 
+   References
+   ----------
+ 
+      1. Latest HAZCAM and MARDI CAHVORE models:
+ 
+            CAMERA                          CAHVORE MODEL FILE
+      ------------------------  ----------------------------------------------
+      MSL_HAZCAM_BACK_LEFT_A    MSL_CAL_003_SN_0211-RHAZL-FLIGHT-RCE-A.cahvore
+      MSL_HAZCAM_BACK_LEFT_B    MSL_CAL_003_SN_0212-RHAZL-FLIGHT-RCE-B.cahvore
+      MSL_HAZCAM_BACK_RIGHT_A   MSL_CAL_003_SN_0217-RHAZR-FLIGHT-RCE-A.cahvore
+      MSL_HAZCAM_BACK_RIGHT_B   MSL_CAL_003_SN_0207-RHAZR-FLIGHT-RCE-B.cahvore
+      MSL_HAZCAM_FRONT_LEFT_A   MSL_CAL_003_SN_0205-FHAZL-FLIGHT-RCE-A.cahvore
+      MSL_HAZCAM_FRONT_LEFT_B   MSL_CAL_003_SN_0208-FHAZL-FLIGHT-RCE-B.cahvore
+      MSL_HAZCAM_FRONT_RIGHT_A  MSL_CAL_003_SN_0213-FHAZR-FLIGHT-RCE-A.cahvore
+      MSL_HAZCAM_FRONT_RIGHT_B  MSL_CAL_003_SN_0209-FHAZR-FLIGHT-RCE-B.cahvore
+      MSL_MARDI                 MSL_CAL_002_SN_3001-MARDI-FLIGHT.cahvor
+ 
+      2. MSL_CamSIS_v1.32_4-11-12.pdf
+ 
+      3. MSL_MMM_SIS_053112_final.pdf
+ 
+      4. D-34651-A_PPPCS_Vol9-rvw-27.pdf
+ 
+ 
+   HAZCAM Locations Diagram
+   ------------------------
+ 
+      Rover -Y side view:
+      -------------------
+                               _
+                              | | RSM
+                              `-'
+                               |              HGA
+                               |          .```.         .
+                               |         |  o  ---   .-' \ RTG
+          RA                   |          `._.' | .-'     \
+      -|-                  |-.-------------------'       .-
+       o---------o--------o| |                   |    .-'
+                             |.-------o----.     |-.-'
+                      HFxx (*)(*)-----------`-.--(*) HBxx
+                           |     MARDI   .-----`o------.
+                         .-|-.         .-|-.         .-|-.
+                        |  o  |       |  o  |       |  o  |
+                         `._.'   <-------x.'         `._.'
+                                Xr       |
+                                         |
+                                         |
+                                      Zr v     Yr is into the page.
+ 
+ 
+      Rover -Z side ("top") view:
+      ---------------------------
+ 
+                        .-----.       .-----.       .-----.
+                        |     |       |     |       |     |
+                        |     |       |             |     |
+                        `--|--'       `-- Yr        `--|--'
+                           `----------o- ^ -----o------'
+                             ..-.------- | ------(*) HBLB
+                             || | RSM    |       (*) HBRB .
+                      HFRA (*)| |        |       |      -.|
+          RA          HFRB (*)`- <-------x       |       || RTG
+       |              HFLA (*)  Xr           HGA |      -'|
+      -o---------|--- HFLB (*)            =====-o(*) HBLA '
+       |                     `-------------------(*) HBRA
+                           .--(*)-----o---------o------.
+                        .--|--. MARDI .--|--.       .--|--.
+                        |     |       |     |       |     |
+                        |     |       |     |       |     |
+                        `-----'       `-----'       `-----'
+ 
+                                               Zr is into the page.
+ 
+ 
+   HAZCAM and MARDI Location Data
+   ------------------------------
+ 
+      From [1], relative to the rover navigation frame (CENTER = -76,
+      FRAME = MSL_ROVER):
+ 
+         STRUCTURE                  X, m     Y, m     Z, m
+         ------------------------  -------  -------  -------
+         MSL_HAZCAM_BACK_LEFT_B    -0.9757   0.5522  -0.7800
+         MSL_HAZCAM_BACK_RIGHT_B   -0.9752   0.4519  -0.7801
+         MSL_HAZCAM_BACK_LEFT_A    -0.9762  -0.4553  -0.7798
+         MSL_HAZCAM_BACK_RIGHT_A   -0.9768  -0.5555  -0.7796
+         MSL_HAZCAM_FRONT_RIGHT_A   1.0326   0.0779  -0.7082
+         MSL_HAZCAM_FRONT_RIGHT_B   1.0331  -0.0049  -0.7081
+         MSL_HAZCAM_FRONT_LEFT_A    1.0328  -0.0887  -0.7085
+         MSL_HAZCAM_FRONT_LEFT_B    1.0330  -0.1714  -0.7079
+         MSL_MARDI                  0.7616  -0.6483  -0.7017
+ 
+ 
+   PINPOINT Inputs for HAZCAM Locations
+   ------------------------------------
+ 
+      This table lists ID codes, centers ID codes, and reference frame names
+      for MSL structures,  the locations of which are provided in the
+      PINPOINT input block below:
+ 
+                 STRUCTURE            ID     CENTER             FRAME
+         -------------------------  -------  -------  ----------------------
+         MSL_HAZCAM_BACK_LEFT_A     -76141   -76      MSL_ROVER
+         MSL_HAZCAM_BACK_LEFT_B     -76143   -76      MSL_ROVER
+         MSL_HAZCAM_BACK_RIGHT_A    -76142   -76      MSL_ROVER
+         MSL_HAZCAM_BACK_RIGHT_B    -76144   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_LEFT_A    -76131   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_LEFT_B    -76133   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_RIGHT_A   -76132   -76      MSL_ROVER
+         MSL_HAZCAM_FRONT_RIGHT_B   -76134   -76      MSL_ROVER
+         MSL_MARDI                  -76160   -76      MSL_ROVER
+ 
+      PINPOINT requires coordinates provided in _XYZ keyword be in km.
+ 
+   \begindata
+ 
+      SITES                           += ( 'MSL_HAZCAM_BACK_LEFT_A' )
+      MSL_HAZCAM_BACK_LEFT_A_IDCODE    = -76141
+      MSL_HAZCAM_BACK_LEFT_A_CENTER    = -76
+      MSL_HAZCAM_BACK_LEFT_A_FRAME     = 'MSL_ROVER'
+      MSL_HAZCAM_BACK_LEFT_A_XYZ       = ( -0.0009762 -0.0004553 -0.0007798 )
+      MSL_HAZCAM_BACK_LEFT_A_BOUNDS    = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_BACK_LEFT_B' )
+      MSL_HAZCAM_BACK_LEFT_B_IDCODE    = -76143
+      MSL_HAZCAM_BACK_LEFT_B_CENTER    = -76
+      MSL_HAZCAM_BACK_LEFT_B_FRAME     = 'MSL_ROVER'
+      MSL_HAZCAM_BACK_LEFT_B_XYZ       = ( -0.0009757  0.0005522 -0.0007800 )
+      MSL_HAZCAM_BACK_LEFT_B_BOUNDS    = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_BACK_RIGHT_A' )
+      MSL_HAZCAM_BACK_RIGHT_A_IDCODE   = -76142
+      MSL_HAZCAM_BACK_RIGHT_A_CENTER   = -76
+      MSL_HAZCAM_BACK_RIGHT_A_FRAME    = 'MSL_ROVER'
+      MSL_HAZCAM_BACK_RIGHT_A_XYZ      = ( -0.0009768 -0.0005555 -0.0007796 )
+      MSL_HAZCAM_BACK_RIGHT_A_BOUNDS   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_BACK_RIGHT_B' )
+      MSL_HAZCAM_BACK_RIGHT_B_IDCODE   = -76144
+      MSL_HAZCAM_BACK_RIGHT_B_CENTER   = -76
+      MSL_HAZCAM_BACK_RIGHT_B_FRAME    = 'MSL_ROVER'
+      MSL_HAZCAM_BACK_RIGHT_B_XYZ      = ( -0.0009752  0.0004519 -0.0007801 )
+      MSL_HAZCAM_BACK_RIGHT_B_BOUNDS   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_FRONT_LEFT_A' )
+      MSL_HAZCAM_FRONT_LEFT_A_IDCODE   = -76131
+      MSL_HAZCAM_FRONT_LEFT_A_CENTER   = -76
+      MSL_HAZCAM_FRONT_LEFT_A_FRAME    = 'MSL_ROVER'
+      MSL_HAZCAM_FRONT_LEFT_A_XYZ      = (  0.0010328 -0.0000887 -0.0007085 )
+      MSL_HAZCAM_FRONT_LEFT_A_BOUNDS   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_FRONT_LEFT_B' )
+      MSL_HAZCAM_FRONT_LEFT_B_IDCODE   = -76133
+      MSL_HAZCAM_FRONT_LEFT_B_CENTER   = -76
+      MSL_HAZCAM_FRONT_LEFT_B_FRAME    = 'MSL_ROVER'
+      MSL_HAZCAM_FRONT_LEFT_B_XYZ      = (  0.0010330 -0.0001714 -0.0007079 )
+      MSL_HAZCAM_FRONT_LEFT_B_BOUNDS   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_FRONT_RIGHT_A' )
+      MSL_HAZCAM_FRONT_RIGHT_A_IDCODE  = -76132
+      MSL_HAZCAM_FRONT_RIGHT_A_CENTER  = -76
+      MSL_HAZCAM_FRONT_RIGHT_A_FRAME   = 'MSL_ROVER'
+      MSL_HAZCAM_FRONT_RIGHT_A_XYZ     = (  0.0010326  0.0000779 -0.0007082 )
+      MSL_HAZCAM_FRONT_RIGHT_A_BOUNDS  = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HAZCAM_FRONT_RIGHT_B' )
+      MSL_HAZCAM_FRONT_RIGHT_B_IDCODE  = -76134
+      MSL_HAZCAM_FRONT_RIGHT_B_CENTER  = -76
+      MSL_HAZCAM_FRONT_RIGHT_B_FRAME   = 'MSL_ROVER'
+      MSL_HAZCAM_FRONT_RIGHT_B_XYZ     = (  0.0010331 -0.0000049 -0.0007081 )
+      MSL_HAZCAM_FRONT_RIGHT_B_BOUNDS  = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MARDI' )
+      MSL_MARDI_IDCODE                 = -76160
+      MSL_MARDI_CENTER                 = -76
+      MSL_MARDI_FRAME                  = 'MSL_ROVER'
+      MSL_MARDI_XYZ                    = (  0.0007616 -0.0006483 -0.0007017 )
+      MSL_MARDI_BOUNDS                 = ( @2011-01-01, @2030-01-01 )
+ 
+   \begintext
+ 
+ 
+RSM Point and Instrument Locations
+===========================================================================
+ 
+   References
+   ----------
+ 
+      1. Latest NAVCAM, MASTCAM, and CHEMCAM RMI CAHVORE models:
+ 
+            CAMERA                          CAHVORE MODEL FILE
+      ------------------  ----------------------------------------------
+      MSL_MASTCAM_LEFT    MSL_CAL_003_SN_3003_FILTER_0_FOCUS_02315-MCAML-FLIGHT.cahvor
+      MSL_MASTCAM_RIGHT   MSL_CAL_003_SN_3004_FILTER_0_FOCUS_02702-MCAMR-FLIGHT.cahvor
+      MSL_NAVCAM_LEFT_A   MSL_CAL_004_SN_0216-NAVL-FLIGHT-RCE-A.cahvor
+      MSL_NAVCAM_LEFT_B   MSL_CAL_004_SN_0215-NAVL-FLIGHT-RCE-B.cahvor
+      MSL_NAVCAM_RIGHT_A  MSL_CAL_004_SN_0206-NAVR-FLIGHT-RCE-A.cahvor
+      MSL_NAVCAM_RIGHT_B  MSL_CAL_004_SN_0218-NAVR-FLIGHT-RCE-B.cahvor
+      MSL_CHEMCAM_RMI     MSL_CAL_003_SN_0001_FOCUS_12658-RMI-FLIGHT.cahv
+ 
+      2. MSL_CamSIS_v1.32_4-11-12.pdf
+ 
+      3. MSL_MMM_SIS_053112_final.pdf
+ 
+      4. D-34651-A_PPPCS_Vol9-rvw-27.pdf
+ 
+ 
+   RSM Point and Instrument Locations Diagram
+   ------------------------------------------
+ 
+   RSM point location (intersection of AZ and EL axes):
+ 
+ 
+      Rover -Y side view:
+      -------------------
+                               _  RSM
+                              (*)                                ---
+                              `-'                                 ^
+                               |              HGA                 |
+                               |          .```.         .         |
+                               |         |  o  ---   .-' \ RTG    |
+          RA                   |          `._.' | .-'     \       |
+      -|-                  |-.-------------------'       .-       |
+       o---------o--------o| |                   |    .-'         | 1.9061 m
+                             |.-------o----.     |-.-'            |
+                           .-`--------------`-.--'                |
+                           |             .-----`o------.          |
+                         .-|-.         .-|-.         .-|-.        |
+                        |  o  |       |  o  |       |  o  |       v
+                         `._.'   <-------x.'         `._.'       ---
+                                Xr       |
+                                         |
+                                         |
+                                      Zr v     Yr is into the page.
+ 
+                                0.8044 m
+                               |<------->|
+ 
+ 
+      Rover -Z side ("top") view:
+      ---------------------------
+ 
+                        .-----.       .-----.       .-----.
+                        |     |       |     |       |     |
+                        |     |       |             |     |
+                        `--|--'       `-- Yr        `--|--'
+                           `--.-.-----o- ^ -----o------'          |
+                             .| |------- | ------.                v
+                         RSM |(*)        |       |--------.      ---
+                             || |        |       |-------.|       | 0.5594 m
+          RA                 |`-'<-------x       |       || RTG  ---
+       |                     |  Xr           HGA |-------'|       ^
+      -o---------|--------|o-|            =====-o---------'       |
+       |                     `-------------------'
+                           .----------o---------o------.
+                        .--|--.       .--|--.       .--|--.
+                        |     |       |     |       |     |
+                        |     |       |     |       |     |
+                        `-----'       `-----'       `-----'
+ 
+                                               Zr is into the page.
+ 
+ 
+   RSM instrument locations (focal points):
+ 
+      RSM head +X ("front") view:
+ 
+                      .-------------------------------------.
+                      |                         RMI .---.   |
+                      |                            /     \  |
+                      |                           |  (*)  | |
+                      |                            \     /  |
+                      |                             `---'   |
+                      '-.-.--------------|--------------.-.-'
+                    NRA (*)   .---.             .---.   (*) NLA
+                         -    |(*)|             |(*)|    -
+                    NRB (*)   `---'             `---'   (*) NLB
+                        `-'  MR                     ML  `-'
+                                          Xh
+                             Yh  <-------o                    ----- EL axis
+                                         |
+                                         |
+                                         |
+                                      Zh v     Xh is out of the page.
+ 
+                                         |
+                                         | AZ axis
+                                         |
+ 
+      RSM head -Z ("top") view:
+ 
+ 
+                      .-------------------------------------.
+                      |                                     |
+                      |                            ML       |
+                      |                   Zh     (*)        |
+                      |      Yh  <-------x              RMI |  ----- EL axis
+                      |                  |           (*)    |
+                      |        (*)       |                  |
+                      |       MR         |                  |
+                      '-(*)--------------v--------------(*)-'
+                     NR*              Xh                   NL*
+ 
+                                               Zh is into the page.
+                                               AZ axis is into the page.
+ 
+ 
+   RSM Point and Instrument Locations Data
+   ---------------------------------------
+ 
+      RSM point location, from [1], relative to the rover frame
+      (CENTER = -76, FRAME = MSL_ROVER):
+ 
+         STRUCTURE                  X, m     Y, m     Z, m
+         ------------------------  -------  -------  -------
+         MSL_RSM_HEAD               0.8044   0.5594  -1.9061
+ 
+      Instrument locations, from [1], relative to the RSM head frame
+      (CENTER = -76205, FRAME = MSL_RSM_HEAD):
+ 
+         STRUCTURE                  X, m     Y, m     Z, m
+         ------------------------  -------  -------  -------
+         MSL_MASTCAM_LEFT          -0.0374  -0.1258  -0.0653
+         MSL_MASTCAM_RIGHT          0.0678   0.1179  -0.0653
+         MSL_NAVCAM_LEFT_A          0.1151  -0.2139  -0.0819
+         MSL_NAVCAM_LEFT_B          0.1153  -0.2138  -0.0338
+         MSL_NAVCAM_RIGHT_A         0.1132   0.2097  -0.0817
+         MSL_NAVCAM_RIGHT_B         0.1141   0.2098  -0.0341
+         MSL_CHEMCAM_RMI            0.0752  -0.1116  -0.2138
+ 
+      CHEMCAM LIBS laser and camera locations relative to CHEMCAM RMI:
+ 
+         STRUCTURE                  X, m     Y, m     Z, m
+         ------------------------  -------  -------  -------
+         MSL_CHEMCAM_LIBS_LASER     0.0      0.0      0.0
+         MSL_CHEMCAM_LIBS_CAM       0.0      0.0      0.0
+ 
+ 
+   PINPOINT Inputs for RSM Point and Instrument Locations
+   ------------------------------------------------------
+ 
+      This table lists ID codes, centers ID codes, and reference frame names
+      for MSL structures,  the locations of which are provided in the
+      PINPOINT input block below:
+ 
+                 STRUCTURE            ID     CENTER             FRAME
+         -------------------------  -------  -------  ----------------------
+         MSL_RSM_HEAD               -76205   -76      MSL_ROVER
+         MSL_MASTCAM_LEFT           -76210   -76205   MSL_RSM_HEAD
+         MSL_MASTCAM_RIGHT          -76220   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_LEFT_A          -76231   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_LEFT_B          -76233   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_RIGHT_A         -76232   -76205   MSL_RSM_HEAD
+         MSL_NAVCAM_RIGHT_B         -76234   -76205   MSL_RSM_HEAD
+         MSL_CHEMCAM_RMI            -76243   -76205   MSL_RSM_HEAD
+         MSL_CHEMCAM_LIBS_LASER     -76241   -76243   MSL_CHEMCAM_RMI
+         MSL_CHEMCAM_LIBS_CAM       -76242   -76243   MSL_CHEMCAM_RMI
+ 
+      PINPOINT requires coordinates provided in _XYZ keyword be in km.
+ 
+   \begindata
+ 
+      SITES                           += ( 'MSL_RSM_HEAD' )
+      MSL_RSM_HEAD_IDCODE              = -76205
+      MSL_RSM_HEAD_CENTER              = -76
+      MSL_RSM_HEAD_FRAME               = 'MSL_ROVER'
+      MSL_RSM_HEAD_XYZ                 = (  0.0008044  0.0005594 -0.0019061 )
+      MSL_RSM_HEAD_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MASTCAM_LEFT' )
+      MSL_MASTCAM_LEFT_IDCODE          = -76210
+      MSL_MASTCAM_LEFT_CENTER          = -76205
+      MSL_MASTCAM_LEFT_FRAME           = 'MSL_RSM_HEAD'
+      MSL_MASTCAM_LEFT_XYZ             = ( -0.0000374 -0.0001258 -0.0000653 )
+      MSL_MASTCAM_LEFT_BOUNDS          = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MASTCAM_RIGHT' )
+      MSL_MASTCAM_RIGHT_IDCODE         = -76220
+      MSL_MASTCAM_RIGHT_CENTER         = -76205
+      MSL_MASTCAM_RIGHT_FRAME          = 'MSL_RSM_HEAD'
+      MSL_MASTCAM_RIGHT_XYZ            = (  0.0000678  0.0001179 -0.0000653 )
+      MSL_MASTCAM_RIGHT_BOUNDS         = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_NAVCAM_LEFT_A' )
+      MSL_NAVCAM_LEFT_A_IDCODE         = -76231
+      MSL_NAVCAM_LEFT_A_CENTER         = -76205
+      MSL_NAVCAM_LEFT_A_FRAME          = 'MSL_RSM_HEAD'
+      MSL_NAVCAM_LEFT_A_XYZ            = (  0.0001151 -0.0002139 -0.0000819 )
+      MSL_NAVCAM_LEFT_A_BOUNDS         = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_NAVCAM_LEFT_B' )
+      MSL_NAVCAM_LEFT_B_IDCODE         = -76233
+      MSL_NAVCAM_LEFT_B_CENTER         = -76205
+      MSL_NAVCAM_LEFT_B_FRAME          = 'MSL_RSM_HEAD'
+      MSL_NAVCAM_LEFT_B_XYZ            = (  0.0001153 -0.0002138 -0.0000338 )
+      MSL_NAVCAM_LEFT_B_BOUNDS         = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_NAVCAM_RIGHT_A' )
+      MSL_NAVCAM_RIGHT_A_IDCODE        = -76232
+      MSL_NAVCAM_RIGHT_A_CENTER        = -76205
+      MSL_NAVCAM_RIGHT_A_FRAME         = 'MSL_RSM_HEAD'
+      MSL_NAVCAM_RIGHT_A_XYZ           = (  0.0001132  0.0002097 -0.0000817 )
+      MSL_NAVCAM_RIGHT_A_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_NAVCAM_RIGHT_B' )
+      MSL_NAVCAM_RIGHT_B_IDCODE        = -76234
+      MSL_NAVCAM_RIGHT_B_CENTER        = -76205
+      MSL_NAVCAM_RIGHT_B_FRAME         = 'MSL_RSM_HEAD'
+      MSL_NAVCAM_RIGHT_B_XYZ           = (  0.0001141  0.0002098 -0.0000341 )
+      MSL_NAVCAM_RIGHT_B_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CHEMCAM_RMI' )
+      MSL_CHEMCAM_RMI_IDCODE           = -76243
+      MSL_CHEMCAM_RMI_CENTER           = -76205
+      MSL_CHEMCAM_RMI_FRAME            = 'MSL_RSM_HEAD'
+      MSL_CHEMCAM_RMI_XYZ              = (  0.0000752 -0.0001116 -0.0002138 )
+      MSL_CHEMCAM_RMI_BOUNDS           = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CHEMCAM_LIBS_LASER' )
+      MSL_CHEMCAM_LIBS_LASER_IDCODE    = -76241
+      MSL_CHEMCAM_LIBS_LASER_CENTER    = -76243
+      MSL_CHEMCAM_LIBS_LASER_FRAME     = 'MSL_CHEMCAM_RMI'
+      MSL_CHEMCAM_LIBS_LASER_XYZ       = (  0.0000000  0.0000000  0.0000000 )
+      MSL_CHEMCAM_LIBS_LASER_BOUNDS    = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CHEMCAM_LIBS_CAM' )
+      MSL_CHEMCAM_LIBS_CAM_IDCODE      = -76242
+      MSL_CHEMCAM_LIBS_CAM_CENTER      = -76243
+      MSL_CHEMCAM_LIBS_CAM_FRAME       = 'MSL_CHEMCAM_RMI'
+      MSL_CHEMCAM_LIBS_CAM_XYZ         = (  0.0000000  0.0000000  0.0000000 )
+      MSL_CHEMCAM_LIBS_CAM_BOUNDS      = ( @2011-01-01, @2030-01-01 )
+ 
+   \begintext
+ 
+ 
+ 
+RA Structures and Instruments Locations
+===========================================================================
+ 
+   References
+   ----------
+ 
+      1. sa_pppcs_vol6_20090109.pdf
+ 
+      2. MSL_kinematics_tree.xml
+ 
+      3. Latest MAHLI CAHVORE model:
+ 
+         CAMERA                          CAHVORE MODEL FILE
+      --------------  ---------------------------------------------------
+      MSL_MAHLI       MSL_CAL_002_SN_3002_FOCUS_12594-MAHLI-FLIGHT.cahvor
+ 
+ 
+   RA Structures and Instruments Location Diagrams
+   ------------------------------------------------
+ 
+      RA side view:
+      -------------
+ 
+              Shoulder/Az                             Turret
+                 axis                                  axis
+ 
+ 
+         |  x0 | x1| a1 |       a2        |       a3        |
+         |<--->|<->|----|<--------------->|<--------------->|
+         |     |   |    |                 |                 |
+                                                    a4  |   |
+                                                   ---->|---|<-
+                                                        |   |
+     |                                                                  |
+     v        //////// Xbase                          .___.             V d6
+    ---      //o------>                               | o |            ---
+     |       //|//////                                | o------>       ---
+     | z1     /|///////                               ._|_.    Xtr      | d5
+     |         | |   | .-.Xsh_az         .-.            |\   .          |
+    ---  Ybase V | o----x->----> =======| x------> =====|=| x------>   ---
+     |           ._|_. `|   Xsh_el       `|'    Xelb    V  `|'     Xwr  ^
+     | z0          |    |                 |            Ztr  |           |
+     |             |    |                 |                 |
+    ---  o------>  V    V Ysh_el          V Yelb            V Ywr
+     ^   |     Xrm  Zsh_az
+     |   |
+         |
+         V                          Yr, Ybase, Ysh_az, Ytr are out of page;
+          Zrm                            Zsh_el, Zelb, Zwr are into page.
+ 
+ 
+      RA top view:
+      ------------
+ 
+                    Shoulder/El         Elbow             Wrist
+                       axis             axis              axis
+ 
+         |  x0 | x1| a1 |       a2        |       a3        |
+         |<--->|<->|----|<--------------->|<--------------->|
+         |     |   |    |                 |                 |
+                                                    a4  |   |
+                                                   ---->|---|<-
+                                                        |   |
+ 
+               //////    Zsh_el            Zelb              Zwr
+             /Rover//   ^                 ^                 ^
+     | y1    ////////  .|.               .|.                |
+     v       ////Xbase |||               |||                |           |
+    ---      //x----->| |    Xsh_el     | | |  Xelb       ._|_.  Xwr    v
+    ---      //| | x----x->---->        | x------> -------| x------>   ---
+     ^       //|//`|'|__ Xsh_az        |__|__|------------|   |         |
+     |       //|///|/  \   `-----------'   /              '---'         | d4
+     |       //V///|/   `-----------------'       APXS .-'. /  Xtr      |
+     | y0   Ybase//V/ Ysh_az                          | x------>       ---
+     |          /////                            MAHLI `|'              ^
+     |                                                  |               |
+     V                                                  |
+    ---  x------> Xrm                                   V Ytr
+         |
+         |
+         |                                    Zr, Zbase, Zsh_az, Ysh_el,
+         V Yrm                                Yelb, Ywr, and Ztr are all
+                                                      into the page
+ 
+ 
+      RA Head top view:
+      -----------------
+ 
+                                                  ^
+                  Xapxs_ref    Yapxs_ref         /  Xchimra_ref
+                       ^.     ^                 /
+                         `. .'                /x.(b5,0,c5)
+                 (b2,0,c2) x `.    .-------. / / `->
+                          `.   `.  |        `./     Ychimra_ref
+                            `.   `.---.       `.
+                        .------..'     `.      |====
+                        |      /         \----.  (b3,0,c3)
+                        |      |    x------>  |--x---->
+                        |      \    |    Xtr  '  |     Xpads_ref
+                        `------ `.  |  . \     |=|==
+                               /  `-|-'   \----' v
+                              /   / V  \   \      Ypads_ref
+               Ymahli_ref <-./   / Ytr  \   \
+                    (b1,0,c1)`x./        \.x'(b4,0,c4)
+                             /         <-'  \
+                            /     Ydrt_ref   \
+                Xmahli_ref V                  V Xdrt_ref
+ 
+                                     Ztr is into the page.
+                                     Z*ref are into the page.
+ 
+            b* are translations from the turret head to the tool reference
+               point along the X axis of the tool frame.
+ 
+            c* are translations from the Ztr to the tool reference point
+               along the Z axis of the tool frame.
+ 
+ 
+   Actual RA dimensions
+   --------------------
+ 
+      Relative positions between RA joints and tools with respect to
+      appropriate frames can be "constructed" from a1..a5, d1..d5,
+      x0..z0 and x1..z1, b1..b5, and c1..c5 shown on the diagrams above
+      as follows:
+ 
+         ----------------------------------------------------------------------
+         Link#         X         Y        Z       CENTER/REF_FRAME
+         ---------- --------- --------- --------- -----------------------------
+         BASE        x0        y0        z0       ROVER/ROVER
+         SH/AZ       x1        y1        z1       RA_BASE/RA_BASE
+         SH/EL       a1        0.0       0.0      RA_SHOULDER_AZ/RA_SHOULDER_AZ
+         ELBOW       a2        0.0       0.0      RA_SHOULDER_EL/RA_SHOULDER_EL
+         WRIST       a3        0.0       0.0      RA_ELBOW/RA_ELBOW
+         TURRET (a) -a4       -d5       -d4       RA_WRIST/RA_WRIST
+         HEAD   (b)  0.0       0.0      -d6       RA_TURRET/RA_TURRET
+         MAHLI_REF   b1        0.0       c1       RA_TURRET_HEAD/MAHLI_REF
+         APXS_REF    b2        0.0       c2       RA_TURRET_HEAD/APXS_REF
+         PADS_REF    b3        0.0       c3       RA_TURRET_HEAD/PADS_REF
+         DRT_REF     b4        0.0       c4       RA_TURRET_HEAD/DRT_REF
+         CHIMRA_REF  b5        0.0       c5       RA_TURRET_HEAD/CHIMRA_REF
+         MAHLI  (c)  0.0       0.0       0.0      MAHLI_REF/MAHLI_REF
+         APXS        0.0       0.0       0.0      APXS_REF/APXS_REF
+         PADS        0.0       0.0       0.0      PADS_REF/PADS_REF
+         DRT         0.0       0.0       0.0      DRT_REF/DRT_REF
+         CHIMRA      0.0       0.0       0.0      CHIMRA_REF/CHIMRA_REF
+         ----------------------------------------------------------------------
+ 
+         (a) This translation combines translations from Wrist Joint (in [2])/
+             ARM4 (in [1]) to Turret Joint (in [2])/ARM5 (in [1]) by elements
+             a4 and d4 and from Turret Joint/ARM5 to Turret (in [2])/ARM6
+             (in [1]) by element d5.
+ 
+         (b) Turret head is called Tool Center in [2].
+ 
+         (c) Location of MAHLI relative to MAHLI_REF is derived from the
+             MAHLI CAHVORE model. Nominally it is set to (0,0,0).
+ 
+      Same with the actual numbers from [1]:
+ 
+         ----------------------------------------------------------------------
+         Link#        X, m      Y, m      Z, m    CENTER/REF_FRAME
+         ---------- --------- --------- --------- -----------------------------
+         BASE       +0.82746  -0.561597 +0.224803 ROVER/ROVER
+         SH/AZ      +0.285    +0.1095   +0.04101  RA_BASE/RA_BASE
+         SH/EL      +0.155865  0.0       0.0      RA_SHOULDER_AZ/RA_SHOULDER_AZ
+         ELBOW      +0.826258  0.0       0.0      RA_SHOULDER_EL/RA_SHOULDER_EL
+         WRIST      +0.786501  0.0       0.0      RA_ELBOW/RA_ELBOW
+         TURRET     -0.144429 -0.169434 -0.167437 RA_WRIST/RA_WRIST
+         HEAD        0.0       0.0      -0.07176  RA_TURRET/RA_TURRET
+         MAHLI_REF  +0.29826   0.0      -0.00998  RA_TURRET_HEAD/MAHLI_REF
+         APXS_REF   +0.29904   0.0      -0.01024  RA_TURRET_HEAD/APXS_REF
+         PADS_REF   +0.29147   0.0       0.00000  RA_TURRET_HEAD/PADS_REF
+         DRT_REF    +0.296642  0.0      -0.014989 RA_TURRET_HEAD/DRT_REF
+         CHIMRA_REF +0.35581   0.0      -0.07409  RA_TURRET_HEAD/CHIMRA_REF
+         MAHLI       0.0       0.0       0.0      MAHLI_REF/MAHLI_REF
+         APXS        0.0       0.0       0.0      APXS_REF/APXS_REF
+         PADS        0.0       0.0       0.0      PADS_REF/PADS_REF
+         DRT         0.0       0.0       0.0      DRT_REF/DRT_REF
+         CHIMRA      0.0       0.0       0.0      CHIMRA_REF/CHIMRA_REF
+         ----------------------------------------------------------------------
+ 
+      For MAHLI based on [3]:
+ 
+         ----------------------------------------------------------------------
+         Link#        X, m      Y, m      Z, m    CENTER/REF_FRAME
+         ---------- --------- --------- --------- -----------------------------
+         MSL_MAHLI  -0.0425    0.0022   -0.0021   MAHLI_REF/MAHLI_REF
+         ----------------------------------------------------------------------
+ 
+ 
+   PINPOINT Inputs for RA Locations
+   ---------------------------------
+ 
+      This table lists ID codes, centers ID codes, and reference frame names
+      for MSL structures,  the locations of which are provided in the
+      PINPOINT input block below:
+ 
+                 STRUCTURE            ID     CENTER             FRAME
+         -------------------------  -------  -------  -----------------------
+         MSL_RA_BASE                -76300   -76000   MSL_ROVER
+         MSL_RA_SHOULDER_AZ         -76301   -76300   MSL_RA_BASE
+         MSL_RA_SHOULDER_EL         -76302   -76301   MSL_RA_SHOULDER_AZ
+         MSL_RA_ELBOW               -76303   -76302   MSL_RA_SHOULDER_EL
+         MSL_RA_WRIST               -76304   -76303   MSL_RA_ELBOW
+         MSL_RA_TURRET              -76305   -76304   MSL_RA_WRIST
+         MSL_RA_TURRET_HEAD         -76306   -76305   MSL_RA_TURRET
+         MSL_MAHLI_REF              -76310   -76306   MSL_MAHLI_REF
+         MSL_APXS_REF               -76320   -76306   MSL_APXS_REF
+         MSL_PADS_REF               -76330   -76306   MSL_PADS_REF
+         MSL_DRT_REF                -76340   -76306   MSL_DRT_REF
+         MSL_CHIMRA_REF             -76350   -76306   MSL_CHIMRA_REF
+         MSL_MAHLI                  -76311   -76310   MSL_MAHLI_REF
+         MSL_APXS                   -76321   -76320   MSL_APXS_REF
+         MSL_PADS                   -76331   -76330   MSL_PADS_REF
+         MSL_DRT                    -76341   -76340   MSL_DRT_REF
+         MSL_CHIMRA                 -76351   -76350   MSL_CHIMRA_REF
+ 
+      PINPOINT requires coordinates provided in _XYZ keyword be in km.
+ 
+   \begindata
+ 
+      SITES                           += ( 'MSL_RA_BASE' )
+      MSL_RA_BASE_IDCODE               = -76300
+      MSL_RA_BASE_CENTER               = -76000
+      MSL_RA_BASE_FRAME                = 'MSL_ROVER'
+      MSL_RA_BASE_XYZ                  = (  0.0008275 -0.0005616  0.0002248 )
+      MSL_RA_BASE_BOUNDS               = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_RA_SHOULDER_AZ' )
+      MSL_RA_SHOULDER_AZ_IDCODE        = -76301
+      MSL_RA_SHOULDER_AZ_CENTER        = -76300
+      MSL_RA_SHOULDER_AZ_FRAME         = 'MSL_RA_BASE'
+      MSL_RA_SHOULDER_AZ_XYZ           = (  0.0002850  0.0001095  0.0000410 )
+      MSL_RA_SHOULDER_AZ_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_RA_SHOULDER_EL' )
+      MSL_RA_SHOULDER_EL_IDCODE        = -76302
+      MSL_RA_SHOULDER_EL_CENTER        = -76301
+      MSL_RA_SHOULDER_EL_FRAME         = 'MSL_RA_SHOULDER_AZ'
+      MSL_RA_SHOULDER_EL_XYZ           = (  0.0001559  0.0000000  0.0000000 )
+      MSL_RA_SHOULDER_EL_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_RA_ELBOW' )
+      MSL_RA_ELBOW_IDCODE              = -76303
+      MSL_RA_ELBOW_CENTER              = -76302
+      MSL_RA_ELBOW_FRAME               = 'MSL_RA_SHOULDER_EL'
+      MSL_RA_ELBOW_XYZ                 = (  0.0008263  0.0000000  0.0000000 )
+      MSL_RA_ELBOW_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_RA_WRIST' )
+      MSL_RA_WRIST_IDCODE              = -76304
+      MSL_RA_WRIST_CENTER              = -76303
+      MSL_RA_WRIST_FRAME               = 'MSL_RA_ELBOW'
+      MSL_RA_WRIST_XYZ                 = (  0.0007865  0.0000000  0.0000000 )
+      MSL_RA_WRIST_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_RA_TURRET' )
+      MSL_RA_TURRET_IDCODE             = -76305
+      MSL_RA_TURRET_CENTER             = -76304
+      MSL_RA_TURRET_FRAME              = 'MSL_RA_WRIST'
+      MSL_RA_TURRET_XYZ                = ( -0.0001444 -0.0001694 -0.0001674 )
+      MSL_RA_TURRET_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_RA_TURRET_HEAD' )
+      MSL_RA_TURRET_HEAD_IDCODE        = -76306
+      MSL_RA_TURRET_HEAD_CENTER        = -76305
+      MSL_RA_TURRET_HEAD_FRAME         = 'MSL_RA_TURRET'
+      MSL_RA_TURRET_HEAD_XYZ           = (  0.0000000  0.0000000 -0.0000718 )
+      MSL_RA_TURRET_HEAD_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MAHLI_REF' )
+      MSL_MAHLI_REF_IDCODE             = -76310
+      MSL_MAHLI_REF_CENTER             = -76306
+      MSL_MAHLI_REF_FRAME              = 'MSL_MAHLI_REF'
+      MSL_MAHLI_REF_XYZ                = (  0.0002983  0.0000000 -0.0000100 )
+      MSL_MAHLI_REF_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_APXS_REF' )
+      MSL_APXS_REF_IDCODE              = -76320
+      MSL_APXS_REF_CENTER              = -76306
+      MSL_APXS_REF_FRAME               = 'MSL_APXS_REF'
+      MSL_APXS_REF_XYZ                 = (  0.0002990  0.0000000 -0.0000102 )
+      MSL_APXS_REF_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_PADS_REF' )
+      MSL_PADS_REF_IDCODE              = -76330
+      MSL_PADS_REF_CENTER              = -76306
+      MSL_PADS_REF_FRAME               = 'MSL_PADS_REF'
+      MSL_PADS_REF_XYZ                 = (  0.0002915  0.0000000  0.0000000 )
+      MSL_PADS_REF_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_DRT_REF' )
+      MSL_DRT_REF_IDCODE               = -76340
+      MSL_DRT_REF_CENTER               = -76306
+      MSL_DRT_REF_FRAME                = 'MSL_DRT_REF'
+      MSL_DRT_REF_XYZ                  = (  0.0002966  0.0000000 -0.0000150 )
+      MSL_DRT_REF_BOUNDS               = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CHIMRA_REF' )
+      MSL_CHIMRA_REF_IDCODE            = -76350
+      MSL_CHIMRA_REF_CENTER            = -76306
+      MSL_CHIMRA_REF_FRAME             = 'MSL_CHIMRA_REF'
+      MSL_CHIMRA_REF_XYZ               = (  0.0003558  0.0000000 -0.0000741 )
+      MSL_CHIMRA_REF_BOUNDS            = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MAHLI' )
+      MSL_MAHLI_IDCODE                 = -76311
+      MSL_MAHLI_CENTER                 = -76310
+      MSL_MAHLI_FRAME                  = 'MSL_MAHLI_REF'
+      MSL_MAHLI_XYZ                    = ( -0.0000425  0.0000022 -0.0000021 )
+      MSL_MAHLI_BOUNDS                 = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_APXS' )
+      MSL_APXS_IDCODE                  = -76321
+      MSL_APXS_CENTER                  = -76320
+      MSL_APXS_FRAME                   = 'MSL_APXS_REF'
+      MSL_APXS_XYZ                     = (  0.0000000  0.0000000  0.0000000 )
+      MSL_APXS_BOUNDS                  = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_PADS' )
+      MSL_PADS_IDCODE                  = -76331
+      MSL_PADS_CENTER                  = -76330
+      MSL_PADS_FRAME                   = 'MSL_PADS_REF'
+      MSL_PADS_XYZ                     = (  0.0000000  0.0000000  0.0000000 )
+      MSL_PADS_BOUNDS                  = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_DRT' )
+      MSL_DRT_IDCODE                   = -76341
+      MSL_DRT_CENTER                   = -76340
+      MSL_DRT_FRAME                    = 'MSL_DRT_REF'
+      MSL_DRT_XYZ                      = (  0.0000000  0.0000000  0.0000000 )
+      MSL_DRT_BOUNDS                   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CHIMRA' )
+      MSL_CHIMRA_IDCODE                = -76351
+      MSL_CHIMRA_CENTER                = -76350
+      MSL_CHIMRA_FRAME                 = 'MSL_CHIMRA_REF'
+      MSL_CHIMRA_XYZ                   = (  0.0000000  0.0000000  0.0000000 )
+      MSL_CHIMRA_BOUNDS                = ( @2011-01-01, @2030-01-01 )
+ 
+   \begintext
+ 
+ 
+HGA Point and Center Locations
+===========================================================================
+ 
+   References
+   ----------
+ 
+      1. FSW parameters, July 2012
+ 
+      2. Drawing 10253071-C
+ 
+ 
+   HGA Point and Center Locations Diagram
+   --------------------------------------
+ 
+      Rover -Y side view:
+      -------------------
+                                                   "point" X
+                                     ->|--------|<----
+                               _                   "center" X
+                              | | RSM     ->|---|<----
+                              `-'
+                               |              HGA                |
+                               |          .```.         .        v
+                               |         |  o  -o-   .-' \ RTG  ---
+          RA                   |     RM   `._.' | .-'     \      | "point" Z
+      -|-                  |-.--------(*)--------'       .-     ---
+       o---------o--------o| |                   |    .-'        ^
+                             |.-------o----.     |-.-'           |
+                           .-`--------------`-.--'
+                           |             .-----`o------.
+                         .-|-.         .-|-.         .-|-.
+                        |  o  |       |  o  |       |  o  |
+                         `._.'   <-------x.'         `._.'
+                                Xr       |
+                                         |
+                                         |
+                                      Zr v     Yr is into the page.
+ 
+      Rover -Z side ("top") view:
+      ---------------------------
+ 
+                        .-----.       .-----.       .-----.
+                        |     |       |     |       |     |
+                        |     |       |             |     |
+                        `--|--'       `-- Yr        `--|--'
+                           `----------o- ^ -----o------'
+                             ..-.------- | ------.     RTG
+                         RSM || |        |       |--------.      |
+                             || |        |       |-------.|      v
+          RA                 |`- <----(*)x       |       ||     ---
+       |                     |  Xr   RM      HGA |-------'|      | "point" Y
+      -o---------|--------|o-|            ==o==-o---------'     ---
+       |                     `-------------------'               ^
+                           .----------o---------o------.         |
+                        .--|--.       .--|--.       .--|--.
+                        |     |       |     |       |     |
+                        |     |       |     |       |     |
+                        `-----'       `-----'       `-----'
+ 
+                                               Zr is into the page.
+ 
+ 
+   HGA Point and Center Locations Data
+   -----------------------------------
+ 
+      Relative positions of HGA gimbal points computed from [1] and
+      center set based on [2] are:
+ 
+         ----------------------------------------------------------------------
+         Link#        X, m      Y, m      Z, m    CENTER/REF_FRAME
+         ---------- --------- --------- --------- -----------------------------
+         HGA_AZ     -0.272363 -0.387315 -0.307797 ROVER/ROVER
+         HGA_EL      0.000006 -0.002316 -0.000043 HGA_AZ/HGA_AZ
+         HGA         0.21      0.0       0.0      HGA_EL/HGA_EL
+ 
+ 
+   PINPOINT Inputs for HGA Point and Center Locations
+   ------------------------------------------------------
+ 
+      This table lists ID codes, centers ID codes, and reference frame names
+      for MSL structures,  the locations of which are provided in the
+      PINPOINT input block below:
+ 
+                 STRUCTURE            ID     CENTER             FRAME
+         -------------------------  -------  -------  ----------------------
+         MSL_HGA_AZ                 -76122   -76000   MSL_ROVER
+         MSL_HGA_EL                 -76124   -76122   MSL_HGA_AZ
+         MSL_HGA                    -76125   -76124   MSL_HGA_EL
+ 
+      PINPOINT requires coordinates provided in _XYZ keyword be in km.
+ 
+   \begindata
+ 
+      SITES                           += ( 'MSL_HGA_AZ' )
+      MSL_HGA_AZ_IDCODE                = -76122
+      MSL_HGA_AZ_CENTER                = -76000
+      MSL_HGA_AZ_FRAME                 = 'MSL_ROVER'
+      MSL_HGA_AZ_XYZ                   = ( -0.0002724 -0.0003873 -0.0003078 )
+      MSL_HGA_AZ_BOUNDS                = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HGA_EL' )
+      MSL_HGA_EL_IDCODE                = -76124
+      MSL_HGA_EL_CENTER                = -76122
+      MSL_HGA_EL_FRAME                 = 'MSL_HGA_AZ'
+      MSL_HGA_EL_XYZ                   = (  0.0000000 -0.0000023 -0.0000000 )
+      MSL_HGA_EL_BOUNDS                = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_HGA' )
+      MSL_HGA_IDCODE                   = -76125
+      MSL_HGA_CENTER                   = -76124
+      MSL_HGA_FRAME                    = 'MSL_HGA_EL'
+      MSL_HGA_XYZ                      = (  0.0002100  0.0000000  0.0000000 )
+      MSL_HGA_BOUNDS                   = ( @2011-01-01, @2030-01-01 )
+ 
+   \begintext
+ 
+ 
+Other Instruments and Target Locations
+===========================================================================
+ 
+   References
+   ----------
+ 
+      1. sa_pppcs_vol6_20090109.pdf
+ 
+      2. MSL_kinematics_tree.xml
+ 
+ 
+   Other Instruments and Target Location Diagram
+   ---------------------------------------------
+ 
+      TBD
+ 
+ 
+   Other Instruments and Target Location Data
+   ---------------------------------------------
+ 
+      From [2], relative to the rover mechanical frame:
+ 
+        STRUCTURE               X,m       Y,m       Z,m
+      ----------------------- --------- --------- ---------
+      MSL_RAD                   0.07460  -0.35300  -0.01500
+ 
+      MSL_REMS_UVS              0.51559   0.24647  -0.02350
+      MSL_REMS_BOOM1_TIP        0.60574   0.73228  -0.42565
+      MSL_REMS_BOOM2_TIP        0.91812   0.56618  -0.39265
+ 
+      MSL_SAM_1_INLET           0.71266   0.17541  -0.03040
+      MSL_SAM_2_INLET           0.64621   0.15187  -0.03040
+ 
+      MSL_CHEMIN_INLET          0.67469  -0.12267  -0.02840
+ 
+      MSL_FD_RESTRAINT_PORT    -0.82486  -0.46612  -0.12765
+      MSL_FD_RESTRAINT_SBRD    -0.82463   0.46735  -0.12813
+      MSL_FD_DECK_SIDE_PORT     0.40927  -0.44240  -0.00038
+      MSL_FD_DECK_FRONT_PORT    0.78201  -0.30267  -0.00067
+      MSL_FD_DECK_CENTER_PORT   0.78202  -0.00105  -0.00062
+      MSL_FD_DECK_CENTER_SBRD   0.78216   0.22915  -0.00047
+      MSL_FD_DECK_FRONT_SBRD    0.78236   0.43178  -0.00039
+ 
+      MSL_FD_OCM_PORT           0.93185  -0.09357  -0.01641
+      MSL_FD_OCM_CENTER         0.93185   0.06653  -0.05335
+      MSL_FD_OCM_STARBOARD      0.93185   0.16915   0.03559
+ 
+      MSL_SCI_OBS_TRAY          1.15900   0.51800   0.15800
+      MSL_ENG_OBS_TRAY          1.22200   0.51800   0.15800
+ 
+      MSL_BIT_BOX_1_TARGET      1.14000   0.15003   0.30575
+      MSL_BIT_BOX_2_TARGET      1.15038   0.48409   0.38821
+ 
+      MSL_OCM_LOCATION_1        0.93007   0.22850  -0.00750
+      MSL_OCM_LOCATION_2        0.93007   0.14112   0.02917
+      MSL_OCM_LOCATION_3        0.93007   0.09153  -0.03134
+      MSL_OCM_LOCATION_4        0.93007   0.01820   0.01757
+      MSL_OCM_LOCATION_5        0.93007  -0.20878  -0.05409
+      MSL_OCM_LOCATION_6        0.95237  -0.10402   0.08788
+ 
+      MSL_APXS_CALTARGET        1.04904  -0.39121   0.46975
+      MSL_MAHLI_CALTARGET       1.04904  -0.39121   0.36600
+ 
+      MSL_CCAM_CAL1            -0.85021   0.55754  -0.19062
+      MSL_CCAM_CAL2            -0.85021   0.53135  -0.19062
+      MSL_CCAM_CAL3            -0.85021   0.50515  -0.19062
+      MSL_CCAM_CAL4            -0.85021   0.47896  -0.19062
+      MSL_CCAM_CAL5            -0.85021   0.45277  -0.19062
+      MSL_CCAM_CAL6            -0.83656   0.54445  -0.17309
+      MSL_CCAM_CAL7            -0.83656   0.51825  -0.17309
+      MSL_CCAM_CAL8            -0.83656   0.49206  -0.17309
+      MSL_CCAM_CAL9            -0.83656   0.46586  -0.17309
+      MSL_CCAM_CAL10           -0.83558   0.43848  -0.17183
+      MSL_MCAM_CAL             -0.37520   0.51401  -0.21889
+ 
+ 
+   PINPOINT Inputs for RA Locations
+   ---------------------------------
+ 
+      This table lists ID codes, centers ID codes, and reference frame names
+      for MSL structures,  the locations of which are provided in the
+      PINPOINT input block below:
+ 
+                 STRUCTURE            ID     CENTER             FRAME
+         -------------------------  -------  -------  ----------------------
+         MSL_RAD                    -76150   -76000   MSL_ROVER
+         MSL_REMS_UVS               -76170   -76000   MSL_ROVER
+         MSL_REMS_BOOM1_TIP         -76256   -76000   MSL_ROVER
+         MSL_REMS_BOOM2_TIP         -76266   -76000   MSL_ROVER
+         MSL_SAM_1_INLET            -76184   -76000   MSL_ROVER
+         MSL_SAM_2_INLET            -76185   -76000   MSL_ROVER
+         MSL_CHEMIN_INLET           -76186   -76000   MSL_ROVER
+         MSL_FD_RESTRAINT_PORT      -76401   -76000   MSL_ROVER
+         MSL_FD_RESTRAINT_SBRD      -76402   -76000   MSL_ROVER
+         MSL_FD_DECK_SIDE_PORT      -76403   -76000   MSL_ROVER
+         MSL_FD_DECK_FRONT_PORT     -76404   -76000   MSL_ROVER
+         MSL_FD_DECK_CENTER_PORT    -76405   -76000   MSL_ROVER
+         MSL_FD_DECK_CENTER_SBRD    -76406   -76000   MSL_ROVER
+         MSL_FD_DECK_FRONT_SBRD     -76407   -76000   MSL_ROVER
+         MSL_FD_OCM_PORT            -76408   -76000   MSL_ROVER
+         MSL_FD_OCM_CENTER          -76409   -76000   MSL_ROVER
+         MSL_FD_OCM_STARBOARD       -76410   -76000   MSL_ROVER
+         MSL_SCI_OBS_TRAY           -76411   -76000   MSL_ROVER
+         MSL_ENG_OBS_TRAY           -76412   -76000   MSL_ROVER
+         MSL_BIT_BOX_1_TARGET       -76413   -76000   MSL_ROVER
+         MSL_BIT_BOX_2_TARGET       -76414   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_1         -76415   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_2         -76416   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_3         -76417   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_4         -76418   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_5         -76419   -76000   MSL_ROVER
+         MSL_OCM_LOCATION_6         -76420   -76000   MSL_ROVER
+         MSL_APXS_CALTARGET         -76421   -76000   MSL_ROVER
+         MSL_MAHLI_CALTARGET        -76422   -76000   MSL_ROVER
+         MSL_CCAM_CAL1              -76423   -76000   MSL_ROVER
+         MSL_CCAM_CAL2              -76424   -76000   MSL_ROVER
+         MSL_CCAM_CAL3              -76425   -76000   MSL_ROVER
+         MSL_CCAM_CAL4              -76426   -76000   MSL_ROVER
+         MSL_CCAM_CAL5              -76427   -76000   MSL_ROVER
+         MSL_CCAM_CAL6              -76428   -76000   MSL_ROVER
+         MSL_CCAM_CAL7              -76429   -76000   MSL_ROVER
+         MSL_CCAM_CAL8              -76430   -76000   MSL_ROVER
+         MSL_CCAM_CAL9              -76431   -76000   MSL_ROVER
+         MSL_CCAM_CAL10             -76432   -76000   MSL_ROVER
+         MSL_MCAM_CAL               -76433   -76000   MSL_ROVER
+ 
+      PINPOINT requires coordinates provided in _XYZ keyword be in km.
+ 
+   \begindata
+ 
+      SITES                           += ( 'MSL_RAD' )
+      MSL_RAD_IDCODE                   = -76150
+      MSL_RAD_CENTER                   = -76000
+      MSL_RAD_FRAME                    = 'MSL_ROVER'
+      MSL_RAD_XYZ                      = (  0.0000746 -0.0003530 -0.0000150 )
+      MSL_RAD_BOUNDS                   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_REMS_UVS' )
+      MSL_REMS_UVS_IDCODE              = -76170
+      MSL_REMS_UVS_CENTER              = -76000
+      MSL_REMS_UVS_FRAME               = 'MSL_ROVER'
+      MSL_REMS_UVS_XYZ                 = (  0.0005156  0.0002465 -0.0000235 )
+      MSL_REMS_UVS_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_REMS_BOOM1_TIP' )
+      MSL_REMS_BOOM1_TIP_IDCODE        = -76256
+      MSL_REMS_BOOM1_TIP_CENTER        = -76000
+      MSL_REMS_BOOM1_TIP_FRAME         = 'MSL_ROVER'
+      MSL_REMS_BOOM1_TIP_XYZ           = (  0.0006057  0.0007323 -0.0004256 )
+      MSL_REMS_BOOM1_TIP_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_REMS_BOOM2_TIP' )
+      MSL_REMS_BOOM2_TIP_IDCODE        = -76266
+      MSL_REMS_BOOM2_TIP_CENTER        = -76000
+      MSL_REMS_BOOM2_TIP_FRAME         = 'MSL_ROVER'
+      MSL_REMS_BOOM2_TIP_XYZ           = (  0.0009181  0.0005662 -0.0003926 )
+      MSL_REMS_BOOM2_TIP_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_SAM_1_INLET' )
+      MSL_SAM_1_INLET_IDCODE           = -76184
+      MSL_SAM_1_INLET_CENTER           = -76000
+      MSL_SAM_1_INLET_FRAME            = 'MSL_ROVER'
+      MSL_SAM_1_INLET_XYZ              = (  0.0007127  0.0001754 -0.0000304 )
+      MSL_SAM_1_INLET_BOUNDS           = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_SAM_2_INLET' )
+      MSL_SAM_2_INLET_IDCODE           = -76185
+      MSL_SAM_2_INLET_CENTER           = -76000
+      MSL_SAM_2_INLET_FRAME            = 'MSL_ROVER'
+      MSL_SAM_2_INLET_XYZ              = (  0.0006462  0.0001519 -0.0000304 )
+      MSL_SAM_2_INLET_BOUNDS           = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CHEMIN_INLET' )
+      MSL_CHEMIN_INLET_IDCODE          = -76186
+      MSL_CHEMIN_INLET_CENTER          = -76000
+      MSL_CHEMIN_INLET_FRAME           = 'MSL_ROVER'
+      MSL_CHEMIN_INLET_XYZ             = (  0.0006747 -0.0001227 -0.0000284 )
+      MSL_CHEMIN_INLET_BOUNDS          = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_RESTRAINT_PORT' )
+      MSL_FD_RESTRAINT_PORT_IDCODE     = -76401
+      MSL_FD_RESTRAINT_PORT_CENTER     = -76000
+      MSL_FD_RESTRAINT_PORT_FRAME      = 'MSL_ROVER'
+      MSL_FD_RESTRAINT_PORT_XYZ        = ( -0.0008249 -0.0004661 -0.0001277 )
+      MSL_FD_RESTRAINT_PORT_BOUNDS     = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_RESTRAINT_SBRD' )
+      MSL_FD_RESTRAINT_SBRD_IDCODE     = -76402
+      MSL_FD_RESTRAINT_SBRD_CENTER     = -76000
+      MSL_FD_RESTRAINT_SBRD_FRAME      = 'MSL_ROVER'
+      MSL_FD_RESTRAINT_SBRD_XYZ        = ( -0.0008246  0.0004674 -0.0001281 )
+      MSL_FD_RESTRAINT_SBRD_BOUNDS     = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_DECK_SIDE_PORT' )
+      MSL_FD_DECK_SIDE_PORT_IDCODE     = -76403
+      MSL_FD_DECK_SIDE_PORT_CENTER     = -76000
+      MSL_FD_DECK_SIDE_PORT_FRAME      = 'MSL_ROVER'
+      MSL_FD_DECK_SIDE_PORT_XYZ        = (  0.0004093 -0.0004424 -0.0000004 )
+      MSL_FD_DECK_SIDE_PORT_BOUNDS     = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_DECK_FRONT_PORT' )
+      MSL_FD_DECK_FRONT_PORT_IDCODE    = -76404
+      MSL_FD_DECK_FRONT_PORT_CENTER    = -76000
+      MSL_FD_DECK_FRONT_PORT_FRAME     = 'MSL_ROVER'
+      MSL_FD_DECK_FRONT_PORT_XYZ       = (  0.0007820 -0.0003027 -0.0000007 )
+      MSL_FD_DECK_FRONT_PORT_BOUNDS    = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_DECK_CENTER_PORT' )
+      MSL_FD_DECK_CENTER_PORT_IDCODE   = -76405
+      MSL_FD_DECK_CENTER_PORT_CENTER   = -76000
+      MSL_FD_DECK_CENTER_PORT_FRAME    = 'MSL_ROVER'
+      MSL_FD_DECK_CENTER_PORT_XYZ      = (  0.0007820 -0.0000010 -0.0000006 )
+      MSL_FD_DECK_CENTER_PORT_BOUNDS   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_DECK_CENTER_SBRD' )
+      MSL_FD_DECK_CENTER_SBRD_IDCODE   = -76406
+      MSL_FD_DECK_CENTER_SBRD_CENTER   = -76000
+      MSL_FD_DECK_CENTER_SBRD_FRAME    = 'MSL_ROVER'
+      MSL_FD_DECK_CENTER_SBRD_XYZ      = (  0.0007822  0.0002291 -0.0000005 )
+      MSL_FD_DECK_CENTER_SBRD_BOUNDS   = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_DECK_FRONT_SBRD' )
+      MSL_FD_DECK_FRONT_SBRD_IDCODE    = -76407
+      MSL_FD_DECK_FRONT_SBRD_CENTER    = -76000
+      MSL_FD_DECK_FRONT_SBRD_FRAME     = 'MSL_ROVER'
+      MSL_FD_DECK_FRONT_SBRD_XYZ       = (  0.0007824  0.0004318 -0.0000004 )
+      MSL_FD_DECK_FRONT_SBRD_BOUNDS    = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_OCM_PORT' )
+      MSL_FD_OCM_PORT_IDCODE           = -76408
+      MSL_FD_OCM_PORT_CENTER           = -76000
+      MSL_FD_OCM_PORT_FRAME            = 'MSL_ROVER'
+      MSL_FD_OCM_PORT_XYZ              = (  0.0009318 -0.0000936 -0.0000164 )
+      MSL_FD_OCM_PORT_BOUNDS           = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_OCM_CENTER' )
+      MSL_FD_OCM_CENTER_IDCODE         = -76409
+      MSL_FD_OCM_CENTER_CENTER         = -76000
+      MSL_FD_OCM_CENTER_FRAME          = 'MSL_ROVER'
+      MSL_FD_OCM_CENTER_XYZ            = (  0.0009318  0.0000665 -0.0000534 )
+      MSL_FD_OCM_CENTER_BOUNDS         = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_FD_OCM_STARBOARD' )
+      MSL_FD_OCM_STARBOARD_IDCODE      = -76410
+      MSL_FD_OCM_STARBOARD_CENTER      = -76000
+      MSL_FD_OCM_STARBOARD_FRAME       = 'MSL_ROVER'
+      MSL_FD_OCM_STARBOARD_XYZ         = (  0.0009318  0.0001691  0.0000356 )
+      MSL_FD_OCM_STARBOARD_BOUNDS      = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_SCI_OBS_TRAY' )
+      MSL_SCI_OBS_TRAY_IDCODE          = -76411
+      MSL_SCI_OBS_TRAY_CENTER          = -76000
+      MSL_SCI_OBS_TRAY_FRAME           = 'MSL_ROVER'
+      MSL_SCI_OBS_TRAY_XYZ             = (  0.0011590  0.0005180  0.0001580 )
+      MSL_SCI_OBS_TRAY_BOUNDS          = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_ENG_OBS_TRAY' )
+      MSL_ENG_OBS_TRAY_IDCODE          = -76412
+      MSL_ENG_OBS_TRAY_CENTER          = -76000
+      MSL_ENG_OBS_TRAY_FRAME           = 'MSL_ROVER'
+      MSL_ENG_OBS_TRAY_XYZ             = (  0.0012220  0.0005180  0.0001580 )
+      MSL_ENG_OBS_TRAY_BOUNDS          = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_BIT_BOX_1_TARGET' )
+      MSL_BIT_BOX_1_TARGET_IDCODE      = -76413
+      MSL_BIT_BOX_1_TARGET_CENTER      = -76000
+      MSL_BIT_BOX_1_TARGET_FRAME       = 'MSL_ROVER'
+      MSL_BIT_BOX_1_TARGET_XYZ         = (  0.0011400  0.0001500  0.0003058 )
+      MSL_BIT_BOX_1_TARGET_BOUNDS      = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_BIT_BOX_2_TARGET' )
+      MSL_BIT_BOX_2_TARGET_IDCODE      = -76414
+      MSL_BIT_BOX_2_TARGET_CENTER      = -76000
+      MSL_BIT_BOX_2_TARGET_FRAME       = 'MSL_ROVER'
+      MSL_BIT_BOX_2_TARGET_XYZ         = (  0.0011504  0.0004841  0.0003882 )
+      MSL_BIT_BOX_2_TARGET_BOUNDS      = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_OCM_LOCATION_1' )
+      MSL_OCM_LOCATION_1_IDCODE        = -76415
+      MSL_OCM_LOCATION_1_CENTER        = -76000
+      MSL_OCM_LOCATION_1_FRAME         = 'MSL_ROVER'
+      MSL_OCM_LOCATION_1_XYZ           = (  0.0009301  0.0002285 -0.0000075 )
+      MSL_OCM_LOCATION_1_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_OCM_LOCATION_2' )
+      MSL_OCM_LOCATION_2_IDCODE        = -76416
+      MSL_OCM_LOCATION_2_CENTER        = -76000
+      MSL_OCM_LOCATION_2_FRAME         = 'MSL_ROVER'
+      MSL_OCM_LOCATION_2_XYZ           = (  0.0009301  0.0001411  0.0000292 )
+      MSL_OCM_LOCATION_2_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_OCM_LOCATION_3' )
+      MSL_OCM_LOCATION_3_IDCODE        = -76417
+      MSL_OCM_LOCATION_3_CENTER        = -76000
+      MSL_OCM_LOCATION_3_FRAME         = 'MSL_ROVER'
+      MSL_OCM_LOCATION_3_XYZ           = (  0.0009301  0.0000915 -0.0000313 )
+      MSL_OCM_LOCATION_3_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_OCM_LOCATION_4' )
+      MSL_OCM_LOCATION_4_IDCODE        = -76418
+      MSL_OCM_LOCATION_4_CENTER        = -76000
+      MSL_OCM_LOCATION_4_FRAME         = 'MSL_ROVER'
+      MSL_OCM_LOCATION_4_XYZ           = (  0.0009301  0.0000182  0.0000176 )
+      MSL_OCM_LOCATION_4_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_OCM_LOCATION_5' )
+      MSL_OCM_LOCATION_5_IDCODE        = -76419
+      MSL_OCM_LOCATION_5_CENTER        = -76000
+      MSL_OCM_LOCATION_5_FRAME         = 'MSL_ROVER'
+      MSL_OCM_LOCATION_5_XYZ           = (  0.0009301 -0.0002088 -0.0000541 )
+      MSL_OCM_LOCATION_5_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_OCM_LOCATION_6' )
+      MSL_OCM_LOCATION_6_IDCODE        = -76420
+      MSL_OCM_LOCATION_6_CENTER        = -76000
+      MSL_OCM_LOCATION_6_FRAME         = 'MSL_ROVER'
+      MSL_OCM_LOCATION_6_XYZ           = (  0.0009524 -0.0001040  0.0000879 )
+      MSL_OCM_LOCATION_6_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_APXS_CALTARGET' )
+      MSL_APXS_CALTARGET_IDCODE        = -76421
+      MSL_APXS_CALTARGET_CENTER        = -76000
+      MSL_APXS_CALTARGET_FRAME         = 'MSL_ROVER'
+      MSL_APXS_CALTARGET_XYZ           = (  0.0010490 -0.0003912  0.0004698 )
+      MSL_APXS_CALTARGET_BOUNDS        = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MAHLI_CALTARGET' )
+      MSL_MAHLI_CALTARGET_IDCODE       = -76422
+      MSL_MAHLI_CALTARGET_CENTER       = -76000
+      MSL_MAHLI_CALTARGET_FRAME        = 'MSL_ROVER'
+      MSL_MAHLI_CALTARGET_XYZ          = (  0.0010490 -0.0003912  0.0003660 )
+      MSL_MAHLI_CALTARGET_BOUNDS       = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL1' )
+      MSL_CCAM_CAL1_IDCODE             = -76423
+      MSL_CCAM_CAL1_CENTER             = -76000
+      MSL_CCAM_CAL1_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL1_XYZ                = ( -0.0008502  0.0005575 -0.0001906 )
+      MSL_CCAM_CAL1_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL2' )
+      MSL_CCAM_CAL2_IDCODE             = -76424
+      MSL_CCAM_CAL2_CENTER             = -76000
+      MSL_CCAM_CAL2_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL2_XYZ                = ( -0.0008502  0.0005313 -0.0001906 )
+      MSL_CCAM_CAL2_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL3' )
+      MSL_CCAM_CAL3_IDCODE             = -76425
+      MSL_CCAM_CAL3_CENTER             = -76000
+      MSL_CCAM_CAL3_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL3_XYZ                = ( -0.0008502  0.0005052 -0.0001906 )
+      MSL_CCAM_CAL3_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL4' )
+      MSL_CCAM_CAL4_IDCODE             = -76426
+      MSL_CCAM_CAL4_CENTER             = -76000
+      MSL_CCAM_CAL4_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL4_XYZ                = ( -0.0008502  0.0004790 -0.0001906 )
+      MSL_CCAM_CAL4_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL5' )
+      MSL_CCAM_CAL5_IDCODE             = -76427
+      MSL_CCAM_CAL5_CENTER             = -76000
+      MSL_CCAM_CAL5_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL5_XYZ                = ( -0.0008502  0.0004528 -0.0001906 )
+      MSL_CCAM_CAL5_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL6' )
+      MSL_CCAM_CAL6_IDCODE             = -76428
+      MSL_CCAM_CAL6_CENTER             = -76000
+      MSL_CCAM_CAL6_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL6_XYZ                = ( -0.0008366  0.0005445 -0.0001731 )
+      MSL_CCAM_CAL6_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL7' )
+      MSL_CCAM_CAL7_IDCODE             = -76429
+      MSL_CCAM_CAL7_CENTER             = -76000
+      MSL_CCAM_CAL7_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL7_XYZ                = ( -0.0008366  0.0005182 -0.0001731 )
+      MSL_CCAM_CAL7_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL8' )
+      MSL_CCAM_CAL8_IDCODE             = -76430
+      MSL_CCAM_CAL8_CENTER             = -76000
+      MSL_CCAM_CAL8_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL8_XYZ                = ( -0.0008366  0.0004921 -0.0001731 )
+      MSL_CCAM_CAL8_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL9' )
+      MSL_CCAM_CAL9_IDCODE             = -76431
+      MSL_CCAM_CAL9_CENTER             = -76000
+      MSL_CCAM_CAL9_FRAME              = 'MSL_ROVER'
+      MSL_CCAM_CAL9_XYZ                = ( -0.0008366  0.0004659 -0.0001731 )
+      MSL_CCAM_CAL9_BOUNDS             = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_CCAM_CAL10' )
+      MSL_CCAM_CAL10_IDCODE            = -76432
+      MSL_CCAM_CAL10_CENTER            = -76000
+      MSL_CCAM_CAL10_FRAME             = 'MSL_ROVER'
+      MSL_CCAM_CAL10_XYZ               = ( -0.0008356  0.0004385 -0.0001718 )
+      MSL_CCAM_CAL10_BOUNDS            = ( @2011-01-01, @2030-01-01 )
+ 
+      SITES                           += ( 'MSL_MCAM_CAL' )
+      MSL_MCAM_CAL_IDCODE              = -76433
+      MSL_MCAM_CAL_CENTER              = -76000
+      MSL_MCAM_CAL_FRAME               = 'MSL_ROVER'
+      MSL_MCAM_CAL_XYZ                 = ( -0.0003752  0.0005140 -0.0002189 )
+      MSL_MCAM_CAL_BOUNDS              = ( @2011-01-01, @2030-01-01 )
+ 
+   \begintext
+ 
+ 

@@ -1,0 +1,612 @@
+ 
+ORBNUM User's Guide
+===========================================================================
+ 
+   Last revised on 2012 JAN 18 by E. D. Wright
+ 
+ 
+Abstract
+--------------------------------------------------------
+ 
+   The ORBNUM program creates an ASCII orbit number table file for an
+   object, keyed on the time of a geometric event.
+ 
+ 
+Introduction
+--------------------------------------------------------
+ 
+   Mission planning and data archive tasks can require the ability to
+   uniquely identify each orbit of a multi-orbit mission. One
+   identification method assigns an integer count to some event unique to
+   each orbit: periapsis, node crossings, or the like. This integer count
+   is known as the ``orbit number.''
+ 
+   The SPICE orbit number program (orbnum) uses as an event marker one of a
+   user selected geometric events for a target (usually a spacecraft)
+   relative to an observer (usually the body that the spacecraft orbits)
+   from this list:
+ 
+       --   Apoapsis.
+ 
+       --   Periapsis.
+ 
+       --   Passage of ascending node.
+ 
+       --   Passage of descending node.
+ 
+       --   Maximum value of Z coordinate.
+ 
+       --   Minimum value of Z coordinate.
+ 
+       --   Maximum planetocentric latitude.
+ 
+       --   Minimum planetocentric latitude.
+ 
+   At this event, the program calculates the current count of event
+   instances, the UTC time of the event, the corresponding SCLK value of
+   the UTC time for the target, and the opposite orbit event time, e.g.:
+ 
+                 apoapsis        <-> periapsis,
+                 ascending node  <-> descending node
+                 minimum Z value <-> maximum Z value
+          minimum latitude value <-> maximum latitude value
+ 
+   The program then writes these values to a user specified ASCII file
+   known as the orbit number file.
+ 
+   The user may also elect to output additional orbit parameters keyed off
+   the orbit event, some of those parameters calculated in the observer's
+   body fixed frame and some in an inertial frame:
+ 
+   - Optional parameters returned in the user defined observer body fixed
+   frame:
+ 
+       1.   Sub-spacecraft planetodetic latitude and longitude (DEGS).
+ 
+       2.   Sub-solar planetodetic latitude and longitude (DEGS).
+ 
+       3.   Altitude of the target above the observer body (KM, based on
+            the shape/size as defined in a SPICE PCK.
+ 
+   - Optional parameters returned in the user defined inertial frame:
+ 
+       1.   Eccentricity of the orbit plane about the primary body.
+ 
+       2.   Inclination of the target orbit (DEGS).
+ 
+       3.   Longitude of the ascending node of the orbit (DEGS).
+ 
+       4.   Argument of periapsis of the orbit (DEGS).
+ 
+       5.   Semimajor axis of the orbit (KM).
+ 
+       6.   Solar distance at the time of the orbit event (KM).
+ 
+ 
+Usage
+===========================================================================
+ 
+   Orbnum operates either interactively or via command line arguments.
+ 
+      orbnum [-pref preference_file_name]
+             [-num  initial_orbit_number]
+             [-file orbit_num_file_name]
+             [-d]
+             [-v|-version]
+             [-audit]
+             [-tdb]
+             [-verbose]
+ 
+ 
+Options
+ 
+   The user specifies any or all of the following options:
+ 
+         -pref        Name of text kernel preference file. If not provided,
+                      the program prompts for it.
+ 
+         -num         Initial orbit number counter setting. If not
+                      provided, the program prompts for it.
+ 
+         -file        Name of orbit number file. If not provided, the
+                      program prompts for it.
+ 
+         -d           Flag that indicates use default time span from SPK
+                      kernel. If this flag is not present, orbnum prompts
+                      the user for a time interval.
+ 
+         -version     Flag to output the application's version string.
+ 
+         -v           Alias for -version.
+ 
+         -audit       Flag indicating whether to output audit information
+                      as part of the orbit number file header. The audit
+                      header lists the target ID, observer ID, aberration
+                      correction, reference frame for parameter output, and
+                      the inertial frame for state evaluations.
+ 
+         -tdb         Flag indicating to output time strings in TDB
+                      (Barycentric Dynamic Time). Default output uses UTC.
+ 
+         -verbose     Flag indicating to output additional information
+                      describing run set-up. This information outputs to
+                      the standard output device, not the orbit number
+                      file.
+ 
+ 
+The preference file (-pref)
+--------------------------------------------------------
+ 
+   The preference file is a text kernel that lists the information needed
+   for the event search run.
+ 
+   The kernel variables defined in the file:
+ 
+         TARGET                    The SPICE integer ID for the target,
+                                   e.g. Cassini = -82, MGS = -94, etc.
+ 
+         OBSERVER                  The SPICE integer ID for the observer,
+                                   the primary body, e.g. Saturn = 699,
+                                   Mars = 499, etc.
+ 
+         ELEMENTS_INERTIAL_FRAME   The inertial frame in which to calculate
+                                   the orbit elements defined by the
+                                   ORBIT_PARAMS list. The calculation
+                                   returns the elements at the orbit event
+                                   time. J2000 is the most likely value of
+                                   this parameter.
+ 
+         EVENT_DETECTION_KEY       A string identifying which geometric
+                                   event signifies the start of an orbit.
+ 
+            'APO'           signals a search for apoapsis
+ 
+            'PERI'          signals a search for periapsis
+ 
+            'A-NODE'        signals a search for passage through
+                            the ascending node
+ 
+            'D-NODE'        signals a search for passage through
+                            the descending node
+ 
+            'MINLAT'        signals a search for the time of
+                            minimum planetocentric latitude
+ 
+            'MAXLAT'        signals a search for the time of
+                            maximum planetocentric latitude
+ 
+            'MINZ'          signals a search for the time of the
+                            minimum value of the Z (Cartesian)
+                            coordinate
+ 
+            'MAXZ'          signals a search for the time of the
+                            maximum value of the Z (Cartesian)
+                            coordinate
+ 
+            Note: a min/max latitude event time may not correspond to a
+            min/max Z event time.
+ 
+         EVENT_DETECTION_FRAME     The reference frame for event detections
+                                   defined by the EVENT_DETECTION_KEY
+                                   value. This value will usually be
+                                   'J2000' or 'IAU_body-name' (e.g.
+                                   IAU_SATURN, IAU_MARS, etc.)
+ 
+         ABERRATION_CORRECTION     The light time correction for all state
+                                   vector evaluations.
+ 
+            'NONE'          Perform no corrections of the position and
+                            velocity for the target as seen from the
+                            observer. All calculations performed use
+                            geometric positions and velocities.
+ 
+            Orbit number computations should always use 'NONE'. The
+            orbnum utility will accept and use any SPICE supported
+            aberration correction, this only for backward compatibility.
+ 
+            Refer to the spk.req required reading document for further
+            information on aberration correction.
+ 
+         ORBIT_PARAMS              The list of to calculate then output
+                                   output for each orbit count. Currently
+                                   11 parameters are available.
+ 
+            'Sub Sol Lon'   Sub-solar planetodetic longitude at event
+                            time (DEGS).
+ 
+            'Sub Sol Lat'   Sub-solar planetodetic latitude at event
+                            time (DEGS).
+ 
+            'Sub SC Lon'    Sub-target planetodetic longitude (DEGS).
+ 
+            'Sub SC Lat'    Sub-target planetodetic latitude and (DEGS).
+ 
+            'Alt'           Altitude of the target above the observer
+                            body at event time (KM).
+ 
+            'Inc'           Inclination of the vehicle orbit plane at
+                            event time (DEGS)
+ 
+            'Ecc'           Eccentricity of the target orbit about
+                            the primary body at event time (DEGS)
+ 
+            'Lon Node'      Longitude of the ascending node of the
+                            orbit plane at event time. (DEGS)
+ 
+            'Arg Per'       Argument of periapsis of the orbit plane at
+                            event time (DEGS).
+ 
+            'Sol Dist'      Solar distance from target at event
+                            time (KM).
+ 
+            'Semi Axis'     Semi-major axis of the target's orbit at
+                            event time (KM).
+ 
+             The ORBIT_PARAMS variable must list at least one parameter.
+ 
+         KERNELS_TO_LOAD           (conditional) The standard meta-kernel
+                                   style keyword listing pathnames
+                                   to all needed kernels: LSK, PCK,
+                                   masses PCK, SPKs, etc.
+ 
+                                   This keyword may used in conjunction
+                                   with the standard meta-kernel keywords
+                                   PATH_VALUES and PATH_SYMBOLS. Refer to
+                                   the kernel.req required reading document
+                                   for further on meta-kernel keywords.
+ 
+         TEXT_KERNELS              (conditional) The list of pathnames
+                                   to all needed kernels: LSK, PCK,
+                                   masses PCK, SPKs, etc.
+ 
+         BIN_KERNELS               (conditional) The list of pathnames
+                                   to all needed kernels: LSK, PCK,
+                                   masses PCK, SPKs, etc.
+ 
+             Either one (or any combination of) the three keywords above
+             may be used to specify the full set of needed kernels. The
+             KERNELS_TO_LOAD keyword is the preferred way; the TEXT_KERNELS
+             and BIN_KERNELS keywords are supported for backward
+             compatibility with the earlier versions of the program.
+ 
+ 
+         SAFETY_MARGIN             A positive value defining the number of
+                                   TDB seconds to skip from earliest
+                                   ephemeris time present in the SPK
+                                   kernels before starting an event search.
+                                   Use of this value prevents a state
+                                   evaluation at the earliest ephemeris
+                                   value for the body.
+ 
+         STEP_SIZE_TDB             Either:
+ 
+                                   1. A positive value defining the
+                                   step size in TDB seconds the GF routines
+                                   use to determine times of transition.
+ 
+                                   or
+ 
+                                   2. The word 'DEFAULT' to use a default
+                                   step-size based on geometry. This mode
+                                   is appropriate for the majority of uses.
+ 
+         OBSERVER_FIXED_FRAME      (Optional) The name of the observer's
+                                   body-fixed frame to use when calculating
+                                   sub-solar and sub-target locations on
+                                   the observer. If not specified, the
+                                   program uses the default frame
+                                   associated with the body, e.g IAU_SATURN
+                                   for Saturn, IAU_MARS for Mars, etc.
+ 
+         BLACKOUT_WINDOW           (Optional) A set of time strings
+                                   defining time intervals to eliminate
+                                   from the primary event search window.
+ 
+                                   WARNING, use with caution. An improper
+                                   blackout window may result in invalid
+                                   orbit numbering.
+ 
+ 
+ 
+Use of BLACKOUT windows
+ 
+   The blackout assignment consists of sets of string pairs defining the
+   intervals. These strings must have a format parsable by the SPICELIB
+   routine STR2ET. Each interval must have the property t1 < t2, no
+   restrictions exist on the interval ordering.
+ 
+   The assignment
+ 
+         BLACKOUT_WINDOW   = ('2001 MAY 22', '2001 MAY 22 2:00:00' )
+ 
+   removes the time interval from 2001 MAY 22 (UTC) to 2001 MAY 22 2:00:00
+   (UTC) from the event search. The assignment
+ 
+         BLACKOUT_WINDOW   = ('2001 MAY  22', '2001 MAY  22 2:00:00',
+                              '2001 JUNE 22', '2001 JUNE 22 2:00:00' )
+ 
+   defines a window of two blackout intervals. The following assignment
+   defines the same window.
+ 
+         BLACKOUT_WINDOW   = ('2001 JUNE 22', '2001 JUNE 22 2:00:00',
+                              '2001 MAY  22', '2001 MAY  22 2:00:00' )
+ 
+   The user may define a maximum of 100 blackout intervals.
+ 
+   A blackout window disjoint from the event search window has no effect on
+   the search.
+ 
+   Warning, utilize the blackout window functionality with care. Use of a
+   blackout window may result in invalid orbit numbering. The user should
+   have prior knowledge concerning the behavior of the orbit of interest.
+ 
+   Given an ideal set of primary, '[', and secondary events, ']', across a
+   search interval:
+ 
+         |---[--]----[-----]-[---]-----[---]--------> t
+ 
+               1        2      3         4
+ 
+   Define a blackout window:
+ 
+         |----------------(----)--------------------> t
+ 
+   Applying the blackout window on the search interval results in a
+   detected event set:
+ 
+         |---[--]----[-----------]-----[---]--------> t
+ 
+               1           2             3
+ 
+   Note that the secondary event of event set two and the primary event of
+   set three exist within the blackout window and so are not found by the
+   search. The resulting orbit number event set shows three event sets the
+   second of which is invalid since that set consists of a primary event
+   and a secondary event from two different event sets.
+ 
+ 
+Operation
+--------------------------------------------------------
+ 
+ 
+SPK data for search interval
+ 
+   An orbnum run requires continuous SPK data across the search interval;
+   time intervals defined as blackout windows do not logically constitute
+   part of the search interval and so the requirement is not enforced
+   across blackout windows.
+ 
+ 
+Time adjustment
+ 
+   The SPICE state evaluator may calculate states at times outside the SPK
+   data coverage window when the aberration correction has a value other
+   than 'NONE'. As a result, an error occurs due to lack of data when the
+   defined epoch is the earliest time or latest time for which SPK data
+   exists. An adjustment of the search interval start and end time(s)
+   occurs to compensate for this condition.
+ 
+      'Start
+      of search time
+      interval'       =  Earliest listed time with data for TARGET
+                      +  TARGET to OBSERVER light time
+                      +  value of SAFETY_MARGIN kernel variable
+                      +  1 TDB sec
+ 
+      'End
+      of search time
+      interval'       =  Latest listed time with data for TARGET
+                      -  TARGET to OBSERVER light time
+                      -  value of SAFETY_MARGIN kernel variable
+                      -  1 TDB sec
+ 
+ 
+ 
+Examples
+===========================================================================
+ 
+ 
+Use
+--------------------------------------------------------
+ 
+ 
+An example of a preference file for the Mars 01 Orbiter (M01):
+ 
+   The file defines a search for
+ 
+       1.   All times the Mars 01 Orbiter spacecraft (-53)
+ 
+       2.   ... passes through the descending node of its orbit
+ 
+       3.   ... in the IAU_MARS frame as seen from
+ 
+       4.   ... Mars (499) with
+ 
+       5.   ... 'NONE' aberration correction
+ 
+       6.   ORBIT_PARAMS lists orbit parameters to output
+ 
+       7.   ... in the 'J2000' frame.
+ 
+       8.   The search uses a safety margin of 100 seconds to prevent a
+            'lack of state data' error at the first SPK data time.
+ 
+ 
+      \begindata
+ 
+         TARGET                  = -53
+ 
+         OBSERVER                =  499
+ 
+         EVENT_DETECTION_FRAME   = 'IAU_MARS'
+ 
+         EVENT_DETECTION_KEY     = 'D-NODE'
+ 
+         ELEMENTS_INERTIAL_FRAME = 'J2000'
+ 
+         ABERRATION_CORRECTION   = 'NONE'
+ 
+         ORBIT_PARAMS            = (
+                                   'Sub SC Lon',
+                                   'Sub SC Lat',
+                                   'Alt',
+                                   'Sub Sol Lon',
+                                   'Sub Sol Lat',
+                                   'Semi Axis',
+                                   'Inc',
+                                   'Ecc',
+                                   'Lon Node',
+                                   'Sol Dist'
+                                   )
+ 
+         KERNELS_TO_LOAD         = (
+                                   'naif0009.tls',
+                                   'mars_iau2000_v0.tpc',
+                                   'orb1_sclkscet_00187.tsc',
+                                   'de403-masses.tpc'
+                                   'm01_map2.bsp'
+                                   'de405s.bsp'
+                                   )
+ 
+         SAFETY_MARGIN           = 100.0
+ 
+         STEP_SIZE_TDB           = 'DEFAULT'
+ 
+      \begintext
+ 
+      We will ignore any events occurring between April 01, 2002 00:00:00
+      and April 01, 2002 03:00:00.
+ 
+      \begindata
+ 
+         BLACKOUT_WINDOW         = ('2002-04-01', '2002-04-01 03:00' )
+ 
+      \begintext
+ 
+ 
+   As stated, use of orbnum is either interactive or by the command line.
+   If the user initiates the program from the command line:
+ 
+      > orbnum
+ 
+   a prompt appears for the prefs file (the preference file shown above):
+ 
+      Name of prefs file : orb.params
+ 
+   the program indicates it is loading kernel files:
+ 
+      Orbnum version: 5.0.0 18-JAN-2012
+      ....Loading Kernels
+ 
+   now the prompt for the value of the initial orbit number:
+ 
+      Initial Orbit Number                        :1307
+ 
+   The user inputs the interval over which the program searches for the
+   orbit events, or allows the default, and names an output file. The
+   default times are the start and end times of the data coverage in the
+   loaded SPK kernel files for the body of interest and are selected by
+   hitting return.
+ 
+      Start UTC (RET for default = 2002 MAR 31 23:58:56):
+      End   UTC (RET for default = 2002 JUL 01 00:58:56):
+ 
+      Output file  : m01.orb
+ 
+   The program displays
+ 
+      Working, please wait.
+ 
+   while performing the search. A message
+ 
+      Program Finished!
+ 
+   appears when the run finishes.
+ 
+   The user may elect to initiate the program with command line arguments
+   to reduce the level of interaction:
+ 
+      > orbnum -num 1307 -file m01.orb -pref orb.params
+ 
+   This example will not query for any information other than the date
+   strings.
+ 
+   Use of the -d flag eliminates the need to provide Start/End search time
+   strings since in this mode the program uses target's default time
+   boundaries.
+ 
+      > orbnum -num 1307 -file m01.orb -pref orb.params -d
+ 
+ 
+Orbit file
+--------------------------------------------------------
+ 
+ 
+Base output
+ 
+   Orbnum produces an information ground set regardless of parameters
+   listed in ORBIT_PARAMS.
+ 
+   Given an orbnum run requesting time of descending node (D-NODE) for
+   vehicle -53 as seen from body 499 in frame (Event Frame) J2000 using
+   aberration correction 'NONE' the orbit file contains:
+ 
+       --   The orbit number of a descending node event.
+ 
+       --   The UTC time of that event.
+ 
+       --   The SCLK time of the event.
+ 
+       --   The UTC time of the opposite event, in this case the ascending
+            node.
+ 
+ 
+   as shown here:
+ 
+       No.     Event UTC D-NODE    Event SCLK D-NODE   OP-Event UTC A-NODE
+      =====  ====================  ==================  ====================
+       1307  2002 APR 01 03:18:22   2/0702098357.151   2002 APR 01 04:17:00
+       1308  2002 APR 01 05:16:55   2/0702105470.229   2002 APR 01 06:15:32
+       1309  2002 APR 01 07:15:25   2/0702112580.235   2002 APR 01 08:14:02
+       1310  2002 APR 01 09:13:55   2/0702119690.145   2002 APR 01 10:12:33
+       1311  2002 APR 01 11:12:29   2/0702126804.211   2002 APR 01 12:11:08
+      ...
+ 
+   If you list 'Sub SC Lon', 'Sub SC Lat', 'Alt', 'Sub Sol Lon', and 'Sub
+   Sol Lat' in the ORBIT_PARAMS list, the orbit file contains additional
+   columns:
+ 
+         SolLon   SolLat   SC Lon   SC Lat      Alt
+        =======  =======  =======  =======  ==========
+          83.07    -3.73   131.32     0.00      405.67
+          54.22    -3.72   102.48     0.00      404.79
+          25.39    -3.70    73.65     0.00      404.01
+         356.55    -3.68    44.82     0.00      404.35
+         327.70    -3.66    15.97     0.00      405.28
+      ...
+ 
+   Warning, an orbit file listing all optional orbit parameters spans 182
+   columns.
+ 
+ 
+Revisions
+===========================================================================
+ 
+   2012 JAN 18, EDW (JPL), BVS (JPL)
+ 
+   Edits to describe new functionality corresponding to orbnum version 5.0.
+   Removal of aberrations correction descriptions excepting 'NONE'. Added a
+   warning to the user recommending use of 'NONE' as the aberration
+   correction for all orbnum runs.
+ 
+   New command line option "-verbose."
+ 
+   New preference file variables: "STEP_SIZE_TDB", "OBSERVER_FIXED_FRAME",
+   "BLACKOUT_WINDOW", "KERNELS_TO_LOAD".
+ 
+   Updated example.
+ 
+   2008 FEB 25, EDW (JPL), BVS (JPL)
+ 
+   Previous edits.
+ 

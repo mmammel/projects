@@ -1,0 +1,157 @@
+ 
+DSKBRIEF User's Guide
+===========================================================================
+ 
+   Last revised on 2010 JUN 03 by N. J. Bachman.
+ 
+ 
+Abstract
+--------------------------------------------------------
+ 
+   DSKBRIEF is a prototype utility program that summarizes the contents of
+   a SPICE DSK (digital shape kernel) file.
+ 
+ 
+Summary
+--------------------------------------------------------
+ 
+   DSKBRIEF displays summary information for each segment in a specified
+   DSK file.
+ 
+   The binary file format of the DSK file to be summarized must be native
+   to the host system. DSK files having incompatible binary file formats
+   must be converted to native format before DSKBRIEF can read them. This
+   conversion can be done using the SPICE utility BINGO (available from the
+   NAIF web site) or using the SPICE utilities TOBIN and TOXFR. See the
+   SPICE tutorial ``Porting Kernels'' for details.
+ 
+   Currently the only supported type of shape model represents the surface
+   of a specified body as a collection of triangular plates. Support for
+   DTM (Digital Terrain Model) inputs will be added in a future version of
+   this utility.
+ 
+ 
+Usage
+--------------------------------------------------------
+ 
+   DSKBRIEF is executed on the command line using the syntax shown below:
+ 
+      Program usage:
+ 
+        > dskbrief <DSK file name>
+ 
+ 
+ 
+Running DSKBRIEF
+--------------------------------------------------------
+ 
+   When DSKBRIEF is executed, it displays summary information on the
+   standard output stream; normally this output is sent to the user's
+   screen.
+ 
+   An example of a DSKBRIEF run, in which DSKBRIEF summarizes the DSK file
+ 
+      phobos512.bds
+ 
+   is shown below.
+ 
+   The run command is:
+ 
+      dskbrief phobos512.bds
+ 
+   The resulting summary (which has been compressed horizontally to conform
+   to the format limitations of this document) is:
+ 
+      Summary for DSK file phobos512.bds
+ 
+      ===================================================================
+      Segment number:             1
+ 
+      Surface ID code:            401  (PHOBOS)
+      Center ID code:             401  (PHOBOS)
+      Reference frame:            IAU_PHOBOS
+      Data type code:             2 (Shape model using triangular plates)
+      Data class:                 1 (Spherically parameterized surface)
+      Min, max longitude (deg):   -180.000       180.000
+      Min, max latitude  (deg):   -90.0000       90.0000
+      Min, max radius     (km):   8.04963E+00    1.39409E+01
+      Coverage start time:        1950 JAN 01 00:00:41.183
+      Coverage stop time:         2050 JAN 01 00:01:06.183
+ 
+      Type 2 parameters
+      -----------------
+         Number of vertices:                 1579014
+         Number of plates:                   3145728
+         Voxel edge length (km):             1.04248E-01
+         Number of voxels:                   11914500
+         Number of coarse voxels:            95316
+         Voxel grid X, Y, Z extents:         260 235 195
+         Coarse voxel grid X, Y, Z extents:  52 47 39
+         Min, max vertex X value (km):       -1.34400E+01   1.27628E+01
+         Min, max vertex Y value (km):       -1.15207E+01   1.20611E+01
+         Min, max vertex Z value (km):       -9.57078E+00   1.00550E+01
+      ===================================================================
+ 
+   We see that the summarized DSK file contains only one segment.
+ 
+   The top portion of the summary shows the coverage provided by the
+   corresponding segment:
+ 
+       --   Surface ID code and if available, surface name
+ 
+            Note than an object can have multiple surface representations,
+            even in the same DSK file.
+ 
+       --   Center code and if available, center name
+ 
+            The center is the body with which the surface is associated.
+ 
+       --   Spatial region covered
+ 
+            This region is defined by the coordinate bounds and reference
+            frame. The latitude and longitude range shown are minimum
+            limits in the sense that coverage is guaranteed to exist over
+            the region described by these limits. The radius bounds are
+            maximum limits: the surface is guaranteed to be bounded between
+            these limits.
+ 
+       --   Time bounds of coverage applicability
+ 
+   The top portion also shows the implementation-specific attributes
+ 
+       --   Data type
+ 
+            This is an integer code identifying the mechanism used to
+            represent the surface.
+ 
+       --   Data class
+ 
+            This ``class'' indicates the geometric category of the surface:
+            class 1 surfaces associate a radius with every direction vector
+            emanating from the central body; class 2 surfaces have
+            arbitrary shapes; class 3 surfaces represent horizon masks.
+ 
+            The data class is set by the DSK file creator; this attribute
+            is independed of data type.
+ 
+   The bottom portion of the summary is data type dependent. Since this
+   segment is type 2, parameters relating to the triangular plate
+   representation and spatial index are shown. These parameters include
+ 
+       --   Vertex and plate counts; these indicate the size of the model.
+            In general larger models will yield slower computational
+            performance.
+ 
+       --   Coarse and fine voxel counts. These counts can be used to
+            ``tune'' the spatial index for faster computational
+            performance.
+ 
+       --   Fine voxel edge length in km. This parameter also can be used
+            to tune the spatial index.
+ 
+       --   Fine and coarse voxel grid extents; these indicate the shape
+            and scale of the voxel grids.
+ 
+       --   Vertex extents in km. These show the spatial extent of the
+            model's vertices.
+ 
