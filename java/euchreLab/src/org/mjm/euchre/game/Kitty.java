@@ -2,7 +2,7 @@ package org.mjm.euchre.game;
 
 import org.mjm.euchre.card.*;
 
-public class Kitty extends AbstractCardGroup {
+public class Kitty extends CardGroup {
   public Kitty( Card [] cards )
   {
     super(cards);

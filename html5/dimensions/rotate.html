@@ -1,0 +1,47 @@
+<html>  
+ <head>  
+  <!--
+    This includes the "jQuery" library, it can do all kinds of things but I use it
+    mainly for some slick syntax shortcuts, you can slap this line in the <head> of 
+    your page and forget about it.
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">  
+
+  var handlePress = function( action ) {
+    alert( action ); // just for demonstration purposes.
+    if( action == 'xy' ) {
+      //do xy
+    } else if( action == 'xz1' ) {
+      //do xz1
+    } // ...
+  };
+
+  $( document ).ready( function () {
+    //initialize here.
+    var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640" height="640">';
+    content += '</svg>';
+    $("#svg").html( content );
+  });
+  </script>  
+ </head>  
+ <body>
+   <table id="outertable" border=1>
+    <tr>
+      <td>
+        <table id="buttonTable">
+          <tr><td><button type="button" onclick="javascript:handlePress('xy');">Rot x-y</button></td></tr>
+          <tr><td><button type="button" onclick="javascript:handlePress('xz1');">Rot x-z1</button></td></tr>
+          <tr><td><button type="button" onclick="javascript:handlePress('xz2');">Rot x-z2</button></td></tr>
+          <tr><td><button type="button" onclick="javascript:handlePress('xz3');">Rot x-z3</button></td></tr>
+          <tr><td><button type="button" onclick="javascript:handlePress('xz4');">Rot x-z4</button></td></tr>
+        </table>
+      </td>
+      <td>
+       <div id="svg"></div>
+      </td>
+    </tr>
+   </table>
+  </body>  
+</html>  
+

@@ -23,9 +23,9 @@ public class Driver {
     String input = null;
     boolean trumpSet = false;
     G.printHands();
-    for( int i = 1; i < 5; i++ ) { 
+    for( int i = 0; i < 4; i++ ) { 
       System.out.println( "Turn Card: " + G.getKitty().getTurnCard() );
-      System.out.print( "Player " + i + " " + G.getPlayerHand(i) + ", order it up? [y/n]: ");
+      System.out.print( "Player " + i + " " + G.getPlayerHand(i) + ", "+ (i == 3 ? "pick " : "order ") + G.getKitty().getTurnCard() + " up? [y/n]: ");
       input = readInput( YES_NO );
       if( input == null ) {
         doExit();
@@ -42,15 +42,16 @@ public class Driver {
     Set<CardSuit> suitSet = null;
     if( !trumpSet ) {
       // nobody ordered it up
-      for( int i = 1; i < 5; i++ ) {
+      for( int i = 0; i < 4; i++ ) {
         int count = 1;
-        suitSet = G.getPlayerHand(i).getSuiteSet();
+        suitSet = G.getPlayerHand(i).getSuitSet();
+        suitSet.remove(G.getKitty().getTurnCard().suit());
         for( CardSuit suit : suitSet ) {
           System.out.println( ""+count++ + ". " + suit );
         }
         
-        System.out.print( "Player " + i + " make it" + (i==4 ? "? : " : " or pass (p)? : "));
-        input = readInput( getMakeItOptions(suitSet.size(), (i!=4) ) );
+        System.out.print( "Player " + i + " make it" + (i==3 ? "? : " : " or pass (p)? : "));
+        input = readInput( getMakeItOptions(suitSet.size(), (i!=3) ) );
         
         if( input == null ) {
           doExit();

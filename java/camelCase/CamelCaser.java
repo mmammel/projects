@@ -15,17 +15,42 @@ public class CamelCaser {
 
     return sb.toString();
   }
+
+  public static String fromCamelCase( String s ) {
+    String retVal = s;
+    if( s.matches("^[A-Za-z]+$") ) {
+        retVal = s.replaceAll( "([a-z])((?=[A-Z]))|([A-Z])([A-Z](?=[a-z]))","$1$3 $2$4" );
+        retVal = ""+Character.toUpperCase(retVal.charAt(0))+(retVal.length() > 1 ? retVal.substring(1) : "");
+    }
+
+    return retVal;
+  }
  
   public static void main( String [] args )
   {
     BufferedReader input_reader = null;
     String input_str = "";
 
+    if( args.length < 1 ) {
+      System.err.println( "Usage: java CamelCaser [to|from]" );
+      System.exit(1);
+    }
+
+    boolean to = true;
+
+    if( args[0].toUpperCase().equals( "FROM" ) ) {
+      to = false;
+    }
+
     try
     {
       input_reader = new BufferedReader( new InputStreamReader ( System.in ) );
-
-      System.out.println( "Enter some strings to make camel case" );
+      
+      if( to ) {
+        System.out.println( "Enter some strings to make camel case" );
+      } else {
+        System.out.println( "Enter some camelCase to turn into labels" );
+      }
 
       System.out.print(">> ");
 
@@ -39,7 +64,11 @@ public class CamelCaser {
         else
         {
           // Process Input
-          System.out.println( CamelCaser.toCamelCase( input_str ) );
+          if( to ) {
+            System.out.println( CamelCaser.toCamelCase( input_str ) );
+          } else {
+            System.out.println( CamelCaser.fromCamelCase( input_str ) );
+          }
         }
 
         System.out.print( "\n>> " );

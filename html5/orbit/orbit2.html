@@ -1,0 +1,89 @@
+<html>  
+ <head>  
+  <!--
+    This includes the "jQuery" library, it can do all kinds of things but I use it
+    mainly for some slick syntax shortcuts, you can slap this line in the <head> of 
+    your page and forget about it.
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">  
+
+  /*
+   This is my Object that holds all of the state of my animation:
+     viewBoxCoords: these are the coordinates of the top left and bottom right corners 
+                    of the viewbox.  I don't change them in this example, but if you 
+                    were going to mess with zooming and things down the line you could change them.
+     planetCoords: these are the current coordinates of the "planet", which is just a black dot I have 
+                   rotating around a static red dot at the center of the viewbox in a circular orbit.
+     getWidth: helper to get the width of the viewBox
+     getHeight: helper to get the height of the viewBox
+     getSVG: given the state of the viewbox and planet, return the actual "<svg ...>...</svg>" text that 
+             will render the image at this current state.
+     setAngle: this changes the position of the planet based on an angle given in radians, think unit circle.
+  */
+  var OrbitAnimation = {
+    viewBoxCoords : [ 0, 0, 640, 640 ],
+    planetCoords : [ 620, 320 ],
+    getWidth : function() {
+      return this.viewBoxCoords[2] - this.viewBoxCoords[0];
+    },
+    getHeight : function() {
+      return this.viewBoxCoords[3] - this.viewBoxCoords[1];
+    },
+    getSVG : function() {
+      var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="' + this.getWidth() + '" height="' + this.getHeight() + 
+                    '" viewBox="' + this.viewBoxCoords[0] + ' ' + this.viewBoxCoords[1] + ' ' + this.viewBoxCoords[2] + ' ' + this.viewBoxCoords[3] +'">';
+      content += '<circle cx="320" cy="320" r="10" fill="red"/>';
+      content += '<circle cx="'+ this.planetCoords[0] + '" cy="' + this.planetCoords[1] + '" r="5" fill="black"/>';
+      content += '</svg>';
+      return content;
+    },
+    setAngle : function( rads ) {
+      this.planetCoords[0] = (Math.cos( rads ) * 300) + 320;
+      this.planetCoords[1] = 320 - (Math.sin( rads ) * 300);
+    }
+  };
+
+  /*
+   These are globals used by the interval function:
+     currentRadians: the current angle of the planet in radians relative to the horizontal through the "sun"
+     increment: a static increment value, this can be made smaller to make the animation smoother.
+  */
+  var currentRadians = 0;
+  var increment = .01;
+
+  /*
+   This is a construct provided by the jQuery library - "ready" means "when the page is loaded, run this function".
+   The function it runs just sets up an interval on which a function is run.  The function in this case just sets 
+   the angle of my animation object, "draws" the object (i.e. overwrites the current <svg> tag with the updated one),
+   and then increments the currentAngle by the static increment, wrapping when it hits 2PI.
+  */
+  $( document ).ready( function () {
+
+    setTimeout( doStep, 10 );
+
+    function doStep() {
+      OrbitAnimation.setAngle( currentRadians );
+      $("#svg").html( OrbitAnimation.getSVG() );
+      currentRadians += increment;
+      if( currentRadians >= (2*Math.PI) ) {
+        currentRadians = 0;
+      }
+      if( currentRadians >= (Math.PI) ) {
+		pace=10;
+	}else{
+		pace=20;
+	}
+
+    	setTimeout( doStep, pace );
+	
+    }
+
+  });
+  </script>  
+ </head>  
+ <body>
+   <div id="svg"></div>
+  </body>  
+</html>  
+
