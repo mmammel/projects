@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mjm.euchre.card.Card;
+import org.mjm.euchre.card.CardGroup;
 import org.mjm.euchre.card.CardSuit;
 
 public class PlayFactory {
@@ -113,10 +114,12 @@ public class PlayFactory {
     Hand h = g.getPlayerHand(3);
     Card discard = null;
     Card pickup = previous.getCardPlayed();
-    for( Card c : h.getCards() ) {
+    CardGroup nonTrump = h.getCardsNotOfSuit(pickup.suit());
+    if( nonTrump.getNumCards() == 0 ) {
+      // all we have is trump!
+    } else {
       
     }
-    
     return retVal;
   }
 }

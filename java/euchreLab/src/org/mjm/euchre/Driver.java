@@ -46,8 +46,11 @@ public class Driver {
         int count = 1;
         suitSet = G.getPlayerHand(i).getSuitSet();
         suitSet.remove(G.getKitty().getTurnCard().suit());
+        CardSuit [] suitArray = new CardSuit[ suitSet.size() ];
+        int idx = 0;
         for( CardSuit suit : suitSet ) {
           System.out.println( ""+count++ + ". " + suit );
+          suitArray[idx++] = suit;
         }
         
         System.out.print( "Player " + i + " make it" + (i==3 ? "? : " : " or pass (p)? : "));
@@ -56,7 +59,7 @@ public class Driver {
         if( input == null ) {
           doExit();
         } else if( !input.toUpperCase().equals("P")) {
-          G.setTrump(G.getPlayerHand(i).getCard(Integer.parseInt(input) - 1) );
+          G.setTrump(suitArray[Integer.parseInt(input) - 1] );
         }
       }
     }
@@ -101,12 +104,15 @@ public class Driver {
   }
   
   private static void handleDiscard( Game G ) {
-    Hand h = G.getPlayerHand(4); // the dealer
+    Hand h = G.getPlayerHand(3); // the dealer
     int cardCount = 1;
     String choiceStr = null;
+    Card [] cardArray = new Card[h.getNumCards()];
     System.out.println( "Dealer, you must discard, getting: " + G.getKitty().getTurnCard() );
+    int count = 0;
     for( Card c : h.getCards() ) {
       System.out.println(""+cardCount++ + ": " + c );
+      cardArray[count++] = c;
     }
     System.out.println( "Choose a discard [1-5]: ");
     choiceStr = readInput( DISCARD_CHOICE );
@@ -114,9 +120,9 @@ public class Driver {
       doExit();
     } else {
       int choice = Integer.parseInt(choiceStr);
-      Card swap = h.getCard(choice - 1);
-      h.setCard(choice - 1, G.getKitty().getTurnCard());
-      G.getKitty().setCard(3, swap);
+      Card swap = cardArray[choice - 1];
+      h.addCard(G.getKitty().getTurnCard());
+      G.getKitty().addCard(swap);
     }
   }
   

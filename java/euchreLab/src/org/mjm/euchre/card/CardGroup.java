@@ -1,41 +1,35 @@
 package org.mjm.euchre.card;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class CardGroup {
-  protected Card [] cards = null;
-
-  public Card getCard( int i )
-  {
-    return cards[i];
-  }
-
-  public void setCard( int i, Card c )
-  {
-    cards[i] = c;
-  }
- 
-  public CardGroup( int size ) {
-    this.cards = new Card [size];
-    for( int i = 0; i < size; i++ ) {
-      this.cards[i] = null;
-    }
+  protected Set<Card> cards = null;
+  
+  public CardGroup() {
+    this.cards = EnumSet.noneOf(Card.class);
   }
   
   public CardGroup( List<Card> cards ) {
-    this.cards = cards.toArray(new Card[0]);
+    this();
+    for( Card c : cards ) {
+      this.cards.add(c);
+    }
   }
   
   public CardGroup( Card [] cards )
   {
-    this.cards = new Card [cards.length];
-    for( int i = 0; i < cards.length; i++ )
-    {
-      this.cards[i] = cards[i];
+    this();
+    for( Card c : cards ) {
+      this.cards.add(c);
     }
+  }
+  
+  public CardGroup getCardsOfSuit( CardSuit suit ) {
+    return this.getCardsOfSuit(suit, suit);
   }
   
   public CardGroup getCardsOfSuit( CardSuit suit, CardSuit trump ) {
@@ -52,6 +46,10 @@ public class CardGroup {
     return new CardGroup( result );
   }
 
+  public CardGroup getCardsNotOfSuit( CardSuit suit ) {
+    return this.getCardsNotOfSuit(suit, suit);
+  }
+  
   public CardGroup getCardsNotOfSuit( CardSuit suit, CardSuit trump ) {
     List<Card> result = new ArrayList<Card>();
     for( Card c : this.cards ) {
@@ -77,39 +75,44 @@ public class CardGroup {
     return retVal;
   }
   
+  /**
+   * Order the group such that all trump are at the start of the array, and order the rest by 
+   * descending order of number of cards in suit, and card value.
+   * 
+   * e.g. trump is clubs:
+   * 
+   * 9-heart, jack-heart, 10-diamond, jack-spades, 10-clubs
+   * 
+   * should come back as:
+   * 
+   * jack-spades, 10-clubs, jack-heart, 9-heart, 10-diamond
+   * 
+   * @param trump
+   * @return
+   */
+  public Card [] getTrumpOrder( CardSuit trump ) {
+    return null;
+  }
+  
   public Card removeCard( Card card ) {
-    Card retVal = null;
-    Card c = null;
-    for( int i = 0; i < this.cards.length; i++ ) {
-      c = this.cards[i];
-      if( c == card ) {
-        this.cards[i] = null;
-        retVal = card;
-      }
-    }
-    
-    return retVal;
+    return this.cards.remove(card) ? card : null;
   }
   
   /**
    * Attempt to add a card to this group. 
    * @param c
-   * @return true if the card was added, false if there was no more room in this card group
+   * @return true if the card was added, false if the card was already in this card group
    */
   public boolean addCard( Card c ) {
-    int count = 0;
-    for( count = 0; count < this.cards.length; count++ ) {
-      if( this.cards[count] == null ) {
-        this.cards[count] = c;
-        break;
-      }
-    }
-    
-    return( count < this.cards.length );
+    return this.cards.add(c);
   }
   
-  public Card [] getCards() {
+  public Set<Card> getCards() {
     return this.cards;
+  }
+  
+  public int getNumCards() {
+    return this.cards.size();
   }
   
   public String toString()

@@ -12,10 +12,9 @@ import org.mjm.euchre.card.Card;
 public class Trick extends CardGroup {
 
   private Card led = null;
+  private Card [] playedByArray = new Card[4];
   
   public Trick() {
-    super(4);
-    // TODO Auto-generated constructor stub
   }
 
   public Card getLed() {
@@ -26,17 +25,34 @@ public class Trick extends CardGroup {
     this.led = led;
   }
   
-  @Override
-  public void setCard( int i, Card c ) {
-    super.setCard(i,c);
+  public void playCard( int player, Card c ) {
     if( this.led == null ) {
       this.led = c;
     }
+    
+    if( this.playedByArray[player] != null ) {
+      this.unplayCard(player);
+    }
+    
+    this.playedByArray[player] = c;
+    this.addCard(c);
+    
+  }
+  
+  public Card unplayCard( int player ) {
+    Card c = this.playedByArray[player];
+    
+    if( c != null ) {
+      this.removeCard(c);
+      this.playedByArray[player] = null;
+    }
+    
+    return c;
   }
   
   @Override
   public boolean addCard( Card c ) {
-    throw new UnsupportedOperationException("Must use setCard to add a card to the trick.");
+    throw new UnsupportedOperationException("Must use playCard to add a card to the trick.");
   }
 
 }
