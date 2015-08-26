@@ -72,6 +72,6 @@ public class Team {
   }
   
   public String toString() {
-    return ""+this.teamId + "-" + this.score + "-" + this.wonTricks.size();
+    return "Team " + this.teamId;
   }
 }

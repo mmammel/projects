@@ -51,6 +51,7 @@ public class Game {
   private CardSuit trump = null;
   private int playerWhoOrdered = -1;
   private int playerWhoCalled = -1;
+  private GameStats gameStats = null;
 
   public Game() {
     this.teams = new Team[2];
@@ -60,6 +61,7 @@ public class Game {
     Card [] deal = deck.deal();
     this.hands = new Hand[4];
     this.tricks = new Trick[5];
+    this.gameStats = new GameStats();
 
     List<Card> cardList = Arrays.asList( deal );
     
@@ -130,8 +132,9 @@ public class Game {
       case Round1Pass:
         break;
       case Round1Order:
-        this.setTrump( this.kitty.getTurnCard() );
+        this.setTrump( play.getSuitPlayed() );
         this.setPlayerWhoOrdered(play.getPlayer());
+        this.setPlayerWhoCalled(-1);
         break;
       case Discard:
         this.kitty.discard(play.getCardPlayed());
@@ -141,6 +144,7 @@ public class Game {
       case Round2Call:
         this.setTrump(play.getSuitPlayed());
         this.setPlayerWhoCalled(play.getPlayer());
+        this.setPlayerWhoOrdered(-1);
         break;
       case Round2Pass:
         break;
@@ -161,7 +165,9 @@ public class Game {
           retVal.add( new Play(trickWinner,PlayType.GameWon));
         }
         this.currTrick++;
+        break;
       case GameWon:
+        this.addWin();
         break;
     }
     
@@ -179,7 +185,7 @@ public class Game {
         break;
       case Round1Order:
         this.setTrump( (CardSuit)null );
-        this.setPlayerWhoCalled(-1);
+        this.setPlayerWhoOrdered(-1);
         break;
       case Discard:
         this.getPlayerHand(play.getPlayer()).removeCard(this.turnCard);
@@ -234,13 +240,9 @@ public class Game {
   private void playInner( List<Play> plays ) {
     List<Play> nextPlays = null;
     for( Play play : plays ) {
-      if( play.getPlayType() == PlayType.GameWon ) {
-        this.printWin();
-      } else {
-        nextPlays = this.executePlay(play);
-        this.playInner(nextPlays);
-        this.unExecutePlay(play);
-      }
+      nextPlays = this.executePlay(play);
+      this.playInner(nextPlays);
+      this.unExecutePlay(play);
     }
   }
   
@@ -248,16 +250,20 @@ public class Game {
     return this.teams[0].getScore() > 2 ? this.teams[0] : this.teams[1]; 
   }
   
-  public void printWin() {
+  public void addWin() {
     Team t = this.getWinningTeam();
-    StringBuilder sb = new StringBuilder("Team " + t + " won " + t.getScore() + "-" + (5-t.getScore()) + "! Player ");
-    if( this.playerWhoCalled > -1 ) {
-      sb.append(this.playerWhoCalled).append( " called it ").append(this.getTrump());
-    } else {
-      sb.append(this.playerWhoOrdered).append( " ordered up ").append(this.getTrump());
-    }
+    String callString = null;
+    String scoreString = null;
     
-    System.out.println(  sb.toString() );
+    if( this.playerWhoCalled > -1 ) {
+      callString = "Player " + this.playerWhoCalled + " called it " + this.getTrump();
+    } else {
+      callString = "Player " + this.playerWhoOrdered + " ordered up " + this.getTrump();
+    }
+
+    scoreString = t.getScore() + "-" + (5-t.getScore());
+    
+    this.gameStats.addWin(t.toString(), callString, scoreString);
   }
   
   public int getPlayerWhoOrdered() {
@@ -274,6 +280,14 @@ public class Game {
 
   public void setPlayerWhoCalled(int playerWhoCalled) {
     this.playerWhoCalled = playerWhoCalled;
+  }
+
+  public GameStats getGameStats() {
+    return gameStats;
+  }
+
+  public void setGameStats(GameStats gameStats) {
+    this.gameStats = gameStats;
   }
 
   public static void main( String [] args )

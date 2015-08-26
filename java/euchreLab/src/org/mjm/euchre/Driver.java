@@ -24,6 +24,7 @@ public class Driver {
     G.printHands();
     //handleManualPlay(G);
     G.play();
+    System.out.println( G.getGameStats() );
   }
   
   private static void handleManualPlay( Game G ) {

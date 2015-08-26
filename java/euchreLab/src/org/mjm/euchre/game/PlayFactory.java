@@ -84,7 +84,7 @@ public class PlayFactory {
     // see if we can afford to order it
     Hand h = g.getPlayerHand(player);
     if( h.getTrumpScore(g.getTurnCard().suit()) > 60 ) {
-      retVal.add(new Play( player, PlayType.Round1Order, g.getTurnCard()));
+      retVal.add(new Play( player, PlayType.Round1Order, g.getTurnCard(), g.getTurnCard().suit()));
     }
     
     return retVal;
