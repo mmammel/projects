@@ -78,10 +78,17 @@ public class Game {
 
   public void setTrump( CardSuit suit ) {
     this.trump = suit;
+    for( Hand h : this.hands ) {
+      h.setTrump(suit);
+    }
+    
+    for( Trick t : this.tricks ) {
+      t.setTrump(suit);
+    }
   }
   
   public void setTrump( Card card ) {
-    this.trump = card.suit();
+    this.setTrump(card.suit());
   }
   
   public Trick getCurrentTrick() {

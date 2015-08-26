@@ -31,8 +31,59 @@ public class Trick extends CardGroup {
     this.led = led;
   }
   
+  /**
+   * Player wants to know if his team already has it
+   * @param player
+   * @return
+   */
+  public boolean doWeHaveIt( int player ) {
+    boolean retVal = false;
+    int teammate = Team.getPartner(player);
+    Card highest = this.getHighestCard();
+    if( highest != null ) {
+      retVal = this.playedByMap.get( highest ) == teammate;
+    }
+    
+    return retVal;
+  }
+  
+  /**
+   * What did my partner play?
+   * @param player
+   * @return
+   */
+  public Card myPartnerPlayed( int player ) {
+    return this.playedMap.get(Team.getPartner(player));
+  }
+  
+  /**
+   * Find out what card a player played.
+   * @param player
+   * @return
+   */
+  public Card getCardPlayedByPlayer( int player ) {
+    return this.playedMap.get(player);
+  }
+  
+  /**
+   * Find out who played a card
+   * @param c
+   * @return
+   */
+  public Integer getPlayerThatPlayedCard( Card c ) {
+    return this.playedByMap.get(c);
+  }
+  
+  /**
+   * Test to see if a card would be the highest card in the trick.
+   * @param c
+   * @return
+   */
+  public boolean wouldWin( Card c ) {
+    return c.getCardScore(this.trump) > this.getHighestCard().getCardScore(this.trump);
+  }
+  
   public void playCard( int player, Card c ) {
-    Card tempCard = null;
     if( this.led == null ) {
       this.led = c;
     }

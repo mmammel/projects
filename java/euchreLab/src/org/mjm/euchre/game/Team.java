@@ -59,6 +59,18 @@ public class Team {
     return this.members.contains(player);
   }
   
+  /**
+   * 0 -> 2
+   * 1 -> 3
+   * 2 -> 0
+   * 3 -> 1
+   * @param player
+   * @return
+   */
+  public static int getPartner( int player ) {
+    return (player + 2) % 4;
+  }
+  
   public String toString() {
     return ""+this.teamId + "-" + this.score + "-" + this.wonTricks.size();
   }

@@ -3,6 +3,8 @@ package org.mjm.euchre.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.HandshakeStatus;
+
 import org.mjm.euchre.card.Card;
 import org.mjm.euchre.card.CardGroup;
 import org.mjm.euchre.card.CardSuit;
@@ -146,7 +148,7 @@ public class PlayFactory {
     Hand h = g.getPlayerHand(3);
     Card pickup = previous.getCardPlayed();
     
-    Card [] orderedCards = h.getTrumpOrder(pickup.suit());
+    Card [] orderedCards = h.getTrumpOrder();
     
     // always discard the lowest card, after that check for trump;
     retVal.add( new Play( 3, PlayType.Discard, orderedCards[0]));
@@ -169,7 +171,7 @@ public class PlayFactory {
     // TODO: add some common sense lead rules:
     //   don't lead low trump...and probably others.
     Hand h = g.getPlayerHand(player);
-    Card [] ranked = h.getTrumpOrder(trump);
+    Card [] ranked = h.getTrumpOrder();
     Card c = null;
 
     for( int i = ranked.length - 1; i >= 0; i--) {
@@ -194,19 +196,71 @@ public class PlayFactory {
     CardSuit trump = g.getTrump();
     int player = previous.getPlayer() == 3 ? 0 : previous.getPlayer() + 1;
     Hand h = g.getPlayerHand(player);
-    Card [] trumpRank = h.getTrumpOrder(trump);
+    Card [] trumpRank = h.getTrumpOrder();
+    Trick trick = g.getCurrentTrick();
+    Card tempCard = null;
+    Card candidate = null;
+    
     if( h.getTrumpSuitCount(trump).get(suitLed) > 0 ) {
-      // we have the suit led, generate plays of those.
-      for( Card c : trumpRank ) {
-        if( c.suit(trump) == suitLed ) {
-          retVal.add( new Play( player, PlayType.PlayTrickCard, c, suitLed ) );
+      // We have the suit that was led.
+      candidate = h.getHighestCardOfSuit(suitLed); // our best
+      // See if our partner has this, and if so, does he have it with an ace or trump?
+      if( trick.doWeHaveIt(player) ) {
+        tempCard = trick.myPartnerPlayed(player);
+        if( tempCard == null ) {
+          System.out.println( "WTF?");
+        } else {
+          if( tempCard.isTrump(trump) || tempCard.value() == CardVal.Ace || !trick.wouldWin(candidate) ) {
+            // partner trumped or played the ace - play the lowest.
+            retVal.add( new Play( player, PlayType.PlayTrickCard, h.getLowestCardOfSuit(suitLed), suitLed));
+          } else {
+            // play our highest led suit card
+            retVal.add( new Play( player, PlayType.PlayTrickCard, h.getHighestCardOfSuit(suitLed), suitLed));
+          }
+        }
+      } else {
+        // we don't have it - would our best win?
+        if( trick.wouldWin(candidate) ) {
+          retVal.add( new Play( player, PlayType.PlayTrickCard, h.getHighestCardOfSuit(suitLed), suitLed));
+        } else {
+          // we have shite, play the lowest.
+          retVal.add( new Play( player, PlayType.PlayTrickCard, h.getLowestCardOfSuit(suitLed), suitLed));
         }
       }
     } else {
-      // we don't have what's led, just play everything.
-      for( Card c : trumpRank ) {
-        retVal.add( new Play( player, PlayType.PlayTrickCard, c, suitLed ) );
+      // we don't have what's led, don;t be too conservative, but don't do anything 
+      // too stupid
+      if( trick.doWeHaveIt(player)) {
+        // our partner has the trick, has he played trump?
+        tempCard = trick.myPartnerPlayed(player);
+        if( tempCard.suit(trump) == trump ) {
+          // partner trumped, play our lowest - removing a suit if possible.
+          // note that if all we have is trump, we'll play our lowest.
+          retVal.add( new Play( player, PlayType.PlayTrickCard, h.getLowestCard(), suitLed));
+        } else {
+          // our partner has it - do we have trump?
+          candidate = h.getHighestCardOfSuit(trump);
+          if( candidate != null ) {
+            // we have trump - there is no chance that our partner trumped, so we should be 
+            // ok to trump - try playing them all.
+            // TODO: log the case when we trump an ace
+            for( Card c : h.getCardsOfSuit(trump).getCards() ) {
+              retVal.add( new Play( player, PlayType.PlayTrickCard, c, suitLed));
+            }
+          } else {
+            // Partner has the trick, we have no trump, and we don't have what's led -
+            // let's play the lowest we have.
+            retVal.add( new Play( player, PlayType.PlayTrickCard, h.getLowestCard(), suitLed));
+          }
+        }
+      } else {
+        // either our partner hasn't played or we don't have it.
+        // for now, just try everything.
+        for( Card c : h.getCards() ) {
+          retVal.add( new Play( player, PlayType.PlayTrickCard, c, suitLed));
+        }
       }
+
     }
     
     return retVal;
