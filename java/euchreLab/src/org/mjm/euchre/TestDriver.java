@@ -5,23 +5,6 @@ import org.mjm.euchre.card.*;
 
 public class TestDriver
 {
-  public int determineWinner( Card c1, Card c2, Card c3, Card c4, CardSuit trump, CardSuit led )
-  {
-    int retVal = -1;
-    Card [] rankArray = Card.getRankArray( trump, led );
-
-    for( int i = 0; i < rankArray.length; i++ )
-    {
-      if( c1 == rankArray[i] ) retVal = 1;
-      else if( c2 == rankArray[i] ) retVal = 2;
-      else if( c3 == rankArray[i] ) retVal = 3;
-      else if( c4 == rankArray[i] ) retVal = 4;
-
-      if( retVal > 0 ) break;
-    }
-
-    return retVal;
-  }
 
   public static Card getCardFromCode( String code )
   {
@@ -114,19 +97,5 @@ public class TestDriver
   public static void main( String [] args )
   {
     TestDriver TD = new TestDriver();
-
-    if( args.length != 6 )
-    {
-      throw new RuntimeException( "Usage: TestDriver c1 c2 c3 c4 trump led" );
-    }
-
-    System.out.println( TD.determineWinner( 
-      getCardFromCode(args[0]),
-      getCardFromCode(args[1]),
-      getCardFromCode(args[2]),
-      getCardFromCode(args[3]),
-      getSuitFromCode(args[4]),
-      getSuitFromCode(args[5])
-    ) );
   }
 }

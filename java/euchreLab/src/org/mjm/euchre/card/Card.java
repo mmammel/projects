@@ -4,30 +4,30 @@ import java.util.Map;
 import java.util.HashMap;
 
 public enum Card {
-  AceOfDiamonds(CardSuit.Diamonds,CardVal.Ace),
-  KingOfDiamonds(CardSuit.Diamonds,CardVal.King),
-  QueenOfDiamonds(CardSuit.Diamonds,CardVal.Queen),
-  JackOfDiamonds(CardSuit.Diamonds,CardVal.Jack),
-  TenOfDiamonds(CardSuit.Diamonds,CardVal.Ten),
   NineOfDiamonds(CardSuit.Diamonds,CardVal.Nine),
-  AceOfHearts(CardSuit.Hearts,CardVal.Ace),
-  KingOfHearts(CardSuit.Hearts,CardVal.King),
-  QueenOfHearts(CardSuit.Hearts,CardVal.Queen),
-  JackOfHearts(CardSuit.Hearts,CardVal.Jack),
-  TenOfHearts(CardSuit.Hearts,CardVal.Ten),
+  TenOfDiamonds(CardSuit.Diamonds,CardVal.Ten),
+  JackOfDiamonds(CardSuit.Diamonds,CardVal.Jack),
+  QueenOfDiamonds(CardSuit.Diamonds,CardVal.Queen),
+  KingOfDiamonds(CardSuit.Diamonds,CardVal.King),
+  AceOfDiamonds(CardSuit.Diamonds,CardVal.Ace),
   NineOfHearts(CardSuit.Hearts,CardVal.Nine),
-  AceOfSpades(CardSuit.Spades,CardVal.Ace),
-  KingOfSpades(CardSuit.Spades,CardVal.King),
-  QueenOfSpades(CardSuit.Spades,CardVal.Queen),
-  JackOfSpades(CardSuit.Spades,CardVal.Jack),
-  TenOfSpades(CardSuit.Spades,CardVal.Ten),
+  TenOfHearts(CardSuit.Hearts,CardVal.Ten),
+  JackOfHearts(CardSuit.Hearts,CardVal.Jack),
+  QueenOfHearts(CardSuit.Hearts,CardVal.Queen),
+  KingOfHearts(CardSuit.Hearts,CardVal.King),
+  AceOfHearts(CardSuit.Hearts,CardVal.Ace),
   NineOfSpades(CardSuit.Spades,CardVal.Nine),
-  AceOfClubs(CardSuit.Clubs,CardVal.Ace),
-  KingOfClubs(CardSuit.Clubs,CardVal.King),
-  QueenOfClubs(CardSuit.Clubs,CardVal.Queen),
-  JackOfClubs(CardSuit.Clubs,CardVal.Jack),
+  TenOfSpades(CardSuit.Spades,CardVal.Ten),
+  JackOfSpades(CardSuit.Spades,CardVal.Jack),
+  QueenOfSpades(CardSuit.Spades,CardVal.Queen),
+  KingOfSpades(CardSuit.Spades,CardVal.King),
+  AceOfSpades(CardSuit.Spades,CardVal.Ace),
+  NineOfClubs(CardSuit.Clubs,CardVal.Nine),
   TenOfClubs(CardSuit.Clubs,CardVal.Ten),
-  NineOfClubs(CardSuit.Clubs,CardVal.Nine);
+  JackOfClubs(CardSuit.Clubs,CardVal.Jack),
+  QueenOfClubs(CardSuit.Clubs,CardVal.Queen),
+  KingOfClubs(CardSuit.Clubs,CardVal.King),
+  AceOfClubs(CardSuit.Clubs,CardVal.Ace);
 
   private final CardSuit suit;
   private final CardVal value;
@@ -37,97 +37,9 @@ public enum Card {
   public CardVal  value() { return this.value; }
   public CardColor color() { return this.suit.color(); }
 
-  private static final Card [] DIAMONDS_TRUMP_RANK = {
-    JackOfDiamonds,
-    JackOfHearts,
-    AceOfDiamonds,
-    KingOfDiamonds,
-    QueenOfDiamonds,
-    TenOfDiamonds,
-    NineOfDiamonds
-  };
-
-  private static final Card [] HEARTS_TRUMP_RANK = {
-    JackOfHearts,
-    JackOfDiamonds,
-    AceOfHearts,
-    KingOfHearts,
-    QueenOfHearts,
-    TenOfHearts,
-    NineOfHearts
-  };
-
-  private static final Card [] SPADES_TRUMP_RANK = {
-    JackOfSpades,
-    JackOfClubs,
-    AceOfSpades,
-    KingOfSpades,
-    QueenOfSpades,
-    TenOfSpades,
-    NineOfSpades
-  };
-
-  private static final Card [] CLUBS_TRUMP_RANK = {
-    JackOfClubs,
-    JackOfSpades,
-    AceOfClubs,
-    KingOfClubs,
-    QueenOfClubs,
-    TenOfClubs,
-    NineOfClubs
-  };
-
-  private static final Card [] DIAMONDS_LEAD_RANK = {
-    AceOfDiamonds,
-    KingOfDiamonds,
-    QueenOfDiamonds,
-    JackOfDiamonds,
-    TenOfDiamonds,
-    NineOfDiamonds
-  };
-
-  private static final Card [] HEARTS_LEAD_RANK = {
-    AceOfHearts,
-    KingOfHearts,
-    QueenOfHearts,
-    JackOfHearts,
-    TenOfHearts,
-    NineOfHearts
-  };
-
-  private static final Card [] SPADES_LEAD_RANK = {
-    AceOfSpades,
-    KingOfSpades,
-    QueenOfSpades,
-    JackOfSpades,
-    TenOfSpades,
-    NineOfSpades
-  };
-
-
-  private static final Card [] CLUBS_LEAD_RANK = {
-    AceOfClubs,
-    KingOfClubs,
-    QueenOfClubs,
-    JackOfClubs,
-    TenOfClubs,
-    NineOfClubs
-  };
-
-  private static Map<CardSuit,Card []> TRUMP_RANKS = new HashMap<CardSuit,Card []>();
-  private static Map<CardSuit,Card []> LEAD_RANKS = new HashMap<CardSuit,Card []>();
   private static Map<CardSuit,Map<CardVal,Card>> CARD_INDEX = new HashMap<CardSuit,Map<CardVal,Card>>();
 
   static {
-    TRUMP_RANKS.put( CardSuit.Diamonds, DIAMONDS_TRUMP_RANK );
-    TRUMP_RANKS.put( CardSuit.Hearts, HEARTS_TRUMP_RANK );
-    TRUMP_RANKS.put( CardSuit.Spades, SPADES_TRUMP_RANK );
-    TRUMP_RANKS.put( CardSuit.Clubs, CLUBS_TRUMP_RANK );
-    LEAD_RANKS.put( CardSuit.Diamonds, DIAMONDS_LEAD_RANK );
-    LEAD_RANKS.put( CardSuit.Hearts, HEARTS_LEAD_RANK );
-    LEAD_RANKS.put( CardSuit.Spades, SPADES_LEAD_RANK );
-    LEAD_RANKS.put( CardSuit.Clubs, CLUBS_LEAD_RANK );
-
     Map<CardVal,Card> tempMap = null;
     for( Card c : Card.values() )
     {
@@ -147,21 +59,96 @@ public enum Card {
     this.value = value;
   }
 
-  public int getCardScore( CardSuit trump, CardSuit led ) {
-    int retVal = 0;
-    if( this.isTrump(trump) || this.suit() == led ) {
-      Card [] rankArray = getRankArray( trump, led );
-      for( int i = 0; i < rankArray.length; i++ ) {
-        if( this == rankArray[i] ) {
-          retVal = rankArray.length - i;
-          break;
-        }
-      }
+  public static CardSuit getNextSuit( Card c ) {
+    CardSuit retVal = null;
+    switch(c.suit) {
+      case Diamonds:
+        retVal = CardSuit.Hearts;
+        break;
+      case Hearts:
+        retVal = CardSuit.Diamonds;
+        break;
+      case Clubs:
+        retVal = CardSuit.Spades;
+        break;
+      case Spades:
+        retVal = CardSuit.Clubs;
+        break;
+      default:
+        retVal = null;
+        break;
     }
-
+    
     return retVal;
   }
-
+  
+  public static Card getNextBower( Card c ) {
+    Card retVal = null;
+    if( c.value() == CardVal.Jack ) {
+      switch(c) {
+        case JackOfDiamonds:
+          retVal = JackOfHearts;
+          break;
+        case JackOfHearts:
+          retVal = JackOfDiamonds;
+          break;
+        case JackOfSpades:
+          retVal = JackOfClubs;
+          break;
+        case JackOfClubs:
+          retVal = JackOfSpades;
+          break;
+        default:
+          retVal = null;
+          break;
+      }
+    }
+    
+    return retVal;
+  }
+  
+  /**
+   * e.g. hearts:
+   * J-h: 7
+   * J-d: 6
+   * Ace-h: 5
+   * King-h: 4
+   * Queen-h: 3
+   * 10-h: 2
+   * 9-h: 1
+   * @param trump
+   * @return
+   */
+  public int getOldCardScore( CardSuit trump ) {
+    int retVal = 0;
+    int rawRank = this.ordinal() % 6; // 9:0, 10:1, J:2, ...
+    if( this.suit == trump ) {
+      retVal = this.value == CardVal.Jack ? 7 : (rawRank > 1 ? rawRank : rawRank + 1);
+    } else if( this.value == CardVal.Jack && this.suit.color() == trump.color() ) {
+      retVal = 6;
+    }
+    
+    System.out.println( "Returning " + retVal);
+    
+    return retVal;
+  }
+  
+  public int getCardScore( CardSuit trump ) {
+    //System.out.println( "Checking " + this + " against " + trump + "...");
+    int retVal = 1;
+    int rawRank = this.ordinal() % 6; // 9:0, 10:1, J:2, ...
+    if( this.suit == trump ) {
+      rawRank = this.value == CardVal.Jack ? 7 : (rawRank > 1 ? rawRank - 1 : rawRank);
+    } else if( this.value == CardVal.Jack && this.suit.color() == trump.color() ) {
+      rawRank = 6;
+    } else {
+      retVal = 0;
+    }
+        
+    //System.out.println( "...returning " + retVal + " << " + rawRank + " = " + (retVal << rawRank));
+    return retVal << rawRank;
+  }
+  
   public String toString() { return this.value.toString() + this.suit.toString(); }
 
   public boolean isTrump( CardSuit trump )
@@ -169,27 +156,6 @@ public enum Card {
     return  this.suit == trump || 
             (this.value == CardVal.Jack && 
              this.suit.color() == trump.color());
-  }
-
-  /* Even if led is the same as trump, this will work. */
-  public static Card [] getRankArray( CardSuit trump, CardSuit led )
-  {
-    Card [] retVal = new Card [ 13 ];
-    Card [] trumpRanks = TRUMP_RANKS.get( trump );
-    Card [] leadRanks = LEAD_RANKS.get( led );
-    
-    int retIdx = 0;
-    for( Card t : trumpRanks )
-    {
-      retVal[retIdx++] = t;
-    }
-
-    for( Card l : leadRanks )
-    {
-      retVal[retIdx++] = l;
-    }
-
-    return retVal;
   }
 
   public static Card lookupCard( CardSuit suit, CardVal value )

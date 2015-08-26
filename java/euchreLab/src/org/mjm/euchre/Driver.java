@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Set;
 
 import org.mjm.euchre.card.Card;
+import org.mjm.euchre.card.CardGroup;
 import org.mjm.euchre.card.CardSuit;
 import org.mjm.euchre.game.Game;
 import org.mjm.euchre.game.Hand;
@@ -20,12 +21,17 @@ public class Driver {
   
   public static void main( String [] args ) {
     Game G = new Game();
+    G.printHands();
+    //handleManualPlay(G);
+    G.play();
+  }
+  
+  private static void handleManualPlay( Game G ) {
     String input = null;
     boolean trumpSet = false;
-    G.printHands();
     for( int i = 0; i < 4; i++ ) { 
       System.out.println( "Turn Card: " + G.getKitty().getTurnCard() );
-      System.out.print( "Player " + i + " " + G.getPlayerHand(i) + ", "+ (i == 3 ? "pick " : "order ") + G.getKitty().getTurnCard() + " up? [y/n]: ");
+      System.out.print( "Player " + i + " " + CardGroup.cardArrayToString(G.getPlayerHand(i).getTrumpOrder(G.getKitty().getTurnCard().suit())) + ", "+ (i == 3 ? "pick " : "order ") + G.getKitty().getTurnCard() + " up with trump score of " + G.getPlayerHand(i).getTrumpScore(G.getKitty().getTurnCard().suit())+ "? [y/n]: ");
       input = readInput( YES_NO );
       if( input == null ) {
         doExit();
@@ -121,7 +127,9 @@ public class Driver {
     } else {
       int choice = Integer.parseInt(choiceStr);
       Card swap = cardArray[choice - 1];
+      h.removeCard(swap);
       h.addCard(G.getKitty().getTurnCard());
+      G.getKitty().removeCard(G.getKitty().getTurnCard());
       G.getKitty().addCard(swap);
     }
   }

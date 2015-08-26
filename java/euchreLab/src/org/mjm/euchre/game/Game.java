@@ -2,6 +2,7 @@ package org.mjm.euchre.game;
 
 import org.mjm.euchre.card.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
@@ -10,6 +11,9 @@ public class Game {
   // pickup/pass*4, make/pass*4, 5 cards played.
   // Note that some rounds will be null, loners, no make rounds, etc.
   // The last 5 rounds are designated for the actual play
+  private static final int [] TEAM_ONE = {0,2};
+  private static final int [] TEAM_TWO = {1,3};
+  
   /*
    * 
    * TODO:
@@ -32,7 +36,7 @@ public class Game {
    * Game play will be recursive, each possible play will be made, and the next play will happen, etc.
    * Then the next possible play is made, etc.
    * 
-   * Results stored in a "statistics" objcet on game, breaking down number of points won for each each
+   * Results stored in a "statistics" object on game, breaking down number of points won for each each
    * team.
    *
    */
@@ -40,25 +44,29 @@ public class Game {
   private Trick [] tricks = null;
   private Kitty kitty = null;
   
-  /*
-   * score[0] - team 0,2
-   * score[1] - team 1,3
-   */
-  private int [] score = null;
-  private int currTrick = -1;
+  private int currTrick = 0;
   private Card turnCard = null;
+  private Team [] teams = null;
 
   private CardSuit trump = null;
+  private int playerWhoOrdered = -1;
+  private int playerWhoCalled = -1;
 
   public Game() {
-    this.score = new int [2];
+    this.teams = new Team[2];
+    this.teams[0] = new Team(TEAM_ONE,0);
+    this.teams[1] = new Team(TEAM_TWO,1);
     Deck deck = new Deck();   
     Card [] deal = deck.deal();
     this.hands = new Hand[4];
     this.tricks = new Trick[5];
 
     List<Card> cardList = Arrays.asList( deal );
-
+    
+    for( int j = 0; j < 5; j++ ) {
+      this.tricks[j] = new Trick();
+    }
+    
     for( int i = 0; i < 4; i++ ) {
       this.hands[i] = new Hand(cardList.subList(i*5,i*5+5).toArray(new Card[0]));
     }
@@ -107,67 +115,158 @@ public class Game {
 
   public Kitty getKitty() { return this.kitty; }
   
-  public void executePlay( Play play ) {
+  public List<Play> executePlay( Play play ) {
+    //System.out.println("Executing: " + play);
+    List<Play> retVal = null;
+    int trickWinner = -1;
     switch( play.getPlayType() ) {
       case Round1Pass:
         break;
       case Round1Order:
         this.setTrump( this.kitty.getTurnCard() );
+        this.setPlayerWhoOrdered(play.getPlayer());
         break;
       case Discard:
         this.kitty.discard(play.getCardPlayed());
+        this.getPlayerHand(play.getPlayer()).removeCard(play.getCardPlayed());
         this.getPlayerHand(play.getPlayer()).addCard(this.turnCard);
         break;
       case Round2Call:
         this.setTrump(play.getSuitPlayed());
+        this.setPlayerWhoCalled(play.getPlayer());
         break;
       case Round2Pass:
         break;
-      case LeadTrickCard:
-        this.currTrick++;
-        this.getCurrentTrick().addCard(play.getCardPlayed());
-        this.getPlayerHand(play.getPlayer()).removeCard(play.getCardPlayed());
-        break;
       case PlayTrickCard:
-        this.getCurrentTrick().addCard(play.getCardPlayed());
+        this.getCurrentTrick().playCard(play.getPlayer(),play.getCardPlayed());
         this.getPlayerHand(play.getPlayer()).removeCard(play.getCardPlayed());
+        if( (trickWinner = this.getCurrentTrick().getWinner(this.getTrump())) != -1 ) {
+          retVal = new ArrayList<Play>();
+          retVal.add(new Play(trickWinner,PlayType.TrickWon));
+        }
+        break;
+      case TrickWon:
+        Team w = this.teams[0].isMember(play.getPlayer()) ? this.teams[0] : this.teams[1];
+        w.addWonTrick(this.getCurrentTrick());
+        if( this.currTrick == 4 ) {
+          // game over.
+          retVal = new ArrayList<Play>();
+          retVal.add( new Play(trickWinner,PlayType.GameWon));
+        }
+        this.currTrick++;
+      case GameWon:
         break;
     }
+    
+    if( retVal == null ) {
+      retVal = PlayFactory.getInstance().getPlays(this, play);
+    }
+    
+    return retVal;
   }
   
   public void unExecutePlay( Play play ) {
+    //System.out.println("Unexecuting: " + play);    
     switch( play.getPlayType() ) {
       case Round1Pass:
         break;
       case Round1Order:
         this.setTrump( (CardSuit)null );
+        this.setPlayerWhoCalled(-1);
         break;
       case Discard:
-        this.getPlayerHand(play.getPlayer()).addCard(this.kitty.discard(this.turnCard));
+        this.getPlayerHand(play.getPlayer()).removeCard(this.turnCard);
+        this.getPlayerHand(play.getPlayer()).addCard(play.getCardPlayed());
+        this.getKitty().removeCard(play.getCardPlayed());
+        this.getKitty().addCard(this.turnCard);
         break;
       case Round2Call:
         this.setTrump((CardSuit)null);
+        this.setPlayerWhoCalled(-1);
         break;
       case Round2Pass:
         break;
-      case LeadTrickCard:
-        this.getCurrentTrick().removeCard(play.getCardPlayed());
-        this.getPlayerHand(play.getPlayer()).addCard(play.getCardPlayed());
-        this.currTrick--;
-        break;
       case PlayTrickCard:
-        this.getCurrentTrick().removeCard(play.getCardPlayed());
+        this.getCurrentTrick().unplayCard(play.getPlayer());
         this.getPlayerHand(play.getPlayer()).addCard(play.getCardPlayed());
+        break;
+      case TrickWon:
+        this.currTrick--;
+        Team t = this.teams[0].isMember(play.getPlayer()) ? this.teams[0] : this.teams[1];
+        t.removeWonTrick();
+        break;
+      case GameWon:
         break;
     }
   }
   
-  public int[] getScore() {
-    return score;
+  /**
+   * Find out if a player's team called it.
+   * @param player
+   * @return
+   */
+  public boolean didPlayerCallTrump( int player ) {
+    return this.getTeamForPlayer(player).isCalledTrump();
+  }
+  
+  /**
+   * Get the team that a player is on
+   * @param player
+   * @return
+   */
+  public Team getTeamForPlayer( int player ) {
+    return this.teams[0].isMember(player) ? this.teams[0] : this.teams[1];
   }
 
-  public void setScore(int[] score) {
-    this.score = score;
+  public void play() {
+    Play start = new Play(-1, PlayType.Round1Pass);
+    List<Play> plays = PlayFactory.getInstance().getPlays(this, start);
+    this.playInner(plays);
+  }
+  
+  private void playInner( List<Play> plays ) {
+    List<Play> nextPlays = null;
+    for( Play play : plays ) {
+      if( play.getPlayType() == PlayType.GameWon ) {
+        this.printWin();
+      } else {
+        nextPlays = this.executePlay(play);
+        this.playInner(nextPlays);
+        this.unExecutePlay(play);
+      }
+    }
+  }
+  
+  public Team getWinningTeam() {
+    return this.teams[0].getScore() > 2 ? this.teams[0] : this.teams[1]; 
+  }
+  
+  public void printWin() {
+    Team t = this.getWinningTeam();
+    StringBuilder sb = new StringBuilder("Team " + t + " won " + t.getScore() + "-" + (5-t.getScore()) + "! Player ");
+    if( this.playerWhoCalled > -1 ) {
+      sb.append(this.playerWhoCalled).append( " called it ").append(this.getTrump());
+    } else {
+      sb.append(this.playerWhoOrdered).append( " ordered up ").append(this.getTrump());
+    }
+    
+    System.out.println(  sb.toString() );
+  }
+  
+  public int getPlayerWhoOrdered() {
+    return playerWhoOrdered;
+  }
+
+  public void setPlayerWhoOrdered(int playerWhoOrdered) {
+    this.playerWhoOrdered = playerWhoOrdered;
+  }
+
+  public int getPlayerWhoCalled() {
+    return playerWhoCalled;
+  }
+
+  public void setPlayerWhoCalled(int playerWhoCalled) {
+    this.playerWhoCalled = playerWhoCalled;
   }
 
   public static void main( String [] args )

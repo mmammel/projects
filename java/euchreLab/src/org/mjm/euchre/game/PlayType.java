@@ -6,6 +6,7 @@ public enum PlayType {
   Discard,
   Round2Call,
   Round2Pass,
-  LeadTrickCard,
-  PlayTrickCard
+  PlayTrickCard,
+  TrickWon,
+  GameWon
 }

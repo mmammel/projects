@@ -30,6 +30,13 @@ public class Play {
     this.suitPlayed = s;
   }
   
+  public Play( int player, PlayType type, Card c, CardSuit s ) {
+    this.player = player;
+    this.playType = type;
+    this.cardPlayed = c;
+    this.suitPlayed = s;
+  }
+  
   public CardSuit getSuitPlayed() {
     return suitPlayed;
   }
@@ -60,5 +67,15 @@ public class Play {
   
   public void setPlayType(PlayType playType) {
     this.playType = playType;
+  }
+  
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("[").append(this.playType).append(",")
+      .append(this.player).append(",")
+      .append(this.cardPlayed).append(",")
+      .append(this.suitPlayed).append("]");
+    
+    return sb.toString();
   }
 }

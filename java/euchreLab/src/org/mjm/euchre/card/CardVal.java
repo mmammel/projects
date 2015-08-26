@@ -1,12 +1,12 @@
 package org.mjm.euchre.card;
 
 public enum CardVal {
-  Ace("A"),
-  King("K"),
-  Queen("Q"),
-  Jack("J"),
+  Nine("9"),
   Ten("10"),
-  Nine("9");
+  Jack("J"),
+  Queen("Q"),
+  King("K"),
+  Ace("A");
 
   private final String str;
 
