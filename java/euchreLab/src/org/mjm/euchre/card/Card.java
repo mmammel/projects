@@ -38,11 +38,12 @@ public enum Card {
   public CardColor color() { return this.suit.color(); }
 
   private static Map<CardSuit,Map<CardVal,Card>> CARD_INDEX = new HashMap<CardSuit,Map<CardVal,Card>>();
-
+  private static Map<String,Card> CARD_FROM_STRING_MAP = new HashMap<String,Card>();
   static {
     Map<CardVal,Card> tempMap = null;
     for( Card c : Card.values() )
     {
+      CARD_FROM_STRING_MAP.put(c.toString(), c);
       if( (tempMap = CARD_INDEX.get(c.suit())) == null )
       {
         tempMap = new HashMap<CardVal,Card>();
@@ -158,6 +159,10 @@ public enum Card {
              this.suit.color() == trump.color());
   }
 
+  public static Card lookupCard( String str ) {
+    return CARD_FROM_STRING_MAP.get(str);
+  }
+  
   public static Card lookupCard( CardSuit suit, CardVal value )
   {
     return CARD_INDEX.get( suit ).get( value );

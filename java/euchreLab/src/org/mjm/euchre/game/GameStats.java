@@ -17,9 +17,12 @@ import java.util.Map;
  *
  */
 public class GameStats {
+  private Game game;
   private Map<String,Map<String,Map<String,Integer>>> winMap = null;
+  private Map<String,String> sampleTricks = new HashMap<String,String>();
   
-  public GameStats() {
+  public GameStats(Game g) {
+    this.game = g;
     this.winMap = new HashMap<String,Map<String,Map<String,Integer>>>();
   }
   
@@ -42,10 +45,17 @@ public class GameStats {
       wins = 0;
     }
     
+    String key = team + "-" + call + "-" + score;
+    
+    if( !this.sampleTricks.containsKey( key ) ) {
+      this.sampleTricks.put( key, this.game.tricksToString());
+    }
+    
     tempScoreMap.put( score, wins + 1);    
   }
   
   public String toString() {
+    String key = null;
     StringBuilder sb = new StringBuilder();
     Map<String,Map<String,Integer>> tempCallMap = null;
     Map<String,Integer> tempScoreMap = null;
@@ -57,7 +67,9 @@ public class GameStats {
         sb.append("  ").append( s1 ).append(":\n");
         tempScoreMap = tempCallMap.get(s1);
         for( String s2 : tempScoreMap.keySet() ) {
-          sb.append("    ").append(s2).append(": ").append( tempScoreMap.get(s2)).append("\n");
+          sb.append("    ").append(s2).append(": ").append( tempScoreMap.get(s2)).append("\n      e.g. ");
+          key = s0 + "-" + s1 + "-" + s2;
+          sb.append(this.sampleTricks.containsKey(key) ? this.sampleTricks.get(key) : "<no sample>").append("\n");
         }
       }
     }

@@ -106,6 +106,10 @@ public class Trick extends CardGroup {
       this.playedByMap.remove(c);
     }
     
+    if( this.getNumCards() == 0 ) {
+      this.led = null;
+    }
+    
     return c;
   }
   
@@ -118,5 +122,16 @@ public class Trick extends CardGroup {
     }
     
     return retVal;
+  }
+  
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    Card c = null;
+    for( int i = 0; i < 4; i++ ) {
+      c = this.getCardPlayedByPlayer(i);
+      sb.append("[").append(c == null ? "-" : (c == this.led ? ""+c+"*" : c)).append("]");
+    }
+    
+    return sb.toString();
   }
 }

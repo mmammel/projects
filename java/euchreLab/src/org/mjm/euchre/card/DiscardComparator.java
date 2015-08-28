@@ -3,11 +3,13 @@ package org.mjm.euchre.card;
 import java.util.Comparator;
 import java.util.Map;
 
-public class TrumpCardComparator implements Comparator<Card>  {
+public class DiscardComparator implements Comparator<Card> {
   private CardSuit trump;
+  private Map<CardSuit, Integer> suitCounts = null;
   
-  public TrumpCardComparator( CardSuit trump ) {
+  public DiscardComparator( CardSuit trump, Map<CardSuit, Integer> suitCounts ) {
     this.trump = trump;
+    this.suitCounts = suitCounts;
   }
   
   @Override
@@ -22,7 +24,12 @@ public class TrumpCardComparator implements Comparator<Card>  {
     } else if( arg1.isTrump(this.trump) ) {
       retVal = -1;
     } else {
-      retVal = arg0.value().compareTo(arg1.value());       
+      if( (retVal = arg0.suit().compareTo(arg1.suit())) == 0 ) {
+        retVal = arg0.compareTo(arg1);
+      } else if((retVal = this.suitCounts.get(arg0.suit()).compareTo(this.suitCounts.get(arg1.suit()))) == 0 && 
+                 this.suitCounts.get(arg0.suit()) == 1) {
+        retVal = arg0.value().compareTo(arg1.value());       
+      }
     }
     
     return retVal;

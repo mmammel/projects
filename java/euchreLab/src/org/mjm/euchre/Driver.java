@@ -8,6 +8,7 @@ import java.util.Set;
 import org.mjm.euchre.card.Card;
 import org.mjm.euchre.card.CardGroup;
 import org.mjm.euchre.card.CardSuit;
+import org.mjm.euchre.card.Deck;
 import org.mjm.euchre.game.Game;
 import org.mjm.euchre.game.Hand;
 
@@ -18,9 +19,15 @@ public class Driver {
   private static String [] YES_NO = { "y", "n" };
   private static String [] DISCARD_CHOICE = { "1","2","3","4","5" };
 
-  
   public static void main( String [] args ) {
-    Game G = new Game();
+    Deck deck = null;
+    if( args.length == 1 ) {
+      deck = new Deck(args[0]);
+    } else {
+      deck = new Deck();
+    }
+    
+    Game G = new Game(deck.deal());
     G.printHands();
     //handleManualPlay(G);
     G.play();

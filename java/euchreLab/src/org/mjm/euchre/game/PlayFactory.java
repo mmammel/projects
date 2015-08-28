@@ -148,7 +148,7 @@ public class PlayFactory {
     Hand h = g.getPlayerHand(3);
     Card pickup = previous.getCardPlayed();
     
-    Card [] orderedCards = h.getTrumpOrder();
+    Card [] orderedCards = h.getDiscardOrder();
     
     // always discard the lowest card, after that check for trump;
     retVal.add( new Play( 3, PlayType.Discard, orderedCards[0]));

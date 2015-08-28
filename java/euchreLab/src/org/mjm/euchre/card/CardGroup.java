@@ -227,10 +227,20 @@ public class CardGroup {
     Card [] retVal = null;
     if( (retVal = this.cachedTrumpRanks.get(trump)) == null ) {
       retVal = this.cards.toArray(new Card[ this.cards.size()]);
-      Arrays.sort(retVal, new TrumpCardComparator(trump, this.getTrumpSuitCount(trump)));
+      Arrays.sort(retVal, new TrumpCardComparator(trump));
       this.cachedTrumpRanks.put(trump, retVal);
     }
     
+    return retVal;
+  }
+  
+  public Card [] getDiscardOrder() {
+    return this.getDiscardOrder( this.trump );
+  }
+  
+  public Card [] getDiscardOrder( CardSuit trump ) {
+    Card [] retVal = this.cards.toArray(new Card[ this.cards.size()]);
+    Arrays.sort(retVal, new DiscardComparator(trump, this.getTrumpSuitCount(trump)));
     return retVal;
   }
   

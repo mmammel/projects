@@ -17,6 +17,28 @@ public enum CardSuit
     this.color = color;
     this.str = str;
   }
+  
+  public static CardSuit fromChar( Character c ) {
+    CardSuit retVal = null;
+    switch( c ) {
+      case '\u2662':
+        retVal = Diamonds;
+        break;
+      case '\u2661':
+        retVal = Hearts;
+        break;
+      case '\u2660':
+        retVal = Spades;
+        break;
+      case '\u2663':
+        retVal = Clubs;
+        break;
+      default:
+        break;
+    }
+    
+    return retVal;
+  }
 
   public String toString() { return this.str; }
 }

@@ -53,15 +53,13 @@ public class Game {
   private int playerWhoCalled = -1;
   private GameStats gameStats = null;
 
-  public Game() {
+  public Game(Card [] deal) {
     this.teams = new Team[2];
     this.teams[0] = new Team(TEAM_ONE,0);
     this.teams[1] = new Team(TEAM_TWO,1);
-    Deck deck = new Deck();   
-    Card [] deal = deck.deal();
     this.hands = new Hand[4];
     this.tricks = new Trick[5];
-    this.gameStats = new GameStats();
+    this.gameStats = new GameStats(this);
 
     List<Card> cardList = Arrays.asList( deal );
     
@@ -75,7 +73,6 @@ public class Game {
 
     this.kitty = new Kitty(cardList.subList(20,24).toArray(new Card[0]));
     this.turnCard = this.kitty.getTurnCard();
-    
   } 
 
   public void setTrump( CardSuit suit ) {
@@ -292,7 +289,7 @@ public class Game {
 
   public static void main( String [] args )
   {
-    Game G = new Game();
+    Game G = new Game( (new Deck()).deal() );
 
     // Ask if each player wants to pick it up. Dealer is player 3.
     // If they do, prompt dealer (player 4) for discard, set final deck status.
@@ -311,5 +308,15 @@ public class Game {
     retVal.append("Kitty: " ).append( this.getKitty() );
     
     System.out.println( retVal.toString());
+  }
+  
+  public String tricksToString() {
+    StringBuilder sb = new StringBuilder();
+    
+    for( Trick t : this.tricks ) {
+      sb.append(t).append("-");
+    }
+    
+    return sb.deleteCharAt(sb.length() - 1 ).toString();
   }
 }

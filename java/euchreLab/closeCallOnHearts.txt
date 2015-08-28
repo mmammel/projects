@@ -1,0 +1,64 @@
+Player 0: [A♢][9♡][10♡][10♣][J♣]
+Player 1: [J♠][K♠][9♢][10♢][Q♢]
+Player 2: [K♢][10♠][A♣][J♡][Q♡]
+Player 3: [J♢][K♡][A♡][9♠][A♠]
+Kitty: [Q♠][9♣][Q♣][K♣]
+Turn card: K♣
+Team 1:
+  Player 3 called it ♠:
+    5-0: 12
+    4-1: 760
+    3-2: 2026
+  Player 3 called it ♡:
+    4-1: 1594
+    3-2: 10552
+  Player 1 ordered up ♣:
+    4-1: 1913
+    3-2: 9205
+  Player 0 ordered up ♣:
+    4-1: 1913
+    3-2: 9205
+  Player 3 called it ♢:
+    4-1: 448
+    3-2: 4014
+  Player 0 called it ♠:
+    5-0: 12
+    4-1: 760
+    3-2: 2026
+  Player 1 called it ♠:
+    5-0: 12
+    4-1: 760
+    3-2: 2026
+  Player 2 called it ♢:
+    4-1: 448
+    3-2: 4014
+  Player 2 called it ♡:
+    4-1: 1594
+    3-2: 10552
+Team 0:
+  Player 3 called it ♠:
+    4-1: 24
+    3-2: 710
+  Player 3 called it ♡:
+    3-2: 9384
+  Player 1 ordered up ♣:
+    4-1: 1675
+    3-2: 7474
+  Player 0 ordered up ♣:
+    4-1: 1675
+    3-2: 7474
+  Player 3 called it ♢:
+    4-1: 48
+    3-2: 4794
+  Player 0 called it ♠:
+    4-1: 24
+    3-2: 710
+  Player 1 called it ♠:
+    4-1: 24
+    3-2: 710
+  Player 2 called it ♢:
+    4-1: 48
+    3-2: 4794
+  Player 2 called it ♡:
+    3-2: 9384
+
