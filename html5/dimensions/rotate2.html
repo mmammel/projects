@@ -1,0 +1,68 @@
+<html>  
+ <head>  
+  <!--
+    This includes the "jQuery" library, it can do all kinds of things but I use it
+    mainly for some slick syntax shortcuts, you can slap this line in the <head> of 
+    your page and forget about it.
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">  
+
+  /*
+   little object (think of it like a C struct) that holds some global stuff I want
+   access to.  intervalRef lets me shut off of the interval when the button is released, 
+   and the others are the angles of rotation for my little sample animations.
+  */
+  var context = {
+    intervalRef : null,
+    "xy" : 0,
+    "xz1" : 0,
+    "xz2" : 0,
+    "xz3" : 0,
+    "xz4" : 0
+  };
+
+  function setSVGContent( content ) {
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640" height="640">';
+    svg += content;
+    svg += '</svg>';
+    $("#svg").html( svg );
+  }
+
+  var startRotate = function (axis ) {
+    intervalRef = setInterval( function() {
+      var content = '<text x="320" y="320" style="text-anchor: middle" fill="red" transform="rotate(' + context[axis] + ' 320,320)">' + axis + '</text>';
+      setSVGContent( content );
+      context[axis] += 5;
+      if( context[axis] == 360 ) context[axis] = 0;
+    }, 10 );
+
+  };
+
+
+  $( document ).ready( function () {
+    //initialize here.
+    setSVGContent('');
+  });
+  </script>  
+ </head>  
+ <body>
+   <table id="outertable" border=1>
+    <tr>
+      <td>
+        <table id="buttonTable">
+          <tr><td><button type="button" onmousedown="javascript:startRotate('xy');"  onmouseup="javascript:clearInterval(intervalRef);">Rot x-y</button></td></tr>
+          <tr><td><button type="button" onmousedown="javascript:startRotate('xz1');"  onmouseup="javascript:clearInterval(intervalRef);">Rot x-z1</button></td></tr>
+          <tr><td><button type="button" onmousedown="javascript:startRotate('xz2');"  onmouseup="javascript:clearInterval(intervalRef);">Rot x-z2</button></td></tr>
+          <tr><td><button type="button" onmousedown="javascript:startRotate('xz3');"  onmouseup="javascript:clearInterval(intervalRef);">Rot x-z3</button></td></tr>
+          <tr><td><button type="button" onmousedown="javascript:startRotate('xz4');"  onmouseup="javascript:clearInterval(intervalRef);">Rot x-z4</button></td></tr>
+        </table>
+      </td>
+      <td>
+       <div id="svg"></div>
+      </td>
+    </tr>
+   </table>
+  </body>  
+</html>  
+
