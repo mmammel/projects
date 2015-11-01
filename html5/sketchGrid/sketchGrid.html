@@ -3,16 +3,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script type="text/javascript">
-      var gridSize=20;
+      var gridSize = 80;
       var voffset = 0;
       var hoffset = 0;
+      var rotation = 0;
       var intervalRef = null;
+      var handlingKey = false;
 
       function modVar( plusminus, varname ) {
         modVarInner( plusminus, varname );
         intervalRef = setInterval( function() {
           modVarInner( plusminus, varname );
-        }, 200);
+        }, 100);
       }
 
       function modVarInner(plusminus, varname) {
@@ -26,61 +28,119 @@
           if( hoffset > gridSize ) hoffset = 0;
           if( hoffset < 0 ) hoffset = gridSize;
         } else if( varname == "voff" ) {
-          voffset += increment;
+          voffset += -1*increment;
           if( voffset > gridSize ) voffset = 0;
           if( voffset < 0 ) voffset = gridSize;
+        } else if( varname == "rot" ) {
+          rotation += increment;
+          if( rotation > 359 ) rotation = 0;
+          if( rotation < 0 ) rotation = 359;
         }
+
+        $("#gridSizeNum").text(""+gridSize+"px");
+        $("#hoffNum").text(""+hoffset+"px");
+        $("#voffNum").text(""+voffset+"px");
+        $("#rotNum").text(""+rotation+" degrees");
         doImageLoad();
       }
 
       function doImageLoad() {
         var imgURL = $("#imgURL").val();
-        var imgTag = $('<img id="hiddenImage" src="' + imgURL + '"></img>');
-        $("#imageHolder").empty();
-        $("#imageHolder").append(imgTag);
+        //var imgTag = $('<img id="hiddenImage" src="' + imgURL + '"></img>');
+        //$("#imageHolder").empty();
+        //$("#imageHolder").append(imgTag);
+        $("#hiddenImage").attr("src",imgURL);
         var cnv = document.getElementById("mycanvas");
         var img = document.getElementById("hiddenImage");
         cnv.width = img.clientWidth;
         cnv.height = img.clientHeight;
-        var context = cnv.getContext("2d");
-        context.drawImage(img,0,0); 
-        context.stroke();
+        var gridContext = cnv.getContext("2d");
 
         var vidx = hoffset;
         var hidx = voffset;
-
-        context.beginPath();
+        gridContext.save();
+        gridContext.translate( cnv.width/2, cnv.height/2 );
+        gridContext.rotate( rotation*Math.PI/180 );
+        gridContext.drawImage(img,-1*cnv.width/2,-1*cnv.height/2); 
+        gridContext.restore();
+        gridContext.beginPath();
         while( vidx <= cnv.width ) {
-          context.moveTo(vidx,0);
-          context.lineTo(vidx,cnv.height);
-          context.stroke();
+          gridContext.moveTo(vidx,0);
+          gridContext.lineTo(vidx,cnv.height);
+          gridContext.stroke();
           vidx += gridSize;
         }
         while( hidx <= cnv.height ) {
-          context.moveTo(0,hidx);
-          context.lineTo(cnv.width,hidx);
-          context.stroke();
+          gridContext.moveTo(0,hidx);
+          gridContext.lineTo(cnv.width,hidx);
+          gridContext.stroke();
           hidx += gridSize;
         }
       }
+
+      $( document ).ready(function() {
+        $(document).keydown(function(event) {
+          if( handlingKey ) {
+            return;
+          } else {
+            handlingKey = true;
+          }
+          var key = event.which;
+          switch( key ) {
+            case 73:
+                modVar('+','voff');
+                break;
+            case 74:
+                modVar('-','hoff');
+                break;
+            case 75:
+                modVar('+','hoff');
+                break;
+            case 77:
+                modVar('-','voff');
+                break;
+            case 76:
+                modVar('-','rot');
+                break;
+            case 82:
+                modVar('+','rot');
+                break;
+            case 79:
+                modVar('+','grid');
+                break;
+            case 85:
+                modVar('-','grid');
+                break;
+            default:
+                break;
+          }
+        });
+        $( document ).keyup(function(event) {
+          clearInterval(intervalRef);
+          handlingKey = false;
+        });
+      });
     </script>
   </head>
   <body>
     <table>
       <tr>
-        <td>Image URL:</td><td colspan="2"><input id="imgURL" name="imgURL" type="text" size="50" value=""></input></td>
+        <td>Image URL:</td><td colspan="3"><input id="imgURL" name="imgURL" type="text" size="50" value=""></input></td>
       </tr>
       <tr>
-        <td colspan="3"><input onclick="javascript:doImageLoad();" type="button" value="Submit"></input></td>
+        <td colspan="4"><input onclick="javascript:doImageLoad();" type="button" value="Submit"></input></td>
       </tr>
       <tr>
-        <td>Grid Size:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','grid');" id="gridsizeminus" name="gridsizeminus" type="button" value="-"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','grid');" id="gridsizeplus" name="gridsizeplus" type="button" value="+"></input></td>
+        <td>Grid Size:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','grid');" id="gridsizeminus" name="gridsizeminus" type="button" value="-"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','grid');" id="gridsizeplus" name="gridsizeplus" type="button" value="+"></input></td><td id="gridSizeNum">80px</td>
       </tr>
       <tr>
-        <td>H-Offset:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','hoff');" id="hoffminus" name="hoffminus" type="button" value="-"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','hoff');" id="hoffplus" name="hoffplus" type="button" value="+"></input></td>
+        <td>H-Offset:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','hoff');" id="hoffminus" name="hoffminus" type="button" value="-"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','hoff');" id="hoffplus" name="hoffplus" type="button" value="+"></input></td><td id="hoffNum">0px</td>
       </tr>
       <tr>
-        <td>V-Offset:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','voff');" id="voffminus" name="voffminus" type="button" value="-"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','voff');" id="voffplus" name="voffplus" type="button" value="+"></input></td>
+        <td>V-Offset:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','voff');" id="voffminus" name="voffminus" type="button" value="-"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','voff');" id="voffplus" name="voffplus" type="button" value="+"></input></td><td id="voffNum">0px</td>
+      </tr>
+      <tr>
+        <td>Image Rotate:</td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('-','rot');" id="rotminus" name="rotminus" type="button" value="Left"></input></td><td><input onmouseup="javascript:clearInterval(intervalRef);" onmousedown="javascript:modVar('+','rot');" id="rotplus" name="rotplus" type="button" value="Right"></input></td><td id="rotNum">0 degrees</td>
       </tr>
 
     </table>
@@ -88,6 +148,7 @@
       <canvas id="mycanvas"></canvas>
     </div>
     <div id="imageHolder" style="visibility:hidden;">
+      <img id="hiddenImage"></img>
     </div>
   </body>
 </html>

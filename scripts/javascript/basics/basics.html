@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function doBasics() {
+        for( var i = 0; i < 3; i++ ) {
+          alert( "For loop, i = " + i );
+        }
+
+        var x = 0;
+        while( x < 3 ) {
+          alert( "while loop, x = " + x );
+          x = x + 1;
+        }
+
+        if( x > 3 ) {
+          alert( "This shouldn't happen");
+        } else {
+          alert( "This makes sense, because x = " + x );
+        }
+
+        doSomething(x);
+      }
+
+      function doSomething( val ) {
+        alert( "doSomething was called with argument: " + val );
+      }
+
+      doBasics();
+    </script>
+  </head>
+  <body>
+    <h3>Some Javascript Basics</h3>
+
+    <p>
+      Right click the page and select "view source" to see what made all of those popups appear.
+    </p>
+
+    <p>For more, try:
+    <ul>
+      <li><a href="http://www.w3schools.com/js/">W3Schools</a></li>
+      <li><a href="https://codecademy.com/learn/javascript">Code Academy</a></li>
+    </ul>
+    </p>
+    <p>
+      All programming languages are different, but also very similar.  The basic bulding blocks of all laguages can be seen and practiced with javascript, which is the easiest language to play around with because all you need is a text editor and browser.  To run some javascript in your browser that you wrote, start with a file like this:
+      <pre>
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;script type="text/javascript"&gt;
+              // this is where you write your functions, and call them.
+            &lt;/script&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </pre>
+    </p>
+    <p>
+     In between those script tags, you can write functions, and then call them. For example:
+     <pre>
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;script type="text/javascript"&gt;
+              // define a function
+              function doAnAlert() {
+                alert( "I made an alert");
+              }
+           
+              doAnAlert(); // now call it
+            &lt;/script&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+      </pre>
+    </p>
+    <p>
+      Put this text in a file, name it something like "myjavascript.html", then in a browser go to:<br><br>
+      (On a Mac): "file:///Users/<i>username</i>/myjavascript.html"<br>
+      (On windows): "file://C:/Users/<i>username</i>/myjavascript.html"<br><br>
+      And it will run in the browser.  That's it, pretty easy.  w3schools is a great resource for javascript (and many other languages), it is run by the w3 council (or something like that) - it's the standards body that agrees on what everyone should agree a certain language should support, because if everyone agrees we can all write cool stuff with it.
+    </p>
+  </body>
+</html>
