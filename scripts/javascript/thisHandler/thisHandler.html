@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function showAlert(element) {
+        alert( 'Element with ID: ' + element + ' pressed.' );
+      }
+    </script>
+  </head>
+  <body>
+    <table border=1>
+      <tr>
+        <td id="r11" onclick="javascript:showAlert('r11');">R11</td>
+        <td id="r12" onclick="javascript:showAlert('r12');">R12</td>
+        <td id="r13" onclick="javascript:showAlert(this);">R13</td>
+        <td id="r14" onclick="javascript:showAlert(this);">R14</td>
+      </tr>
+      <tr>
+        <td id="r21" onclick="javascript:showAlert(this);">R21</td>
+        <td id="r22" onclick="javascript:showAlert(this);">R22</td>
+        <td id="r23" onclick="javascript:showAlert(this);">R23</td>
+        <td id="r24" onclick="javascript:showAlert(this);">R24</td>
+      </tr>
+      <tr>
+        <td id="r31" onclick="javascript:showAlert(this);">R31</td>
+        <td id="r32" onclick="javascript:showAlert(this);">R32</td>
+        <td id="r33" onclick="javascript:showAlert(this);">R33</td>
+        <td id="r34" onclick="javascript:showAlert(this);">R34</td>
+      </tr>
+      <tr>
+        <td id="r41" onclick="javascript:showAlert(this);">R41</td>
+        <td id="r42" onclick="javascript:showAlert(this);">R42</td>
+        <td id="r43" onclick="javascript:showAlert(this);">R43</td>
+        <td id="r44" onclick="javascript:showAlert(this);">R44</td>
+      </tr>
+    </table>
+  </body>
+</html>

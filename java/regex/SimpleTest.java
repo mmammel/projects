@@ -9,7 +9,8 @@ public class SimpleTest
   //public static Pattern PATTERN = Pattern.compile("^[A-Za-z_0-9]+%2[Cc].*$");
   //public static Pattern PATTERN = Pattern.compile("^(.*?):(.*?):(.*)$");
   //public static Pattern PATTERN = Pattern.compile("^(?:(?:[-a-zA-Z0-9!#$%&'*+/=?^_`{|}~])+\\.)*[-a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+@\\w(?:(?:-|\\w)*\\w)*\\.(?:\\w(?:(?:-|\\w)*\\w)*\\.)*\\w{2,4}$");
-  public static Pattern PATTERN = Pattern.compile("^(?:[-0-9A-z_() ]+,[0-9]+)+$");
+  //public static Pattern PATTERN = Pattern.compile("^(?:[-0-9A-z_() ]+,[0-9]+)+$");
+  public static Pattern PATTERN = Pattern.compile("\\(\\?(.*?)\\?\\)");
 
   public static void main( String [] args )
   {

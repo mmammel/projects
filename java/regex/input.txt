@@ -1,1 +1,2 @@
-${foo~bar~asdfasdf(df)}
+(?foo=bar,bar=foo?)
+

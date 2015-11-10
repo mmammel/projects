@@ -1,0 +1,140 @@
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.cipher.SshCipherFactory <clinit>
+INFO: Loading supported cipher algorithms
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.kex.SshKeyExchangeFactory <clinit>
+INFO: Loading key exchange methods
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.configuration.ConfigurationLoader initialize
+INFO: JAVA version is 1.6.0_65
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.configuration.ConfigurationLoader initialize
+INFO: Extension /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/apple_provider.jar being added to classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.util.ExtensionClassLoader add
+INFO: Adding /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/apple_provider.jar to the extension classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.configuration.ConfigurationLoader initialize
+INFO: Extension /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/dnsns.jar being added to classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.util.ExtensionClassLoader add
+INFO: Adding /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/dnsns.jar to the extension classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.configuration.ConfigurationLoader initialize
+INFO: Extension /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/localedata.jar being added to classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.util.ExtensionClassLoader add
+INFO: Adding /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/localedata.jar to the extension classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.configuration.ConfigurationLoader initialize
+INFO: Extension /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunjce_provider.jar being added to classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.util.ExtensionClassLoader add
+INFO: Adding /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunjce_provider.jar to the extension classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.configuration.ConfigurationLoader initialize
+INFO: Extension /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunpkcs11.jar being added to classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.util.ExtensionClassLoader add
+INFO: Adding /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunpkcs11.jar to the extension classpath
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.kex.SshKeyExchangeFactory <clinit>
+FINE: The default key exchange is not set! using first in list
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.publickey.SshKeyPairFactory <clinit>
+INFO: Loading public key algorithms
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.publickey.SshKeyPairFactory <clinit>
+FINE: The default public key is not set! using first in list
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.compression.SshCompressionFactory <clinit>
+INFO: Loading compression methods
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.hmac.SshHmacFactory <clinit>
+INFO: Loading message authentication methods
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon startTransportProtocol
+INFO: Starting transport protocol
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon run
+INFO: Registering transport protocol messages with inputstream
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon negotiateVersion
+INFO: Negotiating protocol version
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon negotiateVersion
+FINE: Local identification: SSH-2.0-http://www.sshtools.com J2SSH [CLIENT]
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon negotiateVersion
+FINE: EOL is guessed at CR+LF
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon negotiateVersion
+FINE: Remote identification: SSH-2.0-1.82_sshlib UltiPro Data Exchange Services
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon negotiateVersion
+INFO: Protocol negotiation complete
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolClient setLocalKexInit
+FINE: SshMsgKexInit:
+Supported Kex [diffie-hellman-group1-sha1]
+Supported Public Keys [ssh-rsa, ssh-dss]
+Supported Encryption Client->Server [blowfish-cbc, 3des-cbc]
+Supported Encryption Server->Client [blowfish-cbc, 3des-cbc]
+Supported Mac Client->Server [hmac-sha1, hmac-md5-96, hmac-sha1-96, hmac-md5]
+Supported Mac Server->Client [hmac-sha1, hmac-md5-96, hmac-sha1-96, hmac-md5]
+Supported Compression Client->Server [none]
+Supported Compression Server->Client [none]
+Supported Languages Client->Server []
+Supported Languages Server->Client []
+First Kex Packet Follows [FALSE]
+Jun 4, 2015 10:44:01 AM com.sshtools.j2ssh.transport.TransportProtocolCommon sendMessage
+INFO: Sending SSH_MSG_KEX_INIT
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon startBinaryPacketProtocol
+FINE: Received SSH_MSG_KEX_INIT
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon onMsgKexInit
+FINE: Received remote key exchange init message
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon onMsgKexInit
+FINE: SshMsgKexInit:
+Supported Kex [diffie-hellman-group14-sha1, diffie-hellman-group-exchange-sha1, diffie-hellman-group1-sha1]
+Supported Public Keys [ssh-dss]
+Supported Encryption Client->Server [twofish256-cbc, twofish-cbc, twofish128-cbc, blowfish-cbc, 3des-cbc, arcfour, cast128-cbc, aes256-cbc, aes128-cbc]
+Supported Encryption Server->Client [twofish256-cbc, twofish-cbc, twofish128-cbc, blowfish-cbc, 3des-cbc, arcfour, cast128-cbc, aes256-cbc, aes128-cbc]
+Supported Mac Client->Server [hmac-sha1, hmac-md5, hmac-sha1-96, hmac-md5-96]
+Supported Mac Server->Client [hmac-sha1, hmac-md5, hmac-sha1-96, hmac-md5-96]
+Supported Compression Client->Server [zlib, none]
+Supported Compression Server->Client [zlib, none]
+Supported Languages Client->Server []
+Supported Languages Server->Client []
+First Kex Packet Follows [FALSE]
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon beginKeyExchange
+INFO: Starting key exchange
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Determine Algorithm
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Client Algorithms: [diffie-hellman-group1-sha1]
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Server Algorithms: [diffie-hellman-group14-sha1, diffie-hellman-group-exchange-sha1, diffie-hellman-group1-sha1]
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Returning diffie-hellman-group1-sha1
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon beginKeyExchange
+FINE: Key exchange algorithm: diffie-hellman-group1-sha1
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.kex.DhGroup1Sha1 performClientExchange
+INFO: Starting client side key exchange.
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon sendMessage
+INFO: Sending SSH_MSG_KEXDH_INIT
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon readMessage
+FINE: Processing SSH_MSG_KEXDH_REPLY
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Determine Algorithm
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Client Algorithms: [ssh-rsa, ssh-dss]
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Server Algorithms: [ssh-dss]
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon determineAlgorithm
+FINE: Returning ssh-dss
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Header is ssh-dss
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Verifying host key signature
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Signature length is 40
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: SSH: 9d 80 80 d6 fa 32 17 2b bd 21 a4 c5 99 af bb e4 a4 ec 67 60 52 54 dc 78 8 d9 19 5a 32 4d 65 6b b 3d 54 77 f4 e2 b 64 
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Encoded: 30 2d 2 15 0 9d 80 80 d6 fa 32 17 2b bd 21 a4 c5 99 af bb e4 a4 ec 67 60 2 14 52 54 dc 78 8 d9 19 5a 32 4d 65 6b b 3d 54 77 f4 e2 b 64 
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Verifiying Signature...
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Signature info: Signature object: SHA1withDSA<not initialized>
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Initializing Signature Verify...
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Updating with data: -èGÅoÅÝ—:Qoz=±
+læ
+ö
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Doing actual verificiation...
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.publickey.dsa.SshDssPublicKey verifySignature
+FINE: Did Verification of [Signature object: SHA1withDSA<initialized for verifying>], got: false
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolClient verifyHostKey
+INFO: The host key signature is invalid
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon sendMessage
+INFO: Sending SSH_MSG_DISCONNECT
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon sendMessage
+INFO: Sending SSH_MSG_NEWKEYS
+Jun 4, 2015 10:44:02 AM com.sshtools.j2ssh.transport.TransportProtocolCommon run
+FINE: The Transport Protocol has been stopped

@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="handlbars-v4.0.4.js"></script>
+
+    <style type="text/css">
+      .testTable {
+        width: 80%;
+        margin-right:auto;
+        margin-left:auto;
+        background-color:lightgreen;
+        min-height: 300px;
+      }
+
+      .testGroupContainer {
+        padding: 30px;
+      }
+    </style>
+
+    <script type="text/javascript">
+      // my functions.
+      var sectionTableTemplate = null;
+      var sectionItemTemplate = null;
+
+      
+      function makeSection( name, itemList ) {
+        
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Draggable Test Item Prototype</h3>
+
+    <table class="testTable">
+      <tr>
+        <td>
+          <div class="testSectionContainer">
+            
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Define my templates here -->
+    <script id="sectionTableTemplate" type="text/x-handlebars-template">
+      <table class="sectionTable">
+        <tr>
+          <td><h4>{{name}}</h4></td>
+        </tr>
+        {{{sectionBody}}}
+      </table>
+    </script>
+
+    <script id="sectionItemTemplate" type="text/x-handlebars-template">
+      <tr class="sectionItemRow">
+        <td>
+          <div class="sectionItem">
+            <h5>{{name}}</h5>
+          </div>
+        </td>
+      </tr>
+    </script>
+  </body>
+</html>

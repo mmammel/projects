@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+    <script type="text/javascript">
+      var leftSideOptionsObj = {};
+      var leftSideOptionsArray = [];
+      var rightSideOptionsObj = {};
+      var rightSideOptionsArray = [];
+
+      var addsObj = {};
+      var removesObj = {};
+
+      $(document).ready( function() {
+        for( var i = 0; i < 3000; i++ ) {
+          leftSideOptionsObj[i] = ""+i*100;
+        }
+  
+        for( var j = 3000; j < 4500; j++ ) {
+          rightSideOptionsObj[j] = ""+j*100;
+        }
+
+        populateOptions();
+
+      });
+
+      function populateOptions(isAdd) {
+        leftSideOptionsArray = [];
+        for (var key in leftSideOptionsObj) {
+          if (leftSideOptionsObj.hasOwnProperty(key)) {
+            leftSideOptionsArray.push( { value: key, name: leftSideOptionsObj[key] } );
+          }
+        }
+
+        rightSideOptionsArray = [];
+        for (var key in rightSideOptionsObj) {
+          if (rightSideOptionsObj.hasOwnProperty(key)) {
+            rightSideOptionsArray.push( { value: key, name: rightSideOptionsObj[key] } );
+          }
+        }
+
+        if( !isAdd ) {
+          leftSideOptionsArray.sort(sortByName);
+        } else {
+          rightSideOptionsArray.sort(sortByName);
+        }
+
+        $('#leftSide').empty();
+        $('#rightSide').empty();
+
+        for( var i = 0; i < leftSideOptionsArray.length; i++ ) {
+          $('#leftSide').append( getOptionEle( leftSideOptionsArray[i].name, leftSideOptionsArray[i].value ) );
+        }
+
+        for( var j = 0; j < rightSideOptionsArray.length; j++ ) {
+          $('#rightSide').append( getOptionEle( rightSideOptionsArray[j].name, rightSideOptionsArray[j].value ) );
+        }
+        
+      }
+
+      function getOptionEle( name, value ) {
+        return $('<option value="' + value + '">' + name + '</option>');
+      }
+      
+      function sortByName( a, b ) {
+        var aName = a.name.toLowerCase();
+        var bName = b.name.toLowerCase(); 
+        return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+      }
+
+      function moveRight() {
+        moveInner( true, leftSideOptionsObj, rightSideOptionsObj, $('#leftSide'), $('#rightSide') );
+      }
+
+      function moveLeft() {
+        moveInner( false, rightSideOptionsObj, leftSideOptionsObj, $('#rightSide'), $('#leftSide') );
+      }
+
+      function moveInner( isAdd, source, target, srcEle, targetEle ) {
+        var selectedOptions = srcEle.val();
+        if( selectedOptions != null ) {
+          for( var i = 0; i < selectedOptions.length; i++ ) {
+            target[ selectedOptions[i] ] = source[ selectedOptions[i] ];
+
+            if( isAdd ) {
+              // Add the tests to the "addsObj", *OR* just remove them from the "removesObj" if present.
+              if( removesObj[ selectedOptions[i] ] != null ) {
+                // it was previously removed, so we don't want to actually add this one.
+                delete removesObj[ selectedOptions[i] ];
+              } else {
+                addsObj[ selectedOptions[i] ] = source[ selectedOptions[i] ];
+              }
+            } else {
+              // Add the tests to the "removesObj", *OR* just remove them from the "addsObj" if present.
+              if( addsObj[ selectedOptions[i] ] != null ) {
+                // it was previously added, so we don't want to actually remove this one.
+                delete addsObj[ selectedOptions[i] ];
+              } else {
+                removesObj[ selectedOptions[i] ] = source[ selectedOptions[i] ];
+              }
+            }
+
+            delete source[ selectedOptions[i] ];
+          }
+
+          populateOptions(isAdd);
+
+          alert( "Adds: " + JSON.stringify(addsObj));
+          alert( "Removes: " + JSON.stringify(removesObj));
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>
+          <select id="leftSide" size="20" multiple="true">
+          </select>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td><button id="moveRight" onclick="javascript:moveRight()">Add-></button></td>
+            </tr>
+            <tr>
+              <td><button id="moveLeft" onclick="javascript:moveLeft()"><-Remove</button></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <select id="rightSide" size="20" multiple="true">
+          </select>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
