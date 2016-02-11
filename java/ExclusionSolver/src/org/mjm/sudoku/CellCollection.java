@@ -158,7 +158,9 @@ public abstract class CellCollection
   
   public Cell [] getPossibleValCountOrderedCells()
   {
-    return this.getOrderedCells( new CellPossibleValCountComparator() );
+    Cell [] retVal = this.getOrderedCells( new CellPossibleValCountComparator() );
+    System.out.println( "Got possible val count ordered cells: " + arrayToString(retVal));
+    return retVal;
   }
   
   private Cell [] getOrderedCells( Comparator<Cell> c )
@@ -181,4 +183,13 @@ public abstract class CellCollection
     return tempSet.toArray( new Cell[9] );
   }
 
+  public static String arrayToString( Cell [] array ) {
+    StringBuilder sb = new StringBuilder();
+    for( Cell cell : array ) {
+      sb.append("[").append(cell.getPossibleValCount()).append("]");
+    }
+    
+    return sb.toString();
+  }
+  
 }

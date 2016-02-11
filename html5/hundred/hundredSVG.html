@@ -1,0 +1,90 @@
+<html>  
+ <head>  
+  <script type="application/javascript">  
+
+var svgHeader = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="640" height="640" viewBox="0 0 640 640">';
+var svgFooter = '</svg>';
+var svgContent = "";
+var vbx0 = 0;
+var vby0 = 0;
+var vbx1 = 640;
+var vby1 = 640;
+var width = 640;
+var height = 640;
+var inflator = 15; // multiply this by n in the nth "orbit" to get the radius.
+
+  function draw() {
+   svgContent = writeSVGHeader();
+   var points = producePoints();
+   for( var i = 0; i < points.length; i++ )
+   {
+        svgContent += points[i];
+   }
+   svg.innerHTML = svgContent + svgFooter;
+  }
+
+  function zoomIn()
+  {
+    vbx0 = vbx0 + 20;
+    vby0 = vby0 + 20;
+    vbx1 = vbx1 - 30;
+    vby1 = vby1 - 30;
+    svg.innerHTML = writeSVGHeader() + svgContent + svgFooter;
+  }
+
+  function zoomOut()
+  {
+    vbx0 = vbx0 - 20;
+    vby0 = vby0 - 20;
+    vbx1 = vbx1 + 30;
+    vby1 = vby1 + 30;
+    svg.innerHTML = writeSVGHeader() + svgContent + svgFooter;
+  }
+
+  function producePoints() {
+    var retVal = [];
+    var flipper = Math.PI / 2;
+    var increment = 0.0;
+    var x = 0.0, y = 0.0;
+    var radius = 0;
+    for( var i = 19; i > 1; i -= 2 ) {
+      flipper = i%4 == 3 ? -1*Math.PI/2 : Math.PI/2;
+      increment = 2*Math.PI / i;
+      radius = inflator * i;
+      retVal.push( getCircle( radius ) );
+      for( var j = 1; j <= i; j++ ) {
+        x = width/2 + Math.cos( (j * increment) + flipper ) * radius;
+        y = height/2 + Math.sin( (j * increment) + flipper ) * radius;
+        retVal.push( getPoint( x, y ) );
+      }
+    }
+    retVal.push( getPoint( width/2, height/2 ) );
+    return retVal;
+  }
+
+  function writeSVGHeader() {
+	return '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="' + width + '" height="'+ height + '" viewBox="' + vbx0 + ' ' + vby0 + ' ' + vbx1 + ' ' + vby1 + '">';
+  }
+
+  function getPoint( x, y ) {
+	return "<circle cx=\""+x+"\" cy=\"" + y + "\" r=\"5\" fill=\"red\"/>\n";
+  }
+
+  function getCircle( radius ) {
+	return "<circle cx=\""+width/2+"\" cy=\"" + height/2 + "\" r=\""+radius+"\" stroke=\"black\" stroke-width=\"1\" fill=\"none\" />\n";
+  }
+
+  </script>  
+ </head>  
+ <body>
+   <table>
+	<tr>
+	  <td><input type="submit" onclick="draw();"/></td>
+	  <td><input type="button" value="+" onclick="zoomIn();"/></td>
+	  <td><input type="button" value="-" onclick="zoomOut();"/></td>
+    </tr>
+   </table>
+   <div id="svg"></div>
+  </body>  
+</html>  
+

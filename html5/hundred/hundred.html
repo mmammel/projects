@@ -1,0 +1,90 @@
+<html>
+ <head>
+  <script type="application/javascript">
+
+/*
+5 53 15 30 23 48 15
+5 53 19 15 23 55 35
+7 53 26 30 23 33 5
+
+*/
+
+function draw() {
+ var area = document.getElementById("coords");
+ var strs = new Array();
+ strs = area.value.split("\n");
+ var coordinates = buildCoords(strs);
+ var canvas = document.getElementById("canvas");
+ var ctx = canvas.getContext("2d");
+ ctx.fillStyle = "rgb(0,0,0)";
+
+ /* scale to width of 600 pixels, height unbounded. */
+ var scaleFactor = 600/(coordinates.maxXcoord - coordinates.minXcoord);  //pixels per degree
+ var canvasHeight = Math.round(scaleFactor*(coordinates.maxYcoord - coordinates.minYcoord));
+ var xoffset = Math.abs(coordinates.minXcoord);
+ var yoffset = Math.abs(coordinates.minYcoord);
+ canvas.height = canvasHeight + 40; // 20 pixel border.
+ alert( "Height: " + canvas.height );
+
+ ctx.fillStyle = "black";
+ ctx.fillRect(0,0,640,canvas.height);
+ ctx.fillStyle = "white";
+
+ for( var i = 0; i < coordinates.coords.length; i++ )
+ {
+  var coord = coordinates.coords[i];
+    drawStar(ctx, (600 - Math.round((coord.x - xoffset)*scaleFactor))+20, (canvasHeight - Math.round((coord.y - yoffset)*scaleFactor))+20, coord.mag);
+ }
+
+}
+
+  function buildCoords( inputArray )
+  {
+  var retVal = { minXcoord:Number.MAX_VALUE,minYcoord:Number.MAX_VALUE,maxXcoord:-1*Number.MAX_VALUE,maxYcoord:-1*Number.MAX_VALUE};
+  var tempInput = null;
+  var coords = new Array();
+  var tempCoord = null;
+  var tempArray = new Array();
+  for( var i = 0; i < inputArray.length; i++ )
+  {
+    tempInput = inputArray[i];
+    tempArray = tempInput.split(" ");
+    tempCoord = new Object();
+    tempCoord.mag = parseFloat(tempArray[0]);
+    tempCoord.x = (parseFloat(tempArray[1]) + (parseFloat(tempArray[2])/60) + (parseFloat(tempArray[3])/3600) );
+    tempCoord.y = (parseFloat(tempArray[4]) + (parseFloat(tempArray[5])/60) + (parseFloat(tempArray[6])/3600) );
+    if( tempCoord.x <= retVal.minXcoord ) retVal.minXcoord = tempCoord.x;
+    if( tempCoord.x >= retVal.maxXcoord ) retVal.maxXcoord = tempCoord.x;
+    if( tempCoord.y <= retVal.minYcoord ) retVal.minYcoord = tempCoord.y;
+    if( tempCoord.y >= retVal.maxYcoord ) retVal.maxYcoord = tempCoord.y;
+    coords.push( tempCoord );
+  }
+
+  retVal.coords = coords;
+
+  return retVal;
+  }
+
+  function drawStar( ctx, x, y, mag ) {
+	ctx.beginPath();
+	ctx.arc(x,y,(10-mag),0,2*Math.PI);
+	ctx.fill();
+  }
+
+  </script>
+ </head>
+ <body>
+   <table border="1">
+  <tr>
+    <td>
+      <textarea id="coords" rows="40" cols="50"></textarea>
+    </td>
+    <td rowspan="2">
+    <canvas id="canvas" width="640" height="640"></canvas>
+      </td>
+    </tr>
+  <tr><td><input type="submit" onclick="draw();"/></td></tr>
+   </table>
+ </body>
+</html>
+
