@@ -133,7 +133,7 @@ function initBuffers() {
       0.0,-1.0*phi,-1.0*phi3
   ];
 
-  var faceGroupings = [
+  var unorderedFaceGroupings = [
   0,3,8,9,
   0,1,5,4,
   0,1,2,3,
@@ -166,6 +166,10 @@ function initBuffers() {
   28,29,30,31
     ];
 
+  var faceGroup = new FaceGroup( unorderedVertices, unorderedFaceGroupings );
+
+  faceGroupings = faceGroup.buildColorOrderedArray();
+
   var vertices = getFaceOrderedVertices( unorderedVertices, faceGroupings );
     
   // Now pass the list of vertices into WebGL to build the shape. We
@@ -175,32 +179,8 @@ function initBuffers() {
 
   // Now set up the colors for the faces. We'll use solid colors
   // for each face.
+  setColors();
 
-  var colors = [
-    [1.0,  1.0,  1.0,  1.0],    // Front face: white
-    [1.0,  0.0,  0.0,  1.0],    // Back face: red
-    [0.0,  0.0,  1.0,  1.0],    // Bottom face: blue
-    [1.0,  1.0,  0.0,  1.0],    // Right face: yellow
-    [1.0,  0.0,  1.0,  1.0]     // Left face: purple
-  ];
-
-  // Convert the array of colors into a table for all the vertices.
-
-  var generatedColors = [];
-
-  for (j=0; j<60; j++) {
-    var c = colors[j%5];
-
-    // Repeat each color four times for the four vertices of the face
-
-    for (var i=0; i<4; i++) {
-      generatedColors = generatedColors.concat(c);
-    }
-  }
-
-  cubeVerticesColorBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesColorBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW);
 
   // Build the element array buffer; this specifies the indices
   // into the vertex array for each face's vertices.
@@ -218,6 +198,24 @@ function initBuffers() {
       new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
 }
 
+function setColors() {
+  var generatedColors = [];
+
+  for (var j=0; j<5; j++) {
+    var c = faceColors[j];
+    for( var k = 0; k < 6; k++ ) {
+      // Repeat each color four times for the four vertices of the face
+      for (var i=0; i<4; i++) {
+        generatedColors = generatedColors.concat(c);
+      }
+    }
+  }
+
+  cubeVerticesColorBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesColorBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW);
+}
+
 //
 // drawScene
 //
@@ -233,7 +231,7 @@ function drawScene() {
   // ratio of 640:480, and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
 
-  perspectiveMatrix = makePerspective(45, 1024.0/768.0, .1, 100.0);
+  perspectiveMatrix = makePerspective(45, 640.0/480.0, .1, 100.0);
 
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
@@ -243,13 +241,18 @@ function drawScene() {
   // Now move the drawing position a bit to where we want to start
   // drawing the cube.
 
-  mvTranslate([0.0, 0.0, -60.0]);
+  mvTranslate([0.0, 0.0, zoomLevel]);
 
   // Save the current matrix, then rotate before we draw.
 
   mvPushMatrix();
-  mvRotate(cubeRotation, [1, 0, 1]);
+  mvRotate(cubeRotation, [0.5, 0.2, 1]);
   //mvTranslate([cubeXOffset, cubeYOffset, cubeZOffset]);
+
+  if( colorChange ) {
+    setColors();
+    colorChange = false;
+  }
 
   // Draw the cube by binding the array buffer to the cube's vertices
   // array, setting attributes, and pushing it to GL.

@@ -1,0 +1,18 @@
+<html>
+ <head>
+  <script type="text/javascript">
+    var arr = [ 1,2,3,4,5,6,7,8,9 ];
+    function foobar() {
+      for( var i = arr.length - 1; i >= 0; i-- ) {
+        console.log( "Array["+i+"]: " + arr[i] );
+        if( arr[i] % 2 == 1 ) {
+          arr.splice(i,1);
+        }
+      }
+    }
+  </script>
+ </head>
+ <body>
+  <input type="button" onclick="foobar();" value="Jomama"></input>
+ </body>
+</html>
