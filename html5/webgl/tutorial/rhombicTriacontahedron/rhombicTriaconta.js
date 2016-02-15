@@ -133,6 +133,9 @@ function initBuffers() {
       0.0,-1.0*phi,-1.0*phi3
   ];
 
+  var vertexGroup = new VertexGroup( unorderedVertices );
+  var autoFaces = vertexGroup.findFaces();
+
   var unorderedFaceGroupings = [
   0,3,8,9,
   0,1,5,4,
