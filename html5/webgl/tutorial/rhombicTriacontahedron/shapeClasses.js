@@ -1,29 +1,102 @@
-/*
- * v0 and v2 are the "icosahedral" points.
- * Uses the "Sylvester" vectors.
- */
-function RhombicFace ( v0, v1, v2, v3, idxArray ) {
-  this.v0 = v0;
-  this.v1 = v1;
-  this.v2 = v2;
-  this.v3 = v3;
-  this.normal = v0.add(v2);
-  this.idxArray = idxArray;
+
+function Polyhedron ( coords ) {
+  this.vertexGroup = new VertexGroup( coords );
+  this.faceGroup = new FaceGroup( this.vertexGroup.findFaces() );
+  this.triangleVertices = this.getTriangleVertices();
 }
 
-RhombicFace.prototype.isOrthogonal = function( face ) {
-  return this.normal.isPerpendicularTo( face.normal );
-};
+Polyhedron.prototype.getVertexIndexArray = function() {
+  var retVal = [];
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    retVal = retVal.concat( this.faceGroup.faces[i].idxArray );
+  }
 
-RhombicFace.prototype.isOpposite = function( face ) {
-  return this.normal.isAntiparallelTo( face.normal );
-};
+  return retVal;
+}
+
+Polyhedron.prototype.getFaceOrderedVertices = function() {
+  var retVal = [];
+  var vidx = 0;
+  var vertexIndices = this.getVertexIndexArray();
+  for( var i = 0; i < vertexIndices.length; i++ ) {
+    vidx = vertexIndices[i];
+    retVal.push( this.vertexGroup.coords[ 3*vidx ] );
+    retVal.push( this.vertexGroup.coords[ 3*vidx + 1 ] );
+    retVal.push( this.vertexGroup.coords[ 3*vidx + 2 ] );
+  }
+
+  return retVal;
+}
+
+Polyhedron.prototype.getTriangleVertices = function() {
+  var retVal = [];
+  var tempVerts = null;
+  var offset = 0;
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    tempVerts = this.faceGroup.faces[i].getTriangleVertices();
+    for( var j = 0; j < tempVerts.length; j++ ) {
+      retVal.push( offset + tempVerts[j] );
+    }
+    offset += this.faceGroup.faces[i].vertices.length;
+  }
+
+  return retVal;
+}
 
 function Face ( plane, vertices, idxArray ) {
   this.vertices = vertices;
   this.idxArray = idxArray;
   this.normal = plane.normal;
 }
+
+/*
+ * Put the vertices in "edge order"
+ * Again, could be optimized, but eh, were talking like up to ten vertices tops for this stuff.
+ */
+Face.prototype.sortVertices = function() {
+  var maxAngle = -1, tempAngle = 0;
+  var adjacencyArray = []; // holds an array of [j,k] where
+                           // j and k are the two neighbors of i,
+                           // where i is the index into the array.
+  var tempNeighbors = [];
+  if( this.vertices.length > 3 ) {
+    // obviously if there are only 3 vertices we're set.
+    for( var i = 0; i < this.vertices.length; i++ ) {
+      maxAngle = -1;
+      for( var j = 0; j < this.vertices.length - 1; j++ ) {
+        if( j == i ) continue;
+        for( var k = j+1; k < this.vertices.length; k++ ) {
+          if( k == i ) continue;
+          tempAngle = this.vertices[j].subtract( this.vertices[i] ).angleFrom( this.vertices[k].subtract( this.vertices[i] ) );
+          if( tempAngle > maxAngle ) {
+            maxAngle = tempAngle;
+            tempNeighbors = [ j, k ];
+          } 
+        }
+      }
+      adjacencyArray.push( tempNeighbors );
+    }  
+    
+    var newOrder = [];
+    // we always start at 0
+    var vidx = 0, prev = 0; // vidx is current, prev is where we came from.
+    do {
+      newOrder.push( vidx );
+      vidx = adjacencyArray[ vidx ][ 0 ] == prev ? adjacencyArray[ vidx ][ 1 ] : adjacencyArray[ vidx ][ 0 ] ;
+      prev = newOrder[ newOrder.length - 1 ];
+    } while( vidx != 0 );
+
+    var orderedVertices = [];
+    var orderedIndices = [];
+    for( var i = 0; i < newOrder.length; i++ ) {
+      orderedVertices.push( this.vertices[ newOrder[i] ] );
+      orderedIndices.push( this.idxArray[ newOrder[i] ] );
+    }
+
+    this.vertices = orderedVertices;
+    this.idxArray = orderedIndices;
+  }
+};
 
 Face.prototype.isOrthogonal = function( face ) {
   return this.normal.isPerpendicularTo( face.normal );
@@ -33,33 +106,27 @@ Face.prototype.isOpposite = function( face ) {
   return this.normal.isAntiparallelTo( face.normal );
 };
 
-/*
- * vertices: one-dimensional array of floats defining all of the vertices.
- *           Starting at 0, 3 consecutive elements define a vertex.
- * faceMap: one-dimensional array of ints that are indices into the vertices array.
- *          Starting at 0, 4 consecutive elements point to 4 vertices that define a face.
- *
- *  So, 3*faceMap[n] points you to the x coordinate of some vertex that is in the n/4-th face.
- */
-function FaceGroup ( vertices, faceMap ) {
-  this.faces = [];
-  var x = 0.0, y = 0.0, z = 0.0;
-  var vIdx = 0;
-  var tempFace = null;
-  for( var i = 0; i < faceMap.length; i+=4 ) {
-    tempFace = new RhombicFace(
-      $V( [ vertices[3*faceMap[i]], vertices[3*faceMap[i]+1], vertices[3*faceMap[i]+2] ] ),
-      $V( [ vertices[3*faceMap[i+1]], vertices[3*faceMap[i+1]+1], vertices[3*faceMap[i+1]+2] ] ),
-      $V( [ vertices[3*faceMap[i+2]], vertices[3*faceMap[i+2]+1], vertices[3*faceMap[i+2]+2] ] ),
-      $V( [ vertices[3*faceMap[i+3]], vertices[3*faceMap[i+3]+1], vertices[3*faceMap[i+3]+2] ] ),
-      [ faceMap[i], faceMap[i+1], faceMap[i+2], faceMap[i+3] ]
-    );
+Face.prototype.isParallel = function( face ) {
+  return this.normal.isParallelTo( face.normal );
+};
 
-    this.faces.push(tempFace);
+Face.prototype.getTriangleVertices = function() {
+  var retVal = [];
+  for( var i = 1; i < this.idxArray.length - 1; i++ ) {
+    retVal.push( 0, i, i+1 );
   }
+  return retVal;
 }
 
-FaceGroup.prototype.buildColorOrderedArray = function() {
+/*
+ * faces: an array of generic faces, might have any number of sides.
+ */
+function FaceGroup ( faces ) {
+  this.faces = faces;
+  this.sortForColoring();
+}
+
+FaceGroup.prototype.sortForColoring = function() {
   var indexArray = [];
   var sets = [];
   var tempSet = null;
@@ -75,7 +142,7 @@ FaceGroup.prototype.buildColorOrderedArray = function() {
     indexArray.pop();
     for( var i = indexArray.length - 1; i >= 0; i-- ) {
       tempFace = this.faces[ indexArray[i] ];
-      if( face.isOpposite( tempFace ) || face.isOrthogonal( tempFace ) ) {
+      if( face.isOpposite( tempFace ) || face.isOrthogonal( tempFace ) || face.isParallel( tempFace) ) {
         tempSet.push( tempFace );
         indexArray.splice( i, 1 ); // remove this index.
       }
@@ -86,15 +153,16 @@ FaceGroup.prototype.buildColorOrderedArray = function() {
     }
   }
 
-  var retVal = [];
+  var colorOrdered = [];
   for( var j = 0; j < sets.length; j++ ) {
     for( var k = 0; k < sets[j].length; k++ ) {
-      retVal = retVal.concat( sets[j][k].idxArray );
+      colorOrdered.push( sets[j][k] );
     }
   }
 
-  return retVal;
+  this.faces = colorOrdered;
 }
+
 
 function VertexGroup ( coords ) {
   this.coords = coords;
@@ -183,6 +251,8 @@ VertexGroup.prototype.findFaces = function() {
         tempFace.vertices.push( this.vertices[v] );
       } 
     }
+
+    tempFace.sortVertices();
   }
 
   return result;

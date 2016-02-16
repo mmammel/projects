@@ -22,6 +22,79 @@ var vertexPositionAttribute;
 var vertexColorAttribute;
 var perspectiveMatrix;
 
+var poly; // the polyhedron
+
+// The vertices to use
+// hardcoded for now, could pass them in.
+var cube_polyVerts = [
+  1,1,1,
+  1,-1,1,
+  -1,1,1,
+  -1,-1,1,
+  1,1,-1,
+  1,-1,-1,
+  -1,1,-1,
+  -1,-1,-1
+];
+
+var dodecahedron_polyVerts = [
+  1,1,1,
+  1,-1,1,
+  -1,1,1,
+  -1,-1,1,
+  1,1,-1,
+  1,-1,-1,
+  -1,1,-1,
+  -1,-1,-1,
+  0, 1.0+phi, 1.0 - phi2,
+  0, 1.0+phi, -1.0 + phi2,
+  0, -1.0 - phi, 1 - phi2,
+  0, -1.0 - phi, -1.0 + phi2,
+  1.0+phi, 1.0 - phi2, 0,
+  1.0+phi, -1.0 + phi2, 0,
+  -1.0 - phi, 1 - phi2, 0,
+  -1.0 - phi, -1.0 + phi2, 0,
+  1.0 - phi2, 0, 1.0+phi,
+  -1.0 + phi2, 0, 1.0+phi,
+  1 - phi2, 0, -1.0 - phi,
+  -1.0 + phi2, 0, -1.0 - phi
+];
+
+var rt_polyVerts = [
+      phi2, 0.0, phi3,
+      0.0, phi, phi3,
+      -1.0*phi2, 0.0, phi3,
+      0.0,-1.0*phi, phi3,
+      phi2, phi2, phi2,
+      0.0, phi3, phi2,
+      -1.0*phi2, phi2, phi2,
+      -1.0*phi2,-1.0*phi2, phi2,
+      0.0,-1.0*phi3, phi2,
+      phi2,-1.0*phi2, phi2,
+      phi3, 0.0, phi,
+      -1.0*phi3, 0.0, phi,
+      phi3, phi2,0.0,
+      phi , phi3, 0.0,
+      -1.0*phi , phi3, 0.0,
+      -1.0*phi3, phi2, 0.0,
+      -1.0*phi3,-1.0*phi2, 0.0,
+      -1.0*phi ,-1.0*phi3, 0.0,
+      phi ,-1.0*phi3, 0.0,
+      phi3,-1.0*phi2, 0.0,
+      phi3, 0.0,-1.0*phi,
+      -1.0*phi3, 0.0,-1.0*phi,
+      phi2, phi2,-1.0*phi2,
+      0.0, phi3,-1.0*phi2,
+      -1.0*phi2, phi2,-1.0*phi2,
+      -1.0*phi2,-1.0*phi2,-1.0*phi2,
+      0.0,-1.0*phi3,-1.0*phi2,
+      phi2,-1.0*phi2,-1.0*phi2,
+      phi2, 0.0,-1.0*phi3,
+      0.0, phi,-1.0*phi3,
+      -1.0*phi2, 0.0,-1.0*phi3,
+      0.0,-1.0*phi,-1.0*phi3
+];
+
 //
 // start
 //
@@ -47,7 +120,7 @@ function start() {
 
     // Here's where we call the routine that builds all the objects
     // we'll be drawing.
-
+    poly = new Polyhedron( rt_polyVerts );
     initBuffers();
 
     // Set up to draw the scene periodically.
@@ -96,84 +169,7 @@ function initBuffers() {
 
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
 
-  // Now create an array of vertices for the cube.
-
-  var unorderedVertices = [
-      phi2, 0.0, phi3,
-      0.0, phi, phi3,
-      -1.0*phi2, 0.0, phi3,
-      0.0,-1.0*phi, phi3,
-      phi2, phi2, phi2,
-      0.0, phi3, phi2,
-      -1.0*phi2, phi2, phi2,
-      -1.0*phi2,-1.0*phi2, phi2,
-      0.0,-1.0*phi3, phi2,
-      phi2,-1.0*phi2, phi2,
-      phi3, 0.0, phi,
-      -1.0*phi3, 0.0, phi,
-      phi3, phi2,0.0,
-      phi , phi3, 0.0,
-      -1.0*phi , phi3, 0.0,
-      -1.0*phi3, phi2, 0.0,
-      -1.0*phi3,-1.0*phi2, 0.0,
-      -1.0*phi ,-1.0*phi3, 0.0,
-      phi ,-1.0*phi3, 0.0,
-      phi3,-1.0*phi2, 0.0,
-      phi3, 0.0,-1.0*phi,
-      -1.0*phi3, 0.0,-1.0*phi,
-      phi2, phi2,-1.0*phi2,
-      0.0, phi3,-1.0*phi2,
-      -1.0*phi2, phi2,-1.0*phi2,
-      -1.0*phi2,-1.0*phi2,-1.0*phi2,
-      0.0,-1.0*phi3,-1.0*phi2,
-      phi2,-1.0*phi2,-1.0*phi2,
-      phi2, 0.0,-1.0*phi3,
-      0.0, phi,-1.0*phi3,
-      -1.0*phi2, 0.0,-1.0*phi3,
-      0.0,-1.0*phi,-1.0*phi3
-  ];
-
-  var vertexGroup = new VertexGroup( unorderedVertices );
-  var autoFaces = vertexGroup.findFaces();
-
-  var unorderedFaceGroupings = [
-  0,3,8,9,
-  0,1,5,4,
-  0,1,2,3,
-  0,4,12,10,
-  0,10,19,9,
-  12,4,5,13,
-  12,13,23,22,
-  12,22,28,20,
-  12,20,19,10,
-  16,7,2,11,
-  16,11,15,21,
-  16,21,30,25,
-  16,25,26,17,
-  16,17,8,7,
-  8,3,2,7,
-  8,17,26,18,
-  8,18,19,9,
-  26,18,19,27,
-  26,27,28,31,
-  26,31,30,25,
-  2,1,5,6,
-  2,6,15,11,
-  23,14,15,24,
-  23,24,30,29,
-  23,29,28,22,
-  23,13,5,14,
-  5,6,15,14,
-  15,21,30,24,
-  28,20,19,27,
-  28,29,30,31
-    ];
-
-  var faceGroup = new FaceGroup( unorderedVertices, unorderedFaceGroupings );
-
-  faceGroupings = faceGroup.buildColorOrderedArray();
-
-  var vertices = getFaceOrderedVertices( unorderedVertices, faceGroupings );
+  var vertices = poly.getFaceOrderedVertices();
     
   // Now pass the list of vertices into WebGL to build the shape. We
   // do this by creating a Float32Array from the JavaScript array,
@@ -184,7 +180,6 @@ function initBuffers() {
   // for each face.
   setColors();
 
-
   // Build the element array buffer; this specifies the indices
   // into the vertex array for each face's vertices.
   cubeVerticesIndexBuffer = gl.createBuffer();
@@ -193,7 +188,7 @@ function initBuffers() {
   // This array defines each face as two triangles, using the
   // indices into the vertex array to specify each triangle's
   // position.
-  var cubeVertexIndices = getTriangleIndexArray( faceGroupings );
+  var cubeVertexIndices = poly.triangleVertices;
 
   // Now send the element array to GL
 
@@ -270,7 +265,7 @@ function drawScene() {
 
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer);
   setMatrixUniforms();
-  gl.drawElements(gl.TRIANGLES, 180, gl.UNSIGNED_SHORT, 0);
+  gl.drawElements(gl.TRIANGLES, poly.triangleVertices.length, gl.UNSIGNED_SHORT, 0);
 
   // Restore the original matrix
 
