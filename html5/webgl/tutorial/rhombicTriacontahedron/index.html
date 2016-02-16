@@ -114,8 +114,22 @@
       });
 
       function changePoly( verts ) {
+
+        var polyVerts = null;
+        if( verts == 'rt_polyVerts' ) {
+          polyVerts = rt_polyVerts;
+        } else if( verts == 'cube_polyVerts' ) {
+          polyVerts = cube_polyVerts;
+        } else if( verts == 'dodecahedron_polyVerts' ) {
+          polyVerts = dodecahedron_polyVerts;
+        } else if( verts == 'pyramid_polyVerts' ) {
+          polyVerts = pyramid_polyVerts;
+        } else {
+          return false;
+        }
+
         clearInterval(drawInterval);
-        poly = new Polyhedron( verts );
+        poly = new Polyhedron( polyVerts );
 
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
         var vertices = poly.getFaceOrderedVertices();
@@ -129,6 +143,8 @@
 
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,
             new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
+
+        changeColors = true;
 
         drawInterval = setInterval( drawScene, 15 );
       }
@@ -155,14 +171,14 @@
         </td>
       </tr>
       <tr>
-        <!--<td>
+        <td>
           <ul>
-            <li><a onclick="changePoly('rt_polyVerts');">Rhombic Triacontahedron</a></li>
-            <li><a onclick="changePoly('cube_polyVerts');">Cube</a></li>
-            <li><a onclick="changePoly('dodecahedron_polyVerts');">Dodecahedron</a></li>
-            <li><a onclick="changePoly('pyramid_polyVerts');">Pyramid</a></li>
+            <li><a href="#" onclick="changePoly('rt_polyVerts');">Rhombic Triacontahedron</a></li>
+            <li><a href="#" onclick="changePoly('cube_polyVerts');">Cube</a></li>
+            <li><a href="#" onclick="changePoly('dodecahedron_polyVerts');">Dodecahedron</a></li>
+            <li><a href="#" onclick="changePoly('pyramid_polyVerts');">Pyramid</a></li>
           </ul>
-        </td>-->
+        </td>
         <td>
           <div id="rotVector">[0,0,0]</div>
         </td>
