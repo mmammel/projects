@@ -15,6 +15,9 @@ var zIncValue = 0.3;
 var phi = (1.0 + Math.sqrt(5.0)) / 2.0;
 var phi2 = Math.pow(phi,2);
 var phi3 = Math.pow(phi,3);
+var invphi = (Math.sqrt(5.0) - 1) / 2.0;
+var invphi2 = Math.pow(invphi,2);
+var invphi3 = Math.pow(invphi,3);
 
 var mvMatrix;
 var shaderProgram;
@@ -26,6 +29,14 @@ var poly; // the polyhedron
 
 // The vertices to use
 // hardcoded for now, could pass them in.
+var pyramid_polyVerts = [
+  0,0,2,
+  2,2,-1,
+  2,-2,-1,
+  -2,2,-1,
+  -2,-2,-1
+];
+
 var cube_polyVerts = [
   1,1,1,
   1,-1,1,
@@ -46,18 +57,18 @@ var dodecahedron_polyVerts = [
   1,-1,-1,
   -1,1,-1,
   -1,-1,-1,
-  0, 1.0+phi, 1.0 - phi2,
-  0, 1.0+phi, -1.0 + phi2,
-  0, -1.0 - phi, 1 - phi2,
-  0, -1.0 - phi, -1.0 + phi2,
-  1.0+phi, 1.0 - phi2, 0,
-  1.0+phi, -1.0 + phi2, 0,
-  -1.0 - phi, 1 - phi2, 0,
-  -1.0 - phi, -1.0 + phi2, 0,
-  1.0 - phi2, 0, 1.0+phi,
-  -1.0 + phi2, 0, 1.0+phi,
-  1 - phi2, 0, -1.0 - phi,
-  -1.0 + phi2, 0, -1.0 - phi
+  0, 1.0+invphi, 1.0 - invphi2,
+  0, 1.0+invphi, -1.0 + invphi2,
+  0, -1.0 - invphi, 1 - invphi2,
+  0, -1.0 - invphi, -1.0 + invphi2,
+  1.0+invphi, 1.0 - invphi2, 0,
+  1.0+invphi, -1.0 + invphi2, 0,
+  -1.0 - invphi, 1 - invphi2, 0,
+  -1.0 - invphi, -1.0 + invphi2, 0,
+  1.0 - invphi2, 0, 1.0+invphi,
+  -1.0 + invphi2, 0, 1.0+invphi,
+  1 - invphi2, 0, -1.0 - invphi,
+  -1.0 + invphi2, 0, -1.0 - invphi
 ];
 
 var rt_polyVerts = [
@@ -120,12 +131,12 @@ function start() {
 
     // Here's where we call the routine that builds all the objects
     // we'll be drawing.
-    poly = new Polyhedron( rt_polyVerts );
+    poly = new Polyhedron( dodecahedron_polyVerts );
     initBuffers();
 
     // Set up to draw the scene periodically.
 
-    setInterval(drawScene, 15);
+    drawInterval = setInterval(drawScene, 15);
     //drawScene();
   }
 }
@@ -199,30 +210,20 @@ function initBuffers() {
 function setColors() {
   var generatedColors = [];
 
-  /*for (var j=0; j<5; j++) {
-    var c = faceColors[j];
-    for( var k = 0; k < 6; k++ ) {
-      // Repeat each color four times for the four vertices of the face
-      for (var i=0; i<4; i++) {
-        generatedColors = generatedColors.concat(c);
-      }
-    }
-  }*/
-
   var colorSets = poly.faceGroup.coloringSets;
 
   if( colorSets.length == 1 ) {
     // one set, just cycle through the colors for each face.
     var faces = colorSets[0];
     for( var f = 0; f < faces.length; f++ ) {
-      var c = faceColors[f%6];
+      var c = faceColors[f%7];
       for( var v = 0; v < faces[f].vertices.length; v++ ) {
         generatedColors = generatedColors.concat( c );
       }
     }
   } else {
     for( var s = 0; s < colorSets.length; s++ ) {
-      var c = faceColors[s%6];
+      var c = faceColors[s%7];
       var faces = colorSets[s];
       for( var f = 0; f < faces.length; f++ ) {
         for( var v = 0; v < faces[f].vertices.length; v++ ) {
@@ -267,7 +268,7 @@ function drawScene() {
   // Save the current matrix, then rotate before we draw.
 
   mvPushMatrix();
-  mvRotate(cubeRotation, [0.5, 0.2, 1]);
+  mvRotate(cubeRotation, [rotX, rotY, rotZ]);
   //mvTranslate([cubeXOffset, cubeYOffset, cubeZOffset]);
 
   if( colorChange ) {
