@@ -57,7 +57,7 @@
 
       function setFaceColors( e ) {
         faceColors = [];
-        for( var i = 0; i < 7; i++ ) {
+        for( var i = 0; i < 15; i++ ) {
           faceColors.push( hexToRgb( $('#c'+i).val() ) );
         }
         colorChange = true;
@@ -115,21 +115,8 @@
 
       function changePoly( verts ) {
 
-        var polyVerts = null;
-        if( verts == 'rt_polyVerts' ) {
-          polyVerts = rt_polyVerts;
-        } else if( verts == 'cube_polyVerts' ) {
-          polyVerts = cube_polyVerts;
-        } else if( verts == 'dodecahedron_polyVerts' ) {
-          polyVerts = dodecahedron_polyVerts;
-        } else if( verts == 'pyramid_polyVerts' ) {
-          polyVerts = pyramid_polyVerts;
-        } else {
-          return false;
-        }
-
         clearInterval(drawInterval);
-        poly = new Polyhedron( polyVerts );
+        poly = new Polyhedron( verts );
 
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
         var vertices = poly.getFaceOrderedVertices();
@@ -167,16 +154,27 @@
           <div><input type="color" id="c4" value="#9900cc"></input></div>
           <div><input type="color" id="c5" value="#1dc717"></input></div>
           <div><input type="color" id="c6" value="#2de7c7"></input></div>
+          <div><input type="color" id="c7" value="#3df7d7"></input></div>
+          <div><input type="color" id="c8" value="#4d17e7"></input></div>
+          <div><input type="color" id="c9" value="#5d37f7"></input></div>
+          <div><input type="color" id="c10" value="#6d5717"></input></div>
+          <div><input type="color" id="c11" value="#7d7737"></input></div>
+          <div><input type="color" id="c12" value="#8d9757"></input></div>
+          <div><input type="color" id="c13" value="#fd1717"></input></div>
+          <div><input type="color" id="c14" value="#fdf7f7"></input></div>
           <div><label for="zoomLevel">Zoom: </label><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" min="0" max="100"></div>
         </td>
       </tr>
       <tr>
         <td>
           <ul>
-            <li><a href="#" onclick="changePoly('rt_polyVerts');">Rhombic Triacontahedron</a></li>
-            <li><a href="#" onclick="changePoly('cube_polyVerts');">Cube</a></li>
-            <li><a href="#" onclick="changePoly('dodecahedron_polyVerts');">Dodecahedron</a></li>
-            <li><a href="#" onclick="changePoly('pyramid_polyVerts');">Pyramid</a></li>
+            <li><a href="#" onclick="changePoly(rt_polyVerts);">Rhombic Triacontahedron</a></li>
+            <li><a href="#" onclick="changePoly(cube_polyVerts);">Cube</a></li>
+            <li><a href="#" onclick="changePoly(dodecahedron_polyVerts);">Dodecahedron</a></li>
+            <li><a href="#" onclick="changePoly(pyramid_polyVerts);">Pyramid</a></li>
+            <li><a href="#" onclick="changePoly(rhombicDodecahedron_polyVerts);">Rhombic Dodecahedron</a></li>
+            <li><a href="#" onclick="changePoly(icosahedron_polyVerts);">Icosahedron</a></li>
+            <li><a href="#" onclick="changePoly(giant_polyVerts);">Enneacontahedron</a></li>
           </ul>
         </td>
         <td>
