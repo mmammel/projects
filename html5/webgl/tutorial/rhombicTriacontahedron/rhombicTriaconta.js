@@ -199,12 +199,35 @@ function initBuffers() {
 function setColors() {
   var generatedColors = [];
 
-  for (var j=0; j<5; j++) {
+  /*for (var j=0; j<5; j++) {
     var c = faceColors[j];
     for( var k = 0; k < 6; k++ ) {
       // Repeat each color four times for the four vertices of the face
       for (var i=0; i<4; i++) {
         generatedColors = generatedColors.concat(c);
+      }
+    }
+  }*/
+
+  var colorSets = poly.faceGroup.coloringSets;
+
+  if( colorSets.length == 1 ) {
+    // one set, just cycle through the colors for each face.
+    var faces = colorSets[0];
+    for( var f = 0; f < faces.length; f++ ) {
+      var c = faceColors[f%6];
+      for( var v = 0; v < faces[f].vertices.length; v++ ) {
+        generatedColors = generatedColors.concat( c );
+      }
+    }
+  } else {
+    for( var s = 0; s < colorSets.length; s++ ) {
+      var c = faceColors[s%6];
+      var faces = colorSets[s];
+      for( var f = 0; f < faces.length; f++ ) {
+        for( var v = 0; v < faces[f].vertices.length; v++ ) {
+          generatedColors = generatedColors.concat( c );
+        }
       }
     }
   }

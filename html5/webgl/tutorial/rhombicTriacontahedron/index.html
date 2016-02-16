@@ -55,7 +55,7 @@
 
       function setFaceColors( e ) {
         faceColors = [];
-        for( var i = 0; i < 5; i++ ) {
+        for( var i = 0; i < 6; i++ ) {
           faceColors.push( hexToRgb( $('#c'+i).val() ) );
         }
         colorChange = true;
@@ -90,6 +90,7 @@
           <div><input type="color" id="c2" value="#ffff00"></input></div>
           <div><input type="color" id="c3" value="#0000ff"></input></div>
           <div><input type="color" id="c4" value="#9900cc"></input></div>
+          <div><input type="color" id="c5" value="#1dc717"></input></div>
           <div><label for="zoomLevel">Zoom: </label><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" min="0" max="100"></div>
         </td>
       </tr>

@@ -123,7 +123,7 @@ Face.prototype.getTriangleVertices = function() {
  */
 function FaceGroup ( faces ) {
   this.faces = faces;
-  this.sortForColoring();
+  this.coloringSets = this.sortForColoring();
 }
 
 FaceGroup.prototype.sortForColoring = function() {
@@ -161,6 +161,7 @@ FaceGroup.prototype.sortForColoring = function() {
   }
 
   this.faces = colorOrdered;
+  return sets;
 }
 
 
