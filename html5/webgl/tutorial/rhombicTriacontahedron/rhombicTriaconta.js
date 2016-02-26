@@ -365,6 +365,16 @@ function setColors() {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW);
 }
 
+function getRotationAxis(ra, dec) {
+  var r = ra;
+  var d = dec;
+  var cosR = Math.cos( ra * Math.PI/180);
+  var sinR = Math.sin( ra * Math.PI/180);
+  var cosD = Math.cos( d * Math.PI/180);
+  var sinD = Math.sin( d * Math.PI/180);
+  return $V([cosR*cosD,sinR*cosD,sinD]); 
+}
+
 //
 // drawScene
 //
@@ -372,6 +382,8 @@ function setColors() {
 //
 function drawScene() {
   // Clear the canvas before we start drawing on it.
+
+  var rotVec = getRotationAxis(ra, dec);
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -393,9 +405,21 @@ function drawScene() {
   mvTranslate([0.0, 0.0, zoomLevel]);
 
   // Save the current matrix, then rotate before we draw.
-
   mvPushMatrix();
-  mvRotate(cubeRotation, [rotX, rotY, rotZ]);
+
+  mvRotate(cubeRotation, rotVec.elements);
+
+  // Use z,x',z''
+  // first rotate around the z-axis by ztheta
+  ////mvRotate(rotZTheta, [0,0,1]);
+  // now find the new x (x') by performing the same rotation again on the original x axis
+  // also find y', the new y after the z spin.
+  ////var xprime = $V([1,0,0]).rotate(rotZTheta * Math.PI / 180.0, Line.Z);
+  ////var yprime = $V([0,1,0]).rotate(rotZTheta * Math.PI / 180.0, Line.Z);
+  ////mvRotate(rotXTheta, xprime.elements);
+  // now apply the xprime turn on yprime, and then rotate around y
+  ////mvRotate(rotYTheta, yprime.rotate(rotXTheta * Math.PI / 180.0,$L([0,0,0],xprime)).elements);
+
   //mvTranslate([cubeXOffset, cubeYOffset, cubeZOffset]);
 
   if( colorChange ) {
@@ -425,10 +449,16 @@ function drawScene() {
   // Update the rotation for the next draw, if it's time to do so.
 
   var currentTime = (new Date).getTime();
-  if (lastCubeUpdateTime) {
-    var delta = currentTime - lastCubeUpdateTime;
-
-    cubeRotation += (30 * delta) / 1000.0;
+  if (lastCubeUpdateTime ) {
+    //var delta = currentTime - lastCubeUpdateTime;
+    cubeRotation += spinRate;
+    cubeRotation %= 360;
+    //rotXTheta += rotX;
+    //rotXTheta = rotXTheta % 360;
+    //rotYTheta += rotY;
+    //rotYTheta = rotYTheta % 360;
+    //rotZTheta += rotZ;
+    //rotZTheta = rotZTheta % 360;
     //cubeXOffset += xIncValue * ((30 * delta) / 1000.0);
     //cubeYOffset += yIncValue * ((30 * delta) / 1000.0);
     //cubeZOffset += zIncValue * ((30 * delta) / 1000.0);

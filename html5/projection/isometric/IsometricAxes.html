@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="sylvester.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var root3 = Math.sqrt(3);
+      var root2 = Math.sqrt(2);
+
+      var Grid = [
+        [-1, 0, 0],
+        [1, 0, 0],
+        [0, -1, 0],
+        [0, 1, 0],
+        [0, 0, -1],
+        [0, 0, 1]
+      ];
+
+      var P = $M([
+        [root3, 0.0, -1.0*root3],
+        [1,2,1],
+        [root2,-1.0*root2,root2]
+      ]).map(function(x) { return x/Math.sqrt(6); }).snapTo(0);
+
+      function translate( coord ) {
+        var vec = $V(coord);
+        return P.multiply( vec ).elements;
+      }
+
+      function translateAll( coords ) {
+        var retVal = [];
+        for( var i = 0; i < coords.length; i++ ) {
+          retVal.push( translate( coords[i] ) );
+        } 
+
+        return retVal;
+      }
+
+      function scaleCoords( coords, factor ) {
+        var retVal = [];
+        for( var i = 0; i < coords.length; i++ ) {
+          retVal.push( coords[i].map( function( num ) { return num*factor + factor; } ) );
+        }
+        return retVal;
+      }
+
+      function getTranslatedGridSVG() {
+        var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="600" height="600">';
+
+        var t = translateAll( Grid );
+        var st = scaleCoords( t, 300 );
+        for( var i = 0; i < t.length; i+=2 ) {
+          content += '<line x1="'+st[i][0]+'" y1="'+st[i][1]+'" x2="'+st[i+1][0]+'" y2="'+st[i+1][1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        }
+        content += '</svg>';
+        return content;        
+      }
+
+      $(document).ready(function() {
+        $('#svgContainer').html( getTranslatedGridSVG() );
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id="svgContainer">
+      
+    </div>
+  </body>
+</html>

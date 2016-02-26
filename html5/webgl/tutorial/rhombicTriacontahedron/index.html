@@ -42,8 +42,90 @@
       var faceColors = [];
       var colorChange = false;
       var drawInterval = null;
-      var zoomLevel = -30;
-      var rotX = .5, rotY = .2, rotZ = 1;
+      var zoomLevel = -10;
+      var ra = 0;  // right ascension in degrees.
+      var dec = 0;  // declination in degrees.
+      var spinRate = 0.0;  // spin rate in degrees per 15ms
+      var angleIncrement = 1; //increment in degrees.
+
+
+      /**
+        This stuff is for the little 
+        rotation axis display.
+      */
+      var alpha = -30; // rotation about the X-axis for the little display
+      var beta = 45;  // rotation about the Y (vertical) axis for the little display
+
+      var Grid = [
+        [-1, 0, 0],
+        [1, 0, 0],
+        [0, -1, 0],
+        [0, 1, 0],
+        [0, 0, -1],
+        [0, 0, 1]
+      ];
+
+      var Labels = [
+        [0.8,0,0.2], //+X
+        [0.2,0.8,0], //+Y
+        [0,0,1.2]  //+Z
+      ];
+
+      function getRotationMatrix( alpha, beta ) {
+        var alphaR = alpha * Math.PI/180;
+        var betaR = beta * Math.PI/180;
+        var alphaRot = $M([
+                         [1, 0, 0],
+                         [0, Math.cos(alphaR), 1.0*Math.sin(alphaR)],
+                         [0, -1.0*Math.sin(alphaR), Math.cos(alphaR)]
+                       ]).snapTo(0);
+        var betaRot = $M([
+                         [Math.cos(betaR), 0, -1.0*Math.sin(betaR)],
+                         [0, 1, 0],
+                         [1.0*Math.sin(betaR), 0, Math.cos(betaR)]
+                       ]).snapTo(0);
+
+        return alphaRot.multiply( betaRot ).snapTo(0);
+      }
+
+      var P = getRotationMatrix( alpha, beta );
+      
+      function translate( coord ) {
+        var vec = $V(coord);
+        return P.multiply( vec ).elements;
+      }
+
+      function translateAll( coords ) {
+        var retVal = [];
+        for( var i = 0; i < coords.length; i++ ) {
+          retVal.push( translate( coords[i] ) );
+        }
+
+        return retVal;
+      }
+
+      function scaleCoords( coords, factor ) {
+        var retVal = [];
+        for( var i = 0; i < coords.length; i++ ) {
+          retVal.push( scaleCoord( coords[i], factor ) );
+        }
+        return retVal;
+      }
+
+      function scaleCoord( coord, factor ) {
+        var mapped = coord.map( function( num ) { return num*factor + factor; } );
+        //mapped[0] = 2*factor - mapped[0]; // have to flip it.
+        mapped[1] = 2*factor - mapped[1]; // have to flip it.
+        return mapped;
+      }
+
+      var filterFloat = function (value) {
+        if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/.test(value)) {
+          return Number(value);
+        } else {
+          return NaN;
+        }
+      }
 
       function hexToRgb(hex) {
         var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -74,22 +156,29 @@
         var retVal = true;
         if( event.keyCode >= 37 && event.keyCode <= 40 ) {
           if( event.keyCode == 37 ) {
-            rotX -= .1;
+            ra -= angleIncrement;
+            if( ra < 0 ) ra = 360 + ra;
           } else if( event.keyCode == 39 ) {
-            rotX += .1;
+            ra += angleIncrement;
+            if( ra >= 360 ) ra = ra - 360;
           } else if( event.keyCode == 38 ) {
             if( event.shiftKey ) {
-              rotZ += .1;
+              spinRate += .01;
             } else {
-              rotY += .1;
+              dec -= angleIncrement;
+              if( dec < 0 ) dec = 360 + dec;
             }
           } else if( event.keyCode == 40 ) {
             if( event.shiftKey ) {
-              rotZ -= .1;
+              spinRate -= .01;
+              if( spinRate < 0 ) spinRate = 0;
             } else {
-              rotY -= .1;
+              dec += angleIncrement;
+              if( dec >= 360 ) dec = dec - 360;
             }
           }
+
+          spinRate = filterFloat(spinRate.toFixed(2));
 
           populateRotVectorDisplay();
 
@@ -99,8 +188,65 @@
         return retVal;
       }
 
+      function getIndicatorCoords() {
+        var retVal = [];
+        var offsets = [ [0,10], [10,0], [0, -10], [-10,0]];
+        var raOffset = 0, decOffset = 0;
+        for( var i = 0; i < offsets.length; i++ ) {
+          raOffset = ra + offsets[i][0];
+          decOffset = dec + offsets[i][1];
+          if( raOffset < 0 ) raOffset += 360;
+          if( raOffset > 359 ) raOffset -= 360;
+          if( decOffset < 0 ) decOffset += 360;
+          if( decOffset > 359 ) decOffset -= 360;
+          retVal.push( getRotationAxis( raOffset, decOffset ).elements );
+        }
+        return retVal;
+      }
+
       function populateRotVectorDisplay() {
-        $('#rotVector').text( "[" + rotX.toFixed(1) + "," + rotY.toFixed(1) + "," + rotZ.toFixed(1) + "]" );
+        var rotVec = getRotationAxis(ra, dec);
+
+        var indicator = getIndicatorCoords(); // get a little square around the end of the vector.
+
+        var antiRotVec = $V([0,0,0]).subtract( rotVec );
+        var rotVecTranslate = scaleCoord( translate( rotVec.elements ), 100 );
+        var indicatorTranslate = scaleCoords( translateAll( indicator ), 100 );
+
+        var indicatorPoints = "";
+        for( var ip = 0; ip < indicatorTranslate.length; ip++ ) {
+          if( ip > 0 ) indicatorPoints += " ";
+          indicatorPoints += ( indicatorTranslate[ip][0] + "," + indicatorTranslate[ip][1] );
+        }
+
+        //var rotVecXYShadow = scaleCoord( translate( [ rotVec.elements[0], rotVec.elements[1], 0 ] ), 100 );
+        //var rotVecYZShadow = scaleCoord( translate( [ 0, rotVec.elements[1], rotVec.elements[2] ] ), 100 );
+        var antiRotVecTranslate = scaleCoord( translate( antiRotVec.elements ), 100 );
+        //var antiRotVecXYShadow = scaleCoord( translate( [ antiRotVec.elements[0], antiRotVec.elements[1], 0 ] ), 100 );
+        //var antiRotVecYZShadow = scaleCoord( translate( [ 0, antiRotVec.elements[1], antiRotVec.elements[2] ] ), 100 );
+        var origin = scaleCoord( translate( [ 0,0,0 ] ), 100 );
+        var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200" height="200">';
+
+        var t = translateAll( Grid );
+        var st = scaleCoords( t, 100 );
+        var l = scaleCoords( translateAll( Labels ), 100 );
+        for( var i = 0; i < t.length; i+=2 ) {
+          content += '<line x1="'+st[i][0]+'" y1="'+st[i][1]+'" x2="'+st[i+1][0]+'" y2="'+st[i+1][1]+'" style="stroke:rgb(0,0,0);stroke-width:1" />';
+        }
+        content += '<line x1="'+rotVecTranslate[0]+'" y1="'+rotVecTranslate[1]+'" x2="'+antiRotVecTranslate[0]+'" y2="'+antiRotVecTranslate[1]+'" style="stroke:rgb(255,0,0);stroke-width:2" />';
+        //content += '<line x1="'+rotVecTranslate[0]+'" y1="'+rotVecTranslate[1]+'" x2="'+rotVecXYShadow[0]+'" y2="'+rotVecXYShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        //content += '<line x1="'+antiRotVecTranslate[0]+'" y1="'+antiRotVecTranslate[1]+'" x2="'+antiRotVecXYShadow[0]+'" y2="'+antiRotVecXYShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        //content += '<line x1="'+rotVecTranslate[0]+'" y1="'+rotVecTranslate[1]+'" x2="'+rotVecYZShadow[0]+'" y2="'+rotVecYZShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        //content += '<line x1="'+antiRotVecTranslate[0]+'" y1="'+antiRotVecTranslate[1]+'" x2="'+antiRotVecYZShadow[0]+'" y2="'+antiRotVecYZShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        //content += '<line x1="'+rotVecYZShadow[0]+'" y1="'+rotVecYZShadow[1]+'" x2="'+antiRotVecYZShadow[0]+'" y2="'+antiRotVecYZShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        //content += '<line x1="'+rotVecXYShadow[0]+'" y1="'+rotVecXYShadow[1]+'" x2="'+antiRotVecXYShadow[0]+'" y2="'+antiRotVecXYShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
+        content += '<text x="'+l[0][0]+'" y="'+l[0][1]+'">+x</text>';
+        content += '<text x="'+l[1][0]+'" y="'+l[1][1]+'">+y</text>';
+        content += '<text x="'+l[2][0]+'" y="'+l[2][1]+'">+z</text>';
+        content += '<polygon points="'+indicatorPoints+'" style="fill:rgb(255,0,0);fill-opacity:.4;"/>';
+        content += '</svg>';
+        
+        $('#rotVector').html( content );
       }
 
       $(document).keydown( doKeyPress );
@@ -178,7 +324,7 @@
           </ul>
         </td>
         <td>
-          <div id="rotVector">[0,0,0]</div>
+          <div id="rotVector"></div>
         </td>
       </tr>
     </table>

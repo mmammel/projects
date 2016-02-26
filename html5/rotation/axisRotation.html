@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>    
+    <script src="sylvester.js"></script>    
+    <script type="text/javascript">
+      var alpha = -30;
+      var beta = 45;
+
+      var AxisPoints = [
+        [1,0,0],
+        [-1,0,0],
+        [0,1,0],
+        [0,-1,0],
+        [0,0,1],
+        [0,0,-1]
+      ];
+
+      var AxisLabelPoints = [
+        [0.8,0,0.2],
+        [0.2,0.8,0],
+        [0,0.2,0.8]
+      ];
+
+      /*
+       * alpha and beta are angles in degrees.
+       */
+      function getRotationMatrix( alpha, beta ) {
+        var alphaR = alpha * Math.PI/180;
+        var betaR = beta * Math.PI/180;
+        var alphaRot = $M([
+                         [1, 0, 0],
+                         [0, Math.cos(alphaR), 1.0*Math.sin(alphaR)],
+                         [0, -1.0*Math.sin(alphaR), Math.cos(alphaR)]
+                       ]).snapTo(0);
+        var betaRot = $M([
+                         [Math.cos(betaR), 0, -1.0*Math.sin(betaR)],
+                         [0, 1, 0],
+                         [1.0*Math.sin(betaR), 0, Math.cos(betaR)]
+                       ]).snapTo(0);
+
+        return alphaRot.multiply( betaRot ).snapTo(0);
+      }
+
+      /*
+       * coords is an array of coordinate arrays
+       */
+      function rotateCoords( coords, rotationMatrix ) {
+        var retVal = [];
+        for( var i = 0; i < coords.length; i++ ) {
+          retVal.push( rotateCoord( coords[i], rotationMatrix ) );
+        }
+        return retVal;
+      }
+
+      function rotateCoord( coord, rotationMatrix ) {
+        var vec = $V(coord);
+        return rotationMatrix.multiply( vec ).snapTo(0).elements;
+      }
+
+      /*
+       * for fitting into a (2*factor) X (2*factor) svg coordinate system.
+       * the tip of the X and Y axis are +-factor
+       */
+      function scaleCoords( coords, factor ) {
+        var retVal = [];
+        for( var i = 0; i < coords.length; i++ ) {
+          retVal.push( scaleCoord( coords[i], factor ) );
+        }
+        return retVal;
+      }
+
+      function scaleCoord( coord, factor ) {
+        var mapped = coord.map( function( num ) { return num*factor + factor; } );
+        //mapped[0] = 2*factor - mapped[0]; // have to flip it.
+        mapped[1] = 2*factor - mapped[1]; // have to flip it.
+        return mapped;
+      }
+
+      function drawSVG() {
+        $('#alphaDisplay').text( alpha );
+        $('#betaDisplay').text( beta );
+        var R = getRotationMatrix(alpha, beta);
+        var c = scaleCoords( rotateCoords( AxisPoints,R ), 200 );
+        var l = scaleCoords( rotateCoords( AxisLabelPoints,R ), 200 );
+        var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="450">';
+        for( var i = 0; i < c.length; i+=2 ) {
+          content += '<line x1="'+c[i][0]+'" y1="'+c[i][1]+'" x2="'+c[i+1][0]+'" y2="'+c[i+1][1]+'" style="stroke:rgb(0,0,0);stroke-width:1" />';
+        }
+        content += '<text x="'+l[0][0]+'" y="'+l[0][1]+'">+x</text>';
+        content += '<text x="'+l[1][0]+'" y="'+l[1][1]+'">+y</text>';
+        content += '<text x="'+l[2][0]+'" y="'+l[2][1]+'">+z</text>';
+        content += '</svg>';
+        $('#svgHolder').html( content );
+      }
+
+      function decAlpha() {
+        alpha--;
+        drawSVG();
+      }
+
+      function incAlpha() {
+        alpha++;
+        drawSVG();
+      }
+
+      function decBeta() {
+        beta--;
+        drawSVG();
+      }
+
+      function incBeta() {
+        beta++;
+        drawSVG();
+      }
+
+      $(document).ready( function() {
+        drawSVG();
+      });
+      
+    </script>
+  </head>
+  <body>
+
+    <div id="svgHolder">
+    </div>
+    <table>
+      <tr>
+        <td>Alpha: <span id="alphaDisplay"></span></td>
+        <td><input type=button value="+" onclick="incAlpha()"></input></td>
+        <td><input type=button value="-" onclick="decAlpha()"></input></td>
+      </tr>
+      <tr>
+        <td>Beta: <span id="betaDisplay"></span></td>
+        <td><input type=button value="+" onclick="incBeta()"></input></td>
+        <td><input type=button value="-" onclick="decBeta()"></input></td>
+      </tr>
+    </table>
+    
+  </body>
+</html>
