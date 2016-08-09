@@ -43,7 +43,7 @@ public class IntersectingBoxRule implements Rule
   
   private boolean runRuleInner( CellSpan cells, Board board )
   {
-    boolean retVal = false;
+    boolean retVal = false, tmpRes = false;
     Cell tempCell;
     Box tempBox;
     List<Cell> tempList;
@@ -56,7 +56,9 @@ public class IntersectingBoxRule implements Rule
       {
         if( (tempBox = board.getBoxForCells(tempList)) != null )
         {
-          retVal = retVal | tempBox.exclude(val,tempList.toArray(new Cell[0]));
+          tmpRes = tempBox.exclude(val,tempList.toArray(new Cell[0]));
+          if( tmpRes ) System.out.println( "Excluded " + val + "!!" );
+          retVal = retVal | tmpRes;
         }
       }
     }

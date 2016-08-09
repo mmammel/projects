@@ -151,6 +151,12 @@
         zoomLevel = -1.0 * parseInt(level);
       }
 
+      /*
+       *  left: 37
+       *    up: 38
+       *  down: 39
+       * right: 40
+       */
       function doKeyPress( e ) {
         var event = window.event ? window.event : e;
         var retVal = true;
@@ -321,6 +327,17 @@
             <li><a href="#" onclick="changePoly(rhombicDodecahedron_polyVerts);">Rhombic Dodecahedron</a></li>
             <li><a href="#" onclick="changePoly(icosahedron_polyVerts);">Icosahedron</a></li>
             <li><a href="#" onclick="changePoly(giant_polyVerts);">Enneacontahedron</a></li>
+            <li><a href="#" onclick="changePoly(fccPrimitive_polyVerts);">FCC Primitive</a></li>
+            <li><a href="#" onclick="changePoly(officialPrimitive_polyVerts);">Official FCC Primitive</a></li>
+            <li><a href="#" onclick="changePoly(squatSoma_polyVerts);">Squat Cube</a></li>
+            <li><a href="#" onclick="changePoly(tetartoid_polyVerts);">Tetartoid</a></li>
+          </ul>
+        </td>
+        <td>
+          <h5>Instructions</h5>
+          <ul>
+            <li>To start rotation: hold down shift and press the up arrow key</li>
+            <li>To move the axis of rotation - *without* holding shift, press the up, down, left, right arrow keys</li>
           </ul>
         </td>
         <td>
