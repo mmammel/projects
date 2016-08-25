@@ -422,16 +422,6 @@ function setColors() {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW);
 }
 
-function getRotationAxis(ra, dec) {
-  var r = ra;
-  var d = dec;
-  var cosR = Math.cos( ra * Math.PI/180);
-  var sinR = Math.sin( ra * Math.PI/180);
-  var cosD = Math.cos( d * Math.PI/180);
-  var sinD = Math.sin( d * Math.PI/180);
-  return $V([cosR*cosD,sinR*cosD,sinD]); 
-}
-
 //
 // drawScene
 //
@@ -440,7 +430,7 @@ function getRotationAxis(ra, dec) {
 function drawScene() {
   // Clear the canvas before we start drawing on it.
 
-  var rotVec = getRotationAxis(ra, dec);
+  var rotVec = rotAxis;
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 

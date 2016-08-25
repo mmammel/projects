@@ -43,8 +43,7 @@
       var colorChange = false;
       var drawInterval = null;
       var zoomLevel = -10;
-      var ra = 0;  // right ascension in degrees.
-      var dec = 0;  // declination in degrees.
+      var rotAxis = $V([1,0,0]);
       var spinRate = 0.0;  // spin rate in degrees per 15ms
       var angleIncrement = 1; //increment in degrees.
 
@@ -151,114 +150,72 @@
         zoomLevel = -1.0 * parseInt(level);
       }
 
+      var touchContext = {};
+
+      function processTouch() {
+        var duration = touchContext.endTime - touchContext.startTime;
+        spinRate = 1000.0 / duration;
+        getRotationAxisFromPoints( touchContext.startX, touchContext.startY, touchContext.endX, touchContext.endY );
+        populateRotVectorDisplay();
+      }
+      
+      var guideSphere = {};
+      function setupGuideSphere() {
+        guideSphere.centerX = ($('#glcanvas').width() / 2) + $('#glcanvas').offset().left;
+        guideSphere.centerY = ($('#glcanvas').height() / 2) + $('#glcanvas').offset().top;
+        guideSphere.radius = guideSphere.centerY;
+      }
+      
       /*
-       *  left: 37
-       *    up: 38
-       *  down: 39
-       * right: 40
+       * pageX: pixels from left
+       * pageY: pixels from top
+       * We have raw page coordinates, find the x,y,z relative to the center of the 
+       * guide sphere.
        */
-      function doKeyPress( e ) {
-        var event = window.event ? window.event : e;
-        var retVal = true;
-        if( event.keyCode >= 37 && event.keyCode <= 40 ) {
-          if( event.keyCode == 37 ) {
-            ra -= angleIncrement;
-            if( ra < 0 ) ra = 360 + ra;
-          } else if( event.keyCode == 39 ) {
-            ra += angleIncrement;
-            if( ra >= 360 ) ra = ra - 360;
-          } else if( event.keyCode == 38 ) {
-            if( event.shiftKey ) {
-              spinRate += .01;
-            } else {
-              dec -= angleIncrement;
-              if( dec < 0 ) dec = 360 + dec;
-            }
-          } else if( event.keyCode == 40 ) {
-            if( event.shiftKey ) {
-              spinRate -= .01;
-              if( spinRate < 0 ) spinRate = 0;
-            } else {
-              dec += angleIncrement;
-              if( dec >= 360 ) dec = dec - 360;
-            }
-          }
-
-          spinRate = filterFloat(spinRate.toFixed(2));
-
-          populateRotVectorDisplay();
-
-          retVal = false;
-        }
-
-        return retVal;
+      function getSphereCoordFromPageCoord( pageX, pageY ) {
+        var realX = pageX - guideSphere.centerX;
+        var realY = guideSphere.centerY - pageY;
+        // get distance from the center, when looking down the z-axis
+        var littleR = Math.sqrt( Math.pow( realX, 2) + Math.pow( realY, 2 ) );
+        if( littleR > guideSphere.radius ) littleR = guideSphere.radius;
+        var realZ = Math.sqrt( Math.pow( guideSphere.radius, 2) - Math.pow( littleR, 2) );
+        return $V([realX, realY, realZ]).toUnitVector();
       }
 
-      function getIndicatorCoords() {
-        var retVal = [];
-        var offsets = [ [0,10], [10,0], [0, -10], [-10,0]];
-        var raOffset = 0, decOffset = 0;
-        for( var i = 0; i < offsets.length; i++ ) {
-          raOffset = ra + offsets[i][0];
-          decOffset = dec + offsets[i][1];
-          if( raOffset < 0 ) raOffset += 360;
-          if( raOffset > 359 ) raOffset -= 360;
-          if( decOffset < 0 ) decOffset += 360;
-          if( decOffset > 359 ) decOffset -= 360;
-          retVal.push( getRotationAxis( raOffset, decOffset ).elements );
-        }
-        return retVal;
+      function getRotationAxisFromPoints( startX, startY, endX, endY ) {
+        var vecA = getSphereCoordFromPageCoord( startX, startY );
+        var vecB = getSphereCoordFromPageCoord( endX, endY );
+        var cross = vecA.cross( vecB ).toUnitVector();
+        rotAxis = cross;
       }
-
-      function populateRotVectorDisplay() {
-        var rotVec = getRotationAxis(ra, dec);
-
-        var indicator = getIndicatorCoords(); // get a little square around the end of the vector.
-
-        var antiRotVec = $V([0,0,0]).subtract( rotVec );
-        var rotVecTranslate = scaleCoord( translate( rotVec.elements ), 100 );
-        var indicatorTranslate = scaleCoords( translateAll( indicator ), 100 );
-
-        var indicatorPoints = "";
-        for( var ip = 0; ip < indicatorTranslate.length; ip++ ) {
-          if( ip > 0 ) indicatorPoints += " ";
-          indicatorPoints += ( indicatorTranslate[ip][0] + "," + indicatorTranslate[ip][1] );
-        }
-
-        //var rotVecXYShadow = scaleCoord( translate( [ rotVec.elements[0], rotVec.elements[1], 0 ] ), 100 );
-        //var rotVecYZShadow = scaleCoord( translate( [ 0, rotVec.elements[1], rotVec.elements[2] ] ), 100 );
-        var antiRotVecTranslate = scaleCoord( translate( antiRotVec.elements ), 100 );
-        //var antiRotVecXYShadow = scaleCoord( translate( [ antiRotVec.elements[0], antiRotVec.elements[1], 0 ] ), 100 );
-        //var antiRotVecYZShadow = scaleCoord( translate( [ 0, antiRotVec.elements[1], antiRotVec.elements[2] ] ), 100 );
-        var origin = scaleCoord( translate( [ 0,0,0 ] ), 100 );
-        var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="200" height="200">';
-
-        var t = translateAll( Grid );
-        var st = scaleCoords( t, 100 );
-        var l = scaleCoords( translateAll( Labels ), 100 );
-        for( var i = 0; i < t.length; i+=2 ) {
-          content += '<line x1="'+st[i][0]+'" y1="'+st[i][1]+'" x2="'+st[i+1][0]+'" y2="'+st[i+1][1]+'" style="stroke:rgb(0,0,0);stroke-width:1" />';
-        }
-        content += '<line x1="'+rotVecTranslate[0]+'" y1="'+rotVecTranslate[1]+'" x2="'+antiRotVecTranslate[0]+'" y2="'+antiRotVecTranslate[1]+'" style="stroke:rgb(255,0,0);stroke-width:2" />';
-        //content += '<line x1="'+rotVecTranslate[0]+'" y1="'+rotVecTranslate[1]+'" x2="'+rotVecXYShadow[0]+'" y2="'+rotVecXYShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
-        //content += '<line x1="'+antiRotVecTranslate[0]+'" y1="'+antiRotVecTranslate[1]+'" x2="'+antiRotVecXYShadow[0]+'" y2="'+antiRotVecXYShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
-        //content += '<line x1="'+rotVecTranslate[0]+'" y1="'+rotVecTranslate[1]+'" x2="'+rotVecYZShadow[0]+'" y2="'+rotVecYZShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
-        //content += '<line x1="'+antiRotVecTranslate[0]+'" y1="'+antiRotVecTranslate[1]+'" x2="'+antiRotVecYZShadow[0]+'" y2="'+antiRotVecYZShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
-        //content += '<line x1="'+rotVecYZShadow[0]+'" y1="'+rotVecYZShadow[1]+'" x2="'+antiRotVecYZShadow[0]+'" y2="'+antiRotVecYZShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
-        //content += '<line x1="'+rotVecXYShadow[0]+'" y1="'+rotVecXYShadow[1]+'" x2="'+antiRotVecXYShadow[0]+'" y2="'+antiRotVecXYShadow[1]+'" style="stroke:rgb(255,0,0);stroke-width:1" />';
-        content += '<text x="'+l[0][0]+'" y="'+l[0][1]+'">+x</text>';
-        content += '<text x="'+l[1][0]+'" y="'+l[1][1]+'">+y</text>';
-        content += '<text x="'+l[2][0]+'" y="'+l[2][1]+'">+z</text>';
-        content += '<polygon points="'+indicatorPoints+'" style="fill:rgb(255,0,0);fill-opacity:.4;"/>';
-        content += '</svg>';
-        
-        $('#rotVector').html( content );
-      }
-
-      $(document).keydown( doKeyPress );
 
       $(document).ready(function() {
-        populateRotVectorDisplay();
+        setupGuideSphere();
+        $('#glcanvas').on( "touchstart", function(event) {
+         event.preventDefault();
+         touchContext.startX = event.originalEvent.touches[0].pageX;
+         touchContext.startY = event.originalEvent.touches[0].pageY;
+         var d = new Date();
+         touchContext.startTime = d.getTime();
+        }).on("touchend", function(event) {
+         event.preventDefault();
+         touchContext.endX = event.originalEvent.changedTouches[0].pageX;
+         touchContext.endY = event.originalEvent.changedTouches[0].pageY;
+         var d = new Date();
+         touchContext.endTime = d.getTime();
+         processTouch();
+        }).on( "mousedown", function(event) {
+         touchContext.startX = event.pageX;
+         touchContext.startY = event.pageY;
+         var d = new Date();
+         touchContext.startTime = d.getTime();
+        }).on("mouseup", function(event) {
+         touchContext.endX = event.pageX;
+         touchContext.endY = event.pageY;
+         var d = new Date();
+         touchContext.endTime = d.getTime();
+         processTouch();
+        });
         setFaceColors();
         $("input[type='color']").on("change", setFaceColors);
         Sylvester.precision = 0.0001
@@ -286,6 +243,11 @@
         changeColors = true;
 
         drawInterval = setInterval( drawScene, 15 );
+      }
+
+      function doCustomVertices() {
+        eval( $('#customVertices').val() );
+        changePoly( vertices );
       }
     </script>
   </head>
@@ -317,8 +279,10 @@
           <div><label for="zoomLevel">Zoom: </label><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" min="0" max="100"></div>
         </td>
       </tr>
+    </table>
+    <table>
       <tr>
-        <td>
+        <td width="50%">
           <ul>
             <li><a href="#" onclick="changePoly(rt_polyVerts);">Rhombic Triacontahedron</a></li>
             <li><a href="#" onclick="changePoly(cube_polyVerts);">Cube</a></li>
@@ -333,11 +297,14 @@
             <li><a href="#" onclick="changePoly(tetartoid_polyVerts);">Tetartoid</a></li>
           </ul>
         </td>
+        <!--<td>
+          <label for="customVertices">Custom Vertices</label>
+          <textarea id="customVertices" rows="10" cols="30" placeholder="Write some javascript that assigns an array of floats to a variable called "customVerts", then press \"Submit\""></textarea><br><button onclick="doCustomVertices();" id="customVerticesSubmit">Submit</button>
+        </td>-->
         <td>
           <h5>Instructions</h5>
           <ul>
-            <li>To start rotation: hold down shift and press the up arrow key</li>
-            <li>To move the axis of rotation - *without* holding shift, press the up, down, left, right arrow keys</li>
+            <li>Rotate the shape using a mouse stroke or finger swipe across the shape.</li>
           </ul>
         </td>
         <td>

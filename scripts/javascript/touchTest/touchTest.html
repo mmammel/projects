@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#glcanvas').on( "touchstart", function(event) {
+         event.preventDefault();
+         var str = "T: "+event.originalEvent.touches[0].pageX + "," + event.originalEvent.touches[0].pageY;
+         $('#start_output').text( str );
+        }).on("touchend", function(event) {
+         event.preventDefault();
+         var str = "T: "+event.originalEvent.changedTouches[0].pageX + "," + event.originalEvent.changedTouches[0].pageY;
+         $('#end_output').text( str );
+        }).on( "mousedown", function(event) {
+         var str = "M: "+event.pageX + "," + event.pageY;
+         $('#start_output').text( str );
+        }).on("mouseup", function(event) {
+         var str = "M: "+event.pageX + "," + event.pageY;
+         $('#end_output').text( str );
+        }).on("mouseout", function(event) {
+         var str = "M: "+event.pageX + "," + event.pageY;
+         $('#end_output').text( str );;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <canvas id="glcanvas" width="640" height="480" style="border:1px solid black;">
+    </canvas>
+    <div id="start_output"></div>
+    <div id="end_output"></div>
+  </body>
+</html>
