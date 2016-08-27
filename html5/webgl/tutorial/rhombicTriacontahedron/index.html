@@ -8,6 +8,7 @@
     <script src="../sylvester.js" type="text/javascript"></script>
     <script src="../glUtils.js" type="text/javascript"></script>
     <script src="shapeClasses.js" type="text/javascript"></script>
+    <script src="apiConnect.js" type="text/javascript"></script>
     <script src="rhombicTriaconta.js" type="text/javascript"></script>
 
     <!-- Fragment shader program -->
@@ -43,10 +44,15 @@
       var colorChange = false;
       var drawInterval = null;
       var zoomLevel = -10;
-      var rotAxis = $V([1,0,0]);
-      var spinRate = 0.0;  // spin rate in degrees per 15ms
-      var angleIncrement = 1; //increment in degrees.
 
+      // For smooth rotation changes.
+      var targetRotAxis = $V([1,0,0]);
+      var currTargetRotAxis = null;
+      var rotAxis = $V([1,0,0]);
+      var currSteps = [0,0,0]; // steps to get to target vector in 60 cycles.
+      var rotationTransitionInterval = null;
+
+      var spinRate = 0.0;  // spin rate in degrees per 15ms
 
       /**
         This stuff is for the little 
@@ -154,9 +160,13 @@
 
       function processTouch() {
         var duration = touchContext.endTime - touchContext.startTime;
-        spinRate = 1000.0 / duration;
-        getRotationAxisFromPoints( touchContext.startX, touchContext.startY, touchContext.endX, touchContext.endY );
-        populateRotVectorDisplay();
+        var distance = Math.sqrt( Math.pow((touchContext.endX - touchContext.startX),2) + Math.pow((touchContext.endY - touchContext.startY),2));
+        if( Math.abs( distance ) < .01 ) {
+          spinRate = 0;
+        } else {
+          spinRate = 2.5 * (distance / duration);
+          getRotationAxisFromPoints( touchContext.startX, touchContext.startY, touchContext.endX, touchContext.endY );
+        }
       }
       
       var guideSphere = {};
@@ -186,7 +196,7 @@
         var vecA = getSphereCoordFromPageCoord( startX, startY );
         var vecB = getSphereCoordFromPageCoord( endX, endY );
         var cross = vecA.cross( vecB ).toUnitVector();
-        rotAxis = cross;
+        targetRotAxis = cross;
       }
 
       $(document).ready(function() {
@@ -216,10 +226,34 @@
          touchContext.endTime = d.getTime();
          processTouch();
         });
+
+        rotationTransitionInterval = setInterval( function() {
+          if( !rotAxis.eql( targetRotAxis ) ) {
+            if( currTargetRotAxis == null ) {
+              // start of a new transition
+              currTargetRotAxis = targetRotAxis.dup();
+              currSteps[0] = (currTargetRotAxis.elements[0] - rotAxis.elements[0])/40;
+              currSteps[1] = (currTargetRotAxis.elements[1] - rotAxis.elements[1])/40;
+              currSteps[2] = (currTargetRotAxis.elements[2] - rotAxis.elements[2])/40;
+            } else if( !currTargetRotAxis.eql( targetRotAxis ) ) {
+              // We changed targets mid-flight, that's ok - just reset
+              currTargetRotAxis = null;
+              return;
+            }
+            
+            rotAxis.elements[0] += currSteps[0];
+            rotAxis.elements[1] += currSteps[1];
+            rotAxis.elements[2] += currSteps[2];
+
+          } else {
+            currTargetRotAxis = null;
+          }
+        }, 15 ); 
         setFaceColors();
         $("input[type='color']").on("change", setFaceColors);
         Sylvester.precision = 0.0001
         start();
+        getPolyhedra();
       });
 
       function changePoly( verts ) {
@@ -227,12 +261,14 @@
         clearInterval(drawInterval);
         poly = new Polyhedron( verts );
 
+        cubeVerticesBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
         var vertices = poly.getFaceOrderedVertices();
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
         setColors();
 
+        cubeVerticesIndexBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer);
 
         var cubeVertexIndices = poly.triangleVertices;
@@ -245,8 +281,8 @@
         drawInterval = setInterval( drawScene, 15 );
       }
 
-      function doCustomVertices() {
-        eval( $('#customVertices').val() );
+      function loadVertices() {
+        eval( $('#polyVerts').val() );
         changePoly( vertices );
       }
     </script>
@@ -256,7 +292,7 @@
     <table>
       <tr>
         <td>
-    <canvas id="glcanvas" width="640" height="480">
+    <canvas id="glcanvas" width="640" height="640">
       Your browser doesn't appear to support the <code>&lt;canvas&gt;</code> element.
     </canvas>
         </td>
@@ -276,39 +312,47 @@
           <div><input type="color" id="c12" value="#8d9757"></input></div>
           <div><input type="color" id="c13" value="#fd1717"></input></div>
           <div><input type="color" id="c14" value="#fdf7f7"></input></div>
-          <div><label for="zoomLevel">Zoom: </label><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" min="0" max="100"></div>
+          <div style="width: 8px; padding-left: 24px;">-</div>
+          <div style="padding-left: 20px"><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" style="width:8px; height:150px; writing-mode: bt-lr; -webkit-appearance: slider-vertical;" min="0" max="100"></div>
+          <div style="width: 8px; padding-left: 21px">+</div>
         </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td width="50%">
-          <ul>
-            <li><a href="#" onclick="changePoly(rt_polyVerts);">Rhombic Triacontahedron</a></li>
-            <li><a href="#" onclick="changePoly(cube_polyVerts);">Cube</a></li>
-            <li><a href="#" onclick="changePoly(dodecahedron_polyVerts);">Dodecahedron</a></li>
-            <li><a href="#" onclick="changePoly(pyramid_polyVerts);">Pyramid</a></li>
-            <li><a href="#" onclick="changePoly(rhombicDodecahedron_polyVerts);">Rhombic Dodecahedron</a></li>
-            <li><a href="#" onclick="changePoly(icosahedron_polyVerts);">Icosahedron</a></li>
-            <li><a href="#" onclick="changePoly(giant_polyVerts);">Enneacontahedron</a></li>
-            <li><a href="#" onclick="changePoly(fccPrimitive_polyVerts);">FCC Primitive</a></li>
-            <li><a href="#" onclick="changePoly(officialPrimitive_polyVerts);">Official FCC Primitive</a></li>
-            <li><a href="#" onclick="changePoly(squatSoma_polyVerts);">Squat Cube</a></li>
-            <li><a href="#" onclick="changePoly(tetartoid_polyVerts);">Tetartoid</a></li>
-          </ul>
-        </td>
-        <!--<td>
-          <label for="customVertices">Custom Vertices</label>
-          <textarea id="customVertices" rows="10" cols="30" placeholder="Write some javascript that assigns an array of floats to a variable called "customVerts", then press \"Submit\""></textarea><br><button onclick="doCustomVertices();" id="customVerticesSubmit">Submit</button>
-        </td>-->
-        <td>
-          <h5>Instructions</h5>
-          <ul>
-            <li>Rotate the shape using a mouse stroke or finger swipe across the shape.</li>
-          </ul>
-        </td>
-        <td>
-          <div id="rotVector"></div>
+        <td id="polyForm">
+          <table>
+            <tr>
+              <td>
+              <select id="polySelect" onchange="loadPolyhedron();">
+                <option value="-1" selected>Select A Shape</option>
+              </select>
+            </td></tr>
+            <tr>
+              <td>
+              <input type="hidden" id="polyId" name="polyId" value="">
+              <input placeholder="Enter a Name" type="text" id="polyName" name="polyName" value="" style="width:196px;" onchange="updateSaveButton();">
+            </td></tr>
+            <tr><td>
+              <textarea id="polyDesc" rows="4" cols="30" placeholder="Enter a description"></textarea>
+            </td></tr>
+            <tr><td>
+              <textarea placeholder="Define the vertex array" title="Using javascript, define float array and assign to 'vertices'" id="polyVerts" rows="25" cols="30" onkeyup="updateSaveButton();"></textarea>
+            </td><td><p>Using javascript, write some code that assigns a one-dimensional array of floats (every three elements is vertex) to a variable named "vertices".  For example: <code style="font-size:small"><pre>
+  vertices  = [
+        1,1,1,
+        1,-1,1,
+        -1,1,1,
+        -1,-1,1,
+        1,1,-1,
+        1,-1,-1,
+        -1,1,-1,
+        -1,-1,-1
+    ];
+
+</pre></code>defines a cube.</p></td></tr>
+            <tr><td>
+              <button id="polySave" onclick="savePolyhedron();">Save</button>
+              <button id="polyMakeNew" onclick="clearForm();">New</button>
+              <button id="polyClear" onclick="clearForm();">Clear</button>
+            </td></tr>
+          </table>
         </td>
       </tr>
     </table>

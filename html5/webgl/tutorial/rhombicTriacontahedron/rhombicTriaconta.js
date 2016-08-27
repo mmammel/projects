@@ -315,12 +315,12 @@ function start() {
 
     // Here's where we call the routine that builds all the objects
     // we'll be drawing.
-    poly = new Polyhedron( dodecahedron_polyVerts );
-    initBuffers();
+    //poly = new Polyhedron( dodecahedron_polyVerts );
+    //initBuffers();
 
     // Set up to draw the scene periodically.
 
-    drawInterval = setInterval(drawScene, 15);
+    //drawInterval = setInterval(drawScene, 15);
     //drawScene();
   }
 }
@@ -439,7 +439,7 @@ function drawScene() {
   // ratio of 640:480, and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
 
-  perspectiveMatrix = makePerspective(45, 640.0/480.0, .1, 100.0);
+  perspectiveMatrix = makePerspective(45, 640.0/640.0, .1, 100.0);
 
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
