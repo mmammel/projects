@@ -46,11 +46,8 @@
       var zoomLevel = -10;
 
       // For smooth rotation changes.
-      var targetRotAxis = $V([1,0,0]);
-      var currTargetRotAxis = null;
       var rotAxis = $V([1,0,0]);
-      var currSteps = [0,0,0]; // steps to get to target vector in 60 cycles.
-      var rotationTransitionInterval = null;
+      var rotationAxisChanged = false;
 
       var spinRate = 0.0;  // spin rate in degrees per 15ms
 
@@ -166,6 +163,7 @@
         } else {
           spinRate = 2.5 * (distance / duration);
           getRotationAxisFromPoints( touchContext.startX, touchContext.startY, touchContext.endX, touchContext.endY );
+          rotationAxisChanged = true;
         }
       }
       
@@ -196,7 +194,7 @@
         var vecA = getSphereCoordFromPageCoord( startX, startY );
         var vecB = getSphereCoordFromPageCoord( endX, endY );
         var cross = vecA.cross( vecB ).toUnitVector();
-        targetRotAxis = cross;
+        rotAxis = cross;
       }
 
       $(document).ready(function() {
@@ -227,28 +225,6 @@
          processTouch();
         });
 
-        rotationTransitionInterval = setInterval( function() {
-          if( !rotAxis.eql( targetRotAxis ) ) {
-            if( currTargetRotAxis == null ) {
-              // start of a new transition
-              currTargetRotAxis = targetRotAxis.dup();
-              currSteps[0] = (currTargetRotAxis.elements[0] - rotAxis.elements[0])/40;
-              currSteps[1] = (currTargetRotAxis.elements[1] - rotAxis.elements[1])/40;
-              currSteps[2] = (currTargetRotAxis.elements[2] - rotAxis.elements[2])/40;
-            } else if( !currTargetRotAxis.eql( targetRotAxis ) ) {
-              // We changed targets mid-flight, that's ok - just reset
-              currTargetRotAxis = null;
-              return;
-            }
-            
-            rotAxis.elements[0] += currSteps[0];
-            rotAxis.elements[1] += currSteps[1];
-            rotAxis.elements[2] += currSteps[2];
-
-          } else {
-            currTargetRotAxis = null;
-          }
-        }, 15 ); 
         setFaceColors();
         $("input[type='color']").on("change", setFaceColors);
         Sylvester.precision = 0.0001
@@ -258,17 +234,17 @@
 
       function changePoly( verts ) {
 
-        clearInterval(drawInterval);
+        //clearInterval(drawInterval);
         poly = new Polyhedron( verts );
 
-        cubeVerticesBuffer = gl.createBuffer();
+        //cubeVerticesBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
         var vertices = poly.getFaceOrderedVertices();
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
         setColors();
 
-        cubeVerticesIndexBuffer = gl.createBuffer();
+        //cubeVerticesIndexBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer);
 
         var cubeVertexIndices = poly.triangleVertices;
@@ -278,7 +254,7 @@
 
         changeColors = true;
 
-        drawInterval = setInterval( drawScene, 15 );
+        if( drawInterval == null ) drawInterval = setInterval( drawScene, 15 );
       }
 
       function loadVertices() {

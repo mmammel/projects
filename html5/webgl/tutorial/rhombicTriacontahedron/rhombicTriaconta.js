@@ -25,6 +25,7 @@ var shaderProgram;
 var vertexPositionAttribute;
 var vertexColorAttribute;
 var perspectiveMatrix;
+var rotVec;
 
 var poly; // the polyhedron
 
@@ -317,6 +318,8 @@ function start() {
     // we'll be drawing.
     //poly = new Polyhedron( dodecahedron_polyVerts );
     //initBuffers();
+    cubeVerticesBuffer = gl.createBuffer();
+    cubeVerticesIndexBuffer = gl.createBuffer();
 
     // Set up to draw the scene periodically.
 
@@ -430,8 +433,6 @@ function setColors() {
 function drawScene() {
   // Clear the canvas before we start drawing on it.
 
-  var rotVec = rotAxis;
-
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // Establish the perspective with which we want to view the
@@ -454,20 +455,20 @@ function drawScene() {
   // Save the current matrix, then rotate before we draw.
   mvPushMatrix();
 
+  // if the rotation axis has changed, apply the previous rotation to the 
+  // vertices and re-bind them to the buffers.
+  if( rotationAxisChanged && rotVec != null ) {
+    var rads = cubeRotation * Math.PI / 180.0;
+    var m = Matrix.Rotation(rads, rotVec);
+    poly.vertexGroup.applyRotation( m );
+    gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(poly.getFaceOrderedVertices()), gl.STATIC_DRAW);
+    cubeRotation = spinRate;
+    rotationAxisChanged = false;
+  }
+
+  rotVec = rotAxis;
   mvRotate(cubeRotation, rotVec.elements);
-
-  // Use z,x',z''
-  // first rotate around the z-axis by ztheta
-  ////mvRotate(rotZTheta, [0,0,1]);
-  // now find the new x (x') by performing the same rotation again on the original x axis
-  // also find y', the new y after the z spin.
-  ////var xprime = $V([1,0,0]).rotate(rotZTheta * Math.PI / 180.0, Line.Z);
-  ////var yprime = $V([0,1,0]).rotate(rotZTheta * Math.PI / 180.0, Line.Z);
-  ////mvRotate(rotXTheta, xprime.elements);
-  // now apply the xprime turn on yprime, and then rotate around y
-  ////mvRotate(rotYTheta, yprime.rotate(rotXTheta * Math.PI / 180.0,$L([0,0,0],xprime)).elements);
-
-  //mvTranslate([cubeXOffset, cubeYOffset, cubeZOffset]);
 
   if( colorChange ) {
     setColors();

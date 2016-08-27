@@ -4,7 +4,7 @@
 
 function ajaxCall( callDetails ) { 
   $.ajax({
-    url: 'http://www.mjmtools.com/api/poly/index.php',
+    url: '/api/poly/index.php',
     type: callDetails.type,
     contentType: callDetails.contentType ? callDetails.contentType : "application/json",
     dataType: callDetails.dataType ? callDetails.dataType : "json",

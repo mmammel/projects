@@ -173,6 +173,14 @@ function VertexGroup ( coords ) {
   }
 }
 
+VertexGroup.prototype.applyRotation = function( m ) {
+  this.coords = [];
+  for( var i = 0; i < this.vertices.length; i++ ) {
+    this.vertices[i] = m.x( this.vertices[i] );
+    this.coords = this.coords.concat( this.vertices[i].elements );
+  }
+}
+
 /*
  * plane - a plane from sylvester, maybe already adorned with "D"
  * vector - a vector built around the coord to check.
