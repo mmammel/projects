@@ -4,6 +4,7 @@
     <title>WebGL Demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../webgl.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="../sylvester.js" type="text/javascript"></script>
     <script src="../glUtils.js" type="text/javascript"></script>
@@ -257,9 +258,18 @@
         if( drawInterval == null ) drawInterval = setInterval( drawScene, 15 );
       }
 
-      function loadVertices() {
-        eval( $('#polyVerts').val() );
+      function loadVertices(vArray) {
+        if( vArray != null ) {
+          vertices = vArray;
+        } else {
+          eval( $('#polyVerts').val() );
+        }
         changePoly( vertices );
+      }
+
+      function doExplode() {
+        var factor = parseFloat($('#explodeFact').val());
+        loadVertices( poly.getExplodedVertices( factor ) );
       }
     </script>
   </head>
@@ -273,27 +283,27 @@
     </canvas>
         </td>
         <td>
-          <div><input type="color" id="c0" value="#ff0000"></input></div>
-          <div><input type="color" id="c1" value="#ff9900"></input></div>
-          <div><input type="color" id="c2" value="#ffff00"></input></div>
-          <div><input type="color" id="c3" value="#0000ff"></input></div>
-          <div><input type="color" id="c4" value="#9900cc"></input></div>
-          <div><input type="color" id="c5" value="#1dc717"></input></div>
-          <div><input type="color" id="c6" value="#2de7c7"></input></div>
-          <div><input type="color" id="c7" value="#3df7d7"></input></div>
-          <div><input type="color" id="c8" value="#4d17e7"></input></div>
-          <div><input type="color" id="c9" value="#5d37f7"></input></div>
-          <div><input type="color" id="c10" value="#6d5717"></input></div>
-          <div><input type="color" id="c11" value="#7d7737"></input></div>
-          <div><input type="color" id="c12" value="#8d9757"></input></div>
-          <div><input type="color" id="c13" value="#fd1717"></input></div>
-          <div><input type="color" id="c14" value="#fdf7f7"></input></div>
+          <div><input type="color" id="c0" value="#C11C17"></input></div>
+          <div><input type="color" id="c1" value="#F2DA99"></input></div>
+          <div><input type="color" id="c2" value="#E27A1D"></input></div>
+          <div><input type="color" id="c3" value="#E0E61A"></input></div>
+          <div><input type="color" id="c4" value="#80C837"></input></div>
+          <div><input type="color" id="c5" value="#195F19"></input></div>
+          <div><input type="color" id="c6" value="#20B2AA"></input></div>
+          <div><input type="color" id="c7" value="#6987A5"></input></div>
+          <div><input type="color" id="c8" value="#6F6DA7"></input></div>
+          <div><input type="color" id="c9" value="#2D2D5F"></input></div>
+          <div><input type="color" id="c10" value="#3B256D"></input></div>
+          <div><input type="color" id="c11" value="#5A376E"></input></div>
+          <div><input type="color" id="c12" value="#A660AC"></input></div>
+          <div><input type="color" id="c13" value="#732364"></input></div>
+          <div><input type="color" id="c14" value="#A2395B"></input></div>
           <div style="width: 8px; padding-left: 24px;">-</div>
           <div style="padding-left: 20px"><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" style="width:8px; height:150px; writing-mode: bt-lr; -webkit-appearance: slider-vertical;" min="0" max="100"></div>
           <div style="width: 8px; padding-left: 21px">+</div>
         </td>
         <td id="polyForm">
-          <table>
+          <table class="actionTable">
             <tr>
               <td>
               <select id="polySelect" onchange="loadPolyhedron();">
@@ -324,9 +334,14 @@
 
 </pre></code>defines a cube.</p></td></tr>
             <tr><td>
+             
               <button id="polySave" onclick="savePolyhedron();">Save</button>
               <button id="polyMakeNew" onclick="clearForm();">New</button>
               <button id="polyClear" onclick="clearForm();">Clear</button>
+             </td></tr><tr><td>
+              <button id="doEdgeMidpoints" onclick="loadVertices(poly.getEdgeMidpointVertices());">Produce Edge Midpoint Faces</button>
+             </td></tr><tr><td>
+              <label for="explodeFact">Explosion Factor</label><input id="explodeFact" type="text" value="0.0"><button id="exploder" onclick="doExplode();">Explode Faces</button>
             </td></tr>
           </table>
         </td>

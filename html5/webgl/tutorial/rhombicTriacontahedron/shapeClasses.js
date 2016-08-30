@@ -14,6 +14,37 @@ Polyhedron.prototype.getVertexIndexArray = function() {
   return retVal;
 }
 
+Polyhedron.prototype.getEdgeMidpointVertices = function() {
+  var retVal = [];
+  var faceMPVs = [];
+  var vertexKey = null;
+  var uniqueChecker = {};
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    faceMPVs = this.faceGroup.faces[i].getEdgeMidpointVertices();
+    for( var j = 0; j < faceMPVs.length; j++ ) {
+      vertexKey = "v"+faceMPVs[j].elements[0] + "_" + faceMPVs[j].elements[1] + "_" +faceMPVs[j].elements[2];
+      if( !uniqueChecker[ vertexKey ] ) {
+        uniqueChecker[ vertexKey ] = true;
+        retVal.push(faceMPVs[j].elements[0], faceMPVs[j].elements[1], faceMPVs[j].elements[2]);
+      }
+    }
+  }  
+  return retVal;
+}
+
+Polyhedron.prototype.getExplodedVertices = function( xfactor ) {
+  var retVal = [];
+  var faceExplodes = [];
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    faceExplodes = this.faceGroup.faces[i].getExplodedVertices( xfactor );
+    for( var j = 0; j < faceExplodes.length; j++ ) {
+      retVal.push( faceExplodes[j].elements[0], faceExplodes[j].elements[1], faceExplodes[j].elements[2] );
+    }
+  }
+
+  return retVal;
+}
+
 Polyhedron.prototype.getFaceOrderedVertices = function() {
   var retVal = [];
   var vidx = 0;
@@ -118,6 +149,37 @@ Face.prototype.getTriangleVertices = function() {
   return retVal;
 }
 
+Face.prototype.getEdgeMidpointVertices = function() {
+  var retVal = [];
+  var tempMidpoint = null;
+  for( var i = 0; i < this.vertices.length; i++ ) {
+    if( i == (this.vertices.length - 1) ) {
+      retVal.push( getMidpoint( this.vertices[i], this.vertices[0] ) );
+    } else {
+      retVal.push( getMidpoint( this.vertices[i], this.vertices[i+1] ) );
+    }
+  }
+  return retVal;
+}
+
+/**
+  Explode the face out by a factor of xfactor along its 
+  normal vector.
+ */
+Face.prototype.getExplodedVertices = function( xfactor ) {
+  var retVal = [];
+  var unitNormal = this.normal.toUnitVector();
+  for( var i = 0; i < this.vertices.length; i++ ) {
+    if( unitNormal.dot( this.vertices[i] ) < 0 ) {
+      retVal.push( this.vertices[i].subtract( unitNormal.x( xfactor ) ) );
+    } else {
+      retVal.push( this.vertices[i].add( unitNormal.x( xfactor ) ) );
+    }
+  }
+
+  return retVal;
+}
+
 /*
  * faces: an array of generic faces, might have any number of sides.
  */
@@ -142,7 +204,8 @@ FaceGroup.prototype.sortForColoring = function() {
     indexArray.pop();
     for( var i = indexArray.length - 1; i >= 0; i-- ) {
       tempFace = this.faces[ indexArray[i] ];
-      if( face.isOpposite( tempFace ) || face.isOrthogonal( tempFace ) || face.isParallel( tempFace) ) {
+      //if( face.isOpposite( tempFace ) || face.isOrthogonal( tempFace ) || face.isParallel( tempFace) ) {
+      if( face.isOpposite( tempFace ) || face.isParallel( tempFace) ) {
         tempSet.push( tempFace );
         indexArray.splice( i, 1 ); // remove this index.
       }
@@ -265,5 +328,12 @@ VertexGroup.prototype.findFaces = function() {
   }
 
   return result;
+}
+
+function getMidpoint( v1, v2 ) {
+  var x = (v1.elements[0] + v2.elements[0])/2.0;
+  var y = (v1.elements[1] + v2.elements[1])/2.0;
+  var z = (v1.elements[2] + v2.elements[2])/2.0;
+  return $V([x,y,z]);
 }
 
