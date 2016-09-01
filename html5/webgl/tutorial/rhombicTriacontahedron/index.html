@@ -142,7 +142,7 @@
 
       function setFaceColors( e ) {
         faceColors = [];
-        for( var i = 0; i < 15; i++ ) {
+        for( var i = 0; i < 16; i++ ) {
           faceColors.push( hexToRgb( $('#c'+i).val() ) );
         }
         colorChange = true;
@@ -197,6 +197,7 @@
         var cross = vecA.cross( vecB ).toUnitVector();
         rotAxis = cross;
       }
+
 
       $(document).ready(function() {
         setupGuideSphere();
@@ -283,21 +284,22 @@
     </canvas>
         </td>
         <td>
-          <div><input type="color" id="c0" value="#C11C17"></input></div>
-          <div><input type="color" id="c1" value="#F2DA99"></input></div>
-          <div><input type="color" id="c2" value="#E27A1D"></input></div>
-          <div><input type="color" id="c3" value="#E0E61A"></input></div>
-          <div><input type="color" id="c4" value="#80C837"></input></div>
-          <div><input type="color" id="c5" value="#195F19"></input></div>
-          <div><input type="color" id="c6" value="#20B2AA"></input></div>
-          <div><input type="color" id="c7" value="#6987A5"></input></div>
-          <div><input type="color" id="c8" value="#6F6DA7"></input></div>
-          <div><input type="color" id="c9" value="#2D2D5F"></input></div>
-          <div><input type="color" id="c10" value="#3B256D"></input></div>
-          <div><input type="color" id="c11" value="#5A376E"></input></div>
-          <div><input type="color" id="c12" value="#A660AC"></input></div>
-          <div><input type="color" id="c13" value="#732364"></input></div>
-          <div><input type="color" id="c14" value="#A2395B"></input></div>
+          <div><input type="color" id="c0" value="#ff0000"></input></div>
+          <div><input type="color" id="c1" value="#ff8000"></input></div>
+          <div><input type="color" id="c2" value="#ffbf00"></input></div>
+          <div><input type="color" id="c3" value="#ffff00"></input></div>
+          <div><input type="color" id="c4" value="#bfff00"></input></div>
+          <div><input type="color" id="c5" value="#40ff00"></input></div>
+          <div><input type="color" id="c6" value="#00ff80"></input></div>
+          <div><input type="color" id="c7" value="#00ffff"></input></div>
+          <div><input type="color" id="c8" value="#00bfff"></input></div>
+          <div><input type="color" id="c9" value="#0080ff"></input></div>
+          <div><input type="color" id="c10" value="#0000ff"></input></div>
+          <div><input type="color" id="c11" value="#8000ff"></input></div>
+          <div><input type="color" id="c12" value="#bf00ff"></input></div>
+          <div><input type="color" id="c13" value="#ff00ff"></input></div>
+          <div><input type="color" id="c14" value="#ff0080"></input></div>
+          <div><input type="color" id="c15" value="#ff0040"></input></div>
           <div style="width: 8px; padding-left: 24px;">-</div>
           <div style="padding-left: 20px"><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" style="width:8px; height:150px; writing-mode: bt-lr; -webkit-appearance: slider-vertical;" min="0" max="100"></div>
           <div style="width: 8px; padding-left: 21px">+</div>

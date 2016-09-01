@@ -403,14 +403,14 @@ function setColors() {
     // one set, just cycle through the colors for each face.
     var faces = colorSets[0];
     for( var f = 0; f < faces.length; f++ ) {
-      var c = faceColors[f%15];
+      var c = faceColors[f%16];
       for( var v = 0; v < faces[f].vertices.length; v++ ) {
         generatedColors = generatedColors.concat( c );
       }
     }
   } else {
     for( var s = 0; s < colorSets.length; s++ ) {
-      var c = faceColors[s%15];
+      var c = faceColors[s%16];
       var faces = colorSets[s];
       for( var f = 0; f < faces.length; f++ ) {
         for( var v = 0; v < faces[f].vertices.length; v++ ) {

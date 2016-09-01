@@ -21,6 +21,14 @@
         }).on("mouseout", function(event) {
          var str = "M: "+event.pageX + "," + event.pageY;
          $('#end_output').text( str );;
+        }).on("touchmove", function(event) {
+          event.preventDefault();
+          var str = "T: "+event.originalEvent.touches[0].pageX + "," + event.originalEvent.touches[0].pageY;
+          $('#move_output').text( str );
+        }).on("mousemove", function(event) {
+          event.preventDefault();
+          var str = "M: "+event.pageX + "," + event.pageY;
+          $('#move_output').text( str );;
         });
       });
     </script>
@@ -29,6 +37,7 @@
     <canvas id="glcanvas" width="640" height="480" style="border:1px solid black;">
     </canvas>
     <div id="start_output"></div>
+    <div id="move_output"></div>
     <div id="end_output"></div>
   </body>
 </html>
