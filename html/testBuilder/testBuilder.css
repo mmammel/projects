@@ -1,0 +1,88 @@
+body {
+  font-family: helvetica;
+}
+
+.testContainer {
+  height:100%;
+  overflow: visible;
+}
+
+.test {
+  width: 30%;
+  margin-right:auto;
+  margin-left:auto;
+  background-color:rgb(72, 185, 219);
+  min-height: 300px;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.testObjectHeader {
+  text-align: center;
+}
+
+.testObjectActions {
+  text-align: right;
+}
+
+.testObjectList {
+  list-style-type: none; 
+  min-height: 50px;
+  margin: 0; 
+  padding: 0; 
+  zoom: 1;
+}
+
+.testObject {
+  margin: 15px 15px 15px 15px; 
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.testObjectAction { 
+}
+
+.section {
+  margin-right:auto;
+  margin-left:auto;
+  margin-top:30px;
+  padding: 5px;
+  background-color:#f6f6f6;
+}      
+
+.sectionItem {
+  text-align: center;
+  background-color:rgb(239, 109, 5);
+  min-height: 30px;
+}
+
+button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  padding: 2px;
+}
+
+
+.editBtn {
+  height: 14px;
+}
+
+.testText {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sectionText {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.itemText {
+  font-size: 12px;
+  font-weight: bold;
+}
+

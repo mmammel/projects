@@ -3,64 +3,91 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="handlbars-v4.0.4.js"></script>
-
-    <style type="text/css">
-      .testTable {
-        width: 80%;
-        margin-right:auto;
-        margin-left:auto;
-        background-color:lightgreen;
-        min-height: 300px;
-      }
-
-      .testGroupContainer {
-        padding: 30px;
-      }
-    </style>
-
-    <script type="text/javascript">
-      // my functions.
-      var sectionTableTemplate = null;
-      var sectionItemTemplate = null;
-
-      
-      function makeSection( name, itemList ) {
-        
-      }
-    </script>
+    <script src="handlebars-v4.0.4.js"></script>
+    <link rel="stylesheet" href="testBuilder.css"/>
   </head>
   <body>
     <h3>Draggable Test Item Prototype</h3>
 
-    <table class="testTable">
-      <tr>
-        <td>
-          <div class="testSectionContainer">
-            
-          </div>
-        </td>
-      </tr>
-    </table>
+    <div class="testContainer" id="testContainer">
+    </div>
+
+    <div class="popup addSection" id="addSectionPopup" title="Add New Section">
+      <table>
+        <tr>
+          <td><label for="newSectionName">New Section Name:</label></td><td><input type="text" value="" id="newSectionName"></input></td>
+        </tr>
+        <tr>
+          <td><label>New Section Position:</label></td><td><input type="radio" name="newSectionPosition" value="first" checked="true">First</input><br>
+             <input type="radio" name="newSectionPosition" value="last">Last</input> </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="popup removeDialog" id="removeItemPopup">
+    </div>
+
+    <div class="popup removeDialog" id="removeSectionPopup">
+    </div>
+
+    <div class="popup settingsDialog" id="testSettingsPopup">
+    </div>
+
+    <div class="popup settingsDialog" id="sectionSettingsPopup">
+    </div>
 
     <!-- Define my templates here -->
+
+    <script id="testTableTemplate" type="text/x-handlebars-template">
+      <div id="{{id}}" class="test">
+        <div class="testObjectActions">
+            <button class="testObjectAction" onclick="alert('Modify some stuff');"><img class="editBtn" src="glyphicons-137-cogwheel.png"></img></button>
+            <button class="testObjectAction" onclick="$('#addSectionPopup').dialog('open');"><img class="editBtn" src="glyphicons-191-circle-plus.png"></img></button>
+        </div>
+        <div class="testObjectHeader">
+            <span class="testText">{{name}}</span></td>
+        </div>
+        <ul class="testObjectList sectionList">
+          {{{testBody}}}
+        </ul>
+      </div>
+    </script>
+
     <script id="sectionTableTemplate" type="text/x-handlebars-template">
-      <table class="sectionTable">
-        <tr>
-          <td><h4>{{name}}</h4></td>
-        </tr>
-        {{{sectionBody}}}
-      </table>
+      <li id="{{id}}" class="testObject section">
+          <div class="testObjectActions">
+            <button class="testObjectAction" onclick="alert('Modify some stuff');"><img class="editBtn" src="glyphicons-137-cogwheel.png"></img></button>
+            <button class="testObjectAction" onclick="alert('Add items');"><img class="editBtn" src="glyphicons-191-circle-plus.png"></img></button>
+            <button class="testObjectAction" onclick="alert('Remove Me');"><img class="editBtn" src="glyphicons-193-circle-remove.png"></img></button>
+          </div>
+          <div class="testObjectHeader">
+            <span class="sectionText">{{name}}</span>
+          </div>
+          <ul class="testObjectList sectionItemList">
+            {{{sectionBody}}}
+          </ul>
+      </li>
     </script>
 
     <script id="sectionItemTemplate" type="text/x-handlebars-template">
-      <tr class="sectionItemRow">
-        <td>
-          <div class="sectionItem">
-            <h5>{{name}}</h5>
-          </div>
-        </td>
-      </tr>
+      <li id="{{id}}" class="testObject sectionItem">
+        <div class="testObjectActions">
+          <button class="testObjectAction" onclick="alert('Remove Me');"><img class="editBtn" src="glyphicons-193-circle-remove.png"></img></button>
+        </div>
+        <div class="testObjectHeader">
+          <span class="itemText">{{name}}</span>
+        </div>
+      </li>
+    </script>
+
+    <script src="scripts/main.js"></script>
+    
+    <script type="text/javascript">
+      $( document ).ready( function() {
+        loadTemplates();
+        createSectionPopup();
+        loadTest( $.testModel );
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,2 @@
+find testdir -name "*.txt" | xargs -Ifoo dirname foo | xargs -Ibar mkdir -p targetDir/bar
+find testdir -name "*.txt" | xargs -Ifoo cp foo targetDir/foo

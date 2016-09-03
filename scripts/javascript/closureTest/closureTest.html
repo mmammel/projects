@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      var myobj = { 
+        counter: 100
+      };
+
+      function callfunc() {
+        callfuncInner( myobj.counter );
+        //callfuncInner2( myobj );
+        var output = document.getElementById( 'output' );
+        output.innerHTML =  ""+myobj.counter;
+      }
+
+
+      // this one would not do the expected.
+      function callfuncInner( count ) {
+        count--;
+      }
+
+      // this one would do the expected.
+      function callfuncInner2( count ) {
+        count.counter--;
+      }
+    </script>
+  </head>
+  <body>
+    <h3 id="output"></h3>
+    <input id="callfunc" type="button" onclick="callfunc();" value="Call Func"></input>
+  </body>
+</html>
