@@ -45,6 +45,9 @@
       var colorChange = false;
       var drawInterval = null;
       var zoomLevel = -10;
+      var useOrtho = false;
+      var orthoMin = -5.0;
+      var orthoMax = 5.0;
 
       // For smooth rotation changes.
       var rotAxis = $V([1,0,0]);
@@ -151,6 +154,8 @@
 
       function setZoom(e) {
         var level = $('#zoomLevel').val();
+        orthoMax = (parseInt(level)/10.0);
+        orthoMin = -1.0 * orthoMax;
         zoomLevel = -1.0 * parseInt(level);
       }
 
@@ -272,6 +277,14 @@
         var factor = parseFloat($('#explodeFact').val());
         loadVertices( poly.getExplodedVertices( factor ) );
       }
+
+      function setOrtho() {
+        if( $('#makeOrtho').is(":checked") ) {
+          useOrtho = true;
+        } else {
+          useOrtho = false;
+        }
+      }
     </script>
   </head>
 
@@ -301,7 +314,7 @@
           <div><input type="color" id="c14" value="#ff0080"></input></div>
           <div><input type="color" id="c15" value="#ff0040"></input></div>
           <div style="width: 8px; padding-left: 24px;">-</div>
-          <div style="padding-left: 20px"><input type="range" id="zoomLevel" name="points" value="30" oninput="setZoom();" style="width:8px; height:150px; writing-mode: bt-lr; -webkit-appearance: slider-vertical;" min="0" max="100"></div>
+          <div style="padding-left: 20px"><input type="range" id="zoomLevel" name="points" value="10" oninput="setZoom();" style="width:8px; height:150px; writing-mode: bt-lr; -webkit-appearance: slider-vertical;" min="0" max="99"></div>
           <div style="width: 8px; padding-left: 21px">+</div>
         </td>
         <td id="polyForm">
@@ -344,6 +357,8 @@
               <button id="doEdgeMidpoints" onclick="loadVertices(poly.getEdgeMidpointVertices());">Produce Edge Midpoint Faces</button>
              </td></tr><tr><td>
               <label for="explodeFact">Explosion Factor</label><input id="explodeFact" type="text" value="0.0"><button id="exploder" onclick="doExplode();">Explode Faces</button>
+            </td></tr><tr><td>
+              <label for="makeOrtho">Use Orthogonal Projection</label><input id="makeOrtho" type="checkBox" onchange="javascript:setOrtho();">
             </td></tr>
           </table>
         </td>

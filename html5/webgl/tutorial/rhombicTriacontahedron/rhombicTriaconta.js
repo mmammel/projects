@@ -440,7 +440,11 @@ function drawScene() {
   // ratio of 640:480, and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
 
-  perspectiveMatrix = makePerspective(45, 640.0/640.0, .1, 100.0);
+  if( !useOrtho ) {
+    perspectiveMatrix = makePerspective(45, 640.0/640.0, .1, 100.0);
+  } else {
+    perspectiveMatrix = makeOrtho(orthoMin, orthoMax, orthoMin, orthoMax, .1, 110.0);
+  }
 
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
