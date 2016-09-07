@@ -261,7 +261,11 @@
 
         changeColors = true;
 
-        if( drawInterval == null ) drawInterval = setInterval( drawScene, 15 );
+        //if( drawInterval == null ) drawInterval = setInterval( drawScene, 15 );
+        if( drawInterval == null ) {
+          drawInterval = "foobar";
+          drawScene(0);
+        }
       }
 
       function loadVertices(vArray) {
