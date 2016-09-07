@@ -159,9 +159,43 @@
         zoomLevel = -1.0 * parseInt(level);
       }
 
-      var touchContext = {};
+      var guideSphere = {};
+      function setupGuideSphere() {
+        guideSphere.centerX = ($('#glcanvas').width() / 2) + $('#glcanvas').offset().left;
+        guideSphere.centerY = ($('#glcanvas').height() / 2) + $('#glcanvas').offset().top;
+        guideSphere.radius = guideSphere.centerY;
+      }
+
+      var touchContext = {
+        prevTime : (new Date()).getTime(),
+        prevX : 0,
+        prevY : 0,
+        lastRate : 0.0,
+        dragging : false
+      };
 
       function processTouch() {
+        var dT = touchContext.currTime - touchContext.prevTime;
+        var dP = Math.sqrt( Math.pow((touchContext.currX - touchContext.prevX),2) + Math.pow((touchContext.currY - touchContext.prevY),2));
+
+        if( dP > 1.0 && dT > 1 ) {
+          getRotationAxisFromPoints( touchContext.prevX, touchContext.prevY, touchContext.currX, touchContext.currY );
+          rotationAxisChanged = true;
+          spinRate = 2.5 * (dP / dT);
+          touchContext.lastRate = spinRate;
+          touchContext.prevTime = touchContext.currTime;
+          touchContext.prevX = touchContext.currX;
+          touchContext.prevY = touchContext.currY;
+        } else if( touchContext.dragging ) {
+          spinRate = 0;
+          touchContext.lastRate = 0.0;
+        } else {
+          spinRate = touchContext.lastRate;
+        }
+      }
+
+      // This is the old one.
+      function processTouch0() {
         var duration = touchContext.endTime - touchContext.startTime;
         var distance = Math.sqrt( Math.pow((touchContext.endX - touchContext.startX),2) + Math.pow((touchContext.endY - touchContext.startY),2));
         if( Math.abs( distance ) < .01 ) {
@@ -171,13 +205,6 @@
           getRotationAxisFromPoints( touchContext.startX, touchContext.startY, touchContext.endX, touchContext.endY );
           rotationAxisChanged = true;
         }
-      }
-      
-      var guideSphere = {};
-      function setupGuideSphere() {
-        guideSphere.centerX = ($('#glcanvas').width() / 2) + $('#glcanvas').offset().left;
-        guideSphere.centerY = ($('#glcanvas').height() / 2) + $('#glcanvas').offset().top;
-        guideSphere.radius = guideSphere.centerY;
       }
       
       /*
@@ -203,33 +230,56 @@
         rotAxis = cross;
       }
 
-
       $(document).ready(function() {
         setupGuideSphere();
         $('#glcanvas').on( "touchstart", function(event) {
          event.preventDefault();
-         touchContext.startX = event.originalEvent.touches[0].pageX;
-         touchContext.startY = event.originalEvent.touches[0].pageY;
+         touchContext.prevX = event.originalEvent.touches[0].pageX;
+         touchContext.prevY = event.originalEvent.touches[0].pageY;
          var d = new Date();
-         touchContext.startTime = d.getTime();
+         touchContext.prevTime = d.getTime();
+         touchContext.dragging = true;
+         touchContext.lastRate = 0.0;
         }).on("touchend", function(event) {
          event.preventDefault();
-         touchContext.endX = event.originalEvent.changedTouches[0].pageX;
-         touchContext.endY = event.originalEvent.changedTouches[0].pageY;
+         touchContext.currX = event.originalEvent.changedTouches[0].pageX;
+         touchContext.currY = event.originalEvent.changedTouches[0].pageY;
          var d = new Date();
-         touchContext.endTime = d.getTime();
+         touchContext.currTime = d.getTime();
+         touchContext.dragging = false;
          processTouch();
         }).on( "mousedown", function(event) {
-         touchContext.startX = event.pageX;
-         touchContext.startY = event.pageY;
+         touchContext.prevX = event.pageX;
+         touchContext.prevY = event.pageY;
          var d = new Date();
-         touchContext.startTime = d.getTime();
+         touchContext.prevTime = d.getTime();
+         touchContext.dragging = true;
+         touchContext.lastRate = 0.0;
         }).on("mouseup", function(event) {
-         touchContext.endX = event.pageX;
-         touchContext.endY = event.pageY;
+         touchContext.currX = event.pageX;
+         touchContext.currY = event.pageY;
          var d = new Date();
-         touchContext.endTime = d.getTime();
+         touchContext.currTime = d.getTime();
+         touchContext.dragging = false;
          processTouch();
+        }).on("mousemove", function(event) {
+         if( touchContext.dragging ) {
+           event.preventDefault();
+           touchContext.currX = event.pageX;
+           touchContext.currY = event.pageY;
+           var d = new Date();
+           touchContext.currTime = d.getTime();
+           processTouch();
+         }
+        }).on("touchmove", function(event) {
+         if( touchContext.dragging ) {
+           event.preventDefault();
+           touchContext.currX = event.originalEvent.changedTouches[0].pageX;
+           touchContext.currY = event.originalEvent.changedTouches[0].pageY;
+           var d = new Date();
+           touchContext.currTime = d.getTime();
+           processTouch();
+         }
         });
 
         setFaceColors();

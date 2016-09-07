@@ -502,6 +502,9 @@ var drawScene = function(currentTime) {
   var dt = currentTime - lastCubeUpdateTime;
   cubeRotation += (spinRate * (dt/15.0));
   cubeRotation %= 360.0;
+  if( touchContext.dragging ) {
+    spinRate = 0.0;
+  }
 
   lastCubeUpdateTime = currentTime;
   window.requestAnimationFrame( drawScene );

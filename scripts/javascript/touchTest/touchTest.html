@@ -3,6 +3,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <script type="text/javascript">
+      var prevX = 0;
+      var prevY = 0;
+      var d = new Date();
+      var prevTime = d.getTime();
+      
       $(document).ready(function() {
         $('#glcanvas').on( "touchstart", function(event) {
          event.preventDefault();
@@ -14,6 +19,10 @@
          $('#end_output').text( str );
         }).on( "mousedown", function(event) {
          var str = "M: "+event.pageX + "," + event.pageY;
+         var d = new Date();
+         prevTime = d.getTime();
+         prevX = event.pageX;
+         prevY = event.pageY;
          $('#start_output').text( str );
         }).on("mouseup", function(event) {
          var str = "M: "+event.pageX + "," + event.pageY;
@@ -27,10 +36,21 @@
           $('#move_output').text( str );
         }).on("mousemove", function(event) {
           event.preventDefault();
-          var str = "M: "+event.pageX + "," + event.pageY;
+          var d = new Date();
+          var t = d.getTime();
+          var deltaT = (t - prevTime);
+          var deltaP = distance( prevX, prevY, event.pageX, event.pageY );
+          prevTime = t;
+          prevX = event.pageX;
+          prevY = event.pageY;
+          var str = "M: "+event.pageX + "," + event.pageY + ", dT: " + deltaT + ", dP: " + deltaP;
           $('#move_output').text( str );;
         });
       });
+
+      function distance( x0, y0, x1, y1 ) {
+        return Math.sqrt( Math.pow((x1 - x0),2) + Math.pow((y1 - y0),2));
+      }
     </script>
   </head>
   <body>
