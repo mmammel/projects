@@ -294,6 +294,8 @@
         //clearInterval(drawInterval);
         poly = new Polyhedron( verts );
 
+        $('#polyInfo').html( "<b>Faces</b>:&nbsp;"+poly.faceGroup.faces.length+"<br/><b>Vertices</b>:&nbsp"+poly.vertexGroup.vertices.length+"<br/><b>Edges</b>:&nbsp;"+poly.getEdgeCount() );
+
         //cubeVerticesBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
         var vertices = poly.getFaceOrderedVertices();
@@ -318,9 +320,24 @@
         }
       }
 
+      function verticesToString( verts ) {
+        var retVal = "vertices = [\n";
+        for( var i = 0; i < verts.length; i+=3 ) {
+          retVal += ("      " + verts[i] + "," + verts[i+1] + "," + verts[i+2]);
+          if( i+3 < (verts.length - 1) ) {
+            retVal += ",";
+          }
+          retVal += "\n";
+        }
+        retVal += "  ];\n";
+        return retVal;
+      }
+
       function loadVertices(vArray) {
         if( vArray != null ) {
           vertices = vArray;
+          clearForm();
+          $('#polyVerts').val(verticesToString( vArray ) ); 
         } else {
           eval( $('#polyVerts').val() );
         }
@@ -386,6 +403,8 @@
             </td></tr>
             <tr><td>
               <textarea id="polyDesc" rows="4" cols="30" placeholder="Enter a description"></textarea>
+            </td><td id="polyInfo">
+
             </td></tr>
             <tr><td>
               <textarea placeholder="Define the vertex array" title="Using javascript, define float array and assign to 'vertices'" id="polyVerts" rows="25" cols="30" onkeyup="updateSaveButton();"></textarea>

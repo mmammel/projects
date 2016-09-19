@@ -5,6 +5,11 @@ function Polyhedron ( coords ) {
   this.triangleVertices = this.getTriangleVertices();
 }
 
+Polyhedron.prototype.getEdgeCount = function() {
+  var sideCount = this.faceGroup.getSideCount();
+  return (sideCount / 2);
+}
+
 Polyhedron.prototype.getVertexIndexArray = function() {
   var retVal = [];
   for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
@@ -188,6 +193,14 @@ function FaceGroup ( faces ) {
   this.coloringSets = this.sortForColoring();
 }
 
+FaceGroup.prototype.getSideCount = function() {
+  var retVal = 0;
+  for( var i = 0; i < this.faces.length; i++ ) {
+    retVal += this.faces[i].vertices.length;
+  }
+  return retVal;
+}
+
 FaceGroup.prototype.sortForColoring = function() {
   var indexArray = [];
   var sets = [];
@@ -278,19 +291,23 @@ VertexGroup.prototype.findFaces = function() {
   for( var i = 0; i < this.vertices.length - 2; i++ ) {
     for( var j = i+1; j < this.vertices.length - 1; j++ ) {
       for( var k = j+1; k < this.vertices.length; k++ ) {
-        //tempPlane = $P( this.vertices[i].elements, this.vertices[j].subtract(this.vertices[i]), this.vertices[k].subtract(this.vertices[i]) );
         tempPlane = $P( this.vertices[i], this.vertices[j], this.vertices[k] );
-        test = 0;
-        face = true;
-        for( var z = 0; z < this.vertices.length; z++ ) {
-          if( z == i || z == j || z == k ) continue;
-          tempTest = planeCoordinateTest(tempPlane,this.vertices[z]);
-          if( tempTest == 0 ) continue;
-          if( test == 0 ) {
-            test = tempTest;
-          } else if( test != tempTest ) {
-            face = false;
-            break;
+        if( tempPlane == null ) {
+          // possible with bogus verts.
+          face = false;
+        } else {
+          test = 0;
+          face = true;
+          for( var z = 0; z < this.vertices.length; z++ ) {
+            if( z == i || z == j || z == k ) continue;
+            tempTest = planeCoordinateTest(tempPlane,this.vertices[z]);
+            if( tempTest == 0 ) continue;
+            if( test == 0 ) {
+              test = tempTest;
+            } else if( test != tempTest ) {
+              face = false;
+              break;
+            }
           }
         }
 
@@ -313,12 +330,17 @@ VertexGroup.prototype.findFaces = function() {
   // OK - now we have an array of planes that define the convex hull of the vertices.
   // Now we have to group the vertices arrays by which plane they fall into.
   var result = []; // this is an array of faces.
+  var verticesUsed = [];
+  for( var u = 0; u < this.vertices.length; u++ ) {
+    verticesUsed.push( false );
+  }
   var tempFace = null;
   for( var f = 0; f < goodPlanes.length; f++ ) {
     tempFace = new Face( goodPlanes[f], [], [] );
     result.push( tempFace );
     for( var v = 0; v < this.vertices.length; v++ ) {
       if( goodPlanes[f].contains( this.vertices[v] ) ) {
+        verticesUsed[v] = true;
         tempFace.idxArray.push( v );
         tempFace.vertices.push( this.vertices[v] );
       } 
@@ -326,6 +348,20 @@ VertexGroup.prototype.findFaces = function() {
 
     tempFace.sortVertices();
   }
+
+  // Alert if we have unused vertices, the render will fail.
+  var concavity = false;
+  var alertMsg = "Concavity detected - following vertices not used:\n";
+  for( var uv = 0; uv < verticesUsed.length; uv++ ) {
+    if( !verticesUsed[uv] ) {
+      concavity = true;
+      alertMsg += ("(" + this.vertices[uv].elements[0] + "," + this.vertices[uv].elements[1] +"," +this.vertices[uv].elements[2] + ")\n");
+    }
+  }
+
+  alertMsg += "\nNote that the reported vertex count will include the ignored vertices, but they will be ignored while rendering."
+
+  if( concavity ) alert( alertMsg );
 
   return result;
 }
