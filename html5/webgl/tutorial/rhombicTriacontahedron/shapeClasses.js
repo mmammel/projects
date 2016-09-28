@@ -37,6 +37,24 @@ Polyhedron.prototype.getEdgeMidpointVertices = function() {
   return retVal;
 }
 
+Polyhedron.prototype.getEdgeTrisectionVertices = function() {
+  var retVal = [];
+  var faceTRVs = [];
+  var vertexKey = null;
+  var uniqueChecker = {};
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    faceTRVs = this.faceGroup.faces[i].getEdgeTrisectionVertices();
+    for( var j = 0; j < faceTRVs.length; j++ ) {
+      vertexKey = "v"+faceTRVs[j].elements[0] + "_" + faceTRVs[j].elements[1] + "_" +faceTRVs[j].elements[2];
+      if( !uniqueChecker[ vertexKey ] ) {
+        uniqueChecker[ vertexKey ] = true;
+        retVal.push(faceTRVs[j].elements[0], faceTRVs[j].elements[1], faceTRVs[j].elements[2]);
+      }
+    }
+  }  
+  return retVal;
+}
+
 Polyhedron.prototype.getExplodedVertices = function( xfactor ) {
   var retVal = [];
   var faceExplodes = [];
@@ -162,6 +180,21 @@ Face.prototype.getEdgeMidpointVertices = function() {
       retVal.push( getMidpoint( this.vertices[i], this.vertices[0] ) );
     } else {
       retVal.push( getMidpoint( this.vertices[i], this.vertices[i+1] ) );
+    }
+  }
+  return retVal;
+}
+
+Face.prototype.getEdgeTrisectionVertices = function() {
+  var retVal = [];
+  var tempMidpoint = null;
+  for( var i = 0; i < this.vertices.length; i++ ) {
+    if( i == (this.vertices.length - 1) ) {
+      retVal.push( getOneThirdPoint( this.vertices[i], this.vertices[0] ) );
+      retVal.push( getTwoThirdsPoint( this.vertices[i], this.vertices[0] ) );
+    } else {
+      retVal.push( getOneThirdPoint( this.vertices[i], this.vertices[i+1] ) );
+      retVal.push( getTwoThirdsPoint( this.vertices[i], this.vertices[i+1] ) );
     }
   }
   return retVal;
@@ -370,6 +403,20 @@ function getMidpoint( v1, v2 ) {
   var x = (v1.elements[0] + v2.elements[0])/2.0;
   var y = (v1.elements[1] + v2.elements[1])/2.0;
   var z = (v1.elements[2] + v2.elements[2])/2.0;
+  return $V([x,y,z]);
+}
+
+function getOneThirdPoint( v1, v2 ) {
+  var x = (2.0*v1.elements[0] + v2.elements[0])/3.0;
+  var y = (2.0*v1.elements[1] + v2.elements[1])/3.0;
+  var z = (2.0*v1.elements[2] + v2.elements[2])/3.0;
+  return $V([x,y,z]);
+}
+
+function getTwoThirdsPoint( v1, v2 ) {
+  var x = (v1.elements[0] + 2.0*v2.elements[0])/3.0;
+  var y = (v1.elements[1] + 2.0*v2.elements[1])/3.0;
+  var z = (v1.elements[2] + 2.0*v2.elements[2])/3.0;
   return $V([x,y,z]);
 }
 
