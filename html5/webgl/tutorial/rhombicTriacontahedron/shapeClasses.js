@@ -55,6 +55,28 @@ Polyhedron.prototype.getEdgeTrisectionVertices = function() {
   return retVal;
 }
 
+Polyhedron.prototype.getCentroidVertices = function() {
+  var retVal = [];
+  var tempVertex = null;
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    tempVertex = this.faceGroup.faces[i].getCentroid();
+    retVal.push( tempVertex.elements[0],tempVertex.elements[1],tempVertex.elements[2] );
+  }
+
+  return retVal;
+}
+
+Polyhedron.prototype.getFaceAverageVertices = function() {
+  var retVal = [];
+  var tempVertex = null;
+  for( var i = 0; i < this.faceGroup.faces.length; i++ ) {
+    tempVertex = this.faceGroup.faces[i].getVertexAverage();
+    retVal.push( tempVertex.elements[0],tempVertex.elements[1],tempVertex.elements[2] );
+  }
+
+  return retVal;
+}
+
 Polyhedron.prototype.getExplodedVertices = function( xfactor ) {
   var retVal = [];
   var faceExplodes = [];
@@ -101,6 +123,7 @@ function Face ( plane, vertices, idxArray ) {
   this.vertices = vertices;
   this.idxArray = idxArray;
   this.normal = plane.normal;
+  this.plane = plane;
 }
 
 /*
@@ -200,6 +223,135 @@ Face.prototype.getEdgeTrisectionVertices = function() {
   return retVal;
 }
 
+Face.prototype.getVertexAverage = function() {
+  var sumX = 0.0, sumY = 0.0, sumZ = 0.0;
+  for( var i = 0; i < this.vertices.length; i++ ) {
+    sumX += this.vertices[i].elements[0];
+    sumY += this.vertices[i].elements[1];
+    sumZ += this.vertices[i].elements[2];
+  }
+
+  return $V([ sumX / this.vertices.length, sumY / this.vertices.length, sumZ / this.vertices.length]);
+}
+
+var planeCoords = {
+  xy : [ 0, 1 ],
+  xz : [ 0, 2 ],
+  yz : [ 1, 2 ],
+}
+
+Face.prototype.getCentroid = function() {
+  var retVal = null;
+  var area = this.getArea();
+  var newX = 0.0, newY = 0.0, newZ = 0.0;
+  var projectionPlanes = [planeCoords.xy,planeCoords.yz,planeCoords.xz];
+  var averageCenter = this.getVertexAverage();
+  var signArray = [];
+  signArray.push( averageCenter.elements[0] < 0 ? -1 : 1 );
+  signArray.push( averageCenter.elements[1] < 0 ? -1 : 1 );
+  signArray.push( averageCenter.elements[2] < 0 ? -1 : 1 );
+
+  if( precisionCompare( this.vertices[0].elements[0], this.vertices[1].elements[0] ) &&
+      precisionCompare( this.vertices[0].elements[0], this.vertices[2].elements[0] ) ) {
+    // same X, we are perpendicular to XY and XZ
+    newX = this.vertices[0].elements[0];
+    projectionPlanes = [ null, planeCoords.yz, planeCoords.yz ];
+  } else if( precisionCompare( this.vertices[0].elements[1], this.vertices[1].elements[1] ) &&
+             precisionCompare( this.vertices[0].elements[1], this.vertices[2].elements[1] ) ) {
+    // same Y, we are perpendicular to XY and YZ
+    newY = this.vertices[0].elements[1];
+    projectionPlanes = [ planeCoords.xz, null, planeCoords.xz ];
+  } else if( precisionCompare( this.vertices[0].elements[2], this.vertices[1].elements[2] ) &&
+             precisionCompare( this.vertices[0].elements[2], this.vertices[2].elements[2] ) ) {
+    // same Z, we are perpendicular to YZ and XZ
+    newZ = this.vertices[0].elements[2];
+    projectionPlanes = [ planeCoords.xy, planeCoords.xy, null ];
+  } else if( this.plane.isPerpendicularTo(Plane.XY) ) {
+    projectionPlanes = [planeCoords.xz,planeCoords.yz,planeCoords.xz];
+  } else if( this.plane.isPerpendicularTo(Plane.YZ) ) {
+    projectionPlanes = [planeCoords.xy,planeCoords.xy,planeCoords.xz];
+  } else if( this.plane.isPerpendicularTo(Plane.XZ) ) {
+    projectionPlanes = [planeCoords.xy,planeCoords.xy,planeCoords.yz];
+  }
+  
+  if( projectionPlanes[0] != null ) newX = signArray[0] * Math.abs(this.getCentroidCoord( 0, area, projectionPlanes[0] ));
+  if( projectionPlanes[1] != null ) newY = signArray[1] * Math.abs(this.getCentroidCoord( 1, area, projectionPlanes[1] ));
+  if( projectionPlanes[2] != null ) newZ = signArray[2] * Math.abs(this.getCentroidCoord( 2, area, projectionPlanes[2] ));
+
+  return $V([newX,newY,newZ]);
+}
+
+/**
+ * Get one of the coordinates of the centroid
+ * area: the area of the face
+ * c: which coords of each vertex to use to calculate in order to avoid perpendicular coordinate planes.
+ *
+ *  TODO:  HAVE TO USE THE AREA OF THE *PROJECTION* OF THE FACE!!!! Dumbass.
+ */
+Face.prototype.getCentroidCoord = function( idx, area, c ) {
+  var retVal = 0.0;
+  var v1 = null, v2 = null;
+  var projectionVertices = [];
+  for( var i = 0; i < this.vertices.length; i++ ) {
+    if( i == this.vertices.length - 1 ) {
+      v1 = this.vertices[i];
+      projectionVertices.push( $V([v1.elements[c[0]],v1.elements[c[1]]]) );
+      v2 = this.vertices[0];
+    } else {
+      v1 = this.vertices[i];
+      projectionVertices.push( $V([v1.elements[c[0]],v1.elements[c[1]]]) );
+      v2 = this.vertices[i+1];
+    }
+
+    retVal += ((v1.elements[idx] + v2.elements[idx])*(v1.elements[c[0]]*v2.elements[c[1]] - v2.elements[c[0]]*v1.elements[c[1]]));
+  }
+
+  var projectionArea = getArea( projectionVertices );
+
+  return (retVal/(6.0 * projectionArea));
+}
+
+Face.prototype.getArea = function() {
+  var area = 0.0;
+  var trianglePerimeter = 0.0;
+  var s = 0.0;
+  var side1, side2, side3;
+  var v = 0;
+  for( var i = 1; i < this.vertices.length - 1; i++ ) {
+    // Three verts of the current triangle are v[0], v[i], v[i+1]
+    trianglePerimeter = 0.0;
+    trianglePerimeter += (side1 = this.vertices[0].distanceFrom( this.vertices[i] ));
+    trianglePerimeter += (side2 = this.vertices[i].distanceFrom( this.vertices[i+1] ));
+    trianglePerimeter += (side3 = this.vertices[i+1].distanceFrom( this.vertices[0] ));
+    s = trianglePerimeter / 2.0;
+    area += Math.sqrt( (s * (s - side1) * (s - side2) * (s - side3))  );
+  }
+
+  return area;
+}
+
+/**
+ * Takes an array of $V vectors of dimension 2 or 3
+ */
+function getArea( vertices ) {
+  var area = 0.0;
+  var trianglePerimeter = 0.0;
+  var s = 0.0;
+  var side1, side2, side3;
+  var v = 0;
+  for( var i = 1; i < vertices.length - 1; i++ ) {
+    // Three verts of the current triangle are v[0], v[i], v[i+1]
+    trianglePerimeter = 0.0;
+    trianglePerimeter += (side1 = vertices[0].distanceFrom( vertices[i] ));
+    trianglePerimeter += (side2 = vertices[i].distanceFrom( vertices[i+1] ));
+    trianglePerimeter += (side3 = vertices[i+1].distanceFrom( vertices[0] ));
+    s = trianglePerimeter / 2.0;
+    area += Math.sqrt( (s * (s - side1) * (s - side2) * (s - side3))  );
+  }
+
+  return area;
+}
+
 /**
   Explode the face out by a factor of xfactor along its 
   normal vector.
@@ -277,9 +429,16 @@ FaceGroup.prototype.sortForColoring = function() {
 function VertexGroup ( coords ) {
   this.coords = coords;
   this.vertices = [];
+  var xsum = 0.0, ysum = 0.0, zsum = 0.0;
   for( var i = 0; i < coords.length; i+=3 ) {
+    xsum += coords[i];
+    ysum += coords[i+1];
+    zsum += coords[i+2];
     this.vertices.push( $V([coords[i], coords[i+1], coords[i+2]]) );
   }
+
+  this.origin = $V([ xsum, ysum, zsum ]).x( 1.0 / (1.0*this.vertices.length) ).snapTo(0);
+  alert( "Origin: " + this.origin.inspect() );
 }
 
 VertexGroup.prototype.applyRotation = function( m ) {
@@ -320,6 +479,7 @@ VertexGroup.prototype.findFaces = function() {
   var tempTest = 0;
   var test = 0;
   var goodPlanes = [];
+  //var goodPlanesIndex = {};
   var face = false;
   for( var i = 0; i < this.vertices.length - 2; i++ ) {
     for( var j = i+1; j < this.vertices.length - 1; j++ ) {
@@ -345,6 +505,12 @@ VertexGroup.prototype.findFaces = function() {
         }
 
         if( face ) {
+          //var faceKey = planeToString( tempPlane ); 
+          //if( goodPlanesIndex[ faceKey ] !== true ) {
+          //  goodPlanes.push( tempPlane );
+          //  goodPlanesIndex[ faceKey ] = true;
+          //}
+           
           for( var p = 0; p < goodPlanes.length; p++ ) {
             if( tempPlane.eql( goodPlanes[p] ) ) {
               // already found it.
@@ -418,5 +584,22 @@ function getTwoThirdsPoint( v1, v2 ) {
   var y = (v1.elements[1] + 2.0*v2.elements[1])/3.0;
   var z = (v1.elements[2] + 2.0*v2.elements[2])/3.0;
   return $V([x,y,z]);
+}
+
+function precisionCompare( a, b ) {
+  var equals = false;
+  if( Math.abs( a - b ) < .001 ) {
+    equals = true;
+  }
+
+  return equals;
+}
+
+function planeToString( plane ) {
+  return "p"+vectorToString( plane.normal ) + plane.D;
+}
+
+function vectorToString( v ) {
+ return "v"+Math.round(1000*v.elements[0])/1000+"_"+Math.round(1000*v.elements[1])/1000+"_"+Math.round(1000*v.elements[2])/1000;
 }
 
