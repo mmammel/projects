@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Strange visual effect demonstration">
+    <meta name="author" content="Max Mammel">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="instructions">
+      <h4>Stare at the red dot and you might observe a strange trailing "cloud" behind the moving shape</h4>
+    </div>
+    <div id="svg"></div>
+    <div id="controls">
+      <table style="width:100%">
+        <tr>
+          <td style="width:20%">
+            <input type="radio" name="shape" value="circle"> Circle<br>
+            <input type="radio" name="shape" value="square" checked> Square<br>
+          </td>
+          <td>
+            <span>Slow</span><input type="range" min="1" max="25" value="3" id="speed"/><span>Fast</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+      function getViewportHeight() {
+        var height = window.innerHeight ? window.innerHeight : $(window).height();
+        height = height - $('#instructions').height() - $('#controls').height() - 30;
+        return height;
+      }
+      var Animation = {
+        viewBoxCoords : [ 0, 0, $(window).width(), getViewportHeight() ],
+        objCoords : [ 0, ( getViewportHeight() / 2) + 50 ],
+        speed : 3,
+        shape : 'square',
+        setSpeed : function( rangeInput ) {
+          this.speed = parseInt(rangeInput);
+        },
+        setShape : function( s ) {
+          this.shape = s;
+        },
+        getWidth : function() {
+          return this.viewBoxCoords[2] - this.viewBoxCoords[0];
+        },
+        getHeight : function() {
+          return this.viewBoxCoords[3] - this.viewBoxCoords[1];
+        },
+        getSVG : function() {
+          var content = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="' + this.getWidth() + '" height="' + this.getHeight() +
+                    '" viewBox="' + this.viewBoxCoords[0] + ' ' + this.viewBoxCoords[1] + ' ' + this.viewBoxCoords[2] + ' ' + this.viewBoxCoords[3] +'">';
+        if( this.shape === 'square' ) {
+          content += '<rect x="'+this.objCoords[0]+'" y="'+this.objCoords[1]+'" width="100" height="100" fill="black"/>';
+        } else if( this.shape === 'circle' ) {
+          content += '<circle cx="'+(this.objCoords[0]+50)+'" cy="'+(this.objCoords[1]+50)+'" r="50" fill="black"/>';
+        }
+        content += '<circle cx="'+this.viewBoxCoords[2] / 2+'" cy="'+this.viewBoxCoords[3] / 3+'" r="7" fill="red"/>';
+
+        content += '</svg>';
+        return content;
+      },
+      moveLateral : function() {
+        var currPos = this.objCoords[0];
+        if( currPos + this.speed + 100 > this.viewBoxCoords[2] ) {
+          this.objCoords[0] = 0;
+        } else {
+          this.objCoords[0] = currPos + this.speed;
+        }
+      }
+    };
+
+    $( document ).ready( function () {
+
+      $( window ).resize(function() {
+        var height = getViewportHeight();
+        Animation.viewBoxCoords[2] = $( window ).width();
+        Animation.viewBoxCoords[3] = height;
+        Animation.objCoords[1] = (height / 2) + 50;
+      });
+
+      $('input[type=radio][name=shape]').change(function() {
+        Animation.setShape( this.value );
+      });
+
+      $('#speed').change( function() {
+        Animation.setSpeed( this.value );
+      });
+
+      Animation.theInterval = setInterval( function() {
+        Animation.moveLateral();
+        $("#svg").html( Animation.getSVG() );
+      }, 10 );
+    });
+    </script>
+  </body>
+</html>

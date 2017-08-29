@@ -438,7 +438,7 @@ function VertexGroup ( coords ) {
   }
 
   this.origin = $V([ xsum, ysum, zsum ]).x( 1.0 / (1.0*this.vertices.length) ).snapTo(0);
-  alert( "Origin: " + this.origin.inspect() );
+  //alert( "Origin: " + this.origin.inspect() );
 }
 
 VertexGroup.prototype.applyRotation = function( m ) {
