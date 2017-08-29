@@ -1,0 +1,103 @@
+i=5
+p[0]=3
+n=1
+while( n <= 65535 ){
+for( j=0 ; p[j]^2 <= i ; j=j+1 ){
+if( i%p[j] == 0 ) break;
+}
+if( p[j]^2 > i ){p[n++] = i;}
+i=i+2
+}
+n=0
+while( n <=  65535 ){
+for( j=0 ; p[j]^2 <= i ; j=j+1 ){
+if( i%p[j] == 0 ) break;
+}
+if( p[j]^2 > i ){q[n++] = i;}
+i=i+2
+}
+n=0
+while( n <=  65535 ){
+for( j=0 ; p[j]^2 <= i ; j=j+1 ){
+if( i%p[j] == 0 ) break;
+}
+if( p[j]^2 > i ){r[n++] = i;}
+i=i+2
+}
+n=0
+while( n <=  65535 ){
+for( j=0 ; p[j]^2 <= i ; j=j+1 ){
+if( i%p[j] == 0 ) break;
+}
+if( p[j]^2 > i ){s[n++] = i;}
+i=i+2
+}
+n=0
+while( n <=  65535 ){
+for( j=0 ; p[j]^2 <= i ; j=j+1 ){
+if( i%p[j] == 0 ) break;
+}
+if( p[j]^2 > i ){t[n++] = i;}
+i=i+2
+}
+
+a[0]=11;a[1]=13;a[2]=17;a[3]=19;a[4]=41;a[5]=43;a[6]=47;a[7]=49;
+b[0]=180;b[1]=810;b[2]=1440;b[3]=2070;
+
+for( i=0 ; i<13*2310 ; i=i+2310 )
+for( j=0 ; j<4 ; j=j+1)
+{
+ for( k=0 ; k<8 ;k=k+1){if((i+b[j]+a[k])% 13 ==0)break;}
+ if(k==8)a13[n13++] = i+b[j];
+}
+
+lim=666000670;
+
+for( i= 638561659 ; i<lim ; i=i+1 )
+{
+for( j=0 ; j<n13 ; j++ )
+{
+val = i*30030 + a13[j] ;
+plim = sqrt(val);
+for( l=0 ; l<65536 ; l=l+1)
+{
+for( k=0 ; k<8 ; k=k+1 )
+if( (val + a[k])%p[l] == 0 ) break;
+if( k<8 ) break;
+}
+if( l<65536 ) continue;
+for( l=0 ; l<65536 ; l=l+1)
+{
+for( k=0 ; k<8 ; k=k+1 )
+if( (val + a[k])%q[l] == 0 ) break;
+if( k<8 ) break;
+}
+if( l<65536 ) continue;
+for( l=0 ; l<65536 ; l=l+1)
+{
+for( k=0 ; k<8 ; k=k+1 )
+if( (val + a[k])%r[l] == 0 ) break;
+if( k<8 ) break;
+}
+if( l<65536 ) continue;
+for( l=0 ; l<65536 ; l=l+1)
+{
+for( k=0 ; k<8 ; k=k+1 )
+if( (val + a[k])%s[l] == 0 ) break;
+if( k<8 ) break;
+}
+if( l<65536 ) continue;
+for( l=0 ; t[l]<=plim ; l=l+1 )
+{
+for( k=0 ; k<8 ; k=k+1 )
+if( (val + a[k])%t[l] == 0 ) break;
+if( k<8 ) break;
+}
+
+if( t[l]>plim ) val;
+
+}
+}
+
+quit
+

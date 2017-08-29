@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        $('#searchSelector').on( "keyup", function(event) {
+          $('#accountSelect option').each( function( index ) {
+            if( $(this).text().toLowerCase().indexOf( $('#searchSelector').val().toLowerCase() ) > -1 ) {
+              var s = $('#accountSelect');
+              var optionTop = $(this).offset().top;
+              var selectTop = s.offset().top;
+              s.scrollTop(s.scrollTop() + (optionTop - selectTop));
+              return false;
+            }
+          });
+        }).on( "keydown", function(e) {
+          e = e || window.event;
+          if( e.keyCode == '40' ) {
+            e.preventDefault();
+            $('#accountSelect').focus();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+
+    <table>
+      <tr>
+        <td>
+          <input id="searchSelector" type="text" placeholder="search" size="45">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <select id="accountSelect" name="accountSelect" class="browser-default publishSelect" multiple="true"><option value="AUDIT_DEMO">AUDIT_DEMO</option><option value="TEST_DEPLOY">DEPLOYMENT TEST</option><option value="DEPLOYMENTQA">deploymentqa</option><option value="DISTABC">Distributor ABC</option><option value="DMILLERQA">DMILLERQA</option><option value="ECOMMERCE_TEST">ECOMMERCE_TEST</option><option value="FADV-EVAL1">FADV-EVAL1</option><option value="FINALTEST">FINAL TEST</option><option value="MARC3A">marc3a</option><option value="MARC3C" selected="">marc3c</option><option value="MARC3D">marc3d</option><option value="MARC3F">marc3f</option><option value="MARC3N">marc3n</option><option value="MIKEL_TEST">Mike</option><option value="MIKED_AU_TEST">miked_au_test</option><option value="MIKED_EUR_TEST">miked_eur_test</option><option value="MIKEL">mikel</option><option value="NOTIFICATIONTEST">Notification Test</option><option value="PEOPLECLICK">Peopleclick</option><option value="QAKRISTINTEST">QAKRISTINTEST</option><option value="RAY_NO_POPUP">RAY_NO_POPUP</option><option value="RAY_POPUP">RAY_POPUP</option><option value="TALEOSMB">Taleosmb</option></select>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

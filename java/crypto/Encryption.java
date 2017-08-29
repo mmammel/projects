@@ -126,6 +126,7 @@ static public boolean checkPassword(String encryptPassword, String passwordIn, S
     if( args.length == 2 )
     {
        if( args[0].equalsIgnoreCase("encrypt") ) {
+          System.out.println( "Encryption: " + args[1] );
           System.out.println(  "Encrypted: " +  Encryption.encryptPassword(args[1]) );
        }
        else if( args[0].equalsIgnoreCase("decrypt") ) {

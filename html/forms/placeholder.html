@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function senderChange( e ) {
+        if( this.value.length == 0 ) {
+          this.placeholder = 'Default';
+        }
+      }
+    </script>
+  </head>
+  <body>
+
+    <H1>Placeholder Test</H1>
+    <input name="foobar" id="foobar" onchange="senderChange" placeholder="foobar"></input>
+    
+  </body>
+</html>

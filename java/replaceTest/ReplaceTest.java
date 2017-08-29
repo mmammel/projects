@@ -3,6 +3,7 @@ public class ReplaceTest {
       //String in = "com.jomama.yomama.Q_LikerImpl";
       //String out = in.replaceAll( ".*?\\.([^.]+)$", "$1" );
       String in = args[0].toUpperCase();
-      System.out.println( in + " -> " + in.replaceAll("^(.+?)-.*$", "$1") );
+      //System.out.println( in + " -> " + in.replaceAll("^(.+?)-.*$", "$1") );
+      System.out.println( in + " -> " +  in.replaceAll("[- &\\[\\]*%$@()!#^:;~`|{},'\"_]", "") );
   }
 }

@@ -9,7 +9,8 @@ public class MatchesTest
     //String matchStr = "foo|b\\(a\\)r|jo mama|123\\|456";
     //matchStr = "(?i)" +  matchStr.replaceAll(" ","\\\\s+");
     //String matchStr = "^BULLHORN_CANDIDATE\\.[0-9]+?\\.[0-9]+?\\.[0-9]+$";
-    String matchStr = "^WITH\\s+(?:.*?AS\\s+\\(.*?\\),?)+";
+    //String matchStr = "^WITH\\s+(?:.*?AS\\s+\\(.*?\\),?)+";
+    String matchStr = "^[0-9]+\\/[0-9]+$";
     
     System.out.println( "Match Pattern: " + matchStr );
 

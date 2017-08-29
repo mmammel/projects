@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="jquery-1.11.3.js"></script>
+
+  <script type="text/javascript">
+    var count = 0;
+
+    function makeGiantText(id) {
+      var retVal = "";
+      for( var i = 0; i < 20; i++ ) {
+        retVal += ("["+id+"] This is a div with some text in it that I am adding a bunch of times<br>");
+      }
+      return retVal;
+    }
+
+    $.fn.mjmHandlers = function() {
+      this.on('mousedown',function(e) {
+        $(this).text($(this).text().toUpperCase());
+      });
+    }
+    var interval = setInterval( function() {
+      if( ++count % 10 == 0 ) {
+        $('#innerContainer').remove();
+        $('#container').append($('<div id="innerContainer"></div>'));
+      }
+      var ele;
+      var id = '';
+      for( var i = 0; i < 400; i++ ) {
+        id = ''+count + '-' + i;
+        ele = $( "<div id=\""+id+"\">"+makeGiantText(id)+"</div>" );
+        $('#innerContainer').append( ele );
+        ele.mjmHandlers();
+      }
+    }, 2000 );
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="innerContainer">
+    </div>
+  </div>
+ 
+</body>
+</html>
+
