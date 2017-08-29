@@ -430,7 +430,7 @@ function setColors() {
 //
 // Draw the scene.
 //
-function drawScene() {
+var drawScene = function(currentTime) {
   // Clear the canvas before we start drawing on it.
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -499,30 +499,15 @@ function drawScene() {
   mvPopMatrix();
 
   // Update the rotation for the next draw, if it's time to do so.
-
-  var currentTime = (new Date).getTime();
-  if (lastCubeUpdateTime ) {
-    //var delta = currentTime - lastCubeUpdateTime;
-    cubeRotation += spinRate;
-    cubeRotation %= 360;
-    //rotXTheta += rotX;
-    //rotXTheta = rotXTheta % 360;
-    //rotYTheta += rotY;
-    //rotYTheta = rotYTheta % 360;
-    //rotZTheta += rotZ;
-    //rotZTheta = rotZTheta % 360;
-    //cubeXOffset += xIncValue * ((30 * delta) / 1000.0);
-    //cubeYOffset += yIncValue * ((30 * delta) / 1000.0);
-    //cubeZOffset += zIncValue * ((30 * delta) / 1000.0);
-
-    //if (Math.abs(cubeYOffset) > 1.5) {
-    //  xIncValue = -xIncValue;
-    // yIncValue = -yIncValue;
-    //  zIncValue = -zIncValue;
-    //}
+  var dt = currentTime - lastCubeUpdateTime;
+  cubeRotation += (spinRate * (dt/15.0));
+  cubeRotation %= 360.0;
+  if( touchContext.dragging ) {
+    spinRate = 0.0;
   }
 
   lastCubeUpdateTime = currentTime;
+  window.requestAnimationFrame( drawScene );
 }
 
 //

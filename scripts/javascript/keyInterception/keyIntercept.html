@@ -1,0 +1,56 @@
+
+<html>
+<head>
+<script type="text/javascript">
+  var commandKeyPressed = false;
+
+  function isControlPressed( e ) {
+    return (e.ctrlKey || commandKeyPressed );
+  }
+
+  document.addEventListener("keyup",function(e){
+    if( e.keyCode == 91 || e.keyCode == 93 ) commandKeyPressed = false;
+    return killKey(e);
+  },true);
+
+  document.addEventListener("keydown", function (e) {
+    if( e.keyCode == 91 || e.keyCode == 93 ) {
+      commandKeyPressed = true;
+      return false;
+    }
+    var out = document.getElementById( "output" );
+    out.innerHTML = e.keyCode + " Alt: " + (e.altKey ? "true" : "false") + " Ctrl: " + (isControlPressed(e) ? "true" : "false") + " Shift: " + (e.shiftKey ? "true" : "false");
+
+    if( isControlPressed(e) ) {
+      alert("foobar" );
+    }
+    return killKey(e);
+  },true);
+
+//  document.addEventListener("keypress",function( e ) {
+//    return killKey(e);
+//  },true);
+
+  function killKey( event ) {
+    event.cancelBubble = true;
+    event.bubbles = false;
+    event.returnValue = false;
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    return false;
+  }
+
+</script>
+ </head>
+<body>
+
+Hit some Keys.
+
+<h3 id="output"></h3>
+
+</body>
+
+</html>
+
+
