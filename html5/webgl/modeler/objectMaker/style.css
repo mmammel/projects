@@ -1,0 +1,8 @@
+body {
+  font-family: Helvetica;
+  font-size: 12px;
+}
+
+.actionTable tr td {
+  padding-bottom: 10px;
+}
