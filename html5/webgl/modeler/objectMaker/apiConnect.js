@@ -40,7 +40,7 @@ function loadShape() {
     if( id === ""+$.shapeData[i].id ) {
       $('#shapeId').val( id );
       $('#shapeName').val( $.shapeData[i].name );
-      $('#shapeVerts').val( $.shapeData[i].vertices );
+      $('#shapeVerts').val( $.shapeData[i].faces );
       $('#shapeDesc').val( $.shapeData[i].description );
       $('#shapeSave').prop("disabled",false);
       loadFaces();
@@ -55,14 +55,14 @@ function saveShape() {
     shape.id = parseInt( id );
   }
   shape.name = $('#shapeName').val();
-  shape.vertices = $('#shapeVerts').val();
+  shape.faces = $('#shapeVerts').val();
   shape.description = $('#shapeDesc').val();
 
   if( shape.name == null || shape.name.trim().length == 0 ) {
     alert("You must supply a name!");
     return;
-  } else if( shape.vertices == null || shape.vertices.trim().length == 0 ) {
-    alert("You must supply vertices!  Write javascript that assigns an array of floats to a variable called \"vertices\"." );
+  } else if( shape.faces == null || shape.faces.trim().length == 0 ) {
+    alert("You must supply face definitions!  Write javascript that assigns an array of face objects to a variable called \"faces\"." );
     return;
   }
 
@@ -90,9 +90,9 @@ function clearForm() {
 
 function updateSaveButton() {
   var name = $('#shapeName').val();
-  var vertices = $('#shapeVerts').val(); 
+  var faces = $('#shapeVerts').val(); 
   if( name != null && name.trim().length > 0 &&
-      vertices != null && vertices.trim().length > 0 ) {
+      faces != null && faces.trim().length > 0 ) {
     $('#shapeSave').prop('disabled',false);
   } else {
     $('#shapeSave').prop('disabled',true);

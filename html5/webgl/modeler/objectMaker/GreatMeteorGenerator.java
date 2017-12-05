@@ -132,7 +132,7 @@ public class GreatMeteorGenerator {
 
       rot = rotate( axis, angle, tempPoint );
 
-      s.append( rot[0] ).append( ", " ).append( rot[1] ).append( ", " ).append( rot[2] ).append( j < (CORNERS.length - 1) ? ", " : "" );
+      s.append( String.format("%2.1f", rot[0]) ).append( ", " ).append( String.format("%2.1f", rot[1] ) ).append( ", " ).append( String.format("%2.1f", rot[2] ) ).append( j < (CORNERS.length - 1) ? ", " : "" );
     }
     s.append( "] }" );
 
