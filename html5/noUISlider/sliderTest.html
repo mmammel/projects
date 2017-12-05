@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <link href="nouislider.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div id="sliderContainer">
+      <div id="myslider"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="nouislider.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        noUiSlider.create($('#myslider')[0], {
+          start: -10,
+          connect: true,
+          orientation: 'horizontal',
+          range: {
+            'min': 0,
+            'max': 100
+          }
+        });
+      }); 
+    </script>
+  </body>
+</html>

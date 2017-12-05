@@ -25,16 +25,17 @@ public class Standalone {
       String sql;
       //sql = "SELECT customerName as foobar FROM Customer WHERE tableKey IN (?, ?, ?)  AND enabled = 84";
       //sql = "SELECT customerName as foobar FROM Customer WHERE tableKey like ? AND enabled = 84";
-      sql = "SELECT CONVERT( DATETIME, ? ) as foobar";
+      //sql = "SELECT CONVERT( DATETIME, ? ) as foobar";
+      sql = "SELECT t.tableKey as testKey, t.testName, t.version, t.testCategory as otCategory, td.tableKey as ampDetailId, td.testNoItems, td.testDescription, td.testDuration, td.mobileEnabled, td.isPublic, td.testVersion, td.testType, tl.meterUnitCost, tt.tableKey, tt.type, tt.tag FROM test t (NOLOCK) LEFT JOIN AmpTestDetails td (NOLOCK) ON td.testKey = t.tableKey LEFT JOIN (AMPTestTagJoinTable ttj (NOLOCK) LEFT JOIN AMPTestTags tt (NOLOCK) ON tt.tableKey = ttj.tagId) ON ttj.testKey = t.tableKey, TestList tl (NOLOCK) WHERE (t.testName like ?) AND t.available = 84 AND tl.testKey = t.tableKey AND tl.parentKey = 'SKILLCHECK'";
       System.out.println("Creating statement...");
       stmt = conn.prepareStatement(sql);
-      stmt.setString(1, "2017-05-16 00:00:00" );
+      stmt.setString(1, "%windows%" );
       ResultSet rs = stmt.executeQuery();
 
       //STEP 5: Extract data from result set
       while(rs.next()){
          //Retrieve by column name
-         String name = rs.getString("foobar");
+         String name = rs.getString("testName");
 
          //Display values
          System.out.println("Name: " + name);
