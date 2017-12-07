@@ -65,9 +65,9 @@
   height: 18px;
 }
 .noUi-horizontal .noUi-handle {
-  width: 34px;
+  width: 16px;
   height: 28px;
-  left: -17px;
+  left: -8px;
   top: -6px;
 }
 .noUi-vertical {
@@ -76,7 +76,7 @@
 .noUi-vertical .noUi-handle {
   width: 28px;
   height: 34px;
-  left: -6px;
+  left: -8px;
   top: -17px;
 }
 /* Styling;
@@ -122,11 +122,11 @@
   height: 14px;
   width: 1px;
   background: #E8E7E6;
-  left: 14px;
+  left: 5px;
   top: 6px;
 }
 .noUi-handle:after {
-  left: 17px;
+  left: 8px;
 }
 .noUi-vertical .noUi-handle:before,
 .noUi-vertical .noUi-handle:after {
@@ -252,6 +252,23 @@
   left: 50%;
   bottom: 120%;
 }
+
+.cut-deleter {
+  display: block;
+  position: absolute;
+  border: 1px solid red;
+  background:red;
+  color: #000;
+  padding: 2px;
+  text-align: center;
+  font-style: bold;
+  white-space: nowrap;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  left: 150%;
+  bottom: 120%;
+}
+
 .noUi-vertical .noUi-tooltip {
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
