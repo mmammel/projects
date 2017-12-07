@@ -87,6 +87,8 @@
       };
 
       Cutoffs.prototype.hardUpdate = function() {
+        $('#' + this.hostId + '_inner').hide();
+
         if( this.slider.noUiSlider ) {
           this.slider.noUiSlider.destroy();
         }
@@ -133,15 +135,20 @@
 
         noUiSlider.create( this.slider, options);
 
+        setTimeout( function() { /* do nothing */ }, 0 );
+
+        $('#'+this.hostId+' .noUi-base').off('dblclick');
         $('#'+this.hostId+' .noUi-base').on('dblclick', function(e) {
-          var offset = $(e.currentTarget).offset().left;
-          var n = (((e.clientX - offset) / $(e.currentTarget).width() ) * ( this.max - this.min )) + this.min;
-          this.addCut( Math.round(n) );
+          if( this.cuts.length < 9 ) {
+            var offset = $(e.currentTarget).offset().left;
+            var n = (((e.clientX - offset) / $(e.currentTarget).width() ) * ( this.max - this.min )) + this.min;
+            this.addCut( Math.round(n) );
+          }
         }.bind(this));
 
         // event listener to bind sliders to cut array.
-        this.slider.noUiSlider.off('end');
-        this.slider.noUiSlider.on('end', function() {
+        this.slider.noUiSlider.off('end.cuts');
+        this.slider.noUiSlider.on('end.cuts', function() {
           var newCuts = [];
           var vals = this.slider.noUiSlider.get();
           if( Array.isArray(vals) ) {
@@ -155,21 +162,13 @@
           this.cuts = newCuts;
         }.bind(this));
 
-        this.slider.noUiSlider.off('update');
-        this.slider.noUiSlider.on('update', function() { this.updateRangeStrings(); }.bind(this) );
+        this.slider.noUiSlider.off('update.range');
+        this.slider.noUiSlider.on('update.range', function() { this.updateRangeStrings(); }.bind(this) );
 
         if( this.cuts.length === 0 ) {
           $('#' + this.hostId + ' .noUi-handle').hide();
         } else {
           $('#' + this.hostId + ' .noUi-handle').show();
-        }
-
-        var colors = getGradient( this.getNumBands() );
-
-        var connectors = $('#' + this.hostId + ' .noUi-connect');
-
-        for( var i = 0; i < connectors.length; i++ ) {
-          $(connectors[i]).css('background', colors[i] );
         }
 
         // add doubleclick listeners to the handles.
@@ -180,6 +179,9 @@
           this.cuts.splice( index, 1 );
           this.hardUpdate();
         }.bind(this));
+
+        // The banding colors
+        var colors = getGradient( this.getNumBands() );
 
         // Build the banding table
         var bandingContainer = $('#' + this.hostId + '_bandingContainer' );
@@ -221,6 +223,15 @@
             this.bands = newBands;
           }.bind(this));
         }
+
+        var connectors = $('#' + this.hostId + ' .noUi-connect');
+
+        for( var i = 0; i < connectors.length; i++ ) {
+          $(connectors[i]).css('background', colors[i] );
+        }
+
+        $('#' + this.hostId + '_inner').show();
+
       };
 
       Cutoffs.prototype.updateRangeStrings = function() {
