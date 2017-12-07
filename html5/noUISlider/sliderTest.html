@@ -20,8 +20,9 @@
     <script type="text/javascript">
       // Red -> Green
       var gradient = [ '#ff0000', '#ff6600', '#ff9900', '#ffcc00', '#ffcc66', '#ffff00', '#ffff66', '#ccff33', '#66ff66', '#00ff00' ]
-      var gradientMasks = [0b0000000001,0b1000000001,0b1000010001,0b1010010001,0b1010010101,0b1101010101,0b1101011101,0b1101111101,0b1111111101,0b1111111111];
-
+      // binary literal not supported in IE11, naturally.
+      // var gradientMasks = [0b0000000001,0b1000000001,0b1000010001,0b1010010001,0b1010010101,0b1101010101,0b1101011101,0b1101111101,0b1111111101,0b1111111111];
+      var gradientMasks = [0x1, 0x201, 0x211, 0x291, 0x295, 0x355, 0x35D, 0x37D, 0x3FD, 0x3FF ];
       var defaultBands = [
         [],
         [ 'Fail', 'Pass' ],
@@ -132,15 +133,15 @@
 
         noUiSlider.create( this.slider, options);
 
-        $('#'+this.hostId+' .noUi-base').on('dblclick', (e) => {
+        $('#'+this.hostId+' .noUi-base').on('dblclick', function(e) {
           var offset = $(e.currentTarget).offset().left;
           var n = (((e.clientX - offset) / $(e.currentTarget).width() ) * ( this.max - this.min )) + this.min;
           this.addCut( Math.round(n) );
-        });
+        }.bind(this));
 
         // event listener to bind sliders to cut array.
         this.slider.noUiSlider.off('end');
-        this.slider.noUiSlider.on('end', () => {
+        this.slider.noUiSlider.on('end', function() {
           var newCuts = [];
           var vals = this.slider.noUiSlider.get();
           if( Array.isArray(vals) ) {
@@ -152,10 +153,10 @@
           }
 
           this.cuts = newCuts;
-        });
+        }.bind(this));
 
         this.slider.noUiSlider.off('update');
-        this.slider.noUiSlider.on('update', () => this.updateRangeStrings() );
+        this.slider.noUiSlider.on('update', function() { this.updateRangeStrings(); }.bind(this) );
 
         if( this.cuts.length === 0 ) {
           $('#' + this.hostId + ' .noUi-handle').hide();
@@ -173,12 +174,12 @@
 
         // add doubleclick listeners to the handles.
         $('#' + this.hostId + ' .noUi-handle').off();  // disable any existing.
-        $('#' + this.hostId + ' .noUi-handle').on( 'dblclick', (e) => {
+        $('#' + this.hostId + ' .noUi-handle').on( 'dblclick', function(e) {
           var thisHandle = $( e.currentTarget );
           var index = +thisHandle.data('handle');
           this.cuts.splice( index, 1 );
           this.hardUpdate();
-        });
+        }.bind(this));
 
         // Build the banding table
         var bandingContainer = $('#' + this.hostId + '_bandingContainer' );
@@ -187,9 +188,9 @@
         if( this.cuts.length > 0 ) {
           bandingContainer.append( '<div class="col s6 offset-s3"><form action="javascript:void(0);"><ul id="' + this.hostId + 
                                   '_bandingList" class="collection"></ul><input type="submit" id="' + this.hostId + '_submitBanding" style="display:none;"></div>' );
-          $('#' + this.hostId + '_submitBanding').on( 'click', (e) => {
+          $('#' + this.hostId + '_submitBanding').on( 'click', function(e) {
             $('#'+ this.hostId + ' input').blur();
-          });
+          }.bind(this));
           var bandingList = $('#' + this.hostId + '_bandingList' );
           var numBands = this.getNumBands();
           var bandDefaults = defaultBands[numBands - 1];
@@ -211,14 +212,14 @@
           }
 
           $('#'+ this.hostId + ' input[type=text]').off();
-          $('#'+ this.hostId + ' input').on('blur', () => {
+          $('#'+ this.hostId + ' input').on('blur', function() {
             var newBands = [];
             $('#'+ this.hostId + ' input[type=text]').each(function(i, e) {
               newBands.push( e.value );
             });
 
             this.bands = newBands;
-          });
+          }.bind(this));
         }
       };
 
