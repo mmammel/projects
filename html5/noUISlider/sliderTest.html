@@ -87,7 +87,7 @@
       };
 
       Cutoffs.prototype.hardUpdate = function() {
-        $('#' + this.hostId + '_inner').hide();
+        //$('#' + this.hostId + '_inner').css('visibility','hidden');
 
         if( this.slider.noUiSlider ) {
           this.slider.noUiSlider.destroy();
@@ -134,8 +134,7 @@
         }
 
         noUiSlider.create( this.slider, options);
-
-        setTimeout( function() { /* do nothing */ }, 0 );
+        $('#'+this.hostId+' .noUi-handle').css('visibility','hidden');
 
         $('#'+this.hostId+' .noUi-base').off('dblclick');
         $('#'+this.hostId+' .noUi-base').on('dblclick', function(e) {
@@ -230,7 +229,10 @@
           $(connectors[i]).css('background', colors[i] );
         }
 
-        $('#' + this.hostId + '_inner').show();
+        // Let noUiSlider finish it's thing before displaying.
+        //setTimeout( function() { $('#' + this.hostId + '_inner').css('visibility','visible'); }.bind(this), 0 );
+        setTimeout( function() { $('#'+this.hostId+' .noUi-handle').css('visibility','visible'); }.bind(this), 0 );
+        
 
       };
 
