@@ -253,22 +253,6 @@
   bottom: 120%;
 }
 
-.cut-deleter {
-  display: block;
-  position: absolute;
-  border: 1px solid red;
-  background:red;
-  color: #000;
-  padding: 2px;
-  text-align: center;
-  font-style: bold;
-  white-space: nowrap;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
-  left: 150%;
-  bottom: 120%;
-}
-
 .noUi-vertical .noUi-tooltip {
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);

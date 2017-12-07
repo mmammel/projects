@@ -1,4 +1,27 @@
 .naked-input {
     border: 0;
     -webkit-appearance: none;
+    width: 60%;
+}
+
+.bandingContainer {
+    margin-top: 50px;
+}
+
+.rangeDescriptor {
+    float: right;
+    color: #999;
+    padding-left:10px;
+    font-style: italic;
+    font-size: smaller;
+    width: 30%;
+    border-left-color: grey;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+@media only screen and (max-width: 700px) {
+    .rangeDescriptor {
+      display: none;
+    }
 }

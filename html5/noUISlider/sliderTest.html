@@ -11,11 +11,12 @@
   <body>
 
     <h3>Slider Demo</h3>
-    <div id="sliderContainer" class="container"></div>
+    <div id="sliderContainer" style="margin-top: 60px;" class="container"></div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>    
     <script type="text/javascript" src="js/nouislider.js"></script>
+    <script type="text/javascript" src="js/wNumb.js"></script>
     <script type="text/javascript">
       // Red -> Green
       var gradient = [ '#ff0000', '#ff6600', '#ff9900', '#ffcc00', '#ffcc66', '#ffff00', '#ffff66', '#ccff33', '#66ff66', '#00ff00' ]
@@ -33,6 +34,11 @@
         [ 'Very Poor', 'Poor', 'Needs Work', 'Below Average', 'Average', 'Fair', 'Above Average', 'Good', 'Excellent' ],
         [ 'Very Poor', 'Poor', 'Needs Work', 'Below Average', 'Average', 'Fair', 'Above Average', 'Good', 'Excellent', 'Outstanding' ]
       ];
+
+      var sk_pctFmt = wNumb({
+        decimals: 0,
+        postfix: '%'
+      });
 
       function getGradient( numBands ) {
         var retVal = [];
@@ -60,7 +66,7 @@
         this.hostId = hostId;
         this.hostEle = $('#' + hostId );
         this.hostEle.append( '<div id="'+hostId+'_inner" class="row"></div>' );
-        this.hostEle.append( '<div id="'+hostId+'_bandingContainer" style="margin-top: 30px;" class="row"></div>');
+        this.hostEle.append( '<div id="'+hostId+'_bandingContainer" class="bandingContainer row"></div>');
         this.slider = $('#' + hostId + '_inner' )[0];
         this.min = 0;
         this.max = 100;
@@ -93,12 +99,17 @@
           }
         }
 
+        var tooltipFormats = [];
+        for( var i = 0; i < this.cuts.length; i++ ) {
+          tooltipFormats.push( sk_pctFmt );
+        }
+
         var options = {
           start: this.cuts.length === 0 ? [0] : this.cuts,
           connect: connects,
           orientation: 'horizontal',
           behaviour: 'drag',
-          tooltips: true,
+          tooltips: this.cuts.length === 0 ? sk_pctFmt : tooltipFormats,
           step: 1,
           range: {
             'min' : this.min,
@@ -108,8 +119,9 @@
             mode: 'steps',
             values: 10,
             density: 1,
+            // format: sk_pctFmt,
             filter: function( value, type ) {
-              return (value === 0 || value === 100) ? 1 : value % 5 === 0 ? 2 : 0;
+              return (value % 25 === 0) ? 1 : value % 5 === 0 ? 2 : 0;
             }
           }
         };
@@ -122,7 +134,7 @@
 
         $('#'+this.hostId+' .noUi-base').on('dblclick', (e) => {
           var offset = $(e.currentTarget).offset().left;
-          var n = ((e.clientX - offset) / $(e.currentTarget).width() ) * ( this.max - this.min );
+          var n = (((e.clientX - offset) / $(e.currentTarget).width() ) * ( this.max - this.min )) + this.min;
           this.addCut( Math.round(n) );
         });
 
@@ -141,6 +153,9 @@
 
           this.cuts = newCuts;
         });
+
+        this.slider.noUiSlider.off('update');
+        this.slider.noUiSlider.on('update', () => this.updateRangeStrings() );
 
         if( this.cuts.length === 0 ) {
           $('#' + this.hostId + ' .noUi-handle').hide();
@@ -165,15 +180,11 @@
           this.hardUpdate();
         });
 
-        // add little delete guys to the handles.
-        $('#' + this.hostId + ' .noUi-handle').each( function( i, t ) {
-          //$(t).append( '<div class="cut-deleter">X</div>' );
-        });
-
         // Build the banding table
+        var bandingContainer = $('#' + this.hostId + '_bandingContainer' );
+        bandingContainer.empty();
+
         if( this.cuts.length > 0 ) {
-          var bandingContainer = $('#' + this.hostId + '_bandingContainer' );
-          bandingContainer.empty();
           bandingContainer.append( '<div class="col s6 offset-s3"><form action="javascript:void(0);"><ul id="' + this.hostId + 
                                   '_bandingList" class="collection"></ul><input type="submit" id="' + this.hostId + '_submitBanding" style="display:none;"></div>' );
           $('#' + this.hostId + '_submitBanding').on( 'click', (e) => {
@@ -194,7 +205,9 @@
             bandingList.append( '<li class="collection-item" ' +
                                 'style="border-left-color:' + colors[i] + '; border-left-width: 6px; border-left-style: solid;"' + 
                                 '><input class="browser-default naked-input"' +
-                                ' onkeyup="bandingKeyUp(event);" type="text" value="'+tempBand+'"></li>');
+                                ' onkeyup="bandingKeyUp(event);" type="text" value="'+tempBand+'">' +
+                                '<span class="rangeDescriptor"></span></li>');
+            this.updateRangeStrings();
           }
 
           $('#'+ this.hostId + ' input[type=text]').off();
@@ -208,6 +221,21 @@
           });
         }
       };
+
+      Cutoffs.prototype.updateRangeStrings = function() {
+          // Build little range strings for the bands table
+          var ranges = [ this.min ];
+          ranges = ranges.concat( this.slider.noUiSlider.get() );
+          ranges.push( this.max );
+          var rangeStrings = [];
+          for( var i = 0; i < ranges.length - 1; i++ ) {
+            rangeStrings.push( ''+ (i === 0 ? +ranges[i] : +ranges[i] + 1) + '% - ' + +ranges[i+1] + '%' );
+          }
+
+          $('#' + this.hostId + ' .rangeDescriptor').each( function( i, e ) {
+            $(e).text(rangeStrings[i]);
+          });
+      }
 
       Cutoffs.prototype.getNumBands = function() {
         return this.cuts.length + 1;
