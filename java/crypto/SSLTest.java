@@ -12,7 +12,8 @@ import java.util.Map.Entry;
 public class SSLTest {
     public static void main(String[] args) {
         try {
-            URL url = new URL("https://api.bullhornstaffing.com/webservices-1.1/?wsdl");
+            //URL url = new URL("https://api.bullhornstaffing.com/webservices-1.1/?wsdl");
+            URL url = new URL("https://webtest.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ID=Enlivant&MODE=reportretrieval,6778324460361213571,xml");
             URLConnection connection = null;
             try {
                 connection = url.openConnection();

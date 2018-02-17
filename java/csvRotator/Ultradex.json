@@ -1,0 +1,13 @@
+{
+	"keyColumn" : "INDEX_NUM",
+	"pivotColumn" : "QNID",
+        "lastStaticColumn" : "Grade",
+	"dataColumns" : [
+		{ "column" : "FINAL", "prefix" : "FINAL_" },
+		{ "column" : "QTIME", "prefix" : "QTIME_" },
+		{ "column" : "LEVEL1", "prefix" : "LEVEL_" },
+		{ "column" : "TOPIC", "prefix" : "TOPIC_" },
+		{ "column" : "WRONG", "prefix" : "WRONG_" }
+	]
+}
+
