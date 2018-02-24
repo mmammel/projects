@@ -522,7 +522,8 @@ int init_hull3D( std::vector<R3> &pts, std::vector<Tri> &hull)
     
     if( hvis < 0 ){                // We never found a positive dot product
                                    // I assume because of the sorting this must mean that the point
-                                   // is coplanar to the existing hull
+                                   // is coplanar to the existing "planar" hull
+                                   // only happens at start when all of the points found so far are in the same plane.
       cout << "Calling coplanar!" << endl;
       add_coplanar(pts, hull, p);  // see what this is.
     } 
