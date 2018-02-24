@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+#div1, #div2 {
+    float: left;
+    width: 600px;
+    height: 600px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+</style>
+<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var ele = document.getElementById(data);
+    ev.target.appendChild(ele);
+    ele.setAttribute("style", "position:absolute; left:"+ev.clientX+"px; top:" + ev.clientY + "px;" );
+}
+</script>
+</head>
+<body>
+
+<h2>Drag and Drop</h2>
+<p>Drag the image back and forth between the two div elements.</p>
+
+<table>
+  <tr>
+    <td><img src="img1.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></td>
+    <td><img src="img2.gif" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31"></td>
+    <td><img src="img3.gif" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31"></td>
+    <td><img src="img4.gif" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31"></td>
+  </tr>
+</table>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+</div>
+
+</body>
+</html>
+

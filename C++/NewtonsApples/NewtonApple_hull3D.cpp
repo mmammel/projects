@@ -442,6 +442,8 @@ int init_hull3D( std::vector<R3> &pts, std::vector<Tri> &hull)
   Mz = z0+z1+z2;
 
   // check for colinearity 
+  // MJM: (r01,c01,z01) and (r02,c02,z02) are "edge" vectors of the current tri
+  // take their cross product to get the normal vector of the triangle.
   float r01 = r1-r0, r02 = r2-r0;
   float c01 = c1-c0, c02 = c2-c0;  
   float z01 = z1-z0, z02 = z2-z0;
@@ -476,6 +478,8 @@ int init_hull3D( std::vector<R3> &pts, std::vector<Tri> &hull)
   T1.bc = 0;
 
   hull.push_back(T1);
+
+  // right now the hull has two tri's, they have the same points but opposite facing normal vectors
   std::vector<int> xlist;
   Tri Tnew;
 
@@ -489,7 +493,7 @@ int init_hull3D( std::vector<R3> &pts, std::vector<Tri> &hull)
     Mz += pt.z; mz = Mz/(p+1);
 
     // find the first visible plane.
-    int numh = hull.size(); // Number of triangles.  We must add some later on.
+    int numh = hull.size(); // Number of triangles in the hull.  We must add some later on.
     int hvis = -1;          // which triangle is visible (by index into <Tri>hull)
     float r = pt.r;         //
     float c = pt.c;         // Copy of the current point.
@@ -499,7 +503,7 @@ int init_hull3D( std::vector<R3> &pts, std::vector<Tri> &hull)
     for( int h=numh-1; h>=0; h--){  // Walk backwards through the existing Tri's
       Tri &t= hull[h];
       float R1 = pts[t.a].r; // (R1,C1,Z1) is the first point in this Tri.
-      float C1 = pts[t.a].c; //
+      float C1 = pts[t.a].c; // t.a is the index into pts of the first vertex of this Tri
       float Z1 = pts[t.a].z; //
 
       float dr = r-R1;  //

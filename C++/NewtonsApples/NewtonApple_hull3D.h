@@ -37,7 +37,7 @@
 struct Tri
 {
   int id, keep;
-  int a,b, c;
+  int a,b, c; // indices of the vertices in pts[]
   int ab, bc, ac;  // adjacent edges index to neighbouring triangle.
   float er, ec, ez; // visible normal to triangular facet.
 

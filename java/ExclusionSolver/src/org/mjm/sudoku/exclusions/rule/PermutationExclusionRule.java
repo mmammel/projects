@@ -69,6 +69,12 @@ public class PermutationExclusionRule implements Rule
       return changesMade;
   }    
   
+    
+    /**
+     * This is BUSTED!!
+     * @param cells
+     * @return
+     */
   private boolean runRuleInner( CellCollection cells )
   {
     /*
@@ -95,13 +101,14 @@ public class PermutationExclusionRule implements Rule
       uniqueVals.addAll( tempCell.getPossibleVals() );
       if( tempCell.getPossibleValCount() <= i && tempCell.getPossibleValCount() > 1 && uniqueVals.size() == (i+1) )
       {
+    	    System.out.println( "Permutation excluding " + uniqueVals + " for " + (i+1) + " cells");
         // We can exclude the values in the cells up to this point from the rest of the cells!
         allButArray = new Cell [i+1];
         for( int j = 0; j < allButArray.length; j++ )
         {
           allButArray[j] = possibleValOrderedCells[j];
-          retVal = retVal | cells.exclude( uniqueVals.toArray( new Value[0]), allButArray );
         }
+        retVal = retVal | cells.exclude( uniqueVals.toArray( new Value[0]), allButArray );
       }
     }
     
