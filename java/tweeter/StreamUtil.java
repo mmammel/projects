@@ -5,6 +5,9 @@ import java.io.OutputStreamWriter;
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+
 
 /**
  * A helper class for streaming data from input to output, useful for streaming
@@ -30,15 +33,15 @@ public class StreamUtil {
     }
 
     public static void stream(OutputStream output, String input, String charset) {
-    try
-    {
+      try
+      {
         ByteArrayInputStream byteStream = new ByteArrayInputStream(input.getBytes(charset));
         stream(output, byteStream, charset);
-    }
-    catch( UnsupportedEncodingException uee )
-    {
-      System.out.println("Unsupported encoding: " + charset + " in the StreamUtil: " + uee.toString());
-    }
+      }
+      catch( UnsupportedEncodingException uee )
+      {
+        System.out.println("Unsupported encoding: " + charset + " in the StreamUtil: " + uee.toString());
+      }
     }
 
     /**
@@ -76,6 +79,65 @@ public class StreamUtil {
           System.out.println("Could not close streams");
         }
       }
+    }
+
+    /**
+     * Utility to get a list of strings, none longer than limit, 
+     * from streamed input.  Usefule for chaining tweets together.
+     * @param input
+     * @param limit
+     */
+    public static List<String> stringsFromStream( InputStream input, int limit ) {
+      return stringsFromStream(input, limit, DEFAULT_ENCODING);
+    }
+
+    /**
+     * Utility to get a list of strings from a streamed input. 
+     * @param input
+     * @param limit
+     * @param charset
+     * @return
+     */
+    public static List<String> stringsFromStream(InputStream input, int limit, String charset) {
+      int c;
+
+      StringBuilder sb = new StringBuilder();
+      InputStreamReader reader = null;
+      List<String> retVal = new ArrayList<String>();
+      int counter = 0;
+
+      try {
+        reader = new InputStreamReader(input, charset);
+
+        while ((c = reader.read()) != -1) {
+          char charin = (char) c;
+          counter++;
+          sb.append(charin);
+
+          if( counter == limit ) {
+            retVal.add( sb.toString() );
+            sb = new StringBuilder();
+            counter = 0;
+          }
+        }
+
+        if( counter > 0 ) {
+          retVal.add( sb.toString() );
+        }
+      }
+      catch (IOException ioe) {
+        System.out.println("Caught an exception trying to read the input stream: " + ioe.toString() );
+      }
+      finally {
+        try {
+          reader.close();
+        }
+        catch (IOException ioe2) {
+          System.out.println("Couldn't close input stream: " + ioe2.toString());
+        }
+      }
+
+      return retVal;
     }
 
     /**

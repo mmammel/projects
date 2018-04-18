@@ -12,8 +12,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Tweeter {
+
+  private static final int CHAR_LIMIT = 240;
+  private static final Pattern ID_PATTERN = Pattern.compile("\"id_str\"\\s*?:\\s*?\"(.*?)\"");
 
   private String apiKey = null;
   private String apiKeySecret = null;
@@ -25,10 +31,10 @@ public class Tweeter {
   }
 
   public void readTweet() {
-    this.sendTweet( StreamUtil.stringFromStream( System.in ) );
+    this.sendTweet( StreamUtil.stringsFromStream( System.in, CHAR_LIMIT ) );
   }
 
-  private void sendTweet(String tweet) {
+  private void sendTweet(List<String> tweets) {
     try {
       final OAuth10aService service = new ServiceBuilder("Tweeter")
                            .apiKey(this.apiKey)
@@ -36,12 +42,41 @@ public class Tweeter {
                            .build(TwitterApi.instance());
 
       final OAuth1AccessToken accessToken = new OAuth1AccessToken(this.token,this.tokenSecret);
-      final OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1.1/statuses/update.json?status=" + encodeURIComponent( tweet ));
-      service.signRequest(accessToken, request);
-      final Response response = service.execute(request);
+
+      String tweet = null;
+      String prevId = null;
+      String responseBody = null;
+      OAuthRequest request = null;
+      Response response = null;
+
+      for( int i = 0; i < tweets.size(); i++ ) {
+        tweet = tweets.get(i);
+        if( responseBody != null ) {
+          prevId = this.getIdFromResponse( responseBody );
+        } 
+
+        request = new OAuthRequest(Verb.POST, "https://api.twitter.com/1.1/statuses/update.json?status=" + encodeURIComponent( tweet ) + (prevId == null ? "" : "&auto_populate_reply_metadata=true&in_reply_to_status_id="+prevId));
+        service.signRequest(accessToken, request);
+        response = service.execute(request);
+        responseBody = response.getBody();
+      }
+
     } catch( Exception e ) {
       System.out.println( "Exception!! " + e.toString() );
     }
+  }
+
+  private String getIdFromResponse( String response ) {
+    String retVal = null;
+    if( response != null ) {
+
+      Matcher m = ID_PATTERN.matcher( response );
+      if( m.find() ) {
+        retVal = m.group(1);
+      }
+    }
+
+    return retVal;
   }
 
   private static String encodeURIComponent(String s) {
