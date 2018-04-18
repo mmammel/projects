@@ -82,6 +82,26 @@ public class StreamUtil {
     }
 
     /**
+     * given a string, return the first portion up to the last space
+     * in the first element and the rest (excluding the space) in the 
+     * second element.
+     */ 
+    private static String [] prettyBreak( String input ) {
+      String [] retVal = new String [2];
+      retVal[0] = "";
+      retVal[1] = "";
+      int spaceIdx = -1;
+      if( input != null && (spaceIdx = input.lastIndexOf( ' ')) > -1 ) {
+        retVal[0] = input.substring(0, spaceIdx);
+        if( (spaceIdx + 1) < input.length() ) {
+          retVal[1] = input.substring( spaceIdx + 1 );
+        }
+      } 
+
+      return retVal;
+    }
+
+    /**
      * Utility to get a list of strings, none longer than limit, 
      * from streamed input.  Usefule for chaining tweets together.
      * @param input
@@ -105,6 +125,7 @@ public class StreamUtil {
       InputStreamReader reader = null;
       List<String> retVal = new ArrayList<String>();
       int counter = 0;
+      String [] prettySplit = null;
 
       try {
         reader = new InputStreamReader(input, charset);
@@ -115,9 +136,10 @@ public class StreamUtil {
           sb.append(charin);
 
           if( counter == limit ) {
-            retVal.add( sb.toString() );
-            sb = new StringBuilder();
-            counter = 0;
+            prettySplit = prettyBreak( sb.toString() );
+            retVal.add( prettySplit[0] );
+            sb = new StringBuilder( prettySplit[1] );
+            counter = prettySplit[1].length();
           }
         }
 
