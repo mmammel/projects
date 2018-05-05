@@ -1,19 +1,21 @@
+import java.math.BigInteger;
+
 public class SequenceDiffs
 {
-  public void dumpDiffs( int [] array )
+  public void dumpDiffs( BigInteger [] array )
   {
-    int [] diffArray = new int [ array.length - 1 ];;
+    BigInteger [] diffArray = new BigInteger [ array.length - 1 ];;
     this.printArray( array );
     if( array.length == 1 ) return;
     for( int i = 1; i < array.length; i++ )
     {
-      diffArray[ i - 1 ] = Math.abs(array[i] - array[i-1]);
+      diffArray[ i - 1 ] = (array[i].subtract(array[i-1])).abs();
     }
 
     dumpDiffs( diffArray ); 
   }
 
-  private void printArray( int [] array )
+  private void printArray( BigInteger [] array )
   {
     for( int i = 0; i < array.length; i++ )
     {
@@ -25,10 +27,11 @@ public class SequenceDiffs
   public static void main( String [] args )
   {
     String [] inputs = args[0].split(",");
-    int [] initial = new int [ inputs.length ];
+    BigInteger [] initial = new BigInteger [ inputs.length ];
     for( int i = 0; i < inputs.length; i++ )
     {
-      initial[i] = Integer.parseInt(inputs[i]);
+      initial[i] = new BigInteger(inputs[i]);
+      System.out.println( initial[i].isProbablePrime(5) );
     }
 
     SequenceDiffs SD = new SequenceDiffs();

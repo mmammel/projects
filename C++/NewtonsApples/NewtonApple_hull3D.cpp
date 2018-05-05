@@ -1129,7 +1129,7 @@ void add_coplanar( std::vector<R3> &pts, std::vector<Tri> &hull, int id)
 }
 
 // cross product relative sign test.
-// remmebers the cross product of (ab x cx)
+// remembers the cross product of (ab x cx)
 
 int cross_test( std::vector<R3> &pts, int A, int B, int C, int X, 
 		float &er, float &ec, float &ez)
