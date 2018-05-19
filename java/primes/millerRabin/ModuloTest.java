@@ -2,30 +2,69 @@ import java.math.BigInteger;
 
 public class ModuloTest {
 
+  public static BigInteger NEGATIVEONE = new BigInteger("-1");
+
   public static void main( String [] args ) {
     int n = 0;
-    if( args.length != 1 ) {
-      System.out.println( "Usage: java ModuloTest <n>" );
+    BigInteger a = new BigInteger("2");
+    long maxpower = 100L;
+    BigInteger num = null;
+
+    if( args.length == 0 ) {
+      printUsage();
       System.exit(1);
     } else {
-      try {
-        n = Integer.parseInt( args[0] );
-      } catch( NumberFormatException nfe ) {
-        System.out.println( "Exception! " + nfe.toString() );
-        System.exit(1);
+      int i = 0;
+      while( i < args.length ) {
+        if( args[i].equals( "-m" ) ) {
+          num = new BigInteger(args[++i]);
+        } else if( args[i].equals("-a") ) {
+          a = new BigInteger(args[++i]);
+        } else if( args[i].equals("-p") ) {
+          try {
+            maxpower = Long.parseLong( args[++i] );
+          } catch( NumberFormatException nfe ) {
+            System.out.println( "Bad value passed to -a");
+            printUsage();
+            System.exit(1);
+          }
+        } else if( args[i].equals("-h") ) {
+          printUsage();
+          System.exit(0);
+        } else {
+          System.out.println( "Unrecognized option: " + args[i] );
+          printUsage();
+          System.exit(1);
+        }
+        i++;
       }
     }
 
-    BigInteger num = generateN( n );
-    BigInteger TWO = new BigInteger("2");
+    if( num == null ) {
+      System.out.println( "Parameter -m <modnumber> is required" );
+      printUsage();
+      System.exit(1);
+    }
+
     BigInteger ans = null;
 
     System.out.println( "N = " + num + " [" + num.toString(2) + "]" );
 
-    for( long i = 0L; i < 2000000L; i++ ) {
-      ans = TWO.modPow( BigInteger.valueOf(i), num );
-      System.out.println( "2^" + i + " (mod " + num + ") === " + ans + " [" + ans.toString(2) + "][diff: " + num.subtract(ans) + "]" );
+    for( long i = 0L; i < maxpower; i++ ) {
+      ans = a.modPow( BigInteger.valueOf(i), num );
+      System.out.println( a + "^" + i + " (mod " + num + ") === " + (ans.add(BigInteger.ONE).equals( num ) ? NEGATIVEONE : ans) + " [" + ans.toString(2) + "][diff: " + num.subtract(ans) + "]" );
     }
+  }
+
+  public static void printUsage() {
+    StringBuilder sb = new StringBuilder();
+    sb.append( "Usage: java ModuloTest [-a number] [-p maxpower] -m modnumber [-h]\n");
+    sb.append( "   -a number: The number to raise to powers and mod against mod (default: 2)\n");
+    sb.append( "   -p maxpower: The maximum power to raise number to (default: 100)\n");
+    sb.append( "   -m modnumber: The number to mod against\n" );
+    sb.append( "   -h: ignore other parameters and display this message");
+
+    System.out.println( sb.toString() );
   }
 
   public static BigInteger generateN( int power ) {
