@@ -1,8 +1,5 @@
 package org.mjm.domino;
 
-import java.util.Map;
-import java.util.HashMap;
-
 public enum Domino {
   ZeroZero(0,0),
   OneZero(1,0),
@@ -33,15 +30,41 @@ public enum Domino {
   SixFive(6,5),
   SixSix(6,6);
 
-  private int [] vals;
+  private final int [] vals;
 
   public int [] vals() { return this.vals; }
   public int val( int i ) { return (i == 1 || i == 0 ? this.vals[i] : -1); }
 
+  private static final String [] NUM_NAMES = { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
+  
   Domino( int v1, int v2 )
   {
     this.vals = new int [2];
     this.vals[0] = v1;
     this.vals[1] = v2;
   }
+  
+  public static Domino getDomino( int [] vals ) {
+    return vals.length == 2 ? getDomino(vals[0], vals[1]) : null;	  
+  }
+  
+  public static Domino getDomino( int val1, int val2 ) {
+	  Domino retVal = null;
+	  if( val1 >= 0 && val1 <= 6 && val2 >= 0 && val2 <= 6 ) {
+      String dominoName = null;
+	    dominoName = ( val1 >= val2 ? NUM_NAMES[val1] + NUM_NAMES[val2] : NUM_NAMES[val2] + NUM_NAMES[val1] );
+	    retVal = Domino.valueOf(dominoName);
+	  }
+	  
+	  return retVal;
+  }
+  
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("+===+===+\n");
+    sb.append("| ").append(this.val(0)).append(" | ").append(this.val(1) ).append(" |\n");
+    sb.append("+===+===+\n");
+    return sb.toString();
+  }
+  
 }

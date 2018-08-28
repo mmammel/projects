@@ -52,7 +52,8 @@ public class ModuloTest {
 
     for( long i = 0L; i < maxpower; i++ ) {
       ans = a.modPow( BigInteger.valueOf(i), num );
-      System.out.println( a + "^" + i + " (mod " + num + ") === " + (ans.add(BigInteger.ONE).equals( num ) ? NEGATIVEONE : ans) + " [" + ans.toString(2) + "][diff: " + num.subtract(ans) + "]" );
+      //System.out.println( a + "^" + i + " (mod " + num + ") === " + (ans.add(BigInteger.ONE).equals( num ) ? NEGATIVEONE : ans) + " [" + ans.toString(2) + "][diff: " + num.subtract(ans) + "]" );
+      System.out.println( a + "^" + i + " === " + (ans.add(BigInteger.ONE).equals( num ) ? NEGATIVEONE : ans) + " (mod " + num + ")" );
     }
   }
 
