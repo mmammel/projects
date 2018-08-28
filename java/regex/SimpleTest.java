@@ -12,7 +12,8 @@ public class SimpleTest
   //public static Pattern PATTERN = Pattern.compile("^(?:[-0-9A-z_() ]+,[0-9]+)+$");
   //public static Pattern PATTERN = Pattern.compile("\\(\\?(.*?)\\?\\)");
   //public static Pattern PATTERN = Pattern.compile("^[0-9]+\\/[0-9]+$");
-  public static Pattern PATTERN = Pattern.compile("\\$\\$SN?'(.*?)'");
+  //public static Pattern PATTERN = Pattern.compile("\\$\\$SN?'(.*?)'");
+  public static Pattern PATTERN = Pattern.compile("^(.*?)_(.*)$");
 
   public static void main( String [] args )
   {
@@ -40,7 +41,7 @@ public class SimpleTest
         }
       }
 
-      System.out.println( "After replace all with FOOBAR:\n\n" + buff.toString().replaceAll("(?i)\\$\\{OPTOUT_URL\\}", "FOOBAR") );
+      System.out.println( "After replace all with $1:\n\n" + buff.toString().replaceAll("^\\(.*?\\)_\\(.*\\)$", "$1") );
 
     }
     catch( Exception e )

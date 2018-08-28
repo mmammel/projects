@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import javax.net.ssl.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +14,19 @@ public class SSLTest {
     public static void main(String[] args) {
         try {
             //URL url = new URL("https://api.bullhornstaffing.com/webservices-1.1/?wsdl");
-            URL url = new URL("https://webtest.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ID=Enlivant&MODE=reportretrieval,6778324460361213571,xml");
+            //URL url = new URL("https://webtest.skillcheck.com/onlinetesting/servlet/com.skillcheck.session_management.SK_Servlet?ID=Enlivant&MODE=reportretrieval,6778324460361213571,xml");
+            //URL url = new URL("https://api.loadtest.neogov.net/test/testurls");
+            URL url = new URL("https://api.icims.com");
             URLConnection connection = null;
             try {
-                connection = url.openConnection();
-            } catch (IOException e) {
+
+
+               connection = url.openConnection();
+               SSLContext sc = SSLContext.getInstance("TLSv1.2");
+               sc.init(null, null, null);
+          
+               ((HttpsURLConnection)connection).setSSLSocketFactory(sc.getSocketFactory());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             Map<String, List<String>> fields = connection.getHeaderFields();
