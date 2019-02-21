@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -Dfile.encoding=utf-8 -jar ./dist/lib/euchreLab.jar $1
+java -jar ./dist/lib/dominoes.jar $1
