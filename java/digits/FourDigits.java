@@ -1,4 +1,7 @@
-public class Digits
+import java.util.List;
+import java.util.ArrayList;
+
+public class FourDigits
 {
   public static final String [] single_terminals = {"a", ".a", ".aaaaaaaaaaaaa" };
 
@@ -29,14 +32,16 @@ public class Digits
 
   public static final String POW1 = "A^B";
   public static final String POW2 = "B^A";
-  public static final String ADD  = "A+B";
+  public static final String ADD1  = "A+B";
+  public static final String ADD2  = "B+A";
   public static final String SUB1 = "A-B";
   public static final String SUB2 = "B-A";
-  public static final String MULT = "A*B";
+  public static final String MULT1 = "A*B";
+  public static final String MULT2 = "B*A";
   public static final String DIV1 = "A/B";
   public static final String DIV2 = "B/A";
 
-  public static final String [] double_non_terminals = { POW1, POW2, ADD, SUB1, SUB2, MULT, DIV1, DIV2 };
+  public static final String [] double_non_terminals = { POW1, POW2, ADD1, ADD2, SUB1, SUB2, MULT1, MULT2, DIV1, DIV2 };
 
   public static final String ID = "A";
   public static final String SQRT = "sqrt(A)";
@@ -50,6 +55,7 @@ public class Digits
   {
     int [] digits = new int [4];
     String [] terminals = new String [4];
+    Expression t0, t1, t2, t3;
     digits[0] = x;
     digits[1] = y;
     digits[2] = z;
@@ -58,48 +64,52 @@ public class Digits
     for( int i = 0; i < 3; i++ )
     {
       terminals[0] = getReplaceString( x, single_terminals[i] );
+      t0 = new TerminalExpression( terminals[0] );
 
       for( int j = 0; j < 3; j++ )
       {
         terminals[1] = getReplaceString( y, single_terminals[j] );
+        t1 = new TerminalExpression( terminals[1] );
 
-        for( int k = 0; k < 3; k++ )
+        for( int l = 0; l < 3; l++ )
         {
-          terminals[2] = getReplaceString( z, single_terminals[k] );
+          terminals[2] = getReplaceString( z, single_terminals[l] );
+          t2 = new TerminalExpression( terminals[2] );
 
           for( int m = 0; m < 3; m++ ) {
  
             terminals[3] = getReplaceString( k, single_terminals[m] );
+            t3 = new TerminalExpression( terminals[3] );
 
-            this.doAllExpressions( terminals[0], terminals[1], terminals[2], terminals[3] );
-            this.doAllExpressions( terminals[0], terminals[1], terminals[3], terminals[2] );
-            this.doAllExpressions( terminals[1], terminals[0], terminals[2], terminals[3] );
-            this.doAllExpressions( terminals[1], terminals[0], terminals[3], terminals[2] );
+            this.doAllExpressions( t0, t1, t2, t3 );
+            //this.doAllExpressions( t0, t1, t3, t2 );
+            //this.doAllExpressions( t1, t0, t2, t3 );
+            //this.doAllExpressions( t1, t0, t3, t2 );
 
-            this.doAllExpressions( terminals[0], terminals[2], terminals[1], terminals[3] );
-            this.doAllExpressions( terminals[0], terminals[2], terminals[3], terminals[1] );
-            this.doAllExpressions( terminals[2], terminals[0], terminals[1], terminals[3] );
-            this.doAllExpressions( terminals[2], terminals[0], terminals[3], terminals[1] );
+            //this.doAllExpressions( t0, t2, t1, t3 );
+            //this.doAllExpressions( t0, t2, t3, t1 );
+            //this.doAllExpressions( t2, t0, t1, t3 );
+            //this.doAllExpressions( t2, t0, t3, t1 );
 
-            this.doAllExpressions( terminals[0], terminals[3], terminals[1], terminals[2] );
-            this.doAllExpressions( terminals[0], terminals[3], terminals[2], terminals[1] );
-            this.doAllExpressions( terminals[3], terminals[0], terminals[1], terminals[2] );
-            this.doAllExpressions( terminals[3], terminals[0], terminals[2], terminals[1] );
+            //this.doAllExpressions( t0, t3, t1, t2 );
+            //this.doAllExpressions( t0, t3, t2, t1 );
+            //this.doAllExpressions( t3, t0, t1, t2 );
+            //this.doAllExpressions( t3, t0, t2, t1 );
 
-            this.doAllExpressions( terminals[1], terminals[2], terminals[0], terminals[3] );
-            this.doAllExpressions( terminals[1], terminals[2], terminals[3], terminals[0] );
-            this.doAllExpressions( terminals[2], terminals[1], terminals[0], terminals[3] );
-            this.doAllExpressions( terminals[2], terminals[1], terminals[3], terminals[0] );
+            //this.doAllExpressions( t1, t2, t0, t3 );
+            //this.doAllExpressions( t1, t2, t3, t0 );
+            //this.doAllExpressions( t2, t1, t0, t3 );
+            //this.doAllExpressions( t2, t1, t3, t0 );
 
-            this.doAllExpressions( terminals[1], terminals[3], terminals[0], terminals[2] );
-            this.doAllExpressions( terminals[1], terminals[3], terminals[2], terminals[0] );
-            this.doAllExpressions( terminals[3], terminals[1], terminals[0], terminals[2] );
-            this.doAllExpressions( terminals[3], terminals[1], terminals[2], terminals[0] );
+            //this.doAllExpressions( t1, t3, t0, t2 );
+            //this.doAllExpressions( t1, t3, t2, t0 );
+            //this.doAllExpressions( t3, t1, t0, t2 );
+            //this.doAllExpressions( t3, t1, t2, t0 );
 
-            this.doAllExpressions( terminals[2], terminals[3], terminals[0], terminals[1] );
-            this.doAllExpressions( terminals[2], terminals[3], terminals[1], terminals[0] );
-            this.doAllExpressions( terminals[3], terminals[2], terminals[0], terminals[1] );
-            this.doAllExpressions( terminals[3], terminals[2], terminals[1], terminals[0] );
+            //this.doAllExpressions( t2, t3, t0, t1 );
+            //this.doAllExpressions( t2, t3, t1, t0 );
+            //this.doAllExpressions( t3, t2, t0, t1 );
+            //this.doAllExpressions( t3, t2, t1, t0 );
 
           }
 
@@ -115,7 +125,9 @@ public class Digits
   public void getDoubleTerminalSets( int x, int y, int z, int k )
   {
     int [] digits = new int [4];
-    String tempTerminal1 = null, tempTerminal2 = null, tempTerminal3;
+    String tempTerminal1 = null, tempTerminal2 = null, tempTerminal3 = null, tempTerminal4 = null;
+    Expression t1, t2, t3, t4;
+
     digits[0] = x;
     digits[1] = y;
     digits[2] = z;
@@ -128,35 +140,88 @@ public class Digits
       {
         tempTerminal1 = this.getReplaceString( digits[0], digits[1], double_terminals[i] );
         tempTerminal2 = this.getReplaceString( digits[2], digits[3], double_terminals[j] );
-        this.doAllExpressions( tempTerminal1, tempTerminal2);
-        this.doAllExpressions( tempTerminal2, tempTerminal1 ); 
+        t1 = new TerminalExpression(tempTerminal1);
+        t2 = new TerminalExpression(tempTerminal2);
+        this.doAllExpressions( t1, t2);
         
         tempTerminal1 = this.getReplaceString( digits[0], digits[2], double_terminals[i] );
         tempTerminal2 = this.getReplaceString( digits[1], digits[3], double_terminals[j] );
-        this.doAllExpressions( tempTerminal1, tempTerminal2);
-        this.doAllExpressions( tempTerminal2, tempTerminal1 ); 
+        t1 = new TerminalExpression(tempTerminal1);
+        t2 = new TerminalExpression(tempTerminal2);
+        this.doAllExpressions( t1, t2);
 
         tempTerminal1 = this.getReplaceString( digits[0], digits[3], double_terminals[i] );
         tempTerminal2 = this.getReplaceString( digits[1], digits[2], double_terminals[j] );
-        this.doAllExpressions( tempTerminal1, tempTerminal2);
-        this.doAllExpressions( tempTerminal1, tempTerminal2 ); 
+        t1 = new TerminalExpression(tempTerminal1);
+        t2 = new TerminalExpression(tempTerminal2);
+        this.doAllExpressions( t1, t2);
       }
     }
 
     int [][] pairIdxs = {
-      //{ 0, 1, 2, 3 },
-      //{ 
+      { 0, 1, 2, 3 },
+      { 0, 2, 1, 3 },
+      { 0, 3, 1, 2 },
+      { 1, 2, 0, 3 },
+      { 1, 3, 0, 2 },
+      { 2, 3, 0, 1 }
     };
 
     // Now do double-single-singles
-    for( int i = 0; i < double_terminals.length; i++ ) {
-      tempTerminal1 = this.getReplaceString( digits[0], digits[1], double_terminals[i] );
-      tempTerminal2 = this.getReplaceString
+    for( int [] idxs : pairIdxs ) {
+      for( int i = 0; i < double_terminals.length; i++ ) {
+        tempTerminal1 = this.getReplaceString( digits[idxs[0]], digits[idxs[1]], double_terminals[i] );
+        t1 = new TerminalExpression( tempTerminal1 );
+        for( int j = 0; j < single_terminals.length; j++ ) {
+          tempTerminal3 = this.getReplaceString( digits[idxs[2]], single_terminals[j] );
+          t3 = new TerminalExpression( tempTerminal3 );
+          for( int m = 0; m < single_terminals.length; m++ ) {
+            tempTerminal4 = this.getReplaceString( digits[idxs[3]], single_terminals[m] );
+            t4 = new TerminalExpression( tempTerminal4 );
+            this.doAllExpressions( t1, t3, t4 );
+            //this.doAllExpressions( t1, t4, t3 );
+            //this.doAllExpressions( t3, t1, t4 );
+            //this.doAllExpressions( t3, t4, t1 );
+            //this.doAllExpressions( t4, t1, t3 );
+            //this.doAllExpressions( t4, t3, t1 );
+          }
+        }
+      }
     }
 
   }
 
   public void getTripleTerminalSets( int x, int y, int z, int k ) {
+    int [] digits = new int [4];
+    String tempTerminal1 = null, tempTerminal2 = null, tempTerminal3 = null, tempTerminal4 = null;
+    Expression t0 = null, t1 = null;
+
+    digits[0] = x;
+    digits[1] = y;
+    digits[2] = z;
+    digits[3] = k;
+
+    int [][] tripleIdxs = {
+      { 0, 1, 2, 3 },
+      { 0, 1, 3, 2 },
+      { 0, 2, 3, 1 },
+      { 1, 2, 3, 0 }
+    };
+
+    for( int [] idxs : tripleIdxs ) {
+      for( int i = 0; i < triple_terminals.length; i++ ) {
+        tempTerminal1 = this.getReplaceString( digits[idxs[0]], digits[idxs[1]], digits[idxs[2]], triple_terminals[i] );
+        for( int j = 0; j < single_terminals.length; j++ ) {
+          tempTerminal2 = this.getReplaceString( digits[idxs[3]], single_terminals[j] );
+
+          t0 = new TerminalExpression( tempTerminal1 );
+          t1 = new TerminalExpression( tempTerminal2 );
+
+          this.doAllExpressions( t0, t1 );
+          //this.doAllExpressions( t1, t0 );
+        }
+      }
+    }
      
   }
 
@@ -218,95 +283,56 @@ public class Digits
     return retVal;
   }
 
-
-  public void doAllExpressions( String t0, String t1, String t2 )
-  {
-    String temp0 = null, temp1 = null;
-    Expression e0 = null, e1 = null;
-    Expression te0 = null, te1 = null, te2 = null, te3 = null;
-    Expression iae = null, ibe = null, jae = null, jbe = null, jce = null;
+  /**
+   * One-stop shopping
+   */
+  public void doAllExpressions( Expression ... expressions ) {
     ExpressionFactory factory = new ExpressionFactory();
-    te0 = new TerminalExpression(t0);
-    te1 = new TerminalExpression(t1);
-    te2 = new TerminalExpression(t2);
+    Expression t0 = null, t1 = null;
+    Expression snt0 = null, snt1 = null, dnt0 = null;
+    List<Expression> nextExpressions = new ArrayList<Expression>();
 
-    for( int i = 0; i < double_non_terminals.length; i++ )
-    {
-      for( int ia = 0; ia < single_non_terminals.length; ia++ )
-      {
-        iae = factory.getExpression( te1, single_non_terminals[ia] );
+    if( expressions == null ) return;
 
-        for( int ib = 0; ib < single_non_terminals.length; ib++ )
-        {
-          ibe = factory.getExpression( te2, single_non_terminals[ib] );
-          e1 = factory.getExpression( iae, ibe, double_non_terminals[i] );
+    if( expressions.length == 1 ) {
+      // we've boiled down to a single expression, run through them and evaluate.
+      for( int i = 0; i < single_non_terminals.length; i++ ) {
+        snt0 = factory.getExpression( expressions[0], single_non_terminals[i] );
+        System.out.println( "Expression: " + snt0.toString() + " = " + snt0.evaluate() );
+      }
+    } else if( expressions.length > 1 ) {
+      // loop through and grab pairs of expressions, then build all of the possible 
+      // double non-terminals.
+      for( int i = 0; i < expressions.length - 1; i++ ) {
+        t0 = expressions[i];
+        t1 = expressions[i+1];
+        for( int j = 0; j < double_non_terminals.length; j++ ) {
+          for( int k = 0; k < single_non_terminals.length; k++ ) {
+            snt0 = factory.getExpression( t0, single_non_terminals[k] );
+            for( int l = 0; l < single_non_terminals.length; l++ ) {
+              nextExpressions.clear();
+              snt1 = factory.getExpression( t1, single_non_terminals[l] );
+              dnt0 = factory.getExpression( snt0, snt1, double_non_terminals[j] );
 
-          for( int j = 0; j < double_non_terminals.length; j++ )
-          {
-            for( int ja = 0; ja < single_non_terminals.length; ja++ )
-            {
-              jae = factory.getExpression( te0, single_non_terminals[ja] );
-              for( int jb = 0; jb < single_non_terminals.length; jb++ )
-              {
-                jbe = factory.getExpression( factory.getParenExpression( e1 ), single_non_terminals[jb] );
-                e0 = factory.getExpression( jae, jbe, double_non_terminals[j] );
-
-                for( int jc = 0; jc < single_non_terminals.length; jc++ )
-                {
-                  jce = factory.getExpression( e0, single_non_terminals[jc] );
-                  try
-                  {
-                    System.out.println( "Expression: " + jce.toString() + " = " + jce.evaluate() );
-                  }
-                  catch( Exception e )
-                  {
-                    System.out.println( "Caught Exception: " + e.toString() + " while evaluating: " + jce );
-                  }
-                }
+              // add the head expressions
+              for( int h = 0; h < i; h++ ) {
+                nextExpressions.add( expressions[h] );
               }
+
+              // add the new double
+              nextExpressions.add( dnt0 );
+
+              // add the tail expressions
+              for( int t = (i+2); t < expressions.length; t++ ) {
+                nextExpressions.add( expressions[t] );
+              }
+
+              this.doAllExpressions( nextExpressions.toArray( new Expression [0] ) );
             }
           }
         }
       }
-    }
-  }
-
-  public void doAllExpressions( String t0, String t1 )
-  {
-    Expression e0 = null, te0 = null, te1 = null;;
-    Expression snt0 = null, snt1 = null, ent0 = null;
-    ExpressionFactory factory = new ExpressionFactory();
-
-    te0 = new TerminalExpression(t0);
-    te1 = new TerminalExpression(t1);
-
-    for( int i = 0; i < double_non_terminals.length; i++ )
-    {
-      for( int ia = 0; ia < single_non_terminals.length; ia++ )
-      {
-        snt0 = factory.getExpression( te0, single_non_terminals[ia] );
-
-        for( int ib = 0; ib < single_non_terminals.length; ib++ )
-        {
-          snt1 = factory.getExpression( te1, single_non_terminals[ib] );
-          e0 = factory.getExpression( snt0, snt1, double_non_terminals[i] );
-
-          for( int ic = 0; ic < single_non_terminals.length; ic++ )
-          {
-            ent0 = factory.getExpression( e0, single_non_terminals[ic] ); 
-
-            try
-            {
-              System.out.println( "Expression: " + e0.toString() + " = " + e0.evaluate() );
-            }
-            catch( Exception e )
-            {
-              System.out.println( "Caught Exception: " + e.toString() + " while evaluating: " + e0 );
-            }
-          }
-        }
-      }
-    }
+    } 
   }
 
   /**
@@ -315,6 +341,7 @@ public class Digits
   public interface Expression
   {
     public float evaluate() throws NumberFormatException;
+    public boolean isTerminal();
   }
 
   /**
@@ -338,6 +365,10 @@ public class Digits
       return retVal;
     }
 
+    public boolean isTerminal() {
+      return true;
+    }
+
     public String toString()
     {
       return terminal;
@@ -354,6 +385,10 @@ public class Digits
     public SingleExpression( Expression e0 )
     {
       expr0 = e0;
+    }
+
+    public boolean isTerminal() {
+      return expr0.isTerminal();
     }
 
   }
@@ -427,7 +462,11 @@ public class Digits
 
     public String toString()
     {
-      return "(" + expr0.toString() + ")!";
+      if( expr0.isTerminal() ) {
+        return expr0.toString() + "!";
+      } else {
+        return "(" + expr0.toString() + ")!";
+      }
     }
   }
 
@@ -455,7 +494,7 @@ public class Digits
   private float factorial( float n )
   {
     if( n <= 1 ) return 1.0F;
-    else if( n >= 10 ) return Float.POSITIVE_INFINITY;
+    else if( n >= 10 ) return Float.NaN;
     else return n * factorial( n - 1 );
   }
 
@@ -471,6 +510,10 @@ public class Digits
     {
       expr0 = e0;
       expr1 = e1;
+    }
+
+    public boolean isTerminal() {
+      return false;
     }
 
   }
@@ -492,7 +535,23 @@ public class Digits
 
     public String toString()
     {
-      return expr0.toString() + "^" + expr1.toString();
+      StringBuilder sb = new StringBuilder();
+
+      if( expr0.isTerminal() ) {
+        sb.append( expr0.toString() );
+      } else {
+        sb.append("(").append( expr0.toString() ).append(")");
+      }
+
+      sb.append("^");
+
+      if( expr1.isTerminal() ) {
+        sb.append( expr1.toString() );
+      } else {
+        sb.append("(").append( expr1.toString() ).append(")");
+      }
+
+      return sb.toString();
     }
   }
 
@@ -514,7 +573,23 @@ public class Digits
 
     public String toString()
     {
-      return expr0.toString() + "+" + expr1.toString();
+      StringBuilder sb = new StringBuilder();
+
+      if( expr0.isTerminal() ) {
+        sb.append( expr0.toString() );
+      } else {
+        sb.append("(").append( expr0.toString() ).append(")");
+      }
+
+      sb.append("+");
+
+      if( expr1.isTerminal() ) {
+        sb.append( expr1.toString() );
+      } else {
+        sb.append("(").append( expr1.toString() ).append(")");
+      }
+
+      return sb.toString();
     }
   }
 
@@ -536,7 +611,23 @@ public class Digits
 
     public String toString()
     {
-      return expr0.toString() + "-" + expr1.toString();
+      StringBuilder sb = new StringBuilder();
+
+      if( expr0.isTerminal() ) {
+        sb.append( expr0.toString() );
+      } else {
+        sb.append("(").append( expr0.toString() ).append(")");
+      }
+
+      sb.append("-");
+
+      if( expr1.isTerminal() ) {
+        sb.append( expr1.toString() );
+      } else {
+        sb.append("(").append( expr1.toString() ).append(")");
+      }
+
+      return sb.toString();
     }
   }
 
@@ -558,7 +649,23 @@ public class Digits
 
     public String toString()
     {
-      return expr0.toString() + "*" + expr1.toString();
+      StringBuilder sb = new StringBuilder();
+
+      if( expr0.isTerminal() ) {
+        sb.append( expr0.toString() );
+      } else {
+        sb.append("(").append( expr0.toString() ).append(")");
+      }
+
+      sb.append("*");
+
+      if( expr1.isTerminal() ) {
+        sb.append( expr1.toString() );
+      } else {
+        sb.append("(").append( expr1.toString() ).append(")");
+      }
+
+      return sb.toString();
     }
   }
 
@@ -580,7 +687,23 @@ public class Digits
 
     public String toString()
     {
-      return expr0.toString() + "/" + expr1.toString();
+      StringBuilder sb = new StringBuilder();
+
+      if( expr0.isTerminal() ) {
+        sb.append( expr0.toString() );
+      } else {
+        sb.append("(").append( expr0.toString() ).append(")");
+      }
+
+      sb.append("/");
+
+      if( expr1.isTerminal() ) {
+        sb.append( expr1.toString() );
+      } else {
+        sb.append("(").append( expr1.toString() ).append(")");
+      }
+
+      return sb.toString();
     }
   }
 
@@ -620,13 +743,21 @@ public class Digits
       {
         retVal = new PowerExpression( e1, e0 );
       }
-      else if( MULT.equals( descriptor ) )
+      else if( MULT1.equals( descriptor ) )
       {
         retVal = new MultiplicationExpression( e0, e1 );
       }
-      else if( ADD.equals( descriptor ) )
+      else if( MULT2.equals( descriptor ) )
+      {
+        retVal = new MultiplicationExpression( e1, e0 );
+      }
+      else if( ADD1.equals( descriptor ) )
       {
         retVal = new AdditionExpression( e0, e1 );
+      }
+      else if( ADD2.equals( descriptor ) )
+      {
+        retVal = new AdditionExpression( e1, e0 );
       }
       else if( SUB1.equals( descriptor ) )
       {
@@ -675,13 +806,13 @@ public class Digits
 
   public static void main( String [] args )
   {
-    if( args.length != 3 )
+    if( args.length != 4 )
     {
       System.out.println( "Usage: java Digits <x> <y> <z> <k>" );
     }
     else
     {
-      Digits D = new Digits();
+      FourDigits D = new FourDigits();
 
       try
       {
