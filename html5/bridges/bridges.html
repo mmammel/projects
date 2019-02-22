@@ -1,30 +1,53 @@
 <html>
   <head>
+    <style type="text/css">
+      .svgArea {
+        width: 800px;
+        height: 600px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: black;
+      }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-      var canvas;
-      var ctx;
-
-      function draw() {
-        ctx.ellipse(100, 100, 10, 15, Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.ellipse(200, 200, 20, 35, Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.ellipse(300, 300, 30, 45, Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.ellipse(400, 400, 40, 55, Math.PI/4, 0, Math.PI*2);
-        ctx.fill();
-      }
-
-      $(document).ready(function() {
-        canvas = document.getElementById("canvas");
-        ctx = canvas.getContext("2d");
-        draw();
+      $(document).ready(function() { // when the page is done loading...
+        $(document).on('click', '.island', function() {  // ...set this "click" handler on all island class elements
+          $(this).attr('fill','lightgreen'); // just set the fill to lightgreen
+        });
       });
+
+      /*
+         TODO: somehow index the islands, and track their state.
+         when one is clicked, change the position of a little guy element to be on the island 
+         that was clicked, and burn the bridge that connects the two.  Can also validate that
+         the bridge connection the currently occupied island and the one clicked is not already 
+         burned.
+       */
     </script>
   </head>
   <body>
-    <canvas id="canvas" width="1024" height="1024"></canvas>
+    <div class="svgArea">
+      <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        // The "world" - has to be first, order sets the layers.
+        <ellipse cx="400" cy="300" rx="400" ry="300" fill="blue" />
+        // The islands.  Fill with green (the trees), 10 pixel stroke is yellow (the beach)
+        <ellipse class="island" id="A" cx="150" cy="300" rx="60" ry="150" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="B" cx="650" cy="300" rx="60" ry="150" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="C" cx="400" cy="300" rx="80" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="D" cx="300" cy="200" rx="80" ry="30" transform="rotate(20,300,200)" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="E" cx="500" cy="200" rx="80" ry="30" transform="rotate(-20,500,200)" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="F" cx="300" cy="400" rx="80" ry="30" transform="rotate(-20,300,400)" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="G" cx="500" cy="400" rx="80" ry="30" transform="rotate(20,500,400)" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="H" cx="250" cy="100" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="I" cx="550" cy="100" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="J" cx="250" cy="500" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+        <ellipse class="island" id="K" cx="550" cy="500" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+        <!--
+          TODO: draw the bridges here, index them by which islands they connect.
+        -->
+      </svg>
+    </div>
   </body>
 </html>
