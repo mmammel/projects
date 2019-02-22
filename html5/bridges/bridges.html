@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      var canvas;
+      var ctx;
+
+      function draw() {
+        ctx.ellipse(100, 100, 10, 15, Math.PI/4, 0, Math.PI*2);
+        ctx.fill();
+        ctx.ellipse(200, 200, 20, 35, Math.PI/4, 0, Math.PI*2);
+        ctx.fill();
+        ctx.ellipse(300, 300, 30, 45, Math.PI/4, 0, Math.PI*2);
+        ctx.fill();
+        ctx.ellipse(400, 400, 40, 55, Math.PI/4, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      $(document).ready(function() {
+        canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+        draw();
+      });
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="1024" height="1024"></canvas>
+  </body>
+</html>
