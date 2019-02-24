@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <style type="text/css">
+      .svgArea {
+        width: 800px;
+        height: 600px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: black;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() { // when the page is done loading...
+        //$(".debug").attr('fill','none');
+      });
+    </script>
+  </head>
+  <body>
+    <div class="svgArea">
+      <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+       <g transform="rotate(45, 400, 300 )">
+          // The "world" - has to be first, order sets the layers.
+          <ellipse cx="400" cy="300" rx="400" ry="300" fill="blue" />
+          // The islands.  Fill with green (the trees), 10 pixel stroke is yellow (the beach)
+          <ellipse class="island" id="A" cx="150" cy="300" rx="60" ry="150" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="150" y="300">A</text>
+          <ellipse class="island" id="B" cx="650" cy="300" rx="60" ry="150" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="650" y="300">B</text>
+          <ellipse class="island" id="C" cx="400" cy="300" rx="80" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="400" y="300">C</text>
+          <ellipse class="island" id="D" cx="300" cy="200" rx="80" ry="30" transform="rotate(20,300,200)" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="300" y="200">D</text>
+          <ellipse class="island" id="E" cx="500" cy="200" rx="80" ry="30" transform="rotate(-20,500,200)" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="500" y="200">E</text>
+          <ellipse class="island" id="F" cx="300" cy="400" rx="80" ry="30" transform="rotate(-20,300,400)" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="300" y="400">F</text>
+          <ellipse class="island" id="G" cx="500" cy="400" rx="80" ry="30" transform="rotate(20,500,400)" fill="green" stroke="yellow" stroke-width="10"/>
+        <text class="debug" x="500" y="400">G</text>
+          <ellipse class="island" id="H" cx="250" cy="100" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="250" y="100">H</text>
+          <ellipse class="island" id="I" cx="550" cy="100" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="550" y="100">I</text>
+          <ellipse class="island" id="J" cx="250" cy="500" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="250" y="500">J</text>
+          <ellipse class="island" id="K" cx="550" cy="500" rx="90" ry="30" fill="green" stroke="yellow" stroke-width="10"/>
+          <text class="debug" x="550" y="500">K</text>
+        </g>
+        <!--
+          TODO: draw the bridges here, index them by which islands they connect.
+        -->
+      </svg>
+    </div>
+  </body>
+</html>

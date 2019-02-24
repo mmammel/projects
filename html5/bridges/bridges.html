@@ -26,13 +26,92 @@
          the bridge connection the currently occupied island and the one clicked is not already 
          burned.
        */
+       function makeSVG(tag, attrs) {
+         var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+         for (var k in attrs)
+           el.setAttribute(k, attrs[k]);
+         return el;
+       }
+
+       function drawBridge() {
+         var x0 = parseInt($('#x0').val());
+         var y0 = parseInt($('#y0').val());
+         var x1 = parseInt($('#x1').val());
+         var y1 = parseInt($('#y1').val());
+         var bridgeSVG = buildBridge(x0,y0,x1,y1);
+         document.getElementById('svgRoot').appendChild(bridgeSVG);
+       }
+       /**
+        * Generate svg for a bridge from (x0,y0) to (x1,y1)
+        * HL: 150, 50, 175, 90
+        * HI:
+        * DH:
+        * AH:
+        * IL: 650, 50, 625, 90
+        * EI:
+        * BI:
+        * AD:
+        * AF:
+        * AJ:
+        * BE:
+        * BG:
+        * BK:
+        * GK:
+        * CG:
+        * FG:
+        * KL: 650, 550, 625, 510
+        * JK:
+        * FJ:
+        * CF:
+        * CD:
+        * CE:
+        * DE:
+        * JL: 150, 550, 175, 510
+        */
+       function buildBridge( x0, y0, x1, y1 ) {
+          var xlen = x1 - x0;
+          var ylen = y1 - y0;
+          var midx = Math.round( (x0 + x1) * 0.5 );
+          var midy = Math.round( (y0 + y1) * 0.5 );
+          var theta = Math.atan( ylen / xlen ); // radians
+          var degrees = (theta / (2*Math.PI)) * 360.0;
+          var len = Math.sqrt( (xlen * xlen) + (ylen * ylen) );
+          degrees = Math.round( degrees );
+          len = Math.round( len );
+
+          // build the rectangle.  Later decorate with "rungs"
+          // make the bridges 20px wide.
+          // TODO: use the "makeSVG" function.  Build <g>, then append everything to it.
+          var gtag = makeSVG( "g", { transform: 'rotate(' + degrees + ',' + midx + ',' + midy +')' } );
+          var recttag = makeSVG("rect", {
+            x: midx - Math.round(len * 0.5),
+            y: midy - 10,
+            width: len,
+            height: 20,
+            fill: 'brown'
+          });
+          
+          gtag.appendChild(recttag);
+          // wrap in the <g> tag and rotate it.
+          return gtag;
+       }
     </script>
   </head>
   <body>
+    <div>
+      <input type="text" id="x0"/>
+      <input type="text" id="y0"/>
+      <input type="text" id="x1"/>
+      <input type="text" id="y1"/>
+      <button onclick="javascript:drawBridge()">Add Bridge</button>
+    </div>
     <div class="svgArea">
-      <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+      <svg id="svgRoot" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
         // The "world" - has to be first, order sets the layers.
-        <ellipse cx="400" cy="300" rx="400" ry="300" fill="blue" />
+        <rect class="island" id="L" x="0" y="0" width="800" height="600" fill="green" />
+        <text class="debug" x="50" y="50">L</text>
+        // the ocean, with the world beach added
+        <ellipse cx="400" cy="300" rx="400" ry="300" fill="blue" stroke="yellow" stroke-width="10"/>
         // The islands.  Fill with green (the trees), 10 pixel stroke is yellow (the beach)
         <ellipse class="island" id="A" cx="150" cy="300" rx="60" ry="150" fill="green" stroke="yellow" stroke-width="10"/>
         <text class="debug" x="150" y="300">A</text>
@@ -59,6 +138,37 @@
         <!--
           TODO: draw the bridges here, index them by which islands they connect.
         -->
+        <g class="debug" stroke="black">
+          // draw grid lines for help in placing bridges
+          // vertical
+          <line x1="50" y1="0" x2="50" y2="600" />
+          <line x1="100" y1="0" x2="100" y2="600" />
+          <line x1="150" y1="0" x2="150" y2="600" />
+          <line x1="200" y1="0" x2="200" y2="600" />
+          <line x1="250" y1="0" x2="250" y2="600" />
+          <line x1="300" y1="0" x2="300" y2="600" />
+          <line x1="350" y1="0" x2="350" y2="600" />
+          <line x1="400" y1="0" x2="400" y2="600" />
+          <line x1="450" y1="0" x2="450" y2="600" />
+          <line x1="500" y1="0" x2="500" y2="600" />
+          <line x1="550" y1="0" x2="550" y2="600" />
+          <line x1="600" y1="0" x2="600" y2="600" />
+          <line x1="650" y1="0" x2="650" y2="600" />
+          <line x1="700" y1="0" x2="700" y2="600" />
+          <line x1="750" y1="0" x2="750" y2="600" />
+          // horizontal
+          <line x1="0" y1="50" x2="800" y2="50" />
+          <line x1="0" y1="100" x2="800" y2="100" />
+          <line x1="0" y1="150" x2="800" y2="150" />
+          <line x1="0" y1="200" x2="800" y2="200" />
+          <line x1="0" y1="250" x2="800" y2="250" />
+          <line x1="0" y1="300" x2="800" y2="300" />
+          <line x1="0" y1="350" x2="800" y2="350" />
+          <line x1="0" y1="400" x2="800" y2="400" />
+          <line x1="0" y1="450" x2="800" y2="450" />
+          <line x1="0" y1="500" x2="800" y2="500" />
+          <line x1="0" y1="550" x2="800" y2="550" />
+        </g>
       </svg>
     </div>
   </body>
