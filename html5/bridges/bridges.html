@@ -1,6 +1,10 @@
 <html>
   <head>
     <style type="text/css">
+      .text {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
       .svgArea {
         width: 800px;
         height: 600px;
@@ -8,16 +12,141 @@
         border-style: solid;
         border-color: black;
       }
+
+      .resultBanner {
+        font-size: 20px; 
+      }
+
+      .resetButtonHolder {
+        padding-top: 10px;
+      }
+
+      .resetButton {
+        height: 40px;
+        width: 70px;
+        font-size: 18px;
+      }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
+      /* Globals */
+      var bridgeIndex = {};
+      var onIsland = "X";
+      var connections = {
+        A: ["D","F","H","J"],
+        B: ["E","G","I","K"],
+        C: ["D","E","F","G"],
+        D: ["A","C","E","H"],
+        E: ["B","C","D","I"],
+        F: ["A","C","G","J"],
+        G: ["B","C","F","K"],
+        H: ["A","D","I","L"],
+        I: ["B","E","H","L"],
+        J: ["A","F","K","L"],
+        K: ["B","G","J","L"],
+        L: ["H","I","J","K"]
+      };
+
+      var bridges = [
+        { id: "HL", x0:  155, y0:  55, x1:  190, y1:  90 },
+        { id: "HI", x0:  325, y0:  100, x1:  475, y1:  100 },
+        { id: "DH", x0:  250, y0:  175, x1:  250, y1:  115 },
+        { id: "AH", x0:  160, y0:  180, x1:  200, y1:  110 },
+        { id: "IL", x0:  645, y0:  55, x1:  610, y1:  90 },
+        { id: "EI", x0:  550, y0:  175, x1:  550, y1:  115 },
+        { id: "BI", x0:  640, y0:  180, x1:  600, y1:  110 },
+        { id: "AD", x0:  275, y0:  200, x1:  190, y1:  260 },
+        { id: "AF", x0:  275, y0:  400, x1:  190, y1:  340 },
+        { id: "AJ", x0:  160, y0:  420, x1:  200, y1:  490 },
+        { id: "BE", x0:  525, y0:  200, x1:  610, y1:  260 },
+        { id: "BG", x0:  525, y0:  400, x1:  610, y1:  340 },
+        { id: "BK", x0:  640, y0:  420, x1:  600, y1:  490 },
+        { id: "GK", x0:  550, y0:  425, x1:  550, y1:  485 },
+        { id: "CG", x0:  475, y0:  375, x1:  440, y1:  310 },
+        { id: "FG", x0:  360, y0:  380, x1:  440, y1:  380 },
+        { id: "KL", x0:  645, y0:  545, x1:  610, y1:  510 },
+        { id: "JK", x0:  325, y0:  500, x1:  475, y1:  500 },
+        { id: "FJ", x0:  250, y0:  425, x1:  250, y1:  485 },
+        { id: "CF", x0:  325, y0:  375, x1:  360, y1:  310 },
+        { id: "CD", x0:  325, y0:  225, x1:  360, y1:  290 },
+        { id: "CE", x0:  475, y0:  225, x1:  440, y1:  290 },
+        { id: "DE", x0:  360, y0:  220, x1:  440, y1:  220 },
+        { id: "JL", x0:  155, y0:  545, x1:  190, y1:  510 }
+      ];
+      var bridgeCount = 24;
+
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      };
+
+      function getBridgeID( id1, id2 ) {
+        var retVal = ""+id1+id2;
+        if( id2 < id1 ) {
+          retVal = ""+id2+id1;
+        }
+
+        return retVal;
+      }
+
       $(document).ready(function() { // when the page is done loading...
-        //$(".debug").attr('fill','none');
+        var isDebug = getUrlParameter('debug') != null;
+        if( !isDebug ) {
+          $(".debug").remove();
+        }
+
         $(document).on('click', '.island', function() {  // ...set this "click" handler on all island class elements
-          $(this).attr('fill','lightgreen'); // just set the fill to lightgreen
+          var id = $(this).attr('id');
+
+          if( onIsland === 'X') {
+            // set the starting island.
+            onIsland = id;
+            $('#' + onIsland).attr('fill', 'lightgreen');
+          } else if( id !== onIsland ) {
+            if( connections[onIsland].includes(id) ) {
+              var bridgeID = getBridgeID( onIsland, id );
+              if( !bridgeIndex[bridgeID].visited ) {
+                $('#'+onIsland).attr('fill', 'green');
+                $(this).attr('fill','lightgreen'); // just set the fill to lightgreen
+                onIsland = id;
+                bridgeIndex[bridgeID].visited = true;
+                $('#'+bridgeID).remove();
+                bridgeCount--;
+                checkStatus();
+              }
+            }
+          }
         });
+
+        reset();
       });
+
+      function reset() {
+        onIsland = "X";
+        initializeBridges();
+        $('.island').attr('fill','green');
+        $('#result').text('');
+      }
+
+      function initializeBridges() {
+        var tempBridge = null;
+        bridgeIndex = {};
+        // wipe out all of the bridges
+        $('.bridge').remove();
+        for( var i = 0; i < bridges.length; i++ ) {
+          tempBridge = bridges[i];
+          drawBridge( tempBridge.id, 
+                      tempBridge.x0, 
+                      tempBridge.y0,
+                      tempBridge.x1,
+                      tempBridge.y1);
+          bridgeIndex[tempBridge.id] = { id: tempBridge.id, visited: false };
+        }
+        bridgeCount = 24;
+      }
 
       /*
          TODO: somehow index the islands, and track their state.
@@ -33,42 +162,70 @@
          return el;
        }
 
-       function drawBridge() {
-         var x0 = parseInt($('#x0').val());
-         var y0 = parseInt($('#y0').val());
-         var x1 = parseInt($('#x1').val());
-         var y1 = parseInt($('#y1').val());
-         var bridgeSVG = buildBridge(x0,y0,x1,y1);
+       function drawBridge( id, x0, y0, x1, y1 ) {
+         var bridgeSVG = buildBridge(id,x0,y0,x1,y1);
          document.getElementById('svgRoot').appendChild(bridgeSVG);
        }
+
+       function drawDebugBridge() {
+         var coords = $('#bridgeCoords').val();
+         var coordArr = coords.split(",");
+         var x0 = parseInt(coordArr[0].trim());
+         var y0 = parseInt(coordArr[1].trim());
+         var x1 = parseInt(coordArr[2].trim());
+         var y1 = parseInt(coordArr[3].trim());
+         var bridgeSVG = buildBridge('foo'+x0+x1+y0+y1, x0,y0,x1,y1);
+         document.getElementById('svgRoot').appendChild(bridgeSVG);
+       }
+
+       function checkStatus() {
+         if( bridgeCount === 0 ) {
+          $('#result').text("Success!");
+         } else {
+           var tempId;
+           var hasOut = false;
+           for( var i = 0; i < connections[onIsland].length; i++ ) {
+             tempId = getBridgeID(onIsland,connections[onIsland][i]);
+             if( !bridgeIndex[tempId].visited ) {
+               hasOut = true;
+               break;
+             }
+           }
+
+           if( !hasOut ) {
+             $('#result').text("Oh no!  You're stuck!!")
+           } 
+         }
+       }
+
        /**
         * Generate svg for a bridge from (x0,y0) to (x1,y1)
-        * HL: 150, 50, 175, 90
-        * HI:
-        * DH:
-        * AH:
-        * IL: 650, 50, 625, 90
-        * EI:
-        * BI:
-        * AD:
-        * AF:
-        * AJ:
-        * BE:
-        * BG:
-        * BK:
-        * GK:
-        * CG:
-        * FG:
-        * KL: 650, 550, 625, 510
-        * JK:
-        * FJ:
-        * CF:
-        * CD:
-        * CE:
-        * DE:
-        * JL: 150, 550, 175, 510
+        * HL: 155, 55, 190, 90
+        * HI: 325, 100, 475, 100
+        * DH: 250, 175, 250, 115
+        * AH: 160, 180, 200, 110
+        * IL: 645, 55, 610, 90
+        * EI: 550, 175, 550, 115
+        * BI: 640, 180, 600, 110
+        * AD: 275, 200, 190, 260
+        * AF: 275, 400, 190, 340
+        * AJ: 160, 420, 200, 490
+        * BE: 525, 200, 610, 260
+        * BG: 525, 400, 610, 340
+        * BK: 640, 420, 600, 490
+        * GK: 550, 425, 550, 485
+        * CG: 475, 375, 440, 310
+        * FG: 360, 380, 440, 380
+        * KL: 645, 545, 610, 510
+        * JK: 325, 500, 475, 500 
+        * FJ: 250, 425, 250, 485
+        * CF: 325, 375, 360, 310
+        * CD: 325, 225, 360, 290
+        * CE: 475, 225, 440, 290
+        * DE: 360, 220, 440, 220
+        * JL: 155, 545, 190, 510
         */
-       function buildBridge( x0, y0, x1, y1 ) {
+       function buildBridge( id, x0, y0, x1, y1 ) {
           var xlen = x1 - x0;
           var ylen = y1 - y0;
           var midx = Math.round( (x0 + x1) * 0.5 );
@@ -82,7 +239,7 @@
           // build the rectangle.  Later decorate with "rungs"
           // make the bridges 20px wide.
           // TODO: use the "makeSVG" function.  Build <g>, then append everything to it.
-          var gtag = makeSVG( "g", { transform: 'rotate(' + degrees + ',' + midx + ',' + midy +')' } );
+          var gtag = makeSVG( "g", { id: id, class: 'bridge', transform: 'rotate(' + degrees + ',' + midx + ',' + midy +')' } );
           var recttag = makeSVG("rect", {
             x: midx - Math.round(len * 0.5),
             y: midy - 10,
@@ -98,12 +255,15 @@
     </script>
   </head>
   <body>
-    <div>
-      <input type="text" id="x0"/>
-      <input type="text" id="y0"/>
-      <input type="text" id="x1"/>
-      <input type="text" id="y1"/>
-      <button onclick="javascript:drawBridge()">Add Bridge</button>
+    <div class="debug">
+      <input type="text" id="bridgeCoords"/>
+      <button onclick="javascript:drawDebugBridge()">Add Bridge</button>
+    </div>
+    <div class="text">
+      <h3>Bridge Game</h3>
+      <p>
+        Select a starting island, and then try to cross all of the bridges without getting stuck.
+      </p>
     </div>
     <div class="svgArea">
       <svg id="svgRoot" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +271,7 @@
         <rect class="island" id="L" x="0" y="0" width="800" height="600" fill="green" />
         <text class="debug" x="50" y="50">L</text>
         // the ocean, with the world beach added
-        <ellipse cx="400" cy="300" rx="400" ry="300" fill="blue" stroke="yellow" stroke-width="10"/>
+        <ellipse cx="400" cy="300" rx="390" ry="290" fill="blue" stroke="yellow" stroke-width="10"/>
         // The islands.  Fill with green (the trees), 10 pixel stroke is yellow (the beach)
         <ellipse class="island" id="A" cx="150" cy="300" rx="60" ry="150" fill="green" stroke="yellow" stroke-width="10"/>
         <text class="debug" x="150" y="300">A</text>
@@ -170,6 +330,10 @@
           <line x1="0" y1="550" x2="800" y2="550" />
         </g>
       </svg>
+    </div>
+    <div class="resetButtonHolder">
+      <button id="resetButton" class="resetButton" onclick="javascript:reset();">Reset</button>
+      <span id="result" class="resultBanner text"></span>
     </div>
   </body>
 </html>
