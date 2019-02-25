@@ -33,6 +33,10 @@
       /* Globals */
       var bridgeIndex = {};
       var onIsland = "X";
+
+      /*
+         The island graph
+       */
       var connections = {
         A: ["D","F","H","J"],
         B: ["E","G","I","K"],
@@ -48,6 +52,10 @@
         L: ["H","I","J","K"]
       };
 
+      /*
+         The bridge coords, found by overlaying a grid (using "debug=true" and eyeballing the 
+         start and end points.
+       */
       var bridges = [
         { id: "HL", x0:  155, y0:  55, x1:  190, y1:  90 },
         { id: "HI", x0:  325, y0:  100, x1:  475, y1:  100 },
@@ -76,6 +84,13 @@
       ];
       var bridgeCount = 24;
 
+      /*
+        Utility for reading "query string parameters" from the URL, i.e. :
+          http://www.mjmtools.com/bridges/bridges.html?debug=true
+
+        getUrlParameter( "debug" ) -> "true"
+        getUrlParameter( "foobar" ) -> null
+       */
       function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -83,6 +98,10 @@
         return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
       };
 
+      /*
+         Given two island IDs, get the ID of the bridge between them, always 
+         put the lower letter first.
+       */
       function getBridgeID( id1, id2 ) {
         var retVal = ""+id1+id2;
         if( id2 < id1 ) {
@@ -92,23 +111,35 @@
         return retVal;
       }
 
+      /*
+         Everything inside here gets run when the page has fully loaded.
+       */
       $(document).ready(function() { // when the page is done loading...
         var isDebug = getUrlParameter('debug') != null;
+        // isDebug = true; // uncomment if you want to debug locally.  Can't pass query params to file://...
         if( !isDebug ) {
           $(".debug").remove();
         }
 
+        /*
+           Set up the click event handler on anything with class="island" on it.
+         */
         $(document).on('click', '.island', function() {  // ...set this "click" handler on all island class elements
           var id = $(this).attr('id');
 
           if( onIsland === 'X') {
-            // set the starting island.
+            // set the starting island, X means it hasn't been set yet.
             onIsland = id;
             $('#' + onIsland).attr('fill', 'lightgreen');
-          } else if( id !== onIsland ) {
+          } else if( id !== onIsland ) { // did they click on the island they are already on?
+            // nope, let's see if they clicked on an island connected originally to this one
             if( connections[onIsland].includes(id) ) {
+              // They did!  Let's see if that bridge still exists.
               var bridgeID = getBridgeID( onIsland, id );
               if( !bridgeIndex[bridgeID].visited ) {
+                // The bridge exists!  Put the island we're on back to the normal color,
+                // put the destination island on the highlight color, mark the br
+                // burn the bridge, and check to see if we're stuck or have succeeded.
                 $('#'+onIsland).attr('fill', 'green');
                 $(this).attr('fill','lightgreen'); // just set the fill to lightgreen
                 onIsland = id;
@@ -121,9 +152,16 @@
           }
         });
 
+        // initialize - build the bridges, clear the indexes, reset the onIsland var, etc.
         reset();
       });
 
+      /*
+         set onIsland to the non-existent "X" island, indicating it needs to be set.
+         initialize the bridges.
+         color all of the islands green again
+         erase the status text.
+       */
       function reset() {
         onIsland = "X";
         initializeBridges();
@@ -131,6 +169,14 @@
         $('#result').text('');
       }
 
+      /*
+        Initialize the bridges.
+        First clear out the index, then actually remove all of the bridge svg.
+        Loop through the bridge array and build the bridge SVG, and insert it into 
+        the DOM.
+        While we loop, build the index that let's us know which bridges have been visited
+        easily, and reset the counter to 24.
+       */
       function initializeBridges() {
         var tempBridge = null;
         bridgeIndex = {};
@@ -149,24 +195,31 @@
       }
 
       /*
-         TODO: somehow index the islands, and track their state.
-         when one is clicked, change the position of a little guy element to be on the island 
-         that was clicked, and burn the bridge that connects the two.  Can also validate that
-         the bridge connection the currently occupied island and the one clicked is not already 
-         burned.
+         SVG tags are "namespaced" and need to be created in a specific way.  This is a 
+         helper function, found online, that will build a valid svg element given a name 
+         and a javascript object of attribute name/value pairs.
        */
-       function makeSVG(tag, attrs) {
+      function makeSVG(tag, attrs) {
          var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
          for (var k in attrs)
            el.setAttribute(k, attrs[k]);
          return el;
        }
 
+       /*
+         Build a bridge and insert it into the DOM.
+        */
        function drawBridge( id, x0, y0, x1, y1 ) {
          var bridgeSVG = buildBridge(id,x0,y0,x1,y1);
          document.getElementById('svgRoot').appendChild(bridgeSVG);
        }
 
+       /*
+         For debuggin - lets us try bridge coords quickly with a little field/button.
+         tack "?debug=true" onto the end of the URL to use this, does NOT work when viewing
+         a local file, for that you just have to change to code to make it think it got the debug
+         flag.
+        */
        function drawDebugBridge() {
          var coords = $('#bridgeCoords').val();
          var coordArr = coords.split(",");
@@ -178,6 +231,10 @@
          document.getElementById('svgRoot').appendChild(bridgeSVG);
        }
 
+       /*
+          See if we're stuck, or if we've crossed all of the bridges, and display a little
+          message.
+        */
        function checkStatus() {
          if( bridgeCount === 0 ) {
           $('#result').text("Success!");
@@ -198,32 +255,15 @@
          }
        }
 
-       /**
-        * Generate svg for a bridge from (x0,y0) to (x1,y1)
-        * HL: 155, 55, 190, 90
-        * HI: 325, 100, 475, 100
-        * DH: 250, 175, 250, 115
-        * AH: 160, 180, 200, 110
-        * IL: 645, 55, 610, 90
-        * EI: 550, 175, 550, 115
-        * BI: 640, 180, 600, 110
-        * AD: 275, 200, 190, 260
-        * AF: 275, 400, 190, 340
-        * AJ: 160, 420, 200, 490
-        * BE: 525, 200, 610, 260
-        * BG: 525, 400, 610, 340
-        * BK: 640, 420, 600, 490
-        * GK: 550, 425, 550, 485
-        * CG: 475, 375, 440, 310
-        * FG: 360, 380, 440, 380
-        * KL: 645, 545, 610, 510
-        * JK: 325, 500, 475, 500 
-        * FJ: 250, 425, 250, 485
-        * CF: 325, 375, 360, 310
-        * CD: 325, 225, 360, 290
-        * CE: 475, 225, 440, 290
-        * DE: 360, 220, 440, 220
-        * JL: 155, 545, 190, 510
+       /*
+         Given an ID and the start/end coords, build a bridge.  We will find the 
+         length of the bridge using the distance formula, find the midpoint, and then build the bridge 
+         "horizontally" around that midpoint.  Then we'll figure out by how much we need to 
+         rotate it to make it connect the requested points.  This lets us use the "rect" tag 
+         as opposed to drawing a bunch of lines, or using "path", which is more complicated.  Put 
+         everything inside a <g> (group) svg tag, so that whatever we use to draw the bridge, we can 
+         rotate the <g> and it will rotate every piece properly.  Returns the namespaced DOM element 
+         representation of the <g> tag.
         */
        function buildBridge( id, x0, y0, x1, y1 ) {
           var xlen = x1 - x0;
@@ -235,20 +275,30 @@
           var len = Math.sqrt( (xlen * xlen) + (ylen * ylen) );
           degrees = Math.round( degrees );
           len = Math.round( len );
+          // upper left corner.
+          var x = midx - Math.round(len * 0.5);
+          var y = midy - 10;
 
           // build the rectangle.  Later decorate with "rungs"
           // make the bridges 20px wide.
           // TODO: use the "makeSVG" function.  Build <g>, then append everything to it.
           var gtag = makeSVG( "g", { id: id, class: 'bridge', transform: 'rotate(' + degrees + ',' + midx + ',' + midy +')' } );
           var recttag = makeSVG("rect", {
-            x: midx - Math.round(len * 0.5),
-            y: midy - 10,
+            x: x,
+            y: y,
             width: len,
             height: 20,
             fill: 'brown'
           });
           
           gtag.appendChild(recttag);
+          // make little black crossbeams.
+
+          var tempCross;
+          for( var i = x+2; i < x + len; i+=4 ) {
+            tempCross = makeSVG("line", { x1: i, y1: y, x2: i, y2: y+20, stroke: 'black', 'stroke-width': 2 } );
+            gtag.appendChild(tempCross);
+          } 
           // wrap in the <g> tag and rotate it.
           return gtag;
        }
