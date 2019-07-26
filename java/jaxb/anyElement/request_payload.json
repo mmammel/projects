@@ -1,0 +1,13 @@
+{
+  "async" : false,
+  "functionName" : "foobar",
+  "payload" : {
+    "name" : "Max",
+    "title" : "Mr.",
+    "age" : 42,
+    "skills" : [
+      "java",
+      "sql"
+    ]
+  }
+}

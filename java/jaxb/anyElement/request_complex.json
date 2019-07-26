@@ -1,0 +1,14 @@
+{
+  "async" : false,
+  "functionName" : "foobar",
+  "payload" : {
+    "foo" : "bar",
+    "jomama" : [
+      1, 2, 3, 4
+    ],
+    "yomama" : {
+      "hello" : "hola",
+      "age" : 42
+    }
+  }
+}
