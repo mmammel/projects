@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <style type="text/css">
+      .text {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .svgArea {
+        width: 800px;
+        height: 600px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: black;
+      }
+
+      .resultBanner {
+        font-size: 20px; 
+      }
+
+      .resetButtonHolder {
+        padding-top: 10px;
+      }
+
+      .resetButton {
+        height: 40px;
+        width: 70px;
+        font-size: 18px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      /* Globals */
+
+      var names = [
+      ];
+
+      /*
+        Utility for reading "query string parameters" from the URL, i.e. :
+          http://www.mjmtools.com/bridges/bridges.html?debug=true
+
+        getUrlParameter( "debug" ) -> "true"
+        getUrlParameter( "foobar" ) -> null
+       */
+      function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+      };
+
+      $(document).ready(function() { // when the page is done loading...
+        var isDebug = getUrlParameter('debug') != null;
+        // isDebug = true; // uncomment if you want to debug locally.  Can't pass query params to file://...
+        if( !isDebug ) {
+          $(".debug").remove();
+        }
+      });
+
+      function makeSVG(tag, attrs) {
+         var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+         for (var k in attrs)
+           el.setAttribute(k, attrs[k]);
+         return el;
+       }
+
+    </script>
+  </head>
+  <body>
+    <div class="text">
+      <h3>Bouncy Text</h3>
+    </div>
+    <div class="svgArea">
+      <svg id="svgRoot" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        // The "world" - has to be first, order sets the layers.
+        <text x="150" y="300">A</text>
+        <text x="300" y="400">F</text>
+      </svg>
+    </div>
+  </body>
+</html>
