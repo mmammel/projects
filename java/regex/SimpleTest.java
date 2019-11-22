@@ -13,7 +13,8 @@ public class SimpleTest
   //public static Pattern PATTERN = Pattern.compile("\\(\\?(.*?)\\?\\)");
   //public static Pattern PATTERN = Pattern.compile("^[0-9]+\\/[0-9]+$");
   //public static Pattern PATTERN = Pattern.compile("\\$\\$SN?'(.*?)'");
-  public static Pattern PATTERN = Pattern.compile("^(.*?)_(.*)$");
+  //public static Pattern PATTERN = Pattern.compile("^(.*?)_(.*)$");
+  public static Pattern PATTERN = Pattern.compile("(?s)<MetricName>OverallScore</MetricName>.*?<MetricValue>(.*?)</MetricValue>");
 
   public static void main( String [] args )
   {
@@ -35,6 +36,7 @@ public class SimpleTest
       while( m.find() )
       {
         System.out.println( "Found Match: [" + m.group(0) + "]" );
+        System.out.println( "Group count: " + m.groupCount() );
         for( int i = 1; i <= m.groupCount(); i++ )
         {
           System.out.println( "Group " + i + ": [" + m.group(i) + "]" );

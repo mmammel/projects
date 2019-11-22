@@ -18,7 +18,8 @@ class TryARegEx
       //pattern = "^(.*?):(.*?):(.*)$";
       //pattern = "(?i)^.*?<img.*?src=\\s*['\"](.*?)['\"].*$";
       //pattern = "o:(.*)$";
-      pattern = "\\$\\$SN?'((?:''|.))*?'";
+      //pattern = "\\$\\$SN?'((?:''|.))*?'";
+      pattern = "(?s)<MetricName>OverallScore</MetricName>.*?<MetricValue>(.*?)</MetricValue>";
     }
     else
     {
