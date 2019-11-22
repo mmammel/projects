@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,9 +78,12 @@ public class ScoreProcessor {
       
       for( int i = 0; i < this.items.size(); i++ ) {
         item = this.items.get(i);
-        
-        numerators[i] = EXP.value(item.getAlpha() * (response.getZeroResponse(i) * ( quad[0] - item.getDelta() ) - item.getTauSum(response.getZeroResponse(i)) ) ) +
-                        EXP.value(item.getAlpha() * ((item.getM() - response.getZeroResponse(i)) * (quad[0] - item.getDelta() ) - item.getTauSum(response.getZeroResponse(i)) ) );
+        if( response.getResponse(i) != ResponseDescriptor.NA ) {
+          numerators[i] = EXP.value(item.getAlpha() * (response.getZeroResponse(i) * ( quad[0] - item.getDelta() ) - item.getTauSum(response.getZeroResponse(i)) ) ) +
+                          EXP.value(item.getAlpha() * ((item.getM() - response.getZeroResponse(i)) * (quad[0] - item.getDelta() ) - item.getTauSum(response.getZeroResponse(i)) ) );
+        } else {
+          numerators[i] = Double.NaN;
+        }
       }
       // we have all of the item num vals for this quad, get the denominators.
       for( int i = 0; i < this.items.size(); i++ ) {
@@ -93,7 +97,7 @@ public class ScoreProcessor {
         
         denominators[i] = denomSum;
         // we have num and den for i, do prob
-        probs[i] = numerators[i] / denominators[i];
+        probs[i] = Double.isNaN(numerators[i]) ? Double.NaN : numerators[i] / denominators[i];
       }
       
       like = this.mult(probs);
@@ -159,7 +163,9 @@ public class ScoreProcessor {
   private double mult( double [] array ) {
     double retVal = 1.0d;
     for( int i = 0; i < array.length; i++ ) {
-      retVal *= array[i];
+      if( !Double.isNaN(array[i]) ) {
+        retVal *= array[i];
+      }
     }
     
     return retVal;
@@ -173,7 +179,9 @@ public class ScoreProcessor {
   private double sum( double [] array ) {
     double retVal = 0.0d;
     for( int i = 0; i < array.length; i++ ) {
-      retVal += array[i];
+      if( !Double.isNaN(array[i]) ) {
+        retVal += array[i];
+      }
     }
     
     return retVal;
@@ -191,3 +199,4 @@ public class ScoreProcessor {
     return this.quadratures.getRowDimension();
   }
 }
+

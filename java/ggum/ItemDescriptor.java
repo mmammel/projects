@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemDescriptor {
   public static final int MAX_CATS = 10;
   
@@ -8,10 +11,10 @@ public class ItemDescriptor {
   private double astd;
   private double delta; // position on the continuum
   private double alpha; // discrimination
-  private double [] tau; // max. 10
+  private List<Double> tau; // max. 10
   
   public ItemDescriptor() {
-    this.tau = new double [ MAX_CATS ];
+    this.tau = new ArrayList<Double>();
   }
   
   public String getId() {
@@ -67,9 +70,9 @@ public class ItemDescriptor {
   
   public double getTauSum(int to) {
     double retVal = 0.0d;
-    if( this.tau != null && this.tau.length >= this.numCategories ) {
+    if( this.tau != null && this.tau.size() >= this.numCategories ) {
       for( int i = 0; i <= to; i++ ) {
-        retVal += this.tau[i];
+        retVal += this.tau.get(i);
       }
     }
     
@@ -77,13 +80,33 @@ public class ItemDescriptor {
   }
   
   public double getTau( int idx ) {
-    return this.tau != null && idx >= 0 && idx < MAX_CATS ? this.tau[idx] : 0.0d;
+    return this.tau != null && idx >= 0 && idx < MAX_CATS ? this.tau.get(idx) : 0.0d;
   }
   
-  public double[] getTau() {
+  public void setTau( int idx, double val ) {
+    if( this.tau == null && this.numCategories > 0 ) {
+      this.tau = new ArrayList<Double>(this.numCategories);
+    }
+    
+    if( idx >= 0 && idx < this.tau.size() ) {
+      this.tau.set(idx, val);
+    }
+  }
+  
+  public void addTau( double val ) {
+    if( this.tau == null ) {
+      this.tau = new ArrayList<Double>(this.numCategories);
+    }
+    
+    this.tau.add(val);
+  }
+  
+  public List<Double> getTau() {
     return tau;
   }
-  public void setTau(double[] tau) {
+  
+  public void setTau(List<Double> tau) {
     this.tau = tau;
   }
 }
+

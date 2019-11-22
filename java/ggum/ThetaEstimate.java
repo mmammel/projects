@@ -21,4 +21,10 @@ public class ThetaEstimate {
   public void setError(double error) {
     this.error = error;
   }
+
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append( " [" ).append( this.subjectId ).append( " | " ).append( this.estimate ).append( " | " ).append( this.error ).append( " ]" );
+    return sb.toString();
+  }
 }
