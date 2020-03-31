@@ -2,24 +2,28 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealMatrixFormat;
 import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.util.Precision;
 import java.text.NumberFormat;
 
 public class DensityFactory {
   
   private static NormalDistribution standardNormalDistribution = new NormalDistribution( 0.0, 1.0 );
   
-  public static RealMatrix getDensities( int numQuads ) {
-    double inc = 8.0d / (numQuads - 1);
-    RealMatrix retVal = MatrixUtils.createRealMatrix( numQuads, 2 );
+  public static double[][] getDensities( int numQuads ) {
+    double doubleNum = (new Integer(numQuads)).doubleValue();
+    double inc = 8.0d / (doubleNum - 1.0d);
+    double [][] retVal = new double[numQuads][];
     double point = -4.0d;
     for( int i = 0; i < numQuads; i++ ) {
-      retVal.setEntry( i, 0, point );
-      retVal.setEntry( i, 1, standardNormalDistribution.density( point ) );
+      retVal[i] = new double [2];
+      retVal[i][0] = Precision.round(point,7);
+      retVal[i][1] = Precision.round(standardNormalDistribution.density( point ), 10);
       point += inc;
     }
 
     return retVal;
   }
+
   
   public static void main( String [] args ) {
     int numQuads = 30;
@@ -32,11 +36,14 @@ public class DensityFactory {
       }
     }
 
-    NumberFormat nf = NumberFormat.getNumberInstance();
-    nf.setMinimumFractionDigits(8);
-    nf.setMaximumFractionDigits(8);
-    RealMatrix quads = DensityFactory.getDensities( numQuads );
-    RealMatrixFormat format = new RealMatrixFormat("{","}","{","}","\n",",", nf);
-    System.out.println( format.format(quads) );
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMinimumFractionDigits(10);
+    nf.setMaximumFractionDigits(10);
+    double [][] quads = DensityFactory.getDensities( numQuads );
+    System.out.println("{");
+    for( int i = 0; i < quads.length; i++ ) {
+      System.out.println( "{" + quads[i][0] + "," + nf.format(quads[i][1]) + "}" );
+    }
+    System.out.println("}");
   }
 }

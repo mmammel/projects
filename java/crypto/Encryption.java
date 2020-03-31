@@ -8,6 +8,7 @@ import org.jasypt.salt.*;
 public class Encryption {
 
   static String encryptionString1 = "I did not fail the test, I just found 100 ways to do it wrong.";
+  static String encryptionString2 = "Suppose you're thinkin' about a plate o' shrimp. Suddenly someone'll say, like, plate, or shrimp, or plate o' shrimp out of the blue, no explanation. No point in lookin' for one, either. It's all part of a cosmic unconciousness.";
 
   static public String encryptPassword(String passwordIn) {
     try {
@@ -91,10 +92,15 @@ static public String encryptTextString(String encryptPassword, String textString
 
 }
 
-static public String decryptTextString(String encryptPassword, String textStringIn) {
+static public String decryptTextString( String encryptPassword, String textStringIn ) {
+  return decryptTextString( encryptPassword, textStringIn, false );
+}
+
+
+static public String decryptTextString(String encryptPassword, String textStringIn, boolean altSalt ) {
   try {
 
-    String encryptKey = encryptionString1;
+    String encryptKey = altSalt ? encryptionString2 : encryptionString1;
     StandardPBEStringEncryptor stringEncryptor = getTextStandardPBEEncryptor(false, encryptKey);
     String decryptedText = stringEncryptor.decrypt(textStringIn);
 
@@ -132,6 +138,9 @@ static public boolean checkPassword(String encryptPassword, String passwordIn, S
        }
        else if( args[0].equalsIgnoreCase("decrypt") ) {
           System.out.println(  "Decrypted: " +  Encryption.decryptTextString(args[1], args[1]) );
+       }
+       else if( args[0].equalsIgnoreCase("decrypt2") ) {
+          System.out.println(  "Decrypted: " +  Encryption.decryptTextString(args[1], args[1], true) );
        }
        else
        {

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.math3.analysis.function.Exp;
-import org.apache.commons.math3.linear.RealMatrix;
 
 /**
  * See : https://rdrr.io/cran/ScoreGGUM/src/R/score.GGUM.R
@@ -16,8 +15,8 @@ public class ScoreProcessor {
   private static final Exp EXP = new Exp();
    
   private List<ItemDescriptor> items;
-  private RealMatrix quadratures;
-   
+  private double [][] quadratures;
+ 
   public ScoreProcessor( List<ItemDescriptor> items ) {
     this( items, DEFAULT_QUADRATURES );
   }
@@ -64,14 +63,14 @@ public class ScoreProcessor {
    */
   private ThetaEstimate getEAP( ResponseDescriptor response ) {
     ThetaEstimate retVal = new ThetaEstimate();
-    double [][] eap_data = new double [ this.quadratures.getRowDimension() ][];
+    double [][] eap_data = new double [ this.quadratures.length ][];
     double [] numerators = null, denominators = null, probs = null;
     double denomSum = 0.0d, like = 0.0d;
     double [] quad = null;
     ItemDescriptor item = null;
-    for( int q = 0; q < this.quadratures.getRowDimension(); q++ ) {
+    for( int q = 0; q < this.quadratures.length; q++ ) {
       eap_data[q] = new double [5];
-      quad = this.quadratures.getRow(q);
+      quad = this.quadratures[q];
       numerators = new double[ this.items.size() ];
       denominators = new double[ this.items.size() ];
       probs = new double[ this.items.size() ];
@@ -89,10 +88,11 @@ public class ScoreProcessor {
       for( int i = 0; i < this.items.size(); i++ ) {
         item = this.items.get(i);
         denomSum = 0.0d;
-        
+        double doubleDub = 0.0d;
         for( int w = 0; w < item.getNumCategories(); w++ ) {
-          denomSum += EXP.value(item.getAlpha() * (w * (quad[0] - item.getDelta()) - item.getTauSum(w) ) ) +
-                      EXP.value(item.getAlpha() * ((item.getM() - w)*(quad[0] - item.getDelta()) - item.getTauSum(w) ) );
+          doubleDub = new Integer(w).doubleValue();
+          denomSum += EXP.value(item.getAlpha() * (doubleDub * (quad[0] - item.getDelta()) - item.getTauSum(w) ) ) +
+                      EXP.value(item.getAlpha() * ((item.getM() - doubleDub)*(quad[0] - item.getDelta()) - item.getTauSum(w) ) );
         }
         
         denominators[i] = denomSum;
@@ -107,7 +107,7 @@ public class ScoreProcessor {
       eap_data[q][3] = quad[0];                  // point
       eap_data[q][4] = quad[1];                  // density
     }
-    
+
     retVal.setEstimate(this.getThetaFromEAP(eap_data));
     retVal.setError(this.getErrorFromEAP(eap_data, retVal.getEstimate()));
     retVal.setSubjectId(response.getSubjectId());
@@ -196,7 +196,7 @@ public class ScoreProcessor {
   }
 
   public int getNumQuadratures() {
-    return this.quadratures.getRowDimension();
+    return this.quadratures.length;
   }
 }
 

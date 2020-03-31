@@ -14,7 +14,8 @@ public class SimpleTest
   //public static Pattern PATTERN = Pattern.compile("^[0-9]+\\/[0-9]+$");
   //public static Pattern PATTERN = Pattern.compile("\\$\\$SN?'(.*?)'");
   //public static Pattern PATTERN = Pattern.compile("^(.*?)_(.*)$");
-  public static Pattern PATTERN = Pattern.compile("(?s)<MetricName>OverallScore</MetricName>.*?<MetricValue>(.*?)</MetricValue>");
+  //public static Pattern PATTERN = Pattern.compile("(?s)<MetricName>OverallScore</MetricName>.*?<MetricValue>(.*?)</MetricValue>");
+  public static Pattern PATTERN = Pattern.compile("^Q_Likert.*?_([0-9]+)$");
 
   public static void main( String [] args )
   {

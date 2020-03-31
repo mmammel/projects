@@ -31,8 +31,8 @@ public class Driver
         input_array = input_str.split(",");
         tempItem = new ItemDescriptor();
         tempItem.setId( input_array[0] );
-        tempItem.setDelta( Double.parseDouble( input_array[1] ) );
-        tempItem.setAlpha( Double.parseDouble( input_array[2] ) );
+        tempItem.setDelta( Double.parseDouble( input_array[2] ) );
+        tempItem.setAlpha( Double.parseDouble( input_array[1] ) );
         numCats = Integer.parseInt( input_array[3] );
         tempItem.setNumCategories( numCats );
         for( int i = 4; i < (4+numCats); i++ ) {
@@ -86,7 +86,7 @@ public class Driver
     }
 
 
-    ScoreProcessor processor = new ScoreProcessor( items );
+    ScoreProcessor processor = new ScoreProcessor( items, 30 );
     List<ThetaEstimate> estimates = processor.process( people );
     for( ThetaEstimate estimate : estimates ) {
       System.out.println( estimate );
