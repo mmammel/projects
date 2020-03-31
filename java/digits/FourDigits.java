@@ -3,31 +3,33 @@ import java.util.ArrayList;
 
 public class FourDigits
 {
-  public static final String [] single_terminals = {"a", ".a", ".aaaaaaaaaaaaa" };
+  //public static final String [] single_terminals = {"a", ".a", ".aaaaaaaaaaaaa" };
+  public static final String [] single_terminals = {"a"};
 
-  public static final String [] double_terminals = { "ab", "ba", ".ab", ".ba", "a.b", "b.a" };
+  //public static final String [] double_terminals = { "ab", "ba", ".ab", ".ba", "a.b", "b.a" };
+  public static final String [] double_terminals = { "ab", "ba" };
 
 
-  public static final String [] triple_terminals = { "abc", "acb", "bac", "bca", "cab", "cba",
-                                                     "a.bc", "a.cb", "b.ac", "b.ca", "c.ab", "c.ba",
-                                                     "ab.c", "ac.b", "ba.c", "bc.a", "ca.b", "cb.a",
-                                                     ".abc", ".acb", ".bac", ".bca", ".cab", ".cba" };
+  public static final String [] triple_terminals = { "abc", "acb", "bac", "bca", "cab", "cba" }; //,
+                                                     //"a.bc", "a.cb", "b.ac", "b.ca", "c.ab", "c.ba",
+                                                     //"ab.c", "ac.b", "ba.c", "bc.a", "ca.b", "cb.a",
+                                                     //".abc", ".acb", ".bac", ".bca", ".cab", ".cba" };
 
   public static final String [] quad_terminals = { "abcd", "abdc", "bacd", "badc", "acbd", "acdb", "cabd", "cadb",
                                                    "adbc", "adcb", "dabc", "dacb", "bcad", "bcda", "cbad", "cbda",
-                                                   "bdac", "bdca", "dbac", "dbca", "cdab", "cdba", "dcab", "dcba",
-                                                   "a.bcd", "a.bdc", "b.acd", "b.adc", "a.cbd", "a.cdb", "c.abd", "c.adb",
-                                                   "a.dbc", "a.dcb", "d.abc", "d.acb", "b.cad", "b.cda", "c.bad", "c.bda",
-                                                   "b.dac", "b.dca", "d.bac", "d.bca", "c.dab", "c.dba", "d.cab", "d.cba",
-                                                   "ab.cd", "ab.dc", "ba.cd", "ba.dc", "ac.bd", "ac.db", "ca.bd", "ca.db",
-                                                   "ad.bc", "ad.cb", "da.bc", "da.cb", "bc.ad", "bc.da", "cb.ad", "cb.da",
-                                                   "bd.ac", "bd.ca", "db.ac", "db.ca", "cd.ab", "cd.ba", "dc.ab", "dc.ba",
-                                                   "abc.d", "abd.c", "bac.d", "bad.c", "acb.d", "acd.b", "cab.d", "cad.b",
-                                                   "adb.c", "adc.b", "dab.c", "dac.b", "bca.d", "bcd.a", "cba.d", "cbd.a",
-                                                   "bda.c", "bdc.a", "dba.c", "dbc.a", "cda.b", "cdb.a", "dca.b", "dcb.a",
-                                                   ".abcd", ".abdc", ".bacd", ".badc", ".acbd", ".acdb", ".cabd", ".cadb",
-                                                   ".adbc", ".adcb", ".dabc", ".dacb", ".bcad", ".bcda", ".cbad", ".cbda",
-                                                   ".bdac", ".bdca", ".dbac", ".dbca", ".cdab", ".cdba", ".dcab", ".dcba" };
+                                                   "bdac", "bdca", "dbac", "dbca", "cdab", "cdba", "dcab", "dcba" }; //,
+                                                   //"a.bcd", "a.bdc", "b.acd", "b.adc", "a.cbd", "a.cdb", "c.abd", "c.adb",
+                                                   //"a.dbc", "a.dcb", "d.abc", "d.acb", "b.cad", "b.cda", "c.bad", "c.bda",
+                                                   //"b.dac", "b.dca", "d.bac", "d.bca", "c.dab", "c.dba", "d.cab", "d.cba",
+                                                   //"ab.cd", "ab.dc", "ba.cd", "ba.dc", "ac.bd", "ac.db", "ca.bd", "ca.db",
+                                                   //"ad.bc", "ad.cb", "da.bc", "da.cb", "bc.ad", "bc.da", "cb.ad", "cb.da",
+                                                   //"bd.ac", "bd.ca", "db.ac", "db.ca", "cd.ab", "cd.ba", "dc.ab", "dc.ba",
+                                                   //"abc.d", "abd.c", "bac.d", "bad.c", "acb.d", "acd.b", "cab.d", "cad.b",
+                                                   //"adb.c", "adc.b", "dab.c", "dac.b", "bca.d", "bcd.a", "cba.d", "cbd.a",
+                                                   //"bda.c", "bdc.a", "dba.c", "dbc.a", "cda.b", "cdb.a", "dca.b", "dcb.a",
+                                                   //".abcd", ".abdc", ".bacd", ".badc", ".acbd", ".acdb", ".cabd", ".cadb",
+                                                   //".adbc", ".adcb", ".dabc", ".dacb", ".bcad", ".bcda", ".cbad", ".cbda",
+                                                   //".bdac", ".bdca", ".dbac", ".dbca", ".cdab", ".cdba", ".dcab", ".dcba" };
 
 
   public static final String POW1 = "A^B";
@@ -47,7 +49,7 @@ public class FourDigits
   public static final String SQRT = "sqrt(A)";
   public static final String FACT = "A!";
 
-  public static final String [] single_non_terminals = { ID, SQRT, FACT };
+  public static final String [] single_non_terminals = { ID }; //, SQRT, FACT };
   /**
    *
    */
@@ -61,22 +63,24 @@ public class FourDigits
     digits[2] = z;
     digits[3] = k;
 
-    for( int i = 0; i < 3; i++ )
+    int terminalCount = single_terminals.length;
+
+    for( int i = 0; i < terminalCount; i++ )
     {
       terminals[0] = getReplaceString( x, single_terminals[i] );
       t0 = new TerminalExpression( terminals[0] );
 
-      for( int j = 0; j < 3; j++ )
+      for( int j = 0; j < terminalCount; j++ )
       {
         terminals[1] = getReplaceString( y, single_terminals[j] );
         t1 = new TerminalExpression( terminals[1] );
 
-        for( int l = 0; l < 3; l++ )
+        for( int l = 0; l < terminalCount; l++ )
         {
           terminals[2] = getReplaceString( z, single_terminals[l] );
           t2 = new TerminalExpression( terminals[2] );
 
-          for( int m = 0; m < 3; m++ ) {
+          for( int m = 0; m < terminalCount; m++ ) {
  
             terminals[3] = getReplaceString( k, single_terminals[m] );
             t3 = new TerminalExpression( terminals[3] );
