@@ -1,23 +1,34 @@
 import java.util.List;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class FourDigits
 {
-  //public static final String [] single_terminals = {"a", ".a", ".aaaaaaaaaaaaa" };
-  public static final String [] single_terminals = {"a"};
+  public static final int [][] PERMUTATIONS = {
+    { 0, 1, 2, 3 }, { 0, 1, 3, 2 }, { 0, 2, 1, 3 }, { 0, 2, 3, 1 }, { 0, 3, 1, 2 }, { 0, 3, 2, 1 },
+    { 1, 0, 2, 3 }, { 1, 0, 3, 2 }, { 1, 2, 0, 3 }, { 1, 2, 3, 0 }, { 1, 3, 0, 2 }, { 1, 3, 2, 0 },
+    { 2, 0, 1, 3 }, { 2, 0, 3, 1 }, { 2, 1, 0, 3 }, { 2, 1, 3, 0 }, { 2, 3, 0, 1 }, { 2, 3, 1, 0 },
+    { 3, 0, 1, 2 }, { 3, 0, 2, 1 }, { 3, 1, 0, 2 }, { 3, 1, 2, 0 }, { 3, 2, 0, 1 }, { 3, 2, 1, 0 }
+  };
+
+  public static final String [] single_terminals = {"a", ".a", ".aaaaaaaaaaaaa" };
 
   //public static final String [] double_terminals = { "ab", "ba", ".ab", ".ba", "a.b", "b.a" };
-  public static final String [] double_terminals = { "ab", "ba" };
+  //public static final String [] double_terminals = { "ab", "ba" };
+  public static final String [] double_terminals = { "ab", "a.b", ".ab" };
+  public static final String [] triple_terminals = { "abc", "ab.c", "a.bc", ".abc" };
 
 
-  public static final String [] triple_terminals = { "abc", "acb", "bac", "bca", "cab", "cba" }; //,
+  //public static final String [] triple_terminals = { "abc", "acb", "bac", "bca", "cab", "cba" }; //,
                                                      //"a.bc", "a.cb", "b.ac", "b.ca", "c.ab", "c.ba",
                                                      //"ab.c", "ac.b", "ba.c", "bc.a", "ca.b", "cb.a",
                                                      //".abc", ".acb", ".bac", ".bca", ".cab", ".cba" };
 
-  public static final String [] quad_terminals = { "abcd", "abdc", "bacd", "badc", "acbd", "acdb", "cabd", "cadb",
-                                                   "adbc", "adcb", "dabc", "dacb", "bcad", "bcda", "cbad", "cbda",
-                                                   "bdac", "bdca", "dbac", "dbca", "cdab", "cdba", "dcab", "dcba" }; //,
+  public static final String [] quad_terminals = { "abcd", "abc.d", "ab.cd", "a.bcd", ".abcd" };
+  //public static final String [] quad_terminals = { "abcd", "abdc", "bacd", "badc", "acbd", "acdb", "cabd", "cadb",
+  //                                                 "adbc", "adcb", "dabc", "dacb", "bcad", "bcda", "cbad", "cbda",
+  //                                                 "bdac", "bdca", "dbac", "dbca", "cdab", "cdba", "dcab", "dcba" }; //,
                                                    //"a.bcd", "a.bdc", "b.acd", "b.adc", "a.cbd", "a.cdb", "c.abd", "c.adb",
                                                    //"a.dbc", "a.dcb", "d.abc", "d.acb", "b.cad", "b.cda", "c.bad", "c.bda",
                                                    //"b.dac", "b.dca", "d.bac", "d.bca", "c.dab", "c.dba", "d.cab", "d.cba",
@@ -50,71 +61,66 @@ public class FourDigits
   public static final String FACT = "A!";
 
   public static final String [] single_non_terminals = { ID }; //, SQRT, FACT };
+
+
+  public static List<int []> getUniquePermuations( int x, int y, int z, int k ) {
+    int [] rootArray = new int [4];
+    rootArray[0] = x;
+    rootArray[1] = y;
+    rootArray[2] = z;
+    rootArray[3] = k;
+    
+    List<int []> retVal = new ArrayList<int []>();
+    Set<String> dupCheck = new HashSet<String>();
+    int [] tempPerm = null;
+    String testStr = null;
+    for( int i = 0; i < PERMUTATIONS.length; i++ ) {
+      testStr = ""+rootArray[ PERMUTATIONS[i][0] ] + rootArray[ PERMUTATIONS[i][1] ] + rootArray[ PERMUTATIONS[i][2] ] + rootArray[ PERMUTATIONS[i][3] ];
+      if( !dupCheck.contains( testStr ) ) {
+        dupCheck.add( testStr );
+        tempPerm = new int [4];
+        tempPerm[0] = rootArray[ PERMUTATIONS[i][0] ];
+        tempPerm[1] = rootArray[ PERMUTATIONS[i][1] ];
+        tempPerm[2] = rootArray[ PERMUTATIONS[i][2] ];
+        tempPerm[3] = rootArray[ PERMUTATIONS[i][3] ];
+        retVal.add( tempPerm );
+      }
+    }
+
+    return retVal;
+  }
+
   /**
    *
    */
-  public void getSingleTerminalSets( int x, int y, int z, int k )
+  public void getSingleTerminalSets( int [] digits )
   {
-    int [] digits = new int [4];
     String [] terminals = new String [4];
     Expression t0, t1, t2, t3;
-    digits[0] = x;
-    digits[1] = y;
-    digits[2] = z;
-    digits[3] = k;
-
+    
     int terminalCount = single_terminals.length;
 
     for( int i = 0; i < terminalCount; i++ )
     {
-      terminals[0] = getReplaceString( x, single_terminals[i] );
+      terminals[0] = getReplaceString( digits[0], single_terminals[i] );
       t0 = new TerminalExpression( terminals[0] );
 
       for( int j = 0; j < terminalCount; j++ )
       {
-        terminals[1] = getReplaceString( y, single_terminals[j] );
+        terminals[1] = getReplaceString( digits[1], single_terminals[j] );
         t1 = new TerminalExpression( terminals[1] );
 
         for( int l = 0; l < terminalCount; l++ )
         {
-          terminals[2] = getReplaceString( z, single_terminals[l] );
+          terminals[2] = getReplaceString( digits[2], single_terminals[l] );
           t2 = new TerminalExpression( terminals[2] );
 
           for( int m = 0; m < terminalCount; m++ ) {
  
-            terminals[3] = getReplaceString( k, single_terminals[m] );
+            terminals[3] = getReplaceString( digits[3], single_terminals[m] );
             t3 = new TerminalExpression( terminals[3] );
 
             this.doAllExpressions( t0, t1, t2, t3 );
-            //this.doAllExpressions( t0, t1, t3, t2 );
-            //this.doAllExpressions( t1, t0, t2, t3 );
-            //this.doAllExpressions( t1, t0, t3, t2 );
-
-            //this.doAllExpressions( t0, t2, t1, t3 );
-            //this.doAllExpressions( t0, t2, t3, t1 );
-            //this.doAllExpressions( t2, t0, t1, t3 );
-            //this.doAllExpressions( t2, t0, t3, t1 );
-
-            //this.doAllExpressions( t0, t3, t1, t2 );
-            //this.doAllExpressions( t0, t3, t2, t1 );
-            //this.doAllExpressions( t3, t0, t1, t2 );
-            //this.doAllExpressions( t3, t0, t2, t1 );
-
-            //this.doAllExpressions( t1, t2, t0, t3 );
-            //this.doAllExpressions( t1, t2, t3, t0 );
-            //this.doAllExpressions( t2, t1, t0, t3 );
-            //this.doAllExpressions( t2, t1, t3, t0 );
-
-            //this.doAllExpressions( t1, t3, t0, t2 );
-            //this.doAllExpressions( t1, t3, t2, t0 );
-            //this.doAllExpressions( t3, t1, t0, t2 );
-            //this.doAllExpressions( t3, t1, t2, t0 );
-
-            //this.doAllExpressions( t2, t3, t0, t1 );
-            //this.doAllExpressions( t2, t3, t1, t0 );
-            //this.doAllExpressions( t3, t2, t0, t1 );
-            //this.doAllExpressions( t3, t2, t1, t0 );
-
           }
 
         }
@@ -126,16 +132,11 @@ public class FourDigits
   /**
    *
    */
-  public void getDoubleTerminalSets( int x, int y, int z, int k )
+  public void getDoubleTerminalSets( int [] digits )
   {
-    int [] digits = new int [4];
     String tempTerminal1 = null, tempTerminal2 = null, tempTerminal3 = null, tempTerminal4 = null;
     Expression t1, t2, t3, t4;
 
-    digits[0] = x;
-    digits[1] = y;
-    digits[2] = z;
-    digits[3] = k;
 
     // first do double-doubles
     for( int i = 0; i < double_terminals.length; i++ )
@@ -183,11 +184,6 @@ public class FourDigits
             tempTerminal4 = this.getReplaceString( digits[idxs[3]], single_terminals[m] );
             t4 = new TerminalExpression( tempTerminal4 );
             this.doAllExpressions( t1, t3, t4 );
-            //this.doAllExpressions( t1, t4, t3 );
-            //this.doAllExpressions( t3, t1, t4 );
-            //this.doAllExpressions( t3, t4, t1 );
-            //this.doAllExpressions( t4, t1, t3 );
-            //this.doAllExpressions( t4, t3, t1 );
           }
         }
       }
@@ -195,15 +191,10 @@ public class FourDigits
 
   }
 
-  public void getTripleTerminalSets( int x, int y, int z, int k ) {
-    int [] digits = new int [4];
+  public void getTripleTerminalSets( int [] digits ) {
     String tempTerminal1 = null, tempTerminal2 = null, tempTerminal3 = null, tempTerminal4 = null;
     Expression t0 = null, t1 = null;
 
-    digits[0] = x;
-    digits[1] = y;
-    digits[2] = z;
-    digits[3] = k;
 
     int [][] tripleIdxs = {
       { 0, 1, 2, 3 },
@@ -222,21 +213,20 @@ public class FourDigits
           t1 = new TerminalExpression( tempTerminal2 );
 
           this.doAllExpressions( t0, t1 );
-          //this.doAllExpressions( t1, t0 );
         }
       }
     }
      
   }
 
-  public void getQuadTerminalSets( int x, int y, int z, int k )
+  public void getQuadTerminalSets( int [] digits )
   {
     String tempTerminal = null;
     Expression e0 = null;
 
     for( int i = 0; i < quad_terminals.length; i++ )
     {
-      tempTerminal = this.getReplaceString( x, y, z, k, quad_terminals[i]);
+      tempTerminal = this.getReplaceString( digits[0], digits[1], digits[2], digits[3], quad_terminals[i]);
       e0 = new TerminalExpression( tempTerminal );
 
       try
@@ -808,6 +798,21 @@ public class FourDigits
     }
   }
 
+  public static String getArrayStr( int [] a ) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("[ ");
+    for( int i = 0; i < a.length; i++ ) {
+      sb.append( "" + a[i] );
+      if( i < ( a.length - 1 ) ) {
+        sb.append(", ");
+      }
+    }
+
+    sb.append( " ]" );
+
+    return sb.toString();
+  }
+
   public static void main( String [] args )
   {
     if( args.length != 4 )
@@ -825,14 +830,22 @@ public class FourDigits
         int z = Integer.parseInt( args[2] );
         int k = Integer.parseInt( args[3] );
 
-        System.out.println( "\n---------------\nGetting Singles\n---------------" );
-        D.getSingleTerminalSets( x, y, z, k );
-        System.out.println( "\n---------------\nGetting Doubles\n---------------" );
-        D.getDoubleTerminalSets( x, y, z, k );
-        System.out.println( "\n---------------\nGetting Triples\n---------------" );
-        D.getTripleTerminalSets( x, y, z, k );
-        System.out.println( "\n---------------\nGetting Quads\n---------------" );
-        D.getQuadTerminalSets( x, y, z, k );
+        List<int []> perms = FourDigits.getUniquePermuations( x, y, z, k );
+
+        for( int [] a : perms ) {
+          System.out.println( getArrayStr(a) );
+        }
+
+        for( int [] digs : perms ) {
+          System.out.println( "\n---------------\nGetting Singles\n---------------" );
+          D.getSingleTerminalSets( digs );
+          System.out.println( "\n---------------\nGetting Doubles\n---------------" );
+          D.getDoubleTerminalSets( digs );
+          System.out.println( "\n---------------\nGetting Triples\n---------------" );
+          D.getTripleTerminalSets( digs );
+          System.out.println( "\n---------------\nGetting Quads\n---------------" );
+          D.getQuadTerminalSets( digs );
+        }
       }
       catch( Exception e )
       {
