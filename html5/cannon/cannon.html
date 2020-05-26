@@ -1,0 +1,122 @@
+<html>  
+ <head>  
+  <!--
+    This includes the "jQuery" library, it can do all kinds of things but I use it
+    mainly for some slick syntax shortcuts, you can slap this line in the <head> of 
+    your page and forget about it.
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript">  
+
+   var time = 0;
+   var interval = (1.0 / 30.0);
+
+   /*
+      SVG tags are "namespaced" and need to be created in a specific way.  This is a
+      helper function, found online, that will build a valid svg element given a name
+      and a javascript object of attribute name/value pairs.
+   */
+   function makeSVG(tag, attrs) {
+     var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+     for (var k in attrs)
+       el.setAttribute(k, attrs[k]);
+     return el;
+   }
+
+  /*
+   This is my Object that holds all of the state of my animation:
+     viewBoxCoords: these are the coordinates of the top left and bottom right corners 
+                    of the viewbox.  I don't change them in this example, but if you 
+                    were going to mess with zooming and things down the line you could change them.
+     planetCoords: these are the current coordinates of the "planet", which is just a black dot I have 
+                   rotating around a static red dot at the center of the viewbox in a circular orbit.
+     getWidth: helper to get the width of the viewBox
+     getHeight: helper to get the height of the viewBox
+     getSVG: given the state of the viewbox and planet, return the actual "<svg ...>...</svg>" text that 
+             will render the image at this current state.
+     setAngle: this changes the position of the planet based on an angle given in radians, think unit circle.
+  */
+  var CannonAnimation = {
+    Xv0 : 0.0,
+    Yv0 : 0.0,
+    viewBoxCoords : [ 0, 0, 1280, 640 ],
+    ballCoords : [ 0, 640 ],
+    getWidth : function() {
+      return this.viewBoxCoords[2] - this.viewBoxCoords[0];
+    },
+    getHeight : function() {
+      return this.viewBoxCoords[3] - this.viewBoxCoords[1];
+    },
+    getSVG : function() {
+
+      //var cannonball = document.getElementById('cannonball');
+      //cannonball.setAttribute("cx", this.ballCoords[0] );
+      //cannonball.setAttribute("cy", this.ballCoords[1] );
+      $('#cannonball').attr("cx", this.ballCoords[0] );
+      $('#cannonball').attr("cy", this.ballCoords[1] );
+
+    }
+  };
+
+  function shootCannon( clickX, clickY ) {
+    time = 0;
+    CannonAnimation.ballCoords[0] = 0;
+    CannonAnimation.ballCoords[1] = 640;
+    var magnitude = Math.sqrt( clickX * clickX + (640.0 - clickY) * (640.0 - clickY) );
+    var v0 = (magnitude / 1431 ) * 300;
+    var cosTheta = clickX / magnitude;
+    var xv0 = cosTheta * v0;
+    var sinTheta = ((640.0 - clickY) / magnitude);
+    var yv0 = sinTheta * v0;
+    CannonAnimation.Xv0 = xv0;
+    CannonAnimation.Yv0 = yv0;
+  }
+
+  /*
+   This is a construct provided by the jQuery library - "ready" means "when the page is loaded, run this function".
+   The function it runs just sets up an interval on which a function is run.  The function in this case just sets 
+   the angle of my animation object, "draws" the object (i.e. overwrites the current <svg> tag with the updated one),
+   and then increments the currentAngle by the static increment, wrapping when it hits 2PI.
+  */
+  $( document ).ready( function () {
+    $('#svgRoot').on('click', function( e ) {
+      $('#ypos').text("Y-position: " + e.offsetY );
+      $('#xpos').text("X-position: " + e.offsetX );
+      shootCannon( e.offsetX, e.offsetY );
+    });
+
+    setInterval( function() {
+      CannonAnimation.getSVG();
+      time += interval;
+      var Yvelocity = CannonAnimation.Yv0 + -1 * 9.8 * time;
+      var ymov = Yvelocity * interval;
+      var xmov = CannonAnimation.Xv0 * interval;
+
+      CannonAnimation.ballCoords[0] += xmov ;
+      if( CannonAnimation.ballCoords[0] > 1280 ) {
+        CannonAnimation.ballCoords[0] = 0;
+      }
+
+      CannonAnimation.ballCoords[1] -= ymov;
+      if( CannonAnimation.ballCoords[1] >= 620 ) {
+        time = 0;
+        CannonAnimation.ballCoords[1] = 620;
+      }
+    }, 5 );
+  });
+  </script>  
+ </head>  
+ <body>
+   <div id="svg">
+     <svg id="svgRoot" xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="640" viewBox="0 0 1280 640">
+       <circle id="cannonball" cx="0" cy="640" r="5" fill="black"></circle>
+     </svg>
+   </div>
+   <div>
+     <h2 id="ypos"></h2>
+     <h2 id="xpos"></h2>
+     <h5 id="debug"></h5>
+   </div>
+  </body>  
+</html>  
+
