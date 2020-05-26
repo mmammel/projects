@@ -10,6 +10,7 @@
 
    var time = 0;
    var interval = (1.0 / 30.0);
+   var theInterval = null;
 
    /*
       SVG tags are "namespaced" and need to be created in a specific way.  This is a
@@ -39,8 +40,10 @@
   var CannonAnimation = {
     Xv0 : 0.0,
     Yv0 : 0.0,
+    pathStr : "",
+    currPath : makeSVG('polyline'),
     viewBoxCoords : [ 0, 0, 1280, 640 ],
-    ballCoords : [ 0, 640 ],
+    ballCoords : [ 5, 635 ],
     getWidth : function() {
       return this.viewBoxCoords[2] - this.viewBoxCoords[0];
     },
@@ -48,20 +51,27 @@
       return this.viewBoxCoords[3] - this.viewBoxCoords[1];
     },
     getSVG : function() {
-
-      //var cannonball = document.getElementById('cannonball');
-      //cannonball.setAttribute("cx", this.ballCoords[0] );
-      //cannonball.setAttribute("cy", this.ballCoords[1] );
       $('#cannonball').attr("cx", this.ballCoords[0] );
       $('#cannonball').attr("cy", this.ballCoords[1] );
-
+      this.pathStr += ""+this.ballCoords[0]+","+this.ballCoords[1]+" ";
+      this.currPath.setAttribute("points", this.pathStr );
+    },
+    reset : function() {
+      $('#ballPaths').empty();
+      this.newPath();
+    },
+    newPath : function() {
+      this.pathStr = "";
+      this.currPath = makeSVG('polyline');
+      $('#ballPaths').append( $(this.currPath) );
     }
   };
 
   function shootCannon( clickX, clickY ) {
     time = 0;
-    CannonAnimation.ballCoords[0] = 0;
-    CannonAnimation.ballCoords[1] = 640;
+    CannonAnimation.reset();
+    CannonAnimation.ballCoords[0] = 5;
+    CannonAnimation.ballCoords[1] = 635;
     var magnitude = Math.sqrt( clickX * clickX + (640.0 - clickY) * (640.0 - clickY) );
     var v0 = (magnitude / 1431 ) * 300;
     var cosTheta = clickX / magnitude;
@@ -85,7 +95,7 @@
       shootCannon( e.offsetX, e.offsetY );
     });
 
-    setInterval( function() {
+    theInterval = setInterval( function() {
       CannonAnimation.getSVG();
       time += interval;
       var Yvelocity = CannonAnimation.Yv0 + -1 * 9.8 * time;
@@ -94,13 +104,16 @@
 
       CannonAnimation.ballCoords[0] += xmov ;
       if( CannonAnimation.ballCoords[0] > 1280 ) {
-        CannonAnimation.ballCoords[0] = 0;
+        CannonAnimation.ballCoords[0] = 5;
+        CannonAnimation.newPath();
       }
 
       CannonAnimation.ballCoords[1] -= ymov;
-      if( CannonAnimation.ballCoords[1] >= 620 ) {
+      if( CannonAnimation.ballCoords[1] >= 635 ) {
         time = 0;
-        CannonAnimation.ballCoords[1] = 620;
+        CannonAnimation.ballCoords[1] = 635;
+        CannonAnimation.Yv0 *= .8;
+        CannonAnimation.Xv0 *= .99;
       }
     }, 5 );
   });
@@ -109,7 +122,9 @@
  <body>
    <div id="svg">
      <svg id="svgRoot" xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="640" viewBox="0 0 1280 640">
-       <circle id="cannonball" cx="0" cy="640" r="5" fill="black"></circle>
+       <circle id="cannonball" cx="0" cy="635" r="5" fill="black"></circle>
+       <g id="ballPaths" stroke="grey" stroke-width="1" fill="none">
+       </g>
      </svg>
    </div>
    <div>
