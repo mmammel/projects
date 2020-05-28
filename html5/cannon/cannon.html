@@ -56,7 +56,14 @@
       this.pathStr += ""+this.ballCoords[0]+","+this.ballCoords[1]+" ";
       this.currPath.setAttribute("points", this.pathStr );
     },
+    updateViewBox : function() {
+      //$('#svgRoot').attr('width', ''+this.viewBoxCoords[2] );
+      //$('#svgRoot').attr('height', ''+this.viewBoxCoords[3] );
+      document.getElementById('svgRoot').setAttribute('viewBox', ''+this.viewBoxCoords[0]+' '+this.viewBoxCoords[1]+' '+this.viewBoxCoords[2]+' '+this.viewBoxCoords[3] );
+    },
     reset : function() {
+      this.viewBoxCoords = [ 0, 0, 1280, 640 ];
+      this.updateViewBox();
       $('#ballPaths').empty();
       this.newPath();
     },
@@ -103,9 +110,12 @@
       var xmov = CannonAnimation.Xv0 * interval;
 
       CannonAnimation.ballCoords[0] += xmov ;
-      if( CannonAnimation.ballCoords[0] > 1280 ) {
-        CannonAnimation.ballCoords[0] = 5;
-        CannonAnimation.newPath();
+      if( CannonAnimation.ballCoords[0] > (CannonAnimation.viewBoxCoords[0] + CannonAnimation.viewBoxCoords[2]) ) {
+        //CannonAnimation.ballCoords[0] = 5;
+        //CannonAnimation.newPath();
+        //CannonAnimation.viewBoxCoords[0] += 500;
+        CannonAnimation.viewBoxCoords[2] += 5;
+        CannonAnimation.updateViewBox();
       }
 
       CannonAnimation.ballCoords[1] -= ymov;
@@ -113,8 +123,11 @@
         time = 0;
         CannonAnimation.ballCoords[1] = 635;
         CannonAnimation.Yv0 *= .8;
-        CannonAnimation.Xv0 *= .99;
+        CannonAnimation.Xv0 *= .8;
       }
+
+      //CannonAnimation.Xv0 *= .995;  // drag
+      //CannonAnimation.Yv0 *= .995;  // drag
     }, 5 );
   });
   </script>  
