@@ -15,7 +15,11 @@ public class SimpleTest
   //public static Pattern PATTERN = Pattern.compile("\\$\\$SN?'(.*?)'");
   //public static Pattern PATTERN = Pattern.compile("^(.*?)_(.*)$");
   //public static Pattern PATTERN = Pattern.compile("(?s)<MetricName>OverallScore</MetricName>.*?<MetricValue>(.*?)</MetricValue>");
-  public static Pattern PATTERN = Pattern.compile("^Q_Likert.*?_([0-9]+)$");
+  //public static Pattern PATTERN = Pattern.compile("^Q_Likert.*?_([0-9]+)$");
+  //public static final Pattern PATTERN = Pattern.compile("\\$?\\$?(L?)([SDIiTCF])?N?(')?\\$\\{([A-z]+?)\\}'?");
+  //public static final Pattern PATTERN = Pattern.compile("(')?\\$\\{(?:(L?)([SDIiTCF])\\|)?([A-z0-9_|]+?)\\}'?");
+  public static final Pattern PATTERN = Pattern.compile("(?s)^.*?PartnerOrderID.*?:.*?([0-9]+),.*?AssessmentURL.*?:.*?(http.*?)[\\\\]*?\".*");
+
 
   public static void main( String [] args )
   {
