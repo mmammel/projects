@@ -1,0 +1,225 @@
+<html>  
+ <head>  
+  <script type="text/javascript" src="bigConstants.js"></script>
+  <script type="application/javascript">  
+
+  var viewBox = [ -320, -320, 640, 640 ];
+  var coords = [ 0, 0 ];
+  var modifiers = [ [2,0], [0,2], [-2,0], [0,-2] ];
+  var modifierIdx = 0;
+  var primeIdx = 0;
+  var primeDotMap = {};
+  var num = 0;
+  var drawInterval = null;
+
+  var fibState = { num0: 0, num1: 1, val: 1 };
+
+  var gaussState = { num: 1, val: 1 };
+  var state = { num: 1, val: 1 };
+  var piState = { idx: 0, next: 3, piidx: 0 };
+
+  function expand() {
+    viewBox[0] -= (.25 * viewBox[2] );
+    viewBox[1] -= (.25 * viewBox[3] );
+    viewBox[2] *= 1.5;
+    viewBox[3] *= 1.5;
+    document.getElementById("svgRoot").setAttribute("viewBox", ''+viewBox[0] + ' ' + viewBox[1] + ' ' + viewBox[2] + ' ' + viewBox[3] );
+    var w = 1000 / viewBox[2];
+    var h = 1000 / viewBox[3];
+    document.getElementById( "grid" ).setAttribute("width", ''+w+'%');
+    document.getElementById( "grid" ).setAttribute("height", ''+h+'%');
+    document.getElementById( "gridRect" ).setAttribute("x", ''+viewBox[0]);
+    document.getElementById( "gridRect" ).setAttribute("y", ''+viewBox[1]);
+    document.getElementById( "gridRect" ).setAttribute("width", ''+viewBox[2]);
+    document.getElementById( "gridRect" ).setAttribute("height", ''+viewBox[3]);
+  }
+
+  function multipleOf( n, m ) {
+    return n % m == 0;
+  }
+
+  function pi(n) {
+    var retVal = false;
+    if( piState.idx == piState.next ) {
+      piState.idx = 0;
+      piState.next = parseInt( piString.charAt( piState.piidx++ ) );
+      retVal = true;
+    } else {
+      piState.idx++;
+    }
+
+    return retVal;
+  }
+
+  function piNum(x,n) {
+    var retVal = false;
+    var val = parseInt( piString.charAt( n ) );
+    if( val == x ) {
+      retVal = true;
+    } 
+
+    return retVal;
+  }
+
+  function piPrime(n) {
+    var retVal = false;
+    var val = parseInt( piString.charAt( n ) );
+    if( val == 2 || val == 3 || val == 5 || val == 7 ) {
+      retVal = true;
+    } 
+
+    return retVal;
+  }
+
+  function isState( n ) {
+    var retVal = false;
+    if( multipleOf(n, state.num )) {
+      retVal = true;
+      state.num++;
+    }
+    return retVal;
+  }
+
+  function isGauss( n ) {
+    var retVal = false;
+    if( n == gaussState.val ) {
+      retVal = true;
+      gaussState.num++;
+      gaussState.val = ( gaussState.num * (gaussState.num - 1) / 2 );
+    }
+
+    return retVal;
+  }
+
+  function isPrime( n ) {
+    var retVal = true;
+    if( n <= 1 ) {
+      retVal = false;
+    } else if( n == 2 ) {
+      retVal = true;
+    } else if( n % 2 == 0 ) {
+      retVal = false;
+    } else {
+      var s = Math.sqrt( n );
+      var d = 3;
+      while( d <= s ) {
+        if( n % d == 0 ) {
+         retVal = false;
+         break;
+        }
+        d+=2;
+      }
+    }
+    return retVal;
+  }
+
+  function isFib( n ) {
+    var retVal = false;
+    if( n == fibState.val ) {
+      fibState.num0 = fibState.num1;
+      fibState.num1 = fibState.val;
+      fibState.val = fibState.num0 + fibState.num1;
+      retVal = true;
+    }
+
+    return retVal;
+  }
+
+  function randomCheck( n, v ) {
+    return Math.random() <= v;
+  }
+
+  function checkNum( n ) {
+    //return randomCheck(n, 0.0644934);
+    //return pi(n);
+    //return piNum(9,n);
+    return piPrime(n);
+    //return isPrime(n);
+    //return isFib(n);
+    //return isGauss(n);
+    //return isState(n);
+    //return multipleOf(n,20);
+  }
+  
+
+  function makeSVG(tag, attrs) {
+    var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs)
+      el.setAttribute(k, attrs[k]);
+    return el;
+  }
+
+  function draw() {
+    //drawInterval = setInterval( function() {
+    //  drawInner( num++ );
+    //  if( num == 800000 ) clearInterval( drawInterval );
+    //}, 0);
+    for( var i = 1; i < 8000000; i++ ) {
+      drawInner( i );
+    }
+  }
+    
+  function drawInner(i) {
+    var key = '';
+    if( checkNum(i) ) {
+
+      if( coords[0] < viewBox[0] ||
+          coords[0] > (viewBox[0] + viewBox[2]) ||
+          coords[1] < viewBox[1] ||
+          coords[1] > (viewBox[1] + viewBox[3]) ) {
+        expand();
+      }
+          
+      document.getElementById( "currPrime" ).innerHTML = ''+i;
+      key = ''+coords[0] + '_' + coords[1];
+      if( primeDotMap[ key ] ) {
+        // we have a dot here already, increase it's size.
+        var sz = primeDotMap[ key ];
+        sz++;
+        primeDotMap[ key ] = sz;
+        var ele = document.getElementById( key );
+        ele.setAttribute( "r", ''+sz );
+      } else {
+        primeDotMap[ key ] = 2;
+        var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], r: '2', id: key, fill: 'red' } );
+        var root = document.getElementById("svgRoot");
+        root.appendChild( ele ); 
+      }
+
+      modifierIdx++;
+      if( modifierIdx == 4 ) modifierIdx = 0;
+    }
+
+    var mod = modifiers[modifierIdx];
+    coords[0] += mod[0];
+    coords[1] += mod[1];
+  } 
+
+  </script>  
+ </head>  
+ <body onload="javascript:draw();">
+   <table>
+     <tr>
+       <td><input type="submit" onclick=""/></td>
+       <td><input type="button" value="+" onclick=""/></td>
+       <td><input type="button" value="-" onclick="expand();"/></td>
+       <td><h4 id="currPrime"></h4></td>
+     </tr>
+   </table>
+   <div id="svg">
+     <svg id="svgRoot" viewBox="-320 -320 640 640" xmlns="http://www.w3.org/2000/svg">
+       <defs>
+         <pattern id="grid" viewBox="0,0,10,10" width="1.5625%" height="1.5625%">
+           <circle cx="0" cy="0" r="1" fill="grey"/>
+           <circle cx="10" cy="0" r="1" fill="grey"/>
+           <circle cx="0" cy="10" r="1" fill="grey"/>
+           <circle cx="10" cy="10" r="1" fill="grey"/>
+         </pattern>
+       </defs>
+       <rect id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')"/>
+       <circle cx="0" cy="0" r="18" fill="black"/>
+     </svg>
+   </div>
+  </body>  
+</html>  
+
