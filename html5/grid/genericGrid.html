@@ -1,0 +1,24 @@
+<html>  
+ <head>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="grid.js"></script>
+  <script type="application/javascript">  
+    var theGrid;
+
+    $(document).ready( function() {
+      theGrid = new Grid( 'svg', 7, 7 );
+      theGrid.draw();
+    });
+    
+  </script>  
+ </head>  
+ <body>
+   <table>
+     <tr>
+     </tr>
+   </table>
+   <div id="svg" style="width: 600px; height: 600px">
+   </div>
+  </body>  
+</html>  
+

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Yin Yang Puzzle (NYT)</title>
+  <style type="text/css">
+    .controlpad {
+      border-radius: 0rem !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="svg" class="col-12 col-md-8">
+      </div>
+      <div id="controls" class="col-12 col-md-4">
+        <div class="row">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridLeft" class="btn btn-primary w-100 border border-dark">Left</button>
+              <div class="btn-group-vertical">
+                <button type="button" id="gridUp"
+                  class="btn btn-primary rounded-0 w-100 pl-4 pr-4 border border-dark">Up</button>
+                <button type="button" id="gridDown"
+                  class="btn btn-primary rounded-0 w-100 pl-4 pr-4 border border-dark">Down</button>
+              </div>
+              <button type="button" id="gridRight" class="btn btn-primary w-100 border border-dark">Right</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridOpen" class="btn btn-primary w-100 border border-dark">O</button>
+              <button type="button" id="gridClear" class="btn btn-primary w-100 border border-dark">_</button>
+              <button type="button" id="gridClosed" class="btn btn-primary w-100 border border-dark">X</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridLock" class="btn btn-primary w-100 border border-dark">Lock</button>
+              <button type="button" id="gridUnlock" class="btn btn-primary w-100 border border-dark">Unlock</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridUndo" class="btn btn-primary w-100 border border-dark">Undo</button>
+              <button type="button" id="gridRedo" class="btn btn-primary w-100 border border-dark">Redo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="../grid.js"></script>
+  <script type="application/javascript">
+
+    var theGrid;
+
+    $(document).ready(function () {
+      theGrid = new Grid('svg', 7, 7);
+      theGrid.draw();
+
+      $('#gridLeft').click(function () {
+        theGrid.incrementCursor(LEFT);
+      });
+      $('#gridUp').click(function () {
+        theGrid.incrementCursor(UP);
+      });
+      $('#gridRight').click(function () {
+        theGrid.incrementCursor(RIGHT);
+      });
+      $('#gridDown').click(function () {
+        theGrid.incrementCursor(DOWN);
+      });
+      $('#gridOpen').click(function () {
+        theGrid.doCellAction('o');
+      });
+      $('#gridClear').click(function () {
+        theGrid.doCellAction('clear');
+      });
+      $('#gridClosed').click(function () {
+        theGrid.doCellAction('x');
+      });
+      $('#gridLock').click(function () {
+        theGrid.doCellAction('lock');
+      });
+      $('#gridUnlock').click(function () {
+        theGrid.doCellAction('unlock');
+      });
+      $('#gridUndo').click(function () {
+        theGrid.doUndo();
+      });
+      $('#gridRedo').click(function () {
+        theGrid.doRedo();
+      });
+    });
+
+  </script>
+</body>
+
+</html>
