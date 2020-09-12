@@ -16,7 +16,7 @@ class Grid {
     this.rows = rows;
     this.cols = cols;
     this.currPos = [0, 0];
-    this.viewBox = [0, 0, 19 * this.rows + 1, 19 * this.cols + 1];
+    this.viewBox = [0, 0, 19 * this.cols + 1, 19 * this.rows + 1];
     this.buildGrid();
   }
   buildGrid() {
@@ -285,10 +285,10 @@ class GridCell {
   applyHistory( hist ) {
     var retVal = false;
     if( this.id === hist.id ) {
-      this.locked = hist.locked;
       if( this.content !== hist.content ) {
         this.doAction(hist.content);
       }
+      this.locked = hist.locked;
       retVal = true;
     }
     return retVal;

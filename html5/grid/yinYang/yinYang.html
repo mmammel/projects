@@ -18,6 +18,23 @@
 <body>
   <div class="container">
     <div class="row">
+      <div class="col-md-6 offset-md-3 col-sm-12">
+        <div class="input-group my-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Rows</span>
+              </div>
+          <input type="text" class="form-control" id="gridRows" placeholder="7" aria-label="Rows" value="7" aria-describedby="basic-addon2">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Cols</span>
+            </div>
+          <input type="text" class="form-control" id="gridCols" placeholder="7" aria-label="Cols" value="7" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="gridReset" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div id="svg" class="col-12 col-md-8">
       </div>
       <div id="controls" class="col-12 col-md-4">
@@ -60,6 +77,17 @@
             </div>
           </div>
         </div>
+        <div class="row mt-2">
+            <div class="col">
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Load Puzzle
+                </button>
+                <div id="gridPuzzles" class="dropdown-menu">
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
@@ -77,9 +105,155 @@
 
     var theGrid;
 
+    var puzzles = [
+      {
+        name: "NYT Aug. 30",
+        rows: 7,
+        cols: 7,
+        cells: [
+          {
+            id: "0_3",
+            content: "o",
+            locked: true
+          },
+          {
+            id: "1_0",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "1_3",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "1_4",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "2_0",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "2_1",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "3_3",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "4_5",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "5_2",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "5_5",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "5_6",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "6_2",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "6_3",
+            content: "o",
+            locked: true
+          }
+        ]        
+      },
+      {
+        name: "NYT Sept. 6th",
+        rows: 7,
+        cols: 7,
+        cells: [
+          {
+            id: "1_4",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "2_1",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "2_3",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "3_0",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "3_2",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "3_4",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "4_1",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "4_3",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "5_4",
+            content: "x",
+            locked: true
+          }              
+        ]
+      }
+    ];
+
+    function loadPuzzle(puzzleIdx) {
+      var puzzle = this.puzzles[puzzleIdx];
+      $('#svg').empty();
+      theGrid = new Grid('svg', puzzle.rows, puzzle.cols);
+      theGrid.draw();
+      $('#gridRows').val( puzzle.rows);
+      $('#gridCols').val( puzzle.cols);
+      for( var i = 0; i < puzzle.cells.length; i++ ) {
+        theGrid.applyHistory(puzzle.cells[i]);
+      }
+    }
+
     $(document).ready(function () {
       theGrid = new Grid('svg', 7, 7);
       theGrid.draw();
+
+      var tempPuzzle;
+      for( var i = 0; i < puzzles.length; i++ ) {
+        tempPuzzle = puzzles[i];
+        var ele = $('<a class="dropdown-item" onClick="javascript:loadPuzzle('+i+');">'+tempPuzzle.name+'</a>');
+        $('#gridPuzzles').append(ele);
+      }
 
       $('#gridLeft').click(function () {
         theGrid.incrementCursor(LEFT);
@@ -114,6 +288,14 @@
       $('#gridRedo').click(function () {
         theGrid.doRedo();
       });
+      $('#gridReset').click(function () {
+        $('#svg').empty();
+        var rows = $('#gridRows').val();
+        var cols = $('#gridCols').val();
+        theGrid = new Grid('svg', rows, cols );
+        theGrid.draw();
+      });
+
     });
 
   </script>
