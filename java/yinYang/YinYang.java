@@ -236,7 +236,7 @@ public class YinYang {
     System.out.println( "| \u25cb | \u25cf |" );
     System.out.println( "+---+---+" );
     
-    YinYang YY = new YinYang(7,7);
+    YinYang YY = new YinYang(4,7);
     YY.findRowSolutions();
   }
   
