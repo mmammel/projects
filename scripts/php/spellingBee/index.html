@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 offset-md-3 col-sm-12">
+        <div class="col-md-6 offset-md-3 col-sm-12 mb-4">
           <ul id="wordList" class="list-group">
             
           </ul>
@@ -51,6 +51,21 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
     <script type="text/javascript">
+
+      function distinctLetterCount( word ) {
+        var checkStr = "";
+        var tempChar;
+        var retVal = 0;
+        for( var i = 0; i < word.length; i++ ) {
+          tempChar = word.charAt(i);
+          if( checkStr.indexOf(tempChar) == -1 ) {
+            retVal++;
+            checkStr = checkStr + tempChar;
+          }
+        }
+        return retVal;
+      }
+
       $(document).ready(() => {
         $('#submitButton').click( function(e) {
           $('#wordList').empty();
@@ -59,9 +74,17 @@
           }).done(function(r) {
             var wordArray = r.split("\n");
             for( var i = 0; i < wordArray.length; i++ ) {
-              $('#wordList').append(
-                $('<li class="list-group-item">'+wordArray[i]+'</li>')
-              );
+              if( wordArray[i] && wordArray[i].length > 0 ) {
+                if( distinctLetterCount(wordArray[i]) == $('#letters').val().length ) {
+                  $('#wordList').prepend(
+                    $('<li class="list-group-item">'+wordArray[i]+'</li>')
+                  );
+                } else {
+                  $('#wordList').append(
+                    $('<li class="list-group-item">'+wordArray[i]+'</li>')
+                  );
+                }
+              }
             }
           });
         });
