@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Spelling Bee Puzzle Helper (NYT)</title>
+    <style type="text/css">
+      * {
+        touch-action: manipulation;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Spelling Bee Helper</h1>
+          <h4>Enter the spelling-bee letters below, with the center letter last, and press submit.</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-12 my-3">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Letters" aria-label="Recipient's username" id="letters" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button id="submitButton" class="btn btn-outline-secondary" type="button">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-sm-12 mb-4">
+          <ul id="wordList" class="list-group">
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+      function distinctLetterCount( word ) {
+        var checkStr = "";
+        var tempChar;
+        var retVal = 0;
+        for( var i = 0; i < word.length; i++ ) {
+          tempChar = word.charAt(i);
+          if( checkStr.indexOf(tempChar) == -1 ) {
+            retVal++;
+            checkStr = checkStr + tempChar;
+          }
+        }
+        return retVal;
+      }
+
+      $(document).ready(() => {
+        $('#submitButton').click( function(e) {
+          $('#wordList').empty();
+          $.ajax({
+            url: "sb.php?s="+$('#letters').val().toLowerCase(),
+          }).done(function(r) {
+            var wordArray = r.split("\n");
+            for( var i = 0; i < wordArray.length; i++ ) {
+              if( wordArray[i] && wordArray[i].length > 0 ) {
+                if( distinctLetterCount(wordArray[i]) == $('#letters').val().length ) {
+                  $('#wordList').prepend(
+                    $('<li class="list-group-item">'+wordArray[i]+'</li>')
+                  );
+                } else {
+                  $('#wordList').append(
+                    $('<li class="list-group-item">'+wordArray[i]+'</li>')
+                  );
+                }
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

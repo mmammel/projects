@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Yin Yang Puzzle (NYT)</title>
+  <style type="text/css">
+    * {
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-sm-12">
+        <div class="input-group my-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Rows</span>
+              </div>
+          <input type="text" class="form-control" id="gridRows" placeholder="7" aria-label="Rows" value="7" aria-describedby="basic-addon2">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">Cols</span>
+            </div>
+          <input type="text" class="form-control" id="gridCols" placeholder="7" aria-label="Cols" value="7" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="gridReset" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="svg" class="col-12 col-md-8">
+      </div>
+      <div id="controls" class="col-12 col-md-4">
+        <div class="row">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridLeft" class="btn btn-primary w-100 border border-dark">Left</button>
+              <div class="btn-group-vertical">
+                <button type="button" id="gridUp"
+                  class="btn btn-primary rounded-0 w-100 pl-4 pr-4 border border-dark">Up</button>
+                <button type="button" id="gridDown"
+                  class="btn btn-primary rounded-0 w-100 pl-4 pr-4 border border-dark">Down</button>
+              </div>
+              <button type="button" id="gridRight" class="btn btn-primary w-100 border border-dark">Right</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridOpen" class="btn btn-primary w-100 border border-dark">O</button>
+              <button type="button" id="gridClear" class="btn btn-primary w-100 border border-dark">_</button>
+              <button type="button" id="gridClosed" class="btn btn-primary w-100 border border-dark">X</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridLock" class="btn btn-primary w-100 border border-dark">Lock</button>
+              <button type="button" id="gridUnlock" class="btn btn-primary w-100 border border-dark">Unlock</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridUndo" class="btn btn-primary w-100 border border-dark">Undo</button>
+              <button type="button" id="gridRedo" class="btn btn-primary w-100 border border-dark">Redo</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Load Puzzle
+                </button>
+                <div id="gridPuzzles" class="dropdown-menu">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="../grid.js"></script>
+  <script type="application/javascript">
+
+    var theGrid;
+
+    var puzzles = [
+      {
+        name: "NYT Aug. 30",
+        rows: 7,
+        cols: 7,
+        cells: [
+          {
+            id: "0_3",
+            content: "o",
+            locked: true
+          },
+          {
+            id: "1_0",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "1_3",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "1_4",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "2_0",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "2_1",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "3_3",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "4_5",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "5_2",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "5_5",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "5_6",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "6_2",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "6_3",
+            content: "o",
+            locked: true
+          }
+        ]        
+      },
+      {
+        name: "NYT Sept. 6th",
+        rows: 7,
+        cols: 7,
+        cells: [
+          {
+            id: "1_4",
+            content: "o",
+            locked: true
+          },          
+          {
+            id: "2_1",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "2_3",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "3_0",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "3_2",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "3_4",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "4_1",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "4_3",
+            content: "x",
+            locked: true
+          },          
+          {
+            id: "5_4",
+            content: "x",
+            locked: true
+          }              
+        ]
+      }
+    ];
+
+    function loadPuzzle(puzzleIdx) {
+      var puzzle = this.puzzles[puzzleIdx];
+      $('#svg').empty();
+      theGrid = new Grid('svg', puzzle.rows, puzzle.cols);
+      theGrid.draw();
+      $('#gridRows').val( puzzle.rows);
+      $('#gridCols').val( puzzle.cols);
+      for( var i = 0; i < puzzle.cells.length; i++ ) {
+        theGrid.applyHistory(puzzle.cells[i]);
+      }
+    }
+
+    $(document).ready(function () {
+      theGrid = new Grid('svg', 7, 7);
+      theGrid.draw();
+
+      var tempPuzzle;
+      for( var i = 0; i < puzzles.length; i++ ) {
+        tempPuzzle = puzzles[i];
+        var ele = $('<a class="dropdown-item" onClick="javascript:loadPuzzle('+i+');">'+tempPuzzle.name+'</a>');
+        $('#gridPuzzles').append(ele);
+      }
+
+      $('#gridLeft').click(function () {
+        theGrid.incrementCursor(LEFT);
+      });
+      $('#gridUp').click(function () {
+        theGrid.incrementCursor(UP);
+      });
+      $('#gridRight').click(function () {
+        theGrid.incrementCursor(RIGHT);
+      });
+      $('#gridDown').click(function () {
+        theGrid.incrementCursor(DOWN);
+      });
+      $('#gridOpen').click(function () {
+        theGrid.doCellAction('o');
+      });
+      $('#gridClear').click(function () {
+        theGrid.doCellAction('clear');
+      });
+      $('#gridClosed').click(function () {
+        theGrid.doCellAction('x');
+      });
+      $('#gridLock').click(function () {
+        theGrid.doCellAction('lock');
+      });
+      $('#gridUnlock').click(function () {
+        theGrid.doCellAction('unlock');
+      });
+      $('#gridUndo').click(function () {
+        theGrid.doUndo();
+      });
+      $('#gridRedo').click(function () {
+        theGrid.doRedo();
+      });
+      $('#gridReset').click(function () {
+        $('#svg').empty();
+        var rows = $('#gridRows').val();
+        var cols = $('#gridCols').val();
+        theGrid = new Grid('svg', rows, cols );
+        theGrid.draw();
+      });
+
+    });
+
+  </script>
+</body>
+
+</html>

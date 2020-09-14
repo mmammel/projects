@@ -20,7 +20,7 @@ public class FourDigits
   public static final String [] triple_terminals = { "abc", "ab.c", "a.bc", ".abc" };
 
 
-  //public static final String [] triple_terminals = { "abc", "acb", "bac", "bca", "cab", "cba" }; //,
+  //public static final String [] triple_terminals = { "abc", "acb", "bac", "bca", "cab", "cba",
                                                      //"a.bc", "a.cb", "b.ac", "b.ca", "c.ab", "c.ba",
                                                      //"ab.c", "ac.b", "ba.c", "bc.a", "ca.b", "cb.a",
                                                      //".abc", ".acb", ".bac", ".bca", ".cab", ".cba" };
@@ -54,13 +54,14 @@ public class FourDigits
   public static final String DIV1 = "A/B";
   public static final String DIV2 = "B/A";
 
-  public static final String [] double_non_terminals = { POW1, POW2, ADD1, ADD2, SUB1, SUB2, MULT1, MULT2, DIV1, DIV2 };
+  //public static final String [] double_non_terminals = { POW1, POW2, ADD1, ADD2, SUB1, SUB2, MULT1, MULT2, DIV1, DIV2 };
+  public static final String [] double_non_terminals = { POW1, ADD1, SUB1, MULT1, DIV1 };
 
   public static final String ID = "A";
   public static final String SQRT = "sqrt(A)";
   public static final String FACT = "A!";
 
-  public static final String [] single_non_terminals = { ID }; //, SQRT, FACT };
+  public static final String [] single_non_terminals = { ID, SQRT, FACT };
 
 
   public static List<int []> getUniquePermuations( int x, int y, int z, int k ) {
