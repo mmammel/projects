@@ -9,6 +9,9 @@ public class BitTest
     boolean matches4 = ((foo & 1<<2) > 0);
     boolean matchesC = ((foo & 0xC) > 0);
 
+    System.out.println( Integer.toString(foo, 2 ) );
+    System.out.println( Integer.toString(foo ^ 127, 2 ) );
+
     System.out.println( "Result: [" + matches1 + "," + matches2 +"," + matches4 + "," + matchesC + "]" );
   }
 }

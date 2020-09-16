@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package org.mjm.yinyang;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Row {
   private int id;
@@ -14,6 +14,24 @@ public class Row {
     for( int i = 0; i < len; i++ ) {
       this.cells[i] = new Cell(this.id * 100 + i, 0,i);
     }
+  }
+  
+  /**
+   * Get the ID by setting bits on black cells, length from the length of the array.
+   * @param cells
+   */
+  public Row( Cell [] cellArray ) {
+    int idVal = 0;
+    this.length = cellArray.length;
+    this.cells = new Cell [ this.length ];
+    for( int i = 0; i < cellArray.length; i++ ) {
+      this.cells[i] = new Cell( cellArray[i].getId(), 0, i );
+      this.cells[i].setValue(cellArray[i].value());
+      if( cellArray[i].value() == CellVal.BLACK ) {
+        idVal |= 1 << i;
+      }
+    }
+    this.id = idVal;
   }
   
   static Row [] generateAllRows( int len ) {
@@ -49,7 +67,7 @@ public class Row {
     RowNeighborDescriptor retVal = null;
     boolean ok = true;
     
-    System.out.println(" Checking: \n" + a + " and \n" + b + "..." );
+    // System.out.println(" Checking: \n" + a + " and \n" + b + "..." );
     
     if( a != null && b != null && a.getLength() == b.getLength() ) {
       
@@ -70,7 +88,7 @@ public class Row {
       }      
     }
     
-    System.out.println( "...Result: " + (retVal != null ? "Yes! " + retVal  : "No!"));
+    // System.out.println( "...Result: " + (retVal != null ? "Yes! " + retVal  : "No!"));
     
     return retVal;
   }
@@ -121,6 +139,28 @@ public class Row {
     }
     
     return sb.toString();
+  }
+  
+  /*
+   * Find the matching set of row IDs from an array given a prototype row r
+   * ignore blanks, white and black cells must match.
+   */
+  public static Set<Integer> grep( Row r, Row [] rows ) {
+    Set<Integer> retVal = new HashSet<Integer>();
+    boolean match = false;
+    for( Row row : rows ) {
+      match = true;
+      for( int i = 0; i < row.length; i++ ) {
+        if( r.cells[i].value() != CellVal.BLANK && r.cells[i].value() != row.cells[i].value() ) {
+          match = false;
+          break;
+        }
+      }
+      if( match ) {
+        retVal.add(row.getId() );
+      }
+    }
+    return retVal;
   }
   
   public int getId() {

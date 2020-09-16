@@ -1,3 +1,4 @@
+package org.mjm.yinyang;
 
 public class RowNeighborDescriptor {
   private int id;

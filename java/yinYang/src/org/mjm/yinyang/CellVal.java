@@ -1,3 +1,5 @@
+package org.mjm.yinyang;
+
 public enum CellVal {
   BLANK(" "),
   WHITE("\u25cb"),

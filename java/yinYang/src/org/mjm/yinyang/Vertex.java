@@ -1,3 +1,5 @@
+package org.mjm.yinyang;
+
 import java.util.EnumSet;
 
 /*

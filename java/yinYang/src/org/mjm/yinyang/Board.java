@@ -1,13 +1,14 @@
-import java.util.ArrayList;
+package org.mjm.yinyang;
+
+import java.util.BitSet;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 /*
-  0   1   2   3   4   5   6
+    0   1   2   3   4   5   6
   +---+---+---+---+---+---+---+
 0 | c | c | c | c | c | c | c |
   +---v---v---v---v---v---v---+
@@ -186,6 +187,14 @@ public class Board {
     }
   }
   
+  public Cell getCellById( int id ) {
+    return this.cellGrid[id / this.cols][id % this.cols];
+  }
+  
+  public boolean isSquare() {
+    return this.rows == this.cols;
+  }
+  
   private int [] getNextCursorPos( int r, int c ) {
     int [] retVal = new int [2];
     retVal[0] = r;
@@ -228,6 +237,10 @@ public class Board {
     }
   }
   
+  /**
+   * Is the board's current configuration a valid solution?
+   * @return
+   */
   public boolean valid() {
     boolean retVal = true;
     // check vertices for 4 colors.
@@ -243,6 +256,66 @@ public class Board {
     
     if( colors > 2 ) {
       retVal = false;
+    }
+    
+    return retVal;
+  }
+  
+  /*
+   * Swap the colors
+   */
+  public void invert() {
+    Cell cell = null;
+    for( int r = 0; r < this.rows; r++ ) {
+      for( int c = 0; c < this.cols; c++ ) {
+        cell = this.cellGrid[r][c];
+        if( cell.value() == CellVal.BLACK ) {
+          cell.setValue( CellVal.WHITE );
+        } else if( cell.value() == CellVal.WHITE ) {
+          cell.setValue(CellVal.BLACK );
+        }
+      }
+    }
+  }
+  
+  /**
+   * Turn the board 90 degrees to the right.
+   * 
+   * If it's not square, rotate 180.
+   */
+  public void rotate() {
+    Cell [][] newGrid = new Cell[ this.cols ][];
+    for( int i = 0; i < this.rows; i++ ) {
+      newGrid[i] = new Cell [this.rows];
+    }
+    
+    for( int r = 0; r < this.rows; r++ ) {
+      for( int c = 0; c < this.cols; c++ ) {
+        if( !this.isSquare() ) {
+          // 180
+          newGrid[this.rows - 1 - r][this.cols - 1 - c] = this.cellGrid[r][c];
+          newGrid[this.rows - 1 - r][this.cols - 1 - c].setId((this.rows - 1 - r)*this.cols+(this.cols - 1 - c));
+        } else {
+          // 90
+          newGrid[c][this.rows - 1 - r ] = this.cellGrid[r][c];
+          newGrid[c][this.rows - 1 - r ].setId(c*this.cols+(this.rows - 1 - r));
+        }
+      }
+    }
+    
+    this.cellGrid = newGrid;
+  }
+  
+  public BitSet getBitRepresentation() {
+    BitSet retVal = new BitSet( this.rows * this.cols );
+    Cell cell = null;
+    for( int r = 0; r < this.rows; r++ ) {
+      for( int c = 0; c < this.cols; c++ ) {
+        cell = this.cellGrid[r][c];
+        if( cell.value() == CellVal.BLACK ) {
+          retVal.set(cell.getId());
+        }
+      }
     }
     
     return retVal;
@@ -370,6 +443,15 @@ public class Board {
     return retVal;
   }
   
+  public Row [] getRowArray() {
+    Row [] retVal = new Row [ this.rows ];
+    for( int r = 0; r < this.rows; r++ ) {
+      retVal[r] = new Row( this.cellGrid[r] );
+    }
+    
+    return retVal;
+  }
+  
   /**
    * Find the first cell from (0,0) with val "val", that does NOT have an ID in the ids set.
    * If ids is null or empty, just find the first one.
@@ -406,6 +488,8 @@ public class Board {
     for( int r = 0; r < this.rows; r++ ) {
       this.printRow(sb, r);
     }
+    
+    sb.append("BitSet: ").append(this.getBitRepresentation()).append("\n");
     
     return sb.toString();
   }
