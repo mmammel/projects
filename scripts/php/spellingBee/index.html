@@ -32,12 +32,8 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6 offset-md-3 col-sm-12 mb-4">
-          <ul id="wordList" class="list-group">
-            
-          </ul>
-        </div>
+      <div class="row" id="wordListHolder">
+
       </div>
     </div>
 
@@ -66,27 +62,100 @@
         return retVal;
       }
 
-      $(document).ready(() => {
-        $('#submitButton').click( function(e) {
-          $('#wordList').empty();
-          $.ajax({
-            url: "sb.php?s="+$('#letters').val().toLowerCase(),
-          }).done(function(r) {
-            var wordArray = r.split("\n");
-            for( var i = 0; i < wordArray.length; i++ ) {
-              if( wordArray[i] && wordArray[i].length > 0 ) {
-                if( distinctLetterCount(wordArray[i]) == $('#letters').val().length ) {
-                  $('#wordList').prepend(
-                    $('<li class="list-group-item">'+wordArray[i]+'</li>')
-                  );
-                } else {
-                  $('#wordList').append(
-                    $('<li class="list-group-item">'+wordArray[i]+'</li>')
-                  );
-                }
-              }
+      function sortWordList( wordList ) {
+        // put the pangrams on top.
+        var retVal = [];
+        for( var i = 0; i < wordList.length; i++ ) {
+          if( wordList[i] && wordList[i].length > 0 ) {
+            if( distinctLetterCount(wordList[i]) == $('#letters').val().length ) {
+              retVal.unshift( wordList[i] );
+            } else {
+              retVal.push(wordList[i]);
             }
-          });
+          }
+        }
+
+        return retVal;
+      }
+
+      function splitArray( wordList ) {
+        var retVal = [];
+        var colLimit = 0;
+        var cols = 1;
+        if( wordList ) {
+          if( wordList.length / 3 > 10 ) {
+            // use three columns
+            colLimit = Math.floor(wordList.length / 3) + 1;
+            cols = 3;
+          } else if( Math.floor(wordList.length / 2) > 10 ) {
+            // use two columns
+            colLimit = Math.floor(wordList.length / 2) + 1;
+            cols = 2;
+          } else {
+            // use one column
+            colLimit = wordList.length;
+            cols = 1;
+          }
+
+          var tempCol = null;
+          for( var c = 0; c < cols; c++ ) {
+            tempCol = [];
+            for( var w = (c*colLimit); w < (c*colLimit + colLimit) && w < wordList.length; w++ ) {
+              tempCol.push( wordList[w] );
+            }
+            retVal.push( tempCol );
+          }
+        }
+
+        return retVal;
+      }
+
+      function getColumnHolder( numCols, idx ) {
+        //  <div class="col-md-6 offset-md-3 col-sm-12 mb-4">
+        //   <ul id="wordList" class="list-group">
+            
+        //   </ul>
+        // </div>
+        var classes = "";
+        if( numCols == 3 ) {
+          classes = "col-4 mb-4 px-1 px-sm-3";
+        } else if ( numCols == 2 ) {
+          classes = "col-6 mb-4";
+        } else {
+          classes = "col-md-6 offset-md-3 col-sm-12 mb-4";
+        }
+
+        var retVal = $('<div class="' + classes + '"></div>');
+        retVal.append( $('<ul id="wordList' + idx + '" class="list-group"></ul>') );
+        return retVal;        
+      }
+
+      function doClick( e ) {
+        $('#wordListHolder').empty();
+        $.ajax({
+          url: "sb.php?s="+$('#letters').val().toLowerCase(),
+        }).done(function(r) {
+          var wordArray = r.split("\n");
+          var columns = splitArray( sortWordList(wordArray) );
+          var tempColEle = null;
+          for( var c = 0; c < columns.length; c++ ) {
+            tempColEle = getColumnHolder( columns.length, c );
+            $('#wordListHolder').append(tempColEle);
+            for( var w = 0; w < columns[c].length; w++ ) {
+              $('#wordList'+c).append($('<li class="list-group-item">'+columns[c][w]+'</li>'));
+            }
+          }
+        });
+      }
+
+      $(document).ready(() => {
+        $(document).keydown(function (e) {
+          if( e.which == 13 ) {
+            doClick();
+          }
+        });
+        $('#submitButton').click( function(e) {
+          doClick(e);
         });
       });
     </script>

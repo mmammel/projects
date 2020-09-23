@@ -140,14 +140,17 @@ class Grid {
       this.incrementCursor(LEFT);
     } else if (e.which == 38) {
       this.incrementCursor(UP);
+      e.preventDefault();
     } else if (e.which == 39) {
       this.incrementCursor(RIGHT);
     } else if (e.which == 40) {
       this.incrementCursor(DOWN);
+      e.preventDefault();
     } else if (e.which == 88) {
       this.doCellAction('x');
     } else if (e.which == 32) {
       this.doCellAction('clear');
+      e.preventDefault();
     } else if (e.which == 79) {
       this.doCellAction('o');
     } else if (e.which == 76) {

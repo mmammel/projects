@@ -4,14 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <title>Yin Yang Puzzle (NYT)</title>
   <style type="text/css">
     * {
       touch-action: manipulation;
     }
+    
   </style>
 </head>
 
@@ -78,16 +77,38 @@
           </div>
         </div>
         <div class="row mt-2">
-            <div class="col">
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Load Puzzle
-                </button>
-                <div id="gridPuzzles" class="dropdown-menu">
-                </div>
+          <div class="col">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridSolve" class="btn btn-primary w-100 border border-dark">Find Solutions</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Load Puzzle
+              </button>
+              <div id="gridPuzzles" class="dropdown-menu">
               </div>
             </div>
           </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <h3 id="solutionSpinner"></h3>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-sm-12 col-lg-6">
+            <ul id="solutions1" class="list-group">
+            </ul>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <ul id="solutions2" class="list-group">
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -101,6 +122,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <script src="../grid.js"></script>
+  <script src="./solver.js"></script>
   <script type="application/javascript">
 
     var theGrid;
@@ -303,6 +325,37 @@
       }
     ];
 
+    function getDescriptor( grid ) {
+      var retVal = "";
+      var first = true;
+      var cell = null;
+      var idx = 0;
+      var descItem = "";
+      for( var r = 0; r < grid.rows; r++ ) {
+        for( var c = 0; c < grid.cols; c++ ) {
+          descItem = "";
+          cell = grid.model[r][c];
+          idx = r * grid.cols + c;
+          if( cell.content == 'o' ) {
+            descItem = "w" + idx;
+          } else if( cell.content == 'x' ) {
+            descItem = "b" + idx;
+          }
+
+          if( descItem.length > 0 ) {
+            if( !first ) {
+              retVal += ",";
+            } else {
+              first = false;
+            }
+            retVal += descItem;
+          }
+        }
+      }
+
+      return retVal;
+    }
+
     function loadPuzzle(puzzleIdx) {
       var puzzle = this.puzzles[puzzleIdx];
       $('#svg').empty();
@@ -365,6 +418,30 @@
         var cols = $('#gridCols').val();
         theGrid = new Grid('svg', rows, cols );
         theGrid.draw();
+      });
+      $('#gridSolve').click( function() {
+        $('#solutions1').empty();
+        $('#solutions2').empty();
+        $("#solutionSpinner").text("Calculating...");
+        var descriptor = getDescriptor( theGrid );
+        var s = new Solver( theGrid.rows, theGrid.cols, descriptor );
+        s.solvePromise().then( function( solutions ) {
+          var left = true;
+          var tempBoard;
+          var solutionString;
+          for (let solution of solutions) {
+            tempBoard = new Board(theGrid.rows, theGrid.cols, solution );
+            solutionString = tempBoard.printBoard();
+            var ele = $('<li class="list-group-item px-0 text-center"><pre>'+solutionString+'</pre></li>');
+            $('#solutions' + (left ? '1' : '2' ) ).append(ele);
+            left = !left;
+          }
+          $("#solutionSpinner").text("Found " + solutions.size + " solution" + (solutions.size == 1 ? "" : "s"));
+
+        }).catch( function(err) {
+          alert(err);
+          $("#solutionSpinner").text("");
+        });
       });
 
     });
