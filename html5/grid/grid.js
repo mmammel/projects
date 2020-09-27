@@ -138,11 +138,13 @@ class Grid {
       this.doUndo();
     } else if (e.which == 37) {
       this.incrementCursor(LEFT);
+      e.preventDefault();
     } else if (e.which == 38) {
       this.incrementCursor(UP);
       e.preventDefault();
     } else if (e.which == 39) {
       this.incrementCursor(RIGHT);
+      e.preventDefault();
     } else if (e.which == 40) {
       this.incrementCursor(DOWN);
       e.preventDefault();

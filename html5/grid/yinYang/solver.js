@@ -142,6 +142,13 @@ class Board {
   isSquare() {
     return this.rows == this.cols;
   }
+  empty() {
+    for( var r = 0; r < this.rows; r++ ) {
+      for( var c = 0; c < this.cols; c++ ) {
+        this.cells[r][c].setValue(BLANK);
+      }
+    }
+  }
   setRowValues( r, idx ) {
     if( r != null && r.getLength() == this.cols && idx >= 0 && idx < this.rows ) {
       for( var c = 0; c < r.getLength(); c++ ) {
@@ -351,11 +358,14 @@ class Solver {
   findRowSolutions() {
     this.solutions = new Set();
     this.solutionCount = 0;
-    if( !this.isBoardFull() ) {
+    //if( !this.isBoardFull() ) {
+      // we've done all of our row analysis - clear 
+      // the board and begin.
+      this.board.empty();
       this.findRowSolutionsInner(-1, 0);
-    } else {
-      this.findRowSolutionsInner(-1, this.board.rows );
-    }
+    //} else {
+    //  this.findRowSolutionsInner(-1, this.board.rows );
+    //}
     return this.solutions;
   }
   findRowSolutionsInner( prevRowId, rowIdx ) {
@@ -377,9 +387,9 @@ class Solver {
       for( var i = 0; i < rowsToTry.length; i++ ) {
         rnd = rowsToTry[i];
         
-        if( rowIdx == 1 && !rnd.ceilingNeighbor ) {
+        if( rowIdx == 1 && this.board.rows > 2 && !rnd.ceilingNeighbor ) {
           continue;
-        } else if( rowIdx == this.board.rows - 1 && !rnd.floorNeighbor ) {
+        } else if( rowIdx == this.board.rows - 1 && this.board.rows > 2 && !rnd.floorNeighbor ) {
           continue;
         }
         

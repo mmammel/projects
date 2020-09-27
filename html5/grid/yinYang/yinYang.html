@@ -17,11 +17,15 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3 col-sm-12">
+      <div class="col-md-8 offset-md-2 col-sm-12">
         <div class="input-group my-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Rows</span>
-              </div>
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Name</span>
+          </div>
+          <input type="text" class="form-control" id="gridName" placeholder="Enter a name..." aria-label="Name" value="" aria-describedby="basic-addon2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Rows</span>
+          </div>
           <input type="text" class="form-control" id="gridRows" placeholder="7" aria-label="Rows" value="7" aria-describedby="basic-addon2">
           <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">Cols</span>
@@ -85,8 +89,15 @@
         </div>
         <div class="row mt-2">
           <div class="col">
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group d-flex" role="group" aria-label="Basic example">
+              <button type="button" id="gridSave" class="btn btn-primary w-100 border border-dark">Save Puzzle</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <div class="btn-group d-flex">
+              <button type="button" class="btn btn-primary dropdown-toggle w-100" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Load Puzzle
               </button>
               <div id="gridPuzzles" class="dropdown-menu">
@@ -112,8 +123,8 @@
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -123,207 +134,45 @@
     crossorigin="anonymous"></script>
   <script src="../grid.js"></script>
   <script src="./solver.js"></script>
+  <script src="./apiConnect.js"></script>
   <script type="application/javascript">
 
     var theGrid;
 
-    var puzzles = [
-      {
-        name: "NYT Aug. 30",
-        rows: 7,
-        cols: 7,
-        cells: [
-          {
-            id: "0_3",
-            content: "o",
-            locked: true
-          },
-          {
-            id: "1_0",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "1_3",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "1_4",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "2_0",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "2_1",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "3_3",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "4_5",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "5_2",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "5_5",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "5_6",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "6_2",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "6_3",
-            content: "o",
-            locked: true
-          }
-        ]        
-      },
-      {
-        name: "NYT Sept. 6th",
-        rows: 7,
-        cols: 7,
-        cells: [
-          {
-            id: "1_4",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "2_1",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "2_3",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "3_0",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "3_2",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "3_4",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "4_1",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "4_3",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "5_4",
-            content: "x",
-            locked: true
-          }              
-        ]
-      },{
-        name: "NYT Sep. 13th",
-        rows: 7,
-        cols: 7,
-        cells: [
-          {
-            id: "0_1",
-            content: "o",
-            locked: true
-          },
-          {
-            id: "0_3",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "1_0",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "1_2",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "2_2",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "2_4",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "3_3",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "4_2",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "4_3",
-            content: "x",
-            locked: true
-          },          
-          {
-            id: "4_5",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "5_5",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "6_5",
-            content: "o",
-            locked: true
-          },          
-          {
-            id: "6_6",
-            content: "o",
-            locked: true
-          }
-        ]        
+    function populatePuzzleDropDown( puzzles ) {
+      $.puzzles = puzzles;
+      $('#gridPuzzles').empty();
+      var tempPuzzle;
+      for( var i = 0; i < $.puzzles.length; i++ ) {
+        tempPuzzle = $.puzzles[i];
+        var ele = $('<a class="dropdown-item" onClick="javascript:loadPuzzle('+i+');">'+tempPuzzle.name+'</a>');
+        $('#gridPuzzles').append(ele);
       }
-    ];
+    }
+
+    function savePuzzle(name) {
+      var puzzleData = {};
+      puzzleData['descriptor'] = getDescriptor(theGrid);
+      puzzleData['name'] = name;
+      puzzleData['rows'] = theGrid.rows;
+      puzzleData['cols'] = theGrid.cols;
+      if( $.currPuzzle != null ) {
+        puzzleData['id'] = $.currPuzzle.id;
+      }
+
+      doSolve( function( solutions ) {
+        if( solutions.size == 1 ) {
+          saveOrUpdate( puzzleData, function() { 
+            getPuzzles(populatePuzzleDropDown);
+            alert( 'Puzzle saved!');
+          });
+        } else {
+          alert("Puzzle must have only one solution before saving!");
+        }
+      }, function(err) {
+        alert("Puzzle not solvable! [" + err + "]" );
+      });
+    }
 
     function getDescriptor( grid ) {
       var retVal = "";
@@ -357,27 +206,48 @@
     }
 
     function loadPuzzle(puzzleIdx) {
-      var puzzle = this.puzzles[puzzleIdx];
+      var puzzle = $.puzzles[puzzleIdx];
       $('#svg').empty();
       theGrid = new Grid('svg', puzzle.rows, puzzle.cols);
       theGrid.draw();
       $('#gridRows').val( puzzle.rows);
       $('#gridCols').val( puzzle.cols);
-      for( var i = 0; i < puzzle.cells.length; i++ ) {
-        theGrid.applyHistory(puzzle.cells[i]);
+      $('#gridName').val( puzzle.name);
+
+      var tempHistory = { id : '', content : '', locked : true };
+      var descriptor = puzzle.descriptor;
+      var cells = descriptor.split(",");
+      var cellId = -1;
+      var cellStrId = '';
+      var cellContent = '';
+      for( var i = 0; i < cells.length; i++ ) {
+        cellId = parseInt(cells[i].substring(1));
+        tempHistory['id'] = ""+Math.floor(cellId / puzzle.cols )+"_"+(cellId%puzzle.cols);
+        tempHistory['content'] = cells[i].charAt(0) === 'w' ? 'o' : 'x';
+        theGrid.applyHistory(tempHistory);
       }
+      $.currPuzzle = puzzle;
+    }
+
+    function doSolve( postSolveCallback, errorHandler ) {
+      var descriptor = getDescriptor( theGrid );
+      var s = new Solver( theGrid.rows, theGrid.cols, descriptor );
+      s.solvePromise().then( function( solutions ) {
+        postSolveCallback(solutions);
+      }).catch( function(error) {
+        if( errorHandler ) {
+          errorHandler(error);
+        } else {
+          alert( error );
+        }
+      });
     }
 
     $(document).ready(function () {
       theGrid = new Grid('svg', 7, 7);
       theGrid.draw();
 
-      var tempPuzzle;
-      for( var i = 0; i < puzzles.length; i++ ) {
-        tempPuzzle = puzzles[i];
-        var ele = $('<a class="dropdown-item" onClick="javascript:loadPuzzle('+i+');">'+tempPuzzle.name+'</a>');
-        $('#gridPuzzles').append(ele);
-      }
+      getPuzzles(populatePuzzleDropDown);
 
       $('#gridLeft').click(function () {
         theGrid.incrementCursor(LEFT);
@@ -416,16 +286,19 @@
         $('#svg').empty();
         var rows = $('#gridRows').val();
         var cols = $('#gridCols').val();
+        $('#solutions1').empty();
+        $('#solutions2').empty();
+        $("#solutionSpinner").text("");
+        $('#gridName').val('');
         theGrid = new Grid('svg', rows, cols );
         theGrid.draw();
+        $.currPuzzle = null;
       });
       $('#gridSolve').click( function() {
         $('#solutions1').empty();
         $('#solutions2').empty();
         $("#solutionSpinner").text("Calculating...");
-        var descriptor = getDescriptor( theGrid );
-        var s = new Solver( theGrid.rows, theGrid.cols, descriptor );
-        s.solvePromise().then( function( solutions ) {
+        doSolve(function( solutions ) {
           var left = true;
           var tempBoard;
           var solutionString;
@@ -438,12 +311,22 @@
           }
           $("#solutionSpinner").text("Found " + solutions.size + " solution" + (solutions.size == 1 ? "" : "s"));
 
-        }).catch( function(err) {
+        }, function(err) {
           alert(err);
           $("#solutionSpinner").text("");
         });
       });
+      $('#gridSave').click(function() {
+        if( $('#gridName').val() && $('#gridName').val().length > 0 ) {
+          savePuzzle($('#gridName').val());
+        } else {
+          alert("Enter a name before saving.");
+        }
+      });
 
+      $('#gridName').keydown(function(e) {
+        e.stopPropagation();
+      });
     });
 
   </script>
