@@ -5,6 +5,8 @@ public class ReplaceTest {
       //String in = args[0].toUpperCase();
       String in = args[0];
       //System.out.println( in + " -> " + in.replaceAll("^(.+?)-.*$", "$1") );
-      System.out.println(in + " -> " + in.replaceAll("^.*?://(.*?)/.*$", "tcp://$1:61616"));
+      //System.out.println(in + " -> " + in.replaceAll("^.*?://(.*?)/.*$", "tcp://$1:61616"));
+
+      System.out.println( in + " -> " + in.replaceAll( ";*\\s*$","") );
   }
 }
