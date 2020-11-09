@@ -4,9 +4,9 @@
 
  public class Injector {
   public static void main( String [] args ) {
-    String query = "SELECT t.tableKey as testKey, t.testName, t.version, t.testCategory as otCategory, td.tableKey as ampDetailId, td.testNoItems, td.testDescription, td.testDuration, td.mobileEnabled, td.isPublic, td.testVersion, td.testType, tl.meterUnitCost, tt.tableKey, tt.type, tt.tag FROM test t (NOLOCK) LEFT JOIN AmpTestDetails td (NOLOCK) ON td.testKey = t.tableKey LEFT JOIN (AMPTestTagJoinTable ttj (NOLOCK) LEFT JOIN AMPTestTags tt (NOLOCK) ON tt.tableKey = ttj.tagId) ON ttj.testKey = t.tableKey, TestList tl (NOLOCK) WHERE ${CRITERIA} AND t.available = 84 AND tl.testKey = t.tableKey AND ${DOIT?|tl.foobar = 'Yomama' AND }tl.parentKey = 'SKILLCHECK'";
+    String query = "SELECT t.* FROM table t  WHERE ${CRITERIA} AND t.foobar = 84 AND t.bar = 'foo' AND ${DOIT?|t.foobar = 'Yomama' AND }t.parentKey = 'PANCAKES'";
 
-    String val = "(t.testKey like $$S'%windows')";
+    String val = "(t.column like $$S'%windows')";
 
     String result = Injector.injectUnquoted( query, "CRITERIA", val, "DOIT?", "true" );
     System.out.println( "Result: " + result );

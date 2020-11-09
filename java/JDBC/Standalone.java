@@ -4,11 +4,11 @@ import java.sql.*;
 public class Standalone {
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerXADataSource";  
-   static final String DB_URL = "jdbc:sqlserver://10.51.2.162\\skillcheck:1433";
+   static final String DB_URL = "jdbc:sqlserver://XXXXXX:1433";
 
    //  Database credentials
-   static final String USER = "skmgmt";
-   static final String PASS = "skillcheck";
+   static final String USER = "xxxxx";
+   static final String PASS = "xxxxxxxxxx";
    
    public static void main(String[] args) {
    Connection conn = null;
@@ -25,8 +25,7 @@ public class Standalone {
       String sql;
       //sql = "SELECT customerName as foobar FROM Customer WHERE tableKey IN (?, ?, ?)  AND enabled = 84";
       //sql = "SELECT customerName as foobar FROM Customer WHERE tableKey like ? AND enabled = 84";
-      //sql = "SELECT CONVERT( DATETIME, ? ) as foobar";
-      sql = "SELECT t.tableKey as testKey, t.testName, t.version, t.testCategory as otCategory, td.tableKey as ampDetailId, td.testNoItems, td.testDescription, td.testDuration, td.mobileEnabled, td.isPublic, td.testVersion, td.testType, tl.meterUnitCost, tt.tableKey, tt.type, tt.tag FROM test t (NOLOCK) LEFT JOIN AmpTestDetails td (NOLOCK) ON td.testKey = t.tableKey LEFT JOIN (AMPTestTagJoinTable ttj (NOLOCK) LEFT JOIN AMPTestTags tt (NOLOCK) ON tt.tableKey = ttj.tagId) ON ttj.testKey = t.tableKey, TestList tl (NOLOCK) WHERE (t.testName like ?) AND t.available = 84 AND tl.testKey = t.tableKey AND tl.parentKey = 'SKILLCHECK'";
+      sql = "SELECT CONVERT( DATETIME, ? ) as foobar";
       System.out.println("Creating statement...");
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, "%windows%" );
