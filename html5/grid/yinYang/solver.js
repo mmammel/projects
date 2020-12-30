@@ -350,11 +350,14 @@ class Solver {
       if( this.board.rows * this.board.cols > 30 && this.boardFullness() < 10 ) {
         reject( "Board must be 10% full to solve. (It takes too long!!)");
       } else {
-        var solutionSet = this.findRowSolutions();
-        resolve( solutionSet );
+        setTimeout( () => {
+          var solutionSet = this.findRowSolutions();
+          resolve( solutionSet );
+        },0);
       }
     });
   }
+
   findRowSolutions() {
     this.solutions = new Set();
     this.solutionCount = 0;

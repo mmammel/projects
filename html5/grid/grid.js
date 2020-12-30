@@ -9,6 +9,7 @@
 class Grid {
   constructor(containerId, rows, cols) {
     this.containerId = containerId;
+    this.fillCount = 0;
     this.model = [];
     this.index = {};
     this.history = [];
@@ -17,7 +18,20 @@ class Grid {
     this.cols = cols;
     this.currPos = [0, 0];
     this.viewBox = [0, 0, 19 * this.cols + 1, 19 * this.rows + 1];
+    this.touchContext = {
+      currId: "",
+      dragging: false,
+      dragValue: 'clear',
+      timestamp: 0
+    };
     this.buildGrid();
+  }
+  updateFillCount(amt) {
+    this.fillCount += amt;
+    if( this.fillCount == this.rows * this.cols ) {
+      // it's full, throw an event
+      $( document ).trigger('gridFull');
+    }
   }
   buildGrid() {
     this.model = [];
@@ -29,7 +43,7 @@ class Grid {
       tempCols = [];
       this.model.push(tempCols);
       for (var c = 0; c < this.cols; c++) {
-        tempGridCell = new GridCell(r,c);
+        tempGridCell = new GridCell(this,r,c);
         tempCols.push(tempGridCell);
         this.index[ tempGridCell.id ] = tempGridCell;
       }
@@ -123,12 +137,87 @@ class Grid {
       this.historyIdx++;
     }
   }
+  handleTouchStart(e) {
+    e.preventDefault();
+    this.touchContext.currId = this.getIdFromTarget($(e.target));
+    var cell = this.index[this.touchContext.currId];
+    this.touchContext.dragValue = cell.content;
+    this.touchContext.dragging = true;
+    var d = new Date();
+    this.touchContext.touchStartTime = d.getTime();
+  }
+  handleTouchEnd(e) {
+    e.preventDefault();
+    this.touchContext.currId = "";
+    this.touchContext.dragging = false;
+    var d = new Date();
+    if( d.getTime() - this.touchContext.touchStartTime < 300 ) {
+      this.handleClick(e);
+    }
+  }
+  handleMouseDown(e) {
+    this.touchContext.currId = this.getIdFromTarget($(e.target));
+    var cell = this.index[this.touchContext.currId];
+    this.touchContext.dragValue = cell.content;
+    this.touchContext.dragging = true;
+  }
+  handleMouseUp(e) {
+    e.preventDefault();
+    this.touchContext.currId = "";
+    this.touchContext.dragging = false;
+  }
+  handleMouseMove(e) {
+    if( this.touchContext.dragging ) {
+      e.preventDefault();
+      var id = this.getIdFromTarget($(e.target));
+      if( id != this.touchContext.currId ) {
+        var cell = this.index[id];
+        if( cell ) {
+          this.touchContext.currId = id;
+          this.moveCursorTo(cell.r,cell.c);
+          this.doCellAction(this.touchContext.dragValue);
+        }
+      }
+    }
+  }
+  handleTouchMove(e) {
+    if( this.touchContext.dragging ) {
+      e.preventDefault();
+      var latestTouch = e.originalEvent.changedTouches[0];
+      var latestTarget = document.elementFromPoint(latestTouch.clientX, latestTouch.clientY);
+      var id = this.getIdFromTarget($(latestTarget));
+      if( id != this.touchContext.currId ) {
+        var cell = this.index[id];
+        if( cell ) {
+          this.touchContext.currId = id;
+          this.moveCursorTo(cell.r,cell.c);
+          this.doCellAction(this.touchContext.dragValue);
+        }
+      }
+    }
+  }
   handleClick(e) {
-    var id = $(e.target).attr('id').replace(/^([0-9]+?_[0-9]+?)_.*$/, "$1");
+    this.touchContext.currId = "";
+    this.touchContext.dragging = false;
+    var id = this.getIdFromTarget($(e.target));
     var cell = this.index[id];
     if( cell ) {
-      this.moveCursorTo(cell.r,cell.c);
+      if( cell.r == this.currPos[0] && cell.c == this.currPos[1] ) {
+        // we didn't move...cycle the values
+        if( cell.content === 'clear' ) {
+          this.doCellAction('o');
+        } else if( cell.content === 'o' ) {
+          this.doCellAction('x');
+        } else if( cell.content === 'x' ) {
+          this.doCellAction('clear');
+        }
+      } else {
+        this.moveCursorTo(cell.r,cell.c);
+      }
     }
+  }
+  getIdFromTarget(target) {
+    return target.attr('id').replace(/^([0-9]+?_[0-9]+?)_.*$/, "$1");
   }
   handleKeyDown(e) {
     // First see if this is an "undo" or a "redo"
@@ -170,14 +259,35 @@ class Grid {
     $(document).keydown(function (e) {
       that.handleKeyDown(e);
     });
+   
+    $('#'+this.containerId).on('touchstart', e => {
+      this.handleTouchStart(e);
+    }).on('touchend', e => {
+      this.handleTouchEnd(e);
+    }).on('mousedown', e => {
+      this.handleMouseDown(e);
+    }).on('mouseup', e => {
+      this.handleMouseUp(e);
+    }).on('mousemove', e => {
+      this.handleMouseMove(e);
+    }).on('touchmove', e => {
+      this.handleTouchMove(e);
+    });
+
+
     $('#'+this.containerId).click( function(e) {
       that.handleClick(e);
-    })
+    });
+    $('#'+this.containerId).on("tap", function(e) {
+      that.handleClick(e);
+    });
+
   }
 }
 
 class GridCell {
-  constructor(r, c) {
+  constructor(grid, r, c) {
+    this.parentGrid = grid;
     this.r = r;
     this.c = c;
     this.id = '' + r + '_' + c;
@@ -269,12 +379,29 @@ class GridCell {
       this.decorator = null;
     }
   }
+  updateContent( val ) {
+    var inc = 0;
+    if( val == 'clear' ) {
+      if( this.content != 'clear' ) {
+        inc = -1;
+      }
+    } else {
+      // val is o or x
+      if( this.content == 'clear' ) {
+        inc = 1;
+      } else if( this.content != val ) {
+        inc = 0;
+      }
+    }
+    this.content = val;
+    this.parentGrid.updateFillCount(inc);
+  }
   doAction(action) {
     var retVal = false;
     var actionObj = this.actions[ action ];
     if( actionObj && (!this.locked || actionObj.lockResistant) ) {
       if( actionObj.action() ) {
-        if( actionObj.content ) this.content = action;
+        if( actionObj.content ) this.updateContent(action);
         retVal = true;
       }
     }

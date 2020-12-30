@@ -10,19 +10,46 @@
     * {
       touch-action: manipulation;
     }
+
+    html, body {
+      overscroll-behavior-y: contain;
+    }
     
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-fluid">
+    <div class="modal fade" id="yinyangModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="yinyangModalTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="yinyangModalMessage">Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-8 offset-md-2 col-sm-12">
-        <div class="input-group my-3">
+        <div class="input-group mt-3 mb-1">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Name</span>
           </div>
           <input type="text" class="form-control" id="gridName" placeholder="Enter a name..." aria-label="Name" value="" aria-describedby="basic-addon2">
+        </div>
+      </div>
+      <div class="col-md-8 offset-md-2 col-sm-12">
+        <div class="input-group mt-1 mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Rows</span>
           </div>
@@ -38,45 +65,45 @@
       </div>
     </div>
     <div class="row">
-      <div id="svg" class="col-12 col-md-8">
+      <div id="svg" class="col-12 col-md-7 offset-md-1 mb-2">
       </div>
-      <div id="controls" class="col-12 col-md-4">
+      <div id="controls" class="col-12 col-md-3">
         <div class="row">
           <div class="col">
             <div class="btn-group d-flex" role="group" aria-label="Basic example">
-              <button type="button" id="gridLeft" class="btn btn-primary w-100 border border-dark">Left</button>
+              <button type="button" style="margin-right: -1px" id="gridLeft" class="btn btn-warning w-100 border border-dark">Left</button>
               <div class="btn-group-vertical">
                 <button type="button" id="gridUp"
-                  class="btn btn-primary rounded-0 w-100 pl-4 pr-4 border border-dark">Up</button>
+                  class="btn btn-warning rounded-0 w-100 pl-4 pr-4 border border-dark">Up</button>
                 <button type="button" id="gridDown"
-                  class="btn btn-primary rounded-0 w-100 pl-4 pr-4 border border-dark">Down</button>
+                  class="btn btn-warning rounded-0 w-100 pl-4 pr-4 border border-dark">Down</button>
               </div>
-              <button type="button" id="gridRight" class="btn btn-primary w-100 border border-dark">Right</button>
+              <button type="button" id="gridRight" class="btn btn-warning w-100 border border-dark">Right</button>
             </div>
           </div>
         </div>
         <div class="row mt-2">
           <div class="col">
             <div class="btn-group d-flex" role="group" aria-label="Basic example">
-              <button type="button" id="gridOpen" class="btn btn-primary w-100 border border-dark">O</button>
-              <button type="button" id="gridClear" class="btn btn-primary w-100 border border-dark">_</button>
-              <button type="button" id="gridClosed" class="btn btn-primary w-100 border border-dark">X</button>
+              <button type="button" id="gridOpen" class="btn btn-dark w-100 border border-light">O</button>
+              <button type="button" id="gridClear" class="btn btn-dark w-100 border border-light">_</button>
+              <button type="button" id="gridClosed" class="btn btn-dark w-100 border border-light">X</button>
             </div>
           </div>
         </div>
-        <div class="row mt-2">
+        <!--<div class="row mt-2">
           <div class="col">
             <div class="btn-group d-flex" role="group" aria-label="Basic example">
               <button type="button" id="gridLock" class="btn btn-primary w-100 border border-dark">Lock</button>
               <button type="button" id="gridUnlock" class="btn btn-primary w-100 border border-dark">Unlock</button>
             </div>
           </div>
-        </div>
+        </div>-->
         <div class="row mt-2">
           <div class="col">
             <div class="btn-group d-flex" role="group" aria-label="Basic example">
-              <button type="button" id="gridUndo" class="btn btn-primary w-100 border border-dark">Undo</button>
-              <button type="button" id="gridRedo" class="btn btn-primary w-100 border border-dark">Redo</button>
+              <button type="button" id="gridUndo" class="btn btn-light w-100 border border-dark">Undo</button>
+              <button type="button" id="gridRedo" class="btn btn-light w-100 border border-dark">Redo</button>
             </div>
           </div>
         </div>
@@ -90,14 +117,14 @@
         <div class="row mt-2">
           <div class="col">
             <div class="btn-group d-flex" role="group" aria-label="Basic example">
-              <button type="button" id="gridSave" class="btn btn-primary w-100 border border-dark">Save Puzzle</button>
+              <button type="button" id="gridSave" class="btn btn-success w-100 border border-dark">Save Puzzle</button>
             </div>
           </div>
         </div>
         <div class="row mt-2">
           <div class="col">
             <div class="btn-group d-flex">
-              <button type="button" class="btn btn-primary dropdown-toggle w-100" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-info dropdown-toggle w-100 border border-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Load Puzzle
               </button>
               <div id="gridPuzzles" class="dropdown-menu">
@@ -138,6 +165,12 @@
   <script type="application/javascript">
 
     var theGrid;
+
+    function popModal( title, message ) {
+      $('#yinyangModalTitle').text(title);
+      $('#yinyangModalMessage').text(message);
+      $('#yinyangModal').modal();
+    }
 
     function populatePuzzleDropDown( puzzles ) {
       $.puzzles = puzzles;
@@ -208,6 +241,9 @@
     function loadPuzzle(puzzleIdx) {
       var puzzle = $.puzzles[puzzleIdx];
       $('#svg').empty();
+      $('#solutions1').empty();
+      $('#solutions2').empty();
+      $("#solutionSpinner").text("");
       theGrid = new Grid('svg', puzzle.rows, puzzle.cols);
       theGrid.draw();
       $('#gridRows').val( puzzle.rows);
@@ -244,8 +280,19 @@
     }
 
     $(document).ready(function () {
+
       theGrid = new Grid('svg', 7, 7);
       theGrid.draw();
+
+      $(document).on("gridFull", function() {
+        doSolve( function(solutions) {
+          if( solutions && solutions.size == 1 ) {
+            popModal('Success!', "You've done it!" );
+          } else {
+            popModal('Whoops!', 'Not quite...');
+          }
+        });
+      });
 
       getPuzzles(populatePuzzleDropDown);
 
@@ -270,12 +317,12 @@
       $('#gridClosed').click(function () {
         theGrid.doCellAction('x');
       });
-      $('#gridLock').click(function () {
-        theGrid.doCellAction('lock');
-      });
-      $('#gridUnlock').click(function () {
-        theGrid.doCellAction('unlock');
-      });
+      // $('#gridLock').click(function () {
+      //   theGrid.doCellAction('lock');
+      // });
+      // $('#gridUnlock').click(function () {
+      //   theGrid.doCellAction('unlock');
+      // });
       $('#gridUndo').click(function () {
         theGrid.doUndo();
       });
@@ -297,7 +344,9 @@
       $('#gridSolve').click( function() {
         $('#solutions1').empty();
         $('#solutions2').empty();
-        $("#solutionSpinner").text("Calculating...");
+        $("#solutionSpinner").html("");
+        $("#gridSolve").prepend($('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'));
+        //document.getElementById('solutionSpinner').innerHTML = 'Calculating...';
         doSolve(function( solutions ) {
           var left = true;
           var tempBoard;
@@ -309,11 +358,13 @@
             $('#solutions' + (left ? '1' : '2' ) ).append(ele);
             left = !left;
           }
-          $("#solutionSpinner").text("Found " + solutions.size + " solution" + (solutions.size == 1 ? "" : "s"));
+          $("#gridSolve").html("Find Solutions");
+          $("#solutionSpinner").html("Found " + solutions.size + " solution" + (solutions.size == 1 ? "" : "s"));
 
         }, function(err) {
           alert(err);
           $("#solutionSpinner").text("");
+          $("#gridSolve").html("Find Solutions");
         });
       });
       $('#gridSave').click(function() {
@@ -327,6 +378,7 @@
       $('#gridName').keydown(function(e) {
         e.stopPropagation();
       });
+
     });
 
   </script>
