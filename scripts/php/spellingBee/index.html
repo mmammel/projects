@@ -140,10 +140,10 @@
       }
 
       function doClick( e ) {
-        $('#wordListHolder').empty();
         $.ajax({
           url: "sb.php?s="+$('#letters').val().toLowerCase(),
         }).done(function(r) {
+          $('#wordListHolder').empty();
           var wordArray = r.split("\n");
           var columns = splitArray( sortWordList(wordArray) );
           var tempColEle = null;
@@ -158,10 +158,10 @@
       }
 
       function doToday( e ) {
-        $('#wordListHolder').empty();
         $.ajax({
           url: "sb.php?t=true",
         }).done(function(r) {
+          $('#wordListHolder').empty();
           var responseObj = JSON.parse( r );
           var wordArray = responseObj.today.answers;
           var letters = responseObj.today.validLetters;
