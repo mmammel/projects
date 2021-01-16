@@ -1,6 +1,14 @@
 <html>  
  <head>  
+  <style type="text/css">
+    label {
+      font-family: "Helvetica";
+      padding-right: 5px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="bigConstants.js"></script>
+  <script type="text/javascript" src="checkers.js"></script>
   <script type="application/javascript">  
 
   var viewBox = [ -320, -320, 640, 640 ];
@@ -9,20 +17,27 @@
   var modifierIdx = 0;
   var primeIdx = 0;
   var primeDotMap = {};
-  var num = 0;
+  //var num = 0;
   var drawInterval = null;
-
-  var fibState = { num0: 0, num1: 1, val: 1 };
-
-  var gaussState = { num: 1, val: 1 };
-  var state = { num: 1, val: 1 };
-  var piState = { idx: 0, next: 3, piidx: 0 };
+  var iterations = 80000;
 
   function expand() {
     viewBox[0] -= (.25 * viewBox[2] );
     viewBox[1] -= (.25 * viewBox[3] );
     viewBox[2] *= 1.5;
     viewBox[3] *= 1.5;
+    resize();
+  }
+
+  function contract() {
+    viewBox[2] *= .6666;
+    viewBox[3] *= .6666;
+    viewBox[0] += (.25 * viewBox[2] );
+    viewBox[1] += (.25 * viewBox[3] );
+    resize();
+  }
+
+  function resize() {
     document.getElementById("svgRoot").setAttribute("viewBox", ''+viewBox[0] + ' ' + viewBox[1] + ' ' + viewBox[2] + ' ' + viewBox[3] );
     var w = 1000 / viewBox[2];
     var h = 1000 / viewBox[3];
@@ -34,114 +49,24 @@
     document.getElementById( "gridRect" ).setAttribute("height", ''+viewBox[3]);
   }
 
+  function resetDisplay() {
+    $('#spiralPoints').empty();
+    coords = [ 0, 0 ];
+    modifiers = [ [2,0], [0,2], [-2,0], [0,-2] ];
+    modifierIdx = 0;
+    primeIdx = 0;
+    primeDotMap = {};
+    viewBox[0] = -320;
+    viewBox[1] = -320;
+    viewBox[2] = 640;
+    viewBox[3] = 640;
+    resize();
+  }
+
   function multipleOf( n, m ) {
     return n % m == 0;
   }
-
-  function pi(n) {
-    var retVal = false;
-    if( piState.idx == piState.next ) {
-      piState.idx = 0;
-      piState.next = parseInt( piString.charAt( piState.piidx++ ) );
-      retVal = true;
-    } else {
-      piState.idx++;
-    }
-
-    return retVal;
-  }
-
-  function piNum(x,n) {
-    var retVal = false;
-    var val = parseInt( piString.charAt( n ) );
-    if( val == x ) {
-      retVal = true;
-    } 
-
-    return retVal;
-  }
-
-  function piPrime(n) {
-    var retVal = false;
-    var val = parseInt( piString.charAt( n ) );
-    if( val == 2 || val == 3 || val == 5 || val == 7 ) {
-      retVal = true;
-    } 
-
-    return retVal;
-  }
-
-  function isState( n ) {
-    var retVal = false;
-    if( multipleOf(n, state.num )) {
-      retVal = true;
-      state.num++;
-    }
-    return retVal;
-  }
-
-  function isGauss( n ) {
-    var retVal = false;
-    if( n == gaussState.val ) {
-      retVal = true;
-      gaussState.num++;
-      gaussState.val = ( gaussState.num * (gaussState.num - 1) / 2 );
-    }
-
-    return retVal;
-  }
-
-  function isPrime( n ) {
-    var retVal = true;
-    if( n <= 1 ) {
-      retVal = false;
-    } else if( n == 2 ) {
-      retVal = true;
-    } else if( n % 2 == 0 ) {
-      retVal = false;
-    } else {
-      var s = Math.sqrt( n );
-      var d = 3;
-      while( d <= s ) {
-        if( n % d == 0 ) {
-         retVal = false;
-         break;
-        }
-        d+=2;
-      }
-    }
-    return retVal;
-  }
-
-  function isFib( n ) {
-    var retVal = false;
-    if( n == fibState.val ) {
-      fibState.num0 = fibState.num1;
-      fibState.num1 = fibState.val;
-      fibState.val = fibState.num0 + fibState.num1;
-      retVal = true;
-    }
-
-    return retVal;
-  }
-
-  function randomCheck( n, v ) {
-    return Math.random() <= v;
-  }
-
-  function checkNum( n ) {
-    //return randomCheck(n, 0.0644934);
-    //return pi(n);
-    //return piNum(9,n);
-    return piPrime(n);
-    //return isPrime(n);
-    //return isFib(n);
-    //return isGauss(n);
-    //return isState(n);
-    //return multipleOf(n,20);
-  }
   
-
   function makeSVG(tag, attrs) {
     var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
     for (var k in attrs)
@@ -149,19 +74,56 @@
     return el;
   }
 
+  function validateInputs() {
+    let retVal = true;
+    let errorMessage = '';
+    if( currChecker == null ) {
+      retVal = false;
+      errorMessage += "Select a checker!";
+    } else {
+      if( ! /[0-9]+/.test($('#numIterations').val()) ) {
+        retVal = false;
+        errorMessage += '# of Iterations must be numeric (more the merrier)\n';
+      }
+
+      if( currChecker.extraVars != null && currChecker.extraVars.length > 0 ) {
+        for( let i = 0; i < currChecker.extraVars.length; i++ ) {
+          if( $('#'+currChecker.extraVars[i].id).val() == null ) {
+            errorMessage += 'Need input for "' + currChecker.extraVars[i].label + '" field\n';
+            retVal = false;
+          }
+        }
+      }
+    }
+
+    if( !retVal && errorMessage.length > 0 ) {
+      alert(errorMessage);
+    }
+
+    return retVal;
+  }
+
   function draw() {
-    //drawInterval = setInterval( function() {
-    //  drawInner( num++ );
-    //  if( num == 800000 ) clearInterval( drawInterval );
-    //}, 0);
-    for( var i = 1; i < 8000000; i++ ) {
-      drawInner( i );
+    resetDisplay();
+    iterations = parseInt( $('#numIterations').val() );
+    let extraVars = [];
+    let extraVarValues = [0,0,0,0,0];
+    let stateObj = JSON.parse(JSON.stringify(currChecker.stateObj));
+    extraVars = currChecker.extraVars;
+    if( extraVars != null && extraVars.length > 0 ) {
+      for( let ex = 0; ex < extraVars.length; ex++ ) {
+        extraVarValues[ex] = parseFloat( $('#'+extraVars[ex].id).val() );
+      }
+    }
+
+    for( var i = 1; i < iterations; i++ ) {
+      drawInner( stateObj, i, extraVarValues[0], extraVarValues[1] );
     }
   }
     
-  function drawInner(i) {
+  function drawInner(state, i,j,k) {
     var key = '';
-    if( checkNum(i) ) {
+    if( currChecker.checker(state, i,j,k) ) {
 
       if( coords[0] < viewBox[0] ||
           coords[0] > (viewBox[0] + viewBox[2]) ||
@@ -170,7 +132,7 @@
         expand();
       }
           
-      document.getElementById( "currPrime" ).innerHTML = ''+i;
+      //document.getElementById( "currPrime" ).innerHTML = ''+i;
       key = ''+coords[0] + '_' + coords[1];
       if( primeDotMap[ key ] ) {
         // we have a dot here already, increase it's size.
@@ -182,8 +144,8 @@
       } else {
         primeDotMap[ key ] = 2;
         var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], r: '2', id: key, fill: 'red' } );
-        var root = document.getElementById("svgRoot");
-        root.appendChild( ele ); 
+        var sp = document.getElementById("spiralPoints");
+        sp.appendChild( ele ); 
       }
 
       modifierIdx++;
@@ -195,15 +157,79 @@
     coords[1] += mod[1];
   } 
 
+  function initChecker() {
+    if( currChecker != null ) {
+      $('#checkerDescription').html( currChecker.description );
+      $('#dynamicInputs').empty();
+      let tempInput = "";
+      let tempVar = {};
+      if( currChecker.extraVars ) {
+        for( let i = 0; i < currChecker.extraVars.length; i++ ) {
+          tempInput = "<td>";
+          tempVar = currChecker.extraVars[i];
+          tempInput += "<label for='" + tempVar.id + "'>" + tempVar.label + "</label>";
+          if( tempVar.values ) {
+            // it's a select
+            tempInput += "<select id='" + tempVar.id + "'><option value=''>Choose One</option>";
+            for( let i = 0; i < tempVar.values.length; i++ ) {
+              tempInput += "<option value='" + tempVar.values[i] + "'>" + tempVar.values[i] + "</option>";
+            }
+            tempInput += "</select>";
+          } else {
+            // it's an input
+            tempInput += "<input id='" + tempVar.id + "'/>";
+          }
+
+          tempInput += "</td>";
+          $('#dynamicInputs').append($(tempInput));
+        }
+      }
+    }
+  }
+  const checkerMap = {};
+  let currChecker = null;
+  $(document).ready(function() {
+    let selectOptions = [["Select One",""]];
+    let temp = [];
+    for( var i = 0; i < checkers.length; i++ ) {
+      temp = [];
+      temp.push( checkers[i].name);
+      temp.push( checkers[i].id);
+      selectOptions.push(temp);
+      checkerMap[checkers[i].id] = checkers[i];
+    }
+    $('#selectHolder').append($("<select id='checkerSelect'></select>"));
+    for( let i = 0; i < selectOptions.length; i++ ) {
+      $('#checkerSelect').append($("<option value='" + selectOptions[i][1]+ "'>" + selectOptions[i][0] + "</option>"));
+    }
+    $('#checkerSelect').on('change', function(e) {
+      currChecker = checkerMap[$('#checkerSelect').val()];
+      initChecker();
+    });
+    $('#submitBtn').on('click', function(e) {
+      if( validateInputs() ) {
+        draw();
+      }
+    });
+  });
   </script>  
  </head>  
- <body onload="javascript:draw();">
+ <body>
    <table>
      <tr>
-       <td><input type="submit" onclick=""/></td>
-       <td><input type="button" value="+" onclick=""/></td>
-       <td><input type="button" value="-" onclick="expand();"/></td>
-       <td><h4 id="currPrime"></h4></td>
+       <td id="selectHolder"></td>
+       <td id="checkerDescription"></td>
+     </tr>
+   </table>
+   <table>
+     <tr id="dynamicInputs"></tr>
+   </table>
+   <table>
+     <tr>
+       <td><label for="numIterations"># of Iterations:</label><input type="text" value="80000" id="numIterations"/></td>
+       <td><input id="submitBtn" type="button" value="Start"/></td>
+       <td><input id="zoomin" type="button" value="+" onclick="contract();"/></td>
+       <td><input id="zoomout" type="button" value="-" onclick="expand();"/></td>
      </tr>
    </table>
    <div id="svg">
@@ -218,6 +244,8 @@
        </defs>
        <rect id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')"/>
        <circle cx="0" cy="0" r="18" fill="black"/>
+       <g id="spiralPoints">
+       </g>
      </svg>
    </div>
   </body>  
