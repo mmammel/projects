@@ -1,0 +1,26 @@
+A: aardvark
+B: grabbable
+C: eccentric
+D: added
+E: reeled
+F: pufferfish
+G: egging
+H: shhh
+I: fasciitis
+J:
+K: rokkaku
+L: follicle
+M: ammonium
+N: panning
+O: footlong
+P: 
+Q:
+R: error
+S: passes
+T: attenuate
+U:
+V: 
+W: powwow
+X: 
+Y:
+Z: 
