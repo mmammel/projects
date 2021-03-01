@@ -1,0 +1,57 @@
+See how we can create an anonymous class that is defined with a parameterized type - something like:
+
+public interface IDecorator {
+  public String decorate( String str );
+}
+
+public class Decorator implements IDecorator {
+  public String decorate( String str ) {
+    // does nothing.
+    return str;
+  }
+}
+
+public class AllCapsDecorator extends Decorator {
+  public String decorate( String str ) {
+    return str != null ? str.toUpperCase() : null;
+  }
+}
+
+public class ExcitedDecorator extends AllCapsDecorator {
+  public String decorate( String str ) {
+    str = super.decorate(str);
+    if( str != null ) {
+      str = str + "!!!";
+    }
+    return str;
+  }
+}
+
+public class LowerCaseDecorator extends Decorator {
+  public String decorate( String str ) {
+    return str != null ? str.toLowerCase() : null;
+  }
+}  
+
+public abstract class Banner<T extends Decorator> {
+  private T decorator;
+  private String message;
+  protected Banner( String message ) {
+    this.message = message;
+  }
+  public void printMessage() {
+    System.out.println( this.decorator.decorate( this.prepareMessage() );
+  }
+  public abstract String prepareMessage();
+}
+
+public class CarBanner extends Banner<ExcitedDecorator> {
+  public CarBanner( String message ) {
+    super(message);
+    this.decorator = new ExcitedDecorator();
+  }
+
+  public String prepareMessage() {
+    return "This is a car banner: " + this.message;
+  }
+}

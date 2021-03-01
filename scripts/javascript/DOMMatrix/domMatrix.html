@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        let viewBox = [0,0,0,0];
+      const doStuff = () => {
+        let rootOffset = $('#svgRoot').offset();
+        viewBox[0] = rootOffset.left;
+        viewBox[1] = rootOffset.top;
+        viewBox[2] = $('#svgRoot').width();
+        viewBox[3] = $('#svgRoot').height();
+        $('#svgRoot').attr( 'viewBox', ''+viewBox[0]+' '+viewBox[1]+' '+viewBox[2]+' '+viewBox[3] );
+        var scaleX = 1;
+        var scaleY = 1;
+        var translateX = 1;
+        var translateY = 1;
+        var angle = Math.PI / 4;
+        var M = new DOMMatrix([
+          -.13, //Math.sin(angle) * scaleX,
+          -.15, //Math.cos(angle) * scaleX,
+          .38, //-Math.sin(angle) * scaleY,
+          -.33, //Math.cos(angle) * scaleY,
+          50, //translateX,
+          250 //translateY
+        ]);
+        let root = document.getElementById( 'svgRoot' );
+        let el = document.getElementById('myRect');
+        let rect_init = el.getBoundingClientRect();
+      console.log(rect_init);
+        root.appendChild( domRectToSVGRect( rect_init, "rect_init", "red" ) );
+        el.style.transform = M.toString();
+        let rect = el.getBoundingClientRect();
+        root.appendChild( domRectToSVGRect( rect, "rect", "blue" ) );
+       console.log( rect );
+        let invM = M.invertSelf();
+        let rect2 = el.getBoundingClientRect();
+        root.appendChild( domRectToSVGRect( rect2, "rect2", "purple" ));
+        let el2 = document.getElementById('rect2');
+        el2.style.transform = invM.toString();
+      };
+
+      const domRectToSVGRect = (domRect,id,color) => {
+        let svgRect = makeSVG( 'rect', { id: id, x: domRect.x, y: domRect.y, width: domRect.width, height: domRect.height, stroke: color, fill: 'none' } );
+        return svgRect;
+      }
+
+      const makeSVG = (tag, attrs) => {
+        var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+        for (var k in attrs)
+          el.setAttribute(k, attrs[k]);
+        return el;
+      };
+    </script>
+  </head>
+  <body>
+    <div id="svgContainer">
+      <svg id="svgRoot" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <rect id="myRect" x="300" y="300" width="100" height="100" fill="black"/>
+      </svg>
+    </div>
+    <script type="text/javascript">
+      doStuff();
+    </script>
+  </body> 
+</html>
