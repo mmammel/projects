@@ -13,6 +13,9 @@
 
   var viewBox = [ -320, -320, 640, 640 ];
   var coords = [ 0, 0 ];
+  var color = '#FF0000';
+  var currTheta = 0;
+  var deltaTheta = 90;
   var modifiers = [ [2,0], [0,2], [-2,0], [0,-2] ];
   var modifierIdx = 0;
   var primeIdx = 0;
@@ -37,6 +40,14 @@
     resize();
   }
 
+  function centerOnOffset( offx, offy ) {
+    var w = $('#svgRoot').width();
+    var h = $('#svgRoot').height();
+    viewBox[0] += (((offx - (w/2)) / w) * viewBox[2]);
+    viewBox[1] += (((offy - (h/2)) / h) * viewBox[3]);
+    contract();
+  }
+
   function resize() {
     document.getElementById("svgRoot").setAttribute("viewBox", ''+viewBox[0] + ' ' + viewBox[1] + ' ' + viewBox[2] + ' ' + viewBox[3] );
     var w = 1000 / viewBox[2];
@@ -54,6 +65,7 @@
     coords = [ 0, 0 ];
     modifiers = [ [2,0], [0,2], [-2,0], [0,-2] ];
     modifierIdx = 0;
+    currTheta = 0;
     primeIdx = 0;
     primeDotMap = {};
     viewBox[0] = -320;
@@ -86,6 +98,18 @@
         errorMessage += '# of Iterations must be numeric (more the merrier)\n';
       }
 
+
+      if( ! /[0-9]+/.test($('#deltaTheta').val()) ) {
+        retVal = false;
+        errorMessage += 'Angle must be a number between 0 and 360 inclusive';
+      } else {
+        var dtheta = parseFloat( $('#deltaTheta').val() );
+        if( dtheta < 0.0 || dtheta > 360.0 ) {
+          retVal = false;
+          errorMessage += 'Angle must be between 0 and 360 inclusive';
+        }
+      }
+
       if( currChecker.extraVars != null && currChecker.extraVars.length > 0 ) {
         for( let i = 0; i < currChecker.extraVars.length; i++ ) {
           if( $('#'+currChecker.extraVars[i].id).val() == null ) {
@@ -105,7 +129,10 @@
 
   function draw() {
     resetDisplay();
+    color = $('#pointColor').val();
     iterations = parseInt( $('#numIterations').val() );
+    deltaTheta = parseFloat( $('#deltaTheta').val() );
+    deltaTheta = deltaTheta * ( Math.PI / 180.0 );
     let extraVars = [];
     let extraVarValues = [0,0,0,0,0];
     let stateObj = JSON.parse(JSON.stringify(currChecker.stateObj));
@@ -143,18 +170,26 @@
         ele.setAttribute( "r", ''+sz );
       } else {
         primeDotMap[ key ] = 2;
-        var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], r: '2', id: key, fill: 'red' } );
+        var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], r: '2', id: key, fill: color } );
         var sp = document.getElementById("spiralPoints");
         sp.appendChild( ele ); 
       }
 
-      modifierIdx++;
-      if( modifierIdx == 4 ) modifierIdx = 0;
+      // uncomment to go back to simple modifier
+      //modifierIdx++;
+      //if( modifierIdx == 4 ) modifierIdx = 0;
+      currTheta += deltaTheta;
+      if( currTheta > (2.0 * Math.PI) ) {
+        currTheta -= (2.0 * Math.PI);
+      }
     }
 
-    var mod = modifiers[modifierIdx];
-    coords[0] += mod[0];
-    coords[1] += mod[1];
+    // uncomment to go back to simple modifier
+    //var mod = modifiers[modifierIdx];
+    //coords[0] += mod[0];
+    //coords[1] += mod[1];
+    coords[0] += (2.0 * Math.cos( currTheta ));
+    coords[1] += (2.0 * Math.sin( currTheta ));
   } 
 
   function initChecker() {
@@ -211,6 +246,10 @@
         draw();
       }
     });
+
+    $('#svgRoot').on('click', function(e) {
+      centerOnOffset( e.offsetX, e.offsetY );
+    });
   });
   </script>  
  </head>  
@@ -226,6 +265,10 @@
    </table>
    <table>
      <tr>
+       <td><label for="deltaTheta">Angle to turn by:</label><input type="text" value="90" size="10" id="deltaTheta"/></td>
+       <td><label for="pointColor">Color of points:</label><input type="color" value="#FF0000" id="pointColor"/></td>
+     </tr>
+     <tr>
        <td><label for="numIterations"># of Iterations:</label><input type="text" value="80000" id="numIterations"/></td>
        <td><input id="submitBtn" type="button" value="Start"/></td>
        <td><input id="zoomin" type="button" value="+" onclick="contract();"/></td>
@@ -236,10 +279,10 @@
      <svg id="svgRoot" viewBox="-320 -320 640 640" xmlns="http://www.w3.org/2000/svg">
        <defs>
          <pattern id="grid" viewBox="0,0,10,10" width="1.5625%" height="1.5625%">
-           <circle cx="0" cy="0" r="1" fill="grey"/>
-           <circle cx="10" cy="0" r="1" fill="grey"/>
-           <circle cx="0" cy="10" r="1" fill="grey"/>
-           <circle cx="10" cy="10" r="1" fill="grey"/>
+           <circle cx="0" cy="0" r="1" fill="lightgrey"/>
+           <circle cx="10" cy="0" r="1" fill="lightgrey"/>
+           <circle cx="0" cy="10" r="1" fill="lightgrey"/>
+           <circle cx="10" cy="10" r="1" fill="lightgrey"/>
          </pattern>
        </defs>
        <rect id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')"/>

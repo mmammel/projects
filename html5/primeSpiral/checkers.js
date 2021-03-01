@@ -1,5 +1,26 @@
 let checkers = [
   {
+    id: "simple",
+    name : "Simple",
+    description : "Iterate once, turn.  Twice, turn.  Three times, turn. Etc.",
+    stateObj : {
+      next: 1,
+      counter : 0
+    },
+    checker : function( state, n ) {
+      var retVal = false;
+      if( state.counter == state.next ) {
+        retVal = true;
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;    
+      }
+
+      return retVal;
+    }
+  },
+  {
     id : "pi",
     name : "Pi Digits",
     description : "After iterating (the next digit of pi) times, plot a point and turn",
@@ -149,3 +170,4 @@ let checkers = [
     ]
   }
 ];
+
