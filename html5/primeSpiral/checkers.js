@@ -3,6 +3,7 @@ let checkers = [
     id: "simple",
     name : "Simple",
     description : "Iterate once, turn.  Twice, turn.  Three times, turn. Etc.",
+    default: true,
     stateObj : {
       next: 1,
       counter : 0

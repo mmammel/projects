@@ -11,6 +11,10 @@
     .disp {
       padding-right: 25px;
     }
+
+    .btnFlip {
+      transform: rotate(180deg);
+    }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="bigConstants.js"></script>
@@ -22,8 +26,8 @@
   var color = '#A132EC';
   var currTheta = 0;
   var deltaTheta = 90;
-  var animationStep = .001;
-  var animationDelay = 100;
+  var animationStep = .015;
+  var animationDelay = 10;
   var modifiers = [ [2,0], [0,2], [-2,0], [0,-2] ];
   var modifierIdx = 0;
   var primeIdx = 0;
@@ -162,14 +166,14 @@
   function drawInner(state, i,j,k) {
     if( currChecker.checker(state, i,j,k) ) {
 
-      if( coords[0] < viewBox[0] ||
-          coords[0] > (viewBox[0] + viewBox[2]) ||
-          coords[1] < viewBox[1] ||
-          coords[1] > (viewBox[1] + viewBox[3]) ) {
-        expand();
-      }
+      // if( coords[0] < viewBox[0] ||
+      //     coords[0] > (viewBox[0] + viewBox[2]) ||
+      //     coords[1] < viewBox[1] ||
+      //     coords[1] > (viewBox[1] + viewBox[3]) ) {
+      //   expand();
+      // }
 
-      var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], id: ''+i, r: 2 } );
+      var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], id: ''+i, r: 5 } );
       var sp = document.getElementById("spiralPoints");
       sp.appendChild( ele ); 
 
@@ -189,6 +193,28 @@
     coords[0] += (2.0 * Math.cos( currTheta ));
     coords[1] += (2.0 * Math.sin( currTheta ));
   } 
+
+  function startAnimation(reverse) {
+    var mult = reverse ? -1.0 : 1.0;
+    animating = true;
+    animationInterval = setInterval(function() {
+      draw();
+      var dt = parseFloat($('#deltaTheta').val());
+      var newVal = dt + (mult * animationStep);
+      if( newVal > 360.0 ) {
+        newVal = 0.0;
+      } else if( newVal < 0.0 ) {
+        newVal = 360.0;
+      }
+
+      $('#deltaTheta').val( '' + newVal );
+    }, animationDelay );
+  }
+
+  function stopAnimation() {
+    clearInterval(animationInterval);
+    animating = false;
+  }
 
   function initChecker() {
     if( currChecker != null ) {
@@ -228,12 +254,13 @@
       temp = [];
       temp.push( checkers[i].name);
       temp.push( checkers[i].id);
+      temp.push( checkers[i].default ? true : false );
       selectOptions.push(temp);
       checkerMap[checkers[i].id] = checkers[i];
     }
     $('#selectHolder').append($("<select id='checkerSelect'></select>"));
     for( let i = 0; i < selectOptions.length; i++ ) {
-      $('#checkerSelect').append($("<option value='" + selectOptions[i][1]+ "'>" + selectOptions[i][0] + "</option>"));
+      $('#checkerSelect').append($("<option value='" + selectOptions[i][1]+ "'" + (selectOptions[i][2] ? " selected" : "") + ">" + selectOptions[i][0] + "</option>"));
     }
     $('#checkerSelect').on('change', function(e) {
       currChecker = checkerMap[$('#checkerSelect').val()];
@@ -248,18 +275,20 @@
 
     $('#playBtn').on('click', function(e) {
       if( validateInputs() ) {
-        animating = true;
-        animationInterval = setInterval(function() {
-          draw();
-          var dt = parseFloat($('#deltaTheta').val());
-          $('#deltaTheta').val( '' + (dt + animationStep) );
-        }, animationDelay );
+        stopAnimation();
+        startAnimation(false);
+      }
+    });
+
+    $('#reverseBtn').on('click', function(e) {
+      if( validateInputs() ) {
+        stopAnimation();
+        startAnimation(true);
       }
     });
 
     $('#pauseBtn').on('click', function(e) {
-      clearInterval(animationInterval);
-      animating = false;
+      stopAnimation();
     });
 
     $('#svgRoot').on('dblclick', function(e) {
@@ -329,10 +358,11 @@
    </table>
    <table id="animationControls">
     <tr>
-      <td class="disp"><label for="animationStep">Animation step (deg):</label><input type="text" value=".001" size="10" id="animationStep"/></td>
-      <td><label for="animationDelay">Animation delay (ms):</label><input type="text" value="100" id="animationDelay"/></td>
+      <td class="disp"><label for="animationStep">Animation step (deg):</label><input type="text" value=".015" size="10" id="animationStep"/></td>
+      <td><label for="animationDelay">Animation delay (ms):</label><input type="text" value="10" id="animationDelay"/></td>
+      <td><button id="reverseBtn"><span class="material-icons md-light btnFlip">play_arrow</span></button></td>
+      <td><button id="pauseBtn"><span class="material-icons md-light">stop</span></button></td>
       <td><button id="playBtn"><span class="material-icons md-light">play_arrow</span></button></td>
-      <td><button id="pauseBtn"><span class="material-icons md-light">pause</span></button></td>
     </tr>
   </table>
    <div id="svg">
