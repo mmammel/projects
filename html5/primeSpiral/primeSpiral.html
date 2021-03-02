@@ -1,5 +1,7 @@
 <html>  
  <head>  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <style type="text/css">
     label {
       font-family: "Helvetica";
@@ -17,13 +19,17 @@
 
   var viewBox = [ -320, -320, 640, 640 ];
   var coords = [ 0, 0 ];
-  var color = '#FF0000';
+  var color = '#A132EC';
   var currTheta = 0;
   var deltaTheta = 90;
+  var animationStep = .001;
+  var animationDelay = 100;
   var modifiers = [ [2,0], [0,2], [-2,0], [0,-2] ];
   var modifierIdx = 0;
   var primeIdx = 0;
   var primeDotMap = {};
+  var animating = false;
+  var animationInterval = null;
   //var num = 0;
   var drawInterval = null;
   var iterations = 80000;
@@ -37,7 +43,6 @@
   }
 
   function contract() {
-return;
     viewBox[2] *= .6666;
     viewBox[3] *= .6666;
     viewBox[0] += (.25 * viewBox[2] );
@@ -72,12 +77,13 @@ return;
     modifierIdx = 0;
     currTheta = 0;
     primeIdx = 0;
-    primeDotMap = {};
-    viewBox[0] = -320;
-    viewBox[1] = -320;
-    viewBox[2] = 640;
-    viewBox[3] = 640;
-    resize();
+    if( !animating ) {
+      viewBox[0] = -320;
+      viewBox[1] = -320;
+      viewBox[2] = 640;
+      viewBox[3] = 640;
+      resize();
+    }
   }
 
   function multipleOf( n, m ) {
@@ -154,7 +160,6 @@ return;
   }
     
   function drawInner(state, i,j,k) {
-    var key = '';
     if( currChecker.checker(state, i,j,k) ) {
 
       if( coords[0] < viewBox[0] ||
@@ -163,22 +168,10 @@ return;
           coords[1] > (viewBox[1] + viewBox[3]) ) {
         expand();
       }
-          
-      //document.getElementById( "currPrime" ).innerHTML = ''+i;
-      key = ''+coords[0] + '_' + coords[1];
-      if( primeDotMap[ key ] ) {
-        // we have a dot here already, increase it's size.
-        var sz = primeDotMap[ key ];
-        sz++;
-        primeDotMap[ key ] = sz;
-        var ele = document.getElementById( key );
-        ele.setAttribute( "r", ''+sz );
-      } else {
-        primeDotMap[ key ] = 2;
-        var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], r: '2', id: key, fill: color } );
-        var sp = document.getElementById("spiralPoints");
-        sp.appendChild( ele ); 
-      }
+
+      var ele = makeSVG("circle", { cx: ''+coords[0], cy: ''+coords[1], id: ''+i, r: 2 } );
+      var sp = document.getElementById("spiralPoints");
+      sp.appendChild( ele ); 
 
       // uncomment to go back to simple modifier
       //modifierIdx++;
@@ -246,14 +239,27 @@ return;
       currChecker = checkerMap[$('#checkerSelect').val()];
       initChecker();
     });
+
     $('#submitBtn').on('click', function(e) {
       if( validateInputs() ) {
-        setInterval(function() {
+        draw();
+      }
+    });
+
+    $('#playBtn').on('click', function(e) {
+      if( validateInputs() ) {
+        animating = true;
+        animationInterval = setInterval(function() {
           draw();
           var dt = parseFloat($('#deltaTheta').val());
-          $('#deltaTheta').val( '' + (dt + 0.005) );
-        }, 10 );
+          $('#deltaTheta').val( '' + (dt + animationStep) );
+        }, animationDelay );
       }
+    });
+
+    $('#pauseBtn').on('click', function(e) {
+      clearInterval(animationInterval);
+      animating = false;
     });
 
     $('#svgRoot').on('dblclick', function(e) {
@@ -268,8 +274,28 @@ return;
       }
     });
 
+    $('#showOrigin').on('change', function(e) {
+      if( $('#showOrigin').is(":checked") ) {
+        $('#origin').show();
+      } else {
+        $('#origin').hide();
+      }
+    });
+
+    $('#pointColor').on('change', function(e) {
+      $('#spiralPoints').attr("fill",$('#pointColor').val());
+    });
+
     $('#backgroundColor').on('change', function(e) {
       $('#svgRoot').css('background-color', $('#backgroundColor').val() );
+    });
+
+    $('#animationStep').on('change', function(e) {
+      animationStep = parseFloat($('#animationStep').val());
+    });
+
+    $('#animationDelay').on('change', function(e) {
+      animationDelay = parseInt($('#animationDelay').val());
     });
   });
   </script>  
@@ -286,22 +312,31 @@ return;
    </table>
    <table>
      <tr>
-       <td class="disp"><label for="pointColor">Color of points:</label><input type="color" value="#FF0000" id="pointColor"/></td>
-       <td class="disp"><label for="backgroundColor">Background color:</label><input type="color" value="#FFFFFF" id="backgroundColor"/></td>
-       <td class="disp"><label for="showGrid">Show grid?</label><input type="checkbox" checked id="showGrid"/></td>
+       <td class="disp"><label for="pointColor">Color of points:</label><input type="color" value="#A132EC" id="pointColor"/></td>
+       <td class="disp"><label for="backgroundColor">Background color:</label><input type="color" value="#000000" id="backgroundColor"/></td>
+       <td class="disp"><label for="showGrid">Show grid?</label><input type="checkbox" id="showGrid"/></td>
+       <td class="disp"><label for="showOrigin">Show origin?</label><input type="checkbox" id="showOrigin"/></td>
      </tr>
    </table>
    <table>
      <tr>
-       <td class="disp"><label for="deltaTheta">Angle to turn by:</label><input type="text" value="90" size="10" id="deltaTheta"/></td>
+       <td class="disp"><label for="deltaTheta">Angle to turn by (deg):</label><input type="text" value="90" size="10" id="deltaTheta"/></td>
        <td><label for="numIterations"># of Iterations:</label><input type="text" value="80000" id="numIterations"/></td>
-       <td><input id="submitBtn" type="button" value="Start"/></td>
+       <td><input id="submitBtn" type="button" value="Render"/></td>
        <td><input id="zoomin" type="button" value="+" onclick="contract();"/></td>
        <td><input id="zoomout" type="button" value="-" onclick="expand();"/></td>
      </tr>
    </table>
+   <table id="animationControls">
+    <tr>
+      <td class="disp"><label for="animationStep">Animation step (deg):</label><input type="text" value=".001" size="10" id="animationStep"/></td>
+      <td><label for="animationDelay">Animation delay (ms):</label><input type="text" value="100" id="animationDelay"/></td>
+      <td><button id="playBtn"><span class="material-icons md-light">play_arrow</span></button></td>
+      <td><button id="pauseBtn"><span class="material-icons md-light">pause</span></button></td>
+    </tr>
+  </table>
    <div id="svg">
-     <svg id="svgRoot" viewBox="-320 -320 640 640" xmlns="http://www.w3.org/2000/svg">
+     <svg id="svgRoot" style="background-color: #000000;" viewBox="-320 -320 640 640" xmlns="http://www.w3.org/2000/svg">
        <defs>
          <pattern id="grid" viewBox="0,0,10,10" width="1.5625%" height="1.5625%">
            <circle cx="0" cy="0" r="1" fill="lightgrey"/>
@@ -310,9 +345,9 @@ return;
            <circle cx="10" cy="10" r="1" fill="lightgrey"/>
          </pattern>
        </defs>
-       <rect id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')"/>
-       <circle cx="0" cy="0" r="18" fill="black"/>
-       <g id="spiralPoints">
+       <rect style="display:none" id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')"/>
+       <circle style="display:none" id="origin" cx="0" cy="0" r="18" fill="black"/>
+       <g id="spiralPoints" fill="#A132EC">
        </g>
      </svg>
    </div>
