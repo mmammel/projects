@@ -5,6 +5,10 @@
       font-family: "Helvetica";
       padding-right: 5px;
     }
+
+    .disp {
+      padding-right: 25px;
+    }
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="bigConstants.js"></script>
@@ -33,6 +37,7 @@
   }
 
   function contract() {
+return;
     viewBox[2] *= .6666;
     viewBox[3] *= .6666;
     viewBox[0] += (.25 * viewBox[2] );
@@ -243,12 +248,28 @@
     });
     $('#submitBtn').on('click', function(e) {
       if( validateInputs() ) {
-        draw();
+        setInterval(function() {
+          draw();
+          var dt = parseFloat($('#deltaTheta').val());
+          $('#deltaTheta').val( '' + (dt + 0.005) );
+        }, 10 );
       }
     });
 
-    $('#svgRoot').on('click', function(e) {
+    $('#svgRoot').on('dblclick', function(e) {
       centerOnOffset( e.offsetX, e.offsetY );
+    });
+
+    $('#showGrid').on('change', function(e) {
+      if( $('#showGrid').is(":checked") ) {
+        $('#gridRect').show();
+      } else {
+        $('#gridRect').hide();
+      }
+    });
+
+    $('#backgroundColor').on('change', function(e) {
+      $('#svgRoot').css('background-color', $('#backgroundColor').val() );
     });
   });
   </script>  
@@ -265,10 +286,14 @@
    </table>
    <table>
      <tr>
-       <td><label for="deltaTheta">Angle to turn by:</label><input type="text" value="90" size="10" id="deltaTheta"/></td>
-       <td><label for="pointColor">Color of points:</label><input type="color" value="#FF0000" id="pointColor"/></td>
+       <td class="disp"><label for="pointColor">Color of points:</label><input type="color" value="#FF0000" id="pointColor"/></td>
+       <td class="disp"><label for="backgroundColor">Background color:</label><input type="color" value="#FFFFFF" id="backgroundColor"/></td>
+       <td class="disp"><label for="showGrid">Show grid?</label><input type="checkbox" checked id="showGrid"/></td>
      </tr>
+   </table>
+   <table>
      <tr>
+       <td class="disp"><label for="deltaTheta">Angle to turn by:</label><input type="text" value="90" size="10" id="deltaTheta"/></td>
        <td><label for="numIterations"># of Iterations:</label><input type="text" value="80000" id="numIterations"/></td>
        <td><input id="submitBtn" type="button" value="Start"/></td>
        <td><input id="zoomin" type="button" value="+" onclick="contract();"/></td>
