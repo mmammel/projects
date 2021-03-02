@@ -262,6 +262,11 @@
     for( let i = 0; i < selectOptions.length; i++ ) {
       $('#checkerSelect').append($("<option value='" + selectOptions[i][1]+ "'" + (selectOptions[i][2] ? " selected" : "") + ">" + selectOptions[i][0] + "</option>"));
     }
+
+    // if there is a pre-selected checked, initialize it.
+    currChecker = checkerMap[$('#checkerSelect').val()];
+    initChecker();
+
     $('#checkerSelect').on('change', function(e) {
       currChecker = checkerMap[$('#checkerSelect').val()];
       initChecker();
