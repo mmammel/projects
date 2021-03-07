@@ -1,3 +1,12 @@
+/**
+ * checkers return an object like this:
+ * 
+ * {
+ *   draw: boolean,
+ *   turn: boolean
+ * }
+ */
+
 let checkers = [
   {
     id: "simple",
@@ -9,9 +18,38 @@ let checkers = [
       counter : 0
     },
     checker : function( state, n ) {
-      var retVal = false;
+      var retVal = {
+        draw: false,
+        turn: false
+      };
       if( state.counter == state.next ) {
-        retVal = true;
+        retVal.draw = true;
+        retVal.turn = true;
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;    
+      }
+
+      return retVal;
+    }
+  },
+  {
+    id: "simpleHitch",
+    name : "Simple with a hitch",
+    description : "Just like simple but only turn if even",
+    stateObj : {
+      next: 1,
+      counter : 0
+    },
+    checker : function( state, n ) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter == state.next ) {
+        retVal.draw = true;
+        if( state.counter % 2 == 0 ) retVal.turn = true;
         state.next++;
         state.counter = 0;
       } else {
@@ -29,11 +67,15 @@ let checkers = [
       idx: 0, next: 3, piidx: 0
     },
     checker : function(state, n ) {
-      var retVal = false;
+      var retVal = {
+        draw: false,
+        turn: false
+      };
       if( state.idx == state.next ) {
         state.idx = 0;
         state.next = parseInt( piString.charAt( state.piidx++ ) );
-        retVal = true;
+        retVal.draw = true;
+        retVal.turn = true;
       } else {
         state.idx++;
       }
@@ -42,15 +84,42 @@ let checkers = [
     }
   },
   {
+    id : "multipleOf",
+    name : "Multiple of X",
+    description : "If the iteration i is a multiple of X, plot a point and turn",
+    stateObj : { },
+    checker : function(state, n, x) { 
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( n % x == 0 ) {
+        retVal.draw = true;
+        retVal.turn = true;
+      }
+      return retVal;
+    },
+    extraVars : [
+      {
+        id : "x",
+        label : "Multiple of what?"
+      }
+    ]
+  },
+  {
     id : "piSpecific",
     name : "Pi Digit = X",
     description : "Each iteration i is a digit of pi - if the digit equals X, plot a point and turn",
     stateObj : { },
     checker : function(state, n, x) {
-      var retVal = false;
+      var retVal = {
+        draw: false,
+        turn: false
+      };
       var val = parseInt( piString.charAt( n ) );
       if( val == x ) {
-        retVal = true;
+        retVal.draw = true;
+        retVal.turn = true;
       } 
   
       return retVal;
@@ -70,10 +139,14 @@ let checkers = [
     stateObj : {
     },
     checker : function(state, n) {
-      var retVal = false;
+      var retVal = {
+        draw: false,
+        turn: false
+      };
       var val = parseInt( piString.charAt( n ) );
       if( val == 2 || val == 3 || val == 5 || val == 7 ) {
-        retVal = true;
+        retVal.draw = true;
+        retVal.turn = true;
       } 
   
       return retVal;
@@ -117,20 +190,27 @@ let checkers = [
     description : "If the iteration is prime plot a point and turn",
     stateObj : {},
     checker : function(state, n) {
-      var retVal = true;
+      var retVal = {
+        draw: true,
+        turn: true
+      };
       if( n <= 1 ) {
-        retVal = false;
+        retVal.draw = false;
+        retVal.turn = false;
       } else if( n == 2 ) {
-        retVal = true;
+        retVal.draw = true;
+        retVal.turn = true;
       } else if( n % 2 == 0 ) {
-        retVal = false;
+        retVal.draw = false;
+        retVal.turn = false;
       } else {
         var s = Math.sqrt( n );
         var d = 3;
         while( d <= s ) {
           if( n % d == 0 ) {
-           retVal = false;
-           break;
+            retVal.draw = false;
+            retVal.turn = false;
+            break;
           }
           d+=2;
         }
@@ -161,12 +241,20 @@ let checkers = [
     description: "Randomly plot a point and turn, if rand() <= v (0 < v < 1)",
     stateObj : {},
     checker : function(state, n, v ) {
-      return Math.random() <= v;
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( Math.random() <= v ) {
+        retVal.draw = true;
+        retVal.turn = true;
+      }
+      return retVal;
     },
     extraVars : [
       {
         id : "v",
-        label : "Random Cutoff (0 <= x < 1)"
+        label : "Random Cutoff (0 <= v < 1)"
       }
     ]
   }
