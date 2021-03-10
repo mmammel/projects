@@ -37,19 +37,19 @@ let checkers = [
   {
     id: "simpleHitch",
     name : "Simple with a hitch",
-    description : "Just like simple but only turn if even",
+    description : "Just like simple but only turn if divisible by given X",
     stateObj : {
       next: 1,
       counter : 0
     },
-    checker : function( state, n ) {
+    checker : function( state, n, x ) {
       var retVal = {
         draw: false,
         turn: false
       };
       if( state.counter == state.next ) {
         retVal.draw = true;
-        if( state.counter % 2 == 0 ) retVal.turn = true;
+        if( state.counter % x == 0 ) retVal.turn = true;
         state.next++;
         state.counter = 0;
       } else {
@@ -57,7 +57,13 @@ let checkers = [
       }
 
       return retVal;
-    }
+    },
+    extraVars : [
+      {
+        id : "X",
+        label : "Turn if divisible by: "
+      }
+    ]
   },
   {
     id : "pi",

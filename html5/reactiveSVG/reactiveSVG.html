@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+    <style type="text/css">
+      * {
+        touch-action: manipulation;
+      }
+
+      html, body {
+        overscroll-behavior-y: contain;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div id="svg" class="col-12 col-md-10 offset-md-1 mb-2">
+          <svg id="svgRoot" style="height: 100%; background-color: #FFFFFF;" viewBox="-320 -320 640 640" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" viewBox="0,0,10,10" width="1.5625%" height="1.5625%">
+                <circle cx="0" cy="0" r="1" fill="lightgrey"/>
+                <circle cx="10" cy="0" r="1" fill="lightgrey"/>
+                <circle cx="0" cy="10" r="1" fill="lightgrey"/>
+                <circle cx="10" cy="10" r="1" fill="lightgrey"/>
+              </pattern>
+            </defs>
+            <rect id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')"/>
+            <circle id="origin" cx="0" cy="0" r="18" fill="black"/>
+            <g id="spiralPoints" fill="#A132EC">
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#svg').css({ height: $(window).innerHeight() });
+        $(window).resize(function(){
+          $('#svg').css({ height: $(window).innerHeight() });
+        });
+      });
+    </script>
+  </body>
+</html>

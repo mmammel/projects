@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      var viewBox = [ -320, -320, 640, 640 ];
+      var scale = 0.20;
+      var resizing = false;
+      var centerPoint = [10.0,10.0];
+      var pointRadius = 5.0;
+      var pointList = [
+        [0,0],
+        [10,0],
+        [-10,0],
+        [0,-10],
+        [0,10]
+      ];
+
+      function translatePoint( point ) {
+        var retVal = [0.0,0.0];
+        retVal[0] = (point[0] - viewBox[0]) / scale;
+        retVal[1] = (point[1] - viewBox[1]) / scale;
+        return retVal;
+      }
+
+      function drawPoints() {
+        const canvas = document.getElementById('canvasRoot');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#A132EC';
+
+        var p = null;
+        for( var i = 0; i < pointList.length; i++ ) {
+          p = translatePoint(pointList[i]);
+          ctx.beginPath();
+          ctx.arc( p[0], p[1], pointRadius / scale, 0, 2 * Math.PI );
+          ctx.fill();
+        }
+
+      }
+
+      function resize() {
+        $('#infoBox').html("viewBox: " + viewBox[0] + "," + viewBox[1] + "," + viewBox[2] + "," + viewBox[3] +
+                           ", screenDim: N/A by N/A" );
+        $('#canvasContainer').css({ height: ($(window).innerHeight() - $('#infoRow').height()) });
+        var cnv = document.getElementById("canvasRoot");
+        cnv.width = $('#canvasContainer').width();
+        cnv.height = $('#canvasContainer').height();
+        viewBox[0] = centerPoint[0] - (scale * cnv.width / 2.0);
+        viewBox[1] = centerPoint[1] - (scale * cnv.height / 2.0);
+        viewBox[2] = cnv.width * scale;
+        viewBox[3] = cnv.height * scale;
+        $('#infoBox').html("viewBox: " + viewBox[0] + "," + viewBox[1] + "," + viewBox[2] + "," + viewBox[3] +
+                           ", screenDim: " + cnv.width + " by " + cnv.height );
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="infoRow" class="row">
+        <div class="col-12">
+          <h3>Info</h3>
+          <h4 id="infoBox"></h4>
+        </div>
+      </div>
+      <div class="row">
+        <div id="canvasContainer" class="col-12 col-md-10 offset-md-1">
+          <canvas width="640" height="320" id="canvasRoot">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(window).resize(function(){
+          if( !resizing ) {
+            resizing = true;
+            resize();
+            drawPoints();
+            resizing = false;
+          }
+        });
+
+        resize();
+        drawPoints();
+      });
+    </script>
+  </body>
+</html>

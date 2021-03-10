@@ -31,85 +31,86 @@
   <script type="text/javascript">
 
     var viewBox = [-320, -320, 640, 640];
+
+    var scale = 1.0;
+    var resizing = false;
+    var centerPoint = [0.0,0.0];
+    var pointRadius = 5.0;
+
+    var stagingCanvas = null;
+    var connectTheDots = false;
     var coords = [0, 0];
     var color = '#A132EC';
+    var backgroundColor = '#000000';
     var currTheta = 0;
     var deltaTheta = 90;
     var animationStep = .015;
-    var animationDelay = 10;
-    var modifiers = [[2, 0], [0, 2], [-2, 0], [0, -2]];
-    var modifierIdx = 0;
+    var reverse = false;
     var primeIdx = 0;
     var primeDotMap = {};
     var animating = false;
     var animationInterval = null;
-    var dotRadius = 5;
+    var frameID = null;
 
     //var num = 0;
     var drawInterval = null;
     var iterations = 80000;
 
     function expand() {
-      viewBox[0] -= (.25 * viewBox[2]);
-      viewBox[1] -= (.25 * viewBox[3]);
-      viewBox[2] *= 1.5;
-      viewBox[3] *= 1.5;
+      scale *= 2;
       resize();
+      if (!animating && validateInputs()) {
+          draw();
+      }
     }
 
     function contract() {
-      viewBox[2] *= .6666;
-      viewBox[3] *= .6666;
-      viewBox[0] += (.25 * viewBox[2]);
-      viewBox[1] += (.25 * viewBox[3]);
+      scale *= 0.5;
       resize();
+      if (!animating && validateInputs()) {
+          draw();
+      }
     }
 
     function centerOnOffset(offx, offy) {
-      var w = $('#svgRoot').width();
-      var h = $('#svgRoot').height();
-      viewBox[0] += (((offx - (w / 2)) / w) * viewBox[2]);
-      viewBox[1] += (((offy - (h / 2)) / h) * viewBox[3]);
+      var cnv = document.getElementById("canvasRoot");
+      var newX = ((offx * viewBox[2]) / cnv.width) + viewBox[0];
+      var newY = ((offy * viewBox[3]) / cnv.height) + viewBox[1];
+      centerPoint = [ newX, newY ];
+      // resize();
+      // if( !animating && validateInputs() ) {
+      //   draw();
+      // }
       contract();
     }
 
     function resize() {
-      document.getElementById("svgRoot").setAttribute("viewBox", '' + viewBox[0] + ' ' + viewBox[1] + ' ' + viewBox[2] + ' ' + viewBox[3]);
-      var w = 1000 / viewBox[2];
-      var h = 1000 / viewBox[3];
-      document.getElementById("grid").setAttribute("width", '' + w + '%');
-      document.getElementById("grid").setAttribute("height", '' + h + '%');
-      document.getElementById("gridRect").setAttribute("x", '' + viewBox[0]);
-      document.getElementById("gridRect").setAttribute("y", '' + viewBox[1]);
-      document.getElementById("gridRect").setAttribute("width", '' + viewBox[2]);
-      document.getElementById("gridRect").setAttribute("height", '' + viewBox[3]);
+      $('#canvasContainer').css({ height: ($(window).innerHeight() - $('#controlPanel').height()) });
+      var cnv = document.getElementById("canvasRoot");
+      if( cnv.width != $('#canvasContainer').width()) cnv.width = $('#canvasContainer').width();
+      cnv.height = $('#canvasContainer').height();
+      viewBox[0] = centerPoint[0] - (scale * cnv.width / 2.0);
+      viewBox[1] = centerPoint[1] - (scale * cnv.height / 2.0);
+      viewBox[2] = cnv.width * scale;
+      viewBox[3] = cnv.height * scale;
+    }
+
+    function initCanvas() {
+      var canvas = document.getElementById('canvasRoot');
+      stagingCanvas = document.createElement('canvas');
+      stagingCanvas.width = canvas.width;
+      stagingCanvas.height = canvas.height;
     }
 
     function resetDisplay() {
-      $('#spiralPoints').empty();
+      initCanvas();
       coords = [0, 0];
-      modifiers = [[2, 0], [0, 2], [-2, 0], [0, -2]];
-      modifierIdx = 0;
       currTheta = 0;
       primeIdx = 0;
-      if (!animating) {
-        viewBox[0] = -320;
-        viewBox[1] = -320;
-        viewBox[2] = 640;
-        viewBox[3] = 640;
-        resize();
-      }
     }
 
     function multipleOf(n, m) {
       return n % m == 0;
-    }
-
-    function makeSVG(tag, attrs) {
-      var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-      for (var k in attrs)
-        el.setAttribute(k, attrs[k]);
-      return el;
     }
 
     function validateInputs() {
@@ -155,6 +156,13 @@
       return retVal;
     }
 
+    function translatePoint( point ) {
+      var retVal = [0.0,0.0];
+      retVal[0] = (point[0] - viewBox[0]) / scale;
+      retVal[1] = (point[1] - viewBox[1]) / scale;
+      return retVal;
+    }
+
     function draw() {
       resetDisplay();
       color = $('#pointColor').val();
@@ -171,64 +179,95 @@
         }
       }
 
+      var ctx = stagingCanvas.getContext('2d');
+      ctx.fillStyle = backgroundColor;
+      ctx.beginPath();
+      ctx.rect(0,0,stagingCanvas.width,stagingCanvas.height);
+      ctx.fill();
+      ctx.fillStyle = color;
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      var prevPoint = null;
+
       for (var i = 1; i < iterations; i++) {
-        drawInner(stateObj, i, extraVarValues[0], extraVarValues[1]);
+        prevPoint = drawInner(ctx, stateObj, i, extraVarValues[0], extraVarValues[1], prevPoint);
       }
+
+      if( connectTheDots ) {
+        //ctx.stroke();
+      } else {
+        ctx.fill();
+      }
+
+      var canvas = document.getElementById('canvasRoot');
+      var context = canvas.getContext('2d');
+      context.fillStyle = backgroundColor;
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.drawImage(stagingCanvas,0,0);
     }
 
-    function drawInner(state, i, j, k) {
+    function drawInner(ctx, state, i, j, k, prev) {
+      var retVal = prev;
+
       var checkResult = currChecker.checker(state, i, j, k);
       if (checkResult.draw) {
 
-        // if( coords[0] < viewBox[0] ||
-        //     coords[0] > (viewBox[0] + viewBox[2]) ||
-        //     coords[1] < viewBox[1] ||
-        //     coords[1] > (viewBox[1] + viewBox[3]) ) {
-        //   expand();
-        // }
+        p = translatePoint(coords);
+        
+        retVal = p;
 
-        var ele = makeSVG("circle", { cx: '' + coords[0], cy: '' + coords[1], id: '' + i, r: dotRadius });
-        var sp = document.getElementById("spiralPoints");
-        sp.appendChild(ele);
+        if( connectTheDots ) {
+          // we are at the last point. draw a line.
+          ctx.beginPath();
+          if( prev != null ) {
+            ctx.moveTo( prev[0],prev[1]);
+            ctx.lineTo( p[0],p[1]);
+            ctx.stroke();
+            ctx.beginPath();
+          }
+          ctx.arc( p[0], p[1], pointRadius / scale, 0, 2 * Math.PI );
+          ctx.stroke();
+        } else {
+          ctx.moveTo(p[0],p[1]);
+          ctx.arc( p[0], p[1], pointRadius / scale, 0, 2 * Math.PI );
+        }
       }
 
       if( checkResult.turn ) {
-        // uncomment to go back to simple modifier
-        //modifierIdx++;
-        //if( modifierIdx == 4 ) modifierIdx = 0;
         currTheta += deltaTheta;
         if (currTheta > (2.0 * Math.PI)) {
           currTheta -= (2.0 * Math.PI);
         }
       }
 
-      // uncomment to go back to simple modifier
-      //var mod = modifiers[modifierIdx];
-      //coords[0] += mod[0];
-      //coords[1] += mod[1];
       coords[0] += (2.0 * Math.cos(currTheta));
       coords[1] += (2.0 * Math.sin(currTheta));
+
+      return retVal;
     }
 
-    function startAnimation(reverse) {
-      var mult = reverse ? -1.0 : 1.0;
+    function startAnimation() {
       animating = true;
-      animationInterval = setInterval(function () {
-        draw();
-        var dt = parseFloat($('#deltaTheta').val());
-        var newVal = dt + (mult * animationStep);
-        if (newVal > 360.0) {
-          newVal = 0.0;
-        } else if (newVal < 0.0) {
-          newVal = 360.0;
-        }
+      animationInner();
+    }
 
-        $('#deltaTheta').val('' + newVal);
-      }, animationDelay);
+    function animationInner() {
+      frameID = window.requestAnimationFrame(animationInner);
+      var mult = reverse ? -1.0 : 1.0;
+      draw();
+      var dt = parseFloat($('#deltaTheta').val());
+      var newVal = dt + (mult * animationStep);
+      if (newVal > 360.0) {
+        newVal = 0.0;
+      } else if (newVal < 0.0) {
+        newVal = 360.0;
+      }
+
+      $('#deltaTheta').val('' + newVal);
     }
 
     function stopAnimation() {
-      clearInterval(animationInterval);
+      window.cancelAnimationFrame(frameID);
       animating = false;
     }
 
@@ -297,14 +336,16 @@
       $('#playBtn').on('click', function (e) {
         if (validateInputs()) {
           stopAnimation();
-          startAnimation(false);
+          reverse = false;
+          startAnimation();
         }
       });
 
       $('#reverseBtn').on('click', function (e) {
         if (validateInputs()) {
           stopAnimation();
-          startAnimation(true);
+          reverse = true;
+          startAnimation();
         }
       });
 
@@ -312,49 +353,37 @@
         stopAnimation();
       });
 
-      $('#svgRoot').on('dblclick', function (e) {
+      $('#canvasRoot').on('click', function (e) {
         centerOnOffset(e.offsetX, e.offsetY);
       });
 
-      $('#showGrid').on('change', function (e) {
-        if ($('#showGrid').is(":checked")) {
-          $('#gridRect').show();
+      $('#connectDots').on('change', function (e) {
+        if ($('#connectDots').is(":checked")) {
+          connectTheDots = true;
         } else {
-          $('#gridRect').hide();
-        }
-      });
-
-      $('#showOrigin').on('change', function (e) {
-        if ($('#showOrigin').is(":checked")) {
-          $('#origin').show();
-        } else {
-          $('#origin').hide();
+          connectTheDots = false;
         }
       });
 
       $('#pointColor').on('change', function (e) {
-        $('#spiralPoints').attr("fill", $('#pointColor').val());
+        color = $('#pointColor').val();
       });
 
       $('#backgroundColor').on('change', function (e) {
-        $('#svgRoot').css('background-color', $('#backgroundColor').val());
+        backgroundColor = $('#backgroundColor').val();
       });
 
       $('#dotRadius').on('change', function(e) {
-        dotRadius = $('#dotRadius').val();
+        pointRadius = parseFloat($('#dotRadius').val());
       });
 
       $('#animationStep').on('change', function (e) {
         animationStep = parseFloat($('#animationStep').val());
       });
 
-      $('#animationDelay').on('change', function (e) {
-        animationDelay = parseInt($('#animationDelay').val());
-      });
-
-      $('#svg').css({ height: ($(window).innerHeight() - $('#controlPanel').height()) });
+      resize();
       $(window).resize(function () {
-        $('#svg').css({ height: ($(window).innerHeight() - $('#controlPanel').height()) });
+        resize();
       });
     });
   </script>
@@ -377,8 +406,7 @@
         <td class="disp"><label for="backgroundColor">Background color:</label><input type="color" value="#000000"
             id="backgroundColor" /></td>
         <td class="disp"><label for="dotRadius">Dot radius:</label><input type="text" id="dotRadius" value="5" /></td>
-        <td class="disp"><label for="showGrid">Show grid?</label><input type="checkbox" id="showGrid" /></td>
-        <td class="disp"><label for="showOrigin">Show origin?</label><input type="checkbox" id="showOrigin" /></td>
+        <td class="disp"><label for="connectDots">Wireframe?</label><input type="checkbox" id="connectDots" /></td>
       </tr>
     </table>
     <table>
@@ -396,30 +424,16 @@
       <tr>
         <td class="disp"><label for="animationStep">Animation step (deg):</label><input type="text" value=".015"
             size="10" id="animationStep" /></td>
-        <td><label for="animationDelay">Animation delay (ms):</label><input type="text" value="10"
-            id="animationDelay" /></td>
         <td><button id="reverseBtn"><span class="material-icons md-light btnFlip">play_arrow</span></button></td>
         <td><button id="pauseBtn"><span class="material-icons md-light">stop</span></button></td>
         <td><button id="playBtn"><span class="material-icons md-light">play_arrow</span></button></td>
       </tr>
     </table>
   </div>
-  <div id="svg">
-    <svg id="svgRoot" style="height: 100%; width: 100%; background-color: #000000;" viewBox="-320 -320 640 640"
-      xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="grid" viewBox="0,0,10,10" width="1.5625%" height="1.5625%">
-          <circle cx="0" cy="0" r="1" fill="lightgrey" />
-          <circle cx="10" cy="0" r="1" fill="lightgrey" />
-          <circle cx="0" cy="10" r="1" fill="lightgrey" />
-          <circle cx="10" cy="10" r="1" fill="lightgrey" />
-        </pattern>
-      </defs>
-      <rect style="display:none" id="gridRect" x="-320" y="-320" width="640" height="640" fill="url('#grid')" />
-      <circle style="display:none" id="origin" cx="0" cy="0" r="18" fill="black" />
-      <g id="spiralPoints" fill="#A132EC">
-      </g>
-    </svg>
+  <div id="canvasContainer">
+    <canvas width="640" height="320" id="canvasRoot">
+      
+    </canvas>
   </div>
 </body>
 
