@@ -122,13 +122,13 @@
         retVal = false;
         errorMessage += "Select a checker!";
       } else {
-        if (! /[0-9]+/.test($('#numIterations').val())) {
+        if (! /^[0-9]+$/.test($('#numIterations').val())) {
           retVal = false;
           errorMessage += '# of Iterations must be numeric (more the merrier)\n';
         }
 
 
-        if (! /[0-9]+/.test($('#deltaTheta').val())) {
+        if (! /^[0-9]+(?:\.[0-9]+)?|\.[0-9]+$/.test($('#deltaTheta').val())) {
           retVal = false;
           errorMessage += 'Angle must be a number between 0 and 360 inclusive';
         } else {
@@ -136,6 +136,28 @@
           if (dtheta < 0.0 || dtheta > 360.0) {
             retVal = false;
             errorMessage += 'Angle must be between 0 and 360 inclusive';
+          }
+        }
+
+        if (! /^[0-9]+(?:\.[0-9]+)?|\.[0-9]+$/.test($('#turnIncrease').val())) {
+          retVal = false;
+          errorMessage += 'Turn increase must be a number';
+        } else {
+          var turnVal = parseFloat($('#turnIncrease').val());
+          if (turnVal < 0.0 || turnVal > 360.0) {
+            retVal = false;
+            errorMessage += 'Turn increase must be between 0 and 360 inclusive';
+          }
+        }
+
+        if (! /^[0-9]+(?:\.[0-9]+)?|\.[0-9]+$/.test($('#animationStepMultiplier').val())) {
+          retVal = false;
+          errorMessage += 'Step multiplier must be a (smallish) number';
+        } else {
+          var mult = parseFloat($('#animationStepMultiplier').val());
+          if (mult < 0.0 || mult > 2.0 ) {
+            //retVal = false;
+            alert('You can continue, but multiplier should be small - like 1.001');
           }
         }
 
@@ -263,7 +285,6 @@
       draw();
       var dt = parseFloat($('#deltaTheta').val());
       animationStepMultiplier = parseFloat($('#animationStepMultiplier').val());
-      turnIncrease = parseFloat($('#turnIncrease').val());
       if( animationStepMultiplier != 1.0 ) {
         animationStep *= animationStepMultiplier;
         $('#animationStep').val(''+animationStep);
@@ -396,6 +417,11 @@
 
       $('#animationStepMultipler').on('change', function (e) {
         animationStepMultiplier = parseFloat($('#animationStepMultiplier').val());
+      });
+
+      $('#turnIncrease').on('change', function(e){
+        var temp = parseFloat($('#turnIncrease').val());
+        turnIncrease = temp * (Math.PI / 180.0);
       });
 
       resize();
