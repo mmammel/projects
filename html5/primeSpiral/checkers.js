@@ -6,6 +6,28 @@
  *   turn: boolean
  * }
  */
+function isPrime( n ) {
+  var retVal = true;
+  if( n <= 1 ) {
+    retVal = false;
+  } else if( n == 2 ) {
+    retVal = true;
+  } else if( n % 2 == 0 ) {
+    retVal = false;
+  } else {
+    var s = Math.sqrt( n );
+    var d = 3;
+    while( d <= s ) {
+      if( n % d == 0 ) {
+        retVal = false;
+        break;
+      }
+      d+=2;
+    }
+  }
+  return retVal;
+}
+
 
 let checkers = [
   {
@@ -64,6 +86,31 @@ let checkers = [
         label : "Turn if divisible by: "
       }
     ]
+  },
+  {
+    id: "simplePrimes",
+    name : "Simple with primes",
+    description : "Iterate N times, if N is the next prime, draw and turn",
+    stateObj : {
+      next: 2,
+      counter : 0
+    },
+    checker : function( state, n, x ) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter == state.next ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        while( !isPrime(++state.next) ){};
+        state.counter = 0;
+      } else {
+        state.counter++;    
+      }
+
+      return retVal;
+    }
   },
   {
     id : "pi",
@@ -200,47 +247,35 @@ let checkers = [
         draw: true,
         turn: true
       };
-      if( n <= 1 ) {
+      if( !isPrime(n) ) {
         retVal.draw = false;
         retVal.turn = false;
-      } else if( n == 2 ) {
-        retVal.draw = true;
-        retVal.turn = true;
-      } else if( n % 2 == 0 ) {
-        retVal.draw = false;
-        retVal.turn = false;
-      } else {
-        var s = Math.sqrt( n );
-        var d = 3;
-        while( d <= s ) {
-          if( n % d == 0 ) {
-            retVal.draw = false;
-            retVal.turn = false;
-            break;
-          }
-          d+=2;
-        }
       }
       return retVal;
     }
   },
-  // {
-  //   id: "fib",
-  //   name: "Fibonacci",
-  //   description: "If the iteration is a fibonacci number, plot a point and turn",
-  //   stateObj : {num0: 0, num1: 1, val: 1},
-  //   checker : function(state, n) {
-  //     var retVal = false;
-  //     if( n == state.val ) {
-  //       state.num0 = state.num1;
-  //       state.num1 = state.val;
-  //       state.val = state.num0 + state.num1;
-  //       retVal = true;
-  //     }
-  
-  //     return retVal;
-  //   }
-  // },
+  {
+    id: "fib",
+    name: "Fibonacci",
+    description: "If the iteration is a fibonacci number, plot a point and turn",
+    stateObj : {num0: 0, num1: 1, val: 1},
+    checker : function(state, n) {
+      var retVal = {
+          draw: false,
+          turn: false
+      };
+      if( state.val == (state.num0 + state.num1) ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.num0 = state.num1;
+        state.num1 = state.val;
+        state.val = 0;
+      }
+      state.val++;
+
+      return retVal;
+    }
+  },
   {
     id: "random",
     name: "Random",

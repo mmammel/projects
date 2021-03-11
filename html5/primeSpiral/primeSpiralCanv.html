@@ -51,6 +51,8 @@
     var animating = false;
     var animationInterval = null;
     var frameID = null;
+    var animationStepMultiplier = 1.0;
+    var turnIncrease = 0.0;
 
     //var num = 0;
     var drawInterval = null;
@@ -235,6 +237,10 @@
 
       if( checkResult.turn ) {
         currTheta += deltaTheta;
+        if( turnIncrease != 0 ) {
+          deltaTheta += turnIncrease;
+          //$('#deltaTheta').val('' + deltaTheta);
+        }
         if (currTheta > (2.0 * Math.PI)) {
           currTheta -= (2.0 * Math.PI);
         }
@@ -256,6 +262,13 @@
       var mult = reverse ? -1.0 : 1.0;
       draw();
       var dt = parseFloat($('#deltaTheta').val());
+      animationStepMultiplier = parseFloat($('#animationStepMultiplier').val());
+      turnIncrease = parseFloat($('#turnIncrease').val());
+      if( animationStepMultiplier != 1.0 ) {
+        animationStep *= animationStepMultiplier;
+        $('#animationStep').val(''+animationStep);
+      }
+      if( animationStep >= 360.0 ) animationStep = 0.015;
       var newVal = dt + (mult * animationStep);
       if (newVal > 360.0) {
         newVal = 0.0;
@@ -381,6 +394,10 @@
         animationStep = parseFloat($('#animationStep').val());
       });
 
+      $('#animationStepMultipler').on('change', function (e) {
+        animationStepMultiplier = parseFloat($('#animationStepMultiplier').val());
+      });
+
       resize();
       $(window).resize(function () {
         resize();
@@ -424,6 +441,10 @@
       <tr>
         <td class="disp"><label for="animationStep">Animation step (deg):</label><input type="text" value=".015"
             size="10" id="animationStep" /></td>
+        <td class="disp"><label for="animationStepMultiplier">Step multiplier:</label><input type="text" value="1.0"
+          size="10" id="animationStepMultiplier" /></td>
+        <td class="disp"><label for="turnIncrease">Turn increase:</label><input type="text" value="0.0"
+          size="10" id="turnIncrease" /></td>
         <td><button id="reverseBtn"><span class="material-icons md-light btnFlip">play_arrow</span></button></td>
         <td><button id="pauseBtn"><span class="material-icons md-light">stop</span></button></td>
         <td><button id="playBtn"><span class="material-icons md-light">play_arrow</span></button></td>
