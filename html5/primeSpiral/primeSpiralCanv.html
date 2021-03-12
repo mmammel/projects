@@ -53,37 +53,75 @@
     var frameID = null;
     var animationStepMultiplier = 1.0;
     var turnIncrease = 0.0;
+    var zooming = false;
 
     //var num = 0;
     var drawInterval = null;
     var iterations = 80000;
 
     function expand() {
-      scale *= 2;
-      resize();
       if (!animating && validateInputs()) {
+          scale *= 2.0;
+          resize();
           draw();
+      } else if( !zooming ) {
+        zooming = true;
+        var ds = (scale - (2 * scale)) / 100.0;
+        new Promise( function( resolve, reject ) {
+          centerOnOffsetInner( resolve, 100, 0, 0, ds );
+        }).then(function(result) {
+          zooming = false;
+        });
       }
     }
 
     function contract() {
-      scale *= 0.5;
-      resize();
       if (!animating && validateInputs()) {
-          draw();
+        scale *= 0.5;
+        resize();
+        draw();
+      } else if( !zooming ) {
+        zooming = true;
+        var ds = (scale - (.5 * scale)) / 100.0;
+        new Promise( function( resolve, reject ) {
+          centerOnOffsetInner( resolve, 100, 0, 0, ds );
+        }).then(function(result) {
+          zooming = false;
+        });
       }
     }
 
     function centerOnOffset(offx, offy) {
-      var cnv = document.getElementById("canvasRoot");
-      var newX = ((offx * viewBox[2]) / cnv.width) + viewBox[0];
-      var newY = ((offy * viewBox[3]) / cnv.height) + viewBox[1];
-      centerPoint = [ newX, newY ];
-      // resize();
-      // if( !animating && validateInputs() ) {
-      //   draw();
-      // }
-      contract();
+      if( !zooming ) {
+        zooming = true;
+        var cnv = document.getElementById("canvasRoot");
+        var newX = ((offx * viewBox[2]) / cnv.width) + viewBox[0];
+        var newY = ((offy * viewBox[3]) / cnv.height) + viewBox[1];
+
+        var dx = (newX - centerPoint[0]) / 100.0;
+        var dy = (newY - centerPoint[1]) / 100.0;
+        var ds = (scale - (.5 * scale)) / 100.0;
+
+        new Promise( function( resolve, reject ) {
+          centerOnOffsetInner( resolve, 100, dx, dy, ds );
+        }).then(function(result) {
+          zooming = false;
+        });
+      }
+    }
+
+    function centerOnOffsetInner( resolve, count, xDec, yDec, scaleDec ) {
+      if( count > 0 ) {
+        centerPoint[0] += xDec;
+        centerPoint[1] += yDec;
+        scale -= scaleDec;
+        resize();
+        setTimeout( function () {
+          centerOnOffsetInner( resolve, count - 1, xDec, yDec, scaleDec );
+        }, 7 );
+      } else {
+        resolve("Done");
+      }
     }
 
     function resize() {
