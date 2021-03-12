@@ -59,6 +59,29 @@
     var drawInterval = null;
     var iterations = 80000;
 
+    // for touching/dragging
+    const touchContext = {
+      prevTime : (new Date()).getTime(),
+      prevX : 0,
+      prevY : 0,
+      lastRate : 0.0,
+      dragging : false
+    };
+
+    var processTouch = () => {
+      var cnv = document.getElementById("canvasRoot");
+      var dx = ((touchContext.currX * viewBox[2]) / cnv.width) -
+               ((touchContext.prevX * viewBox[2]) / cnv.width);
+      var dy = ((touchContext.currY * viewBox[3]) / cnv.width) -
+               ((touchContext.prevY * viewBox[3]) / cnv.width);
+      touchContext.prevX = touchContext.currX;
+      touchContext.prevY = touchContext.currY;
+      var newX = centerPoint[0] - dx;
+      var newY = centerPoint[1] - dy;
+      centerPoint = [ newX, newY ];
+      resize();
+    }
+
     function expand() {
       if (!animating && validateInputs()) {
           scale *= 2.0;
@@ -164,7 +187,6 @@
           retVal = false;
           errorMessage += '# of Iterations must be numeric (more the merrier)\n';
         }
-
 
         if (! /^[0-9]+(?:\.[0-9]+)?|\.[0-9]+$/.test($('#deltaTheta').val())) {
           retVal = false;
@@ -425,7 +447,7 @@
         stopAnimation();
       });
 
-      $('#canvasRoot').on('click', function (e) {
+      $('#canvasRoot').on('dblclick', function (e) {
         centerOnOffset(e.offsetX, e.offsetY);
       });
 
@@ -461,6 +483,60 @@
         var temp = parseFloat($('#turnIncrease').val());
         turnIncrease = temp * (Math.PI / 180.0);
       });
+
+      $('#canvasRoot').on( "touchstart", function(event) {
+         event.preventDefault();
+         touchContext.prevX = event.originalEvent.touches[0].pageX;
+         touchContext.prevY = event.originalEvent.touches[0].pageY;
+         var d = new Date();
+         touchContext.prevTime = d.getTime();
+         touchContext.dragging = true;
+         touchContext.lastRate = 0.0;
+        }).on("touchend", function(event) {
+         event.preventDefault();
+         touchContext.currX = event.originalEvent.changedTouches[0].pageX;
+         touchContext.currY = event.originalEvent.changedTouches[0].pageY;
+         var d = new Date();
+         touchContext.currTime = d.getTime();
+         touchContext.dragging = false;
+         //processTouch();
+        }).on( "mousedown", function(event) {
+         touchContext.prevX = event.pageX;
+         touchContext.prevY = event.pageY;
+         var d = new Date();
+         touchContext.prevTime = d.getTime();
+         touchContext.dragging = true;
+         touchContext.lastRate = 0.0;
+        }).on("mouseup", function(event) {
+         touchContext.currX = event.pageX;
+         touchContext.currY = event.pageY;
+         var d = new Date();
+         touchContext.currTime = d.getTime();
+         touchContext.dragging = false;
+         //processTouch();
+        }).on("mousemove", function(event) {
+         if( touchContext.dragging ) {
+           event.preventDefault();
+           touchContext.currX = event.pageX;
+           touchContext.currY = event.pageY;
+           var d = new Date();
+           touchContext.currTime = d.getTime();
+           processTouch();
+         }
+        }).on("touchmove", function(event) {
+         if( touchContext.dragging ) {
+           event.preventDefault();
+           touchContext.currX = event.originalEvent.changedTouches[0].pageX;
+           touchContext.currY = event.originalEvent.changedTouches[0].pageY;
+           var d = new Date();
+           touchContext.currTime = d.getTime();
+           processTouch();
+         }
+        }).on("mouseout", function(event) {
+          if( touchContext.dragging ) {
+            touchContext.dragging = false;
+          }
+        });
 
       resize();
       $(window).resize(function () {
