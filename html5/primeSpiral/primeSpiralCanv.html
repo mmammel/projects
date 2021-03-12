@@ -41,6 +41,7 @@
     var connectTheDots = false;
     var coords = [0, 0];
     var color = '#A132EC';
+    var secondaryColor = '#FFFFFF';
     var backgroundColor = '#000000';
     var currTheta = 0;
     var deltaTheta = 90;
@@ -54,7 +55,10 @@
     var animationStepMultiplier = 1.0;
     var turnIncrease = 0.0;
     var zooming = false;
+    var useGradient = false;
 
+    // experimental
+    var gradient = null;
     //var num = 0;
     var drawInterval = null;
     var iterations = 80000;
@@ -80,14 +84,11 @@
       var newY = centerPoint[1] - dy;
       centerPoint = [ newX, newY ];
       resize();
+      if ( !animating ) draw();
     }
 
     function expand() {
-      if (!animating && validateInputs()) {
-          scale *= 2.0;
-          resize();
-          draw();
-      } else if( !zooming ) {
+      if( !zooming ) {
         zooming = true;
         var ds = (scale - (2 * scale)) / 100.0;
         new Promise( function( resolve, reject ) {
@@ -99,11 +100,7 @@
     }
 
     function contract() {
-      if (!animating && validateInputs()) {
-        scale *= 0.5;
-        resize();
-        draw();
-      } else if( !zooming ) {
+      if( !zooming ) {
         zooming = true;
         var ds = (scale - (.5 * scale)) / 100.0;
         new Promise( function( resolve, reject ) {
@@ -139,6 +136,7 @@
         centerPoint[1] += yDec;
         scale -= scaleDec;
         resize();
+        if( !animating ) draw(); 
         setTimeout( function () {
           centerOnOffsetInner( resolve, count - 1, xDec, yDec, scaleDec );
         }, 7 );
@@ -264,12 +262,20 @@
       }
 
       var ctx = stagingCanvas.getContext('2d');
+      if( useGradient ) {
+        var ctr = translatePoint([0.0,0.0]);
+        gradient = ctx.createRadialGradient(ctr[0], ctr[1], 0,
+                                 ctr[0], ctr[1], Math.max(stagingCanvas.width,stagingCanvas.height) / 2.0);
+        gradient.addColorStop(0,secondaryColor);
+        gradient.addColorStop(.5,color);
+        gradient.addColorStop(1,backgroundColor);
+      }
       ctx.fillStyle = backgroundColor;
       ctx.beginPath();
       ctx.rect(0,0,stagingCanvas.width,stagingCanvas.height);
       ctx.fill();
-      ctx.fillStyle = color;
-      ctx.strokeStyle = color;
+      ctx.fillStyle = useGradient ? gradient : color;
+      ctx.strokeStyle = useGradient ? gradient : color;
       ctx.beginPath();
       var prevPoint = null;
 
@@ -297,7 +303,7 @@
       if (checkResult.draw) {
 
         p = translatePoint(coords);
-        
+
         retVal = p;
 
         if( connectTheDots ) {
@@ -459,12 +465,26 @@
         }
       });
 
+      $('#useGradient').on('change', function (e) {
+        if ($('#useGradient').is(":checked")) {
+          useGradient = true;
+          $('#secondaryColorHolder').show();
+        } else {
+          useGradient = false;
+          $('#secondaryColorHolder').hide();
+        }
+      });
+
       $('#pointColor').on('change', function (e) {
         color = $('#pointColor').val();
       });
 
       $('#backgroundColor').on('change', function (e) {
         backgroundColor = $('#backgroundColor').val();
+      });
+
+      $('#secondaryColor').on('change', function (e) {
+        secondaryColor = $('#secondaryColor').val();
       });
 
       $('#dotRadius').on('change', function(e) {
@@ -560,9 +580,12 @@
       <tr>
         <td class="disp"><label for="pointColor">Color of points:</label><input type="color" value="#A132EC"
             id="pointColor" /></td>
+        <td class="disp"><label for="useGradient">Use Gradient?</label><input type="checkbox" id="useGradient" /></td>
+        <td class="disp" id="secondaryColorHolder" style="display:none;"><label for="secondaryColor">Secondary color:</label><input type="color" value="#FFFFFF"
+          id="secondaryColor" /></td>
         <td class="disp"><label for="backgroundColor">Background color:</label><input type="color" value="#000000"
-            id="backgroundColor" /></td>
-        <td class="disp"><label for="dotRadius">Dot radius:</label><input type="text" id="dotRadius" value="5" /></td>
+          id="backgroundColor" /></td>
+        <td class="disp"><label for="dotRadius">Dot radius:</label><input type="text" id="dotRadius" value="5" size=6 /></td>
         <td class="disp"><label for="connectDots">Wireframe?</label><input type="checkbox" id="connectDots" /></td>
       </tr>
     </table>
