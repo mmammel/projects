@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <style type="text/css">
     label {
@@ -10,6 +13,24 @@
 
     .disp {
       padding-right: 25px;
+    }
+
+    .smallcolorpick {
+      width: 35px !important;
+    }
+
+    .smalltextinput {
+      max-width: 60px;
+    }
+
+    .mediuminput {
+      width: 100px !important;
+    }
+
+    .buttonicon {
+      font-size: .875rem !important;
+      line-height: 1.5;
+      vertical-align: bottom;
     }
 
     .btnFlip {
@@ -25,7 +46,164 @@
       overscroll-behavior-y: contain;
     }
   </style>
+</head>
+<body>
+  <div id="controlPanel" class="container-fluid">
+    <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="checkerDescriptionTitle"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="checkerDescription"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3" id="selectHolder">
+        <div class="input-group input-group-sm mb-2 mt-3">
+          <div class="input-group-prepend">
+            <button id="submitBtn" class="btn btn-secondary" type="button">Render</button>
+          </div>
+          <select class="custom-select" id="checkerSelect">
+          </select>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#descriptionModal"><i class="material-icons buttonicon">
+              info
+            </i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="dynamicInputs" class="col-md-3">
+      </div>
+    </div>
+    <div class="row" id="viewOptions">
+      <div class="col-md">
+        <div class="btn-toolbar" role="toolbar">
+          <div class="input-group input-group-sm mb-2 mr-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text material-icons">
+                adjust
+                </span>
+            </div>
+            <input value="5" type="text" id="dotRadius" class="form-control smalltextinput" placeholder="Dot Radius" aria-label="Dot Radius" aria-describedby="basic-addon1">
+          </div>
+          <div class="btn-group btn-group-sm mb-2 mr-1" role="group" aria-label="First group">
+            <button type="button" id="connectDots" class="btn btn-secondary btn-sm">
+              <i class="material-icons buttonicon" id="connectDotsIcon">
+                scatter_plot
+              </i>
+            </button>
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text material-icons">
+                format_color_fill
+              </span>
+            </div>
+            <input value="#000000" type="color" id="backgroundColor" class="form-control smallcolorpick" placeholder="Background Color" aria-label="Background Color" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">  
+            <div class="input-group-prepend">
+              <span class="input-group-text material-icons">
+                color_lens
+                </span>
+            </div>
+            <input value="#D10000" type="color" id="pointColor1" class="form-control smallcolorpick pointColor" placeholder="Point Color #1" aria-label="Point Color #1" aria-describedby="basic-addon1">
+            <div class="input-group-append">
+              <button type="button" id="removeColor" class="btn btn-sm btn-secondary"><i class="material-icons buttonicon">
+                remove_circle
+              </i></button>
+              <button type="button" id="addColor" class="btn btn-sm btn-secondary"><i class="material-icons buttonicon">
+                add_circle
+              </i></button>
+            </div>
+          </div>
+          <div class="btn-group btn-group-sm mb-2 mr-1" role="group" aria-label="First group">
+            <button type="button" id="reverseBtn" class="btn btn-secondary"><i class="material-icons buttonicon btnFlip" id="connectDotsIcon">
+              play_arrow
+            </i></button>
+            <button type="button" id="pauseBtn" class="btn btn-secondary"><i class="material-icons buttonicon" id="connectDotsIcon">
+              stop
+            </i></button>
+            <button type="button" id="playBtn" class="btn btn-secondary"><i class="material-icons buttonicon" id="connectDotsIcon">
+              play_arrow
+            </i></button>
+          </div>
+          <div class="btn-group btn-group-sm mb-2" role="group" aria-label="First group">
+            <button type="button" id="zoomout" class="btn btn-secondary"><i class="material-icons buttonicon" id="connectDotsIcon">
+              zoom_out
+            </i></button>
+            <button type="button" id="zoomin" class="btn btn-secondary"><i class="material-icons buttonicon" id="connectDotsIcon">
+              zoom_in
+            </i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <div class="btn-toolbar" role="toolbar">
+          <div class="input-group input-group-sm mb-2 mr-1">  
+            <div class="input-group-prepend">
+              <span class="input-group-text material-icons">
+                tag
+                </span>
+            </div>
+            <input value="80000" type="text" id="numIterations" class="mediuminput form-control" placeholder="# Iterations" aria-label="# Iterations" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">  
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                &#952;
+                </span>
+            </div>
+            <input value="90" type="text" id="deltaTheta" class="mediuminput form-control" placeholder="Turn Angle" aria-label="Turn Angle" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">  
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                &#916;&#952;
+                </span>
+            </div>
+            <input value=".015" type="text" id="animationStep" class="mediuminput form-control" placeholder="Animation Step" aria-label="Animation Step" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">  
+            <div class="input-group-prepend">
+              <span class="input-group-text material-icons">
+                insights
+                </span>
+            </div>
+            <input value="0.0" type="text" id="turnIncrease" class="mediuminput form-control" placeholder="Turn Increase" aria-label="Turn Increase" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row" id="canvasContainer">
+      <div class="col-md-12">
+        <canvas width="640" height="320" id="canvasRoot"></canvas>
+      </div>
+    </div>
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
   <script type="text/javascript" src="bigConstants.js"></script>
   <script type="text/javascript" src="checkers.js"></script>
   <script type="text/javascript">
@@ -40,7 +218,7 @@
     var stagingCanvas = null;
     var connectTheDots = false;
     var coords = [0, 0];
-    var color = '#A132EC';
+    var color = '#D10000';
     var secondaryColor = '#FFFFFF';
     var backgroundColor = '#000000';
     var currTheta = 0;
@@ -52,10 +230,11 @@
     var animating = false;
     var animationInterval = null;
     var frameID = null;
-    var animationStepMultiplier = 1.0;
     var turnIncrease = 0.0;
     var zooming = false;
     var useGradient = false;
+    var numColors = 1;
+    var maxColors = 7;
 
     // experimental
     var gradient = null;
@@ -71,6 +250,8 @@
       lastRate : 0.0,
       dragging : false
     };
+
+    var cannedColors = ['#FF6622','#FFDA21','#33DD00','#1133CC','#220066','#330044'];
 
     var processTouch = () => {
       var cnv = document.getElementById("canvasRoot");
@@ -89,44 +270,62 @@
 
     function expand() {
       if( !zooming ) {
-        zooming = true;
-        var ds = (scale - (2 * scale)) / 100.0;
-        new Promise( function( resolve, reject ) {
-          centerOnOffsetInner( resolve, 100, 0, 0, ds );
-        }).then(function(result) {
-          zooming = false;
-        });
+        if( !animating ) {
+          scale *= 2.0;
+          resize();
+          draw();
+        } else {
+          zooming = true;
+          var ds = (scale - (2 * scale)) / 100.0;
+          new Promise( function( resolve, reject ) {
+            centerOnOffsetInner( resolve, 100, 0, 0, ds );
+          }).then(function(result) {
+            zooming = false;
+          });
+        }
       }
     }
 
     function contract() {
       if( !zooming ) {
-        zooming = true;
-        var ds = (scale - (.5 * scale)) / 100.0;
-        new Promise( function( resolve, reject ) {
-          centerOnOffsetInner( resolve, 100, 0, 0, ds );
-        }).then(function(result) {
-          zooming = false;
-        });
+        if( !animating ) {
+          scale *= 0.5;
+          resize();
+          draw();
+        } else {
+          zooming = true;
+          var ds = (scale - (.5 * scale)) / 100.0;
+          new Promise( function( resolve, reject ) {
+            centerOnOffsetInner( resolve, 100, 0, 0, ds );
+          }).then(function(result) {
+            zooming = false;
+          });
+        }
       }
     }
 
     function centerOnOffset(offx, offy) {
       if( !zooming ) {
-        zooming = true;
         var cnv = document.getElementById("canvasRoot");
         var newX = ((offx * viewBox[2]) / cnv.width) + viewBox[0];
         var newY = ((offy * viewBox[3]) / cnv.height) + viewBox[1];
 
-        var dx = (newX - centerPoint[0]) / 100.0;
-        var dy = (newY - centerPoint[1]) / 100.0;
-        var ds = (scale - (.5 * scale)) / 100.0;
+        if( !animating ) {
+          centerPoint[0] = newX;
+          centerPoint[1] = newY;
+          contract();
+        } else {
+          zooming = true;
+          var dx = (newX - centerPoint[0]) / 100.0;
+          var dy = (newY - centerPoint[1]) / 100.0;
+          var ds = (scale - (.5 * scale)) / 100.0;
 
-        new Promise( function( resolve, reject ) {
-          centerOnOffsetInner( resolve, 100, dx, dy, ds );
-        }).then(function(result) {
-          zooming = false;
-        });
+          new Promise( function( resolve, reject ) {
+            centerOnOffsetInner( resolve, 100, dx, dy, ds );
+          }).then(function(result) {
+            zooming = false;
+          });
+        }
       }
     }
 
@@ -208,17 +407,6 @@
           }
         }
 
-        if (! /^[0-9]+(?:\.[0-9]+)?|\.[0-9]+$/.test($('#animationStepMultiplier').val())) {
-          retVal = false;
-          errorMessage += 'Step multiplier must be a (smallish) number';
-        } else {
-          var mult = parseFloat($('#animationStepMultiplier').val());
-          if (mult < 0.0 || mult > 2.0 ) {
-            //retVal = false;
-            alert('You can continue, but multiplier should be small - like 1.001');
-          }
-        }
-
         if (currChecker.extraVars != null && currChecker.extraVars.length > 0) {
           var tempVal;
           for (let i = 0; i < currChecker.extraVars.length; i++) {
@@ -247,7 +435,7 @@
 
     function draw() {
       resetDisplay();
-      color = $('#pointColor').val();
+      color = $('#pointColor1').val();
       iterations = parseInt($('#numIterations').val());
       deltaTheta = parseFloat($('#deltaTheta').val());
       deltaTheta = deltaTheta * (Math.PI / 180.0);
@@ -262,20 +450,27 @@
       }
 
       var ctx = stagingCanvas.getContext('2d');
-      if( useGradient ) {
+      if( numColors > 1 ) {
         var ctr = translatePoint([0.0,0.0]);
         gradient = ctx.createRadialGradient(ctr[0], ctr[1], 0,
                                  ctr[0], ctr[1], Math.max(stagingCanvas.width,stagingCanvas.height) / 2.0);
-        gradient.addColorStop(0,secondaryColor);
-        gradient.addColorStop(.5,color);
+        
+        var colorStep = 1.0 / (numColors + 1.0);
+        for( var i = 0; i < numColors; i++ ) {
+          gradient.addColorStop( i*colorStep, $('#pointColor'+(i+1)).val());
+        }
+
         gradient.addColorStop(1,backgroundColor);
+      } else {
+        gradient = null;
       }
+
       ctx.fillStyle = backgroundColor;
       ctx.beginPath();
       ctx.rect(0,0,stagingCanvas.width,stagingCanvas.height);
       ctx.fill();
-      ctx.fillStyle = useGradient ? gradient : color;
-      ctx.strokeStyle = useGradient ? gradient : color;
+      ctx.fillStyle = gradient != null ? gradient : color;
+      ctx.strokeStyle = gradient != null ? gradient : color;
       ctx.beginPath();
       var prevPoint = null;
 
@@ -325,7 +520,9 @@
 
       if( checkResult.turn ) {
         currTheta += deltaTheta;
-        if( turnIncrease != 0 ) {
+        if( checkResult.turnIncrease != null ) {
+          deltaTheta += checkResult.turnIncrease;
+        } else if( turnIncrease != 0 ) {
           deltaTheta += turnIncrease;
           //$('#deltaTheta').val('' + deltaTheta);
         }
@@ -350,11 +547,6 @@
       var mult = reverse ? -1.0 : 1.0;
       draw();
       var dt = parseFloat($('#deltaTheta').val());
-      animationStepMultiplier = parseFloat($('#animationStepMultiplier').val());
-      if( animationStepMultiplier != 1.0 ) {
-        animationStep *= animationStepMultiplier;
-        $('#animationStep').val(''+animationStep);
-      }
       if( animationStep >= 360.0 ) animationStep = 0.015;
       var newVal = dt + (mult * animationStep);
       if (newVal > 360.0) {
@@ -371,30 +563,41 @@
       animating = false;
     }
 
+
+    // <div class="input-group input-group-sm mb-2 mr-1">  
+    //   <div class="input-group-prepend">
+    //     <span class="input-group-text">
+    //       &#916;&#952;
+    //       </span>
+    //   </div>
+    //   <input value=".015" type="text" id="animationStep" class="mediuminput form-control" placeholder="Animation Step" aria-label="Animation Step" aria-describedby="basic-addon1">
+    // </div>
     function initChecker() {
       if (currChecker != null) {
         $('#checkerDescription').html(currChecker.description);
+        $('#checkerDescriptionTitle').html(currChecker.name);
         $('#dynamicInputs').empty();
-        let tempInput = "";
+        let tempInput = '<div class="input-group input-group-sm mb-2 mr-1">';
         let tempVar = {};
         if (currChecker.extraVars) {
           for (let i = 0; i < currChecker.extraVars.length; i++) {
-            tempInput = "<td>";
             tempVar = currChecker.extraVars[i];
-            tempInput += "<label for='" + tempVar.id + "'>" + tempVar.label + "</label>";
+            tempInput += '<div class="input-group-prepend"><span class="input-group-text">' + tempVar.label + '</span></div>';
             if (tempVar.values) {
               // it's a select
-              tempInput += "<select id='" + tempVar.id + "'><option value=''>Choose One</option>";
+              tempInput += "<select id='" + tempVar.id + "' class='custom-select'><option value=''>Choose One</option>";
+              var selected = false;
               for (let i = 0; i < tempVar.values.length; i++) {
-                tempInput += "<option value='" + tempVar.values[i] + "'>" + tempVar.values[i] + "</option>";
+                selected = tempVar.values[i] == tempVar.defaultVal;
+                tempInput += "<option "+ (selected ? 'selected' : '') +" value='" + tempVar.values[i] + "'>" + tempVar.values[i] + "</option>";
               }
               tempInput += "</select>";
             } else {
               // it's an input
-              tempInput += "<input id='" + tempVar.id + "'/>";
+              tempInput += "<input class='form-control' id='" + tempVar.id + "' value='" + tempVar.defaultVal +"'/>";
             }
 
-            tempInput += "</td>";
+            tempInput += "</div>";
             $('#dynamicInputs').append($(tempInput));
           }
         }
@@ -402,6 +605,7 @@
     }
     const checkerMap = {};
     let currChecker = null;
+
     $(document).ready(function () {
       let selectOptions = [["Select One", ""]];
       let temp = [];
@@ -413,7 +617,6 @@
         selectOptions.push(temp);
         checkerMap[checkers[i].id] = checkers[i];
       }
-      $('#selectHolder').append($("<select id='checkerSelect'></select>"));
       for (let i = 0; i < selectOptions.length; i++) {
         $('#checkerSelect').append($("<option value='" + selectOptions[i][1] + "'" + (selectOptions[i][2] ? " selected" : "") + ">" + selectOptions[i][0] + "</option>"));
       }
@@ -453,15 +656,40 @@
         stopAnimation();
       });
 
+      $('#zoomin').on('click', function(e) {
+        contract();
+      });
+
+      $('#zoomout').on('click', function(e) {
+        expand();
+      });
+
+      $('#addColor').on('click', function(e) {
+        if( numColors < maxColors ) {
+          numColors++;
+          var newEle = $('<input value="'+cannedColors[numColors - 2]+'" type="color" id="pointColor'+numColors+'" class="form-control smallcolorpick" placeholder="Point Color #'+numColors+'" aria-label="Point Color #'+numColors+'" aria-describedby="basic-addon1">');
+          newEle.insertAfter('#pointColor' + (numColors - 1) );
+        }
+      });
+
+      $('#removeColor').on('click', function(e) {
+        if( numColors > 1 ) {
+          $('#pointColor'+numColors).remove();
+          numColors--;
+        }
+      });
+
       $('#canvasRoot').on('dblclick', function (e) {
         centerOnOffset(e.offsetX, e.offsetY);
       });
 
-      $('#connectDots').on('change', function (e) {
-        if ($('#connectDots').is(":checked")) {
+      $('#connectDots').on('click', function (e) {
+        if (!connectTheDots) {
           connectTheDots = true;
+          $('#connectDotsIcon').html('linear_scale');
         } else {
           connectTheDots = false;
+          $('#connectDotsIcon').html('scatter_plot');
         }
       });
 
@@ -493,10 +721,6 @@
 
       $('#animationStep').on('change', function (e) {
         animationStep = parseFloat($('#animationStep').val());
-      });
-
-      $('#animationStepMultipler').on('change', function (e) {
-        animationStepMultiplier = parseFloat($('#animationStepMultiplier').val());
       });
 
       $('#turnIncrease').on('change', function(e){
@@ -564,61 +788,5 @@
       });
     });
   </script>
-</head>
-<body>
-  <div id="controlPanel">
-    <table>
-      <tr>
-        <td id="selectHolder"></td>
-        <td id="checkerDescription"></td>
-      </tr>
-    </table>
-    <table>
-      <tr id="dynamicInputs"></tr>
-    </table>
-    <table>
-      <tr>
-        <td class="disp"><label for="pointColor">Color of points:</label><input type="color" value="#A132EC"
-            id="pointColor" /></td>
-        <td class="disp"><label for="useGradient">Use Gradient?</label><input type="checkbox" id="useGradient" /></td>
-        <td class="disp" id="secondaryColorHolder" style="display:none;"><label for="secondaryColor">Secondary color:</label><input type="color" value="#FFFFFF"
-          id="secondaryColor" /></td>
-        <td class="disp"><label for="backgroundColor">Background color:</label><input type="color" value="#000000"
-          id="backgroundColor" /></td>
-        <td class="disp"><label for="dotRadius">Dot radius:</label><input type="text" id="dotRadius" value="5" size=6 /></td>
-        <td class="disp"><label for="connectDots">Wireframe?</label><input type="checkbox" id="connectDots" /></td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td class="disp"><label for="deltaTheta">Angle to turn by (deg):</label><input type="text" value="90" size="10"
-            id="deltaTheta" /></td>
-        <td><label for="numIterations"># of Iterations:</label><input type="text" value="80000" id="numIterations" />
-        </td>
-        <td><input id="submitBtn" type="button" value="Render" /></td>
-        <td><input id="zoomin" type="button" value="+" onclick="contract();" /></td>
-        <td><input id="zoomout" type="button" value="-" onclick="expand();" /></td>
-      </tr>
-    </table>
-    <table id="animationControls">
-      <tr>
-        <td class="disp"><label for="animationStep">Animation step (deg):</label><input type="text" value=".015"
-            size="10" id="animationStep" /></td>
-        <td class="disp"><label for="animationStepMultiplier">Step multiplier:</label><input type="text" value="1.0"
-          size="10" id="animationStepMultiplier" /></td>
-        <td class="disp"><label for="turnIncrease">Turn increase:</label><input type="text" value="0.0"
-          size="10" id="turnIncrease" /></td>
-        <td><button id="reverseBtn"><span class="material-icons md-light btnFlip">play_arrow</span></button></td>
-        <td><button id="pauseBtn"><span class="material-icons md-light">stop</span></button></td>
-        <td><button id="playBtn"><span class="material-icons md-light">play_arrow</span></button></td>
-      </tr>
-    </table>
-  </div>
-  <div id="canvasContainer">
-    <canvas width="640" height="320" id="canvasRoot">
-      
-    </canvas>
-  </div>
 </body>
-
 </html>

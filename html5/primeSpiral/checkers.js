@@ -57,6 +57,33 @@ let checkers = [
     }
   },
   {
+    id: "VariableTurnIncrease",
+    name : "Variable Turn Increase",
+    description : "Simple, but the checker determines the turn increase",
+    stateObj : {
+      next: 1,
+      counter : 0
+    },
+    checker : function( state, n ) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnIncrease: 0.0
+      };
+      if( state.counter == state.next ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnIncrease = (n%100)*.001;
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;    
+      }
+
+      return retVal;
+    }
+  },
+  {
     id: "simpleHitch",
     name : "Simple with a hitch",
     description : "Just like simple but only turn if divisible by given X",
@@ -83,7 +110,8 @@ let checkers = [
     extraVars : [
       {
         id : "X",
-        label : "Turn if divisible by: "
+        label : "Turn if divisible by: ",
+        defaultVal: 2
       }
     ]
   },
@@ -155,7 +183,8 @@ let checkers = [
     extraVars : [
       {
         id : "x",
-        label : "Multiple of what?"
+        label : "Multiple of what?",
+        defaultVal : 16
       }
     ]
   },
@@ -181,7 +210,8 @@ let checkers = [
       {
         id : "x",
         label : "Which digit?",
-        values : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+        values : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+        defaultVal : 0
       }
     ]
   },
@@ -295,7 +325,8 @@ let checkers = [
     extraVars : [
       {
         id : "v",
-        label : "Random Cutoff (0 <= v < 1)"
+        label : "Random Cutoff (0 <= v < 1)",
+        defaultVal : .5
       }
     ]
   }
