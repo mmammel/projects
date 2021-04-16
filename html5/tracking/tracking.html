@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Strange visual effect demonstration">
+    <meta name="author" content="Max Mammel">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="instructions">
+      <h4>Prototype: try to keep the small circle within the large circle</h4>
+    </div>
+    <div id="svg" style="cursor:none;">
+      <svg id="svgRoot" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      </svg>
+    </div>
+
+    <script type="text/javascript">
+      var windowWidth = $( window ).width();
+      var windowHeight = getViewportHeight();
+      var gameInterval = null;
+
+      function getViewportHeight() {
+        var height = window.innerHeight ? window.innerHeight : $(window).height();
+        height = height - $('#instructions').height() - $('#controls').height() - 30;
+        return height;
+      }
+
+      function makeSVG(tag, attrs) {
+        var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+        for (var k in attrs)
+          el.setAttribute(k, attrs[k]);
+        return el;
+      }  
+
+
+      var Crosshairs = {
+        position : [20, 50],
+        draw : function() {
+          var gtag = makeSVG('g', {id : 'crosshairs', stroke: 'black', 'stroke-width' : 1 });
+          var circ = makeSVG('circle', { cx : 0, cy : 0, r : 7, fill: 'none' });
+          var t = makeSVG( 'path', { d : 'M 0 -9 V -5' });
+          var r = makeSVG( 'path', { d : 'M 9 0 H 5' });
+          var b = makeSVG( 'path', { d : 'M 0 9 V 5' });
+          var l = makeSVG( 'path', { d : 'M -9 0 H -5' });
+          gtag.appendChild(circ);
+          gtag.appendChild(t);
+          gtag.appendChild(r);
+          gtag.appendChild(b);
+          gtag.appendChild(l);
+          var root = document.getElementById('svgRoot');
+          root.appendChild(gtag);
+        }
+      };
+
+      var Track = {
+        path: "M20,50 C20,-50 180,150 180,50 C180,-50 20,150 20,50 z",
+        width: 11,
+        getSVG : function() {
+          return makeSVG('path', { id : 'trackId', fill: 'none', stroke : 'lightgrey', "stroke-width" : this.width, d : this.path });
+        }
+      };
+
+      var Animation = {
+        viewBoxCoords : [ 0, 0, 200, 200 ],
+        objCoords : [ 0, ( getViewportHeight() / 2) + 50 ],
+        speed : 3,
+        setSpeed : function( rangeInput ) {
+          this.speed = parseInt(rangeInput);
+        },
+        getWidth : function() {
+          return this.viewBoxCoords[2] - this.viewBoxCoords[0];
+        },
+        getHeight : function() {
+          return this.viewBoxCoords[3] - this.viewBoxCoords[1];
+        },
+        getRootSVG : function() {
+          var rootSVG = makeSVG('svg', {id:"rootSVG", viewBox : ""+this.viewBoxCoords[0] + " " + this.viewBoxCoords[1] + " " + this.viewBoxCoords[3] + " " +this.viewBoxCoords[3], xmlns : 'http://www.w3.org/2000/svg', 'xmlns:xlink' : "http://www.w3.org/1999/xlink" });
+          return rootSVG;
+        },
+        getTargetSVG : function() {
+          var circleEle = makeSVG('circle', { id : 'theTarget', r: 5, fill: 'black' });
+          return circleEle;
+        },
+        animate : function() {
+          var svgRoot = document.getElementById('svgRoot');
+          svgRoot.innerHTML = '';
+          // make the mpath element
+          var track = Track.getSVG();
+          svgRoot.appendChild( track );
+          var target = this.getTargetSVG();
+          svgRoot.appendChild(target);
+          var mp = makeSVG('mpath');
+          mp.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#trackId");
+          var animateMotion = makeSVG( 'animateMotion', { id: 'animation', dur: '30s', repeatCount : 'indefinite', rotate: 'auto'});
+          animateMotion.appendChild(mp);
+          target.appendChild(animateMotion);
+          document.getElementById('animation').beginElement();
+      }
+    };
+
+    $( document ).ready( function () {
+
+      $( window ).resize(function() {
+        windowWidth = $( window ).width();
+        windowHeight = getViewportHeight();
+        Animation.viewBoxCoords[2] = windowWidth;
+        Animation.viewBoxCoords[3] = windowHeight;
+        Animation.objCoords[1] = (windowHeight / 2) + 50;
+      });
+
+      $('#speed').change( function() {
+        Animation.setSpeed( this.value );
+      });
+
+      Animation.animate();
+      Crosshairs.draw();
+
+      gameInterval = setInterval(function() {
+        var svgOff = $('#svgRoot').offset();        
+        var target = document.getElementById('theTarget');
+        var rect = target.getBoundingClientRect();
+
+        var x = Crosshairs.position[0];
+        var y = Crosshairs.position[1];
+
+        var tx = (rect.x + rect.width/2 - svgOff.left) * (200/$('#svgRoot').width());
+        var ty = (rect.y + rect.height/2 - svgOff.top) * (200/$('#svgRoot').height());
+
+        var dist = Math.sqrt(Math.pow(tx-x,2) + Math.pow(ty-y,2));
+        if( dist <= 3.0 ) {
+          target.setAttribute('fill', 'green');
+        } else if( dist <= 6.0 ) {
+          target.setAttribute('fill', 'yellow');
+        } else {
+          target.setAttribute('fill', 'red');
+        }
+      }, 30);
+
+      $('#svgRoot').on('mousemove', e => {
+        var svgOff = $('#svgRoot').offset();
+        var x = (e.pageX - svgOff.left) * (200/$('#svgRoot').width());
+        var y = (e.pageY - svgOff.top) * (200/$('#svgRoot').height());
+        var ch = document.getElementById('crosshairs');
+        Crosshairs.position[0] = x;
+        Crosshairs.position[1] = y;
+        ch.setAttribute('transform', 'translate(' + x + ',' + y +')' );
+        //ch.setAttribute('cy', y );
+        
+      });
+    });
+    </script>
+  </body>
+</html>

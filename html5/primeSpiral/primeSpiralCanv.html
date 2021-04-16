@@ -101,7 +101,7 @@
           <div class="btn-group btn-group-sm mb-2 mr-1" role="group" aria-label="First group">
             <button type="button" id="connectDots" class="btn btn-secondary btn-sm">
               <i class="material-icons buttonicon" id="connectDotsIcon">
-                scatter_plot
+                linear_scale
               </i>
             </button>
           </div>
@@ -191,8 +191,8 @@
     </div>
   </div>
   <div class="container-fluid">
-    <div class="row" id="canvasContainer">
-      <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12" id="canvasContainer">
         <canvas width="640" height="320" id="canvasRoot"></canvas>
       </div>
     </div>
@@ -345,7 +345,7 @@
     }
 
     function resize() {
-      $('#canvasContainer').css({ height: ($(window).innerHeight() - $('#controlPanel').height()) });
+      $('#canvasContainer').css({ height: ($(window).innerHeight() - $('#controlPanel').height() - 10) });
       var cnv = document.getElementById("canvasRoot");
       if( cnv.width != $('#canvasContainer').width()) cnv.width = $('#canvasContainer').width();
       cnv.height = $('#canvasContainer').height();
@@ -686,10 +686,10 @@
       $('#connectDots').on('click', function (e) {
         if (!connectTheDots) {
           connectTheDots = true;
-          $('#connectDotsIcon').html('linear_scale');
+          $('#connectDotsIcon').html('scatter_plot');
         } else {
           connectTheDots = false;
-          $('#connectDotsIcon').html('scatter_plot');
+          $('#connectDotsIcon').html('linear_scale');
         }
       });
 

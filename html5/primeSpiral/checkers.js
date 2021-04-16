@@ -131,7 +131,8 @@ let checkers = [
       if( state.counter == state.next ) {
         retVal.draw = true;
         retVal.turn = true;
-        while( !isPrime(++state.next) ){};
+        state.next = state.next + (state.next == 2 ? 1 : 2);
+        while( !isPrime(state.next) ){ state.next += 2; };
         state.counter = 0;
       } else {
         state.counter++;    
@@ -187,6 +188,110 @@ let checkers = [
         defaultVal : 16
       }
     ]
+  },
+  {
+    id : "geometric",
+    name : "Simple Geometric",
+    description : "Increase the simple target by a constant multiple.  Less than 1 will cause issues, greater than 1 is boring.  Look at 1.0005 at 20, 30, 45, 60, 90, 270 for some bizarre surprises",
+    stateObj : { 
+      next: 1,
+      counter: 0
+    },
+    checker : function(state, n, x) { 
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter >= state.next ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.next = x*state.next;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars : [
+      {
+        id : "x",
+        label : "Geometric Multiplier",
+        defaultVal : 2
+      }
+    ]
+  },
+  {
+    id : "arithmetic",
+    name : "Simple Arithmetic",
+    description : "Increase the simple target by a constant addition, really just acts like a zoom for simple, unless you do reaaaally small additives.",
+    stateObj : { 
+      next: 1,
+      counter: 0
+    },
+    checker : function(state, n, x) { 
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter >= state.next ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.next = x + state.next;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars : [
+      {
+        id : "x",
+        label : "Arithmetic Additive",
+        defaultVal : 2
+      }
+    ]
+  },
+  {
+    id : "simplePi",
+    name : "Simple Pi",
+    description : "Iterate N times, if N is the next digit of pi, draw and turn",
+    stateObj : { next: 3, counter: 0, piIdx: 0},
+    checker : function(state, n, x) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.next == state.counter ) {
+        state.next = parseInt(piString.charAt(++state.piIdx));
+        state.counter = 0;
+        retVal.draw = true;
+        retVal.turn = true;
+      } else {
+        state.counter++;
+      }  
+      return retVal;
+    }
+  },
+  {
+    id : "simpleNaturalLog",
+    name : "Simple Natural Log",
+    description : "Same as simple, but use: 10*ln(next)",
+    stateObj : { next: 1, counter: 0 },
+    checker : function(state, n, x) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter >= 10*(Math.log(state.next))) {
+        state.next++;
+        state.counter = 0;
+        retVal.draw = true;
+        retVal.turn = true;
+      } else {
+        state.counter++;
+      }  
+      return retVal;
+    }
   },
   {
     id : "piSpecific",
