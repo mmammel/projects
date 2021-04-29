@@ -24,7 +24,18 @@ sys	0m0.183s
 
 Using ==:
 
-real	0m14.535s
-user	0m14.715s
-sys	0m0.141s
+real	0m13.605s
+user	0m13.867s
+sys	0m0.144s
 ```
+
+Note that the advantage turns to a disadvantage if the ```localIntern``` Map is not used, and this line:
+
+`input_str = localIntern.get(input_str);`
+
+is changed to:
+
+`input_str = input_str.intern();`
+
+As the linked article states, intern() should be used very carefully, and should be ignored for all but a few extreme edge cases.
+

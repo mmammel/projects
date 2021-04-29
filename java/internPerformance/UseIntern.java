@@ -19,7 +19,7 @@ public class UseIntern
 
       while( (input_str = input_reader.readLine()) != null )
       {
-        localIntern.put( input_str, input_str.intern() );
+        if( !localIntern.containsKey(input_str) ) localIntern.put( input_str, input_str.intern() );
         for( int i = 0; i < 1000; i++ ) {
           input_str = localIntern.get(input_str);
           if( input_str == "antenna" ||
