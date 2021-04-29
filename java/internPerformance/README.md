@@ -1,4 +1,4 @@
-# Contrived example demonstrating performance advantage using String.intern()
+# Contrived example demonstrating performance advantage using [String.intern()](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#intern--)
 
 Each class does the following:
 
@@ -6,7 +6,7 @@ Each class does the following:
 * For each word, compare them to the same list of 39 words as String literals 1000 times.
 * Keep a frequency count of the words
 
-The class `DontUserInter` uses `.equals()` to compare the read-in words to the literals.  `UseIntern` first gets the "intern" representation of the word, stores it in a local `Map<String,String>`, and uses `==` to compare to the literals.
+The class `DontUserIntern` uses `.equals()` to compare the read-in words to the literals.  `UseIntern` first gets the "intern" representation of the word, stores it in a local `Map<String,String>`, and uses `==` to compare to the literals.
 
 This example is meaningless, there are better ways to get word frequencies obviously, but it demonstrates the performance advantage of using == to compare string references while minimizing actual calls to `intern()`, which are expensive, as demonstrated by [this article](https://shipilev.net/jvm/anatomy-quarks/10-string-intern/).
 
