@@ -6,9 +6,9 @@ Each class does the following:
 * For each word, compare them to the same list of 39 words as String literals 1000 times.
 * Keep a frequency count of the words
 
-The class `DontUserIntern` uses `.equals()` to compare the read-in words to the literals.  `UseIntern` first gets the "intern" representation of the word, stores it in a local `Map<String,String>`, and uses `==` to compare to the literals.
+The class `DontUseIntern` uses `.equals()` to compare the read-in words to the literals.  `UseIntern` first gets the "intern" representation of the word, stores it in a local `Map<String,String>`, and uses `==` to compare to the literals.
 
-This example is meaningless, there are better ways to get word frequencies obviously, but it demonstrates the performance advantage of using == to compare string references while minimizing actual calls to `intern()`, which are expensive, as demonstrated by [this article](https://shipilev.net/jvm/anatomy-quarks/10-string-intern/).
+This example is meaningless, there are obviously better ways to get word frequencies, but it demonstrates the performance advantage of using == to compare string references while minimizing actual calls to `intern()`, which are expensive, as demonstrated by [this article](https://shipilev.net/jvm/anatomy-quarks/10-string-intern/).
 
 A potential real-word use of this performance gain could be parsing large numbers of XML files where the parser is matching known XML node names as it runs through the files.  The number of unique tag names in the input is small assuming the input is somewhat controlled.
 
