@@ -1,4 +1,4 @@
-JAVAC_FLAGS = -classpath .:/c/Workspace/PostMasterLX/PMLX-Core/lib/xercesImpl.jar:/c/Workspace/PostMasterLX/PMLX-Core/lib/xmlParserAPIs.jar:/c/Workspace/PostMasterLX/PMLX-Core/lib/xalan.jar
+JAVAC_FLAGS = -classpath .:./xercesImpl.jar:./xalan.jar
 
 PARSER_FILES = BasicErrorHandler.java AbstractErrorHandler.java PrintingContentHandler.java AbstractContentHandler.java GenericParser.java
 

@@ -7,6 +7,7 @@ public class ReplaceTest {
       //System.out.println( in + " -> " + in.replaceAll("^(.+?)-.*$", "$1") );
       //System.out.println(in + " -> " + in.replaceAll("^.*?://(.*?)/.*$", "tcp://$1:61616"));
 
-      System.out.println( in + " -> " + in.replaceAll( ";*\\s*$","") );
+      //System.out.println( in + " -> " + in.replaceAll( ";*\\s*$","") );
+      System.out.println( in + " -> " + in.replaceAll( "&#39;","'") );
   }
 }
