@@ -10,6 +10,7 @@ public class FactorsOfTwoBetweenPowersOfN {
     }
 
     BigInteger n = null;
+    BigInteger init = BigInteger.ZERO;
     int highPower = null;
 
     List<String> powers = new ArrayList<String>();
@@ -23,7 +24,7 @@ public class FactorsOfTwoBetweenPowersOfN {
       for( int i = 0; i <= highPower ) {
         total = 0;
         powers.add("" + n + "^" + i );
-
+        
         
         
       }
