@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class TimeZoneData
 {
@@ -184,13 +186,71 @@ public class TimeZoneData
   };
 
   private static final Map<String,String> SQL_TIMEZONE_MAP = new HashMap<String,String>();
+  private static final Map<String,List<String>> SQL_TIMEZONE_MAP_ALL = new HashMap<String,List<String>>();
+  private static final Map<String,List<String>> REVERSE_TIMEZONE_MAP = new HashMap<String,List<String>>();
 
   static {
+    List<String> temp = null;
+    String key = null;
     for( String [] tz : SQL_TIMEZONE_INFO ) {
-      SQL_TIMEZONE_MAP.put( tz[1]+"-"+tz[2], tz[0] );
+      key = tz[1]+"-"+tz[2];
+      SQL_TIMEZONE_MAP.put( key, tz[0] );
+      if( (temp = SQL_TIMEZONE_MAP_ALL.get(key)) == null ) {
+        temp = new ArrayList<String>();
+        SQL_TIMEZONE_MAP_ALL.put( key, temp );
+      } 
+      temp.add( tz[0] );
     }
   }  
 
+
+  public static void buildAndPrintReverseTimeZoneMap() {
+    List<String> tempJavaList = null;
+    List<String> tempSQLList = null;
+    String [] ids = TimeZone.getAvailableIDs();
+    TimeZone tz = null;
+    String dst = null, offset = null, key = null, firstWord = null;
+    for( String id : ids ) {
+      tz = TimeZone.getTimeZone(id);
+      // Can this time zone ever be in DST?
+      dst = tz.observesDaylightTime() ? "1" : "0";
+      // What is the *current* offset of this timezone?
+      offset = getOffsetString( tz );
+      key = offset + "-" + dst;
+      tempSQLList = SQL_TIMEZONE_MAP_ALL.get(key);
+      if( tempSQLList != null ) {
+        for( String sqltz : tempSQLList ) {
+          firstWord = sqltz.replaceAll( "^(.*?) .*", "$1");
+          if( (tempJavaList = REVERSE_TIMEZONE_MAP.get(sqltz)) == null ) {
+            tempJavaList = new ArrayList<String>();
+            REVERSE_TIMEZONE_MAP.put( sqltz, tempJavaList );
+          }
+          if( tz.getID().indexOf( firstWord ) >= 0 || tz.getDisplayName().indexOf( firstWord ) >= 0 ) {
+            tempJavaList.add( 0, tz.getID() );
+          } else {
+            tempJavaList.add( tz.getID() );
+          }
+        }
+      }
+    }
+
+    StringBuilder sb = new StringBuilder();
+    sb.append( "private static final String [][] TIMEZONE_MAP = {\n");
+    List<String> tempList = null;
+    for( String k : REVERSE_TIMEZONE_MAP.keySet() ) {
+      sb.append("  { \"").append( k ).append("\"");
+      tempList = REVERSE_TIMEZONE_MAP.get( k );
+      if( tempList != null ) {
+        for( String jtz : tempList ) {
+          sb.append(",\"").append( jtz ).append("\"");
+        }
+      }
+      sb.append(" },\n");
+    }
+
+    sb.append( "};");
+    System.out.println( sb.toString() ); 
+  }
 
   private static final Pattern OFFSET_PATTERN = Pattern.compile("^([-+]?[0-9]{1,2}):([0-9]{2})$");
 
@@ -238,6 +298,8 @@ public class TimeZoneData
           } else {
             System.out.println( "Bad offset, it has to be a positive or negative integer, genius" );
           }
+        } else if( input_str.equals("dump") ) {
+          buildAndPrintReverseTimeZoneMap();
         } else {
           TimeZone tz = TimeZone.getTimeZone( input_str );
           System.out.println( queryMode ? getTimeZoneQuery(tz) : getTimeZoneString(tz));
@@ -294,7 +356,7 @@ public class TimeZoneData
     String key = offset + "-" + dst;
     String sqlTimeZone = SQL_TIMEZONE_MAP.get(key);
     if( sqlTimeZone != null ) {
-      retVal = "UPDATE Customer c SET timeZone = '" + sqlTimeZone + "' WHERE timeZone = '" + tz.getID() + "'";
+      retVal = "UPDATE Customer SET timeZone = '" + sqlTimeZone + "' WHERE timeZone = '" + tz.getID() + "';";
     } else {
       retVal = "ERROR! No mapping for " + tz.getID();
     } 
