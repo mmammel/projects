@@ -1,0 +1,2 @@
+["Fancy","addAll","getIndex"]
+[[],[1],[0]]
