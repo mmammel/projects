@@ -68,7 +68,7 @@ public class MakeChange
       {
         if( i >= coins[k] )
         {
-          if( 1 + C[i - coins[k]] < least )
+          if( C[i - coins[k]] != Integer.MAX_VALUE && 1 + C[i - coins[k]] < least )
           {
             least = 1 + C[i - coins[k]];
             coin = coins[k];
@@ -77,31 +77,38 @@ public class MakeChange
       }
 
       C[i] = least;
-      S[i] = coin;
+      S[i] = least == Integer.MAX_VALUE ? -1 : coin;
     }
 
-    //StringBuilder a = new StringBuilder("[ "), b = new StringBuilder("[ ");
-    //for( int m = 1; m < C.length; m++ )
-    //{
-    //  a.append( C[m] ).append(" ");
-    //  b.append( S[m] ).append(" ");
-    //}
-    //a.append("]");
-    //b.append("]");
+    StringBuilder a = new StringBuilder("[ "), b = new StringBuilder("[ "), c = new StringBuilder( "[ " );
+    for( int m = 1; m < C.length; m++ )
+    {
+      c.append( m ).append( " " );
+      a.append( C[m] ).append(" ");
+      b.append( S[m] ).append(" ");
+    }
+    c.append("]");
+    a.append("]");
+    b.append("]");
 
-    //System.out.println( a );
-    //System.out.println( b );
+    System.out.println( c );
+    System.out.println( a );
+    System.out.println( b );
     this.printResult( val, S );
   }
 
   public void printResult( int val, int [] coins )
   {
-    while( val > 0 )
-    {
-      System.out.print( "" + coins[val] + " " );
-      val = val - coins[val];
+    if( coins[val] == -1 ) {
+      System.out.println( "Can't make change" );
+    } else {
+      while( val > 0 )
+      {
+        System.out.print( "" + coins[val] + " " );
+        val = val - coins[val];
+      }
+      System.out.println("");
     }
-    System.out.println("");
   }
 
   public static void main( String [] args )

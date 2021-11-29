@@ -1,0 +1,6 @@
+https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
+
+
+Brutal...my solution is not optimal, it uses some geometry to calculate an area of the table that is as close to k as possible without exceeding it, using a nasty integral of the curve that defines the "nothing is smaller than this square" line.
+
+The good solution is a binary search, just checking for how many values are less than or greater than each guess.
