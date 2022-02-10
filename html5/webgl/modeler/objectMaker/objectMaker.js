@@ -108,7 +108,7 @@ function initBuffers() {
 
   // Now set up the colors for the faces. We'll use solid colors
   // for each face.
-  setColors();
+  setFaceColors();
 
   // Build the element array buffer; this specifies the indices
   // into the vertex array for each face's vertices.
@@ -126,7 +126,7 @@ function initBuffers() {
       new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
 }
 
-function setColors() {
+function setFaceColors() {
   var generatedColors = [];
 
   var colorSets = shape.faceGroup.coloringSets;
@@ -155,6 +155,18 @@ function setColors() {
   cubeVerticesColorBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesColorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW);
+}
+
+function setEdgeColors() {
+  var generatedColors = [];
+
+  var colorSets = shape.edgeGroup.coloringSets;
+
+  if( colorSets.length == 1 ) {
+    // each edge gets a new color, cyclically
+  } else {
+
+  }
 }
 
 //
@@ -207,7 +219,8 @@ var drawScene = function(currentTime) {
   mvRotate(cubeRotation, rotVec.elements);
 
   if( colorChange ) {
-    setColors();
+    // determine if we are using edges or faces...
+    setFaceColors();
     colorChange = false;
   }
 

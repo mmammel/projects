@@ -1,0 +1,112 @@
+<html>  
+ <head>  
+  <style type="text/css">
+    .instructionShapeHolder {
+      width: 100px;
+    }
+
+    .instructionText {
+      font-size: 28px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="grid.js"></script>
+  <script type="application/javascript">  
+    var theGrid;
+
+    var shapes = ['+','t','o','p']; // plus sign, triangle, circle, pentagon.
+    var points = [1,2,3,4]; // how many points each shape adds on the path.
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function buildImageSVG(shape) {
+      var retVal = makeSVG("svg", { id: 'svgInstruction_'+shape, viewBox: '0 0 20 20' });
+      if( shape === '+' ) {
+        var vertRect = makeSVG('rect', {
+            id: 'instr_decorator_vert', x: '7', y: '2', width: '6', height: '16', 
+            fill: 'black', 'stroke-width': 0
+            });
+        var horizRect = makeSVG('rect', {
+            id: 'instr_decorator_horiz', x: '2', y: '7', width: '16', height: '6', 
+            fill: 'black', 'stroke-width': 0
+            });
+            $(retVal).append(vertRect);
+            $(retVal).append(horizRect);
+      } else if( shape === 'o' ) {
+        var outerCircle = makeSVG('circle', {
+            id: 'instr_o_decorator_outer', cx: 10, cy: 10,
+              r: 8, fill: 'black', 'stroke-width': 0
+            });
+            $(retVal).append(outerCircle);
+      } else if( shape === 't' ) {
+        var triangle = makeSVG('polygon', {
+            id: 'instr_t_decorator_inner', 
+               points: ''+ 10 + ',' + 3 + ' ' + 
+                           (10 + (14 / Math.sqrt(3))) + ',' + (10+ (14 / Math.sqrt(3))) + ' ' +
+                           (10 - (14 / Math.sqrt(3))) + ',' + (10 + (14 / Math.sqrt(3))), 
+               fill: 'black', 'stroke-width': 0
+            });
+            $(retVal).append(triangle);
+      } else if( shape === 'p' ) {
+        var cx = 10;
+        var cy = 10;
+        var rad18 = 18 * (Math.PI / 180);
+        var rad54 = 54 * (Math.PI / 180);
+        var pentagon = makeSVG('polygon', {
+        id: 'instr_p_decorator_inner', 
+            points: ''+ cx + ',' + (cy - 8) + ' ' + 
+                        (cx + (8 * Math.cos(rad18))) + ',' + (cy - (8 * Math.sin(rad18))) + ' ' +
+                        (cx + (8 * Math.cos(rad54))) + ',' + (cy + (8 * Math.sin(rad54))) + ' ' +
+                        (cx - (8 * Math.cos(rad54))) + ',' + (cy + (8 * Math.sin(rad54))) + ' ' +
+                        (cx - (8 * Math.cos(rad18))) + ',' + (cy - (8 * Math.sin(rad18))),
+            fill: 'black', 'stroke-width': 0
+        });
+        $(retVal).append(pentagon);
+      }
+
+      return retVal;
+    }
+
+    function buildInstructionTable() {
+      shuffle(shapes);
+      var tempShapeHolder = null;
+      var tempRow = null;
+      var retVal = $('<table id="instructionTable">');
+      for( var i = 0; i < shapes.length; i++ ) {
+        tempRow = $('<tr></tr>');
+        tempShapeHolder = $('<td class="instructionShapeHolder" id="shapeHolder_' + i + '"></td>');
+        tempRow.append(tempShapeHolder);
+        tempShapeHolder.append(buildImageSVG(shapes[i]));
+        tempRow.append($('<td class="instructionText"> = '+points[i] +' Point' + (i == 0 ? '' : 's') + '</td>'));
+        retVal.append(tempRow);
+      }
+      return retVal;
+    }
+
+    $(document).ready( function() {
+      $('#instructions').append(buildInstructionTable());
+      setTimeout(function() {
+        $('#instructions').hide();
+        $('#svg').show()
+      }, 50000);
+      theGrid = new Grid( 'svg', 8, 6 );
+      theGrid.draw();
+    });
+    
+  </script>  
+ </head>  
+ <body>
+   <div id="instructions">
+     <h3>Please take a moment to memorize the following relationships:</h3>
+   </div>
+   <div id="svg" style="width: 600px; height: 600px; display: none;">
+   </div>
+  </body>  
+</html>  
+

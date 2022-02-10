@@ -48,7 +48,8 @@
       var useOrtho = false;
       var orthoMin = -5.0;
       var orthoMax = 5.0;
-      var faces = {};
+      var faces = [];
+      var edges = [];
 
       // For smooth rotation changes.
       var rotAxis = $V([1,0,0]);
@@ -144,7 +145,7 @@
         ] : null;
       }
 
-      function setFaceColors( e ) {
+      function onFaceColorChange( e ) {
         faceColors = [];
         for( var i = 0; i < 16; i++ ) {
           faceColors.push( hexToRgb( $('#c'+i).val() ) );
@@ -283,33 +284,37 @@
          }
         });
 
-        setFaceColors();
-        $("input[type='color']").on("change", setFaceColors);
+        onFaceColorChange();
+        $("input[type='color']").on("change", onFaceColorChange());
         Sylvester.precision = 0.0001
         start();
         getShapes();
       });
 
-      function changeShape( faceDefs ) {
+      function changeShape( faceDefs, edgeDefs ) {
 
-        shape = new Shape( faceDefs );
+        if( faceDefs != null ) {
+          shape = new Shape( faceDefs );
 
-        $('#shapeInfo').html( "<b>Faces</b>:&nbsp;"+shape.faceGroup.faces.length+"<br/><b>Vertices</b>:&nbsp"+shape.vertexGroup.vertices.length+"<br/><b>Edges</b>:&nbsp;"+shape.getEdgeCount() );
+          $('#shapeInfo').html( "<b>Faces</b>:&nbsp;"+shape.faceGroup.faces.length+"<br/><b>Vertices</b>:&nbsp"+shape.vertexGroup.vertices.length+"<br/><b>Edges</b>:&nbsp;"+shape.getEdgeCount() );
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
-        var vertices = shape.getFaceOrderedVertices();
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+          gl.bindBuffer(gl.ARRAY_BUFFER, cubeVerticesBuffer);
+          var vertices = shape.getFaceOrderedVertices();
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
-        setColors();
+          setFaceColors();
 
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer);
+          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVerticesIndexBuffer);
 
-        var cubeVertexIndices = shape.triangleVertices;
+          var cubeVertexIndices = shape.triangleVertices;
 
-        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,
-            new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
+          gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,
+              new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
 
-        changeColors = true;
+          changeColors = true;
+        } else if( edgeDefs != null ) {
+          shape = new Shape( null, edgeDefs );
+        }
 
         if( drawInterval == null ) {
           drawInterval = "foobar";
@@ -317,28 +322,38 @@
         }
       }
 
-      function verticesToString( verts ) {
-        var retVal = "vertices = [\n";
-        for( var i = 0; i < verts.length; i+=3 ) {
-          retVal += ("      " + verts[i] + "," + verts[i+1] + "," + verts[i+2]);
-          if( i+3 < (verts.length - 1) ) {
-            retVal += ",";
-          }
-          retVal += "\n";
-        }
-        retVal += "  ];\n";
+      function edgeVerticesToString( verts ) {
+        var retVal = "edges = ";
+        retVal += JSON.stringify(verts, null, 2);
+        retVal += ";";
         return retVal;
       }
 
-      function loadFaces(fArray) {
+      function faceVerticesToString( verts ) {
+        var retVal = "faces = ";
+        retVal += JSON.stringify(verts, null, 2);
+        retVal += ";";
+
+        return retVal;
+      }
+
+      function loadFaces(fArray,eArray) {
         if( fArray != null ) {
           faces = fArray;
+          edges = null;
           clearForm();
-          $('#shapeVerts').val(verticesToString( fArray ) ); 
+          $('#shapeVerts').val(faceVerticesToString( fArray ) ); 
+        } else if( eArray != null ) {
+          edges = eArray;
+          faces = null;
+          clearForm();
+          $('#shapeVerts').val(edgeVerticesToString( eArray ) ); 
         } else {
+          faces = null;
+          edges = null;
           eval( $('#shapeVerts').val() );
         }
-        changeShape( faces );
+        changeShape( faces, edges );
       }
 
       function setOrtho() {

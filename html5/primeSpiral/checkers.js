@@ -1,4 +1,21 @@
 /**
+ * New Checker idea:
+ *   digits of numbers base N
+ *    base 10
+ *    1 -> x 1
+ *    2 -> x x 2
+ *    3 -> x x x 3
+ *    ...
+ *    10 -> x 1 0
+ *    11 -> x 1 x 1
+ *     base 8
+ *    8 -> x 1 0
+ *    9 -> x 1 x 1
+ *    17 -> x x 2 x 1
+ */  
+ 
+
+/**
  * checkers return an object like this:
  * 
  * {
@@ -27,6 +44,15 @@ function isPrime( n ) {
   }
   return retVal;
 }
+
+// var primeMask = new BitMask(80000000);
+// for( var i = 0; i < 80000000; i++ ) {
+//   if( isPrimeInit(i) ) primeMask.setBit( i );
+// }
+
+// function isPrime( n ) {
+//   return primeMask.isSet(n);
+// }
 
 
 let checkers = [

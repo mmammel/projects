@@ -60,6 +60,7 @@
           </div>
           <div class="modal-body">
             <p id="checkerDescription"></p>
+            <p id="contextURL"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -76,7 +77,7 @@
           <select class="custom-select" id="checkerSelect">
           </select>
           <div class="input-group-append">
-            <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#descriptionModal"><i class="material-icons buttonicon">
+            <button id="infoBtn" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#descriptionModal"><i class="material-icons buttonicon">
               info
             </i></button>
           </div>
@@ -205,42 +206,45 @@
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="bigConstants.js"></script>
+  <script type="text/javascript" src="bitmask.js"></script>
   <script type="text/javascript" src="checkers.js"></script>
+  <script type="text/javascript" src="utils.js"></script>
   <script type="text/javascript">
 
-    var viewBox = [-320, -320, 640, 640];
+    var viewBox = [-320, -320, 640, 640];  //vb
 
     var scale = 1.0;
     var resizing = false;
-    var centerPoint = [0.0,0.0];
-    var pointRadius = 5.0;
+    var centerPoint = [0.0,0.0]; //ctr
+    var pointRadius = 5.0; // pr
 
     var stagingCanvas = null;
-    var connectTheDots = false;
+    var connectTheDots = false; //cd
     var coords = [0, 0];
     var color = '#D10000';
     var secondaryColor = '#FFFFFF';
-    var backgroundColor = '#000000';
-    var currTheta = 0;
-    var deltaTheta = 90;
-    var animationStep = .015;
-    var reverse = false;
+    var backgroundColor = '#000000'; // bc
+    var currTheta = 0;  //ct
+    var deltaTheta = 90;  //dt
+    var animationStep = .015;  //as
+    var reverse = false;  //r
     var primeIdx = 0;
     var primeDotMap = {};
     var animating = false;
     var animationInterval = null;
     var frameID = null;
-    var turnIncrease = 0.0;
+    var turnIncrease = 0.0;  //ti
     var zooming = false;
-    var useGradient = false;
-    var numColors = 1;
+    var numColors = 1;  
     var maxColors = 7;
+
+    // colors: cls
 
     // experimental
     var gradient = null;
     //var num = 0;
     var drawInterval = null;
-    var iterations = 80000;
+    var iterations = 80000;  //i
 
     // for touching/dragging
     const touchContext = {
@@ -252,6 +256,129 @@
     };
 
     var cannedColors = ['#FF6622','#FFDA21','#33DD00','#1133CC','#220066','#330044'];
+
+    function buildContextURL() {
+      var retVal = "";
+      // viewBox
+      retVal += "vb=";
+      for( var i = 0; i < 4; i++ ) {
+        if( i > 0 ) retVal += ",";
+        retVal += ''+viewBox[i];
+      }
+
+      // center
+      retVal += '&ctr=';
+      retVal += centerPoint[0] + ',' + centerPoint[1];
+
+      // iterations
+      retVal += ('&i=' + iterations);
+      // turn increase
+      retVal += ('&ti=' + turnIncrease);
+      // reverse
+      retVal += ('&r=' + reverse);
+      // animation Step
+      retVal += ('&as=' + animationStep);
+      // deltatheta
+      retVal += ('&dt=' + deltaTheta);
+      // currTheta
+      retVal += ('&ct=' + currTheta); // convert from radians to degrees.
+      // connect the dots
+      retVal += ('&cd=' + connectTheDots);
+      // point radius
+      retVal += ('&pr=' + pointRadius);
+      // curr checker
+      retVal += ('&cc=' + currChecker.id);
+
+      return retVal;
+    }
+
+    function setStateFromURL() {
+      // get viewBox
+      var vb = getURLParameter('vb');
+      if( vb ) {
+        var vbcs = vb.split(',');
+        if( vbcs.length == 4 ) {
+          for( var i = 0; i < vbcs.length; i++ ) {
+            viewBox[i] = parseFloat(vbcs[i]);
+          }
+        }
+      }
+
+      // get iterations
+      var iters = getURLParameter('i');
+      if( iters ) {
+        iterations = parseInt(iters);
+        $('#numIterations').val(''+iterations);
+      }
+
+      // get turn increase
+      var turn = getURLParameter('ti');
+      if( turn ) {
+        turnIncrease = parseFloat(turn);
+        $('#turnIncrease').val(''+turnIncrease); 
+      }
+
+      // get reverse
+      var rev = getURLParameter('r');
+      if( rev && rev === 'true' ) {
+        reverse = true;
+      } else {
+        reverse = false;
+      }
+
+      // get animationStep
+      var animStep = getURLParameter('as');
+      if( animStep ) {
+        animationStep = parseFloat(animStep);
+        $('#animationStep').val(''+animationStep);
+      }
+
+      // get delta theta
+      var deltat = getURLParameter('dt');
+      if( deltat ) {
+        deltaTheta = parseFloat(deltat);
+        $('#deltaTheta').val(''+deltaTheta);
+      }
+
+      // get curr theta
+      var currt = getURLParameter('ct');
+      if( currt ) {
+        currTheta = parseFloat( currt );
+      }
+
+      // get conect the dots
+      var connect = getURLParameter('cd');
+      if( connect && connect === 'true' ) {
+        connectTheDots = true;
+      } else {
+        connectTheDots = false;
+      }
+      
+      $('#connectTheDots').html( connectTheDots ? 'scatter_plot' : 'linear_scale' );
+
+      // get point radius
+      var pointr = getURLParameter('pr');
+      if( pointr ) {
+        pointRadius = parseFloat(pointr);
+        $('#dotRadius').val(''+pointRadius);
+      }
+
+      // get center
+      var cent = getURLParameter('ctr');
+      if( cent ) {
+        centps = cent.split(',');
+        for( var i = 0; i < centps.length; i++ ) {
+          centerPoint[i] = parseFloat(centps[i]);
+        }
+      }
+
+      // get checker
+      var chkr = getURLParameter('cc');
+      if( chkr ) {
+        currChecker = checkerMap[ chkr ];
+        $('#checkerSelect').val(chkr);
+      }
+    }
 
     var processTouch = () => {
       var cnv = document.getElementById("canvasRoot");
@@ -604,7 +731,7 @@
       }
     }
     const checkerMap = {};
-    let currChecker = null;
+    let currChecker = null; //cc
 
     $(document).ready(function () {
       let selectOptions = [["Select One", ""]];
@@ -617,6 +744,10 @@
         selectOptions.push(temp);
         checkerMap[checkers[i].id] = checkers[i];
       }
+
+      // See if we can initialize from the URL
+      setStateFromURL();
+
       for (let i = 0; i < selectOptions.length; i++) {
         $('#checkerSelect').append($("<option value='" + selectOptions[i][1] + "'" + (selectOptions[i][2] ? " selected" : "") + ">" + selectOptions[i][0] + "</option>"));
       }
@@ -642,6 +773,10 @@
           reverse = false;
           startAnimation();
         }
+      });
+
+      $('#infoBtn').on('click', function(e) {
+        $('#contextURL').html(buildContextURL());
       });
 
       $('#reverseBtn').on('click', function (e) {
@@ -690,16 +825,6 @@
         } else {
           connectTheDots = false;
           $('#connectDotsIcon').html('linear_scale');
-        }
-      });
-
-      $('#useGradient').on('change', function (e) {
-        if ($('#useGradient').is(":checked")) {
-          useGradient = true;
-          $('#secondaryColorHolder').show();
-        } else {
-          useGradient = false;
-          $('#secondaryColorHolder').hide();
         }
       });
 

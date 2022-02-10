@@ -1,12 +1,22 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Strange visual effect demonstration">
+    <meta name="description" content="Tracking game prototype">
     <meta name="author" content="Max Mammel">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+      * {
+        touch-action: manipulation;
+      }
+  
+      html, body {
+        overscroll-behavior-y: contain;
+      }
+      
+    </style>
   </head>
-  <body>
+  <body style="overflow-y: hidden;">
     <div id="instructions">
       <h4>Prototype: try to keep the small circle within the large circle</h4>
     </div>
@@ -147,6 +157,16 @@
         ch.setAttribute('transform', 'translate(' + x + ',' + y +')' );
         //ch.setAttribute('cy', y );
         
+      }).on('touchmove', e => {
+        e.preventDefault();
+        var svgOff = $('#svgRoot').offset();
+        var x = (e.originalEvent.changedTouches[0].pageX - svgOff.left) * (200/$('#svgRoot').width());
+        var y = (e.originalEvent.changedTouches[0].pageY - svgOff.top) * (200/$('#svgRoot').height());
+        y = y - 25;
+        var ch = document.getElementById('crosshairs');
+        Crosshairs.position[0] = x;
+        Crosshairs.position[1] = y;
+        ch.setAttribute('transform', 'translate(' + x + ',' + y +')' );
       });
     });
     </script>

@@ -1,9 +1,21 @@
 
 
-function Shape ( faceDefinitions ) {
-  this.vertexGroup = new VertexGroup( faceDefinitions );
-  this.faceGroup = new FaceGroup( this.vertexGroup.createFaces( faceDefinitions ) );
-  this.triangleVertices = this.getTriangleVertices();
+function Shape ( faceDefinitions, edgeDefinitions ) {
+  if( faceDefinitions != null ) {
+    this.drawMode = "FACES";
+    this.vertexGroup = new VertexGroup( faceDefinitions, null );
+    this.faceGroup = new FaceGroup( this.vertexGroup.createFaces( faceDefinitions ) );
+    this.triangleVertices = this.getTriangleVertices();
+    this.edgeGroup = null;
+    this.lineVertices = null;
+  } else if( edgeDefinitions != null ) {
+    this.drawMode = "EDGES";
+    this.vertexGroup = new VertexGroup( null, edgeDefinitions );
+    this.faceGroup = null;
+    this.triangeVertices = null;
+    this.edgeGroup = null; // new EdgeGroup( this.vertextGroup.createEdges( edgeDefinitions ) );
+    this.lineVertices = null; // this.getLineVertices();
+  }
 }
 
 Shape.prototype.getEdgeCount = function() {
@@ -47,6 +59,24 @@ Shape.prototype.getTriangleVertices = function() {
   }
 
   return retVal;
+}
+
+function Edge( vertices ) {
+  this.vertices = vertices;
+  this.line = $L([vertices[0],vertices[1],vertices[2]], $V([(vertices[3]-vertices[0]),(vertices[4]-vertices[1]),(vertices[5]-vertices[2])]));
+  this.direction = line.direction; // normalized
+}
+
+Edge.prototype.isParallel = function(edge) {
+  return this.line.isParallelTo(edge.line);
+}
+
+Edge.prototype.getLength = function() {
+  return Math.sqrt( 
+    Math.pow(this.vertices[3] - this.vertices[0], 2) +
+    Math.pow(this.vertices[4] - this.vertices[1], 2) +
+    Math.pow(this.vertices[5] - this.vertices[2], 2)
+  );
 }
 
 function Face ( plane, vertices, idxArray ) {
@@ -233,16 +263,24 @@ FaceGroup.prototype.sortForColoring = function() {
 }
 
 
-function VertexGroup ( faceDefinitions ) {
+function VertexGroup ( faceDefinitions, edgeDefinitions ) {
   var rawCoords = [];
   this.vertexIndex = {};
   this.coords = [];
   var tempFace;
-  // flatten out the faces
-  for( var f = 0; f < faceDefinitions.length; f++ ) {
-    tempFace = faceDefinitions[ f ];
-    for( var v = 0; v < tempFace.vertices.length; v++ ) {
-      rawCoords.push( tempFace.vertices[v] );
+
+  if( faceDefinitions != null ) {
+    // flatten out the faces
+    for( var f = 0; f < faceDefinitions.length; f++ ) {
+      tempFace = faceDefinitions[ f ];
+      for( var v = 0; v < tempFace.vertices.length; v++ ) {
+        rawCoords.push( tempFace.vertices[v] );
+      }
+    }
+  } else if( edgeDefinitions != null ) {
+    // just an array of points.
+    for( var v = 0; v < edgeDefinitions.length; v++ ) {
+      rawCoords.push( edgeDefinitions[v] );
     }
   }
   this.vertices = [];

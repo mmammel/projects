@@ -9,10 +9,10 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
     $data = json_decode(file_get_contents('php://input'), true);
     if( $data["id"] != NULL ) {
-      $sql = $conn->prepare("UPDATE puzzles SET name = ?, rows = ?, cols = ?, descriptor = ? WHERE id = ?");
+      $sql = $conn->prepare("UPDATE yinyang SET name = ?, numrows = ?, numcols = ?, descriptor = ? WHERE id = ?");
       $sql->bind_param('sddsd', $data["name"],$data["rows"],$data["cols"],$data["descriptor"],$data["id"]);
     } else {
-      $sql = $conn->prepare("INSERT INTO puzzles (name, rows, cols, descriptor, created_date) VALUES (?,?,?,?,NOW())");
+      $sql = $conn->prepare("INSERT INTO yinyang (name, numrows, numcols, descriptor, created_date) VALUES (?,?,?,?,CURRENT_TIMESTAMP)");
       $sql->bind_param('sdds', $data["name"],$data["rows"],$data["cols"],$data["descriptor"]);
     }
 
@@ -31,23 +31,23 @@
       $output = array( 'status' => 'failure', 'results' => 'Error ['.$conn->connect_errno.']: '.$conn->connect_error );
     } else {
       if( isset($_GET["id"]) ) {
-        $sql = $conn->prepare("SELECT id, name, rows, cols, descriptor FROM puzzles WHERE id = ? ORDER BY name");
+        $sql = $conn->prepare("SELECT id, name, numrows, numcols, descriptor FROM yinyang WHERE id = ? ORDER BY name");
         $sql->bind_param( "d", intval( $_GET["id"] ) );
       } else {
-        $sql = $conn->prepare("SELECT id, name, rows, cols, descriptor FROM puzzles ORDER BY name");
+        $sql = $conn->prepare("SELECT id, name, numrows, numcols, descriptor FROM yinyang ORDER BY name");
       }
   
       $sql->execute();
       $sql->bind_result($c0,$c1,$c2,$c3,$c4);
   
       while( $sql->fetch() ) {
-        $puzzles[] = array( 'id' => $c0, 'name' => $c1, 'rows' => $c2, 'cols' => $c3, 'descriptor' => $c4 );
+        $yinyang[] = array( 'id' => $c0, 'name' => $c1, 'rows' => $c2, 'cols' => $c3, 'descriptor' => $c4 );
       }
   
       $sql->close();
       $conn->close();
   
-      $output = array( 'status' => 'success', 'results' => $puzzles );
+      $output = array( 'status' => 'success', 'results' => $yinyang );
     }
   }
 
