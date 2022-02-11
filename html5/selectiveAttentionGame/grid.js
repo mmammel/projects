@@ -7,25 +7,132 @@
   var MOVERS = [ [0, -1], [-1, 0], [0, 1], [1, 0] ];
 
 class Grid {
-  constructor(containerId, rows, cols) {
+  constructor(containerId, rows, cols, startCoord, endCoord ) {
     this.containerId = containerId;
     this.fillCount = 0;
     this.model = [];
     this.index = {};
     this.history = [];
+    this.shapes = ['+','p','t','o'];
+    shuffle(this.shapes);
+    this.points = [1,2,3,4];
+    this.pointMap = {};
+
+    //build pointMap
+    for( var i = 0; i < this.shapes.length; i++ ) {
+      this.pointMap[ this.shapes[i] ] = this.points[i];
+    }
+
+    this.pathPoints = 0;
     this.historyIdx = -1;
+    this.pathTotalLimit = 0;
     this.rows = rows;
     this.cols = cols;
     this.currPos = [0, 0];
+    this.startPos = startCoord;
+    this.endPos = endCoord;
     this.viewBox = [0, 0, 19 * this.cols + 1, 19 * this.rows + 1];
     this.touchContext = {
       currId: "",
       dragging: false,
-      dragValue: 'clear',
+      //dragValue: 'clear',
       timestamp: 0
     };
     this.buildGrid();
   }
+
+  /*
+   * find a naive path from start to finish (that might be the best!)
+   * so we can cap our recursive search.
+   */
+  setPathTotalLimit() {
+    var total = 0;
+    var rinc = 0, cinc = 0;
+    rinc = this.startPos[0] - this.endPos[0] > 0 ? -1 : 1;
+    cinc = this.startPos[1] - this.endPos[1] > 0 ? -1 : 1;
+
+    var temp = this.startPos[0];
+    while( temp != this.endPos[0] ) {
+      total += this.model[temp][this.startPos[1]].points;
+      temp += rinc;
+    }
+
+    temp = this.startPos[1];
+    while( temp != this.endPos[1] ) {
+      total += this.model[this.endPos[0]][temp].points;
+      temp += cinc;
+    }
+
+    this.pathTotalLimit = total;
+  }
+
+  computeOptimalPath() {
+    this.setPathTotalLimit();
+    this.computeOptimalPathInternal(0, this.startPos[0], this.startPos[1], null );
+
+    // Optimal points are in: this.board[this.endPos[0]][this.endPos[1]].memo
+    // Optimal path can be traced using "optimalPrevCell" back from the endPos.
+  }
+
+  computeOptimalPathInternal(total, row, col, from) {
+    var currCell = this.model[row][col];
+    currCell.memo = total;
+    total += currCell.points;
+
+    if( total > this.pathTotalLimit ) return;
+
+    if( from ) {
+      currCell.optimalPrevCell = from;
+    }
+
+    if( currCell.isEnd ) {
+      return;
+    } else {
+      currCell.optimalVisited = true;
+    
+      if( this.computeOptimalCanMove( total, currCell, UP) ) {
+        this.computeOptimalPathInternal(total, row - 1, col, currCell);
+      }
+
+      if( this.computeOptimalCanMove( total, currCell, RIGHT) ) {
+        this.computeOptimalPathInternal(total, row, col + 1, currCell);
+      }
+
+      if( this.computeOptimalCanMove( total, currCell, DOWN) ) {
+        this.computeOptimalPathInternal(total, row + 1, col, currCell);
+      }
+
+      if( this.computeOptimalCanMove( total, currCell, LEFT) ) {
+        this.computeOptimalPathInternal(total, row, col - 1, currCell);
+      }
+
+      currCell.optimalVisited = false;
+    }
+  }
+
+  computeOptimalCanMove( total, cell, direction ) {
+    var retVal = false;
+    switch(direction) {
+      case UP:
+        retVal = cell.r > 0 && !this.model[cell.r - 1][cell.c].optimalVisited && total < this.model[cell.r - 1][cell.c].memo;
+        break;
+      case RIGHT:
+        retVal = cell.c < this.cols - 1 && !this.model[cell.r][cell.c + 1].optimalVisited && total < this.model[cell.r][cell.c + 1].memo;
+        break;
+      case DOWN:
+        retVal = cell.r < this.rows - 1 && !this.model[cell.r + 1][cell.c].optimalVisited && total < this.model[cell.r + 1][cell.c].memo;
+        break;
+      case LEFT:
+        retVal = cell.c > 0 && !this.model[cell.r][cell.c - 1].optimalVisited && total < this.model[cell.r][cell.c - 1].memo;
+        break;
+      default:
+        retVal = false;
+        break;
+    }
+
+    return retVal;
+  }
+
   updateFillCount(amt) {
     this.fillCount += amt;
     if( this.fillCount == this.rows * this.cols ) {
@@ -33,6 +140,7 @@ class Grid {
       $( document ).trigger('gridFull');
     }
   }
+
   buildGrid() {
     this.model = [];
     this.index = {};
@@ -49,6 +157,26 @@ class Grid {
       }
     }
   }
+
+  doFinish() {
+    var optimalSolution = this.model[this.endPos[0]][this.endPos[1]].memo;
+    if( this.pathPoints > optimalSolution ) {
+      // spit out a positive message, show the optimal path
+      var tempCell = this.model[this.endPos[0]][this.endPos[1]];
+
+      while( !tempCell.isStart ) {
+        tempCell.optimalPathHighlight();
+        tempCell = tempCell.optimalPrevCell;
+      }
+
+      tempCell.optimalPathHighlight();
+
+      alert("Great job!  Your path with " + this.pathPoints + " points was " + (this.pathPoints - optimalSolution) + " points off the mark.  The optimal path will be highlighted.");
+    } else if( this.pathPoints == optimalSolution ) {
+      alert("Perfection!  You found the optimal path, accumulating " + optimalSolution + " points!");
+    }
+  }
+
   draw() {
     // build the root element
     this.svgRoot = makeSVG("svg", { id: 'svgRoot', viewBox: '' + this.viewBox[0] + ' ' + this.viewBox[1] + ' ' + this.viewBox[2] + ' ' + this.viewBox[3] });
@@ -70,42 +198,67 @@ class Grid {
       }
     }
 
-    this.model[0][0].doAction('b');
-    this.model[this.rows - 1][this.cols - 1].doAction('a');
-    this.model[this.rows - 1][this.cols - 1].highlight();
-    this.currPos = [this.rows - 1,this.cols - 1];
+    this.model[this.endPos[0]][this.endPos[1]].doAction('b');
+    this.model[this.startPos[0]][this.startPos[1]].doAction('a');
+    this.model[this.startPos[0]][this.startPos[1]].highlight();
+    this.currPos = [this.startPos[0],this.startPos[1]];
 
     this.setupHandlers();
   }
+
   incrementCursor(dir) {
     var newX = this.currPos[0];
     var newY = this.currPos[1];
     var mover = MOVERS[dir];
     newX += mover[0];
     newY += mover[1];
-    if (newX >= this.rows) {
-      newX = 0;
+    if (newX >= this.rows || newX < 0 || newY >= this.cols || newY < 0) {
+      return;
+    } else {
+      this.moveCursorTo(newX,newY);
     }
-    else if (newX < 0) {
-      newX = this.rows - 1;
-    }
-    else if (newY >= this.cols) {
-      newY = 0;
-    }
-    else if (newY < 0) {
-      newY = this.cols - 1;
-    }
-    this.moveCursorTo(newX,newY);
   }
+
+  areAdjacent( cell1, cell2 ) {
+    var retVal = false;
+    if( cell1.r == cell2.r ) {
+      retVal = cell1.c == (cell2.c + 1) || cell1.c == (cell2.c - 1);
+    } else if( cell1.c == cell2.c ) {
+      retVal = cell1.r == (cell2.r + 1) || cell1.r == (cell2.r - 1);
+    }
+
+    return retVal;
+  } 
+
   moveCursorTo( newX, newY ) {
     var from = this.model[ this.currPos[0] ][ this.currPos[1] ];
     var to = this.model[ newX ][ newY ];
     
     if( from && to ) {
-      from.unhighlight();
-      to.highlight();
-      this.currPos[0] = newX;
-      this.currPos[1] = newY;
+      if( !to.visited && this.areAdjacent(to,from) ) {
+        to.prevCell = from;
+        to.visited = true;
+        to.highlight();
+        this.currPos[0] = newX;
+        this.currPos[1] = newY;
+        this.pathPoints += to.points;
+
+        if( to.isEnd ) {
+          // they finished the path - shut 'er down
+          this.doFinish();
+        }
+      } else if( from.prevCell && to.id === from.prevCell.id ) {
+        // we are moving back
+        this.pathPoints -= from.points;
+        from.unhighlight();
+        from.visited = false;
+        from.prevCell = null;
+        to.highlight();
+        this.currPos[0] = newX;
+        this.currPos[1] = newY;
+      }
+
+      //$('#pathPoints').text(''+this.pathPoints);
     }
 
   }
@@ -156,7 +309,7 @@ class Grid {
     e.preventDefault();
     this.touchContext.currId = this.getIdFromTarget($(e.target));
     var cell = this.index[this.touchContext.currId];
-    this.touchContext.dragValue = cell.content;
+    //this.touchContext.dragValue = cell.content;
     this.touchContext.dragging = true;
     var d = new Date();
     this.touchContext.touchStartTime = d.getTime();
@@ -173,7 +326,7 @@ class Grid {
   handleMouseDown(e) {
     this.touchContext.currId = this.getIdFromTarget($(e.target));
     var cell = this.index[this.touchContext.currId];
-    this.touchContext.dragValue = cell.content;
+    //this.touchContext.dragValue = cell.content;
     this.touchContext.dragging = true;
   }
   handleMouseUp(e) {
@@ -190,7 +343,7 @@ class Grid {
         if( cell ) {
           this.touchContext.currId = id;
           this.moveCursorTo(cell.r,cell.c);
-          this.doCellAction(this.touchContext.dragValue);
+          //this.doCellAction(this.touchContext.dragValue);
         }
       }
     }
@@ -206,7 +359,7 @@ class Grid {
         if( cell ) {
           this.touchContext.currId = id;
           this.moveCursorTo(cell.r,cell.c);
-          this.doCellAction(this.touchContext.dragValue);
+          //this.doCellAction(this.touchContext.dragValue);
         }
       }
     }
@@ -219,13 +372,13 @@ class Grid {
     if( cell ) {
       if( cell.r == this.currPos[0] && cell.c == this.currPos[1] ) {
         // we didn't move...cycle the values
-        if( cell.content === 'clear' ) {
-          this.doCellAction('o');
-        } else if( cell.content === 'o' ) {
-          this.doCellAction('x');
-        } else if( cell.content === 'x' ) {
-          this.doCellAction('clear');
-        }
+        // if( cell.content === 'clear' ) {
+        //   this.doCellAction('o');
+        // } else if( cell.content === 'o' ) {
+        //   this.doCellAction('x');
+        // } else if( cell.content === 'x' ) {
+        //   this.doCellAction('clear');
+        // }
       } else {
         this.moveCursorTo(cell.r,cell.c);
       }
@@ -316,6 +469,14 @@ class GridCell {
     this.id = '' + r + '_' + c;
     this.locked = false;
     this.content = 'clear';
+    this.points = 0;
+    this.memo = Number.MAX_SAFE_INTEGER;
+    this.visited = false;
+    this.optimalVisited = false;
+    this.prevCell = null;
+    this.optimalPrevCell = null;
+    this.isStart = false;
+    this.isEnd = false;
     this.actions = {
       'lock' : {
         action: () => {
@@ -353,6 +514,7 @@ class GridCell {
       't' : {
         // triangle  
         action: () => {
+          this.points = this.parentGrid.pointMap['t'];
           var retVal = false;
           if( this.content != 't' ) {
             this.clearDecorator();
@@ -379,6 +541,7 @@ class GridCell {
       'p' : {
         // pentagon  
         action: () => {
+          this.points = this.parentGrid.pointMap['p'];
           var retVal = false;
           if( this.content != 'p' ) {
             this.clearDecorator();
@@ -409,6 +572,7 @@ class GridCell {
       '+' : {
         // plus sign 
         action: () => {
+          this.points = this.parentGrid.pointMap['+'];
           var retVal = false;
           if( this.content != '+' ) {
             this.clearDecorator();
@@ -437,6 +601,9 @@ class GridCell {
         // the letter a
         action: () => {
           var retVal = false;
+          this.points = 0;
+          this.isStart = true;
+          this.visited = true;
           if( this.content != 'a' ) {
             this.clearDecorator();
             this.decorator = makeSVG('g', { id: this.id + '_decorator' });
@@ -457,6 +624,8 @@ class GridCell {
       'b' : {
         // the letter b
         action: () => {
+          this.isEnd = true;
+          this.points = 0;
           var retVal = false;
           if( this.content != 'b' ) {
             this.clearDecorator();
@@ -478,6 +647,7 @@ class GridCell {
       'o' : {
         // closed circle
         action: () => {
+          this.points = this.parentGrid.pointMap['o'];
           var retVal = false;
           if( this.content != 'x' ) {
             this.clearDecorator();
@@ -564,17 +734,24 @@ class GridCell {
     return this.element;
   }
   highlight() {
-    $('#' + this.id + '_inner').attr("fill", "lightblue");
+    $('#' + this.id + '_inner').attr("fill", "cyan");
   }
   unhighlight() {
     $('#' + this.id + "_inner").attr("fill", "white");
   }
+  optimalPathHighlight() {
+    if( $('#' + this.id + "_inner").attr("fill") === "cyan" ) {
+      $('#' + this.id + '_inner').attr("fill", "purple");
+    } else {
+      $('#' + this.id + '_inner').attr("fill", "red");
+    }
+  }
 }
 
-  function makeSVG(tag, attrs) {
-    var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
-    for (var k in attrs)
-      el.setAttribute(k, attrs[k]);
-    return el;
-  }
+function makeSVG(tag, attrs) {
+  var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (var k in attrs)
+    el.setAttribute(k, attrs[k]);
+  return el;
+}
 

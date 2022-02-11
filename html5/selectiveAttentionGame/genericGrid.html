@@ -1,6 +1,13 @@
-<html>  
+<!doctype html>
+<html lang="en">
  <head>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
   <style type="text/css">
+    body {
+      font-family: sans-serif;
+    }
+
     .instructionShapeHolder {
       width: 100px;
     }
@@ -14,9 +21,6 @@
   <script src="grid.js"></script>
   <script type="application/javascript">  
     var theGrid;
-
-    var shapes = ['+','t','o','p']; // plus sign, triangle, circle, pentagon.
-    var points = [1,2,3,4]; // how many points each shape adds on the path.
 
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -74,38 +78,94 @@
     }
 
     function buildInstructionTable() {
-      shuffle(shapes);
+
       var tempShapeHolder = null;
       var tempRow = null;
-      var retVal = $('<table id="instructionTable">');
-      for( var i = 0; i < shapes.length; i++ ) {
+      var retVal = $('<table id="instructionTable" style="margin:auto;">');
+      for( var i = 0; i < theGrid.shapes.length; i++ ) {
         tempRow = $('<tr></tr>');
         tempShapeHolder = $('<td class="instructionShapeHolder" id="shapeHolder_' + i + '"></td>');
         tempRow.append(tempShapeHolder);
-        tempShapeHolder.append(buildImageSVG(shapes[i]));
-        tempRow.append($('<td class="instructionText"> = '+points[i] +' Point' + (i == 0 ? '' : 's') + '</td>'));
+        tempShapeHolder.append(buildImageSVG(theGrid.shapes[i]));
+        tempRow.append($('<td class="instructionText"> = '+theGrid.points[i] +' Point' + (i == 0 ? '' : 's') + '</td>'));
         retVal.append(tempRow);
       }
       return retVal;
     }
 
+    function getURLParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    function fitGrid() {
+      var availableHeight = window.innerHeight - $('#svg').offset().top - 40;
+      // c/r * h => max-width
+      var maxWidth = (theGrid.cols / theGrid.rows) * availableHeight;
+      $('#svg').css('max-width', ''+maxWidth+'px');
+    }
+
     $(document).ready( function() {
+      var gridRows = getURLParameter('r');
+      var gridCols = getURLParameter('c');
+      var gridStartRow = getURLParameter('sr');
+      var gridStartCol = getURLParameter('sc');
+      var gridEndRow = getURLParameter('er');
+      var gridEndCol = getURLParameter('ec');
+      var instructionTime = getURLParameter('t');
+
+      gridRows = gridRows == null ? 8 : parseInt(gridRows);
+      gridCols = gridCols == null ? 6 : parseInt(gridCols);
+      gridStartRow = gridStartRow == null ? gridRows - 1 : parseInt(gridStartRow);
+      gridStartCol = gridStartCol == null ? gridCols - 1 : parseInt(gridStartCol);
+      gridEndRow = gridEndRow == null ? 0 : parseInt(gridEndRow);
+      gridEndCol = gridEndCol == null ? 0 : parseInt(gridEndCol);
+      instructionTime = instructionTime == null ? 30 : parseInt(instructionTime);
+
+      // if( gridRows > 50 ) {
+      //   gridRows = 50;
+      //   gridStartRow = 49;
+      //   gridEndRow = 0;
+      // }
+
+      // if( gridCols > 50 ) {
+      //   gridCols = 50;
+      //   gridStartCol = 49;
+      //   gridEndCol = 0;
+      // }
+
+      theGrid = new Grid( 'svg', gridRows, gridCols, [gridStartRow, gridStartCol ], [gridEndRow, gridEndCol] );
       $('#instructions').append(buildInstructionTable());
+      var counter = instructionTime;
+      $('#timeLimit').text(''+counter--);
+      var instructionInterval = setInterval(function(){
+        $('#timeLimit').text(''+counter--);
+      },1000);
+
       setTimeout(function() {
+        clearInterval(instructionInterval);
         $('#instructions').hide();
-        $('#svg').show()
-      }, 50000);
-      theGrid = new Grid( 'svg', 8, 6 );
+        $('#gameBoard').show()
+        fitGrid();
+      }, 1000*instructionTime);
       theGrid.draw();
+      window.onresize = fitGrid;
+      theGrid.computeOptimalPath();
     });
     
   </script>  
  </head>  
  <body>
    <div id="instructions">
-     <h3>Please take a moment to memorize the following relationships:</h3>
+     <h1>Please take the next <span id="timeLimit">30</span> seconds to memorize the following relationships:</h1>
    </div>
-   <div id="svg" style="width: 600px; height: 600px; display: none;">
+   <div style="display:none;" id="gameBoard">
+    <h1>Find a path from "A" to "B", accumulating the fewest points possible.  Good luck!</h1>
+    <!--<h3 id="pathPoints">0</h3>-->
+    <div id="svg" style="max-width: 600px; padding: 20px; margin:auto;">
+    </div>
    </div>
   </body>  
 </html>  
