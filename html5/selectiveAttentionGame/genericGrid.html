@@ -115,6 +115,7 @@
       var gridEndRow = getURLParameter('er');
       var gridEndCol = getURLParameter('ec');
       var instructionTime = getURLParameter('t');
+      var points = getURLParameter('p');
 
       gridRows = gridRows == null ? 8 : parseInt(gridRows);
       gridCols = gridCols == null ? 6 : parseInt(gridCols);
@@ -122,7 +123,21 @@
       gridStartCol = gridStartCol == null ? gridCols - 1 : parseInt(gridStartCol);
       gridEndRow = gridEndRow == null ? 0 : parseInt(gridEndRow);
       gridEndCol = gridEndCol == null ? 0 : parseInt(gridEndCol);
-      instructionTime = instructionTime == null ? 30 : parseInt(instructionTime);
+      instructionTime = instructionTime == null ? 20 : parseInt(instructionTime);
+
+      if( points == null ) {
+        points = [1,2,3,4];
+      } else {
+        var arr = points.split(',');
+        if( arr.length != 4 ) {
+          points = [1,2,3,4];
+        } else {
+          points = [];
+          for( var i = 0; i < arr.length; i++ ) {
+            points.push( parseInt(arr[i]));
+          }
+        }
+      }
 
       // if( gridRows > 50 ) {
       //   gridRows = 50;
@@ -136,7 +151,7 @@
       //   gridEndCol = 0;
       // }
 
-      theGrid = new Grid( 'svg', gridRows, gridCols, [gridStartRow, gridStartCol ], [gridEndRow, gridEndCol] );
+      theGrid = new Grid( 'svg', gridRows, gridCols, [gridStartRow, gridStartCol ], [gridEndRow, gridEndCol], points );
       $('#instructions').append(buildInstructionTable());
       var counter = instructionTime;
       $('#timeLimit').text(''+counter--);

@@ -7,7 +7,7 @@
   var MOVERS = [ [0, -1], [-1, 0], [0, 1], [1, 0] ];
 
 class Grid {
-  constructor(containerId, rows, cols, startCoord, endCoord ) {
+  constructor(containerId, rows, cols, startCoord, endCoord, pointArray ) {
     this.containerId = containerId;
     this.fillCount = 0;
     this.model = [];
@@ -15,7 +15,7 @@ class Grid {
     this.history = [];
     this.shapes = ['+','p','t','o'];
     shuffle(this.shapes);
-    this.points = [1,2,3,4];
+    this.points = pointArray;
     this.pointMap = {};
 
     //build pointMap
