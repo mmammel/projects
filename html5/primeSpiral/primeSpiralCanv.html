@@ -572,7 +572,8 @@
       extraVars = currChecker.extraVars;
       if (extraVars != null && extraVars.length > 0) {
         for (let ex = 0; ex < extraVars.length; ex++) {
-          extraVarValues[ex] = parseFloat($('#' + extraVars[ex].id).val());
+          var floatVal = parseFloat($('#' + extraVars[ex].id).val());
+          extraVarValues[ex] = isNaN(floatVal) ? $('#' + extraVars[ex].id).val() : floatVal;
         }
       }
 
@@ -700,15 +701,21 @@
     //   <input value=".015" type="text" id="animationStep" class="mediuminput form-control" placeholder="Animation Step" aria-label="Animation Step" aria-describedby="basic-addon1">
     // </div>
     function initChecker() {
+      let stateVars = [];
       if (currChecker != null) {
         $('#checkerDescription').html(currChecker.description);
         $('#checkerDescriptionTitle').html(currChecker.name);
         $('#dynamicInputs').empty();
-        let tempInput = '<div class="input-group input-group-sm mb-2 mr-1">';
+        let tempInput = '';
         let tempVar = {};
         if (currChecker.extraVars) {
           for (let i = 0; i < currChecker.extraVars.length; i++) {
             tempVar = currChecker.extraVars[i];
+            if( tempVar.changeFunc != null ) {
+              // this sets a state variable.
+              stateVars.push( { id: tempVar.id, changeFunc : tempVar.changeFunc } );
+            }
+            tempInput += '<div class="input-group input-group-sm mb-2 mr-1">';
             tempInput += '<div class="input-group-prepend"><span class="input-group-text">' + tempVar.label + '</span></div>';
             if (tempVar.values) {
               // it's a select
@@ -721,11 +728,19 @@
               tempInput += "</select>";
             } else {
               // it's an input
-              tempInput += "<input class='form-control' id='" + tempVar.id + "' value='" + tempVar.defaultVal +"'/>";
+              tempInput += "<input id='" + tempVar.id + "' class='form-control smalltextinput' value='" + tempVar.defaultVal +"'/>";
             }
+            tempInput += '</div>';
+          }
+          tempInput += "</div>";
 
-            tempInput += "</div>";
-            $('#dynamicInputs').append($(tempInput));
+          $('#dynamicInputs').append($(tempInput));
+          for( var i = 0; i < stateVars.length; i++ ) {
+            var tempStateVar = stateVars[i];
+            $('#'+tempStateVar.id).off();
+            $('#'+tempStateVar.id).on('change', function() {
+              tempStateVar.changeFunc(currChecker.stateObj, $(this).val() );
+            });
           }
         }
       }

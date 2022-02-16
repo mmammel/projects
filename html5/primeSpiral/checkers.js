@@ -45,6 +45,18 @@ function isPrime( n ) {
   return retVal;
 }
 
+function getCollatzConvergenceNum( num ) {
+  // return how many iterations it takes to get to 1
+  let val = num;
+  let count = 0;
+  while( val != 1 ) {
+    count++;
+    val = val % 2 == 0 ? val / 2 : 3*val + 1;
+  }
+
+  return count;
+}
+
 // var primeMask = new BitMask(80000000);
 // for( var i = 0; i < 80000000; i++ ) {
 //   if( isPrimeInit(i) ) primeMask.setBit( i );
@@ -53,8 +65,6 @@ function isPrime( n ) {
 // function isPrime( n ) {
 //   return primeMask.isSet(n);
 // }
-
-
 let checkers = [
   {
     id: "simple",
@@ -74,6 +84,75 @@ let checkers = [
         retVal.draw = true;
         retVal.turn = true;
         state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;    
+      }
+
+      return retVal;
+    }
+  },{
+    id: "everything",
+    name : "Everything",
+    description : "Always draw a dot and turn, just to see what happens.  Capped at 1000 points",
+    stateObj : {
+      limit: 1000
+    },
+    checker : function( state, n, B ) {
+      retVal = {
+        draw: true,
+        turn: true
+      };
+
+      if( B != null && B !== 'Always turn and draw' ) {
+        if( n % 2 == 0 ) {
+          retVal.turn = false;
+          if( B === 'No turn or draw on evens' ) {
+            retVal.draw = false;
+          }
+        }
+      }
+
+      if( n > state.limit ) {
+        retVal.draw = false;
+        retVal.turn = false;
+      }
+
+      return retVal;
+    },
+    extraVars : [
+      {
+        id : "B",
+        label : "Choose behavior",
+        values : [
+          'Always turn and draw',
+          'No turn on evens',
+          'No turn or draw on evens'
+        ],
+        defaultVal : 'Always turn and draw'
+      }
+    ]
+  },{
+    id: "collatz",
+    name : "Collatz",
+    description : "Do simple but for the array of times it takes the numbers from 2-10000 to get to a power of 2, sorted.",
+    default: false,
+    stateObj : {
+      arrayIdx: 0, 
+      counter : 0
+    },
+    checker : function( state, n ) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+
+      //if( state.counter == collatzPowerOfTwoTimes[state.arrayIdx] ) {
+      //if( state.counter == collatzPowerOfTwoTimesUnsorted[state.arrayIdx] ) {
+      if( state.counter == collatz3077s[state.arrayIdx] ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.arrayIdx++;
         state.counter = 0;
       } else {
         state.counter++;    
@@ -138,6 +217,61 @@ let checkers = [
         id : "X",
         label : "Turn if divisible by: ",
         defaultVal: 2
+      }
+    ]
+  },
+  {
+    id: "baseDigits",
+    name : "Base Digits",
+    description : "For each number, put it into Base B, and then do simple for each digit of the converted number.",
+    stateObj : {
+      digitIdx: 0,
+      counter: 0,
+      currNumber: 0,
+      digits: [0]
+    },
+    checker : function( state, n, B ) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+
+      if( state.counter == state.digits[state.digitIdx] ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.digitIdx++;
+        if( state.digitIdx == state.digits.length ) {
+          // next number.
+          state.currNumber++;
+          var str = state.currNumber.toString(B);
+          var tmp = str.split('');
+          state.digits = [];
+          for( var i = 0; i < tmp.length; i++ ) {
+            state.digits.push(parseInt(tmp[i],B));
+          }
+          state.digitIdx = 0;
+        }
+        state.counter = 0;
+      } else {
+        state.counter++;    
+      }
+
+      return retVal;
+    },
+    extraVars : [
+      {
+        id : "B",
+        label : "Which base?",
+        values : [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ],
+        defaultVal : 10
+      },
+      {
+        id: "currNumber",
+        label : "Starting Value: ",
+        defaultVal: 1,
+        changeFunc : function(state, val) {
+          state.currNumber = val;
+        }
       }
     ]
   },
