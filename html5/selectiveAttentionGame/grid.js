@@ -17,6 +17,7 @@ class Grid {
     shuffle(this.shapes);
     this.points = pointArray;
     this.pointMap = {};
+    this.negativePoints = 0;
 
     //build pointMap
     for( var i = 0; i < this.shapes.length; i++ ) {
@@ -53,13 +54,17 @@ class Grid {
 
     var temp = this.startPos[0];
     while( temp != this.endPos[0] ) {
-      total += this.model[temp][this.startPos[1]].points;
+      if( this.model[temp][this.startPos[1]].points > 0 ) {
+        total += this.model[temp][this.startPos[1]].points;
+      }
       temp += rinc;
     }
 
     temp = this.startPos[1];
     while( temp != this.endPos[1] ) {
-      total += this.model[this.endPos[0]][temp].points;
+      if( total += this.model[this.endPos[0]][temp].points > 0 ) {
+        total += this.model[this.endPos[0]][temp].points;
+      }
       temp += cinc;
     }
 
@@ -75,39 +80,52 @@ class Grid {
   }
 
   computeOptimalPathInternal(total, row, col, from) {
+    var deadEnd = true;
     var currCell = this.model[row][col];
+    var origMemo = currCell.memo;
+    var origPrev = currCell.optimalPrevCell;
+
+    if( total > (this.pathTotalLimit + this.negativePoints) ) {
+      return true;
+    }
+
     currCell.memo = total;
     total += currCell.points;
-
-    if( total > this.pathTotalLimit ) return;
 
     if( from ) {
       currCell.optimalPrevCell = from;
     }
 
     if( currCell.isEnd ) {
-      return;
+      return false;
     } else {
       currCell.optimalVisited = true;
     
       if( this.computeOptimalCanMove( total, currCell, UP) ) {
-        this.computeOptimalPathInternal(total, row - 1, col, currCell);
+        deadEnd &= this.computeOptimalPathInternal(total, row - 1, col, currCell);
       }
 
       if( this.computeOptimalCanMove( total, currCell, RIGHT) ) {
-        this.computeOptimalPathInternal(total, row, col + 1, currCell);
+        deadEnd &= this.computeOptimalPathInternal(total, row, col + 1, currCell);
       }
 
       if( this.computeOptimalCanMove( total, currCell, DOWN) ) {
-        this.computeOptimalPathInternal(total, row + 1, col, currCell);
+        deadEnd &= this.computeOptimalPathInternal(total, row + 1, col, currCell);
       }
 
       if( this.computeOptimalCanMove( total, currCell, LEFT) ) {
-        this.computeOptimalPathInternal(total, row, col - 1, currCell);
+        deadEnd &= this.computeOptimalPathInternal(total, row, col - 1, currCell);
       }
 
       currCell.optimalVisited = false;
+
+      if( deadEnd ) {
+        currCell.memo = origMemo;
+        currCell.optimalPrevCell = origPrev;
+      }
     }
+
+    return deadEnd;
   }
 
   computeOptimalCanMove( total, cell, direction ) {
@@ -195,6 +213,9 @@ class Grid {
         // get random action
         var rand = Math.floor(Math.random() * 4);
         this.model[i][j].doAction(symbols[rand]);
+        if( this.model[i][j].points < 0 ) {
+          this.negativePoints += (-1 * this.model[i][j].points );
+        }
       }
     }
 
@@ -470,7 +491,7 @@ class GridCell {
     this.locked = false;
     this.content = 'clear';
     this.points = 0;
-    this.memo = Number.MAX_SAFE_INTEGER;
+    this.memo = Number.MAX_VALUE;
     this.visited = false;
     this.optimalVisited = false;
     this.prevCell = null;
