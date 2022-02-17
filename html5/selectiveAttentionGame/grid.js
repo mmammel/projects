@@ -42,6 +42,32 @@ class Grid {
     this.buildGrid();
   }
 
+  getAdjacentCells( c ) {
+    var retVal = [];
+
+    if( c.r > 0 ) {
+      // cell above
+      retVal.push( this.model[c.r - 1][c.c]);
+    }
+
+    if( c.r < this.rows - 1 ) {
+      // cell below
+      retVal.push( this.model[c.r + 1][c.c] );
+    }
+
+    if( c.c > 0 ) {
+      // cell to the left
+      retVal.push( this.model[c.r][c.c - 1] );
+    }
+
+    if( c.c < this.cols - 1 ) {
+      // cell to the right
+      retVal.push( this.model[c.r][c.c + 1]);
+    }
+    
+    return retVal;
+  }
+
   /*
    * find a naive path from start to finish (that might be the best!)
    * so we can cap our recursive search.
@@ -69,6 +95,59 @@ class Grid {
     }
 
     this.pathTotalLimit = total;
+  }
+  
+  getIndexFromCoord( r, c ) {
+    return r * this.cols + c;
+  }
+
+  computeOptimalBellmanFord() {
+    // build edges
+    var edges = [];
+    var tempCell = null, tempAdjacentCell = null;
+    var tempAdjacent = null;
+    for( var i = 0; i < this.rows; i++ ) {
+      for( var j = 0; j < this.cols; j++ ) {
+        tempCell = this.model[i][j];
+        if( tempCell.isEnd ) continue;
+        tempAdjacent = this.getAdjacentCells(tempCell);
+        for( var a = 0; a < tempAdjacent.length; a++ ) {
+          tempAdjacentCell = tempAdjacent[a];
+          if( tempAdjacentCell.isStart ) continue;
+          edges.push( new Edge( tempCell, tempAdjacentCell ) );
+        }
+      }
+    }
+
+    var dist = [];
+
+    for( var i = 0; i < this.rows * this.cols; i++ ) {
+      dist.push( Number.MAX_VALUE);
+    }
+
+    dist[ this.getIndexFromCoord( this.startPos[0], this.startPos[1] ) ] = 0;
+
+    // Now relax the paths
+    var s = null;
+    var d = null;
+    var edge = null;
+    var weight = 0, srcIdx = 0, destIdx = 0;
+
+    for( var i = 1; i < dist.length; i++ ) {
+      for( var e = 0; e < edges.length; e++ ) {
+        edge = edges[e];
+        s = edge.source;
+        d = edge.destination;
+        weight = edge.weight;
+        srcIdx = this.getIndexFromCoord(s.r, s.c);
+        destIdx = this.getIndexFromCoord(d.r, d.c );
+        if (dist[srcIdx] != Number.MAX_VALUE && dist[srcIdx] + weight < dist[destIdx]) {
+          dist[destIdx] = dist[srcIdx] + weight;
+          d.memo = dist[destIdx];
+          d.optimalPrevCell = s;
+        }
+      }
+    }
   }
 
   computeOptimalPath() {
@@ -479,6 +558,14 @@ class Grid {
       that.handleClick(e);
     });
 
+  }
+}
+
+class Edge {
+  constructor(s,d) {
+    this.source = s;
+    this.destination = d;
+    this.weight = d.points;
   }
 }
 

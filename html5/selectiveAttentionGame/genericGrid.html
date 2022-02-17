@@ -133,8 +133,11 @@
           points = [1,2,3,4];
         } else {
           points = [];
+          var point = 0;
           for( var i = 0; i < arr.length; i++ ) {
-            points.push( parseInt(arr[i]));
+            point = parseInt(arr[i]);
+            if( point < 0 ) point *= -1;
+            points.push(point);
           }
         }
       }
@@ -167,7 +170,8 @@
       }, 1000*instructionTime);
       theGrid.draw();
       window.onresize = fitGrid;
-      theGrid.computeOptimalPath();
+      //theGrid.computeOptimalPath();
+      theGrid.computeOptimalBellmanFord();
     });
     
   </script>  

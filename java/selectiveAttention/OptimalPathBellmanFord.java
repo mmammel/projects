@@ -1,10 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  There is a board with a starting space and an ending space.
  *  Each square on the board other than the start and end have a point value
  *  Get to the end from the start acumulating the fewest points possible
  */
-public class OptimalPath {
+public class OptimalPathBellmanFord {
 
+  private List<Edge> edges;
   private Cell [][] board;
   private int [][] memo;
   private int rows = 0;
@@ -18,7 +22,7 @@ public class OptimalPath {
   private static final int LEFT = 3;
 
   private static final String [] POSSIBLE_VALS = {
-    "1", "2", "3", "4"
+    "1", "2", "3", "32"
   };
 
   public static void main( String [] args ) {
@@ -27,7 +31,7 @@ public class OptimalPath {
       int c = Integer.parseInt(args[1]);
       String d = args.length == 3 ? args[2] : null ;
 
-      OptimalPath OP = new OptimalPath( r, c, d );
+      OptimalPathBellmanFord OP = new OptimalPathBellmanFord( r, c, d );
       OP.find();
     } catch( Exception e ) {
       System.out.println( e.toString() );
@@ -50,6 +54,32 @@ public class OptimalPath {
     return retVal;
   }
 
+  private List<Cell> getAdjacentCells( Cell c ) {
+    List<Cell> retVal = new ArrayList<Cell>();
+
+    if( c.row > 0 ) {
+      // cell above
+      retVal.add( this.board[c.row - 1][c.col]);
+    }
+
+    if( c.row < this.rows - 1 ) {
+      // cell below
+      retVal.add( this.board[c.row + 1][c.col] );
+    }
+
+    if( c.col > 0 ) {
+      // cell to the left
+      retVal.add( this.board[c.row][c.col - 1] );
+    }
+
+    if( c.col < this.cols - 1 ) {
+      // cell to the right
+      retVal.add( this.board[c.row][c.col + 1]);
+    }
+    
+    return retVal;
+  }
+
   /**
    * rows: number of rows > 2
    * cols: number of cols > 2
@@ -58,8 +88,9 @@ public class OptimalPath {
    * where each field is either an integer for points, "A" for start, or "B" for end, e.g.
    * B,1,4,3,3,2,4,1,A
    */
-  public OptimalPath( int rows, int cols, String descriptor ) {
+  public OptimalPathBellmanFord( int rows, int cols, String descriptor ) {
     String [] dsplit = null;
+    this.edges = new ArrayList<Edge>();
 
     if( descriptor != null ) {
       dsplit = descriptor.split(",");
@@ -106,76 +137,67 @@ public class OptimalPath {
         c = 0;
       }
     }
+
+    Cell tempCell = null;
+    for( int i = 0; i < this.rows; i++ ) {
+      for( int j = 0; j < this.cols; j++ ) {
+        tempCell = this.board[i][j];
+        if( tempCell.isEnd ) continue;
+        for( Cell cell : this.getAdjacentCells(tempCell) ) {
+          if( cell.isStart ) continue;
+          this.edges.add( new Edge( tempCell, cell ) );
+        }
+      }
+    }
+  }
+
+  private int getIndexFromCoord( int r, int c ) {
+    return r * this.cols + c;
   }
 
   /**
-   * find the path.  use memoized recursion.
+   * find the path.  use bellman ford.
    */
   public void find() {
-    this.findInner(0, this.startCoord[0], this.startCoord[1], null );
-    
-    System.out.println(this.toString());
-    System.out.println( "Optimal points: " + this.board[this.endCoord[0]][this.endCoord[1]].memo);
+    int [] dist = new int [ this.rows * this.cols ];
+    for( int i = 0; i < dist.length; i++ ) {
+      dist[i] = Integer.MAX_VALUE;
+    }
+
+    dist[ this.getIndexFromCoord(this.startCoord[0], this.startCoord[1]) ] = 0;
+
+    Cell s = null;
+    Cell d = null;
+    int weight = 0, srcIdx = 0, destIdx = 0;
+
+    for( int i = 1; i < dist.length; i++ ) {
+if( i % 1000 == 0 ) System.out.println( "..." + i );
+      for( Edge e : this.edges ) {
+        s = e.src;
+        d = e.dest;
+        weight = e.cost;
+        srcIdx = this.getIndexFromCoord(s.row, s.col);
+        destIdx = this.getIndexFromCoord(d.row, d.col );
+        if (dist[srcIdx] != Integer.MAX_VALUE && dist[srcIdx] + weight < dist[destIdx]) {
+          dist[destIdx] = dist[srcIdx] + weight;
+          d.memo = dist[destIdx];
+          d.prevR = s.row;
+          d.prevC = s.col;
+        }
+      }
+    }
+
+    System.out.println( this );
+
+    for( Edge e : this.edges ) {
+      System.out.println( e );
+    }
+
+    for( int i = 0; i < dist.length; i++ ) {
+      System.out.print( dist[i] + " " );
+    }
+    System.out.println("");
     this.printSolution();
-  }
-
-  private void findInner( int total, int posR, int posC, Cell from ) {
-    this.board[posR][posC].memo = total;
-    total += this.board[posR][posC].points;
-    if( from != null ) {
-      this.board[posR][posC].prevR = from.row;
-      this.board[posR][posC].prevC = from.col;
-    }
-    // try up, right, down, and left.
-    if( posR == this.endCoord[0] && posC == this.endCoord[1] ) {
-      // we found the end, since we were allowed to enter here it must be 
-      // optimal to this point.
-      return;
-    } else {      
-      this.board[posR][posC].visited = true;
-
-      if( this.canMove( total, posR, posC, UP ) ) {
-        this.findInner(total, posR - 1, posC, this.board[posR][posC] );
-      }
-
-      if( this.canMove( total, posR, posC, DOWN) ) {
-        this.findInner(total, posR + 1, posC, this.board[posR][posC] );
-      }
-
-      if( this.canMove( total, posR, posC, RIGHT) ) {
-        this.findInner(total, posR, posC + 1, this.board[posR][posC] );
-      }
-
-      if( this.canMove( total, posR, posC, LEFT) ) {
-        this.findInner(total, posR, posC - 1, this.board[posR][posC] );
-      }
-
-      this.board[posR][posC].visited = false;
-    }
-  }
-
-  private boolean canMove( int total, int posR, int posC, int dir ) {
-    boolean retVal = false;
-
-    switch(dir) {
-      case UP:
-        retVal = posR > 0 && !this.board[posR - 1][posC].visited && total < this.board[posR - 1][posC].memo;
-        break;
-      case DOWN:
-        retVal = posR < (this.rows - 1) && !this.board[posR+1][posC].visited && total < this.board[posR+1][posC].memo;
-        break;
-      case RIGHT:
-        retVal = posC < (this.cols - 1) && !this.board[posR][posC+1].visited && total < this.board[posR][posC+1].memo;
-        break;
-      case LEFT:
-        retVal = posC > 0 && !this.board[posR][posC-1].visited && total < this.board[posR][posC-1].memo;
-        break;
-      default:
-        retVal = false;
-        break;
-    }
-
-    return retVal;
   }
 
   public void printSolution() {
@@ -254,6 +276,22 @@ public class OptimalPath {
     public Cell( int r, int c ) {
       this.row = r;
       this.col = c;
+    }
+  }
+
+  public static class Edge {
+    int cost = 0;
+    Cell src = null;
+    Cell dest = null;
+
+    public Edge( Cell s, Cell d) {
+      this.cost = d.points;
+      this.src = s;
+      this.dest = d;
+    }
+
+    public String toString() {
+      return "[" + this.src.row + "," + this.src.col +"] --" + this.cost + "--> [" + this.dest.row + "," + this.dest.col + "]"; 
     }
   }
 }
