@@ -171,7 +171,6 @@ public class OptimalPathBellmanFord {
     int weight = 0, srcIdx = 0, destIdx = 0;
 
     for( int i = 1; i < dist.length; i++ ) {
-if( i % 1000 == 0 ) System.out.println( "..." + i );
       for( Edge e : this.edges ) {
         s = e.src;
         d = e.dest;
