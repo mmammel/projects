@@ -279,9 +279,9 @@
       // animation Step
       retVal += ('&as=' + animationStep);
       // deltatheta
-      retVal += ('&dt=' + deltaTheta);
+      retVal += ('&dt=' + ((deltaTheta / Math.PI) * 180));
       // currTheta
-      retVal += ('&ct=' + currTheta); // convert from radians to degrees.
+      retVal += ('&ct=' + currTheta);
       // connect the dots
       retVal += ('&cd=' + connectTheDots);
       // point radius

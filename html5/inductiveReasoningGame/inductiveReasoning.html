@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+ <head>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
+  <style type="text/css">
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="main.js"></script>
+  <script src="sylvester.js"></script>
+  <script type="application/javascript">  
+
+    var theGame = null;
+    var theCanvasGame = null;
+
+    function getURLParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    $(document).ready( function() {
+      //theGame = new Game('svg');
+      //theGame.drawSVG();
+      var numShapes = getURLParameter("n");
+      if( numShapes != null ) {
+        numShapes = parseInt(numShapes);
+        if( numShapes <= 0 || numShapes > 100 ) {
+          numShapes = 3;
+        }
+      } else {
+        numShapes = 3;
+      }
+
+      theCanvasGame = new Game('canvas', numShapes );
+      theCanvasGame.initializeHandlers();
+      window.onresize = theCanvasGame.handleResize;
+      //theCanvasGame.drawCanvas();
+      animate();
+      //window.requestAnimationFrame(theCanvasGame.animate);
+    });
+    
+  </script>  
+ </head>  
+ <body>
+   <div id="gameBoard">
+    <h1>Some pretty circles blah blah blah</h1>
+    <!-- <div id="svg" style="max-width: 600px; padding: 20px; margin:auto;">
+      
+    </div> -->
+    <div id="canvas" style="padding: 20px; margin:auto;">
+      <canvas id="canvasRoot" syle="z-index: 0">
+        
+      </canvas>
+    </div>
+   </div>
+  </body>  
+</html>  
+
+
