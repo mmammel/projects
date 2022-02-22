@@ -91,7 +91,7 @@ class Game {
   }
 
   handleResize = () => {
-    this.dimension = window.innerHeight - $('#canvas').offset().top - 40;
+    this.dimension = Math.min(window.innerHeight - $('#canvas').offset().top - 40, window.innerWidth - $('#canvas').offset().left - 20);
     this.radius = .9 * (this.dimension / 2.0);
     $('#canvas').css('width',''+this.dimension+'px');
     $('#canvasRoot').css('height',''+this.dimension+'px');
@@ -193,12 +193,29 @@ class Shape {
     this.shape = shape; // t, p, or, c (triangle, pentagon, circle) 
     this.sphericalCoord = sphericalCoord;
     this.coord = $V(sphericalToCartesian(sphericalCoord));
+    this.quadrantBoundaries = [
+      [Math.PI / 2.0, 0 ],
+      [Math.PI, Math.PI / 2.0],
+      [3.0 * (Math.PI / 2.0), Math.PI],
+      [2.0 * Math.PI, 3.0 * (Math.PI / 2) ]
+    ];
   }
 
   radiusChange( newRadius ) {
     var x = this.coord.elements[0];
     var y = this.coord.elements[1];
     var z = this.coord.elements[2];
+    var quadrant = 0;
+
+    if( x > 0 && y > 0 ) {
+      quadrant = 0;
+    } else if( x < 0 && y > 0 ) {
+      quadrant = 1;
+    } else if( x < 0 && y < 0 ) {
+      quadrant = 2;
+    } else if( x > 0 && y < 0 ) {
+      quadrant = 3;
+    }
 
     var theta = 0;
     if( x == 0 ) {
@@ -208,13 +225,24 @@ class Shape {
         theta = 3.0 * (Math.PI / 2.0 );
       }
     } else {
-      theta = Math.atan( y / x );
-      //if( theta < 0 ) theta += 2.0 * Math.PI;
+      theta = this.adjustThetaToQuadrant(Math.atan( y / x ), quadrant);
     }
 
     var phi = Math.acos( z / Math.sqrt( Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z,2) ));
     var rho = newRadius;
     this.coord = $V(sphericalToCartesian([rho,theta,phi]));
+  }
+
+  adjustThetaToQuadrant( theta, quadrant ) {
+    // quadrant 0 by default.
+    var lt = this.quadrantBoundaries[quadrant][0];
+    var gt = this.quadrantBoundaries[quadrant][1];
+
+    while( theta >= lt || theta <= gt ) {
+      theta += (Math.PI / 2.0);
+    }
+
+    return theta;
   }
 
   applyRotation( m ) {
