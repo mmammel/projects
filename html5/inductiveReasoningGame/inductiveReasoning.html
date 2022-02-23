@@ -7,7 +7,14 @@
     body {
       font-family: sans-serif;
     }
+
+    button {
+      width: 100%;
+      height: 25px;
+    }
   </style>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="main.js"></script>
   <script src="sylvester.js"></script>
@@ -38,6 +45,25 @@
 
       theCanvasGame = new Game('canvas', numShapes );
       theCanvasGame.initializeHandlers();
+
+      if( numShapes === 3 ) {
+        lockedShape = 't';
+
+        $('#t_lock').on('click', (event) => {
+          lockShape('t');
+        });
+
+        $('#p_lock').on('click', (event) => {
+          lockShape('p');
+        });
+        
+        $('#c_lock').on('click', (event) => {
+          lockShape('c');
+        });
+      } else {
+        $('#buttons').hide();
+      }
+
       window.onresize = theCanvasGame.handleResize;
       //theCanvasGame.drawCanvas();
       animate();
@@ -48,11 +74,19 @@
  </head>  
  <body>
    <div id="gameBoard">
-    <h1>Some pretty circles blah blah blah</h1>
-    <!-- <div id="svg" style="max-width: 600px; padding: 20px; margin:auto;">
-      
-    </div> -->
+    <h1>Try to maneuver all of the shapes as close to the center of the target area as possible - you can only move two shapes at a time.</h1>
     <div id="canvas" style="margin:auto;">
+      <div id="buttons">
+        <table style="border-width: 0px;table-layout: fixed;border-spacing: 0px;width: 100%;">
+          <tbody>
+            <tr>
+              <td><button id="t_lock" style="background-color: red;">Lock &#x25B2;</button></td>
+              <td><button id="p_lock">Lock &#x2B1F;</button></td>
+              <td><button id="c_lock">Lock &#x2B24;</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <canvas id="canvasRoot">
         
       </canvas>

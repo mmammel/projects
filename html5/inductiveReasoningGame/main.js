@@ -6,6 +6,8 @@ const touchContext = {
   dragging : false
 };
 
+var lockedShape = '';
+
 class Game {
   constructor(containerId,numShapes) {
     this.containerId = containerId;
@@ -308,6 +310,12 @@ function drawCircle( ctx, radius, x, y ) {
   ctx.fill();
 }
 
+function lockShape(shape) {
+  lockedShape = shape;
+  $('button').css('background-color','');
+  $('#'+shape+'_lock').css('background-color', 'red');
+}
+
 function animate() {
   theCanvasGame.clearCanvas();
   theCanvasGame.drawCanvas();
@@ -318,7 +326,9 @@ function animate() {
     theCanvasGame.rotationAngle = 0.0;
   }
   for( var i = 0; i < theCanvasGame.shapes.length; i++ ) {
-    theCanvasGame.shapes[i].applyRotation(m);
+    if( theCanvasGame.shapes[i].shape !== lockedShape ) {
+      theCanvasGame.shapes[i].applyRotation(m);
+    }
   }
   window.requestAnimationFrame( animate );
 }
