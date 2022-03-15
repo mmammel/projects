@@ -184,14 +184,13 @@
     }
 
     function savePuzzle(name) {
+      const now = new Date();
       var puzzleData = {};
       puzzleData['descriptor'] = getDescriptor(theGrid);
       puzzleData['name'] = name;
-      puzzleData['rows'] = theGrid.rows;
-      puzzleData['cols'] = theGrid.cols;
-      if( $.currPuzzle != null ) {
-        puzzleData['id'] = $.currPuzzle.id;
-      }
+      puzzleData['numrows'] = theGrid.rows;
+      puzzleData['numcols'] = theGrid.cols;
+      puzzleData['created_date'] = now.toISOString();
 
       doSolve( function( solutions ) {
         if( solutions.size == 1 ) {

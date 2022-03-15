@@ -1,0 +1,107 @@
+{"yinyang": [
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "MJM 2022-02-08"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "b0,b1,b2,b3,b4,b5,b6,b7,b14,w16,b17,w18,b19,b21,b25,b26,b28,w30,b31,w32,b33,b35,b38,b42,b43,b44,b45,b46,b47,b48"},
+    "created_date": {"S": "2022-02-08T06:45:49Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-11-15"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "b8,b9,b10,b15,b17,b19,b21,b22,b24,w33,w39"},
+    "created_date": {"S": "2022-02-25T18:34:08Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "6"},
+    "name": {"S": "NYT Example"},
+    "numcols": {"N": "6"},
+    "descriptor": {"S": "w1,w6,b8,b14,w16,b18,b26,b28,b32,b34,b35"},
+    "created_date": {"S": "2022-02-25T18:45:06Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-11-08"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w0,b6,b9,w11,b15,b16,w18,w19,w29,w30,w32,b33,b37,w39,w42,w48"},
+    "created_date": {"S": "2022-02-25T18:51:39Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-11-01"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "b5,w6,w9,b11,w13,b15,w17,b19,b23,w25,w29,b31,w33,b35,w37,b39,b43"},
+    "created_date": {"S": "2022-02-25T18:52:26Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-10-25"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w2,b4,w17,b19,b20,w23,b25,b31,w36,w42,b44,b46"},
+    "created_date": {"S": "2022-02-25T18:53:17Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-10-18"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w0,w15,w16,w17,w18,b19,w20,b28,b29,b30,b31,b32,b33,b48"},
+    "created_date": {"S": "2022-02-25T18:53:55Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-10-04"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "b1,b3,b7,w9,b11,w16,w19,b23,w25,b29,b32,w37,w39,w41,w45,w47"},
+    "created_date": {"S": "2022-02-25T18:55:32Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-09-27"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w4,w11,w13,b15,w17,w20,w26,b31,w33,b37,b44"},
+    "created_date": {"S": "2022-02-25T18:56:15Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-09-20"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "b6,w11,b12,b14,w15,b18,w21,b24,w27,b30,w33,w34,b36,w37,w42"},
+    "created_date": {"S": "2022-02-25T18:56:59Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-09-13"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w1,w3,w7,w9,b16,b18,b24,b30,b31,w33,w40,w47,w48"},
+    "created_date": {"S": "2022-02-25T18:57:39Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-09-06"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w11,b15,b17,b21,b23,b25,b29,b31,b39"},
+    "created_date": {"S": "2022-02-25T18:58:21Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-08-30"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w3,w7,w10,w11,w14,w15,w24,b33,w37,b40,w41,w44,w45"},
+    "created_date": {"S": "2022-02-25T18:59:11Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-08-23"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "w2,w8,w10,w16,b25,b30,b31,b39"},
+    "created_date": {"S": "2022-02-25T18:59:45Z"}
+  }}},
+  {"PutRequest": {"Item": {
+    "numrows": {"N": "7"},
+    "name": {"S": "NYT 2020-08-16"},
+    "numcols": {"N": "7"},
+    "descriptor": {"S": "b0,b1,w4,b7,w10,w15,w17,w19,w21,w27,w29,b31,w33,w38,w41,w44,w47,w48"},
+    "created_date": {"S": "2022-02-25T19:00:33Z"}
+  }}}
+]}

@@ -4,7 +4,7 @@
 
 function ajaxCall( callDetails ) { 
   $.ajax({
-    url: '/api/poly/index.php',
+    url: '/api/poly/dynamo.php',
     type: callDetails.type,
     contentType: callDetails.contentType ? callDetails.contentType : "application/json",
     dataType: callDetails.dataType ? callDetails.dataType : "json",
@@ -20,25 +20,24 @@ function ajaxCall( callDetails ) {
 
 function getPolyhedra() {
   $('#polySelect').empty();
-  $('#polySelect').append( $('<option value="-1" selected>Loading...</option>') );
+  $('#polySelect').append( $('<option value="" selected>Loading...</option>') );
   ajaxCall({
     type: "GET",
     successHandler: function( result ) {
       $.polyData = result.results;
       $('#polySelect').empty();
-      $('#polySelect').append( $('<option value="-1" selected>Select One</option>') );
+      $('#polySelect').append( $('<option value="" selected>Select One</option>') );
       for( var i = 0; i < $.polyData.length; i++ ) {
-        $('#polySelect').append( $('<option value="'+$.polyData[i].id+'">'+$.polyData[i].name+'</option>') );
+        $('#polySelect').append( $('<option value="'+$.polyData[i].name+'">'+$.polyData[i].name+'</option>') );
       }
     }
   });
 }
 
 function loadPolyhedron() {
-  var id = $('#polySelect').val();
+  var name = $('#polySelect').val();
   for( var i = 0; i < $.polyData.length; i++ ) {
-    if( id === ""+$.polyData[i].id ) {
-      $('#polyId').val( id );
+    if( name === ""+$.polyData[i].name ) {
       $('#polyName').val( $.polyData[i].name );
       $('#polyVerts').val( $.polyData[i].vertices );
       $('#polyDesc').val( $.polyData[i].description );
@@ -49,14 +48,12 @@ function loadPolyhedron() {
 }
 
 function savePolyhedron() {
+  const now = new Date();
   var poly = {};
-  var id = $('#polyId').val();
-  if( id != null && id.length > 0 ) {
-    poly.id = parseInt( id );
-  }
   poly.name = $('#polyName').val();
   poly.vertices = $('#polyVerts').val();
   poly.description = $('#polyDesc').val();
+  poly.created_date = now.toISOString();
 
   if( poly.name == null || poly.name.trim().length == 0 ) {
     alert("You must supply a name!");

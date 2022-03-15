@@ -22,6 +22,8 @@ class StarField {
     this.rotationRate = 0;
     this.numShapes = numShapes;
     this.lightYearRadius = 100;
+    this.backgroundColor = '#000000';
+    this.starColor = '#FFFFFF';
 
     this.handleResize();
     this.rotationAxis = $V([0,0,1]).toUnitVector();
@@ -158,7 +160,7 @@ class StarField {
 
   drawCanvas() {
     
-    this.ctx.fillStyle = "#000000";
+    this.ctx.fillStyle = this.backgroundColor;
     this.ctx.fillRect(0,0,this.dimensionX,this.dimensionY);
 
     // earth
@@ -315,7 +317,7 @@ class Star {
 
   draw() {
     // scale the size based on how far away it is.
-    var size = 6 * ( 1 - ((this.magnitude + -1*maxMagnitude)/(minMagnitude + -1*maxMagnitude)));
+    var size = 4 * ( 1 - ((this.magnitude + -1*maxMagnitude)/(minMagnitude + -1*maxMagnitude)));
     drawCircle( this.starField.ctx, size, this.coord.elements[0] + (this.starField.dimensionX/2), (this.starField.dimensionY/2) - this.coord.elements[1] );
   }
 }
@@ -337,7 +339,7 @@ function sphericalToCartesian( coord ) {
 function drawCircle( ctx, radius, x, y ) {
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, 2 * Math.PI);
-  ctx.fillStyle = "#FFFFFF";
+  ctx.fillStyle = theStarField.starColor;
   ctx.lineWidth = 1;
   ctx.fill();
 }

@@ -671,7 +671,6 @@
     }
 
     function animationInner() {
-      frameID = window.requestAnimationFrame(animationInner);
       var mult = reverse ? -1.0 : 1.0;
       draw();
       var dt = parseFloat($('#deltaTheta').val());
@@ -684,6 +683,7 @@
       }
 
       $('#deltaTheta').val('' + newVal);
+      frameID = window.requestAnimationFrame(animationInner);
     }
 
     function stopAnimation() {

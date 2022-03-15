@@ -4,7 +4,7 @@
 
 function ajaxCall( callDetails ) { 
   $.ajax({
-    url: '/api/shape/index.php',
+    url: '/api/shape/dynamo.php',
     type: callDetails.type,
     contentType: callDetails.contentType ? callDetails.contentType : "application/json",
     dataType: callDetails.dataType ? callDetails.dataType : "json",
@@ -20,25 +20,24 @@ function ajaxCall( callDetails ) {
 
 function getShapes() {
   $('#shapeSelect').empty();
-  $('#shapeSelect').append( $('<option value="-1" selected>Loading...</option>') );
+  $('#shapeSelect').append( $('<option value="" selected>Loading...</option>') );
   ajaxCall({
     type: "GET",
     successHandler: function( result ) {
       $.shapeData = result.results;
       $('#shapeSelect').empty();
-      $('#shapeSelect').append( $('<option value="-1" selected>Select One</option>') );
+      $('#shapeSelect').append( $('<option value="" selected>Select One</option>') );
       for( var i = 0; i < $.shapeData.length; i++ ) {
-        $('#shapeSelect').append( $('<option value="'+$.shapeData[i].id+'">'+$.shapeData[i].name+'</option>') );
+        $('#shapeSelect').append( $('<option value="'+$.shapeData[i].name+'">'+$.shapeData[i].name+'</option>') );
       }
     }
   });
 }
 
 function loadShape() {
-  var id = $('#shapeSelect').val();
+  var name = $('#shapeSelect').val();
   for( var i = 0; i < $.shapeData.length; i++ ) {
-    if( id === ""+$.shapeData[i].id ) {
-      $('#shapeId').val( id );
+    if( name === ""+$.shapeData[i].name ) {
       $('#shapeName').val( $.shapeData[i].name );
       $('#shapeVerts').val( $.shapeData[i].faces );
       $('#shapeDesc').val( $.shapeData[i].description );
@@ -50,13 +49,11 @@ function loadShape() {
 
 function saveShape() {
   var shape = {};
-  var id = $('#shapeId').val();
-  if( id != null && id.length > 0 ) {
-    shape.id = parseInt( id );
-  }
+  const now = new Date();
   shape.name = $('#shapeName').val();
   shape.faces = $('#shapeVerts').val();
   shape.description = $('#shapeDesc').val();
+  shape.created_date = now.toISOString();
 
   if( shape.name == null || shape.name.trim().length == 0 ) {
     alert("You must supply a name!");
@@ -83,7 +80,6 @@ function clearForm() {
   $('#shapeName').val("");
   $('#shapeDesc').val("");
   $('#shapeVerts').val("");
-  $('#shapeId').val("");
   $('#shapeSelect').val("-1");
   $('#shapeSave').prop("disabled",true);
 }

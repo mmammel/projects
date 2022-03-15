@@ -4,7 +4,7 @@
 
 function ajaxCall( callDetails ) {
   $.ajax({
-    url: '/api/yinyang/index.php',
+    url: '/api/yinyang/dynamo.php',
     type: callDetails.type,
     contentType: callDetails.contentType ? callDetails.contentType : "application/json",
     dataType: callDetails.dataType ? callDetails.dataType : "json",
