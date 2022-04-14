@@ -1,0 +1,18 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="svgHolder" style="max-width: 600px">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <mask id="timerMask">
+        <rect x="10" y="10" width="80" height="5" fill="black" />
+        <rect rx="3" x="10" y="10" width="80" height="5" fill="white" />
+      </mask>
+      <rect rx="3" x="10" y="10" width="80" height="5" fill="grey" stroke-width=".1" stroke="black" />
+      <rect x="10" y="10" width="80" height="5" mask="url(#timerMask)" fill="black">
+        <animate fill="freeze" onend="alert('foo');" attributeName="width" values="80;0;" dur="5s" repeatCount="1" />
+      </rect>
+      </svg>
+    </div>
+  </body>
+</html>
