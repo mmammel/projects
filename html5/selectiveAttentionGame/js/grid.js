@@ -1,10 +1,16 @@
 
-  var LEFT = 0;
-  var UP = 1;
-  var RIGHT = 2;
-  var DOWN = 3;
+  const ERR = -1;
+  const LEFT = 0;
+  const UP = 1;
+  const RIGHT = 2;
+  const DOWN = 3;
 
-  var MOVERS = [ [0, -1], [-1, 0], [0, 1], [1, 0] ];
+  const cellBorderColor = "white";
+  const cellBackgroundColor = "#D9D9D9";
+  const highlightColor = "#03BCCE";
+  const optimalHighlightColor = "#FFA700";
+
+  const MOVERS = [ [0, -1], [-1, 0], [0, 1], [1, 0] ];
 
 class Grid {
   constructor(containerId, rows, cols, startCoord, endCoord, pointArray ) {
@@ -13,7 +19,8 @@ class Grid {
     this.model = [];
     this.index = {};
     this.history = [];
-    this.shapes = ['+','p','t','o'];
+    //this.shapes = ['+','bell','t','o'];
+    this.shapes = ['padlock', 'heart', 'bell', 'clock'];
     shuffle(this.shapes);
     this.points = pointArray;
     this.pointMap = {};
@@ -262,16 +269,24 @@ class Grid {
       var tempCell = this.model[this.endPos[0]][this.endPos[1]];
 
       while( !tempCell.isStart ) {
-        tempCell.optimalPathHighlight();
+        tempCell.newOptimalPathHighlight(tempCell.optimalPrevCell);
         tempCell = tempCell.optimalPrevCell;
       }
 
-      tempCell.optimalPathHighlight();
+      tempCell.newOptimalPathHighlight(tempCell.optimalPrevCell);
 
-      alert("Great job!  Your path with " + this.pathPoints + " points was " + (this.pathPoints - optimalSolution) + " points off the mark.  The optimal path will be highlighted.");
+      $('#resultModalMessage').html('Your path totaled '+this.pathPoints+' and was '+(this.pathPoints - optimalSolution)+' points off the mark.  The optimal path will be highlighted.');
+      
+      $('#yourPath').text('Your Path = ' + this.pathPoints + ' points');
+      $('#optimalPath').text('Optimal Path = ' + optimalSolution + ' points');
+      $('#results').show();
     } else if( this.pathPoints == optimalSolution ) {
-      alert("Perfection!  You found the optimal path, accumulating " + optimalSolution + " points!");
+      $('#resultModalMessage').html("Perfection!  You found the optimal path, accumulating " + optimalSolution + " points!");
     }
+
+    var modalEl = document.getElementById('resultsModal');
+    var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
   }
 
   draw() {
@@ -283,10 +298,10 @@ class Grid {
         $(this.svgRoot).append(this.model[i][j].getElement());
       }
     }
-    $('#' + this.containerId).append(this.svgRoot);
+    $('#' + this.containerId).prepend(this.svgRoot);
 
     // randomly fill the grid with characters, except for the A and B
-    var symbols = [ '+', 'p', 'o', 't' ];
+    var symbols = [ 'padlock', 'bell', 'heart', 'clock' ];
     for( var i = 0; i < this.rows; i++ ) {
       for( var j = 0; j < this.cols; j++ ) {
         // get random action
@@ -338,7 +353,7 @@ class Grid {
       if( !to.visited && this.areAdjacent(to,from) ) {
         to.prevCell = from;
         to.visited = true;
-        to.highlight();
+        to.newHighlight(from);
         this.currPos[0] = newX;
         this.currPos[1] = newY;
         this.pathPoints += to.points;
@@ -350,10 +365,10 @@ class Grid {
       } else if( from.prevCell && to.id === from.prevCell.id ) {
         // we are moving back
         this.pathPoints -= from.points;
-        from.unhighlight();
+        from.newUnhighlight(to);
         from.visited = false;
         from.prevCell = null;
-        to.highlight();
+        //to.highlight();
         this.currPos[0] = newX;
         this.currPos[1] = newY;
       }
@@ -454,7 +469,7 @@ class Grid {
       var latestTouch = e.originalEvent.changedTouches[0];
       var latestTarget = document.elementFromPoint(latestTouch.clientX, latestTouch.clientY);
       var id = this.getIdFromTarget($(latestTarget));
-      if( id != this.touchContext.currId ) {
+      if( id != null && id != this.touchContext.currId ) {
         var cell = this.index[id];
         if( cell ) {
           this.touchContext.currId = id;
@@ -485,7 +500,7 @@ class Grid {
     }
   }
   getIdFromTarget(target) {
-    return target.attr('id').replace(/^([0-9]+?_[0-9]+?)_.*$/, "$1");
+    return target.attr('id') ? target.attr('id').replace(/^([0-9]+?_[0-9]+?)_.*$/, "$1") : null;
   }
   handleKeyDown(e) {
     // First see if this is an "undo" or a "redo"
@@ -507,9 +522,9 @@ class Grid {
       e.preventDefault();
     } else if (e.which == 65) {
       this.doCellAction('a');
-    }else if (e.which == 66) {
+    } else if (e.which == 66) {
       this.doCellAction('b');
-    }else if (e.which == 80) {
+    } else if (e.which == 80) {
       this.doCellAction('p');
     } else if (e.which == 84) {
       this.doCellAction('t');
@@ -716,10 +731,11 @@ class GridCell {
             this.clearDecorator();
             this.decorator = makeSVG('g', { id: this.id + '_decorator' });
             var theLetter = makeSVG('text', {
-            id: this.id + '_decorator_inner', x: (this.c * 19) + 10, y: (this.r * 19) + 16,
-              'text-anchor': 'middle', textLength: 20, 'font-family' : 'arial', 'font-weight' : 'bold',
+            id: this.id + '_decorator_inner', x: (this.c * 19) + 10, y: (this.r * 19) + 14.5,
+              'text-anchor': 'middle', textLength: 20, 'font-family' : 'neuzeit-grotesk', 'font-weight' : 'bold',
               fill: 'black', 'stroke-width': 0
             });
+            $(theLetter).css('font-size','75%');
             theLetter.innerHTML = 'A';
             $(this.decorator).append(theLetter);
             $(this.element).append(this.decorator);
@@ -739,11 +755,12 @@ class GridCell {
             this.clearDecorator();
             this.decorator = makeSVG('g', { id: this.id + '_decorator' });
             var theLetter = makeSVG('text', {
-            id: this.id + '_decorator_inner', x: (this.c * 19) + 10, y: (this.r * 19) + 16,
-              'text-anchor': 'middle', textLength: 20, 'font-family' : 'arial', 'font-weight' : 'bold',
+            id: this.id + '_decorator_inner', x: (this.c * 19) + 10, y: (this.r * 19) + 14.5,
+              'text-anchor': 'middle', textLength: 20, 'font-family' : 'neuzeit-grotesk', 'font-weight' : 'bold',
               fill: 'black', 'stroke-width': 0
             });
             theLetter.innerHTML = 'B';
+            $(theLetter).css('font-size','75%');
             $(this.decorator).append(theLetter);
             $(this.element).append(this.decorator);
             retVal = true;
@@ -771,8 +788,86 @@ class GridCell {
           return retVal;
         },
         content: true
+      },
+      'clock' : {
+        // plus sign 
+        action: () => {
+          this.points = this.parentGrid.pointMap['clock'];
+          var retVal = false;
+          if( this.content != 'clock' ) {
+            this.clearDecorator();
+            var cx = (this.c * 19);
+            var cy = (this.r * 19);
+            this.decorator = makeSVG('g', { id: this.id + '_decorator' });
+            $(this.decorator).append(this.makeIconSVG(cx,cy,'clock',this.id+'_decorator_icon'));
+            $(this.element).append(this.decorator);
+            retVal = true;
+          }
+          return retVal;
+        },
+        content: true
+      },
+      'heart' : {
+        // plus sign 
+        action: () => {
+          this.points = this.parentGrid.pointMap['heart'];
+          var retVal = false;
+          if( this.content != 'heart' ) {
+            this.clearDecorator();
+            var cx = (this.c * 19);
+            var cy = (this.r * 19);
+            this.decorator = makeSVG('g', { id: this.id + '_decorator' });
+            $(this.decorator).append(this.makeIconSVG(cx,cy,'heart',this.id+'_decorator_icon'));
+            $(this.element).append(this.decorator);
+            retVal = true;
+          }
+          return retVal;
+        },
+        content: true
+      },
+      'padlock' : {
+        // plus sign 
+        action: () => {
+          this.points = this.parentGrid.pointMap['padlock'];
+          var retVal = false;
+          if( this.content != 'padlock' ) {
+            this.clearDecorator();
+            var cx = (this.c * 19);
+            var cy = (this.r * 19);
+            this.decorator = makeSVG('g', { id: this.id + '_decorator' });
+            $(this.decorator).append(this.makeIconSVG(cx,cy,'padlock',this.id+'_decorator_icon'));
+            $(this.element).append(this.decorator);
+            retVal = true;
+          }
+          return retVal;
+        },
+        content: true
+      },
+      'bell' : {
+        // plus sign 
+        action: () => {
+          this.points = this.parentGrid.pointMap['bell'];
+          var retVal = false;
+          if( this.content != 'bell' ) {
+            this.clearDecorator();
+            var cx = (this.c * 19);
+            var cy = (this.r * 19);
+            this.decorator = makeSVG('g', { id: this.id + '_decorator' });
+            $(this.decorator).append(this.makeIconSVG(cx,cy,'bell',this.id+'_decorator_icon'));
+            $(this.element).append(this.decorator);
+            retVal = true;
+          }
+          return retVal;
+        },
+        content: true
       }
     };
+  }
+  makeIconSVG( x, y, name, id ) {
+    return makeSVG('image', {
+      id: id, x: ''+(x+5.5), y: ''+(y+5.5), width: ''+9, height: ''+9, 
+        href: 'images/icons-'+name+'.svg'
+      });
   }
   clearDecorator() {
     if (this.decorator != null) {
@@ -831,21 +926,188 @@ class GridCell {
     // draw the outer box
     this.outer = makeSVG("rect", {
     id: this.id + '_outer', x: (this.c * 19), y: (this.r * 19), width: 20, height: 20,
-      fill: "black", "stroke-width": 0
+      fill: cellBorderColor, "stroke-width": 0
     });
     this.inner = makeSVG("rect", {
-    id: this.id + '_inner', x: (this.c * 19) + 1, y: (this.r * 19) + 1, width: 18, height: 18,
-      fill: "white", "stroke-width": 0
+    id: this.id + '_inner', x: (this.c * 19 + 1), y: (this.r * 19 + 1), width: 18, height: 18,
+      fill: cellBackgroundColor, "stroke-width": 0
     });
+
+    this.highlightInner = makeSVG("rect", {
+    id: this.id + '_hlinner', x: (this.c * 19 + 1), y: (this.r * 19 + 1), width: 18, height: 18, rx: 9,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.highlightInnerLeft = makeSVG("rect", {
+      id: this.id + '_hlleft', x: (this.c * 19 - 1), y: (this.r * 19 + 1), width: 11, height: 18,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.highlightInnerRight = makeSVG("rect", {
+      id: this.id + '_hlright', x: (this.c * 19 + 10), y: (this.r * 19 + 1), width: 11, height: 18,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.highlightInnerUp = makeSVG("rect", {
+      id: this.id + '_hlup', x: (this.c * 19 + 1), y: (this.r * 19 - 1), width: 18, height: 11,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.highlightInnerDown = makeSVG("rect", {
+      id: this.id + '_hldown', x: (this.c * 19 + 1), y: (this.r * 19 + 10), width: 18, height: 11,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.optimalHighlightInner = makeSVG("rect", {
+    id: this.id + '_ohlinner', x: (this.c * 19 + 3.5), y: (this.r * 19 + 3.5), width: 13, height: 13, rx: 6.5,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.optimalHighlightInnerLeft = makeSVG("rect", {
+      id: this.id + '_ohlleft', x: (this.c * 19 - 1.5), y: (this.r * 19 + 3.5), width: 11.5, height: 13,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.optimalHighlightInnerRight = makeSVG("rect", {
+      id: this.id + '_ohlright', x: (this.c * 19 + 10), y: (this.r * 19 + 3.5), width: 11.5, height: 13,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.optimalHighlightInnerUp = makeSVG("rect", {
+      id: this.id + '_ohlup', x: (this.c * 19 + 3.5), y: (this.r * 19 - 1.5), width: 13, height: 11.5,
+      fill: "transparent", "stroke-width": 0
+    });
+
+    this.optimalHighlightInnerDown = makeSVG("rect", {
+      id: this.id + '_ohldown', x: (this.c * 19 + 3.5), y: (this.r * 19 + 10), width: 13, height: 11.5,
+      fill: "transparent", "stroke-width": 0
+    });
+
     $(this.element).append(this.outer);
     $(this.element).append(this.inner);
+    $(this.element).append(this.highlightInner);
+    $(this.element).append(this.highlightInnerLeft);
+    $(this.element).append(this.highlightInnerRight);
+    $(this.element).append(this.highlightInnerUp);
+    $(this.element).append(this.highlightInnerDown);
+    $(this.element).append(this.optimalHighlightInner);
+    $(this.element).append(this.optimalHighlightInnerLeft);
+    $(this.element).append(this.optimalHighlightInnerRight);
+    $(this.element).append(this.optimalHighlightInnerUp);
+    $(this.element).append(this.optimalHighlightInnerDown);
+
     return this.element;
   }
+  getRelationship( from ) {
+    var retVal = ERR;
+    // we are "to" - where is "from"?  UP, RIGHT, DOWN, or LEFT?
+    if( from ) {
+      if( from.r == this.r && from.c == this.c ) {
+        // it's the same one...
+        retVal = ERR;
+      } else if( from.r == this.r ) {
+        // right or left
+        if( from.c == (this.c - 1) ) {
+          retVal = LEFT;
+        } else if( from.c == (this.c + 1) ) {
+          retVal = RIGHT;
+        }
+      } else if( from.c == this.c ) {
+        // up or down
+        if( from.r == (this.r - 1) ) {
+          retVal = UP;
+        } else if( from.r == (this.r + 1) ) {
+          retVal = DOWN;
+        }
+      }
+    }
+
+    return retVal;
+  }
+  newHighlight(from) {
+    
+    $('#' + this.id + '_hlinner').attr("fill", highlightColor);
+    if( this.isEnd || this.isStart ) {
+      $('#' + this.id + '_hlinner').attr("rx",'0');
+    }
+    var dirFrom = this.getRelationship(from);
+    switch( dirFrom ) {
+      case UP:
+        $('#' + from.id + '_hldown').attr("fill", highlightColor);
+        $('#' + this.id + '_hlup').attr("fill", highlightColor);
+        break;
+      case RIGHT:
+        $('#' + from.id + '_hlleft').attr("fill", highlightColor);
+        $('#' + this.id + '_hlright').attr("fill", highlightColor);
+        break;
+      case DOWN:
+        $('#' + from.id + '_hlup').attr("fill", highlightColor);
+        $('#' + this.id + '_hldown').attr("fill", highlightColor);
+        break;
+      case LEFT:
+        $('#' + from.id + '_hlright').attr("fill", highlightColor);
+        $('#' + this.id + '_hlleft').attr("fill", highlightColor);
+        break;
+      default:
+        break;
+    }
+  }
+  newUnhighlight(to) {
+    $('#' + this.id + '_hlinner').attr("fill", "transparent");
+    var dirFrom = this.getRelationship(to);
+    switch( dirFrom ) {
+      case UP:
+        $('#' + to.id + '_hldown').attr("fill", "transparent");
+        $('#' + this.id + '_hlup').attr("fill", "transparent");
+        break;
+      case RIGHT:
+        $('#' + to.id + '_hlleft').attr("fill", "transparent");
+        $('#' + this.id + '_hlright').attr("fill", "transparent");
+        break;
+      case DOWN:
+        $('#' + to.id + '_hlup').attr("fill", "transparent");
+        $('#' + this.id + '_hldown').attr("fill", "transparent");
+        break;
+      case LEFT:
+        $('#' + to.id + '_hlright').attr("fill", "transparent");
+        $('#' + this.id + '_hlleft').attr("fill", "transparent");
+        break;
+      default:
+        break;
+    }
+  }
+  newOptimalPathHighlight(from) {
+    $('#' + this.id + '_ohlinner').attr("fill", optimalHighlightColor);
+    if( this.isEnd || this.isStart ) {
+      $('#' + this.id + '_ohlinner').attr("rx",'0');
+    }
+    var dirFrom = this.getRelationship(from);
+    switch( dirFrom ) {
+      case UP:
+        $('#' + from.id + '_ohldown').attr("fill", optimalHighlightColor);
+        $('#' + this.id + '_ohlup').attr("fill", optimalHighlightColor);
+        break;
+      case RIGHT:
+        $('#' + from.id + '_ohlleft').attr("fill", optimalHighlightColor);
+        $('#' + this.id + '_ohlright').attr("fill", optimalHighlightColor);
+        break;
+      case DOWN:
+        $('#' + from.id + '_ohlup').attr("fill", optimalHighlightColor);
+        $('#' + this.id + '_ohldown').attr("fill", optimalHighlightColor);
+        break;
+      case LEFT:
+        $('#' + from.id + '_ohlright').attr("fill", optimalHighlightColor);
+        $('#' + this.id + '_ohlleft').attr("fill", optimalHighlightColor);
+        break;
+      default:
+        break;
+    }
+  }
   highlight() {
-    $('#' + this.id + '_inner').attr("fill", "cyan");
+    $('#' + this.id + '_inner').attr("fill", highlightColor);
   }
   unhighlight() {
-    $('#' + this.id + "_inner").attr("fill", "white");
+    $('#' + this.id + "_inner").attr("fill", cellBackgroundColor);
   }
   optimalPathHighlight() {
     if( $('#' + this.id + "_inner").attr("fill") === "cyan" ) {

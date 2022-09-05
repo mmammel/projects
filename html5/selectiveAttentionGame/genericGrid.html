@@ -1,25 +1,19 @@
 <!doctype html>
 <html lang="en">
- <head>  
+
+<head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
-  <style type="text/css">
-    body {
-      font-family: sans-serif;
-    }
-
-    .instructionShapeHolder {
-      width: 100px;
-    }
-
-    .instructionText {
-      font-size: 28px;
-      font-weight: bold;
-    }
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="grid.js"></script>
-  <script type="application/javascript">  
+  <meta name="description" content="Selective Attention Game prototype">
+  <meta name="author" content="Max Mammel">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/fonts.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <script src="js/jquery_360.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/grid.js"></script>
+  <script type="application/javascript">
     var theGrid;
 
     function shuffle(array) {
@@ -30,49 +24,86 @@
     }
 
     function buildImageSVG(shape) {
-      var retVal = makeSVG("svg", { id: 'svgInstruction_'+shape, viewBox: '0 0 20 20' });
-      if( shape === '+' ) {
+      var retVal = makeSVG("svg", { id: 'svgInstruction_' + shape, viewBox: '0 0 20 20' });
+      if (shape === '+') {
         var vertRect = makeSVG('rect', {
-            id: 'instr_decorator_vert', x: '7', y: '2', width: '6', height: '16', 
-            fill: 'black', 'stroke-width': 0
-            });
+          id: 'instr_decorator_vert', x: '7', y: '2', width: '6', height: '16',
+          fill: 'black', 'stroke-width': 0
+        });
         var horizRect = makeSVG('rect', {
-            id: 'instr_decorator_horiz', x: '2', y: '7', width: '16', height: '6', 
-            fill: 'black', 'stroke-width': 0
-            });
-            $(retVal).append(vertRect);
-            $(retVal).append(horizRect);
-      } else if( shape === 'o' ) {
+          id: 'instr_decorator_horiz', x: '2', y: '7', width: '16', height: '6',
+          fill: 'black', 'stroke-width': 0
+        });
+        $(retVal).append(vertRect);
+        $(retVal).append(horizRect);
+      } else if (shape === 'o') {
         var outerCircle = makeSVG('circle', {
-            id: 'instr_o_decorator_outer', cx: 10, cy: 10,
-              r: 8, fill: 'black', 'stroke-width': 0
-            });
-            $(retVal).append(outerCircle);
-      } else if( shape === 't' ) {
+          id: 'instr_o_decorator_outer', cx: 10, cy: 10,
+          r: 8, fill: 'black', 'stroke-width': 0
+        });
+        $(retVal).append(outerCircle);
+      } else if (shape === 't') {
         var triangle = makeSVG('polygon', {
-            id: 'instr_t_decorator_inner', 
-               points: ''+ 10 + ',' + 3 + ' ' + 
-                           (10 + (14 / Math.sqrt(3))) + ',' + (10+ (14 / Math.sqrt(3))) + ' ' +
-                           (10 - (14 / Math.sqrt(3))) + ',' + (10 + (14 / Math.sqrt(3))), 
-               fill: 'black', 'stroke-width': 0
-            });
-            $(retVal).append(triangle);
-      } else if( shape === 'p' ) {
+          id: 'instr_t_decorator_inner',
+          points: '' + 10 + ',' + 3 + ' ' +
+            (10 + (14 / Math.sqrt(3))) + ',' + (10 + (14 / Math.sqrt(3))) + ' ' +
+            (10 - (14 / Math.sqrt(3))) + ',' + (10 + (14 / Math.sqrt(3))),
+          fill: 'black', 'stroke-width': 0
+        });
+        $(retVal).append(triangle);
+      } else if (shape === 'p') {
         var cx = 10;
         var cy = 10;
         var rad18 = 18 * (Math.PI / 180);
         var rad54 = 54 * (Math.PI / 180);
         var pentagon = makeSVG('polygon', {
-        id: 'instr_p_decorator_inner', 
-            points: ''+ cx + ',' + (cy - 8) + ' ' + 
-                        (cx + (8 * Math.cos(rad18))) + ',' + (cy - (8 * Math.sin(rad18))) + ' ' +
-                        (cx + (8 * Math.cos(rad54))) + ',' + (cy + (8 * Math.sin(rad54))) + ' ' +
-                        (cx - (8 * Math.cos(rad54))) + ',' + (cy + (8 * Math.sin(rad54))) + ' ' +
-                        (cx - (8 * Math.cos(rad18))) + ',' + (cy - (8 * Math.sin(rad18))),
-            fill: 'black', 'stroke-width': 0
+          id: 'instr_p_decorator_inner',
+          points: '' + cx + ',' + (cy - 8) + ' ' +
+            (cx + (8 * Math.cos(rad18))) + ',' + (cy - (8 * Math.sin(rad18))) + ' ' +
+            (cx + (8 * Math.cos(rad54))) + ',' + (cy + (8 * Math.sin(rad54))) + ' ' +
+            (cx - (8 * Math.cos(rad54))) + ',' + (cy + (8 * Math.sin(rad54))) + ' ' +
+            (cx - (8 * Math.cos(rad18))) + ',' + (cy - (8 * Math.sin(rad18))),
+          fill: 'black', 'stroke-width': 0
         });
         $(retVal).append(pentagon);
+      } else if (shape === 'clock') {
+        $(retVal).append(makeIconImage('clock'));
+      } else if (shape === 'padlock') {
+        $(retVal).append(makeIconImage('padlock'));
+      } else if (shape === 'heart') {
+        $(retVal).append(makeIconImage('heart'));
+      } else if (shape === 'bell') {
+        $(retVal).append(makeIconImage('bell'));
       }
+
+      return retVal;
+    }
+
+    function makeIconImage(name) {
+      return makeSVG('image', {
+        id: 'instr_' + name + '_decorator_inner', x: '' + 0, y: '' + 0, width: '' + 20, height: '' + 20,
+        href: 'images/icons-' + name + '.svg'
+      });
+    }
+
+    function makeTimerBarSVG(timeLimit) {
+      var retVal = makeSVG("svg", { id: 'svgTimer', viewBox: '0 0 500 20' });
+
+      // build the mask
+      var mask = makeSVG("mask", { id: 'timerMask' });
+      var maskBlackRect = makeSVG("rect", { x: '0', y: '0', height: '20', width: '500', fill: 'black' });
+      var maskWhiteRect = makeSVG("rect", { rx: '10', x: '0', y: '0', height: '20', width: '500', fill: 'white' });
+      mask.appendChild(maskBlackRect);
+      mask.appendChild(maskWhiteRect);
+      // background bar
+      var background = makeSVG("rect", { rx: '10', x: '0', y: '0', height: '20', width: '500', fill: cellBackgroundColor });
+      var foreground = makeSVG("rect", { id: 'timerTopBar', x: '0', y: '0', height: '20', width: '500', fill: highlightColor });
+      var animate = makeSVG("animate", { id: 'timerAnimation', fill: 'freeze', onend: 'startGame();', begin: 'click', attributeName: 'width', values: '500;0;', dur: '' + timeLimit + 's', repeatCount: '1' });
+      foreground.appendChild(animate);
+      // put it all together
+      retVal.appendChild(mask);
+      retVal.appendChild(background);
+      retVal.appendChild(foreground);
 
       return retVal;
     }
@@ -81,13 +112,13 @@
 
       var tempShapeHolder = null;
       var tempRow = null;
-      var retVal = $('<table id="instructionTable" style="margin:auto;">');
-      for( var i = 0; i < theGrid.shapes.length; i++ ) {
+      var retVal = $('<table id="instructionTable">');
+      for (var i = 0; i < theGrid.shapes.length; i++) {
         tempRow = $('<tr></tr>');
         tempShapeHolder = $('<td class="instructionShapeHolder" id="shapeHolder_' + i + '"></td>');
         tempRow.append(tempShapeHolder);
         tempShapeHolder.append(buildImageSVG(theGrid.shapes[i]));
-        tempRow.append($('<td class="instructionText"> = '+theGrid.points[i] +' Point' + (i == 0 ? '' : 's') + '</td>'));
+        tempRow.append($('<td class="instructionText"> = ' + theGrid.points[i] + ' Point' + (i == 0 ? '' : 's') + '</td>'));
         retVal.append(tempRow);
       }
       return retVal;
@@ -101,13 +132,27 @@
     };
 
     function fitGrid() {
-      var availableHeight = window.innerHeight - $('#svg').offset().top - 40;
+      var availableHeight = window.innerHeight - $('#svg').offset().top - 40 - $('#results').height();
+      
+      if( availableHeight < window.innerHeight / 2.0 ) {
+        // too small, just make it 50%
+        availableHeight = window.innerHeight / 2.0;
+      }
       // c/r * h => max-width
       var maxWidth = (theGrid.cols / theGrid.rows) * availableHeight;
-      $('#svg').css('max-width', ''+maxWidth+'px');
+      $('#svg').css('max-width', '' + maxWidth + 'px');
     }
 
-    $(document).ready( function() {
+    var instructionInterval = null;
+
+    function startGame() {
+      clearInterval(instructionInterval);
+      $('#instructions').hide();
+      $('#gameBoard').show()
+      fitGrid();
+    }
+
+    $(document).ready(function () {
       var gridRows = getURLParameter('r');
       var gridCols = getURLParameter('c');
       var gridStartRow = getURLParameter('sr');
@@ -123,20 +168,23 @@
       gridStartCol = gridStartCol == null ? gridCols - 1 : parseInt(gridStartCol);
       gridEndRow = gridEndRow == null ? 0 : parseInt(gridEndRow);
       gridEndCol = gridEndCol == null ? 0 : parseInt(gridEndCol);
-      instructionTime = instructionTime == null ? 20 : parseInt(instructionTime);
+      instructionTime = instructionTime == null ? 5 : parseInt(instructionTime);
 
-      if( points == null ) {
-        points = [1,2,3,4];
+      $('#timeLimitIntro').text('' + instructionTime);
+
+
+      if (points == null) {
+        points = [1, 2, 3, 4];
       } else {
         var arr = points.split(',');
-        if( arr.length != 4 ) {
-          points = [1,2,3,4];
+        if (arr.length != 4) {
+          points = [1, 2, 3, 4];
         } else {
           points = [];
           var point = 0;
-          for( var i = 0; i < arr.length; i++ ) {
+          for (var i = 0; i < arr.length; i++) {
             point = parseInt(arr[i]);
-            if( point < 0 ) point *= -1;
+            if (point < 0) point *= -1;
             points.push(point);
           }
         }
@@ -154,38 +202,119 @@
       //   gridEndCol = 0;
       // }
 
-      theGrid = new Grid( 'svg', gridRows, gridCols, [gridStartRow, gridStartCol ], [gridEndRow, gridEndCol], points );
-      $('#instructions').append(buildInstructionTable());
-      var counter = instructionTime;
-      $('#timeLimit').text(''+counter--);
-      var instructionInterval = setInterval(function(){
-        $('#timeLimit').text(''+counter--);
-      },1000);
+      $('#imReady').one('click', (e) => {
+        $('#intro').fadeOut({
+          complete: () => {
+            $('#timeLimit').text('' + instructionTime);
+            document.getElementById('timerBar').appendChild(makeTimerBarSVG(instructionTime));
+            document.getElementById('timerTopBar').setAttribute('mask', 'url(#timerMask)');
+            $('#instructionTable').append(buildInstructionTable());
+            $('#instructions').fadeIn({
+              complete: () => {
+                var counter = instructionTime;
+                instructionInterval = setInterval(function () {
+                  $('#timeLimit').text('' + --counter);
+                }, 1000);
+                document.getElementById('timerAnimation').beginElement();
+              }
+            });
+          }
+        });
 
-      setTimeout(function() {
-        clearInterval(instructionInterval);
-        $('#instructions').hide();
-        $('#gameBoard').show()
-        fitGrid();
-      }, 1000*instructionTime);
+      });
+
+      theGrid = new Grid('svg', gridRows, gridCols, [gridStartRow, gridStartCol], [gridEndRow, gridEndCol], points);
       theGrid.draw();
       window.onresize = fitGrid;
-      //theGrid.computeOptimalPath();
       theGrid.computeOptimalBellmanFord();
     });
-    
-  </script>  
- </head>  
- <body>
-   <div id="instructions">
-     <h1>Please take the next <span id="timeLimit">30</span> seconds to memorize the following relationships:</h1>
-   </div>
-   <div style="display:none;" id="gameBoard">
-    <h1>Find a path from "A" to "B", accumulating the fewest points possible.  Good luck!</h1>
-    <!--<h3 id="pathPoints">0</h3>-->
-    <div id="svg" style="max-width: 600px; padding: 20px; margin:auto;">
-    </div>
-   </div>
-  </body>  
-</html>  
 
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col pt-5 pb-4">
+        <h1 class="title">Test your memory</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- intro container -->
+  <div id="intro" class="container">
+    <div class="row">
+      <div class="col pb-5">
+        <h3 class="instructionText">You will have <span id="timeLimitIntro"></span> seconds to memorize what's on the
+          following screen. Ready to begin?</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button class="blackButton" id="imReady">I'm Ready!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- instructions container -->
+  <div id="instructions" class="container" style="display:none;">
+    <div class="row pb-5">
+      <div class="col-md-4">
+        <h3 id="timeRemaining" class="instructionText">Time Remaining: <span id="timeLimit">30</span> seconds</h3>
+      </div>
+      <div class="col-md-8">
+        <div id="timerBar"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" id="instructionTable">
+
+      </div>
+    </div>
+  </div>
+
+  <!-- game board container -->
+  <div style="display:none;" id="gameBoard" class="container">
+    <div class="modal" id="resultsModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Great Job!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p id="resultModalMessage">Your path totaled <span id="yourPoints">53</span> and was <span id="offbyPoints">11</span> points off the mark.  The optimal path will be highlighted.</span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="blackButton" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col pb-5">
+        <h3 class="instructionText">Find a path from "A" to "B" that will accumulate the least amount of points. Good
+          luck!</h3>
+      </div>
+    </div>
+    <div class="row pb-3">
+      <div class="col">
+        <div id="svg" class="mx-auto" style="max-width: 600px;">
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3" id="results" style="display:none;">
+      <div class="col-12">
+        <h4 id="yourPath" class="pathResult yourPath">Your Path = 53 points</h4>
+      </div>
+      <div class="col-12">
+        <h4 id="optimalPath" class="pathResult optimalPath">Optimal path = 42 points</h4>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

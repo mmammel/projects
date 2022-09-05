@@ -1,0 +1,77 @@
+body {
+  font-family: neuzeit-grotesk;
+}
+
+h1 h2 h3 {
+  font-weight: bold;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 46px;
+  line-height: 0.87;
+  letter-spacing: -2px;
+}
+
+.instructionText {
+  font-size: 24px;
+  line-height: 0.83;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+/* #timerBar {
+  width: 500px;
+  padding-left: 20px;
+} */
+
+.page {
+  padding: 20px 10px 0px 50px;
+}
+
+.instructionShapeHolder {
+  width: 40px;
+  padding: 15px 15px 15px 0px;
+}
+
+.instructionTable {
+  margin-top: 30px;
+}
+
+.resultsHolder {
+  padding-left: 3px;
+}
+
+.pathResult {
+  border-left-width: 26px;
+  border-left-style: solid;
+  padding-left: 15px;
+}
+
+.yourPath {
+  border-left-color: #03BCCE;
+}
+
+.optimalPath {
+  border-left-color: #FFA700;
+}
+
+.gameBoardHeader {
+  padding: 20px;
+}
+
+.blackButton {
+  background-color: #ddd;
+  border: none;
+  color: white;
+  background-color: black;
+  padding: 20px 30px;
+  text-align: center;
+  text-decoration: none;
+  /*font-size: 50%;*/
+  font-family: neuzeit-grotesk;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 40px;
+}

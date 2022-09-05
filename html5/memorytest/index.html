@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Memory Test</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<canvas id="rootCanvas" width="2" height="2"> canvas</canvas> 
+<script type="text/javascript">
+  
+  var valueQueue = [];
+  var currValue = '0';
+  var flipping = false;
+  var dimension = 400; // length of sides of canvas.
+
+  $(document).ready( function() {
+
+    $('#rootCanvas').attr("width", dimension );
+    $('#rootCanvas').attr("height", dimension );
+
+    $('body').on('keypress', (e) => {
+      if( e.code.indexOf('Digit') === 0 ) {
+        valueQueue.push( e.code.substring(5) );
+        if( !flipping ) {
+          flipNumber();
+        }
+      }
+    });
+
+    init();
+  });
+
+  var flipNumber = function() {
+    flipping = true;
+    var newVal = valueQueue.shift();
+    var flipCtx = {
+      from: currValue,
+      to: newVal,
+      progress: -1
+    };
+
+    new Promise( function( resolve, reject ) {
+      flipInner(resolve,flipCtx);
+    }).then(function(result) {
+      currValue = flipCtx.to;
+      if( valueQueue.length > 0 ) {
+        flipNumber();
+      } else {
+        flipping = false;
+      }
+      console.log(result);
+    });
+  }
+
+  var flipInner = function( resolver, flipContext ) {
+    if( !flipContext.done ) {
+      var stagingCanvas = getFrameContext(flipContext);
+      var canvas = document.getElementById('rootCanvas');
+      var context = canvas.getContext('2d');
+      context.fillStyle = 'white';
+      context.beginPath();
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.drawImage(stagingCanvas,0,0);
+      flipContext.progress += .05;
+      setTimeout( function() {
+        flipInner( resolver, flipContext );
+      });
+    } else {
+      resolver("Done");
+    }
+  }
+
+  var getFrameContext = ( flipContext ) => {
+    var from = ''+ flipContext.from;
+    var to = ''+flipContext.to;
+    var progress = flipContext.progress;
+    if( progress >= 1 ) {
+      flipContext.done = true;
+      progress = 1;
+    }
+
+    //var textPos = 6.25;
+    var textScale = .08 * dimension;
+    var textPos = (dimension / textScale) / 2.0;
+
+
+    var canvas = document.getElementById('rootCanvas');
+    var stagingCanvas = document.createElement('canvas');
+    //var stagingCanvas = canvas;
+    stagingCanvas.width = canvas.width;
+    stagingCanvas.height = canvas.height;
+    var ctx = stagingCanvas.getContext('2d');
+    // draw three semi-circles - the back top, which is the 
+    // top half of the new number,
+    // back bottom, which is the bottom half of the old number, 
+    // and the flap, which in the top half of the swing is the 
+    // top half of the old number, and in the bottom half of 
+    // the swing is the bottom half of the new number.
+
+    // back top - has the "to"
+    ctx.beginPath();
+    //ctx.arc(500, 500, 450, 2*Math.PI, 0); // whole circle
+    ctx.arc(dimension/2, dimension/2, (.9*dimension)/2, 2*Math.PI, 0); // whole circle
+
+    ctx.lineWidth = .01*dimension;
+    // line color
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'orange';
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.save();
+
+    // clip to only the top half
+    ctx.beginPath();
+    ctx.rect(0,0,dimension,dimension/2);
+    ctx.clip();
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.lineWidth = .1;
+    ctx.fillStyle = 'black';
+    ctx.scale(textScale,textScale);
+    ctx.beginPath();
+    ctx.fillText( to, textPos,textPos);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.restore();
+    ctx.save();
+
+    // clip the bottom half
+    ctx.beginPath();
+    ctx.rect(0,dimension/2,dimension,dimension/2);
+    ctx.clip();
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.lineWidth = .1;
+    ctx.fillStyle = 'black';
+    ctx.scale(textScale,textScale);
+    ctx.beginPath();
+    ctx.fillText( from, textPos,textPos);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+    ctx.restore();
+    ctx.save();
+    //unclip
+    //ctx.restore();
+
+    // // draw the flipping flap
+    ctx.beginPath();
+    if( progress > 0 ) {
+      ctx.rect(0,dimension/2,dimension,dimension/2);
+    } else {
+      ctx.rect(0,0,dimension,dimension/2);
+    }
+    ctx.clip();
+    ctx.translate(0, dimension/2 - (Math.abs(progress) * dimension/2));
+    ctx.scale(1,Math.abs(progress));
+    ctx.beginPath();
+    ctx.arc(dimension/2, dimension/2, (.9*dimension)/2, 2*Math.PI, 0); // whole circle
+    ctx.lineWidth = .01*dimension;
+    // line color
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = 'orange';
+    ctx.fill();
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.lineWidth = .1;
+    ctx.fillStyle = 'black';
+    ctx.scale(textScale,textScale);
+    ctx.fillText( progress > 0 ? to : from, textPos,textPos);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+    ctx.restore();
+    ctx.save();
+
+    ctx.fillStyle = Math.abs(progress) < 0.05 ? 'black' : 'white';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    // ctx.moveTo( 45, 496 );
+    // ctx.lineTo( 955, 496 );
+    // ctx.stroke();
+    // ctx.beginPath();
+    // ctx.moveTo( 45, 504 );
+    // ctx.lineTo( 955, 504 );
+    ctx.moveTo( (.9*dimension)/20, (dimension/2) - .004*dimension );
+    ctx.lineTo( dimension - (.9*dimension)/20, (dimension/2) - .004*dimension );
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo( (.9*dimension)/20, (dimension/2) + .004*dimension );
+    ctx.lineTo( dimension - (.9*dimension)/20, (dimension/2) + .004*dimension );
+    ctx.stroke();
+
+    ctx.rect((.9*dimension)/20,(dimension/2) - .004*dimension, dimension - (.9*dimension)/10, .008 * dimension);
+    ctx.fill();
+
+    return stagingCanvas;
+  };
+
+  var init = function() {
+    var stagingCanvas = getFrameContext( {
+      from: 0, 
+      to: currValue, 
+      progress: 1
+    });
+
+    var canvas = document.getElementById('rootCanvas');
+    var context = canvas.getContext('2d');
+    context.fillStyle = 'white';
+    context.beginPath();
+    context.clearRect(0,0,canvas.width,canvas.height);
+    context.drawImage(stagingCanvas,0,0);
+  };
+</script>
+</body> 
+</html>
