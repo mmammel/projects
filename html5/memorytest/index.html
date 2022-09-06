@@ -1,22 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Memory Test</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style type="text/css">
+    * {
+      touch-action: manipulation;
+    }
+</style>
 </head>
 <body>
-<canvas id="rootCanvas" width="2" height="2"> canvas</canvas> 
+<div id="flipperHolder" style="margin: auto;">
+  <canvas id="rootCanvas" width="2" height="2"> canvas</canvas>
+</div>
+<div id="keypadHolder" style="margin: auto;">
+  <svg id="svgRoot" style="height: 100%; width: 100%;" viewBox="0 0 900 1200"
+  xmlns="http://www.w3.org/2000/svg">
+    <circle id="btn1" cx="150" cy="150" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt1" x="150" y="205" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">1</text>
+    <circle id="btn2" cx="450" cy="150" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt2" x="450" y="205" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">2</text>
+    <circle id="btn3" cx="750" cy="150" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt3" x="750" y="205" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">3</text>
+    <circle id="btn4" cx="150" cy="450" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt4" x="150" y="505" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">4</text>
+    <circle id="btn5" cx="450" cy="450" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt5" x="450" y="505" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">5</text>
+    <circle id="btn6" cx="750" cy="450" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt6" x="750" y="505" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">6</text>
+    <circle id="btn7" cx="150" cy="750" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt7" x="150" y="805" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">7</text>
+    <circle id="btn8" cx="450" cy="750" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt8" x="450" y="805" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">8</text>
+    <circle id="btn9" cx="750" cy="750" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt9" x="750" y="805" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">9</text>
+    <circle id="btn0" cx="450" cy="1050" r="105" fill="#03BCCE" stroke="black" stroke-width="10px" style="cursor: pointer;" />
+    <text id="txt0" x="450" y="1105" text-anchor="middle" stroke="black" stroke-width="2px" style="font: 150px sans-serif; cursor: pointer;">0</text>
+  </svg>
+</div>
+
 <script type="text/javascript">
   
   var valueQueue = [];
+  var colors = [ '#03BCCE', '#FFA700' ];
+  var colorIdx = 0;
+  var currColor = colors[0];
   var currValue = '0';
   var flipping = false;
   var dimension = 400; // length of sides of canvas.
+  var speed = .05;
+
+  var getURLParameter = function(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  var resize = function() {
+    dimension = $(window).innerWidth() * 0.75;
+    if( dimension > 400 ) dimension = 400;
+    $('#rootCanvas').attr("width", dimension );
+    $('#rootCanvas').attr("height", dimension );
+    $('#flipperHolder').width(''+dimension+'px');
+    $('#keypadHolder').width(''+(dimension*.75)+'px');
+
+    if( $(window).innerHeight() <= 500 && $(window).innerWidth() > 750 ) {
+      $('#flipperHolder').css('float','left');
+      $('#keypadHolder').css('float','left');
+    } else {
+      $('#flipperHolder').css('float','');
+      $('#keypadHolder').css('float','');
+    }
+
+    init();
+  };
 
   $(document).ready( function() {
 
-    $('#rootCanvas').attr("width", dimension );
-    $('#rootCanvas').attr("height", dimension );
+    var s = getURLParameter('s');
+    
+    speed = s == null ? .05 : parseFloat(s);
+
+    resize();
 
     $('body').on('keypress', (e) => {
       if( e.code.indexOf('Digit') === 0 ) {
@@ -27,15 +95,35 @@
       }
     });
 
+    $('circle,text').on('mousedown touchstart', (e) => {
+      e.preventDefault();
+      var num = e.currentTarget.id.substring(3)
+      $('#btn'+num).attr('fill', '#FFA700' );
+      setTimeout(function() {
+        $('#btn'+num).attr('fill', '#03BCCE' );
+      }, 150);
+      valueQueue.push( num );
+      if( !flipping ) {
+        flipNumber();
+      }
+    });
+
     init();
+
+    $(window).resize(function () {
+      resize();
+    });
   });
 
   var flipNumber = function() {
     flipping = true;
     var newVal = valueQueue.shift();
+    colorIdx++;
+    if( colorIdx >= colors.length ) colorIdx = 0;
     var flipCtx = {
       from: currValue,
       to: newVal,
+      nextColor: colors[ colorIdx ],
       progress: -1
     };
 
@@ -61,11 +149,12 @@
       context.beginPath();
       context.clearRect(0,0,canvas.width,canvas.height);
       context.drawImage(stagingCanvas,0,0);
-      flipContext.progress += .05;
+      flipContext.progress += speed;
       setTimeout( function() {
         flipInner( resolver, flipContext );
       });
     } else {
+      currColor = flipContext.nextColor;
       resolver("Done");
     }
   }
@@ -100,12 +189,24 @@
     // back top - has the "to"
     ctx.beginPath();
     //ctx.arc(500, 500, 450, 2*Math.PI, 0); // whole circle
-    ctx.arc(dimension/2, dimension/2, (.9*dimension)/2, 2*Math.PI, 0); // whole circle
+    ctx.arc(dimension/2, dimension/2, (.9*dimension)/2, Math.PI, 0); // whole circle
 
     ctx.lineWidth = .01*dimension;
     // line color
     ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'orange';
+    ctx.fillStyle = flipContext.nextColor;
+    ctx.fill();
+    ctx.stroke();
+
+
+    ctx.beginPath();
+    //ctx.arc(500, 500, 450, 2*Math.PI, 0); // whole circle
+    ctx.arc(dimension/2, dimension/2, (.9*dimension)/2, 0, Math.PI); // whole circle
+
+    ctx.lineWidth = .01*dimension;
+    // line color
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = currColor;
     ctx.fill();
     ctx.stroke();
 
@@ -159,7 +260,7 @@
     ctx.lineWidth = .01*dimension;
     // line color
     ctx.strokeStyle = 'black';
-    ctx.fillStyle = 'orange';
+    ctx.fillStyle = progress > 0 ? flipContext.nextColor : currColor;
     ctx.fill();
     ctx.stroke();
     ctx.beginPath();
@@ -202,6 +303,7 @@
     var stagingCanvas = getFrameContext( {
       from: 0, 
       to: currValue, 
+      nextColor: colors[0],
       progress: 1
     });
 
