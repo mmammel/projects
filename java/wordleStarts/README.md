@@ -4,8 +4,8 @@ In the game "Quordle", which is just 4 simultaneous Wordle puzzles with 9 guesse
 
 I decided to write this program that uses the scrabble word list, and takes the following inputs:
 
-desired letters (e.g. aeiourstln)
-word length (always 5 for wordle)
+* desired letters (e.g. aeiourstln)
+* word length (always 5 for wordle)
 
 and the program would find all sets of two words that uniquely covered the desired letters, one of which would be ROUTE and SLAIN.  With the program, I could also give it a list of 15 letters, instead of ten, and get all three word sets that uniquely covered the letters, for example:
 
