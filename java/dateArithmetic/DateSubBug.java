@@ -5,7 +5,7 @@ public class DateSubBug {
   public static void main( String [] args ) {
     String dateStr = null;
     int dateNum = 0;
-    SimpleDateFormat dbdateFormat = new SimpleDateFormat( "YYYYMMdd" );
+    SimpleDateFormat dbdateFormat = new SimpleDateFormat( "yyyyMMdd" );
 
     Calendar ref = Calendar.getInstance();
     ref.add(Calendar.DAY_OF_YEAR,  -1 );
@@ -21,6 +21,7 @@ public class DateSubBug {
       ref = Calendar.getInstance();
       ref.add(Calendar.DAY_OF_YEAR,  -1 );
       ref.add(Calendar.MONTH,  -1 * i );
+      System.out.println( ""+ref.getTime() );
       dateStr = dbdateFormat.format( ref.getTime() );
       System.out.print("\""+dateStr+"\"\t");
       try {
