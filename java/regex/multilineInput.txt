@@ -1,0 +1,14 @@
+An order form has been created for the web.  Users must enter their billing information on this form.  The information must include the  user's name, street address, city, state, province, country and zip code. The state, province, and country fields are "drop-down" menus that can either contain a blank value or values for a state, province, or country. If the billing address is located in the United States (USA), then the postal code must be in the format ##### or #####-#### (# indicates a single integer value and "-" indicates the character place must contain a "-").  If the billing address is located in Canada (CAN), then the postal code must be in the format @@@-@@@ (@ indicates an alpha numeric value and "-" indicates the character place must contain a "-").  If the billing address is in the United States (USA), then the invoice price is 30% less than the retail price. The retail price is equal	to the wholesale price plus 50%. 
+	
+Which expression would be the best to determine if the billing address is a valid United States address prior to checking the postal code?
+
+x= 7;
+y= -1;
+z = 9;
+
+if( x > 0 ) {
+  x = 1;
+} else if( foonnbar ) {
+  x = 0;
+}
+
