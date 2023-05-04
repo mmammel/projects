@@ -64,6 +64,8 @@ function getConvexHull(points) {
         y: (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z),
         z: (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)
       };
+
+      var tempFace = [];
       
       // iterate over the edges of the hull
       for (var j = 0; j < stack.length; j++) {
@@ -77,7 +79,8 @@ function getConvexHull(points) {
           var dotProduct = normal.x * (v.x - u.x) + normal.y * (v.y - u.y) + normal.z * (v.z - u.z);
           
           // if the dot product is negative, add the face to the list of faces
-          if (dotProduct < 0)
+          if (dotProduct < 0) {
+            tempFace = [];
             // add the edge to the set of visited edges
             visitedEdges.add([u, v].toString());
             
@@ -85,12 +88,12 @@ function getConvexHull(points) {
             for (var k = 0; k < tempStack.length; k++) {
               // if the vertex is not u or v, add it to the face
               if (tempStack[k] !== u && tempStack[k] !== v) {
-                face.push(tempStack[k]);
+                tempFace.push(tempStack[k]);
               }
             }
             
             // add the face to the list of faces
-            faces.push(face);
+            faces.push(tempFace);
           }
         }
       }

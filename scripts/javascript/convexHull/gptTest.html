@@ -1,0 +1,25 @@
+<html>
+  <head>
+  </head>
+  <body onload="javascript:getCubeFaces();">
+
+    <script type="text/javascript" src="gptConvexHullFaces.js"></script>
+
+    <script type="text/javascript">
+      function getCubeFaces() {
+        var verts = [
+          { x: 1.0, y: 1.0, z: 1.0},
+          { x: 1.0, y: 1.0, z: -1.0},
+          { x: 1.0, y: -1.0, z: 1.0},
+          { x: 1.0, y: -1.0, z: -1.0},
+          { x: -1.0, y: 1.0, z: 1.0},
+          { x: -1.0, y: 1.0, z: -1.0},
+          { x: -1.0, y: -1.0, z: 1.0},
+          { x: -1.0, y: -1.0, z: -1.0}
+        ];
+        var result = getConvexHull( verts );
+        alert(result);
+      }
+    </script>
+  </body>
+</html>

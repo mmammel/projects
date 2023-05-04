@@ -1,9 +1,57 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="text/javascript">
+      var playing = false;
+      var firstplay = true;
+      function unmute() {
+        var audio = document.getElementById("audio");
+        if( firstplay ) {
+          firstplay = false;
+          audio.currentTime = 6;
+        }
+
+        if( playing ) {
+          playing = false;
+          audio.pause();
+        } else {
+          playing = true;
+          audio.play();
+        }
+
+        var volicon = document.getElementById("vol");
+        volicon.innerHTML = playing ? "volume_up" : "volume_off";
+      }
+    </script>
+
+    <style type="text/css">
+      body {
+        background: black;
+      }
+
+      .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+        font-style: italic;
+        font-family: arial;
+      }
+
+      .container {
+        position: relative;
+        text-align: center;
+        color: white;
+      }
+    </style>
+    
+  </head>
   <body>
-    <div style="width:100%;margin-left:auto; margin-right:auto;">
-      <img src="TechnicalDifficulties.jpg" width="100%"></img>
-      <audio controls autoplay style="display:none">
-        <source src="SpanishFlea.ogg" type="audio/ogg">
+    <div class="container" style="width:100%;margin-left:auto; margin-right:auto;">
+      <img src="TechnicalDifficulties.jpg" onclick="javascript:unmute();" width="100%"></img>
+      <div class="bottom-right" onclick="javascript:unmute();"><span id="vol" style="font-size: 96px;" class="material-symbols-outlined">
+volume_off
+</span></div>
+      <audio id="audio" currentTime="6" loop src="SpanishFleaHerbAlpert.ogg" type="audio/ogg">
         Your browser does not support the audio element.
       </audio>
     </div>
