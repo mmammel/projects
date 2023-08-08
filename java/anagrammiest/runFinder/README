@@ -1,0 +1,23 @@
+Given a dictionary, find all distinct groups of dupe letters across all words, e.g.:
+
+anagram -> AAA
+mitochondria -> II, OO
+garage -> AA, GG
+
+These can be used to set up an enum that tokenizes all of the possible runs so we can do quick checks to see if they are present in a word.  Take a word:
+
+anagram
+
+sort it:
+
+aaagmnr
+
+it can be represented by an EnumSet of: AAA, G, M, N, R
+
+then another word, like:
+
+manager -> AAA, E, G, M, N, R
+
+can be quickly compared to anagram (EnumSet uses bit masks for containsAll()) to determine that anagram can be made from manager.
+
+

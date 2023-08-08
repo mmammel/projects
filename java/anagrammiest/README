@@ -1,0 +1,33 @@
+Find the sequence of letters that has the highest letters : words ratio.
+
+Started by an observation from my dad about GARDEN: (GD)(NR) GARDEN = DANGER
+
+And the large number of words that can be made with the letters in GARDEN.
+
+1. Attempted a brute force method in "buckets"
+
+2. tried a Trie in "trie"
+
+both failed, now try using frequencies of subsets.
+
+A. Find all distinct subsets of letters in the dictionary
+B. For each subset, count how many times each appears in words of length N, where N >= 1, N <= (longest word in dictionary, 15 in the scrabble case)
+C. Now if you want to find the Anagrammiest 6 letter sequence, loop through all 6 letter sequences, and for each:
+  1. total = 0; total += how many appearances in 6 letter words
+  2. for each distinct subsequence of the original word, repeat step (1) - adding in counts of appearances the words that are the same length as each subsequence.
+  3. at the end, should have a "total" for each 6 letter subsequence (and each smaller subsequence, actually) and can sort by that.
+  4. Done! 
+
+Seems like it should scale ok, will see.  Might need a lot of heap.
+
+Doesn't need a ton of heap, 15 letter words runs in ~15 mins - not too shabby.  To run:
+
+java SetFreqs scrabble_words.txt N > output.csv
+
+Where N is the length of words you are interested in.
+
+Also run:
+
+java AnagramFinder
+
+to have a little terminal app that takes strings and spits out all of the sub words. 

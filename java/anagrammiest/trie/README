@@ -1,0 +1,9 @@
+New idea: use a Trie, and order all of the letters in each word alphabetically, store them in the Trie, and at the end walk to each node and sum up the total number of words along each path and use it to calculate the score for every node.
+
+How to handle duplicates?
+
+consider:
+
+CATARACT -> AAACRTT
+
+and CAT -> ACT

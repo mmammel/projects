@@ -1,0 +1,18 @@
+Started down the brute force path but quickly realized that O(n^2) won't work for this, as there are ~280K words in the scrabble dictionary, which takes us to ~80 billion comparisons.
+
+Algorithm:
+
+Sort scrabble word list (it includes plurals) by word length, longest to shortest
+for each word, create a bucket that is indexed in such a way that any subset of letters can be hashed and land in the same bucket.  After creating the bucket, see if this word's letters land in any existing buckets.  Any bucket it lands in, add it to it, and tweak the bucket stats.
+
+i.e. GARDEN will create a bucket that any subset of the letters:
+
+ADEGNR will land in.
+
+Bitmap is tempting but makes handling duplicate letters tricky.
+  - could create the bitmap based on an analysis of the word list to accommodate the 
+    max duplicates of any letter in any word.
+
+Maybe assign a prime number to every letter, if the product of all letters in any set is a factor of any bucket, then it is a subset.
+
+-- none of the above works out, the time complexity is horrible as you have to check an ever increasing number of buckets.
