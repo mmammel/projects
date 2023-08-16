@@ -3,212 +3,240 @@ const AWS = require('aws-sdk');
 
 // Create the DynamoDB Client with the region you want
 const region = 'us-east-1';
-const dynamoDbClient = createDynamoDbClient(region);
+const s3Client = createS3Client(region);
 
-function createDynamoDbClient(regionName) {
-  // Set the region
+const raceStateData = [
+  [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+  [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+  [],[],[],[],[],[],[],[],[],[],[]
+];
+
+function createS3Client(regionName) {
+    // Set the region
   AWS.config.update({region: regionName});
   // Use the following config instead when using DynamoDB Local
   // AWS.config.update({region: 'localhost', endpoint: 'http://localhost:8000', accessKeyId: 'access_key_id', secretAccessKey: 'secret_access_key'});
-  return new AWS.DynamoDB();
+  return new AWS.S3({apiVersion: '2006-03-01'});
 }
 
-// data: [ "loclong", "pageIdx", "globalIdx", "16 May 23", "url", "name", "distance", "location" ]
-function createPutItemInput(data) {
-  return {
-    "TableName": "USRunningRaces",
-    "Item": {
-      "nameAndDate": {
-        "S": ""+data[5]+"-"+data[3]
-      },
-      "name": {
-        "S": data[5]
-      },
-      "date": {
-        "S": data[3]
-      },
-      "location": {
-        "S": data[7]
-      },
-      "distance": {
-        "S": data[6]
-      },
-      "url": {
-          "S": data[4]
-      }
-    },
-    "ConditionExpression": "NOT (attribute_exists(#3ca70))",
-    "ExpressionAttributeNames": {
-      "#3ca70": "name"
-    }
-  }
-}
-
-function executePutItem(dynamoDbClient, putItemInput) {
-  // Call DynamoDB's putItem API
-  try {
-    return dynamoDbClient.putItem(putItemInput).promise();
-    // Handle putItemOutput
-  } catch (err) {
-    handlePutItemError(err);
-    return new Promise((resolve,reject) => {
-       resolve("skipped"); 
+function doUpload( data, resolve ) {
+    let params = {
+        Bucket: 'www.mjmtools.com',
+        Key: 'frc/js/races.json',
+        Body: data
+    };
+    
+    let options = {partSize: 10 * 1024 * 1024, queueSize: 1};
+    
+    s3Client.upload( params, options, (err, data ) => {
+       if( err ) {
+           resolve({
+               statusCode: 202,
+               message: "Error: " + err
+           });
+       } else {
+           resolve({
+               statusCode: 200,
+               message: "Success!"
+           });
+       }
     });
+}
+
+function makeId( str ) {
+  return 'R' + str.replace(/[^-A-Za-z0-9_.]/g, '_');
+}
+
+// 16 May 23 -> 20230516
+function dateToDateNum( date ) {
+  date = date.trim();
+  var arr = date.split(" ");
+  
+  var yearNum = 0;
+  var monthNum = 0;
+  var dayNum = 0;
+  
+  if( arr[1] === "Jan" ) { monthNum = 1; }
+  else if( arr[1] === "Feb" ) { monthNum = 2; }
+  else if( arr[1] === "Mar" ) { monthNum = 3; }
+  else if( arr[1] === "Apr" ) { monthNum = 4; }
+  else if( arr[1] === "May" ) { monthNum = 5; }
+  else if( arr[1] === "Jun" ) { monthNum = 6; }
+  else if( arr[1] === "Jul" ) { monthNum = 7; }
+  else if( arr[1] === "Aug" ) { monthNum = 8; }
+  else if( arr[1] === "Sep" ) { monthNum = 9; }
+  else if( arr[1] === "Oct" ) { monthNum = 10; }
+  else if( arr[1] === "Nov" ) { monthNum = 11; }
+  else if( arr[1] === "Dec" ) { monthNum = 12; }
+  
+  yearNum = (2000 + parseInt(arr[2])) * 10000;
+  monthNum = monthNum * 100;
+  dayNum = parseInt(arr[0]);
+  
+  return yearNum + monthNum + dayNum;
+}
+
+function createJSONItem(data) {
+  var id = makeId( ""+data[5]+"-"+data[3]);
+  
+  return {
+    id : id,
+    name: data[5],
+    date: data[3],
+    dateNum : dateToDateNum(data[3]),
+    location: data[7],
+    distance: data[6],
+    url: data[4]
   }
 }
 
-const raceData = [];
+let raceData = [];
+const monthStrs = [ "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" ];
 
-const callContext = {
-    page: 1,
-    lastId: 'init',
-    data: null
-};
-
-function getPage( context, resolver, rejecter ) {
-    let retVal = true;
-    let pageData = null;
-    let id = '-1';
-    if( context.data ) {
-        // we've received data for a page, extract the last ID from the payload
-        pageData = parsePage(context.data);
-        id = pageData[ pageData.length - 1 ][2];
-        if( id !== context.lastId ) {
-            context.lastId = id;
-            for( let i = 0; i < pageData.length; i++ ) {
-                raceData.push( pageData[i] );
-            }
-        } else {
-            console.log( "Retrieved " + raceData.length + " races!");
-            console.log( "Loading races into dynamoDB...")
-            
-            let putPromises = [];
-            let tempRace = [];
-            let tempPutObject = {};
-            for( var i = 0; i < raceData.length; i++ ) {
-                tempRace = raceData[i];
-                tempPutObject = createPutItemInput(tempRace);
-                 // Call DynamoDB's putItem API
-                putPromises.push(executePutItem(dynamoDbClient, tempPutObject).then(() => {
-                    console.info('PutItem API call has been executed.')
-                  }
-                ).catch((err) => {
-                    handlePutItemError(err);
-                }));
-            }
-            
-            Promise.allSettled(putPromises).then(() => {
-                resolver({
-                    statusCode: 200,
-                    body: JSON.stringify(raceData)
-                });
-            });
-        }
-    }
-    
-    if( retVal ) {
-        // get another page
-        context.data = '';
-        https.get( 'https://race-find.com/us/races?query=&state=&date=&type=&race-page='+context.page+'&per-page=15', (res) => {
-             res.on('data', (d) => {
-                 context.data += d.toString();
-             });
-             res.on('end', () => {
-                context.page++;
-                getPage(context,resolver,rejecter);
-             });
-        }).on('error', (e) => {
-            rejecter(e);
-        });
-    }
+function getStatePages(state) {
+  return new Promise( function( resolver, rejector ) {
+    getAllStatePages(state, resolver, rejector );
+  }).then(() => {
+    console.log( "Finished state " + state );
+  });
 }
 
-function loadRaceDataIntoDynamo(resolver) {
+function getAllStatePages( state, resolver, rejecter ) {
+  new Promise( function( resolve, reject ) {
+    var now = new Date();
+    var dateStr =  monthStrs[now.getMonth()] + "%2F" + now.getDate() + "%2F" + now.getFullYear();
+    getDatePagesForState( state, dateStr, resolve );
+  }).then(() => {
+    console.log( "Got all state pages for " + state );
+    resolver("Done with " + state );
+  });
+}
+
+function getDatePagesForState( state, date, resolver ) {
+  new Promise( function( resolve, reject) {
+    let page = 1;
+    getNextPageForState( page, state, date, resolve );
+  }).then((result) => {
+    console.log( "Retrieved " + raceStateData[state - 1].length + " races!");
+
+    let tempRace = [];
+    //let tempPutObject = {};
+    for( var i = 0; i < raceStateData[state - 1].length; i++ ) {
+      tempRace = raceStateData[state - 1][i];
+      tempRace[5] = tempRace[5].replace(/\&#039;/g,"'");
+      tempRace[5] = tempRace[5].replace(/\&amp;/g,'&');
+      tempRace[5] = tempRace[5].replace(/\&quot;/g,'"');
+      tempRace[5] = tempRace[5].replace(/\&lt;/g,'<');
+      tempRace[5] = tempRace[5].replace(/\&gt;/g,'>');
+    }
     
+    //Promise.allSettled(putPromises).then(() => {
+    if( result === "done" ) {
+      // we are totally done.
+      // resolver("done");
+      // Upload the data
+      // doUpload( JSON.stringify(raceData), resolver );
+      resolver("done");
+    } else {
+      // get the last date
+      var lastDate = dateToDateFrom( raceStateData[state - 1][ raceStateData[state - 1].length - 1 ][3] );
+      // empty the raceData
+      //raceData = [];
+      getDatePagesForState( state, lastDate, resolver );
+    }
+    //}); 
+  });
+}
+
+function getNextPageForState( page, state, date, resolver ) {
+  let data = '';
+  let myResolver = resolver;
+  console.log("Requesting: " + 'https://race-find.com/us/races?query=&state='+state+'&date_from='+date+'&type=&race-page='+page+'&per-page=15' );
+  https.get( 'https://race-find.com/us/races?query=&state='+state+'&date_from='+date+'&type=&race-page='+page+'&per-page=15', (res) => {
+     res.on('data', (d) => {
+         data += d.toString();  
+     });
+     res.on('end', () => {
+        let pageData = parsePage(data);
+        for( var i = 0; i < pageData.length; i++ ) {
+          raceStateData[state - 1].push(pageData[i]);
+        }
+        
+        if( data.indexOf("last disabled") >= 0 ) {
+          // last page, but it's page 34, so press on.
+          if( page < 34 ) {
+            // we're done.
+            myResolver("done");              
+          } else {
+            myResolver("notDone");
+          }
+        } else if( data.indexOf("No results found.") >= 0 || data.indexOf('<ul class="pagination">') < 0 ) {
+          // only one page, or no results
+          myResolver("done");
+        } else {
+          getNextPageForState(++page, state, date, myResolver);
+        }
+     });
+  }).on('error', (e) => {
+    console.log("Error on page" + context.page );
+    myResolver("Error");
+  });
 }
 
 function parsePage( data ) {
-    let retVal = [];
-    let rowMatcher = new RegExp('<tr data-geo="(.*?)".*?data-key="(.*?)"><td>(.*?)</td><td></td><td>(.*?)</td><td><a.*?href="(.*?)".*target="_blank">(.*?)</a></td><td>(.*?)</td><td>(.*?)</td></tr>', 'g');
-    let m = null;
-    while( (m = rowMatcher.exec(data) ) != null ) {
-        m.shift();
-        retVal.push(m);
-    }
-    
-    return retVal;
+  let retVal = [];
+  let rowMatcher = new RegExp('<tr data-geo="(.*?)".*?data-key="(.*?)"><td>(.*?)</td><td></td><td>(.*?)</td><td><a.*?href="(.*?)".*target="_blank">(.*?)</a></td><td>(.*?)</td><td>(.*?)</td></tr>', 'g');
+  let m = null;
+  while( (m = rowMatcher.exec(data) ) != null ) {
+    m.shift();
+    retVal.push(m);
+  }
+  
+  return retVal;
 }
 
-
-// Handles errors during PutItem execution. Use recommendations in error messages below to 
-// add error handling specific to your application use-case. 
-function handlePutItemError(err) {
-  if (!err) {
-    console.error('Encountered error object was empty');
-    return;
-  }
-  if (!err.code) {
-    console.error(`An exception occurred, investigate and configure retry strategy. Error: ${JSON.stringify(err)}`);
-    return;
-  }
-  switch (err.code) {
-    case 'ConditionalCheckFailedException':
-      console.error(`Condition check specified in the operation failed, review and update the condition check before retrying. Error: ${err.message}`);
-      return;
-    case 'TransactionConflictException':
-      console.error(`Operation was rejected because there is an ongoing transaction for the item, generally safe to retry ' +
-       'with exponential back-off. Error: ${err.message}`);
-       return;
-    case 'ItemCollectionSizeLimitExceededException':
-      console.error(`An item collection is too large, you're using Local Secondary Index and exceeded size limit of` + 
-        `items per partition key. Consider using Global Secondary Index instead. Error: ${err.message}`);
-      return;
-    default:
-      break;
-    // Common DynamoDB API errors are handled below
-  }
-  handleCommonErrors(err);
-}
-
-function handleCommonErrors(err) {
-  switch (err.code) {
-    case 'InternalServerError':
-      console.error(`Internal Server Error, generally safe to retry with exponential back-off. Error: ${err.message}`);
-      return;
-    case 'ProvisionedThroughputExceededException':
-      console.error(`Request rate is too high. If you're using a custom retry strategy make sure to retry with exponential back-off. `
-        + `Otherwise consider reducing frequency of requests or increasing provisioned capacity for your table or secondary index. Error: ${err.message}`);
-      return;
-    case 'ResourceNotFoundException':
-      console.error(`One of the tables was not found, verify table exists before retrying. Error: ${err.message}`);
-      return;
-    case 'ServiceUnavailable':
-      console.error(`Had trouble reaching DynamoDB. generally safe to retry with exponential back-off. Error: ${err.message}`);
-      return;
-    case 'ThrottlingException':
-      console.error(`Request denied due to throttling, generally safe to retry with exponential back-off. Error: ${err.message}`);
-      return;
-    case 'UnrecognizedClientException':
-      console.error(`The request signature is incorrect most likely due to an invalid AWS access key ID or secret key, fix before retrying. `
-        + `Error: ${err.message}`);
-      return;
-    case 'ValidationException':
-      console.error(`The input fails to satisfy the constraints specified by DynamoDB, `
-        + `fix input before retrying. Error: ${err.message}`);
-      return;
-    case 'RequestLimitExceeded':
-      console.error(`Throughput exceeds the current throughput limit for your account, `
-        + `increase account level throughput before retrying. Error: ${err.message}`);
-      return;
-    default:
-      console.error(`An exception occurred, investigate and configure retry strategy. Error: ${err.message}`);
-      return;
-  }
+function dateToDateFrom( date ) {
+  // "03 Feb 23" -> "02%2F03%2F2023"
+  date = date.trim();
+  var arr = date.split(" ");
+  var month = "01";
+  if( arr[1] === "Jan" ) { month = "01"; }
+  else if( arr[1] === "Feb" ) { month = "02"; }
+  else if( arr[1] === "Mar" ) { month = "03"; }
+  else if( arr[1] === "Apr" ) { month = "04"; }
+  else if( arr[1] === "May" ) { month = "05"; }
+  else if( arr[1] === "Jun" ) { month = "06"; }
+  else if( arr[1] === "Jul" ) { month = "07"; }
+  else if( arr[1] === "Aug" ) { month = "08"; }
+  else if( arr[1] === "Sep" ) { month = "09"; }
+  else if( arr[1] === "Oct" ) { month = "10"; }
+  else if( arr[1] === "Nov" ) { month = "11"; }
+  else if( arr[1] === "Dec" ) { month = "12"; }
+  
+  return month + "%2F" + arr[0] + "%2F20" + arr[2];
 }
 
 exports.handler = async(event) => {
     return new Promise( function(resolve, reject) {
-        getPage(callContext, resolve, reject );
+        //getPage(callContext, resolve, reject );
+        //getAllPages( resolve, reject );
+        let statePromises = [];
+        for( var i = 1; i <= 51; i++ ) {
+          statePromises.push( getStatePages(i) );
+        }
+        
+        Promise.allSettled(statePromises).then(() => {
+          
+          let allData = [];
+          let tempRace = null;
+          for( var i = 0; i < 51; i++ ) {
+            for( var j = 0; j < raceStateData[i].length; j++ ) {
+              tempRace = raceStateData[i][j];
+              allData.push( createJSONItem(tempRace) );
+            }
+          }
+          
+          doUpload( JSON.stringify( allData ), resolve );
+        });
     });
 };
-

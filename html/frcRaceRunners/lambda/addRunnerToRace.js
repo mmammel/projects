@@ -19,8 +19,13 @@ const region = 'us-east-1';
 const dynamoDbClient = createDynamoDbClient(region);
 
 function addRunnerToRace( payload, resolve, reject ) {
-  // Call DynamoDB's updateItem API
-  executeUpdateItem(dynamoDbClient, createUpdateItemInput(payload)).then(() => {
+  // Call DynamoDB's updateItem API twice, once for the runner, once for the race
+  let dynamoPromises = [];
+
+  dynamoPromises.push(executeUpdateItem(dynamoDbClient, createUpdateRaceInput(payload)));
+  dynamoPromises.push(executeUpdateItem(dynamoDbClient, createUpdateRunnerInput(payload)));
+  
+  Promise.allSettled(dynamoPromises).then(() => {
       console.info('UpdateItem API call has been executed.')
       resolve({
         statusCode: 200,
@@ -42,24 +47,50 @@ function createDynamoDbClient(regionName) {
   return new AWS.DynamoDB();
 }
 
-function createUpdateItemInput(payload) {
+function createUpdateRunnerInput(payload) {
   return {
-    "TableName": "USRunningRaces",
+    "TableName": "USRunners",
     "Key": {
-      "nameAndDate": {
-        "S": payload.id
+      "raceRunnerKey": {
+        "S": 'runner.'+payload.runnerId
       }
     },
     "UpdateExpression": " ADD #bfb00 :bfb00",
     "ExpressionAttributeValues": {
       ":bfb00": {
         "SS": [
-          payload.email.toLowerCase()
+          payload.raceId
         ]
       }
     },
     "ExpressionAttributeNames": {
-      "#bfb00": "runners"
+      "#bfb00": "races"
+    }
+  }
+}
+
+function createUpdateRaceInput(payload) {
+  return {
+    "TableName": "USRunners",
+    "Key": {
+      "raceRunnerKey": {
+        "S": 'race.'+payload.raceId
+      }
+    },
+    "UpdateExpression": "SET #6a5c0 = :6a5c0 ADD #6a5c1 :6a5c1",
+    "ExpressionAttributeValues": {
+      ":6a5c0": {
+        "N": ''+payload.dateNum
+      },
+      ":6a5c1": {
+        "SS": [
+          payload.runnerId
+        ]
+      }
+    },
+    "ExpressionAttributeNames": {
+      "#6a5c0": "dateNum",
+      "#6a5c1": "runners"
     }
   }
 }
@@ -143,14 +174,14 @@ exports.handler = async (event) => {
       payload = JSON.parse(event.body);
     }
     
-    if( payload.id && payload.email ) {
+    if( payload.raceId && payload.runnerId && payload.dateNum ) {
       return new Promise( function(resolve, reject) {
           addRunnerToRace(payload, resolve, reject );
       });
     } else {
       return new Promise.resolve({
         statusCode: 400,
-        body: "{ \"error\" : \"Missing id/email properties\" }"
+        body: "{ \"error\" : \"Bad payload\" }"
       });
     }
 };

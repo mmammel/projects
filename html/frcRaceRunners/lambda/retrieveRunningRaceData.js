@@ -5,18 +5,17 @@ const region = 'us-east-1';
 const dynamoDbClient = createDynamoDbClient(region);
 
 let racePages = [];
-let emailAddr = null;
+let runnerId = null;
 
 function doScan( lastKey, resolver ) {
-  let scanInput = createScanInput(lastKey);
+  let scanInput = createRaceScanInput(lastKey);
   console.log( "Scan input: " + JSON.stringify(scanInput) );
   executeScan(dynamoDbClient, scanInput).then((result) => {
-    collectItems(result);
+    collectScanItems(result);
     if( typeof result.LastEvaluatedKey !== 'undefined' ) {
       console.log( "Have last evaluated: " + JSON.stringify(result.LastEvaluatedKey) );
       doScan( result.LastEvaluatedKey, resolver );
     } else {
-      
       let flatten = [];
       for( var i = 0; i < racePages.length; i++ ) {
         flatten = flatten.concat( racePages[i] );
@@ -37,19 +36,14 @@ function doScan( lastKey, resolver ) {
   });
 }
 
-function collectItems( result ) {
+function collectScanItems( result ) {
   let items = result["Items"];
   console.log('Processing ' + items.length + ' items.');
   let remapped = items.map((obj) => {
     let retVal = {};
-    retVal['id'] = obj['nameAndDate']['S'];
-    retVal['name'] = obj['name']['S'];
-    retVal['date'] = obj['date']['S'];
-    retVal['url'] = obj['url'] ? obj['url']['S'] : 'N/A';
-    retVal['distance'] = obj['distance']['S'];
-    retVal['location'] = obj['location']['S'];
+    retVal['raceId'] = obj['raceRunnerKey']['S'].substring(5);
     if( obj['runners'] ) {
-      if( emailAddr && obj['runners']['SS'].includes(emailAddr.toLowerCase()) ) {
+      if( runnerId && obj['runners']['SS'].includes(runnerId.toLowerCase()) ) {
           retVal['running'] = true;
       }
       
@@ -82,9 +76,79 @@ function createScanInput(lastKey) {
   }
 }
 
+function createRaceScanInput(lastKey) {
+  return (typeof lastKey !== 'undefined') ? {
+    "TableName": "USRunners",
+    "ConsistentRead": false,
+    "ExclusiveStartKey": lastKey,
+    "FilterExpression": "begins_with(#e88d0, :e88d0)",
+    "ExpressionAttributeValues": {
+      ":e88d0": {
+        "S": "race."
+      }
+    },
+    "ExpressionAttributeNames": {
+      "#e88d0": "raceRunnerKey"
+    }
+  } : {
+    "TableName": "USRunners",
+    "ConsistentRead": false,
+    "FilterExpression": "begins_with(#e88d0, :e88d0)",
+    "ExpressionAttributeValues": {
+      ":e88d0": {
+        "S": "race."
+      }
+    },
+    "ExpressionAttributeNames": {
+      "#e88d0": "raceRunnerKey"
+    }
+  }
+}
+
+function createRunnerInput(payload) {
+  return {
+    "TableName": "USRunners",
+    "ScanIndexForward": true,
+    "ConsistentRead": false,
+    "KeyConditionExpression": "#e88d0 = :e88d0",
+    "ExpressionAttributeValues": {
+      ":e88d0": {
+        "S": "runner."+payload.runnerId
+      }
+    },
+    "ExpressionAttributeNames": {
+      "#e88d0": "raceRunnerKey"
+    }
+  }
+}
+
 function executeScan(dynamoDbClient, scanInput) {
   // Call DynamoDB's scan API
   return dynamoDbClient.scan(scanInput).promise();
+}
+
+async function executeQuery(dynamoDbClient, queryInput) {
+  // Call DynamoDB's query API
+  try {
+    const queryOutput = await dynamoDbClient.query(queryInput).promise();
+    console.info('Query successful.');
+    // Handle queryOutput
+  } catch (err) {
+    handleQueryError(err);
+  }
+}
+
+function handleQueryError(err) {
+  if (!err) {
+    console.error('Encountered error object was empty');
+    return;
+  }
+  if (!err.code) {
+    console.error(`An exception occurred, investigate and configure retry strategy. Error: ${JSON.stringify(err)}`);
+    return;
+  }
+  // here are no API specific errors to handle for Query, common DynamoDB API errors are handled below
+  handleCommonErrors(err);
 }
 
 // Handles errors during Scan execution. Use recommendations in error messages below to 
@@ -146,7 +210,7 @@ exports.handler = async (event) => {
       payload = JSON.parse(event.body);
     }
     
-    emailAddr = payload.email;
+    runnerId = payload.runnerId;
     racePages = [];
     
     return new Promise( function(resolve, reject) {
