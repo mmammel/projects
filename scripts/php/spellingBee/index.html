@@ -144,14 +144,16 @@
           url: "/api/spellingBee/sb.php?s="+$('#letters').val().toLowerCase(),
         }).done(function(r) {
           $('#wordListHolder').empty();
+          var bold = false;
           var wordArray = r.split("\n");
-          var columns = splitArray( sortWordList(wordArray) );
+          var columns = splitArray( wordArray );
           var tempColEle = null;
           for( var c = 0; c < columns.length; c++ ) {
             tempColEle = getColumnHolder( columns.length, c );
             $('#wordListHolder').append(tempColEle);
             for( var w = 0; w < columns[c].length; w++ ) {
-              $('#wordList'+c).append($('<li class="list-group-item">'+columns[c][w]+'</li>'));
+              bold = distinctLetterCount(columns[c][w]) == $('#letters').val().length;
+              $('#wordList'+c).append($('<li class="list-group-item' +(bold ? ' font-weight-bold' : '') + '">'+columns[c][w]+'</li>'));
             }
           }
         });
@@ -162,8 +164,10 @@
           url: "/api/spellingBee/sb.php?t=true",
         }).done(function(r) {
           $('#wordListHolder').empty();
+          var bold = false;
           var responseObj = JSON.parse( r );
           var wordArray = responseObj.today.answers;
+          wordArray.sort();
           var letters = responseObj.today.validLetters;
           var letterInput = "";
           for( var i = 1; i < letters.length; i++ ) {
@@ -177,7 +181,8 @@
             tempColEle = getColumnHolder( columns.length, c );
             $('#wordListHolder').append(tempColEle);
             for( var w = 0; w < columns[c].length; w++ ) {
-              $('#wordList'+c).append($('<li class="list-group-item">'+columns[c][w]+'</li>'));
+              bold = distinctLetterCount(columns[c][w]) == $('#letters').val().length;
+              $('#wordList'+c).append($('<li class="list-group-item' +(bold ? ' font-weight-bold' : '') + '">'+columns[c][w]+'</li>'));
             }
           }
         });
