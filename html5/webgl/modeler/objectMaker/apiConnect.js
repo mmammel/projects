@@ -4,7 +4,7 @@
 
 function ajaxCall( callDetails ) { 
   $.ajax({
-    url: '/api/shape/dynamo.php',
+    url: '/api/shape',
     type: callDetails.type,
     contentType: callDetails.contentType ? callDetails.contentType : "application/json",
     dataType: callDetails.dataType ? callDetails.dataType : "json",

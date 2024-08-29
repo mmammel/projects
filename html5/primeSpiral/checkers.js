@@ -92,6 +92,32 @@ let checkers = [
       return retVal;
     }
   },{
+    id: "simplegauss",
+    name : "Simple Gauss",
+    description : "Simple, but iterate over the Gause numbers: n(n+1)/2",
+    stateObj : {
+      seed: 2,
+      next: 1,
+      counter : 0
+    },
+    checker : function( state, n ) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter == state.next ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.next = (state.seed * ( state.seed + 1 ) ) / 2;
+        state.seed++;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+
+      return retVal;
+    }
+  },{
     id: "everything",
     name : "Everything",
     description : "Always draw a dot and turn, just to see what happens.  Capped at 1000 points",
@@ -219,6 +245,31 @@ let checkers = [
         defaultVal: 2
       }
     ]
+  },
+  {
+    id: "simplePrimeHitch",
+    name : "Simple with a prime hitch",
+    description : "Just like simple but only turn if prime",
+    stateObj : {
+      next: 1,
+      counter : 0
+    },
+    checker : function( state, n ) {
+      var retVal = {
+        draw: false,
+        turn: false
+      };
+      if( state.counter == state.next ) {
+        retVal.draw = true;
+        if( isPrime( state.counter ) ) retVal.turn = true;
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+
+      return retVal;
+    }
   },
   {
     id: "baseDigits",

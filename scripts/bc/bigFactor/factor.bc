@@ -1,0 +1,16 @@
+define factor(x) {
+  s = sqrt(x);
+  for( var = 1; var <= s; var +=2 ) {
+    if( var == 1 ) {
+      f = 2;
+    } else {
+      f = var;
+    }
+    while( x > 1 && x % f == 0 ) {
+      f;
+      x = x / f;
+    }
+  }
+}
+
+factor(120)

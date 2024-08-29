@@ -141,12 +141,11 @@
 
       function doClick( e ) {
         $.ajax({
-          url: "/api/spellingBee/sb.php?s="+$('#letters').val().toLowerCase(),
+          url: "/sb/?s="+$('#letters').val().toLowerCase(),
         }).done(function(r) {
           $('#wordListHolder').empty();
           var bold = false;
-          var wordArray = r.split("\n");
-          var columns = splitArray( wordArray );
+          var columns = splitArray( r );
           var tempColEle = null;
           for( var c = 0; c < columns.length; c++ ) {
             tempColEle = getColumnHolder( columns.length, c );
@@ -161,11 +160,10 @@
 
       function doToday( e ) {
         $.ajax({
-          url: "/api/spellingBee/sb.php?t=true",
-        }).done(function(r) {
+          url: "/sb/?t=true",
+        }).done(function(responseObj) {
           $('#wordListHolder').empty();
           var bold = false;
-          var responseObj = JSON.parse( r );
           var wordArray = responseObj.today.answers;
           wordArray.sort();
           var letters = responseObj.today.validLetters;

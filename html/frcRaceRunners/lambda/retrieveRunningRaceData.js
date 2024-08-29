@@ -39,7 +39,7 @@ function doScan( lastKey, resolver ) {
 function collectScanItems( result ) {
   let items = result["Items"];
   console.log('Processing ' + items.length + ' items.');
-  let remapped = items.map((obj) => {
+  let remapped = items.filter((obj) => obj['runners']).map((obj) => {
     let retVal = {};
     retVal['raceId'] = obj['raceRunnerKey']['S'].substring(5);
     if( obj['runners'] ) {
@@ -63,17 +63,6 @@ function createDynamoDbClient(regionName) {
   // Use the following config instead when using DynamoDB Local
   // AWS.config.update({region: 'localhost', endpoint: 'http://localhost:8000', accessKeyId: 'access_key_id', secretAccessKey: 'secret_access_key'});
   return new AWS.DynamoDB();
-}
-
-function createScanInput(lastKey) {
-  return (typeof lastKey !== 'undefined') ? {
-    "TableName": "USRunningRaces",
-    "ConsistentRead": false,
-    "ExclusiveStartKey" : lastKey
-  } : {
-    "TableName": "USRunningRaces",
-    "ConsistentRead": false
-  }
 }
 
 function createRaceScanInput(lastKey) {
@@ -105,50 +94,9 @@ function createRaceScanInput(lastKey) {
   }
 }
 
-function createRunnerInput(payload) {
-  return {
-    "TableName": "USRunners",
-    "ScanIndexForward": true,
-    "ConsistentRead": false,
-    "KeyConditionExpression": "#e88d0 = :e88d0",
-    "ExpressionAttributeValues": {
-      ":e88d0": {
-        "S": "runner."+payload.runnerId
-      }
-    },
-    "ExpressionAttributeNames": {
-      "#e88d0": "raceRunnerKey"
-    }
-  }
-}
-
 function executeScan(dynamoDbClient, scanInput) {
   // Call DynamoDB's scan API
   return dynamoDbClient.scan(scanInput).promise();
-}
-
-async function executeQuery(dynamoDbClient, queryInput) {
-  // Call DynamoDB's query API
-  try {
-    const queryOutput = await dynamoDbClient.query(queryInput).promise();
-    console.info('Query successful.');
-    // Handle queryOutput
-  } catch (err) {
-    handleQueryError(err);
-  }
-}
-
-function handleQueryError(err) {
-  if (!err) {
-    console.error('Encountered error object was empty');
-    return;
-  }
-  if (!err.code) {
-    console.error(`An exception occurred, investigate and configure retry strategy. Error: ${JSON.stringify(err)}`);
-    return;
-  }
-  // here are no API specific errors to handle for Query, common DynamoDB API errors are handled below
-  handleCommonErrors(err);
 }
 
 // Handles errors during Scan execution. Use recommendations in error messages below to 
@@ -217,3 +165,4 @@ exports.handler = async (event) => {
         doScan(null, resolve);
     });
 };
+
