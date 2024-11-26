@@ -1,8 +1,7 @@
-import org.json.JSONObject;
-import org.json.JSONException;
+import net.sf.json.JSONObject;
 import java.util.*;
 
-public class JsonTest
+public class NetSfJsonTest
 {
   public static void main( String [] args ) {
     Map<String,Object> testObj = new HashMap<String,Object>();
@@ -20,7 +19,8 @@ public class JsonTest
     testObj.put( "myobj", someObj );
     testObj.put( "myarr", someArray );
 
-    JSONObject j = new JSONObject( someObj );
+    JSONObject j = new JSONObject();
+    j.accumulateAll( someObj );
     System.out.println( j.toString() );
     System.out.println( j.toString(2) );
   }

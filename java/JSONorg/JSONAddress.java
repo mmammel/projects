@@ -47,7 +47,8 @@ public static final String JSON_STRING = "{"+
 "      \"email\" : \"alanders@email.com\","+
 "      \"id\" : \"73738\""+
 "    }"+
-"  ]"+
+"  ],"+
+"  \"idiotic/propertyName\" : \"idiot!\"" +
 "}";
 
   private final String [] tokens;
@@ -56,15 +57,28 @@ public static final String JSON_STRING = "{"+
 
   public JSONAddress( String path ) {
     if( path != null ) {
-      if( path.matches( VALID_ADDRESS_PATTERN ) ) {
+      if( this.validate(path) ) {
         path = path.substring(1);
-        this.tokens = path.split( "/" );
+        this.tokens = path.split( "(?<!\\\\)/" );
+        for( int i = 0; i < this.tokens.length; i++ ) {
+          this.tokens[i] = this.unescape( this.tokens[i] );
+        }
       } else {
         throw new RuntimeException( "Bad address!" );
       }
     } else {
       this.tokens = new String [0];
     }
+  }
+
+  private boolean validate( String path ) {
+    // first replace any escaped slashes
+    String pre = path.replaceAll("\\\\/", "SLASH" );
+    return pre.matches( VALID_ADDRESS_PATTERN );
+  }
+
+  private String unescape( String token ) {
+    return token.replaceAll("\\\\/","/");
   }
 
   public List<String> evaluate( Object json ) {

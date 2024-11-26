@@ -9,6 +9,7 @@ public class SimpleFormatTest
   public static void main( String [] args )
   {
     System.out.println( new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss'Z'" ).format( Calendar.getInstance().getTime() ));
+    System.out.println( new SimpleDateFormat( "yyyy-MM-dd 00:00:00" ).format( Calendar.getInstance().getTime() ));
     System.out.println( "Cookie Expire String: " );
     Date expdate= Calendar.getInstance().getTime();
     expdate.setTime (expdate.getTime() + (30 * 1000));
