@@ -1,0 +1,5 @@
+Write a function solve that finds the majority element in a list. The majority element appears more than n/2 times where n is the length of the list.
+
+Example:
+Input: [3,2,3]
+Output: 3

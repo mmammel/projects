@@ -1,0 +1,5 @@
+Write a function solve that determines if a string s of parentheses is valid. Valid parentheses must be closed in the correct order.
+
+Example:
+Input: "()[]{}"
+Output: True 

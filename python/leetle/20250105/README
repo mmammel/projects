@@ -1,0 +1,5 @@
+Write a function solve that determines if two strings are anagrams of each other. An anagram is a word formed by rearranging the letters of another word.
+
+Example:
+Input: "listen", "silent"
+Output: True 
