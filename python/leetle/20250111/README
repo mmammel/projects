@@ -1,0 +1,5 @@
+Write a function solve that checks if a string is a palindrome, considering only alphanumeric characters and ignoring case.
+
+Example:
+Input: "A man, a plan, a canal: Panama"
+Output: True 

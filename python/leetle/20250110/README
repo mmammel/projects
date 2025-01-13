@@ -1,0 +1,5 @@
+Write a function solve that finds the first missing positive integer given an unsorted list. That is, the smallest positive integer not in the list.
+
+Example:
+Input: [3,4,-1,1]
+Output: 2 
