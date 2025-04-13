@@ -1,0 +1,5 @@
+Write a function solve that counts the number of vowels (a,e,i,o,u) in a string, ignoring case.
+
+Example:
+Input: "Hello World"
+Output: 3 

@@ -1,0 +1,5 @@
+Write a function solve that reverses the words in a string. Words are separated by spaces.
+
+Example:
+Input: "the sky is blue"
+Output: "blue is sky the" 

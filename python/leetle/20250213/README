@@ -1,0 +1,6 @@
+
+Write a function solve that finds the longest palindromic substring in a string.
+
+Example:
+Input: "babd"
+Output: "bab" 

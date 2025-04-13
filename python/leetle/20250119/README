@@ -1,0 +1,5 @@
+Write a function that finds the maximum depth of a binary tree. A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. The tree is represented as an array of nodes in level-order traversal. None indicates empty nodes.
+
+Example:
+Input: [3,9,20,None,None,15,7]
+Output: 3 

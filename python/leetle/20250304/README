@@ -1,0 +1,24 @@
+Write a function solve that reorders a singly linked list such that the last element becomes the second element. ie: L0→L1→...→Ln-1→Ln becomes L0→Ln→L1→Ln-1→...
+
+Example:
+Input: [1,2,3,4,5]
+Output: [1,5,2,4,3] 
+
+Note:
+
+this one is busted:
+
+Write a function solve that reorders a singly linked list such that the last element becomes the second element. ie: L0→L1→...→Ln-1→Ln becomes L0→Ln→L1→Ln-1→...
+
+Example:
+Input: [1,2,3,4,5]
+Output: [1,5,2,4,3] 
+
+Make sure you return your solution, don't print!
+
+Test Case Failed
+Input: [1,2,3,4,5]
+
+Output: [1,5,2,3,4] # this should be correct based on the problem description
+
+Expected: [1,5,2,4,3]

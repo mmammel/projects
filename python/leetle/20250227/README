@@ -1,0 +1,7 @@
+Write a function solve that returns the number of unique paths if the grid has obstacles (1 means blocked).
+
+Example:
+Input: [[0,0,0],
+[0,1,0],
+[0,0,0]]
+Output: 2 

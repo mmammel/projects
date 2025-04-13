@@ -1,0 +1,5 @@
+Write a function solve that generates the first n rows of Pascal's Triangle.
+
+Example:
+Input: 3
+Output: [[1],[1,1],[1,2,1]]
