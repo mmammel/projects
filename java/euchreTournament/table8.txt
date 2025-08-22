@@ -1,0 +1,43 @@
+   A   B   C   D   E   F   G   H
+
+A  X  AB  AC  AD  AE  AF  AG  AH
+
+B      X  BC  BD  BE  BF  BG  BH	
+
+C          X  CD  CE  CF  CG  CH
+
+D              X  DE  DF  DG  DH
+
+E                  X  EF  EG  EH
+
+F                      X  FG  FH
+
+G                          X  GH
+
+H                              X
+
+28 teams
+
+
+
+                    A                  B
+
+
+
+
+
+         C                                        D
+
+
+
+
+
+
+
+         E                                        F
+
+
+
+
+
+                    G                  H

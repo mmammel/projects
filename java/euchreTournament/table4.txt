@@ -1,0 +1,24 @@
+    A   B   C   D
+
+A   X  AB  AC  AD
+
+B       X  BC  BD
+
+C           X  CD
+
+D               X
+
+
+      AB     AC     AD     BC     BD     CD
+
+AB    X      X      X      X      X      ABCD
+
+AC           X      X      X      ACBD   X
+
+AD                  X      ADBC   X      X
+
+BC                         X      X      X
+
+BD                                X      X
+
+CD                                       X

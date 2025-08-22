@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,28 +24,71 @@ public class OpponentBalancer {
   };
   
   public static int [][] TRANSFORMS = {
-      { 0, 2, 1, 3 },
-      { 0, 3, 2, 1 },
-      { 0, 2, 3, 1 }
+      //{ 0, 2, 1, 3 },
+      //{ 0, 3, 2, 1 },
+      //{ 0, 2, 3, 1 }
+      {0,2,1,3},
+      {2,3,1,0},
+      {2,1,3,0},
+      {2,3,1,0},
+      {2,1,0,3}
   };
   
   Map<String,Integer> counts = new HashMap<String,Integer>();
+  Map<String,Map<String,Integer>> tableCounts = new HashMap<String,Map<String,Integer>>();
   
   public OpponentBalancer() {
+    tableCounts.put("TABLE1",new HashMap<String,Integer>() );
+    tableCounts.put("TABLE2",new HashMap<String,Integer>() );
   }
   
   private void getCounts( String [][] array ) {
    
     this.counts.clear();
+    this.tableCounts.get("TABLE1").clear();
+    this.tableCounts.get("TABLE2").clear();
     String [] row = null;
+    String currTable = null;
+    Integer tempCount = null;
+    Map<String,Integer> tableMap = null;
     for( int i = 0; i < array.length; i++ ) {
       row = array[i];
       
       for( int j = 0; j < row.length; j += 2 ) {
+        if( j == 0 ) { 
+          tableMap = this.tableCounts.get("TABLE1");
+        } else {
+          tableMap = this.tableCounts.get("TABLE2");
+        }
+
         this.accumulateCount(this.normalize(row[j].charAt(0), row[j+1].charAt(0)));
         this.accumulateCount(this.normalize(row[j].charAt(0), row[j+1].charAt(1)));
         this.accumulateCount(this.normalize(row[j].charAt(1), row[j+1].charAt(0)));
         this.accumulateCount(this.normalize(row[j].charAt(1), row[j+1].charAt(1)));
+
+        if( (tempCount = tableMap.get( ""+row[j].charAt(0) )) == null ) {
+          tableMap.put( ""+row[j].charAt(0), 1 );
+        } else {
+          tableMap.put( ""+row[j].charAt(0), tempCount + 1 );
+        }
+
+        if( (tempCount = tableMap.get( ""+row[j].charAt(1) )) == null ) {
+          tableMap.put( ""+row[j].charAt(1), 1 );
+        } else {
+          tableMap.put( ""+row[j].charAt(1), tempCount + 1 );
+        }
+
+        if( (tempCount = tableMap.get( ""+row[j+1].charAt(0) )) == null ) {
+          tableMap.put( ""+row[j+1].charAt(0), 1 );
+        } else {
+          tableMap.put( ""+row[j+1].charAt(0), tempCount + 1 );
+        }
+
+        if( (tempCount = tableMap.get( ""+row[j+1].charAt(1) )) == null ) {
+          tableMap.put( ""+row[j+1].charAt(1), 1 );
+        } else {
+          tableMap.put( ""+row[j+1].charAt(1), tempCount + 1 );
+        }
       } 
     }
   }
@@ -71,6 +115,7 @@ public class OpponentBalancer {
       this.getCounts(TOURNAMENT);
       System.out.print( "NUMELEMENTS: " + this.counts.size() + " DIFFMINMAX: " + this.getMinMaxCountDiff() + " AVG: " + this.getAverageCount() + " " );
       System.out.println( this.counts );
+      System.out.println( this.tableCounts );
       this.printTournament();
     } else {
       for( int i = 0; i < TRANSFORMS.length; i++ ) {
@@ -90,6 +135,7 @@ public class OpponentBalancer {
   }
   
   private void transformRow( int row, int [] transform ) {
+    System.out.println("Pre-transform: " + Arrays.toString(TOURNAMENT[row]));
     String [] arr = new String [4];
     for( int i = 0; i < 4; i++ ) {
       arr[i] = TOURNAMENT[row][transform[i]];
@@ -98,7 +144,7 @@ public class OpponentBalancer {
     for( int i = 0; i < 4; i++ ) {
       TOURNAMENT[row][i] = arr[i];
     }
-    
+    System.out.println("Post-transform: " + Arrays.toString(TOURNAMENT[row]));
   }
   
   
