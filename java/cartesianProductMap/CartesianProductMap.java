@@ -1,6 +1,14 @@
 import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class CartesianProductMap {
+
+
+    // Regular expression pattern to match array-like strings (e.g., "[a,b,c]" or "a,b,c")
+    // the first group (group(1)) will be the values separated by commas whether or not 
+    // the string is enclosed in square brackets
+    private static Pattern arrayValuePattern = Pattern.compile("\\[?(.*?(?:,[^\\],]+)+)\\]?");
 
     // Main function to process the input map and return the cartesian product list of maps
     public static List<Map<String, String>> cartesianProduct(Map<String, String> inputMap) {
@@ -19,10 +27,15 @@ public class CartesianProductMap {
 
     // Helper function to parse array-like strings (e.g., "[a,b,c]") into a List of strings
     private static List<String> parseArrayString(String value) {
-        if (value.startsWith("[") && value.endsWith("]")) {
-            return Arrays.asList(value.substring(1, value.length() - 1).split(","));
+        Matcher matcher = null;
+        if( value == null) {
+            return Collections.singletonList(null);
         } else {
-            return Collections.singletonList(value); // If not array-like, return single value as a list
+            if ((matcher = arrayValuePattern.matcher(value)).matches()) {
+                return Arrays.asList(matcher.group(1).trim().split("\\s*,\\s*"));
+            } else {
+                return Collections.singletonList(value); // If not array-like, return single value as a list
+            }
         }
     }
 
@@ -49,8 +62,10 @@ public class CartesianProductMap {
     // Example usage
     public static void main(String[] args) {
         Map<String, String> input = new HashMap<>();
-        input.put("orderID", "order123");
-        input.put("jobApplicationID", "72635472653");
+        input.put("key1", "a");
+        input.put("key2", "[b,c]");
+        input.put("key3", "[d, e ]");
+        input.put("key4", "f, g , h"); 
 
         List<Map<String, String>> result = cartesianProduct(input);
         
