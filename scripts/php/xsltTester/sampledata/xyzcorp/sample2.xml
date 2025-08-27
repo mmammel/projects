@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<BatchFeed>
+	<MetaInformation>
+		<TargetBoard id="432465365436543">Monster</TargetBoard>
+	</MetaInformation>
+	<UnitInformation>
+		<Name>This Here Unit</Name>
+		<ApplyUrl>http://www.iircpostmaster.com</ApplyUrl>
+		<ApplyEmail>dookie@doomdoggie.com</ApplyEmail>
+	</UnitInformation>
+	<Entries>
+		<Posting id="43114343243" locale="us_en" action="add">
+			<PublicId>423HS</PublicId>
+			<Title>Basket Weaver</Title>
+			<Description>Wow! What a great job!</Description>
+			<Qualifications>Just have a pulse</Qualifications>
+			<Benefits>None really.</Benefits>
+			<SkillsRequired>English</SkillsRequired>
+			<SalaryCurrency>USD</SalaryCurrency>
+			<SalaryFrequency>Yearly</SalaryFrequency>
+			<MinSalary>20000</MinSalary>
+			<MaxSalary>30000</MaxSalary>
+			<MinEducation>High School</MinEducation>
+			<MinExperience>1 year</MinExperience>
+			<Type>Permenant</Type>
+			<Duration>Full Time</Duration>
+			<TravelAmount>None</TravelAmount>
+			<StartDate>2005-05-12</StartDate>
+			<ExpireDate>2005-07-16</ExpireDate>
+			<Locations>
+				<Location>
+					<Country>USA</Country>
+					<Region>Indiana</Region>
+					<City>Fishers</City>
+					<PostalCode>46038</PostalCode>
+				</Location>
+			</Locations>
+			<ContactProfile>
+				<FirstName>Steven</FirstName>
+				<LastName>Blake</LastName>
+				<Title>GrooveMaster</Title>
+				<Address>
+					<AddressLine1>423423</AddressLine1>
+					<AddressLine2>54254321</AddressLine2>
+					<Country>USA</Country>
+					<Region>Indiana</Region>
+					<City>Fishers</City>
+					<PostalCode>46038</PostalCode>
+				</Address>
+				<EmailAddress>fdsafds</EmailAddress>
+				<Url>fdsasddsa</Url>
+			</ContactProfile>
+			<BoardFields>
+				<MonsterCategory>12</MonsterCategory>
+				<MonsterSearchLocation>IN-Indianapolis</MonsterSearchLocation>
+			</BoardFields>
+			<UnitFields>
+				<CostCenter>JFRK-34</CostCenter>
+			</UnitFields>
+		</Posting>
+	</Entries>
+</BatchFeed>

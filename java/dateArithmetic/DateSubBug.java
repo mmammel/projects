@@ -5,10 +5,10 @@ public class DateSubBug {
   public static void main( String [] args ) {
     String dateStr = null;
     int dateNum = 0;
-    SimpleDateFormat dbdateFormat = new SimpleDateFormat( "yyyyMMdd" );
+    SimpleDateFormat dbdateFormat = new SimpleDateFormat( "YYYYMMdd" );
 
     Calendar ref = Calendar.getInstance();
-    ref.add(Calendar.DAY_OF_YEAR,  -1 );
+    ref.add(Calendar.DAY_OF_YEAR,  -5 );
 
     dateStr = dbdateFormat.format( ref.getTime() );
     
