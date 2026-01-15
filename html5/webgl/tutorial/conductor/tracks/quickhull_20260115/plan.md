@@ -13,10 +13,10 @@
 - [x] Task: Scaffold hull.js [48d7477]
     - [x] Create `rhombicTriacontahedron/hull.js`.
     - [x] Include `hull.js` in `rhombicTriacontahedron/index.html` via a `<script>` tag.
-- [~] Task: Implement 3D QuickHull Algorithm
-    - [ ] Implement the core QuickHull algorithm in `hull.js`, targeting $O(n \log n)$ complexity.
-    - [ ] Ensure the algorithm returns raw face indices (triples or arrays of indices).
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: QuickHull Implementation' (Protocol in workflow.md)
+- [x] Task: Implement 3D QuickHull Algorithm [1dc3791]
+    - [x] Implement the core QuickHull algorithm in `hull.js`, targeting $O(n \log n)$ complexity.
+    - [x] Ensure the algorithm returns raw face indices (triples or arrays of indices).
+- [~] Task: Conductor - User Manual Verification 'Phase 2: QuickHull Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Integration and Refactoring
 - [ ] Task: Integrate with VertexGroup
