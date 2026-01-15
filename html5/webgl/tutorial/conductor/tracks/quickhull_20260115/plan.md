@@ -1,13 +1,13 @@
 # Implementation Plan: Optimize Convex Hull Algorithm (QuickHull)
 
 ## Phase 1: Local Testing Infrastructure
-- [ ] Task: Enable Local Rendering
-    - [ ] Add a "Render" button to `rhombicTriacontahedron/index.html` next to the "Save" button.
-    - [ ] Implement a `renderManual` function in `index.html` (or `rhombicTriaconta.js`) that reads the `polyVerts` textarea and calls `loadVertices` directly.
-- [ ] Task: Graceful API Error Handling
-    - [ ] Wrap API calls in `apiConnect.js` (or their call sites) with try-catch blocks to prevent script termination on connection failure.
-    - [ ] Update UI to show a non-intrusive warning instead of failing when the backend is unavailable.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Local Testing Infrastructure' (Protocol in workflow.md)
+- [x] Task: Enable Local Rendering [1f25fb9]
+    - [x] Add a "Render" button to `rhombicTriacontahedron/index.html` next to the "Save" button.
+    - [x] Implement a `renderManual` function in `index.html` (or `rhombicTriaconta.js`) that reads the `polyVerts` textarea and calls `loadVertices` directly.
+- [x] Task: Graceful API Error Handling [1f25fb9]
+    - [x] Wrap API calls in `apiConnect.js` (or their call sites) with try-catch blocks to prevent script termination on connection failure.
+    - [x] Update UI to show a non-intrusive warning instead of failing when the backend is unavailable.
+- [~] Task: Conductor - User Manual Verification 'Phase 1: Local Testing Infrastructure' (Protocol in workflow.md)
 
 ## Phase 2: QuickHull Implementation
 - [ ] Task: Scaffold hull.js
