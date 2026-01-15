@@ -18,17 +18,17 @@
     - [x] Ensure the algorithm returns raw face indices (triples or arrays of indices).
 - [x] Task: Conductor - User Manual Verification 'Phase 2: QuickHull Implementation' (Protocol in workflow.md)
 
-## Phase 3: Integration and Refactoring
+## Phase 3: Integration and Refactoring [checkpoint: 816b255]
 - [x] Task: Integrate with VertexGroup [b9dbe0a]
     - [x] Modify `VertexGroup.prototype.findFaces` in `shapeClasses.js` to call the new QuickHull function.
     - [x] Implement an adapter within `findFaces` to convert QuickHull index arrays into the existing `Face` and `FaceGroup` object structure.
 - [x] Task: Precision and Stability Polish [2463966]
     - [x] Ensure the new implementation uses existing precision constants for floating-point comparisons.
     - [x] Verify handling of edge cases (e.g., duplicate vertices, coplanar points).
-- [~] Task: Conductor - User Manual Verification 'Phase 3: Integration and Refactoring' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Integration and Refactoring' (Protocol in workflow.md)
 
 ## Phase 4: Final Verification
-- [ ] Task: Comparative Testing
+- [~] Task: Comparative Testing
     - [ ] Verify that the standard shapes (Cube, Pyramid) render identically to the previous version.
     - [ ] Test with complex vertex sets via the new "Render" button to verify performance improvements.
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Final Verification' (Protocol in workflow.md)
