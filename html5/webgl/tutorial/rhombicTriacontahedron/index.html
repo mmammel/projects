@@ -344,6 +344,10 @@
         changePoly( vertices );
       }
 
+      function renderManual() {
+        loadVertices();
+      }
+
       function doExplode() {
         var factor = parseFloat($('#explodeFact').val());
         loadVertices( poly.getExplodedVertices( factor ) );
@@ -423,8 +427,10 @@
             <tr><td>
              
               <button id="polySave" onclick="savePolyhedron();">Save</button>
+              <button id="polyRender" onclick="renderManual();">Render</button>
               <button id="polyMakeNew" onclick="clearForm();">New</button>
               <button id="polyClear" onclick="clearForm();">Clear</button>
+              <span id="apiStatus" style="font-size: small; margin-left: 10px;"></span>
              </td></tr><tr><td>
               <button id="doEdgeMidpoints" onclick="loadVertices(poly.getEdgeMidpointVertices());">Produce Edge Midpoint Faces</button></td><td>
               <button id="doCentroids" onclick="loadVertices(poly.getCentroidVertices());">Produce Face Centroids</button>

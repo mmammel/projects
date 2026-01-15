@@ -10,10 +10,20 @@ function ajaxCall( callDetails ) {
     dataType: callDetails.dataType ? callDetails.dataType : "json",
     data: callDetails.data ? JSON.stringify( callDetails.data ) : "",
     success: function( result ) {
-      callDetails.successHandler( result );
+      $('#apiStatus').text("Online");
+      $('#apiStatus').css("color", "green");
+      if( callDetails.successHandler ) {
+        callDetails.successHandler( result );
+      }
     },
     error: function( result ) {
-      alert("Got an error response: " + result.responseText );
+      if( callDetails.errorHandler ) {
+        callDetails.errorHandler( result );
+      } else {
+        console.warn("API Error:", result);
+        $('#apiStatus').text("API Error");
+        $('#apiStatus').css("color", "orange");
+      }
     }
   });
 }
@@ -30,6 +40,12 @@ function getPolyhedra() {
       for( var i = 0; i < $.polyData.length; i++ ) {
         $('#polySelect').append( $('<option value="'+$.polyData[i].name+'">'+$.polyData[i].name+'</option>') );
       }
+    },
+    errorHandler: function( result ) {
+      $('#polySelect').empty();
+      $('#polySelect').append( $('<option value="" selected>Offline Mode</option>') );
+      $('#apiStatus').text("Offline");
+      $('#apiStatus').css("color", "gray");
     }
   });
 }
@@ -72,6 +88,11 @@ function savePolyhedron() {
     data: poly,
     successHandler: function(result) {
       getPolyhedra();
+    },
+    errorHandler: function(result) {
+      alert("Failed to save: Backend unavailable.");
+      $('#apiStatus').text("Save Failed");
+      $('#apiStatus').css("color", "red");
     }
   });
 }
