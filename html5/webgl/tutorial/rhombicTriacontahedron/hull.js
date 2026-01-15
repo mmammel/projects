@@ -5,7 +5,7 @@
  */
 
 var QuickHull = {
-  precision: 0.0001,
+  precision: (typeof Sylvester !== 'undefined' && Sylvester.precision) ? Sylvester.precision : 0.0001,
 
   /**
    * Finds the convex hull of a set of 3D points.
