@@ -22,10 +22,10 @@
 - [x] Task: Integrate with VertexGroup [b9dbe0a]
     - [x] Modify `VertexGroup.prototype.findFaces` in `shapeClasses.js` to call the new QuickHull function.
     - [x] Implement an adapter within `findFaces` to convert QuickHull index arrays into the existing `Face` and `FaceGroup` object structure.
-- [~] Task: Precision and Stability Polish
-    - [ ] Ensure the new implementation uses existing precision constants for floating-point comparisons.
-    - [ ] Verify handling of edge cases (e.g., duplicate vertices, coplanar points).
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Integration and Refactoring' (Protocol in workflow.md)
+- [x] Task: Precision and Stability Polish [2463966]
+    - [x] Ensure the new implementation uses existing precision constants for floating-point comparisons.
+    - [x] Verify handling of edge cases (e.g., duplicate vertices, coplanar points).
+- [~] Task: Conductor - User Manual Verification 'Phase 3: Integration and Refactoring' (Protocol in workflow.md)
 
 ## Phase 4: Final Verification
 - [ ] Task: Comparative Testing
