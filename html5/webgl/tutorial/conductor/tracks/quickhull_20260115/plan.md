@@ -10,10 +10,10 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Local Testing Infrastructure' (Protocol in workflow.md)
 
 ## Phase 2: QuickHull Implementation
-- [~] Task: Scaffold hull.js
-    - [ ] Create `rhombicTriacontahedron/hull.js`.
-    - [ ] Include `hull.js` in `rhombicTriacontahedron/index.html` via a `<script>` tag.
-- [ ] Task: Implement 3D QuickHull Algorithm
+- [x] Task: Scaffold hull.js [48d7477]
+    - [x] Create `rhombicTriacontahedron/hull.js`.
+    - [x] Include `hull.js` in `rhombicTriacontahedron/index.html` via a `<script>` tag.
+- [~] Task: Implement 3D QuickHull Algorithm
     - [ ] Implement the core QuickHull algorithm in `hull.js`, targeting $O(n \log n)$ complexity.
     - [ ] Ensure the algorithm returns raw face indices (triples or arrays of indices).
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: QuickHull Implementation' (Protocol in workflow.md)
