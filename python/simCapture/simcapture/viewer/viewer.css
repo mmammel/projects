@@ -1,0 +1,47 @@
+:root {
+  --bg: #111827;
+  --panel: #0b1220;
+  --text: #e5e7eb;
+  --accent: #16a34a;
+  --warn: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1f2937, #030712);
+  color: var(--text);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.app {
+  background: color-mix(in srgb, var(--panel), black 15%);
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.hint {
+  color: var(--warn);
+  min-height: 1em;
+}
+
+canvas {
+  border-radius: 8px;
+  border: 1px solid #4b5563;
+  display: block;
+}

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simcapture"
+version = "0.1.0"
+description = "Desktop overlay capture and interactive pseudo-app bundle generator"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "PySide6>=6.6",
+  "mss>=9.0.1",
+  "numpy>=1.26",
+  "opencv-python>=4.9",
+  "pynput>=1.7.6",
+  "pydantic>=2.6"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+simcapture = "simcapture.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["simcapture*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
