@@ -475,7 +475,7 @@
       $('#canvasContainer').css({ height: ($(window).innerHeight() - $('#controlPanel').height() - 10) });
       var cnv = document.getElementById("canvasRoot");
       if( cnv.width != $('#canvasContainer').width()) cnv.width = $('#canvasContainer').width();
-      cnv.height = $('#canvasContainer').height();
+      if( cnv.height != $('#canvasContainer').height()) cnv.height = $('#canvasContainer').height();
       viewBox[0] = centerPoint[0] - (scale * cnv.width / 2.0);
       viewBox[1] = centerPoint[1] - (scale * cnv.height / 2.0);
       viewBox[2] = cnv.width * scale;
