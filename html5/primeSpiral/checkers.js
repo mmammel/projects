@@ -92,6 +92,32 @@ let checkers = [
       return retVal;
     }
   },{
+    id: "simple3D",
+    name: "Simple 3D",
+    description: "Same draw/turn pattern as Simple, but also turns in the Z direction (φ) on every turn. Set the φ angle and enable 3D Orbit to watch the helix emerge.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter == state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = true;
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    }
+  },{
     id: "simplegauss",
     name : "Simple Gauss",
     description : "Simple, but iterate over the Gause numbers: n(n+1)/2",

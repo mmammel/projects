@@ -149,6 +149,14 @@
               zoom_in
             </i></button>
           </div>
+          <div class="btn-group btn-group-sm mb-2 ml-1" role="group">
+            <button type="button" id="orbit3DBtn" class="btn btn-secondary" title="3D Orbit (drag to rotate)">
+              <i class="material-icons buttonicon">3d_rotation</i>
+            </button>
+            <button type="button" id="resetViewBtn" class="btn btn-secondary" title="Reset 3D view">
+              <i class="material-icons buttonicon">refresh</i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -163,7 +171,7 @@
             </div>
             <input value="80000" type="text" id="numIterations" class="mediuminput form-control" placeholder="# Iterations" aria-label="# Iterations" aria-describedby="basic-addon1">
           </div>
-          <div class="input-group input-group-sm mb-2 mr-1">  
+          <div class="input-group input-group-sm mb-2 mr-1">
             <div class="input-group-prepend">
               <span class="input-group-text">
                 &#952;
@@ -171,7 +179,23 @@
             </div>
             <input value="90" type="text" id="deltaTheta" class="mediuminput form-control" placeholder="Turn Angle" aria-label="Turn Angle" aria-describedby="basic-addon1">
           </div>
-          <div class="input-group input-group-sm mb-2 mr-1">  
+          <div class="input-group input-group-sm mb-2 mr-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                &#966;
+                </span>
+            </div>
+            <input value="0" type="text" id="deltaPhi" class="mediuminput form-control" placeholder="Z Turn Angle" aria-label="Z Turn Angle" title="Vertical turn angle (degrees). Non-zero makes the spiral move through 3D space." aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                &#916;&#966;
+                </span>
+            </div>
+            <input value="0" type="text" id="phiAnimationStep" class="mediuminput form-control" placeholder="Phi Animation Step" aria-label="Phi Animation Step" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">
             <div class="input-group-prepend">
               <span class="input-group-text">
                 &#916;&#952;
@@ -209,6 +233,7 @@
   <script type="text/javascript" src="bitmask.js"></script>
   <script type="text/javascript" src="checkers.js"></script>
   <script type="text/javascript" src="utils.js"></script>
+  <script type="text/javascript" src="sylvester.js"></script>
   <script type="text/javascript">
 
     var viewBox = [-320, -320, 640, 640];  //vb
@@ -220,13 +245,16 @@
 
     var stagingCanvas = null;
     var connectTheDots = false; //cd
-    var coords = [0, 0];
+    var coords = [0, 0, 0];
     var color = '#D10000';
     var secondaryColor = '#FFFFFF';
     var backgroundColor = '#000000'; // bc
     var currTheta = 0;  //ct
     var deltaTheta = 90;  //dt
+    var currPhi = Math.PI / 2;  // elevation angle, π/2 = equatorial plane
+    var deltaPhi = 0;  //dp
     var animationStep = .015;  //as
+    var phiAnimationStep = 0.0;
     var reverse = false;  //r
     var primeIdx = 0;
     var primeDotMap = {};
@@ -235,7 +263,10 @@
     var frameID = null;
     var turnIncrease = 0.0;  //ti
     var zooming = false;
-    var numColors = 1;  
+    var viewRotation = null;
+    var mode3D = false;
+    var pointCache = null;
+    var numColors = 1;
     var maxColors = 7;
 
     // colors: cls
@@ -380,19 +411,43 @@
       }
     }
 
-    var processTouch = () => {
+    function getSphereCoordFromPageCoord(pageX, pageY) {
       var cnv = document.getElementById("canvasRoot");
-      var dx = ((touchContext.currX * viewBox[2]) / cnv.width) -
-               ((touchContext.prevX * viewBox[2]) / cnv.width);
-      var dy = ((touchContext.currY * viewBox[3]) / cnv.width) -
-               ((touchContext.prevY * viewBox[3]) / cnv.width);
-      touchContext.prevX = touchContext.currX;
-      touchContext.prevY = touchContext.currY;
-      var newX = centerPoint[0] - dx;
-      var newY = centerPoint[1] - dy;
-      centerPoint = [ newX, newY ];
-      resize();
-      if ( !animating ) draw();
+      var rect = cnv.getBoundingClientRect();
+      var realX = pageX - (rect.left + window.scrollX + rect.width / 2);
+      var realY = (rect.top + window.scrollY + rect.height / 2) - pageY;
+      var sphereR = Math.min(rect.width, rect.height) / 2;
+      var littleR = Math.sqrt(realX * realX + realY * realY);
+      if (littleR > sphereR) littleR = sphereR;
+      var realZ = Math.sqrt(sphereR * sphereR - littleR * littleR);
+      return $V([realX, realY, realZ]).toUnitVector();
+    }
+
+    var processTouch = () => {
+      if (mode3D) {
+        var vecA = getSphereCoordFromPageCoord(touchContext.prevX, touchContext.prevY);
+        var vecB = getSphereCoordFromPageCoord(touchContext.currX, touchContext.currY);
+        var cross = vecA.cross(vecB);
+        var sinAngle = cross.modulus();
+        if (sinAngle > 0.0001) {
+          var angle = Math.asin(Math.min(sinAngle, 1.0));
+          viewRotation = Matrix.Rotation(angle, cross.toUnitVector()).x(viewRotation);
+        }
+        touchContext.prevX = touchContext.currX;
+        touchContext.prevY = touchContext.currY;
+        if (!animating) drawFromCache();
+      } else {
+        var cnv = document.getElementById("canvasRoot");
+        var dx = ((touchContext.currX * viewBox[2]) / cnv.width) -
+                 ((touchContext.prevX * viewBox[2]) / cnv.width);
+        var dy = ((touchContext.currY * viewBox[3]) / cnv.width) -
+                 ((touchContext.prevY * viewBox[3]) / cnv.width);
+        touchContext.prevX = touchContext.currX;
+        touchContext.prevY = touchContext.currY;
+        centerPoint = [centerPoint[0] - dx, centerPoint[1] - dy];
+        resize();
+        if (!animating) draw();
+      }
     }
 
     function expand() {
@@ -491,8 +546,9 @@
 
     function resetDisplay() {
       initCanvas();
-      coords = [0, 0];
+      coords = [0, 0, 0];
       currTheta = 0;
+      currPhi = Math.PI / 2;
       primeIdx = 0;
     }
 
@@ -553,19 +609,85 @@
       return retVal;
     }
 
-    function translatePoint( point ) {
-      var retVal = [0.0,0.0];
-      retVal[0] = (point[0] - viewBox[0]) / scale;
-      retVal[1] = (point[1] - viewBox[1]) / scale;
-      return retVal;
+    function translatePoint(point) {
+      var rx, ry;
+      if (mode3D && viewRotation) {
+        var p3d = viewRotation.x($V([point[0], point[1], point[2] || 0]));
+        rx = p3d.e(1);
+        ry = p3d.e(2);
+      } else {
+        rx = point[0];
+        ry = point[1];
+      }
+      return [(rx - viewBox[0]) / scale, (ry - viewBox[1]) / scale];
+    }
+
+    function drawFromCache() {
+      if (!pointCache || !stagingCanvas) return;
+      var canvas = document.getElementById('canvasRoot');
+      if (stagingCanvas.width !== canvas.width) stagingCanvas.width = canvas.width;
+      if (stagingCanvas.height !== canvas.height) stagingCanvas.height = canvas.height;
+
+      var ctx = stagingCanvas.getContext('2d');
+
+      if (numColors > 1) {
+        var ctr = translatePoint([0.0, 0.0]);
+        gradient = ctx.createRadialGradient(ctr[0], ctr[1], 0,
+          ctr[0], ctr[1], Math.max(stagingCanvas.width, stagingCanvas.height) / 2.0);
+        var colorStep = 1.0 / (numColors + 1.0);
+        for (var i = 0; i < numColors; i++) {
+          gradient.addColorStop(i * colorStep, $('#pointColor' + (i + 1)).val());
+        }
+        gradient.addColorStop(1, backgroundColor);
+      } else {
+        gradient = null;
+      }
+
+      ctx.fillStyle = backgroundColor;
+      ctx.beginPath();
+      ctx.rect(0, 0, stagingCanvas.width, stagingCanvas.height);
+      ctx.fill();
+      ctx.fillStyle = gradient != null ? gradient : color;
+      ctx.strokeStyle = gradient != null ? gradient : color;
+
+      ctx.beginPath();
+      var prev = null;
+      for (var i = 0; i < pointCache.length; i++) {
+        var p = translatePoint(pointCache[i]);
+        if (connectTheDots) {
+          ctx.beginPath();
+          if (prev != null) {
+            ctx.moveTo(prev[0], prev[1]);
+            ctx.lineTo(p[0], p[1]);
+            ctx.stroke();
+            ctx.beginPath();
+          }
+          ctx.arc(p[0], p[1], pointRadius / scale, 0, 2 * Math.PI);
+          ctx.stroke();
+        } else {
+          ctx.moveTo(p[0], p[1]);
+          ctx.arc(p[0], p[1], pointRadius / scale, 0, 2 * Math.PI);
+        }
+        prev = p;
+      }
+
+      if (!connectTheDots) {
+        ctx.fill();
+      }
+
+      var context = canvas.getContext('2d');
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(stagingCanvas, 0, 0);
     }
 
     function draw() {
+      pointCache = [];
       resetDisplay();
       color = $('#pointColor1').val();
       iterations = parseInt($('#numIterations').val());
       deltaTheta = parseFloat($('#deltaTheta').val());
       deltaTheta = deltaTheta * (Math.PI / 180.0);
+      deltaPhi = parseFloat($('#deltaPhi').val()) * (Math.PI / 180.0);
       let extraVars = [];
       let extraVarValues = [0, 0, 0, 0, 0];
       let stateObj = JSON.parse(JSON.stringify(currChecker.stateObj));
@@ -624,7 +746,7 @@
 
       var checkResult = currChecker.checker(state, i, j, k);
       if (checkResult.draw) {
-
+        pointCache.push([coords[0], coords[1], coords[2]]);
         p = translatePoint(coords);
 
         retVal = p;
@@ -652,15 +774,23 @@
           deltaTheta += checkResult.turnIncrease;
         } else if( turnIncrease != 0 ) {
           deltaTheta += turnIncrease;
-          //$('#deltaTheta').val('' + deltaTheta);
         }
         if (currTheta > (2.0 * Math.PI)) {
           currTheta -= (2.0 * Math.PI);
         }
       }
 
-      coords[0] += (2.0 * Math.cos(currTheta));
-      coords[1] += (2.0 * Math.sin(currTheta));
+      if (currChecker.is3D) {
+        if (checkResult.turnZ) {
+          currPhi += deltaPhi;
+        }
+        coords[0] += 2.0 * Math.sin(currPhi) * Math.cos(currTheta);
+        coords[1] += 2.0 * Math.sin(currPhi) * Math.sin(currTheta);
+        coords[2] += 2.0 * Math.cos(currPhi);
+      } else {
+        coords[0] += 2.0 * Math.cos(currTheta);
+        coords[1] += 2.0 * Math.sin(currTheta);
+      }
 
       return retVal;
     }
@@ -683,6 +813,15 @@
       }
 
       $('#deltaTheta').val('' + newVal);
+
+      if (phiAnimationStep !== 0) {
+        var dp = parseFloat($('#deltaPhi').val());
+        var newPhi = dp + (mult * phiAnimationStep);
+        if (newPhi > 360.0) newPhi = 0.0;
+        else if (newPhi < 0.0) newPhi = 360.0;
+        $('#deltaPhi').val('' + newPhi);
+      }
+
       frameID = window.requestAnimationFrame(animationInner);
     }
 
@@ -749,6 +888,7 @@
     let currChecker = null; //cc
 
     $(document).ready(function () {
+      viewRotation = Matrix.I(3);
       let selectOptions = [["Select One", ""]];
       let temp = [];
       for (var i = 0; i < checkers.length; i++) {
@@ -855,12 +995,26 @@
         secondaryColor = $('#secondaryColor').val();
       });
 
+      $('#orbit3DBtn').on('click', function() {
+        mode3D = !mode3D;
+        $(this).toggleClass('btn-primary btn-secondary');
+      });
+
+      $('#resetViewBtn').on('click', function() {
+        viewRotation = Matrix.I(3);
+        if (pointCache) drawFromCache();
+      });
+
       $('#dotRadius').on('change', function(e) {
         pointRadius = parseFloat($('#dotRadius').val());
       });
 
       $('#animationStep').on('change', function (e) {
         animationStep = parseFloat($('#animationStep').val());
+      });
+
+      $('#phiAnimationStep').on('change', function(e) {
+        phiAnimationStep = parseFloat($('#phiAnimationStep').val());
       });
 
       $('#turnIncrease').on('change', function(e){
