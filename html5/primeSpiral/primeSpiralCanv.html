@@ -265,6 +265,9 @@
     var zooming = false;
     var viewRotation = null;
     var mode3D = false;
+    var rotationAxis = null;
+    var rotationRate = 0;
+    var rotationFrameID = null;
     var pointCache = null;
     var numColors = 1;
     var maxColors = 7;
@@ -283,7 +286,9 @@
       prevX : 0,
       prevY : 0,
       lastRate : 0.0,
-      dragging : false
+      dragging : false,
+      clickTime : null,
+      inDblClick : false
     };
 
     var cannedColors = ['#FF6622','#FFDA21','#33DD00','#1133CC','#220066','#330044'];
@@ -415,7 +420,7 @@
       var cnv = document.getElementById("canvasRoot");
       var rect = cnv.getBoundingClientRect();
       var realX = pageX - (rect.left + window.scrollX + rect.width / 2);
-      var realY = (rect.top + window.scrollY + rect.height / 2) - pageY;
+      var realY = pageY - (rect.top + window.scrollY + rect.height / 2);
       var sphereR = Math.min(rect.width, rect.height) / 2;
       var littleR = Math.sqrt(realX * realX + realY * realY);
       if (littleR > sphereR) littleR = sphereR;
@@ -424,29 +429,68 @@
     }
 
     var processTouch = () => {
+      var dT = touchContext.currTime - touchContext.prevTime;
+      var dP = Math.sqrt(Math.pow(touchContext.currX - touchContext.prevX, 2) + Math.pow(touchContext.currY - touchContext.prevY, 2));
+
       if (mode3D) {
-        var vecA = getSphereCoordFromPageCoord(touchContext.prevX, touchContext.prevY);
-        var vecB = getSphereCoordFromPageCoord(touchContext.currX, touchContext.currY);
-        var cross = vecA.cross(vecB);
-        var sinAngle = cross.modulus();
-        if (sinAngle > 0.0001) {
-          var angle = Math.asin(Math.min(sinAngle, 1.0));
-          viewRotation = Matrix.Rotation(angle, cross.toUnitVector()).x(viewRotation);
+        if (dP > 1.0 && dT > 1) {
+          var cross = getSphereCoordFromPageCoord(touchContext.prevX, touchContext.prevY)
+                        .cross(getSphereCoordFromPageCoord(touchContext.currX, touchContext.currY));
+          if (cross.modulus() > 0.0001) {
+            rotationAxis = cross.toUnitVector();
+            rotationRate = 0.1 * (dP / dT);
+            touchContext.lastRate = rotationRate;
+          }
+          touchContext.prevTime = touchContext.currTime;
+          touchContext.prevX = touchContext.currX;
+          touchContext.prevY = touchContext.currY;
+        } else if (touchContext.dragging) {
+          rotationRate = 0;
+          touchContext.lastRate = 0;
+        } else {
+          rotationRate = touchContext.lastRate;
         }
-        touchContext.prevX = touchContext.currX;
-        touchContext.prevY = touchContext.currY;
-        if (!animating) drawFromCache();
       } else {
-        var cnv = document.getElementById("canvasRoot");
-        var dx = ((touchContext.currX * viewBox[2]) / cnv.width) -
-                 ((touchContext.prevX * viewBox[2]) / cnv.width);
-        var dy = ((touchContext.currY * viewBox[3]) / cnv.width) -
-                 ((touchContext.prevY * viewBox[3]) / cnv.width);
-        touchContext.prevX = touchContext.currX;
-        touchContext.prevY = touchContext.currY;
-        centerPoint = [centerPoint[0] - dx, centerPoint[1] - dy];
-        resize();
-        if (!animating) draw();
+        if (touchContext.inDblClick) {
+          if (dP > 1.0 && dT > 1) {
+            var zoomInOrOut = 1;
+            if (touchContext.prevY > touchContext.currY) {
+              zoomInOrOut = -1;
+            }
+            var factor = 1 + zoomInOrOut * 0.5 * (dP / dT);
+            if (factor < 0.1) factor = 0.1;
+            scale *= factor;
+            if (scale < 0.01) scale = 0.01;
+            touchContext.prevX = touchContext.currX;
+            touchContext.prevY = touchContext.currY;
+            resize();
+            if (!animating) draw();
+          }
+        } else {
+          var cnv = document.getElementById("canvasRoot");
+          var dx = ((touchContext.currX * viewBox[2]) / cnv.width) -
+                   ((touchContext.prevX * viewBox[2]) / cnv.width);
+          var dy = ((touchContext.currY * viewBox[3]) / cnv.width) -
+                   ((touchContext.prevY * viewBox[3]) / cnv.width);
+          touchContext.prevX = touchContext.currX;
+          touchContext.prevY = touchContext.currY;
+          centerPoint = [centerPoint[0] - dx, centerPoint[1] - dy];
+          resize();
+          if (!animating) draw();
+        }
+      }
+    }
+
+    function mode3DFrame() {
+      if (mode3D && (touchContext.dragging || rotationRate > 0.00001)) {
+        if (!animating && rotationRate > 0.00001 && rotationAxis) {
+          viewRotation = Matrix.Rotation(rotationRate, rotationAxis).x(viewRotation);
+          if (!touchContext.dragging) rotationRate *= 0.97;
+          drawFromCache();
+        }
+        rotationFrameID = window.requestAnimationFrame(mode3DFrame);
+      } else {
+        rotationFrameID = null;
       }
     }
 
@@ -802,6 +846,10 @@
 
     function animationInner() {
       var mult = reverse ? -1.0 : 1.0;
+      if (mode3D && rotationRate > 0.00001 && rotationAxis) {
+        viewRotation = Matrix.Rotation(rotationRate, rotationAxis).x(viewRotation);
+        if (!touchContext.dragging) rotationRate *= 0.97;
+      }
       draw();
       var dt = parseFloat($('#deltaTheta').val());
       if( animationStep >= 360.0 ) animationStep = 0.015;
@@ -1028,8 +1076,13 @@
          touchContext.prevY = event.originalEvent.touches[0].pageY;
          var d = new Date();
          touchContext.prevTime = d.getTime();
+         if (d.getTime() - touchContext.clickTime < 250) {
+           touchContext.inDblClick = true;
+         }
+         touchContext.clickTime = d.getTime();
          touchContext.dragging = true;
          touchContext.lastRate = 0.0;
+         if (mode3D && !rotationFrameID) mode3DFrame();
         }).on("touchend", function(event) {
          event.preventDefault();
          touchContext.currX = event.originalEvent.changedTouches[0].pageX;
@@ -1037,21 +1090,34 @@
          var d = new Date();
          touchContext.currTime = d.getTime();
          touchContext.dragging = false;
-         //processTouch();
+         touchContext.inDblClick = false;
+         if (touchContext.currTime - touchContext.clickTime < 250) {
+           touchContext.clickTime = touchContext.currTime;
+         }
+         processTouch();
         }).on( "mousedown", function(event) {
          touchContext.prevX = event.pageX;
          touchContext.prevY = event.pageY;
          var d = new Date();
          touchContext.prevTime = d.getTime();
+         if (d.getTime() - touchContext.clickTime < 250) {
+           touchContext.inDblClick = true;
+         }
+         touchContext.clickTime = d.getTime();
          touchContext.dragging = true;
          touchContext.lastRate = 0.0;
+         if (mode3D && !rotationFrameID) mode3DFrame();
         }).on("mouseup", function(event) {
          touchContext.currX = event.pageX;
          touchContext.currY = event.pageY;
          var d = new Date();
          touchContext.currTime = d.getTime();
          touchContext.dragging = false;
-         //processTouch();
+         touchContext.inDblClick = false;
+         if (touchContext.currTime - touchContext.clickTime < 250) {
+           touchContext.clickTime = touchContext.currTime;
+         }
+         processTouch();
         }).on("mousemove", function(event) {
          if( touchContext.dragging ) {
            event.preventDefault();
