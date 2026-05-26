@@ -1,0 +1,1919 @@
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	C-D		E-F	vs	G-H		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-C	vs	F-H		A-E	vs	D-G		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	D-E		A-G	vs	C-H		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-C	vs	F-H		A-E	vs	D-G		 
+5		A-F	vs	E-H		B-G	vs	C-D		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-C	vs	D-G		A-E	vs	F-H		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	C-H		A-G	vs	D-E		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		B-C	vs	D-G		A-E	vs	F-H		 
+5		A-F	vs	C-D		B-G	vs	E-H		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		B-C	vs	G-H		A-E	vs	D-F		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	C-D		A-G	vs	E-H		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		B-C	vs	G-H		A-E	vs	D-F		 
+5		A-F	vs	C-H		B-G	vs	D-E		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		B-C	vs	D-F		A-E	vs	G-H		 
+5		A-F	vs	D-E		B-G	vs	C-H		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		B-C	vs	D-F		A-E	vs	G-H		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	E-H		A-G	vs	C-D		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	G-H		A-C	vs	D-F		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	D-E		A-G	vs	C-H		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	G-H		A-C	vs	D-F		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	E-H		B-G	vs	C-D		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	F-H		A-C	vs	D-G		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	C-D		A-G	vs	E-H		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	F-H		A-C	vs	D-G		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	C-H		B-G	vs	D-E		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-G		A-C	vs	F-H		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	D-E		B-G	vs	C-H		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-G		A-C	vs	F-H		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	E-H		A-G	vs	C-D		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-F		A-C	vs	G-H		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	C-H		A-G	vs	D-E		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-F		A-C	vs	G-H		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	C-D		B-G	vs	E-H		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-F	vs	D-G		A-B	vs	E-H		 
+3		A-C	vs	B-F		D-E	vs	G-H		 
+4		B-G	vs	F-H		A-D	vs	C-E		 
+5		A-F	vs	D-H		B-C	vs	E-G		 
+6		C-H	vs	E-F		A-G	vs	B-D		 
+7		A-H	vs	C-G		B-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-F	vs	D-G		A-B	vs	E-H		 
+3		A-C	vs	D-E		B-F	vs	G-H		 
+4		C-E	vs	F-H		A-D	vs	B-G		 
+5		A-F	vs	B-C		D-H	vs	E-G		 
+6		B-D	vs	E-F		A-G	vs	C-H		 
+7		A-H	vs	D-F		B-E	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-F	vs	D-G		A-B	vs	E-H		 
+3		A-C	vs	D-E		B-F	vs	G-H		 
+4		B-G	vs	C-E		A-D	vs	F-H		 
+5		A-F	vs	B-C		D-H	vs	E-G		 
+6		C-H	vs	E-F		A-G	vs	B-D		 
+7		A-H	vs	C-G		B-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-F	vs	D-G		A-B	vs	E-H		 
+3		A-C	vs	G-H		B-F	vs	D-E		 
+4		B-G	vs	F-H		A-D	vs	C-E		 
+5		A-F	vs	B-C		D-H	vs	E-G		 
+6		C-H	vs	E-F		A-G	vs	B-D		 
+7		A-H	vs	D-F		B-E	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-C	vs	B-G		D-E	vs	F-H		 
+4		B-F	vs	G-H		A-D	vs	C-E		 
+5		A-F	vs	B-D		C-H	vs	E-G		 
+6		B-C	vs	E-F		A-G	vs	D-H		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-C	vs	D-E		B-G	vs	F-H		 
+4		C-E	vs	G-H		A-D	vs	B-F		 
+5		A-F	vs	C-H		B-D	vs	E-G		 
+6		D-H	vs	E-F		A-G	vs	B-C		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-C	vs	D-E		B-G	vs	F-H		 
+4		B-F	vs	C-E		A-D	vs	G-H		 
+5		A-F	vs	B-D		C-H	vs	E-G		 
+6		D-H	vs	E-F		A-G	vs	B-C		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-E	vs	F-G		B-H	vs	C-D		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-C	vs	F-H		B-G	vs	D-E		 
+4		B-F	vs	G-H		A-D	vs	C-E		 
+5		A-F	vs	B-D		C-H	vs	E-G		 
+6		D-H	vs	E-F		A-G	vs	B-C		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-E	vs	F-H		A-C	vs	B-G		 
+3		A-D	vs	C-E		B-H	vs	F-G		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-C	vs	E-H		A-G	vs	D-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-E	vs	F-H		A-C	vs	B-G		 
+3		A-D	vs	C-E		B-H	vs	F-G		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		B-C	vs	D-F		A-G	vs	E-H		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-E	vs	F-H		A-C	vs	B-G		 
+3		A-D	vs	C-E		B-H	vs	F-G		 
+4		B-F	vs	C-D		A-E	vs	G-H		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-C	vs	E-H		A-G	vs	D-F		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-E	vs	F-H		A-C	vs	B-G		 
+3		A-D	vs	F-G		B-H	vs	C-E		 
+4		B-F	vs	G-H		A-E	vs	C-D		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-C	vs	D-F		A-G	vs	E-H		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-F	vs	E-H		A-C	vs	B-G		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	G-H		B-E	vs	C-D		 
+6		B-C	vs	F-H		A-G	vs	D-E		 
+7		A-H	vs	C-E		B-D	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-F	vs	E-H		A-C	vs	B-G		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-C	vs	F-H		A-G	vs	D-E		 
+7		A-H	vs	F-G		B-D	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-F	vs	E-H		A-C	vs	B-G		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-C	vs	D-E		A-G	vs	F-H		 
+7		A-H	vs	C-E		B-D	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		D-F	vs	E-H		A-C	vs	B-G		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	C-D		B-E	vs	G-H		 
+6		B-C	vs	D-E		A-G	vs	F-H		 
+7		A-H	vs	C-E		B-D	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	F-H		A-C	vs	D-E		 
+3		A-D	vs	F-G		B-H	vs	C-E		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		D-F	vs	E-H		A-G	vs	B-C		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	F-H		A-C	vs	D-E		 
+3		A-D	vs	F-G		B-H	vs	C-E		 
+4		B-F	vs	C-D		A-E	vs	G-H		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		D-F	vs	E-H		A-G	vs	B-C		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	E-H		A-C	vs	D-F		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	G-H		B-E	vs	C-D		 
+6		D-E	vs	F-H		A-G	vs	B-C		 
+7		A-H	vs	C-E		B-D	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	E-H		A-C	vs	D-F		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		D-E	vs	F-H		A-G	vs	B-C		 
+7		A-H	vs	F-G		B-D	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	D-F		A-C	vs	E-H		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		D-E	vs	F-H		A-G	vs	B-C		 
+7		A-H	vs	F-G		B-D	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	D-F		A-C	vs	E-H		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	C-D		B-E	vs	G-H		 
+6		D-E	vs	F-H		A-G	vs	B-C		 
+7		A-H	vs	F-G		B-D	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	D-E		A-C	vs	F-H		 
+3		A-D	vs	C-E		B-H	vs	F-G		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		D-F	vs	E-H		A-G	vs	B-C		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-G	vs	E-F		 
+2		B-G	vs	D-E		A-C	vs	F-H		 
+3		A-D	vs	F-G		B-H	vs	C-E		 
+4		B-F	vs	G-H		A-E	vs	C-D		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		D-F	vs	E-H		A-G	vs	B-C		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		B-H	vs	D-G		A-E	vs	C-F		 
+5		A-F	vs	B-G		C-E	vs	D-H		 
+6		B-F	vs	D-E		A-G	vs	C-H		 
+7		A-H	vs	D-F		B-E	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		B-H	vs	D-G		A-E	vs	C-F		 
+5		A-F	vs	D-H		B-G	vs	C-E		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-H	vs	D-G		A-E	vs	C-F		 
+5		A-F	vs	B-G		C-E	vs	D-H		 
+6		B-F	vs	C-H		A-G	vs	D-E		 
+7		A-H	vs	C-G		B-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-H	vs	C-F		A-E	vs	D-G		 
+5		A-F	vs	C-E		B-G	vs	D-H		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	E-F		B-C	vs	G-H		 
+4		B-H	vs	D-F		A-E	vs	C-G		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	C-E		A-G	vs	D-H		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	E-F		B-C	vs	G-H		 
+4		B-H	vs	D-F		A-E	vs	C-G		 
+5		A-F	vs	C-H		B-G	vs	D-E		 
+6		C-E	vs	D-H		A-G	vs	B-F		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	G-H		B-C	vs	E-F		 
+4		B-H	vs	D-F		A-E	vs	C-G		 
+5		A-F	vs	D-E		B-G	vs	C-H		 
+6		C-E	vs	D-H		A-G	vs	B-F		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	G-H		B-C	vs	E-F		 
+4		B-H	vs	C-G		A-E	vs	D-F		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	D-H		A-G	vs	C-E		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	G-H		A-C	vs	E-F		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-H	vs	C-F		A-E	vs	D-G		 
+5		A-F	vs	B-G		C-E	vs	D-H		 
+6		B-F	vs	D-E		A-G	vs	C-H		 
+7		A-H	vs	D-F		B-E	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	G-H		A-C	vs	E-F		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-H	vs	C-F		A-E	vs	D-G		 
+5		A-F	vs	D-H		B-G	vs	C-E		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		B-H	vs	C-G		A-E	vs	D-F		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	C-E		A-G	vs	D-H		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		B-H	vs	C-G		A-E	vs	D-F		 
+5		A-F	vs	C-H		B-G	vs	D-E		 
+6		C-E	vs	D-H		A-G	vs	B-F		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		B-H	vs	D-F		A-E	vs	C-G		 
+5		A-F	vs	D-E		B-G	vs	C-H		 
+6		C-E	vs	D-H		A-G	vs	B-F		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		B-H	vs	C-G		A-E	vs	D-F		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	D-H		A-G	vs	C-E		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	E-F		A-C	vs	G-H		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-H	vs	D-G		A-E	vs	C-F		 
+5		A-F	vs	B-G		C-E	vs	D-H		 
+6		B-F	vs	C-H		A-G	vs	D-E		 
+7		A-H	vs	D-F		B-E	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-H		C-D	vs	F-G		 
+2		B-D	vs	E-F		A-C	vs	G-H		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-H	vs	C-F		A-E	vs	D-G		 
+5		A-F	vs	C-E		B-G	vs	D-H		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	D-F		B-E	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-G		D-E	vs	F-H		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-D	vs	B-F		C-E	vs	G-H		 
+4		B-H	vs	F-G		A-E	vs	C-D		 
+5		A-F	vs	C-H		B-D	vs	E-G		 
+6		B-C	vs	D-H		A-G	vs	E-F		 
+7		A-H	vs	D-G		B-E	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-G		D-E	vs	F-H		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-D	vs	B-F		C-E	vs	G-H		 
+4		B-H	vs	F-G		A-E	vs	C-D		 
+5		A-F	vs	E-G		B-D	vs	C-H		 
+6		B-C	vs	E-F		A-G	vs	D-H		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-G		D-E	vs	F-H		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-D	vs	C-E		B-F	vs	G-H		 
+4		B-H	vs	C-D		A-E	vs	F-G		 
+5		A-F	vs	B-D		C-H	vs	E-G		 
+6		B-C	vs	E-F		A-G	vs	D-H		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-G		D-E	vs	F-H		 
+2		C-G	vs	D-F		A-B	vs	E-H		 
+3		A-D	vs	G-H		B-F	vs	C-E		 
+4		B-H	vs	F-G		A-E	vs	C-D		 
+5		A-F	vs	B-D		C-H	vs	E-G		 
+6		B-C	vs	D-H		A-G	vs	E-F		 
+7		A-H	vs	C-F		B-E	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	B-G		C-E	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		C-F	vs	D-E		A-G	vs	B-H		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		C-E	vs	D-F		A-G	vs	B-H		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	E-F		C-D	vs	G-H		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	B-G		C-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-F	vs	G-H		 
+4		C-D	vs	F-H		A-E	vs	B-G		 
+5		A-F	vs	C-G		B-D	vs	E-H		 
+6		B-E	vs	C-F		A-G	vs	D-H		 
+7		A-H	vs	E-F		B-C	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-F	vs	G-H		 
+4		C-D	vs	F-H		A-E	vs	B-G		 
+5		A-F	vs	E-H		B-D	vs	C-G		 
+6		B-E	vs	D-H		A-G	vs	C-F		 
+7		A-H	vs	D-G		B-C	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-F	vs	G-H		 
+4		B-G	vs	C-D		A-E	vs	F-H		 
+5		A-F	vs	C-G		B-D	vs	E-H		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	D-G		B-C	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	G-H		B-F	vs	C-E		 
+4		B-G	vs	F-H		A-E	vs	C-D		 
+5		A-F	vs	C-G		B-D	vs	E-H		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	E-F		B-C	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-G	vs	E-F		A-C	vs	B-H		 
+3		A-D	vs	C-G		B-F	vs	E-H		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	C-E		B-D	vs	G-H		 
+6		B-E	vs	C-D		A-G	vs	F-H		 
+7		A-H	vs	D-E		B-C	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-G	vs	E-F		A-C	vs	B-H		 
+3		A-D	vs	C-G		B-F	vs	E-H		 
+4		B-G	vs	D-H		A-E	vs	C-F		 
+5		A-F	vs	G-H		B-D	vs	C-E		 
+6		C-D	vs	F-H		A-G	vs	B-E		 
+7		A-H	vs	D-E		B-C	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-G	vs	E-F		A-C	vs	B-H		 
+3		A-D	vs	C-G		B-F	vs	E-H		 
+4		B-G	vs	C-F		A-E	vs	D-H		 
+5		A-F	vs	C-E		B-D	vs	G-H		 
+6		C-D	vs	F-H		A-G	vs	B-E		 
+7		A-H	vs	F-G		B-C	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		D-G	vs	E-F		A-C	vs	B-H		 
+3		A-D	vs	E-H		B-F	vs	C-G		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	C-E		B-D	vs	G-H		 
+6		B-E	vs	F-H		A-G	vs	C-D		 
+7		A-H	vs	F-G		B-C	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	F-G		A-C	vs	D-E		 
+3		A-D	vs	G-H		B-F	vs	C-E		 
+4		C-D	vs	F-H		A-E	vs	B-G		 
+5		A-F	vs	E-H		B-D	vs	C-G		 
+6		B-E	vs	D-H		A-G	vs	C-F		 
+7		A-H	vs	B-C		D-G	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	F-G		A-C	vs	D-E		 
+3		A-D	vs	G-H		B-F	vs	C-E		 
+4		B-G	vs	C-D		A-E	vs	F-H		 
+5		A-F	vs	C-G		B-D	vs	E-H		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	B-C		D-G	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	E-F		A-C	vs	D-G		 
+3		A-D	vs	E-H		B-F	vs	C-G		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	C-E		B-D	vs	G-H		 
+6		B-E	vs	C-D		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	E-F		A-C	vs	D-G		 
+3		A-D	vs	E-H		B-F	vs	C-G		 
+4		B-G	vs	D-H		A-E	vs	C-F		 
+5		A-F	vs	G-H		B-D	vs	C-E		 
+6		C-D	vs	F-H		A-G	vs	B-E		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	D-G		A-C	vs	E-F		 
+3		A-D	vs	C-G		B-F	vs	E-H		 
+4		B-G	vs	C-F		A-E	vs	D-H		 
+5		A-F	vs	G-H		B-D	vs	C-E		 
+6		C-D	vs	F-H		A-G	vs	B-E		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	D-G		A-C	vs	E-F		 
+3		A-D	vs	E-H		B-F	vs	C-G		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	G-H		B-D	vs	C-E		 
+6		B-E	vs	F-H		A-G	vs	C-D		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	D-E		A-C	vs	F-G		 
+3		A-D	vs	C-E		B-F	vs	G-H		 
+4		C-D	vs	F-H		A-E	vs	B-G		 
+5		A-F	vs	E-H		B-D	vs	C-G		 
+6		B-E	vs	C-F		A-G	vs	D-H		 
+7		A-H	vs	B-C		D-G	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-F		C-H	vs	E-G		 
+2		B-H	vs	D-E		A-C	vs	F-G		 
+3		A-D	vs	G-H		B-F	vs	C-E		 
+4		B-G	vs	F-H		A-E	vs	C-D		 
+5		A-F	vs	E-H		B-D	vs	C-G		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	B-C		D-G	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	C-E		B-H	vs	D-G		 
+6		B-E	vs	C-H		A-G	vs	D-F		 
+7		A-H	vs	C-G		B-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		B-G	vs	D-H		A-E	vs	C-F		 
+5		A-F	vs	D-G		B-H	vs	C-E		 
+6		C-H	vs	D-F		A-G	vs	B-E		 
+7		A-H	vs	C-G		B-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	C-E		B-H	vs	D-G		 
+6		B-E	vs	D-F		A-G	vs	C-H		 
+7		A-H	vs	D-E		B-F	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-F	vs	G-H		A-C	vs	B-D		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-G	vs	C-F		A-E	vs	D-H		 
+5		A-F	vs	C-E		B-H	vs	D-G		 
+6		C-H	vs	D-F		A-G	vs	B-E		 
+7		A-H	vs	C-G		B-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	E-F		B-C	vs	G-H		 
+4		C-H	vs	D-F		A-E	vs	B-G		 
+5		A-F	vs	C-G		B-H	vs	D-E		 
+6		B-E	vs	C-F		A-G	vs	D-H		 
+7		A-H	vs	C-E		B-F	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	E-F		B-C	vs	G-H		 
+4		B-G	vs	D-F		A-E	vs	C-H		 
+5		A-F	vs	C-G		B-H	vs	D-E		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	D-G		B-F	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	G-H		B-C	vs	E-F		 
+4		C-H	vs	D-F		A-E	vs	B-G		 
+5		A-F	vs	D-E		B-H	vs	C-G		 
+6		B-E	vs	D-H		A-G	vs	C-F		 
+7		A-H	vs	C-E		B-F	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	G-H		B-C	vs	E-F		 
+4		B-G	vs	C-H		A-E	vs	D-F		 
+5		A-F	vs	C-G		B-H	vs	D-E		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	C-E		B-F	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	G-H		A-C	vs	E-F		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	D-G		B-H	vs	C-E		 
+6		B-E	vs	D-F		A-G	vs	C-H		 
+7		A-H	vs	D-E		B-F	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	G-H		A-C	vs	E-F		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-G	vs	C-F		A-E	vs	D-H		 
+5		A-F	vs	D-G		B-H	vs	C-E		 
+6		C-H	vs	D-F		A-G	vs	B-E		 
+7		A-H	vs	C-G		B-F	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		C-H	vs	D-F		A-E	vs	B-G		 
+5		A-F	vs	D-E		B-H	vs	C-G		 
+6		B-E	vs	D-H		A-G	vs	C-F		 
+7		A-H	vs	D-G		B-F	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		B-G	vs	C-H		A-E	vs	D-F		 
+5		A-F	vs	C-G		B-H	vs	D-E		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	D-G		B-F	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		C-H	vs	D-F		A-E	vs	B-G		 
+5		A-F	vs	D-E		B-H	vs	C-G		 
+6		B-E	vs	C-F		A-G	vs	D-H		 
+7		A-H	vs	C-E		B-F	vs	D-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	B-C		E-F	vs	G-H		 
+4		B-G	vs	D-F		A-E	vs	C-H		 
+5		A-F	vs	D-E		B-H	vs	C-G		 
+6		C-F	vs	D-H		A-G	vs	B-E		 
+7		A-H	vs	D-G		B-F	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	E-F		A-C	vs	G-H		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		C-F	vs	D-H		A-E	vs	B-G		 
+5		A-F	vs	C-E		B-H	vs	D-G		 
+6		B-E	vs	C-H		A-G	vs	D-F		 
+7		A-H	vs	D-E		B-F	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	F-H		C-D	vs	E-G		 
+2		B-D	vs	E-F		A-C	vs	G-H		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-G	vs	D-H		A-E	vs	C-F		 
+5		A-F	vs	D-G		B-H	vs	C-E		 
+6		C-H	vs	D-F		A-G	vs	B-E		 
+7		A-H	vs	D-E		B-F	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	D-F		B-C	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	E-G		B-C	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		B-F	vs	C-D		A-E	vs	G-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	D-F		B-C	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		B-F	vs	G-H		A-E	vs	C-D		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	E-G		B-C	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	G-H		B-E	vs	C-D		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	D-E		B-C	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	D-E		B-C	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	F-G		B-C	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-D		B-E	vs	G-H		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	F-G		B-C	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	F-G		A-C	vs	D-E		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	F-G		A-C	vs	D-E		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		B-F	vs	C-D		A-E	vs	G-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	E-G		A-C	vs	D-F		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	G-H		B-E	vs	C-D		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	E-G		A-C	vs	D-F		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-F		A-C	vs	E-G		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-F		A-C	vs	E-G		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-D		B-E	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-E		A-C	vs	F-G		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-E		A-C	vs	F-G		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		B-F	vs	G-H		A-E	vs	C-D		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-C	vs	F-H		A-E	vs	D-G		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	D-E		A-G	vs	C-H		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-C	vs	F-H		A-E	vs	D-G		 
+5		A-F	vs	E-H		B-G	vs	C-D		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		B-C	vs	D-G		A-E	vs	F-H		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	C-H		A-G	vs	D-E		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-F	vs	G-H		A-C	vs	B-E		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		B-C	vs	D-G		A-E	vs	F-H		 
+5		A-F	vs	C-D		B-G	vs	E-H		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		B-C	vs	G-H		A-E	vs	D-F		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	C-D		A-G	vs	E-H		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		B-C	vs	G-H		A-E	vs	D-F		 
+5		A-F	vs	C-H		B-G	vs	D-E		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		B-C	vs	D-F		A-E	vs	G-H		 
+5		A-F	vs	D-E		B-G	vs	C-H		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		D-G	vs	F-H		A-C	vs	B-E		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		B-C	vs	D-F		A-E	vs	G-H		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	E-H		A-G	vs	C-D		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	G-H		A-C	vs	D-F		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	D-E		A-G	vs	C-H		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	G-H		A-C	vs	D-F		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	E-H		B-G	vs	C-D		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	C-G		B-D	vs	E-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	F-H		A-C	vs	D-G		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	C-D		A-G	vs	E-H		 
+7		A-H	vs	C-F		B-D	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	F-H		A-C	vs	D-G		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	C-H		B-G	vs	D-E		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-G		A-C	vs	F-H		 
+3		A-D	vs	C-G		B-H	vs	E-F		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	D-E		B-G	vs	C-H		 
+6		C-D	vs	E-H		A-G	vs	B-F		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-G		A-C	vs	F-H		 
+3		A-D	vs	E-F		B-H	vs	C-G		 
+4		D-F	vs	G-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-H	vs	D-E		 
+6		B-F	vs	E-H		A-G	vs	C-D		 
+7		A-H	vs	E-G		B-D	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-F		A-C	vs	G-H		 
+3		A-D	vs	C-F		B-H	vs	E-G		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	B-G		C-D	vs	E-H		 
+6		B-F	vs	C-H		A-G	vs	D-E		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-H		C-E	vs	F-G		 
+2		B-E	vs	D-F		A-C	vs	G-H		 
+3		A-D	vs	E-G		B-H	vs	C-F		 
+4		D-G	vs	F-H		A-E	vs	B-C		 
+5		A-F	vs	C-D		B-G	vs	E-H		 
+6		C-H	vs	D-E		A-G	vs	B-F		 
+7		A-H	vs	E-F		B-D	vs	C-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	E-H		B-C	vs	F-G		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-G	vs	F-H		A-C	vs	B-D		 
+3		A-D	vs	F-G		B-C	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	E-G		B-C	vs	F-H		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		E-H	vs	F-G		A-C	vs	B-D		 
+3		A-D	vs	F-H		B-C	vs	E-G		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-H		B-E	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	F-H		A-C	vs	E-G		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	C-F		B-G	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	F-G		A-C	vs	E-H		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-F	vs	C-H		A-E	vs	D-G		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-H	vs	D-E		A-G	vs	C-F		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		C-H	vs	D-G		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	E-H		A-C	vs	F-G		 
+3		A-D	vs	B-C		E-G	vs	F-H		 
+4		B-F	vs	D-G		A-E	vs	C-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-H	vs	C-F		A-G	vs	D-E		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	D-G		B-E	vs	C-H		 
+6		B-H	vs	D-F		A-G	vs	C-E		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	G-H		C-D	vs	E-F		 
+2		B-D	vs	E-G		A-C	vs	F-H		 
+3		A-D	vs	B-C		E-H	vs	F-G		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-H	vs	D-G		 
+6		B-H	vs	C-E		A-G	vs	D-F		 
+7		A-H	vs	D-E		B-G	vs	C-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	D-F		B-C	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	E-G		B-C	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		B-F	vs	C-D		A-E	vs	G-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	D-F		B-C	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-E	vs	F-G		A-C	vs	B-H		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		B-F	vs	G-H		A-E	vs	C-D		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	E-G		B-C	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	G-H		B-E	vs	C-D		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	D-E		B-C	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	D-E		B-C	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	F-G		B-C	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		D-F	vs	E-G		A-C	vs	B-H		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-D		B-E	vs	G-H		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	F-G		B-C	vs	D-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	F-G		A-C	vs	D-E		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	C-G		B-E	vs	D-H		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	F-G		A-C	vs	D-E		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		B-F	vs	C-D		A-E	vs	G-H		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	E-H		A-G	vs	C-F		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	E-G		A-C	vs	D-F		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	G-H		B-E	vs	C-D		 
+6		B-D	vs	F-H		A-G	vs	C-E		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	E-G		A-C	vs	D-F		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		B-F	vs	D-H		A-E	vs	C-G		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-F		A-C	vs	E-G		 
+3		A-D	vs	C-F		B-G	vs	E-H		 
+4		B-F	vs	C-G		A-E	vs	D-H		 
+5		A-F	vs	B-E		C-D	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-F		A-C	vs	E-G		 
+3		A-D	vs	E-H		B-G	vs	C-F		 
+4		C-G	vs	D-H		A-E	vs	B-F		 
+5		A-F	vs	C-D		B-E	vs	G-H		 
+6		B-D	vs	C-E		A-G	vs	F-H		 
+7		A-H	vs	B-C		D-E	vs	F-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-E		A-C	vs	F-G		 
+3		A-D	vs	C-E		B-G	vs	F-H		 
+4		C-D	vs	G-H		A-E	vs	B-F		 
+5		A-F	vs	D-H		B-E	vs	C-G		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-B	vs	D-G		C-H	vs	E-F		 
+2		B-H	vs	D-E		A-C	vs	F-G		 
+3		A-D	vs	F-H		B-G	vs	C-E		 
+4		B-F	vs	G-H		A-E	vs	C-D		 
+5		A-F	vs	B-E		C-G	vs	D-H		 
+6		B-D	vs	C-F		A-G	vs	E-H		 
+7		A-H	vs	B-C		D-F	vs	E-G		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-F		D-G	vs	E-H		 
+2		C-F	vs	D-E		A-B	vs	G-H		 
+3		A-D	vs	B-E		C-G	vs	F-H		 
+4		B-D	vs	F-G		A-E	vs	C-H		 
+5		A-F	vs	E-G		B-C	vs	D-H		 
+6		B-H	vs	E-F		A-G	vs	C-D		 
+7		A-H	vs	D-F		B-G	vs	C-E		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-F		D-G	vs	E-H		 
+2		C-F	vs	D-E		A-B	vs	G-H		 
+3		A-D	vs	B-E		C-G	vs	F-H		 
+4		B-D	vs	C-H		A-E	vs	F-G		 
+5		A-F	vs	D-H		B-C	vs	E-G		 
+6		B-H	vs	E-F		A-G	vs	C-D		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-F		D-G	vs	E-H		 
+2		C-F	vs	D-E		A-B	vs	G-H		 
+3		A-D	vs	C-G		B-E	vs	F-H		 
+4		C-H	vs	F-G		A-E	vs	B-D		 
+5		A-F	vs	D-H		B-C	vs	E-G		 
+6		B-H	vs	C-D		A-G	vs	E-F		 
+7		A-H	vs	C-E		B-G	vs	D-F		 
+--
+Max Opponent Gap: 0
+ 	 		Table 1	 			Table 2	 	Loners/Euchres	Points
+1		A-C	vs	B-F		D-G	vs	E-H		 
+2		C-F	vs	D-E		A-B	vs	G-H		 
+3		A-D	vs	F-H		B-E	vs	C-G		 
+4		C-H	vs	F-G		A-E	vs	B-D		 
+5		A-F	vs	E-G		B-C	vs	D-H		 
+6		B-H	vs	E-F		A-G	vs	C-D		 
+7		A-H	vs	C-E		B-G	vs	D-F		 

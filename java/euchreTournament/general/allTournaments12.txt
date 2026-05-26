@@ -1,0 +1,271 @@
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICE BKDG FLHJ
+AJCF BLDH EKGI
+AKCH BIDF ELGJ
+ALCG BJDE FKHI
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICE BKDH FLGJ
+AJCF BLDG EKHI
+AKCG BIDF ELHJ
+ALCH BJDE FKGI
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICE BLDG FKHJ
+AJCF BKDH ELGI
+AKCG BJDE FLHI
+ALCH BIDF EKGJ
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICE BLDH FKGJ
+AJCF BKDG ELHI
+AKCH BJDE FLGI
+ALCG BIDF EKHJ
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICF BKDG ELHJ
+AJCE BLDH FKGI
+AKCH BIDE FLGJ
+ALCG BJDF EKHI
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICF BKDH ELGJ
+AJCE BLDG FKHI
+AKCG BIDE FLHJ
+ALCH BJDF EKGI
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICF BLDG EKHJ
+AJCE BKDH FLGI
+AKCG BJDF ELHI
+ALCH BIDE FKGJ
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AICF BLDH EKGJ
+AJCE BKDG FLHI
+AKCH BJDF ELGI
+ALCG BIDE FKHJ
+Opponent counts: {C={I=2, L=2, K=2, B=2, J=2, A=6, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=2, E=2, F=2, H=2, A=6, G=2, D=6}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=6, E=2, F=2, B=6, H=2, G=2, D=2}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=6, J=2, A=2}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDE BKCG FLHJ
+AJDF BLCH EKGI
+AKDH BICF ELGJ
+ALDG BJCE FKHI
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDE BKCH FLGJ
+AJDF BLCG EKHI
+AKDG BICF ELHJ
+ALDH BJCE FKGI
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDE BLCG FKHJ
+AJDF BKCH ELGI
+AKDG BJCE FLHI
+ALDH BICF EKGJ
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDE BLCH FKGJ
+AJDF BKCG ELHI
+AKDH BJCE FLGI
+ALDG BICF EKHJ
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDF BKCG ELHJ
+AJDE BLCH FKGI
+AKDH BICE FLGJ
+ALDG BJCF EKHI
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDF BKCH ELGJ
+AJDE BLCG FKHI
+AKDG BICE FLHJ
+ALDH BJCF EKGI
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=4, L=2, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=4, C=2, L=6, H=3, J=2, G=3, D=2}, L={I=2, C=2, K=6, H=3, J=4, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=2, L=4, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDF BLCG EKHJ
+AJDE BKCH FLGI
+AKDG BJCF ELHI
+ALDH BICE FKGJ
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=4, J=3, A=2, G=2}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=2, J=3, A=2, G=4}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=4, F=2, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=2, F=4, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4
+--
+Tournament found! 
+ABCD EFGH IJKL
+ACBD EGFH IKJL
+ADBC EHFG ILJK
+AEBF CIDJ GKHL
+AFBE CJDI GLHK
+AGBH CKDL EIFJ
+AHBG CLDK EJFI
+AIDF BLCH EKGJ
+AJDE BKCG FLHI
+AKDH BJCF ELGI
+ALDG BICE FKHJ
+Opponent counts: {C={I=2, L=2, K=2, B=6, J=2, A=2, D=6}, E={I=3, F=6, B=2, H=2, J=3, A=2, G=4}, I={C=2, E=3, K=2, L=4, F=3, J=6, D=2}, F={E=6, I=3, B=2, H=4, J=3, A=2, G=2}, K={I=2, C=2, L=6, H=3, J=4, G=3, D=2}, L={I=4, C=2, K=6, H=3, J=2, G=3, D=2}, B={C=6, E=2, F=2, H=2, A=6, G=2, D=2}, H={E=2, F=4, K=3, L=3, B=2, A=2, G=6}, J={I=6, C=2, E=3, K=4, L=2, F=3, D=2}, A={C=2, E=2, F=2, B=6, H=2, G=2, D=6}, G={E=4, F=2, L=3, K=3, B=2, H=6, A=2}, D={C=6, I=2, K=2, L=2, B=2, J=2, A=6}}
+Play counts: {C=11, E=11, I=11, F=11, K=11, L=11, B=11, H=11, J=11, A=11, G=11, D=11}
+Sitter counts: {}
+Max Opponent Gap: 4

@@ -1,4 +1,6 @@
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum Team {
   AB(Player.A,Player.B),
@@ -282,6 +284,14 @@ public enum Team {
   private final Player p2;
   private final EnumSet<Player> playerSet;
 
+  private static Map<String,Team> TEAM_FROM_STRING_MAP = new HashMap<String,Team>();
+  static {
+    for( Team t : Team.values() )
+    {
+      TEAM_FROM_STRING_MAP.put(t.toString(), t);
+    }
+  }
+
   Team(Player p1, Player p2 ) {
     this.p1 = p1;
     this.p2 = p2;
@@ -300,6 +310,20 @@ public enum Team {
 
   public Player getP2() {
     return this.p2;
+  }
+
+  public static EnumSet<Team> fromPlayerSet(EnumSet<Player> players) {
+    EnumSet<Team> retVal = EnumSet.noneOf(Team.class);
+    if( players.size() == 2 ) {
+      StringBuilder sb = new StringBuilder();
+      for( Player p : players ) {
+        sb.append(p.toString());
+      }
+
+      retVal.add(TEAM_FROM_STRING_MAP.get(sb.toString()));
+    }
+
+    return retVal;
   }
 
   public static EnumSet<Player> getAllPlayers( EnumSet<Team> teams ) {

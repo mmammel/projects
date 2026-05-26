@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,16 +20,28 @@ public class GeneralEuchreTournament {
   private int numSitters = 0;
   private int distinctTeams = 0;
   private int desiredRounds = 0;
+
+  // count iterations of tournament building
+  private int iterationCount = 0;
+
   private boolean opponentBalanced = false;
+  private boolean excludePermutations = false;
+  private boolean sitterOptimization = false;
+  private int roundOffset = 0;
+  private int shuffleThreshold = -1;
   private String [] players; // all of the players.
   private String [] teams;   // all of the possible teams, or pairings of players.
   private String [] games;   // all of the possible games, or pairings of teams.
-  private String [] rounds;
+  private RoundContext [] rounds;
   private Tournament [] tournaments;
 
-  public GeneralEuchreTournament( int numPlayers, int desiredRounds, boolean opponentBalanced ) {
+  public GeneralEuchreTournament( int numPlayers, int desiredRounds, boolean opponentBalanced, boolean excludePermutations, int shuffleThreshold, boolean sitterOptimization, int roundOffset ) {
     this.opponentBalanced = opponentBalanced;
+    this.excludePermutations = excludePermutations;
+    this.shuffleThreshold = shuffleThreshold;
+    this.sitterOptimization = sitterOptimization;
     this.numPlayers = numPlayers;
+    this.roundOffset = roundOffset;
     this.desiredRounds = desiredRounds;
     this.numTables = this.numPlayers / 4;
     this.numSitters = this.numPlayers % 4;
@@ -41,11 +54,15 @@ public class GeneralEuchreTournament {
   }
 
   public static void main( String [] args ) {
-    int numPlayers = 8;
-    int desiredRounds = 7;
+    int numPlayers = -1;
+    int desiredRounds = -1;
+    int roundOffset = 0;
     boolean opponentBalanced = false;
+    boolean excludePermutations = false;
+    boolean sitterOptimization = false;
+    int shuffleThreshold = -1;
 
-    if( args.length < 1 || args.length > 5 ) {
+    if( args.length < 1 ) {
       System.out.println( "Usage: java GeneralEuchreTournament -p <numPlayers> [-r <desiredRounds>] [-ob]");
       System.out.println( "<desiredRounds> defaults to <numPlayers> minus one.  -ob indicates the tournament must be opponent balanced.");
       System.exit(1);
@@ -77,11 +94,35 @@ public class GeneralEuchreTournament {
             System.out.println( "Bogus input given, using 8 players" );
             desiredRounds = -1;
           }        
+        } else if( token.equals("-ro") ) {
+          // read roundOffset.
+          token = args[++i];
+          try {
+            roundOffset = Integer.parseInt( token );
+          } catch( Exception e ) {
+            System.out.println( "Bogus input given for offset, using 0" );
+            roundOffset = 0;
+          }        
         } else if( token.equals("-ob") ) {
           opponentBalanced = true;
+        } else if( token.equals("-ep") ) {
+          excludePermutations = true;
+        } else if( token.equals("-so") ) {
+          sitterOptimization = true;
+        } else if( token.equals("-st") ) {
+          token = args[++i];
+          try {
+            shuffleThreshold = Integer.parseInt(token);
+          } catch( Exception e ) {
+            System.out.println( "Bad shuffle threshold given: " + token);
+            shuffleThreshold = -1;
+          }
         } else {
-          System.out.println( "Usage: java GeneralEuchreTournament -p <numPlayers> [-r <desiredRounds>] [-ob]");
+          System.out.println( "Usage: java GeneralEuchreTournament -p <numPlayers> [-r <desiredRounds>] [-ob] [-ep] [-st <shuffleThreshold>]");
           System.out.println( "<desiredRounds> defaults to <numPlayers> minus one.  -ob indicates the tournament must be opponent balanced.");
+          System.out.println( "-ep indicates whether we should exclude game permutations - this will still find tournaments, but might not find balanced ones.  If set, ignores -ob.");
+          System.out.println( "<shuffleThreshold> defaults to -1, if set to anything greater than 0 the tournament finder will shuffle the round pointers after <shuffleThreshold> iterations with no tournaments found.");
+          System.out.println( "-so indicates that we will employ \"sitter optimization\" - where we find a single balanced set of sitters, and exclude any round that doesn't have one of these.");
           System.exit(1);
         }
       }
@@ -91,7 +132,7 @@ public class GeneralEuchreTournament {
       }
     }
 
-    GeneralEuchreTournament GT = new GeneralEuchreTournament(numPlayers, desiredRounds, opponentBalanced );
+    GeneralEuchreTournament GT = new GeneralEuchreTournament(numPlayers, desiredRounds, opponentBalanced, excludePermutations, shuffleThreshold, sitterOptimization, roundOffset );
     GT.build();
   }
 
@@ -101,15 +142,223 @@ public class GeneralEuchreTournament {
     System.out.println( "Teams: " + Arrays.toString(this.teams) );
     this.buildGames();
     System.out.println( "Games (" + this.games.length + "): " + Arrays.toString(games) );
-    this.buildRounds();
+    
+    if( this.numPlayers > 15 && this.numPlayers % 4 == 0 ) {
+      this.buildQuickRounds();
+    } else {
+      this.buildRounds();
+    }
+
     System.out.println( "Rounds (" + this.rounds.length + "): " + Arrays.toString(rounds) );
 
-    // for( String r : this.rounds ) {
-    //   RoundContext rc = new RoundContext(r);
-    //   System.out.println( rc.teams + " " + r );
-    // }
+    // experiment #2
+    // IF numSitters is 2 (team size) pare down the rounds to the first "desiredRounds" number of teams as sitters.
+    if( this.sitterOptimization ) {
+      if( this.numSitters == 2 || this.numSitters == 3 ) {
+
+        Set<String> balancedSitters = this.buildBalancedNTuples(this.numSitters, this.desiredRounds);
+
+        if( balancedSitters != null && balancedSitters.size() == this.desiredRounds ) {
+          List<RoundContext> newRounds = new ArrayList<RoundContext>();
+          for( RoundContext r : this.rounds ) {
+            if( balancedSitters.contains(r.getSitterString()) ) {
+              newRounds.add(r);
+            }
+          }
+
+          this.rounds = newRounds.toArray(new RoundContext[0]);
+        }
+      }
+    }
+    // end experiment #2
+
+    System.out.println( "New rounds (" + this.rounds.length + "): " + Arrays.toString(rounds) );
 
     this.buildTournaments();
+  }
+
+  
+  /**
+   * Build a balanced set of N-tuple games to build quick rounds, only works for even # players
+   * @param n
+   * @param num
+   * @return
+   */
+  private Set<String> quickRounds() {
+    String p1, p2;
+    Set<String> rounds = new HashSet<String>();
+    StringBuilder sb = null;
+    for( int t = 0; t < (this.players.length - 1); t++ ) {
+      // first one is the last player and the t'th player
+      sb = new StringBuilder();
+
+      Integer [] indices = new Integer [ (this.players.length / 2) ];
+      for( int n = 0; n < indices.length; n++ ) {
+        indices[n] = n;
+      }
+
+      System.out.println("Pre-shuffle: " + Arrays.toString(indices));
+      Collections.shuffle(Arrays.asList(indices));
+      System.out.println("Post-shuffle: " + Arrays.toString(indices));
+
+      for( int i : indices ) {
+
+        if( i == 0 ) {
+          sb.append( this.players[t] ).append( this.players[ this.players.length - 1] );
+        } else {
+          p1 = this.players[(t + i) % (this.players.length - 1)];
+          p2 = this.players[((t + this.players.length - 1) - i) % (this.players.length - 1)];
+
+          if( p1.charAt(0) < p2.charAt(0) ) {
+            sb.append(p1).append(p2);
+          } else {
+            sb.append( p2 ).append( p1 );
+          }
+        }
+
+      }
+
+      for( int i = 1; i < sb.length() / 4; i++ ) {
+        sb.insert( i*4 + (i - 1), ' ');
+      }
+
+      rounds.add( sb.toString() );
+    }
+
+    return rounds;
+  }
+
+  /**
+   * Build a balanced set of <num> <n>-Tuples of players
+   */
+  private Set<String> buildBalancedNTuples( int n, int num ) {
+    List<int[]> orbitCoords = cyclicOrbit( num, n, 3);
+    StringBuilder sb = new StringBuilder();
+    Set<String> retVal = new HashSet<String>();
+    System.out.println( "Produced " + orbitCoords.size() + " index sets for a cyclic orbit, for " + num + " sets");
+    for( int [] orbit : orbitCoords ) {
+      sb.setLength(0);
+      for( int idx : orbit ) {
+        sb.append(this.players[idx]);
+      }
+      retVal.add( sb.toString() );
+    }
+    
+    return retVal;
+  }
+
+  static List<int[]> cyclicOrbit(int v, int k, int s) {
+    System.out.println( "v: " + v + ", k: " + k + ", s: " + s);
+    // build base
+    boolean[] seen = new boolean[v];
+    int[] base = new int[k];
+    int x = 0;
+    for (int i = 0; i < k; i++) {
+        if (seen[x]) throw new IllegalArgumentException("k must be <= v/gcd(s,v)");
+        seen[x] = true;
+        base[i] = x;
+        x = (x + s) % v;
+    }
+    // generate orbit
+    List<int[]> out = new ArrayList<>();
+    for (int shift = 0; shift < v; shift++) {
+        int[] t = new int[k];
+        for (int i = 0; i < k; i++) t[i] = (base[i] + shift) % v;
+        Arrays.sort(t);
+        if (out.stream().anyMatch(a -> Arrays.equals(a, t))) continue;
+        out.add(t);
+    }
+    return out;
+  }
+
+  /*
+   * End build a balanced set of <num> <n>-Tuples of players
+   */
+
+
+  /**
+   * print in a format that can be pasted into a table (spreadsheet, or document)
+   */
+  public void prettyPrintTournament(Tournament t) {
+    StringBuilder sb = new StringBuilder();
+    //header row.
+    sb.append(" \t \t" );
+    for( int i = 0; i < this.numTables; i++ ) {
+      sb.append("\tTable ").append(i+1).append("\t \t");
+      if( i < this.numTables - 1 ) sb.append("\t");
+    }
+    sb.append("Loners/Euchres\t");
+    if(!t.sitterCounts.isEmpty() ) {
+      sb.append("Out\t");
+    }
+    sb.append("Points\n");
+
+    RoundContext rc = null;
+    String roundStr = null;
+    String sitterStr = null;
+    for( int i = 0; i < t.rounds.size(); i++ ) {
+      rc = t.rounds.get(i);
+      sb.append(i+1).append("\t");
+      roundStr = rc.round;
+      // tokenize it.
+      String [] tokens = roundStr.split(" ");
+      String [] games = null;
+      if( rc.sitters.size() > 0 ) {
+        sitterStr = tokens[tokens.length - 1];
+        games = new String [ tokens.length - 1 ];
+        for( int j = 0; j < tokens.length - 1; j++ ) {
+          games[j] = tokens[j];
+        }
+      } else {
+        sitterStr = null;
+        games = new String [ tokens.length ];
+        for( int j = 0; j < tokens.length; j++ ) {
+          games[j] = tokens[j];
+        }
+      }
+
+      // now we have the games separated, like: { "ABCD", "EFGH"}
+      // we are going to rotate N times to the right, where N is i%games.length to spread the tables.
+      int rotFactor = i%games.length;
+      this.rotateRight( games, rotFactor );
+      // for each game, we do: "\tA-B\tvs\tC-D\t"
+      for( String g : games ) {
+        sb.append("\t");
+        sb.append(g.charAt(0)).append("-").append(g.charAt(1)).append("\tvs\t")
+          .append(g.charAt(2)).append("-").append(g.charAt(3)).append("\t");
+      }
+
+      sb.append("\t"); // loners/euchres
+    
+      //sitters?
+      if( sitterStr != null ) {
+        sb.append(this.insertBetweenChars(sitterStr, '-')).append("\t");
+      }
+
+      sb.append(" \n");
+    }
+
+    System.out.println( sb.toString() );
+  }
+
+  private void rotateRight(String[] arr, int n) {
+    int len = arr.length;
+    if (len == 0) return;
+
+    n = ((n % len) + len) % len; // normalize n to be in [0, len)
+    if (n == 0) return;
+
+    String[] copy = Arrays.copyOf(arr, len);
+    for (int i = 0; i < len; i++) {
+        arr[(i + n) % len] = copy[i];
+    }
+  }
+
+  private String insertBetweenChars(String input, char insertChar) {
+    if (input == null || input.length() < 2) return input;
+    return input.chars()
+                .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.joining(String.valueOf(insertChar)));
   }
 
   private void buildTeams() {
@@ -130,8 +379,19 @@ public class GeneralEuchreTournament {
    * every round, regardless of the number of players, each player must appear exactly once in the round - either at a 
    * table in a game or sitting.  This method will build all possible rounds based on the current games, tables, and sitters.
    */
+  private void buildQuickRounds() {
+     List<RoundContext> tempRounds = new ArrayList<RoundContext>();
+     Set<String> roundStrings = this.quickRounds();
+
+     for( String round : roundStrings ) {
+      tempRounds.add( new RoundContext(round));
+     }
+
+     this.rounds = tempRounds.toArray(new RoundContext[0]);
+  }
+
   private void buildRounds() {
-     List<String> tempRounds = new ArrayList<String>();
+     List<RoundContext> tempRounds = new ArrayList<RoundContext>();
      int [] gamePointers = new int [ this.numTables ];
      for( int i = 0; i < this.numTables; i++ ) {
        gamePointers[i] = i;
@@ -140,10 +400,10 @@ public class GeneralEuchreTournament {
      // begin by advancing the last pointer as far as possible.
      this.buildRoundsInner( gamePointers, tempRounds ); 
 
-     this.rounds = tempRounds.toArray(new String [0]);
+     this.rounds = tempRounds.toArray(new RoundContext [0]);
   }
 
-  private void buildRoundsInner( int [] pointers, List<String> roundList ) {
+  private void buildRoundsInner( int [] pointers, List<RoundContext> roundList ) {
     String tempRound = null;
     boolean moreTuples = true;
     Set<String> seen = new HashSet<String>();
@@ -171,16 +431,17 @@ public class GeneralEuchreTournament {
           if( validRound(pointers) ) {
             tempRound = this.buildRoundString(pointers);
 
+            // Add this code back in to exclude the game permutations
+            if( this.numSitters > 0 ) {
+              tempRound += (" " + this.getSitters(tempRound));
+            }
+            
             rc = new RoundContext(tempRound);
             orderedKey = ""+rc.teams;
-            if( !seen.contains(orderedKey) ) {
+            if( !this.excludePermutations || !seen.contains(orderedKey) ) {
               seen.add( orderedKey );
             
-              if( this.numSitters > 0 ) {
-               tempRound += (" " + this.getSitters(tempRound));
-              }
-              
-              roundList.add(tempRound);
+              roundList.add(rc);
             }
           }
           pointers[pointers.length - 1] += 1;
@@ -203,24 +464,29 @@ public class GeneralEuchreTournament {
   private void buildTournaments() {
     List<Tournament> tempTournaments = new ArrayList<Tournament>();
     int [] roundPointers = new int [ this.desiredRounds ];
+    if( this.roundOffset > this.rounds.length ) this.roundOffset = 0;
     for( int i = 0; i < this.desiredRounds; i++ ) {
-      roundPointers[i] = 0;
+      roundPointers[i] = i + this.roundOffset;
     }
 
-    this.buildTournamentsInner( roundPointers, 0, new Tournament(), tempTournaments );
+    this.buildTournamentsInner( roundPointers, 0, new Tournament(this), tempTournaments );
 
     this.tournaments = tempTournaments.toArray(new Tournament[0]);
   }
 
   private void buildTournamentsInner( int [] pointers, int currIdx, Tournament currTournament, List<Tournament> tournaments ) {
     // attempt to push a round into the tournament
-    for( int i = pointers[currIdx]; i <= (this.rounds.length - (pointers.length - currIdx)); i++ ) {
+    this.iterationCount++;
+    while( pointers[currIdx] <= (this.rounds.length - (pointers.length - currIdx)) ) {
       if( currTournament.pushRound(this.rounds[pointers[currIdx]]) ) {
+        //System.out.println( ""+Arrays.toString(pointers) + " : tournament size: " + currTournament.size() );
         // this one works, bump the index, set it to the next round unless we are on the last pointer, then we have found a full tournament.
         if( currIdx == (pointers.length - 1) ) {
           // we found a tournament!  See if it is balanced.
-          if( currTournament.isBalanced() && (!this.opponentBalanced || currTournament.maxOpponentGap == 0) ) {
+          if( currTournament.isBalanced() && (!this.opponentBalanced || currTournament.maxOpponentGap < (this.numPlayers / 2)) ) {
+            this.iterationCount = 0;
             System.out.println("Tournament found! \n" + currTournament );
+            this.prettyPrintTournament(currTournament);
           }
         } else {
           // recurse to the next pointer.
@@ -229,67 +495,36 @@ public class GeneralEuchreTournament {
         }
         // now remove the round, and try the next one.
         currTournament.popRound();
+      } else if( this.shuffleThreshold > 0 && this.iterationCount > this.shuffleThreshold ) {
+        this.iterationCount = 0;
+        // shuffle the pointers
+        this.randomizeRoundPointers(pointers);
+        System.out.println("Randomized pointers: " + Arrays.toString(pointers));
       }
-      pointers[currIdx]++;
+      pointers[currIdx]++; // out of bounds after shuffle
     }
   }
 
-  private void buildTournaments_old() {
-    List<Tournament> tempTournaments = new ArrayList<Tournament>();
-    int [] roundPointers = new int [ this.desiredRounds ];
-    for( int i = 0; i < this.desiredRounds; i++ ) {
-      roundPointers[i] = i;
+  private void randomizeRoundPointers(int [] pointers) {
+    Set<Integer> seen = new HashSet<Integer>();
+    int numRounds = this.rounds.length;
+    int newPointer = 0;
+    for( int i = 0; i < pointers.length; i++ ) {
+      while( seen.contains(newPointer = Double.valueOf(Math.ceil(Math.random() * numRounds)).intValue()) );
+      seen.add(newPointer);
+      pointers[i] = newPointer;
     }
 
-    this.buildTournamentsInner_old(roundPointers, tempTournaments);
-
-    this.tournaments = tempTournaments.toArray(new Tournament[0]);
-  }
-
-  private void buildTournamentsInner_old(int [] pointers, List<Tournament> tournamentList ) {
-    Tournament tempTournament = null;
-    boolean moreTuples = true;
-    while( moreTuples ) {
-      if( pointers[0] == (this.rounds.length - pointers.length) ) {
-        moreTuples = false;
-      } else {
-        for( int i = 1; i < pointers.length; i++ ) {
-          if( pointers[i] == (this.rounds.length - (pointers.length - i)) ) {
-            // this pointer is at the end of the line, bump the previous one.
-            pointers[i-1] += 1;
-
-            // now reset all following pointers.
-            for( int j = i; j < pointers.length; j++ ) {
-              pointers[j] = pointers[j-1] + 1;
-            }
-            break;
-          }
-        }
-
-        // now march the last pointer to the end
-        while( pointers[pointers.length - 1] < this.rounds.length ) {
-          System.out.println( "Checking: " + Arrays.toString(pointers));
-          if( validTournament(pointers) ) {
-            tempTournament = new Tournament( pointers, this );
-            tournamentList.add( tempTournament );
-            System.out.println("Found good tournament! : \n" + tempTournament );
-          }
-          pointers[pointers.length - 1]++;
-        }
-        pointers[pointers.length - 1] = this.rounds.length - 1;
-      }
-    }
+    Arrays.sort(pointers);
   }
 
   public boolean validTournament(int [] pointers ) {
     // Check to see if the pointed to rounds overlap teams at all.
     boolean retVal = true;
     EnumSet<Team> checker = EnumSet.noneOf(Team.class);
-
-    String tempRound = null;
+    RoundContext rc = null;
     for( int i = 0; i < pointers.length; i++ ) {
-      tempRound = this.rounds[pointers[i]];
-      RoundContext rc = new RoundContext(tempRound);
+      rc = this.rounds[pointers[i]];
       if( Collections.disjoint(checker, rc.teams) ) {
         checker.addAll( rc.teams );
       } else {
@@ -424,11 +659,11 @@ public class GeneralEuchreTournament {
     this.games = games;
   }
 
-  public String[] getRounds() {
+  public RoundContext[] getRounds() {
     return this.rounds;
   }
 
-  public void setRounds( String [] rounds ) {
+  public void setRounds( RoundContext [] rounds ) {
     this.rounds = rounds;
   }
 
@@ -480,6 +715,14 @@ public class GeneralEuchreTournament {
       }
     }
 
+    public String getSitterString() {
+      StringBuilder sb = new StringBuilder();
+      for( Player p : this.sitters ) {
+        sb.append( p.toString() );
+      }
+      return sb.toString();
+    }
+
     public String toString() {
       // StringBuilder sb = new StringBuilder("[");
       // sb.append("teams: ").append(this.teams).append(", sitters: ").append(this.sitters).append("]");
@@ -490,6 +733,7 @@ public class GeneralEuchreTournament {
   }
 
   private static class Tournament {
+    private GeneralEuchreTournament context = null;
     // all of the teams in this tournament, avoid having the same team twice
     private EnumSet<Team> teams = EnumSet.noneOf(Team.class);
     // the rounds
@@ -500,6 +744,8 @@ public class GeneralEuchreTournament {
     private Map<Player,Integer> playerCounts = new HashMap<Player,Integer>();
     // track opponent counts
     private Map<Player,Map<Player,Integer>> opponentCounts = new HashMap<Player,Map<Player,Integer>>();
+    // track unique sitter strings, for when we use sitter optimization
+    private Set<String> sitterGroups = new HashSet<String>();
 
     // when we check to see if a tournament is balanced, calculate how big the widest gap
     // between how many times one player plays another one is.  If it's 0, the tournament is 
@@ -507,24 +753,37 @@ public class GeneralEuchreTournament {
     // with a low gap.
     private int maxOpponentGap = 0;
 
-    public Tournament() {
-
+    public Tournament(GeneralEuchreTournament context) {
+      this.context = context;
     }
 
-    public Tournament( int [] roundPointers, GeneralEuchreTournament et ) {
-      for( int i = 0; i < roundPointers.length; i++ ) {
-        this.pushRound( et.getRounds()[roundPointers[i]] );
+    public Tournament(Tournament t) {
+      this.teams.addAll(t.teams);
+      this.rounds.addAll(t.rounds);
+      this.sitterCounts.putAll( t.sitterCounts );
+      this.playerCounts.putAll( t.playerCounts );
+      Map<Player,Integer> temp = null;
+      for( Player p : t.opponentCounts.keySet() ) {
+        temp = new HashMap<Player,Integer>();
+        temp.putAll( t.opponentCounts.get(p) );
+        this.opponentCounts.put(p, temp);
       }
+      this.maxOpponentGap = t.maxOpponentGap;
+    }
+
+    public int size() {
+      return this.rounds.size();
     }
 
     // push a new round onto the tournament, adjust the stats if it can be added, otherwise return false.
-    public boolean pushRound( String roundDescriptor ) {
+    public boolean pushRound( RoundContext rc ) {
       boolean retVal = false;
-      RoundContext rc = new RoundContext(roundDescriptor);
-      if( Collections.disjoint(this.teams, rc.teams) ) {
+      if( Collections.disjoint(this.teams, rc.teams) && (context.numSitters == 0 || !this.sitterGroups.contains(rc.getSitterString())) ) {
         // we don't have any of these teams yet, go ahead and add.
         retVal = true;
         this.rounds.add(rc);
+
+        this.sitterGroups.add( rc.getSitterString() );
 
         // track the teams that have now been added.
         this.teams.addAll( rc.teams );
@@ -584,6 +843,8 @@ public class GeneralEuchreTournament {
 
       // remove the teams
       this.teams.removeAll(rc.teams);
+
+      this.sitterGroups.remove(rc.getSitterString());
 
       // adjust opponent counts
       Team tempOpponentTeam = null;

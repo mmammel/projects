@@ -49,6 +49,25 @@
 </head>
 <body>
   <div id="controlPanel" class="container-fluid">
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="shareModalLabel">Share this view</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="shareURL" class="form-control" readonly>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="copyShareURL" class="btn btn-primary">Copy</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -60,7 +79,6 @@
           </div>
           <div class="modal-body">
             <p id="checkerDescription"></p>
-            <p id="contextURL"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -156,6 +174,9 @@
             <button type="button" id="resetViewBtn" class="btn btn-secondary" title="Reset 3D view">
               <i class="material-icons buttonicon">refresh</i>
             </button>
+            <button type="button" id="shareBtn" class="btn btn-secondary" title="Share">
+              <i class="material-icons buttonicon">share</i>
+            </button>
           </div>
         </div>
       </div>
@@ -182,6 +203,14 @@
           <div class="input-group input-group-sm mb-2 mr-1">
             <div class="input-group-prepend">
               <span class="input-group-text">
+                &#916;&#952;
+                </span>
+            </div>
+            <input value=".015" type="text" id="animationStep" class="mediuminput form-control" placeholder="Animation Step" aria-label="Animation Step" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group input-group-sm mb-2 mr-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
                 &#966;
                 </span>
             </div>
@@ -193,15 +222,7 @@
                 &#916;&#966;
                 </span>
             </div>
-            <input value="0" type="text" id="phiAnimationStep" class="mediuminput form-control" placeholder="Phi Animation Step" aria-label="Phi Animation Step" aria-describedby="basic-addon1">
-          </div>
-          <div class="input-group input-group-sm mb-2 mr-1">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                &#916;&#952;
-                </span>
-            </div>
-            <input value=".015" type="text" id="animationStep" class="mediuminput form-control" placeholder="Animation Step" aria-label="Animation Step" aria-describedby="basic-addon1">
+            <input value="0.015" type="text" id="phiAnimationStep" class="mediuminput form-control" placeholder="Phi Animation Step" aria-label="Phi Animation Step" aria-describedby="basic-addon1">
           </div>
           <div class="input-group input-group-sm mb-2 mr-1">  
             <div class="input-group-prepend">
@@ -254,7 +275,7 @@
     var currPhi = Math.PI / 2;  // elevation angle, π/2 = equatorial plane
     var deltaPhi = 0;  //dp
     var animationStep = .015;  //as
-    var phiAnimationStep = 0.0;
+    var phiAnimationStep = 0.015;
     var reverse = false;  //r
     var primeIdx = 0;
     var primeDotMap = {};
@@ -324,6 +345,37 @@
       retVal += ('&pr=' + pointRadius);
       // curr checker
       retVal += ('&cc=' + currChecker.id);
+      // scale
+      retVal += ('&sc=' + scale);
+      // animating
+      retVal += ('&an=' + animating);
+      // mode3D
+      retVal += ('&m3=' + mode3D);
+      // deltaPhi (degrees, from field)
+      retVal += ('&dp=' + parseFloat($('#deltaPhi').val()));
+      // phiAnimationStep
+      retVal += ('&pas=' + phiAnimationStep);
+      // background color
+      retVal += ('&bg=' + encodeURIComponent($('#backgroundColor').val()));
+      // numColors and point color values
+      retVal += ('&nc=' + numColors);
+      var colorVals = [];
+      for (var ci = 1; ci <= numColors; ci++) {
+        colorVals.push($('#pointColor' + ci).val());
+      }
+      retVal += ('&pc=' + encodeURIComponent(colorVals.join('|')));
+      // extraVar values for current checker
+      if (currChecker.extraVars && currChecker.extraVars.length > 0) {
+        var evVals = currChecker.extraVars.map(function(ev) {
+          return encodeURIComponent($('#' + ev.id).val());
+        });
+        retVal += ('&ev=' + evVals.join('|'));
+      }
+      // viewRotation matrix (9 values, row-major)
+      if (viewRotation) {
+        var vrVals = viewRotation.elements.map(function(row) { return row.join(','); }).join(',');
+        retVal += ('&vr=' + vrVals);
+      }
 
       return retVal;
     }
@@ -414,6 +466,65 @@
         currChecker = checkerMap[ chkr ];
         $('#checkerSelect').val(chkr);
       }
+
+      // get scale
+      var scParam = getURLParameter('sc');
+      if (scParam) {
+        scale = parseFloat(scParam);
+      }
+
+      // get mode3D
+      var m3Param = getURLParameter('m3');
+      if (m3Param === 'true') {
+        mode3D = true;
+      }
+
+      // get deltaPhi
+      var dpParam = getURLParameter('dp');
+      if (dpParam) {
+        $('#deltaPhi').val(dpParam);
+      }
+
+      // get phiAnimationStep
+      var pasParam = getURLParameter('pas');
+      if (pasParam) {
+        phiAnimationStep = parseFloat(pasParam);
+        $('#phiAnimationStep').val(pasParam);
+      }
+
+      // get background color
+      var bgParam = getURLParameter('bg');
+      if (bgParam) {
+        backgroundColor = bgParam;
+        $('#backgroundColor').val(bgParam);
+      }
+
+      // get numColors and point colors
+      var ncParam = getURLParameter('nc');
+      var pcParam = getURLParameter('pc');
+      if (ncParam && pcParam) {
+        var ncNum = parseInt(ncParam);
+        var pcVals = pcParam.split('|');
+        if (pcVals.length > 0) $('#pointColor1').val(pcVals[0]);
+        for (var ci = 2; ci <= ncNum && ci <= maxColors; ci++) {
+          var newEle = $('<input value="' + (pcVals[ci-1] || cannedColors[ci-2]) + '" type="color" id="pointColor' + ci + '" class="form-control smallcolorpick">');
+          newEle.insertAfter('#pointColor' + (ci - 1));
+          numColors = ci;
+        }
+      }
+
+      // get viewRotation matrix (9 comma-separated floats, row-major)
+      var vrParam = getURLParameter('vr');
+      if (vrParam) {
+        var vrVals = vrParam.split(',').map(parseFloat);
+        if (vrVals.length === 9) {
+          viewRotation = $M([
+            [vrVals[0], vrVals[1], vrVals[2]],
+            [vrVals[3], vrVals[4], vrVals[5]],
+            [vrVals[6], vrVals[7], vrVals[8]]
+          ]);
+        }
+      }
     }
 
     function getSphereCoordFromPageCoord(pageX, pageY) {
@@ -432,7 +543,7 @@
       var dT = touchContext.currTime - touchContext.prevTime;
       var dP = Math.sqrt(Math.pow(touchContext.currX - touchContext.prevX, 2) + Math.pow(touchContext.currY - touchContext.prevY, 2));
 
-      if (mode3D) {
+      if (mode3D && currChecker && currChecker.is3D) {
         if (dP > 1.0 && dT > 1) {
           var cross = getSphereCoordFromPageCoord(touchContext.prevX, touchContext.prevY)
                         .cross(getSphereCoordFromPageCoord(touchContext.currX, touchContext.currY));
@@ -482,7 +593,7 @@
     }
 
     function mode3DFrame() {
-      if (mode3D && (touchContext.dragging || rotationRate > 0.00001)) {
+      if (mode3D && currChecker && currChecker.is3D && (touchContext.dragging || rotationRate > 0.00001)) {
         if (!animating && rotationRate > 0.00001 && rotationAxis) {
           viewRotation = Matrix.Rotation(rotationRate, rotationAxis).x(viewRotation);
           if (!touchContext.dragging) rotationRate *= 0.97;
@@ -655,7 +766,7 @@
 
     function translatePoint(point) {
       var rx, ry;
-      if (mode3D && viewRotation) {
+      if (mode3D && viewRotation && currChecker && currChecker.is3D) {
         var p3d = viewRotation.x($V([point[0], point[1], point[2] || 0]));
         rx = p3d.e(1);
         ry = p3d.e(2);
@@ -787,6 +898,8 @@
 
     function drawInner(ctx, state, i, j, k, prev) {
       var retVal = prev;
+      state['prevCoords'] = state['coords'];
+      state['coords'] = [coords[0], coords[1], coords[2]];
 
       var checkResult = currChecker.checker(state, i, j, k);
       if (checkResult.draw) {
@@ -846,7 +959,7 @@
 
     function animationInner() {
       var mult = reverse ? -1.0 : 1.0;
-      if (mode3D && rotationRate > 0.00001 && rotationAxis) {
+      if (mode3D && currChecker && currChecker.is3D && rotationRate > 0.00001 && rotationAxis) {
         viewRotation = Matrix.Rotation(rotationRate, rotationAxis).x(viewRotation);
         if (!touchContext.dragging) rotationRate *= 0.97;
       }
@@ -948,16 +1061,40 @@
         checkerMap[checkers[i].id] = checkers[i];
       }
 
-      // See if we can initialize from the URL
-      setStateFromURL();
-
       for (let i = 0; i < selectOptions.length; i++) {
         $('#checkerSelect').append($("<option value='" + selectOptions[i][1] + "'" + (selectOptions[i][2] ? " selected" : "") + ">" + selectOptions[i][0] + "</option>"));
       }
 
+      // Initialize from URL after options exist so checkerSelect.val() sticks
+      setStateFromURL();
+
       // if there is a pre-selected checked, initialize it.
       currChecker = checkerMap[$('#checkerSelect').val()];
       initChecker();
+
+      // Apply extraVar values from URL now that inputs exist
+      var evParam = getURLParameter('ev');
+      if (evParam && currChecker && currChecker.extraVars && currChecker.extraVars.length > 0) {
+        var evVals = evParam.split('|');
+        for (var ei = 0; ei < currChecker.extraVars.length && ei < evVals.length; ei++) {
+          $('#' + currChecker.extraVars[ei].id).val(evVals[ei]).trigger('change');
+        }
+      }
+
+      // Restore mode3D button appearance
+      if (mode3D) {
+        $('#orbit3DBtn').removeClass('btn-secondary').addClass('btn-primary');
+      }
+
+      // Auto-render or auto-animate when loaded from a share URL
+      if (getURLParameter('cc')) {
+        resize();
+        if (getURLParameter('an') === 'true') {
+          startAnimation();
+        } else {
+          draw();
+        }
+      }
 
       $('#checkerSelect').on('change', function (e) {
         currChecker = checkerMap[$('#checkerSelect').val()];
@@ -979,7 +1116,6 @@
       });
 
       $('#infoBtn').on('click', function(e) {
-        $('#contextURL').html(buildContextURL());
       });
 
       $('#reverseBtn').on('click', function (e) {
@@ -1141,6 +1277,27 @@
             touchContext.dragging = false;
           }
         });
+
+      $('#shareBtn').on('click', function() {
+        var url = window.location.origin + window.location.pathname + '?' + buildContextURL();
+        $('#shareURL').val(url);
+        $('#shareModal').modal('show');
+      });
+
+      $('#copyShareURL').on('click', function() {
+        var input = document.getElementById('shareURL');
+        input.select();
+        input.setSelectionRange(0, 99999);
+        var btn = $(this);
+        navigator.clipboard.writeText(input.value).then(function() {
+          btn.text('Copied!');
+          setTimeout(function() { btn.text('Copy'); }, 2000);
+        }).catch(function() {
+          document.execCommand('copy');
+          btn.text('Copied!');
+          setTimeout(function() { btn.text('Copy'); }, 2000);
+        });
+      });
 
       resize();
       $(window).resize(function () {

@@ -23,7 +23,7 @@
       "name": "GeneralEuchreTournament",
       "request": "launch",
       "mainClass": "GeneralEuchreTournament",
-      "args": "-p 6 -r 6",
+      "args": "-p 10 -r 10",
       "projectName": "general_acc79f51"
     }
   ]

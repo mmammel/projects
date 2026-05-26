@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script src="js/jquery_360.js"></script>
+    <style type="text/css">
+      * {
+        touch-action: manipulation;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dropHolder" style="margin: auto;">
+      <canvas id="rootCanvas" width="500" height="500"></canvas>
+    </div>
+    <script src="js/main.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var cd = new CantorDrop('dropHolder','rootCanvas');
+    </script>
+  </body>
+</html>
