@@ -119,6 +119,68 @@ let checkers = [
     },
     extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 }]
   },{
+    id: "simpleGolden3D",
+    name: "Simple Golden 3D",
+    description: "Simple but increase each number by the golden ratio.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n, x) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter >= state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % x == 0;
+        state.next = 1.618 * state.next;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 }]
+  },{
+    id: "gravity3D",
+    name: "Gravity 3D",
+    description: "Scale the distance for the next simple target directly with the distance from the origin - closer to the origin, the shorter the next point will be.  Calculated by 2 + (x * ( d / (d + sc))) where sc is a scale factor, and x is a max distance.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n, x, sc, tz) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter >= state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % tz == 0;
+        var c = state.coords;
+        var d = Math.sqrt(c[0]*c[0] + c[1]*c[1] + c[2]*c[2])
+        var nextDistance = 2 + (x * ( d / (d + sc)));
+        if( nextDistance > x ) nextDistance = x;
+        state.next = nextDistance;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [
+       { id: "x", label: "Max distance: ", defaultVal: 1000 },
+       { id: "sc", label: "Scaling factor: ", defaultVal: 100 },
+       { id: "tz", label: "Only turn Z on multiples of: ", defaultVal: 1 }
+    ]
+  },{
     id: "simplegauss",
     name : "Simple Gauss",
     description : "Simple, but iterate over the Gause numbers: n(n+1)/2",
