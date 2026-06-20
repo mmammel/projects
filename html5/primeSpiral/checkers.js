@@ -119,6 +119,191 @@ let checkers = [
     },
     extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 }]
   },{
+    id: "simpleAlternate",
+    name: "Simple Alternate 3D",
+    description: "Same draw/turn pattern as Simple, but alternates between turning on theta and phi",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0,
+      whichWay: 0 // 0 theta, 1 phi
+    },
+    checker: function(state, n) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter == state.next) {
+        retVal.draw = true;
+        if( state.whichWay === 0 ) {
+          retVal.turn = true;
+          state.whichWay = 1;
+        } else {
+          retVal.turnZ = true;
+          state.whichWay = 0;
+        }   
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    }
+  },{
+    id: "simpleClusters",
+    name: "Simple Clusters 3D",
+    description: "Do simple, but after each draw of the next N, do N points at distance 2 before moving on",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      last: 1,
+      counter: 0,
+      inCluster: false,
+      clusterCount: 0
+    },
+    checker: function(state, n, x, clusterSize) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.inCluster) {
+        if( state.counter == 2 ) {
+          retVal.draw = true;
+          retVal.turn = true;
+          retVal.turnZ = state.counter % x == 0;
+          state.counter = 0;
+          state.clusterCounter++;
+          if( state.clusterCounter >= clusterSize ) {
+            state.inCluster = false;
+          }
+        } else {
+          state.counter++;
+        }
+      } else if (state.counter == state.next ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % x == 0;
+        state.last = state.next;
+        state.next++;
+        state.counter = 0;
+        state.clusterCounter = 0;
+        state.inCluster = true;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 },
+                { id: "clusterSize", label: "How big are the clusters:", defaultVal: 10 } ]
+  },{
+    id: "simpleOptions3D",
+    name: "Simple 3D with Options",
+    description: "Same draw/turn pattern as Simple, but also turns in the Z direction (φ) on every turn. Set the φ angle and enable 3D Orbit to watch the helix emerge.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n, x, opt) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter == state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % x == 0;
+        if( opt === "Turn on Prime, Draw on Check" ) {
+          retVal.turn = isPrime(state.counter);
+          retVal.turnZ = retVal.turn;
+        }
+        state.next++;
+        state.counter = 0;
+      } else {
+        if( opt === "Always Turn, Draw on Check" ) {
+          retVal.turn = true;
+          retVal.turnZ = state.counter % x == 0;
+        }
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 },
+                { id: "opt", label: "Behavior:", values: ["Draw and Turn on Check", "Turn on Prime, Draw on Check", "Always Turn, Draw on Check"], defaultVal: "Draw and Turn on Check"}]
+  },{
+    id: "theCreature",
+    name: "The Creature",
+    description: "Little calculation with sin that makes the spiral behave like some kind of alien creature",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n, x) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter == state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % x == 0;
+        state.next = Math.abs(Math.round(Math.sin( n ) * 100));
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 }]
+  },{
+    id: "simpleTrig",
+    name: "Simple Trig",
+    description: "Set the next distance based on the sin of the current turn angle",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n, x, max, func) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter == state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % x == 0;
+        if( func === 'sin' ) {
+          state.next = Math.abs(Math.round(Math.sin( state.currTheta ) * max));
+        } else if( func === 'cos' ) {
+          state.next = Math.abs(Math.round(Math.cos( state.currTheta ) * max));
+        } else if( func === 'tan' ) {
+          state.next = Math.abs(Math.round(Math.tan( state.currTheta ) * max));
+        } else if( func === 'sinh' ) {
+          state.next = Math.abs(Math.round(Math.sinh( state.currTheta ) * max));
+        } else if( func === 'cosh' ) {
+          state.next = Math.abs(Math.round(Math.cosh( state.currTheta ) * max));
+        } else if( func === 'tanh' ) {
+          state.next = Math.abs(Math.round(Math.tanh( state.currTheta ) * max));
+        }
+        if( state.next === 0 ) state.next = 1;
+        if( state.next > max ) state.next = max;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [{ id: "x", label: "Only turn Z when multiple of...", defaultVal: 1 },
+                { id: "max", label: "Maximum point distance:", defaultVal: 1000 },
+                { id: "func", label: "Which trig func to use:", values: ["sin", "cos", "tan", "sinh", "cosh", "tanh" ], defaultVal: "sin" }]
+  },{
     id: "simpleGolden3D",
     name: "Simple Golden 3D",
     description: "Simple but increase each number by the golden ratio.",
@@ -166,7 +351,8 @@ let checkers = [
         retVal.turnZ = state.counter % tz == 0;
         var c = state.coords;
         var d = Math.sqrt(c[0]*c[0] + c[1]*c[1] + c[2]*c[2])
-        var nextDistance = 2 + (x * ( d / (d + sc)));
+        //var nextDistance = 2 + (x * ( d / (d + sc)));
+        var nextDistance = 2 + (x * ( ( d*d ) / (sc + .01) ) );
         if( nextDistance > x ) nextDistance = x;
         state.next = nextDistance;
         state.counter = 0;
@@ -178,6 +364,72 @@ let checkers = [
     extraVars: [
        { id: "x", label: "Max distance: ", defaultVal: 1000 },
        { id: "sc", label: "Scaling factor: ", defaultVal: 100 },
+       { id: "tz", label: "Only turn Z on multiples of: ", defaultVal: 1 }
+    ]
+  },{
+    id: "multipleOrbits3D",
+    name: "Multiple Orbits 3D",
+    description: "Draw and turn if the ceiling of the distance to the origin is a multiple of some X",
+    is3D: true,
+    stateObj: {
+      currDist: 0
+    },
+    checker: function(state, n, x ) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+
+      var c = state.coords;
+      //var d = Math.sqrt(c[0]*c[0] + c[1]*c[1])
+      var p = state.prevCoords == null ? [0.0,0.0,0.0] : state.prevCoords;
+      var d = Math.sqrt((c[0]-p[0])*(c[0]-p[0]) + (c[1]-p[1])*(c[1]-p[1]) + (c[2]-p[2])*(c[2]-p[2]));
+      state.currDist = state.currDist + Math.ceil(d);
+
+      if( state.currDist % x == 0 ) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = true;
+      }
+      return retVal;
+    },
+    extraVars: [
+       { id: "x", label: "Draw when distance is multiple of: ", defaultVal: 10 }
+    ]
+  },{
+    id: "inverseGravity3D",
+    name: "Inverse Gravity 3D",
+    description: "Scale the distance for the next simple target inversly with the distance from the origin - closer to the origin, the farther the next point will be.  Calculated by 2 + (x * ( d / (d + sc))) where sc is a scale factor, and x is a max distance.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0
+    },
+    checker: function(state, n, x, sc, tz) {
+      var retVal = {
+        draw: false,
+        turn: false,
+        turnZ: false
+      };
+      if (state.counter >= state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.counter % tz == 0;
+        var c = state.coords;
+        var d = Math.sqrt(c[0]*c[0] + c[1]*c[1] + c[2]*c[2])
+        var nextDistance = 2 + (x * ( sc / (d + sc)));
+        if( nextDistance > x ) nextDistance = x;
+        state.next = nextDistance;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+      return retVal;
+    },
+    extraVars: [
+       { id: "x", label: "Max distance: ", defaultVal: 25 },
+       { id: "sc", label: "Scaling factor: ", defaultVal: 10 },
        { id: "tz", label: "Only turn Z on multiples of: ", defaultVal: 1 }
     ]
   },{
@@ -844,19 +1096,54 @@ let checkers = [
     },
     extraVars: [ { id: "minIncrease", label: "Minimum turn increase: ", defaultVal: 0 },
                  { id: "maxIncrease", label: "Maximum turn increase: ", defaultVal: .5 } ]
-  },
-  {
+  },{
+    id: "ZigZagTurnIncrease3D",
+    name: "ZigZag Turn Increase 3D",
+    description: "Variable Turn Increase but also turns in the Z direction (φ) on every turn. Turn increase scales inversely with distance from the origin — tightly wound near the center (max 1.0) and gradually opening up as the spiral moves outward (min 0.001), producing a galaxy-like structure with a dense core and open arms. Enable 3D Orbit to see the structure.",
+    is3D: true,
+    stateObj: { next: 1, counter: 0, currIncrease: 0, currMult : 1 },
+    checker: function(state, n, inc, mn, mx ) {
+      var retVal = { draw: false, turn: false, turnZ: false, turnIncrease: 0.0 };
+      if (state.counter == state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        state.next++;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+
+      if( state.currIncrease <= mn ) {
+        state.currMult = 1;
+      } else if( state.currIncrease >= mx ) {
+        state.currMult = -1;
+      }
+      state.currIncrease = state.currIncrease + (state.currMult * inc);
+      retVal.turnIncrease = state.currIncrease;
+
+      retVal.turnZ = retVal.turn;
+      return retVal;
+    },
+    extraVars: [ { id: "minIncrease", label: "Turn increase increment: ", defaultVal: .01 },
+                 { id: "minIncrease", label: "Minimum turn increase: ", defaultVal: -.5 },
+                 { id: "maxIncrease", label: "Maximum turn increase: ", defaultVal: .5 } ]
+  },{
     id: "simpleHitch3D",
     name: "Simple with a hitch 3D",
-    description: "Simple with a hitch but also turns in the Z direction (φ) on every turn. Enable 3D Orbit to see the structure.",
+    description: "Simple, but do up to the last 4 previous for each step: 1, 1,2, 1,2,3, 1,2,3,4, 2,3,4,5, 3,4,5,6, 4,5,6,7, etc.",
     is3D: true,
-    stateObj: { next: 1, counter: 0 },
+    stateObj: { next: 1, nextMeta: 1, counter: 0 },
     checker: function(state, n, x) {
       var retVal = { draw: false, turn: false, turnZ: false };
       if (state.counter == state.next) {
         retVal.draw = true;
-        if (state.counter % x == 0) retVal.turn = true;
+        retVal.turn = true;
         state.next++;
+        if( state.next >= state.nextMeta ) {
+          state.nextMeta++;
+          state.next = state.nextMeta - x;
+          if( state.next < 0 ) state.next = 1;
+        }
         state.counter = 0;
       } else {
         state.counter++;
@@ -864,7 +1151,7 @@ let checkers = [
       retVal.turnZ = retVal.turn;
       return retVal;
     },
-    extraVars: [{ id: "X", label: "Turn if divisible by: ", defaultVal: 2 }]
+    extraVars: [{ id: "X", label: "Repeat last X steps: ", defaultVal: 4 }]
   },
   {
     id: "simplePrimeHitch3D",
@@ -2053,6 +2340,459 @@ let checkers = [
     },
     extraVars: [
       { id: "root", label: "Digital root", defaultVal: 7 }
+    ]
+  },  {
+    id: "nearestNeighborGravity3D",
+    name: "Nearest Neighbor Gravity 3D",
+    description: "Draws more readily when the current point is close to previously drawn points, creating clusters and galaxy-arm-like filaments.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0,
+      points: []
+    },
+    checker: function(state, n, x, sc, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      function dist(a, b) {
+        var dx = a[0] - b[0];
+        var dy = a[1] - b[1];
+        var dz = a[2] - b[2];
+        return Math.sqrt(dx * dx + dy * dy + dz * dz);
+      }
+
+      function nearestDistance(p) {
+        if (state.points.length === 0) return x;
+        var best = Infinity;
+        for (var i = 0; i < state.points.length; i++) {
+          var d = dist(p, state.points[i]);
+          if (d < best) best = d;
+        }
+        return best;
+      }
+
+      if (state.counter >= state.next) {
+        var nd = nearestDistance(c);
+
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.points.length % tz === 0;
+
+        state.points.push([c[0], c[1], c[2]]);
+
+        var nextDistance = 2 + x * (nd / (nd + sc));
+        if (nextDistance > x) nextDistance = x;
+        state.next = nextDistance;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "x", label: "Max interval: ", defaultVal: 500 },
+      { id: "sc", label: "Neighbor scale: ", defaultVal: 50 },
+      { id: "tz", label: "Only turn Z every nth point: ", defaultVal: 3 }
+    ]
+  },
+
+  {
+    id: "collisionAvoidance3D",
+    name: "Collision Avoidance 3D",
+    description: "Draws only when the current point is not too close to previous drawn points, producing organic packing and constellation-like spacing.",
+    is3D: true,
+    stateObj: {
+      points: [],
+      rejected: 0
+    },
+    checker: function(state, n, minDist, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      function tooClose(p) {
+        for (var i = 0; i < state.points.length; i++) {
+          var q = state.points[i];
+          var dx = p[0] - q[0];
+          var dy = p[1] - q[1];
+          var dz = p[2] - q[2];
+          if (Math.sqrt(dx * dx + dy * dy + dz * dz) < minDist) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      if (!tooClose(c)) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.points.length % tz === 0;
+        state.points.push([c[0], c[1], c[2]]);
+        state.rejected = 0;
+      } else {
+        state.rejected++;
+        retVal.turn = state.rejected % tz === 0;
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "minDist", label: "Minimum distance from prior points: ", defaultVal: 25 },
+      { id: "tz", label: "Only turn Z every nth accepted point: ", defaultVal: 4 }
+    ]
+  },
+
+  {
+    id: "trailEcho3D",
+    name: "Trail Echo 3D",
+    description: "Draws normally, but turns in Z when the current point echoes a point from many draws ago.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0,
+      points: []
+    },
+    checker: function(state, n, interval, echoAge, echoDist) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      if (state.counter >= state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+
+        var echoIndex = state.points.length - echoAge;
+        if (echoIndex >= 0) {
+          var q = state.points[echoIndex];
+          var dx = c[0] - q[0];
+          var dy = c[1] - q[1];
+          var dz = c[2] - q[2];
+          var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          retVal.turnZ = d <= echoDist;
+        }
+
+        state.points.push([c[0], c[1], c[2]]);
+        state.next = interval;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "interval", label: "Draw interval: ", defaultVal: 8 },
+      { id: "echoAge", label: "Echo age in drawn points: ", defaultVal: 144 },
+      { id: "echoDist", label: "Echo distance: ", defaultVal: 50 }
+    ]
+  },
+
+  {
+    id: "densityField3D",
+    name: "Density Field 3D",
+    description: "Divides space into cells. Draws in low-density cells and turns in Z in high-density cells.",
+    is3D: true,
+    stateObj: {
+      cells: {}
+    },
+    checker: function(state, n, cellSize, maxDensity, zDensity) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      var ix = Math.floor(c[0] / cellSize);
+      var iy = Math.floor(c[1] / cellSize);
+      var iz = Math.floor(c[2] / cellSize);
+      var key = ix + "," + iy + "," + iz;
+
+      var density = state.cells[key] || 0;
+
+      if (density < maxDensity) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = density >= zDensity;
+        state.cells[key] = density + 1;
+      } else {
+        retVal.turn = true;
+        retVal.turnZ = true;
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "cellSize", label: "Cell size: ", defaultVal: 80 },
+      { id: "maxDensity", label: "Max draws per cell: ", defaultVal: 3 },
+      { id: "zDensity", label: "Z turn when cell density >= ", defaultVal: 1 }
+    ]
+  },
+
+  {
+    id: "shellPopulation3D",
+    name: "Shell Population 3D",
+    description: "Buckets drawn points by radius. Draws when the current radial shell is underpopulated.",
+    is3D: true,
+    stateObj: {
+      shells: {}
+    },
+    checker: function(state, n, shellSize, maxPerShell, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      var d = Math.sqrt(c[0] * c[0] + c[1] * c[1] + c[2] * c[2]);
+      var shell = Math.floor(d / shellSize);
+      var count = state.shells[shell] || 0;
+
+      if (count < maxPerShell) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = shell % tz === 0;
+        state.shells[shell] = count + 1;
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "shellSize", label: "Shell size: ", defaultVal: 120 },
+      { id: "maxPerShell", label: "Max points per shell: ", defaultVal: 20 },
+      { id: "tz", label: "Z turn on shell multiple of: ", defaultVal: 3 }
+    ]
+  },
+
+  {
+    id: "symmetrySeeker3D",
+    name: "Symmetry Seeker 3D",
+    description: "Draws when the current point has a nearby mirrored counterpart among previous points.",
+    is3D: true,
+    stateObj: {
+      points: []
+    },
+    checker: function(state, n, tolerance, mode, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      function near(a, b) {
+        var dx = a[0] - b[0];
+        var dy = a[1] - b[1];
+        var dz = a[2] - b[2];
+        return Math.sqrt(dx * dx + dy * dy + dz * dz) <= tolerance;
+      }
+
+      var mirrors = [];
+      if (mode === 1 || mode === 4) mirrors.push([-c[0], c[1], c[2]]);
+      if (mode === 2 || mode === 4) mirrors.push([c[0], -c[1], c[2]]);
+      if (mode === 3 || mode === 4) mirrors.push([c[0], c[1], -c[2]]);
+
+      var hit = false;
+      for (var i = 0; i < state.points.length && !hit; i++) {
+        for (var j = 0; j < mirrors.length; j++) {
+          if (near(state.points[i], mirrors[j])) {
+            hit = true;
+            break;
+          }
+        }
+      }
+
+      if (hit) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.points.length % tz === 0;
+      }
+
+      state.points.push([c[0], c[1], c[2]]);
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "tolerance", label: "Mirror tolerance: ", defaultVal: 50 },
+      { id: "mode", label: "Mirror mode 1=X 2=Y 3=Z 4=All: ", defaultVal: 4 },
+      { id: "tz", label: "Only turn Z every nth stored point: ", defaultVal: 5 }
+    ]
+  },
+
+  {
+    id: "boundaryExpander3D",
+    name: "Boundary Expander 3D",
+    description: "Draws when the current point expands the known bounding box of the drawing.",
+    is3D: true,
+    stateObj: {
+      initialized: false,
+      minX: 0,
+      maxX: 0,
+      minY: 0,
+      maxY: 0,
+      minZ: 0,
+      maxZ: 0,
+      hits: 0
+    },
+    checker: function(state, n, margin, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      if (!state.initialized) {
+        state.initialized = true;
+        state.minX = state.maxX = c[0];
+        state.minY = state.maxY = c[1];
+        state.minZ = state.maxZ = c[2];
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = true;
+        return retVal;
+      }
+
+      var expands =
+        c[0] < state.minX - margin ||
+        c[0] > state.maxX + margin ||
+        c[1] < state.minY - margin ||
+        c[1] > state.maxY + margin ||
+        c[2] < state.minZ - margin ||
+        c[2] > state.maxZ + margin;
+
+      if (expands) {
+        state.hits++;
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.hits % tz === 0;
+
+        if (c[0] < state.minX) state.minX = c[0];
+        if (c[0] > state.maxX) state.maxX = c[0];
+        if (c[1] < state.minY) state.minY = c[1];
+        if (c[1] > state.maxY) state.maxY = c[1];
+        if (c[2] < state.minZ) state.minZ = c[2];
+        if (c[2] > state.maxZ) state.maxZ = c[2];
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "margin", label: "Boundary margin: ", defaultVal: 10 },
+      { id: "tz", label: "Only turn Z every nth expansion: ", defaultVal: 2 }
+    ]
+  },
+
+  {
+    id: "returnToOriginMemory3D",
+    name: "Return to Origin Memory 3D",
+    description: "Draws when the path turns inward after moving outward, emphasizing perihelion-like returns.",
+    is3D: true,
+    stateObj: {
+      lastD: null,
+      trend: 0,
+      hits: 0
+    },
+    checker: function(state, n, minDrop, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      var d = Math.sqrt(c[0] * c[0] + c[1] * c[1] + c[2] * c[2]);
+
+      if (state.lastD === null) {
+        state.lastD = d;
+        return retVal;
+      }
+
+      var delta = d - state.lastD;
+      var wasOutward = state.trend > 0;
+      var nowInward = delta < -minDrop;
+
+      if (wasOutward && nowInward) {
+        state.hits++;
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.hits % tz === 0;
+      }
+
+      if (delta > minDrop) state.trend = 1;
+      if (delta < -minDrop) state.trend = -1;
+
+      state.lastD = d;
+      return retVal;
+    },
+    extraVars: [
+      { id: "minDrop", label: "Minimum radial change: ", defaultVal: 2 },
+      { id: "tz", label: "Only turn Z every nth return: ", defaultVal: 2 }
+    ]
+  },
+
+  {
+    id: "voidFinder3D",
+    name: "Void Finder 3D",
+    description: "Draws when the current point is far from all previous drawn points, rewarding unexplored space.",
+    is3D: true,
+    stateObj: {
+      points: []
+    },
+    checker: function(state, n, minDist, tz) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      var farEnough = true;
+
+      for (var i = 0; i < state.points.length; i++) {
+        var q = state.points[i];
+        var dx = c[0] - q[0];
+        var dy = c[1] - q[1];
+        var dz = c[2] - q[2];
+        var d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+        if (d < minDist) {
+          farEnough = false;
+          break;
+        }
+      }
+
+      if (farEnough) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = state.points.length % tz === 0;
+        state.points.push([c[0], c[1], c[2]]);
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "minDist", label: "Minimum distance from all points: ", defaultVal: 100 },
+      { id: "tz", label: "Only turn Z every nth void point: ", defaultVal: 3 }
+    ]
+  },
+
+  {
+    id: "spatialRhythm3D",
+    name: "Spatial Rhythm 3D",
+    description: "Uses local spatial density to control the next draw interval. Dense regions become sparse; sparse regions become active.",
+    is3D: true,
+    stateObj: {
+      next: 1,
+      counter: 0,
+      cells: {}
+    },
+    checker: function(state, n, cellSize, base, mult) {
+      var retVal = { draw: false, turn: false, turnZ: false };
+      var c = state.coords || [0, 0, 0];
+
+      var ix = Math.floor(c[0] / cellSize);
+      var iy = Math.floor(c[1] / cellSize);
+      var iz = Math.floor(c[2] / cellSize);
+      var key = ix + "," + iy + "," + iz;
+
+      var density = state.cells[key] || 0;
+
+      if (state.counter >= state.next) {
+        retVal.draw = true;
+        retVal.turn = true;
+        retVal.turnZ = density > 0;
+
+        state.cells[key] = density + 1;
+        state.next = base + density * mult;
+        state.counter = 0;
+      } else {
+        state.counter++;
+      }
+
+      return retVal;
+    },
+    extraVars: [
+      { id: "cellSize", label: "Cell size: ", defaultVal: 100 },
+      { id: "base", label: "Base interval: ", defaultVal: 2 },
+      { id: "mult", label: "Density interval multiplier: ", defaultVal: 8 }
     ]
   }
 ];

@@ -900,6 +900,8 @@
       var retVal = prev;
       state['prevCoords'] = state['coords'];
       state['coords'] = [coords[0], coords[1], coords[2]];
+      state['currTheta'] = currTheta;
+      state['currPhi'] = currPhi;
 
       var checkResult = currChecker.checker(state, i, j, k, l);
       if (checkResult.draw) {
