@@ -351,8 +351,8 @@ let checkers = [
         retVal.turnZ = state.counter % tz == 0;
         var c = state.coords;
         var d = Math.sqrt(c[0]*c[0] + c[1]*c[1] + c[2]*c[2])
-        //var nextDistance = 2 + (x * ( d / (d + sc)));
-        var nextDistance = 2 + (x * ( ( d*d ) / (sc + .01) ) );
+        var nextDistance = 2 + (x * ( d / (d + sc)));
+        //var nextDistance = 2 + (x * ( ( d*d ) / (sc + .01) ) );
         if( nextDistance > x ) nextDistance = x;
         state.next = nextDistance;
         state.counter = 0;
