@@ -37,6 +37,18 @@
       transform: rotate(180deg);
     }
 
+    #controlPanel.collapsed {
+      display: none;
+    }
+
+    #togglePanelBtn {
+      position: fixed;
+      top: 8px;
+      right: 8px;
+      z-index: 1050;
+      opacity: 0.85;
+    }
+
     * {
       touch-action: manipulation;
     }
@@ -48,6 +60,7 @@
   </style>
 </head>
 <body>
+  <button id="togglePanelBtn" type="button" class="btn btn-sm btn-secondary" title="Hide/show controls" data-toggle="tooltip"><i class="material-icons buttonicon">expand_less</i></button>
   <div id="controlPanel" class="container-fluid">
     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -98,6 +111,7 @@
             <button id="infoBtn" type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#descriptionModal"><i class="material-icons buttonicon">
               info
             </i></button>
+            <button id="toggle3DBtn" type="button" class="btn btn-sm btn-secondary" title="Toggle 3D mode for the running checker" data-toggle="tooltip">3D</button>
           </div>
         </div>
       </div>
@@ -168,7 +182,7 @@
             </i></button>
           </div>
           <div class="btn-group btn-group-sm mb-2 ml-1" role="group">
-            <button type="button" id="orbit3DBtn" class="btn btn-secondary" title="3D Orbit — enable to drag-rotate the view in 3D" data-toggle="tooltip">
+            <button type="button" id="orbit3DBtn" class="btn btn-secondary" title="3D Orbit — when on, dragging rotates the view; when off, dragging pans in 2D (only applies in 3D mode)" data-toggle="tooltip">
               <i class="material-icons buttonicon">3d_rotation</i>
             </button>
             <button type="button" id="resetViewBtn" class="btn btn-secondary" title="Reset 3D rotation to default orientation" data-toggle="tooltip">
@@ -276,7 +290,12 @@
     var deltaPhi = 0;  //dp
     var animationStep = .015;  //as
     var phiAnimationStep = 0.015;
+    // Backing stores for the φ (#deltaPhi) and Δφ (#phiAnimationStep) fields. These keep
+    // the values alive while 2D mode hides them, so they reappear when 3D is re-enabled.
+    var phiFieldVal = "0";
+    var dphiFieldVal = "0.015";
     var reverse = false;  //r
+    var lastPlayDirection = 'forward';  // last explicitly chosen animation direction (play/reverse)
     var primeIdx = 0;
     var primeDotMap = {};
     var animating = false;
@@ -286,10 +305,10 @@
     var zooming = false;
     var viewRotation = null;
     var mode3D = false;
+    var orbitDrag = true;  // in 3D mode: true = dragging orbits/rotates, false = dragging pans in 2D
     var rotationAxis = null;
     var rotationRate = 0;
     var rotationFrameID = null;
-    var pointCache = null;
     var numColors = 1;
     var maxColors = 7;
 
@@ -351,8 +370,8 @@
       retVal += ('&an=' + animating);
       // mode3D
       retVal += ('&m3=' + mode3D);
-      // deltaPhi (degrees, from field)
-      retVal += ('&dp=' + parseFloat($('#deltaPhi').val()));
+      // deltaPhi (degrees, from backing store so it survives 2D mode hiding the field)
+      retVal += ('&dp=' + parseFloat(phiFieldVal));
       // phiAnimationStep
       retVal += ('&pas=' + phiAnimationStep);
       // background color
@@ -482,6 +501,7 @@
       // get deltaPhi
       var dpParam = getURLParameter('dp');
       if (dpParam) {
+        phiFieldVal = dpParam;
         $('#deltaPhi').val(dpParam);
       }
 
@@ -489,12 +509,14 @@
       var pasParam = getURLParameter('pas');
       if (pasParam) {
         phiAnimationStep = parseFloat(pasParam);
+        dphiFieldVal = pasParam;
         $('#phiAnimationStep').val(pasParam);
       }
 
       // get background color
       var bgParam = getURLParameter('bg');
       if (bgParam) {
+        if (bgParam.indexOf('%') !== -1) { try { bgParam = decodeURIComponent(bgParam); } catch(e) {} }
         backgroundColor = bgParam;
         $('#backgroundColor').val(bgParam);
       }
@@ -504,7 +526,9 @@
       var pcParam = getURLParameter('pc');
       if (ncParam && pcParam) {
         var ncNum = parseInt(ncParam);
-        var pcVals = pcParam.split('|');
+        var pcVals = pcParam.split('|').map(function(c) {
+          if (c.indexOf('%') !== -1) { try { return decodeURIComponent(c); } catch(e) {} } return c;
+        });
         if (pcVals.length > 0) $('#pointColor1').val(pcVals[0]);
         for (var ci = 2; ci <= ncNum && ci <= maxColors; ci++) {
           var newEle = $('<input value="' + (pcVals[ci-1] || cannedColors[ci-2]) + '" type="color" id="pointColor' + ci + '" class="form-control smallcolorpick">');
@@ -543,7 +567,7 @@
       var dT = touchContext.currTime - touchContext.prevTime;
       var dP = Math.sqrt(Math.pow(touchContext.currX - touchContext.prevX, 2) + Math.pow(touchContext.currY - touchContext.prevY, 2));
 
-      if (mode3D && currChecker && currChecker.is3D) {
+      if (mode3D && currChecker && orbitDrag) {
         if (dP > 1.0 && dT > 1) {
           var cross = getSphereCoordFromPageCoord(touchContext.prevX, touchContext.prevY)
                         .cross(getSphereCoordFromPageCoord(touchContext.currX, touchContext.currY));
@@ -593,11 +617,12 @@
     }
 
     function mode3DFrame() {
-      if (mode3D && currChecker && currChecker.is3D && (touchContext.dragging || rotationRate > 0.00001)) {
+      if (mode3D && currChecker && (touchContext.dragging || rotationRate > 0.00001)) {
         if (!animating && rotationRate > 0.00001 && rotationAxis) {
           viewRotation = Matrix.Rotation(rotationRate, rotationAxis).x(viewRotation);
           if (!touchContext.dragging) rotationRate *= 0.97;
-          drawFromCache();
+          //drawFromCache();
+          draw();
         }
         rotationFrameID = window.requestAnimationFrame(mode3DFrame);
       } else {
@@ -608,14 +633,14 @@
     function expand() {
       if( !zooming ) {
         if( !animating ) {
-          scale *= 2.0;
+          scale *= 1.5;
           resize();
           draw();
         } else {
           zooming = true;
-          var ds = (scale - (2 * scale)) / 100.0;
+          var ds = (scale - (1.5 * scale)) / 25.0;
           new Promise( function( resolve, reject ) {
-            centerOnOffsetInner( resolve, 100, 0, 0, ds );
+            centerOnOffsetInner( resolve, 25, 0, 0, ds );
           }).then(function(result) {
             zooming = false;
           });
@@ -626,14 +651,14 @@
     function contract() {
       if( !zooming ) {
         if( !animating ) {
-          scale *= 0.5;
+          scale *= 0.66;
           resize();
           draw();
         } else {
           zooming = true;
-          var ds = (scale - (.5 * scale)) / 100.0;
+          var ds = (scale - (.66 * scale)) / 25.0;
           new Promise( function( resolve, reject ) {
-            centerOnOffsetInner( resolve, 100, 0, 0, ds );
+            centerOnOffsetInner( resolve, 25, 0, 0, ds );
           }).then(function(result) {
             zooming = false;
           });
@@ -653,12 +678,12 @@
           contract();
         } else {
           zooming = true;
-          var dx = (newX - centerPoint[0]) / 100.0;
-          var dy = (newY - centerPoint[1]) / 100.0;
-          var ds = (scale - (.5 * scale)) / 100.0;
+          var dx = (newX - centerPoint[0]) / 25.0;
+          var dy = (newY - centerPoint[1]) / 25.0;
+          var ds = (scale - (.66 * scale)) / 25.0;
 
           new Promise( function( resolve, reject ) {
-            centerOnOffsetInner( resolve, 100, dx, dy, ds );
+            centerOnOffsetInner( resolve, 25, dx, dy, ds );
           }).then(function(result) {
             zooming = false;
           });
@@ -682,7 +707,8 @@
     }
 
     function resize() {
-      $('#canvasContainer').css({ height: ($(window).innerHeight() - $('#controlPanel').height() - 10) });
+      var panelHeight = $('#controlPanel').is(':visible') ? $('#controlPanel').height() : 0;
+      $('#canvasContainer').css({ height: ($(window).innerHeight() - panelHeight - 10) });
       var cnv = document.getElementById("canvasRoot");
       if( cnv.width != $('#canvasContainer').width()) cnv.width = $('#canvasContainer').width();
       if( cnv.height != $('#canvasContainer').height()) cnv.height = $('#canvasContainer').height();
@@ -765,92 +791,37 @@
     }
 
     function translatePoint(point) {
-      var rx, ry;
-      if (mode3D && viewRotation && currChecker && currChecker.is3D) {
+      var rx, ry, z;
+      if (mode3D && viewRotation && currChecker) {
         var p3d = viewRotation.x($V([point[0], point[1], point[2] || 0]));
         rx = p3d.e(1);
         ry = p3d.e(2);
+        z = p3d.e(3);
       } else {
         rx = point[0];
         ry = point[1];
+        z = 0.0;
       }
-      return [(rx - viewBox[0]) / scale, (ry - viewBox[1]) / scale];
-    }
-
-    function drawFromCache() {
-      if (!pointCache || !stagingCanvas) return;
-      var canvas = document.getElementById('canvasRoot');
-      if (stagingCanvas.width !== canvas.width) stagingCanvas.width = canvas.width;
-      if (stagingCanvas.height !== canvas.height) stagingCanvas.height = canvas.height;
-
-      var ctx = stagingCanvas.getContext('2d');
-
-      if (numColors > 1) {
-        var ctr = translatePoint([0.0, 0.0]);
-        gradient = ctx.createRadialGradient(ctr[0], ctr[1], 0,
-          ctr[0], ctr[1], Math.max(stagingCanvas.width, stagingCanvas.height) / 2.0);
-        var colorStep = 1.0 / (numColors + 1.0);
-        for (var i = 0; i < numColors; i++) {
-          gradient.addColorStop(i * colorStep, $('#pointColor' + (i + 1)).val());
-        }
-        gradient.addColorStop(1, backgroundColor);
-      } else {
-        gradient = null;
-      }
-
-      ctx.fillStyle = backgroundColor;
-      ctx.beginPath();
-      ctx.rect(0, 0, stagingCanvas.width, stagingCanvas.height);
-      ctx.fill();
-      ctx.fillStyle = gradient != null ? gradient : color;
-      ctx.strokeStyle = gradient != null ? gradient : color;
-
-      ctx.beginPath();
-      var prev = null;
-      for (var i = 0; i < pointCache.length; i++) {
-        var p = translatePoint(pointCache[i]);
-        if (connectTheDots) {
-          ctx.beginPath();
-          if (prev != null) {
-            ctx.moveTo(prev[0], prev[1]);
-            ctx.lineTo(p[0], p[1]);
-            ctx.stroke();
-            ctx.beginPath();
-          }
-          ctx.arc(p[0], p[1], pointRadius / scale, 0, 2 * Math.PI);
-          ctx.stroke();
-        } else {
-          ctx.moveTo(p[0], p[1]);
-          ctx.arc(p[0], p[1], pointRadius / scale, 0, 2 * Math.PI);
-        }
-        prev = p;
-      }
-
-      if (!connectTheDots) {
-        ctx.fill();
-      }
-
-      var context = canvas.getContext('2d');
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(stagingCanvas, 0, 0);
+      return [(rx - viewBox[0]) / scale, (ry - viewBox[1]) / scale, z];
     }
 
     function draw() {
-      pointCache = [];
       resetDisplay();
       color = $('#pointColor1').val();
       iterations = parseInt($('#numIterations').val());
       deltaTheta = parseFloat($('#deltaTheta').val());
       deltaTheta = deltaTheta * (Math.PI / 180.0);
-      deltaPhi = parseFloat($('#deltaPhi').val()) * (Math.PI / 180.0);
+      deltaPhi = parseFloat(phiFieldVal) * (Math.PI / 180.0);
       let extraVars = [];
       let extraVarValues = [0, 0, 0, 0, 0];
+      let extraVarValueMap = {};
       let stateObj = JSON.parse(JSON.stringify(currChecker.stateObj));
       extraVars = currChecker.extraVars;
       if (extraVars != null && extraVars.length > 0) {
         for (let ex = 0; ex < extraVars.length; ex++) {
           var floatVal = parseFloat($('#' + extraVars[ex].id).val());
           extraVarValues[ex] = isNaN(floatVal) ? $('#' + extraVars[ex].id).val() : floatVal;
+          extraVarValueMap[ extraVars[ex].id ] = extraVarValues[ex];
         }
       }
 
@@ -880,7 +851,8 @@
       var prevPoint = null;
 
       for (var i = 1; i < iterations; i++) {
-        prevPoint = drawInner(ctx, stateObj, i, extraVarValues[0], extraVarValues[1], extraVarValues[2], prevPoint);
+        //prevPoint = drawInner(ctx, stateObj, i, extraVarValues[0], extraVarValues[1], extraVarValues[2], prevPoint);
+        prevPoint = drawInner(ctx, stateObj, i, prevPoint, extraVarValueMap );
       }
 
       if( connectTheDots ) {
@@ -896,16 +868,16 @@
       context.drawImage(stagingCanvas,0,0);
     }
 
-    function drawInner(ctx, state, i, j, k, l, prev) {
+    //function drawInner(ctx, state, i, j, k, l, prev) {
+    function drawInner(ctx, state, i, prev, varMap ) {
       var retVal = prev;
       state['prevCoords'] = state['coords'];
       state['coords'] = [coords[0], coords[1], coords[2]];
       state['currTheta'] = currTheta;
       state['currPhi'] = currPhi;
 
-      var checkResult = currChecker.checker(state, i, j, k, l);
+      var checkResult = currChecker.checker(state, i, varMap);
       if (checkResult.draw) {
-        pointCache.push([coords[0], coords[1], coords[2]]);
         p = translatePoint(coords);
 
         retVal = p;
@@ -939,7 +911,7 @@
         }
       }
 
-      if (currChecker.is3D) {
+      if (mode3D) {
         if (checkResult.turnZ) {
           currPhi += deltaPhi;
           if( checkResult.turnIncrease != null ) {
@@ -969,7 +941,7 @@
 
     function animationInner() {
       var mult = reverse ? -1.0 : 1.0;
-      if (mode3D && currChecker && currChecker.is3D && rotationRate > 0.00001 && rotationAxis) {
+      if (mode3D && currChecker && rotationRate > 0.00001 && rotationAxis) {
         viewRotation = Matrix.Rotation(rotationRate, rotationAxis).x(viewRotation);
         if (!touchContext.dragging) rotationRate *= 0.97;
       }
@@ -985,12 +957,13 @@
 
       $('#deltaTheta').val('' + newVal);
 
-      if (phiAnimationStep !== 0) {
-        var dp = parseFloat($('#deltaPhi').val());
+      if (mode3D && phiAnimationStep !== 0) {
+        var dp = parseFloat(phiFieldVal);
         var newPhi = dp + (mult * phiAnimationStep);
         if (newPhi > 360.0) newPhi = 0.0;
         else if (newPhi < 0.0) newPhi = 360.0;
-        $('#deltaPhi').val('' + newPhi);
+        phiFieldVal = '' + newPhi;
+        $('#deltaPhi').val(phiFieldVal);
       }
 
       frameID = window.requestAnimationFrame(animationInner);
@@ -1025,7 +998,8 @@
               // this sets a state variable.
               stateVars.push( { id: tempVar.id, changeFunc : tempVar.changeFunc } );
             }
-            tempInput += '<div class="input-group input-group-sm mb-2 mr-1">';
+            var modeClass = tempVar.mode === '3D' ? ' extraVar3D' : (tempVar.mode === '2D' ? ' extraVar2D' : '');
+            tempInput += '<div class="input-group input-group-sm mb-2 mr-1' + modeClass + '">';
             tempInput += '<div class="input-group-prepend"><span class="input-group-text">' + tempVar.label + '</span></div>';
             if (tempVar.values) {
               // it's a select
@@ -1052,7 +1026,52 @@
               tempStateVar.changeFunc(currChecker.stateObj, $(this).val() );
             });
           }
+          applyExtraVarModeVisibility();
         }
+      }
+    }
+
+    // Show/hide mode-specific extraVar inputs based on the live 3D toggle.
+    // Hidden inputs remain in the DOM so draw() still reads a (bogus) value
+    // for them, preserving the positional argument order checkers rely on.
+    function applyExtraVarModeVisibility() {
+      $('.extraVar3D').toggle(!!mode3D);
+      $('.extraVar2D').toggle(!mode3D);
+    }
+
+    // Grey out the 3D-only controls when not in 3D mode. The φ / Δφ fields keep their
+    // values in backing stores and show blank while disabled, restoring them in 3D mode.
+    function applyPhiControlsVisibility() {
+      if (mode3D) {
+        $('#deltaPhi').val(phiFieldVal).prop('disabled', false);
+        $('#phiAnimationStep').val(dphiFieldVal).prop('disabled', false);
+        $('#orbit3DBtn, #resetViewBtn').prop('disabled', false);
+      } else {
+        // Capture any uncommitted edits before hiding (only if the fields are currently active).
+        if (!$('#deltaPhi').prop('disabled')) {
+          phiFieldVal = $('#deltaPhi').val();
+          dphiFieldVal = $('#phiAnimationStep').val();
+        }
+        $('#deltaPhi').val('').prop('disabled', true);
+        $('#phiAnimationStep').val('').prop('disabled', true);
+        $('#orbit3DBtn, #resetViewBtn').prop('disabled', true);
+      }
+    }
+
+    // Toggle 3D mode live and reflect it in the UI / current render.
+    function set3DMode(on) {
+      mode3D = on;
+      if (mode3D) {
+        $('#toggle3DBtn').removeClass('btn-secondary').addClass('btn-primary');
+      } else {
+        $('#toggle3DBtn').removeClass('btn-primary').addClass('btn-secondary');
+      }
+      applyExtraVarModeVisibility();
+      applyPhiControlsVisibility();
+      // Regenerate points so the dimension switch takes effect immediately.
+      // While animating, the animation loop already redraws each frame.
+      if (!animating && currChecker) {
+        draw();
       }
     }
     const checkerMap = {};
@@ -1062,13 +1081,16 @@
       viewRotation = Matrix.I(3);
       let selectOptions = [["Select One", ""]];
       let temp = [];
-      for (var i = 0; i < checkers.length; i++) {
+      let sortedCheckers = checkers.slice().sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
+      for (var i = 0; i < sortedCheckers.length; i++) {
         temp = [];
-        temp.push(checkers[i].name);
-        temp.push(checkers[i].id);
-        temp.push(checkers[i].default ? true : false);
+        temp.push(sortedCheckers[i].name);
+        temp.push(sortedCheckers[i].id);
+        temp.push(sortedCheckers[i].default ? true : false);
         selectOptions.push(temp);
-        checkerMap[checkers[i].id] = checkers[i];
+        checkerMap[sortedCheckers[i].id] = sortedCheckers[i];
       }
 
       for (let i = 0; i < selectOptions.length; i++) {
@@ -1093,8 +1115,14 @@
 
       // Restore mode3D button appearance
       if (mode3D) {
+        $('#toggle3DBtn').removeClass('btn-secondary').addClass('btn-primary');
+      }
+      // Reflect orbit-drag state (rotate vs 2D-pan while in 3D mode)
+      if (orbitDrag) {
         $('#orbit3DBtn').removeClass('btn-secondary').addClass('btn-primary');
       }
+      applyExtraVarModeVisibility();
+      applyPhiControlsVisibility();
 
       // Auto-render or auto-animate when loaded from a share URL
       if (getURLParameter('cc')) {
@@ -1105,6 +1133,14 @@
           draw();
         }
       }
+
+      $('#togglePanelBtn').on('click', function (e) {
+        var collapsed = $('#controlPanel').toggleClass('collapsed').hasClass('collapsed');
+        $('#togglePanelBtn i').text(collapsed ? 'expand_more' : 'expand_less');
+        resize();
+        //drawFromCache();
+        draw();
+      });
 
       $('#checkerSelect').on('change', function (e) {
         currChecker = checkerMap[$('#checkerSelect').val()];
@@ -1121,6 +1157,7 @@
         if (validateInputs()) {
           stopAnimation();
           reverse = false;
+          lastPlayDirection = 'forward';
           startAnimation();
         }
       });
@@ -1132,12 +1169,45 @@
         if (validateInputs()) {
           stopAnimation();
           reverse = true;
+          lastPlayDirection = 'reverse';
           startAnimation();
         }
       });
 
       $('#pauseBtn').on('click', function (e) {
         stopAnimation();
+      });
+
+      // Keyboard shortcuts: →/← play forward/backward, ↓ stop or resume last direction.
+      $(document).on('keydown', function (e) {
+        var tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+        var key = e.key;
+        if (key === 'ArrowRight') {
+          e.preventDefault();
+          $('#playBtn').click();
+        } else if (key === 'ArrowLeft') {
+          e.preventDefault();
+          $('#reverseBtn').click();
+        } else if (key === 'ArrowDown') {
+          e.preventDefault();
+          if (animating) {
+            $('#pauseBtn').click();
+          } else if (lastPlayDirection === 'reverse') {
+            $('#reverseBtn').click();
+          } else {
+            $('#playBtn').click();
+          }
+        } else if (key === '-' || key === '_') {
+          e.preventDefault();
+          $('#zoomout').click();
+        } else if (key === '=' || key === '+') {
+          e.preventDefault();
+          $('#zoomin').click();
+        } else if (key === 'o' || key === 'O') {
+          e.preventDefault();
+          $('#connectDots').click();
+        }
       });
 
       $('#zoomin').on('click', function(e) {
@@ -1189,14 +1259,18 @@
         secondaryColor = $('#secondaryColor').val();
       });
 
+      $('#toggle3DBtn').on('click', function() {
+        set3DMode(!mode3D);
+      });
+
       $('#orbit3DBtn').on('click', function() {
-        mode3D = !mode3D;
+        orbitDrag = !orbitDrag;
         $(this).toggleClass('btn-primary btn-secondary');
       });
 
       $('#resetViewBtn').on('click', function() {
         viewRotation = Matrix.I(3);
-        if (pointCache) drawFromCache();
+        draw();
       });
 
       $('#dotRadius').on('change', function(e) {
@@ -1207,7 +1281,12 @@
         animationStep = parseFloat($('#animationStep').val());
       });
 
+      $('#deltaPhi').on('change', function(e) {
+        phiFieldVal = $('#deltaPhi').val();
+      });
+
       $('#phiAnimationStep').on('change', function(e) {
+        dphiFieldVal = $('#phiAnimationStep').val();
         phiAnimationStep = parseFloat($('#phiAnimationStep').val());
       });
 
@@ -1228,7 +1307,7 @@
          touchContext.clickTime = d.getTime();
          touchContext.dragging = true;
          touchContext.lastRate = 0.0;
-         if (mode3D && !rotationFrameID) mode3DFrame();
+         if (mode3D && orbitDrag && !rotationFrameID) mode3DFrame();
         }).on("touchend", function(event) {
          event.preventDefault();
          touchContext.currX = event.originalEvent.changedTouches[0].pageX;
@@ -1252,7 +1331,7 @@
          touchContext.clickTime = d.getTime();
          touchContext.dragging = true;
          touchContext.lastRate = 0.0;
-         if (mode3D && !rotationFrameID) mode3DFrame();
+         if (mode3D && orbitDrag && !rotationFrameID) mode3DFrame();
         }).on("mouseup", function(event) {
          touchContext.currX = event.pageX;
          touchContext.currY = event.pageY;
